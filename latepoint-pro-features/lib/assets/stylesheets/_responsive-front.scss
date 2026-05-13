@@ -1,0 +1,53 @@
+@media (max-width: 600px) {
+  .latepoint-booking-form-element .os-social-login-options .os-social-login-option.os-social-login-google img,
+  .latepoint-booking-form-element .os-social-login-options .os-social-login-option.os-social-login-facebook img {
+    margin-right: 5px;
+    width: 15px;
+  }
+  .latepoint-login-form-w .os-social-login-options {
+    .os-social-login-option {
+      iframe {
+      }
+    }
+  }
+  .latepoint-w .os-recurring-suggestion-wrapper {
+    left: -15px;
+    right: -15px;
+    bottom: -15px;
+    padding: 20px;
+  }
+
+  .latepoint-summary-w .recurring-bookings-preview-wrapper {
+    flex: 1;
+  }
+
+  .latepoint-w .latepoint-step-content.step-recurring-bookings-w .os-recurrence-preview-information {
+    display: block;
+  }
+  .latepoint-summary-w .recurring-bookings-preview-continue-btn {
+    display: block;
+  }
+  .latepoint-login-form-w .os-social-login-options .os-social-login-option.os-social-login-google iframe, .step-customer-w .os-social-login-options .os-social-login-option.os-social-login-google iframe {
+    margin: 0!important;
+  }
+  .latepoint-w {
+    .latepoint-booking-form-element {
+      .os-social-login-options {
+        flex-direction: column;
+        align-items: center;
+
+        > .os-social-login-option {
+          flex: 0;
+          margin-bottom: 10px;
+          padding: 6px 8px;
+          padding-top: 5px;
+          max-width: initial;
+
+          i {
+            margin-right: 5px;
+          }
+        }
+      }
+    }
+  }
+}

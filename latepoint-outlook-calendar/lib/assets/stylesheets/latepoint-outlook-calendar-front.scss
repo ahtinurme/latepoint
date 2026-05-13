@@ -1,0 +1,48 @@
+/*!
+ * Copyright (c) 2023 LatePoint LLC. All rights reserved.
+ */
+@import "../../../../latepoint/lib/assets/stylesheets/front/_variables.scss";
+@import "../../../../latepoint/lib/assets/stylesheets/front/_mixins.scss";
+
+.os-outlook-meet-info-link {
+	display: flex;
+	align-items: center;
+	gap: 15px;
+	text-decoration: none;
+	padding: 8px;
+	border: 1px solid #ccc;
+	border-bottom-color: #999;
+	box-shadow: 0 2px 0 0 rgba( 0, 0, 0, 0.05 );
+	position: relative;
+	margin-top: 15px;
+	&:hover,
+	&:focus {
+		border-color: $brand-primary;
+		box-shadow: 0 0 0 1px $brand-primary;
+		text-decoration: none;
+	}
+	.latepoint-icon {
+		font-size: 14px;
+		margin-left: auto;
+		display: block;
+		position: absolute;
+		top: 5px;
+		right: 5px;
+		color: $brand-primary;
+	}
+	img {
+		height: 26px;
+		width: auto;
+	}
+	.meet-info {
+		.meet-id {
+			color: $color-faded;
+			font-size: 12px;
+			display: block;
+		}
+		.meet-label {
+			display: block;
+			color: $headings-color;
+		}
+	}
+}

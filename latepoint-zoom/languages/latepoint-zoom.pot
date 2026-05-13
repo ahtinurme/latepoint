@@ -1,0 +1,153 @@
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: LatePoint Addon - Zoom\n"
+"POT-Creation-Date: 2023-07-16 15:38-0700\n"
+"PO-Revision-Date: 2023-07-16 15:38-0700\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=INTEGER; plural=EXPRESSION;\n"
+"X-Generator: Poedit 3.3.1\n"
+"X-Poedit-Basepath: ..\n"
+"X-Poedit-Flags-xgettext: --add-comments=translators:\n"
+"X-Poedit-WPHeader: latepoint-zoom.php\n"
+"X-Poedit-SourceCharset: UTF-8\n"
+"X-Poedit-KeywordsList: __;_e;_n:1,2;_x:1,2c;_ex:1,2c;_nx:4c,1,2;esc_attr__;"
+"esc_attr_e;esc_attr_x:1,2c;esc_html__;esc_html_e;esc_html_x:1,2c;_n_noop:1,2;"
+"_nx_noop:3c,1,2;__ngettext_noop:1,2\n"
+"X-Poedit-SearchPath-0: .\n"
+"X-Poedit-SearchPathExcluded-0: *.min.js\n"
+
+#: latepoint-zoom.php:141
+msgid "Zoom"
+msgstr ""
+
+#: latepoint-zoom.php:151
+msgid "API Credentials"
+msgstr ""
+
+#: latepoint-zoom.php:159
+msgid "Invalid API Credentials: "
+msgstr ""
+
+#: latepoint-zoom.php:165 lib/views/zoom/settings.php:16
+msgid "Account ID"
+msgstr ""
+
+#: latepoint-zoom.php:168 lib/views/zoom/settings.php:19
+msgid "Client ID"
+msgstr ""
+
+#: latepoint-zoom.php:171 lib/views/zoom/settings.php:22
+msgid "Client Secret"
+msgstr ""
+
+#: latepoint-zoom.php:177 lib/views/zoom/settings.php:25
+msgid "Other Settings"
+msgstr ""
+
+#: latepoint-zoom.php:180 lib/views/zoom/settings.php:26
+msgid ""
+"You can use variables in these templates, they will be replaced with a value "
+"for the booking. "
+msgstr ""
+
+#: latepoint-zoom.php:181 lib/views/zoom/settings.php:29
+msgid "Template For Meeting Topic"
+msgstr ""
+
+#: latepoint-zoom.php:207
+msgid "Join Zoom Meeting"
+msgstr ""
+
+#: latepoint-zoom.php:214
+msgid "Zoom Meeting"
+msgstr ""
+
+#: latepoint-zoom.php:216
+msgid "Meeting URL:"
+msgstr ""
+
+#: latepoint-zoom.php:218
+msgid "Meeting ID:"
+msgstr ""
+
+#: latepoint-zoom.php:220
+msgid "Meeting Password:"
+msgstr ""
+
+#: latepoint-zoom.php:259
+msgid "Connected to Zoom"
+msgstr ""
+
+#: latepoint-zoom.php:326
+msgid "Zoom Meeting Info"
+msgstr ""
+
+#: latepoint-zoom.php:330
+msgid "ID:"
+msgstr ""
+
+#: latepoint-zoom.php:331
+msgid "Password:"
+msgstr ""
+
+#: latepoint-zoom.php:333
+msgid "Join"
+msgstr ""
+
+#: latepoint-zoom.php:344
+msgid "Zoom Integration"
+msgstr ""
+
+#: latepoint-zoom.php:348
+msgid "Connect to Zoom User"
+msgstr ""
+
+#: latepoint-zoom.php:362 lib/controllers/zoom_controller.php:18
+msgid "Zoom Settings"
+msgstr ""
+
+#: latepoint-zoom.php:366
+msgid "Create Zoom meeting for bookings"
+msgstr ""
+
+#: latepoint-zoom.php:366
+msgid "Zoom meeting for bookings of this service will be created automatically"
+msgstr ""
+
+#: lib/helpers/zoom_helper.php:194
+msgid "Do not connect"
+msgstr ""
+
+#: lib/views/zoom/settings.php:10
+msgid "Enable Zoom Meetings"
+msgstr ""
+
+#: lib/views/zoom/settings.php:13
+msgid "App Credentials"
+msgstr ""
+
+#: lib/views/zoom/settings.php:35
+msgid "Save Settings"
+msgstr ""
+
+#. Plugin Name of the plugin/theme
+msgid "LatePoint Addon - Zoom"
+msgstr ""
+
+#. Plugin URI of the plugin/theme
+#. Author URI of the plugin/theme
+msgid "https://latepoint.com/"
+msgstr ""
+
+#. Description of the plugin/theme
+msgid "LatePoint addon for zoom meetings"
+msgstr ""
+
+#. Author of the plugin/theme
+msgid "LatePoint"
+msgstr ""

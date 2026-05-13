@@ -1,0 +1,188 @@
+.os-timezone-selector-wrapper-with-shadow {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(255, 255, 255, 0.6);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.os-timezone-selector-wrapper {
+  background-color: #fff;
+  box-shadow: 0 5px 30px -3px rgba(0,0,0,0.4), 0 3px 7px -2px rgba(0,0,0,0.6);
+  z-index: 99999;
+  width: 300px;
+  flex: 0 0 300px;
+  position: relative;
+
+  animation: 0.3s cubic-bezier(0.05, 0.45, 0.1, 1.2) 0s up20op;
+  animation-fill-mode: both;
+
+  .os-timezone-selector-close {
+    position: absolute;
+    top: -15px;
+    right: -15px;
+    background-color: #fff;
+    padding: 7px;
+    box-shadow: 0 5px 30px -3px rgba(0, 0, 0, 0.4), 0 3px 7px -2px rgba(0, 0, 0, 0.6);
+    border-radius: 15px;
+    line-height: 1;
+    font-size: 14px;
+    cursor: pointer;
+    &:hover {
+      background-color: #f1f1f1;
+    }
+    i {
+      display: block;
+    }
+  }
+  .os-selected-timezone-info {
+    display: flex;
+    align-items: center;
+    background-color: #f1f1f1;
+    padding: 5px 20px;
+    gap: 7px;
+    border-bottom: 1px solid #eee;
+    font-size: $body-font-size-s;
+    .latepoint-icon-checkmark {
+      padding: 3px;
+      background-color: $brand-primary;
+      color: #fff;
+      font-size: 8px;
+      border-radius: 10px;
+    }
+    .os-selected-timezone-name {
+      color: $headings-color;
+    }
+    .os-selected-timezone-local-time {
+      margin-left: auto;
+      color: $color-faded;
+      font-size: $body-font-size-xs;
+    }
+  }
+  .os-timezones-filter-input-wrapper {
+    padding: 10px;
+  }
+  .os-timezones-filter-input {
+    display: block;
+    width: 100%;
+    padding: 10px;
+    box-shadow: none;
+    font-size: $body-font-size-m;
+    border: 1px solid #aaa;
+    &:focus {
+      outline: none;
+      border-color: $brand-primary;
+      box-shadow: 0 0 0 3px color-mix(in srgb, $brand-primary 10%, transparent);
+    }
+  }
+  .os-timezone-no-matches {
+    padding: 5px 20px;
+    background-color: #f1f1f1;
+    color: $color-faded;
+  }
+  .os-timezones-list {
+    height: 200px;
+    overflow-y: auto;
+    font-size: $body-font-size-m;
+    color: $body-color;
+  }
+  .os-timezone-group-header {
+    font-weight: $body-font-weight-black;
+    color: $headings-color;
+    font-size: $body-font-size-l;
+    padding: 10px 20px 5px 20px;
+    position: sticky;
+    top: -12px;
+    background-color: #fff;
+    border-bottom: 1px solid #eee;
+    z-index: 1;
+  }
+  .os-timezone-selector-option {
+    padding: 5px 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    cursor: pointer;
+    &:hover {
+      background-color: #f1f1f1;
+    }
+    &.selected {
+      padding-left: 40px;
+      position: relative;
+      font-weight: $body-font-weight-bold;
+      background-color: color-mix(in srgb, $brand-primary 10%, transparent);
+      &:before {
+        content: "";
+        @include latepointfont("\e903");
+        display: block;
+        padding: 3px;
+        background-color: $brand-primary;
+        color: #fff;
+        font-size: 8px;
+        border-radius: 10px;
+        position: absolute;
+        left: 20px;
+        top: 50%;
+        transform: translateY(-50%);
+      }
+      .os-timezone-selector-option-local-time {
+        color: $brand-primary;
+      }
+    }
+    .os-timezone-selector-option-local-time {
+      color: $color-faded;
+      font-size: $body-font-size-xs;
+    }
+  }
+}
+
+.os-timezone-info-wrapper {
+  display: flex;
+  align-items: center;
+  font-size: $body-font-size-s;
+  margin-top: 20px;
+  justify-content: flex-end;
+  .os-timezone-info-label {
+
+  }
+  .os-timezone-info-value {
+    color: $headings-color;
+    font-weight: $body-font-weight-black;
+    position: relative;
+    padding: 5px;
+    padding-right: 15px;
+    cursor: pointer;
+    span {
+      border-bottom: 1px dotted $headings-color;
+      display: inline-block;
+      white-space: nowrap;
+    }
+    &:hover {
+      span {
+        border-bottom-style: solid;
+      }
+    }
+    &:after {
+      content: "";
+      border: 5px solid transparent;
+      border-top-color: #111;
+      display: block;
+      position: absolute;
+      right: 0px;
+      top: 40%;
+    }
+    &.os-loading {
+      &:after {
+        display: none;
+      }
+      &:before {
+        @include loading-circle(#000, 10px);
+        right: -5px;
+        left: auto;
+      }
+    }
+  }
+}

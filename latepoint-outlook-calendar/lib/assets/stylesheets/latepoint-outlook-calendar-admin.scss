@@ -1,0 +1,852 @@
+@import "../../../../latepoint/lib/assets/stylesheets/shared/_variables.scss";
+@import "../../../../latepoint/lib/assets/stylesheets/admin/_variables.scss";
+@import "../../../../latepoint/lib/assets/stylesheets/admin/_mixins.scss";
+
+.connect-to-ocal-button {
+	margin-left: auto;
+	display: flex;
+	gap: 5px;
+	text-decoration: none;
+	align-items: center;
+	border-bottom: 1px dotted $brand-primary;
+	color: $brand-primary;
+	padding: 0;
+}
+
+.ocal-event {
+	padding: 10px;
+	background-color: #fff;
+	margin-bottom: 10px;
+	box-shadow: $box-shadow;
+	border-radius: $border-radius;
+}
+
+#outlook-signin-button {
+	margin-left: 10px;
+}
+
+.os-pick-calendar-section {
+	padding: 15px 20px;
+	color: $color-faded;
+	background: #ecf4ff;
+	border-left: 4px solid #c3d8f5;
+	display: flex;
+	align-items: center;
+	font-size: floor( $font-size-base * 1 );
+	font-weight: $body-font-weight-bold;
+
+	.os-form-group.os-form-group-transparent {
+		margin: 0;
+		margin-left: 5px;
+
+		// select {}
+	}
+}
+
+.calendar-available-for-sync {
+	padding: 5px 0;
+	border-bottom: 1px solid $border-color-lightest;
+	position: relative;
+
+	&.os-loading {
+		&::before {
+			@include loading-circle( $brand-primary, 10px );
+			left: -16px;
+		}
+	}
+
+	.os-form-group.os-form-toggler-group {
+		padding-right: 20px;
+		margin-bottom: 0;
+		border: 0;
+
+		label {
+			font-size: floor( $font-size-base * 1.1 );
+			color: $headings-color;
+		}
+	}
+}
+
+.os-outlook-cal-authorize-btn {
+	margin-left: 20px;
+	display: inline-block;
+	cursor: pointer;
+
+	img {
+		width: 191px;
+		height: auto;
+	}
+}
+
+.channel-watch-status {
+	padding: 20px;
+	display: flex;
+	margin-left: auto;
+	align-items: center;
+	font-size: $body-font-size-s;
+
+	&.as-action-list {
+		display: block;
+		padding: 0;
+
+		.channel-action {
+			padding: 15px;
+			display: flex;
+			align-items: center;
+
+			& + .channel-action {
+				border-top: 1px solid rgba( 0, 0, 0, 0.05 );
+			}
+
+			&.override-status-warning {
+				background-color: #fffae7;
+
+				.latepoint-icon {
+					background-color: #f6d971;
+				}
+			}
+
+			&:first-child {
+				border-top-left-radius: 8px;
+				border-top-right-radius: 8px;
+			}
+
+			&:last-child {
+				border-bottom-left-radius: 8px;
+				border-bottom-right-radius: 8px;
+			}
+		}
+	}
+
+	.latepoint-link {
+		margin-left: auto;
+
+		span + span {
+			margin-left: 5px;
+		}
+	}
+
+	& + .syncing-calendar-wrapper {
+		margin-top: 20px;
+	}
+
+	&:last-child {
+		margin-bottom: 0;
+	}
+
+	&:first-child {
+		margin-top: 0;
+	}
+
+	&.watch-status-on {
+		background-color: #f0fef7;
+		border-left: 2px solid #a2e5c0;
+
+		.status-watch-label {
+			color: $headings-color;
+
+			.latepoint-icon {
+				width: 25px;
+				height: 25px;
+				background-color: #6be6a1;
+				box-shadow: 0 0 0 4px rgba( 255, 255, 255, 0.6 );
+				color: #fff;
+				border-radius: 15px;
+				text-align: center;
+				line-height: 25px;
+			}
+		}
+	}
+
+	&.watch-status-off {
+		background-color: #fff5df;
+		border-left: 4px solid #e1aa50;
+
+		.status-watch-label {
+			color: #6c5313;
+		}
+
+		// a {}
+	}
+
+	.status-watch-label {
+		color: #056b34;
+		display: flex;
+		align-items: center;
+
+		a {
+			margin-left: 5px;
+
+			&.sw-danger {
+				color: #d95454;
+			}
+		}
+
+		.latepoint-icon {
+			font-size: 15px;
+			margin-right: 12px;
+		}
+
+		.os-form-group {
+			display: inline-block;
+			margin: 0 10px;
+
+			select.os-form-control {
+				background-color: #ecfff5;
+				border: 1px solid #5ed693;
+				border-bottom-color: #40b975;
+			}
+		}
+	}
+
+	// a.latepoint-link {}
+
+	.latepoint-link.cw-danger {
+		color: #981414;
+		border-bottom-color: #981414;
+	}
+
+	// .latepoint-link.cw-enable {}
+
+	.cw-expires {
+		margin-left: auto;
+		color: $headings-color;
+		line-height: 1.1;
+		padding: 2px 2px;
+		border-radius: 4px;
+		background-color: #fff;
+		font-size: $body-font-size-xs;
+	}
+}
+
+.calendar-daily-agent-w,
+.calendar-week-agent-w {
+	.calendar-hours .ch-day-booking {
+		&.ocal-calendar-event {
+			background-color: #fff !important;
+			box-shadow:
+				0 2px 4px rgba( 0, 0, 0, 0.1 ),
+				inset 0 0 0 1px #111;
+			background-image: linear-gradient( 135deg, #fff 25%, #f8f8fb 25%, #f8f8fb 50%, #fff 50%, #fff 75%, #f8f8fb 75%, #f8f8fb 100% );
+			background-size: 100px 100px;
+
+			.booking-time {
+				color: $color-faded;
+			}
+
+			.booking-service-name {
+				color: $headings-color;
+
+				img,
+				span {
+					display: inline-block;
+					vertical-align: middle;
+					line-height: 16px;
+				}
+
+				img {
+					width: 14px;
+					height: 14px;
+				}
+			}
+		}
+	}
+}
+
+.ocal-event-booking-block {
+	background-color: #fff !important;
+	background-image: linear-gradient( 135deg, #fff 25%, #f8f8fb 25%, #f8f8fb 50%, #fff 50%, #fff 75%, #f8f8fb 75%, #f8f8fb 100% );
+	background-size: 40px 40px;
+	box-shadow:
+		0 2px 4px rgba( 0, 0, 0, 0.1 ),
+		inset 0 0 0 1px #2d54de !important;
+
+	img {
+		position: absolute;
+		height: 12px;
+		width: 12px;
+		display: block;
+		left: 3px;
+		top: 50%;
+		transform: translateY( -50% );
+	}
+}
+
+.sync-message-empty {
+	padding: 20px;
+	background-color: #f7f8fa;
+	border: 2px solid #e7eaf0;
+	border-radius: 6px;
+	font-weight: $body-font-weight-bold;
+	font-size: $font-size-base;
+	color: $color-faded;
+	margin-bottom: 30px;
+}
+
+.sync-headings {
+	padding-bottom: 10px;
+	margin-bottom: 10px;
+	border-bottom: 1px solid $border-color-lightest;
+
+	h2 {
+		margin: 0;
+		margin-bottom: 5px;
+		font-size: floor( $headings-font-size * 0.8 );
+		color: $brand-primary;
+	}
+
+	p {
+		color: $color-faded;
+		font-size: $font-size-base;
+		margin: 0;
+	}
+}
+
+.os-sync-stats-and-progress-w {
+	padding: 20px;
+	padding-top: 15px;
+	position: relative;
+	border-radius: $border-radius-lg;
+	margin-bottom: 30px;
+	background-color: #fff;
+	@include white-box();
+
+	.channel-watch-status {
+		padding: 5px 10px;
+
+		.latepoint-link {
+			margin-left: 15px;
+		}
+
+		.cw-expires {
+			margin-left: 10px;
+		}
+
+		.cw-token-info {
+			display: none;
+		}
+
+		&:hover {
+			.cw-token-info {
+				display: flex;
+				align-items: center;
+			}
+		}
+
+		&.watch-status-on .status-watch-label .latepoint-icon {
+			width: 15px;
+			height: 15px;
+			line-height: 15px;
+			font-size: 14px;
+			box-shadow: none;
+		}
+	}
+}
+
+.os-sync-toggler-w {
+	display: flex;
+	padding-bottom: 15px;
+	border-bottom: 1px solid $border-color-lightest;
+	align-items: center;
+
+	.calendar-available-for-sync {
+		padding: 0;
+		border: none;
+
+		.os-form-group.os-form-toggler-group label {
+			font-size: floor( $font-size-base * 1.3 );
+			padding: 0;
+		}
+	}
+
+	margin-bottom: 20px;
+}
+
+.os-sync-stats {
+	display: flex;
+	align-items: baseline;
+
+	.os-sync-value {
+		font-size: floor( $font-size-base * 1.6 );
+		font-weight: $body-font-weight-bold;
+		line-height: 1.2;
+		margin-right: 10px;
+		color: $headings-color;
+	}
+
+	.os-sync-label {
+		font-weight: $body-font-weight-bold;
+		font-size: floor( $font-size-base * 1.1 );
+		color: $color-faded;
+	}
+
+	.os-sync-buttons {
+		margin-left: auto;
+
+		a + a {
+			margin-left: 10px;
+		}
+	}
+
+	.os-form-group.os-form-group-transparent {
+		margin-bottom: 0;
+		margin-left: 10px;
+
+		select.os-form-control {
+			min-height: auto;
+			height: 26px;
+			font-size: $font-size-base;
+		}
+	}
+}
+
+.os-sync-progress {
+	margin-top: 10px;
+	background-color: #ebeff3;
+
+	.os-sync-progress-bar {
+		height: 10px;
+		background-color: #91f1d2;
+		transition: width 0.2s ease;
+	}
+}
+
+.os-sync-stat-tiles {
+	margin-bottom: 20px;
+	border-bottom: 1px solid rgba( 0, 0, 0, 0.05 );
+	padding-bottom: 20px;
+
+	.os-info-tile {
+		margin-bottom: 10px;
+		box-shadow: none;
+		border-radius: 0;
+		padding: 0;
+
+		.latepoint-btn {
+			float: right;
+			margin-left: 15px;
+			display: inline-block;
+			vertical-align: bottom;
+			padding: 2px 4px 3px !important;
+
+			&.os-syncing {
+				border-color: #de2d2d !important;
+				color: #de2d2d !important;
+
+				i {
+					animation: os-rotating 700ms infinite linear;
+				}
+			}
+
+			&.os-removing {
+				border-color: #de2d2d !important;
+				color: #de2d2d !important;
+
+				i {
+					animation: os-rotating 700ms infinite linear;
+				}
+			}
+		}
+	}
+}
+
+.os-booking-tiny-boxes-container {
+	.event-type-header {
+		margin-top: 30px;
+		margin-bottom: 15px;
+	}
+}
+
+.os-booking-tiny-boxes-w {
+	display: flex;
+	align-items: flex-start;
+	padding-bottom: 10px;
+	margin-bottom: 20px;
+	border-bottom: 1px solid $border-color-lightest;
+
+	&:last-child {
+		margin-bottom: 0;
+		border-bottom: none;
+	}
+
+	.os-booking-tiny-boxes-i {
+		flex-wrap: wrap;
+		display: flex;
+		flex: 1;
+	}
+
+	.os-booking-tiny-box-date {
+		margin-bottom: 10px;
+		margin-right: 20px;
+		text-align: left;
+		flex: 0 0 110px;
+
+		.os-day {
+			font-size: $body-font-size-m;
+			font-weight: $body-font-weight-bold;
+			line-height: 1.1;
+			color: $headings-color;
+		}
+
+		.os-month {
+			font-size: $font-size-base;
+			font-weight: $body-font-weight-bold;
+			color: lighten( $color-faded, 10% );
+		}
+	}
+
+	.os-booking-tiny-box {
+		flex: 0 0 200px;
+		max-width: 200px;
+		margin-right: 10px;
+		margin-bottom: 10px;
+		background-color: #edeff3;
+		padding: 5px 10px;
+		position: relative;
+		border-left: 4px solid #cdd3dd;
+		transition: border-width 0.1s ease;
+
+		&:not( .event-is-in-outlook ):hover {
+			cursor: pointer;
+			border-left-width: 8px;
+		}
+
+		&.booking-status-cancelled {
+			background-color: #ffebeb;
+			border-left-color: #e39c9c;
+
+			&::after {
+				content: "";
+				width: 10px;
+				height: 10px;
+				background-color: #f67171;
+				border-radius: 10px;
+				position: absolute;
+				top: 5px;
+				right: 5px;
+			}
+		}
+
+		.os-edit-booking-btn {
+			padding: 2px 6px 4px;
+			display: inline-block;
+			text-decoration: none;
+			background-color: #fff;
+			border-radius: $border-radius;
+			font-size: floor( $font-size-base * 0.8 );
+			border: 1px solid #31b996;
+			margin-top: 10px;
+			color: #0f614b;
+			line-height: 1;
+			position: relative;
+
+			i,
+			span {
+				display: inline-block;
+				vertical-align: middle;
+			}
+
+			i {
+				margin-right: 5px;
+			}
+
+			&.os-loading {
+				&::before {
+					@include loading-circle( #0f614b, 10px );
+					left: 11px;
+				}
+
+				i {
+					color: transparent;
+				}
+			}
+		}
+
+		.os-name {
+			font-weight: $body-font-weight-bold;
+			font-size: floor( $font-size-base * 1 );
+			margin-bottom: 5px;
+		}
+
+		.os-date {
+			font-size: floor( $font-size-base * 0.8 );
+			color: $color-faded;
+		}
+
+		.os-booking-unsync-outlook-trigger {
+			position: absolute;
+			top: 2px;
+			right: 22px;
+			cursor: pointer;
+			color: #f96a3b;
+			font-size: 16px;
+			display: none;
+
+			&::before {
+				@include latepointfont_admin( "\e960" );
+			}
+
+			&.os-loading {
+				&::before {
+					color: transparent !important;
+					@include loading-circle( #f96a3b, 13px );
+					top: 8px;
+					left: -8px;
+				}
+			}
+		}
+
+		.os-booking-sync-outlook-trigger {
+			position: absolute;
+			top: 2px;
+			right: 2px;
+			cursor: pointer;
+			color: $color-faded;
+			font-size: 16px;
+			display: none;
+
+			&:hover {
+				color: $brand-primary;
+			}
+
+			&::before {
+				@include latepointfont_admin( "\e95f" );
+			}
+
+			&.os-loading {
+				&::before {
+					color: transparent !important;
+					@include loading-circle( $brand-primary, 13px );
+					top: 8px;
+					left: -8px;
+				}
+			}
+		}
+
+		&.event-is-in-outlook {
+			.os-booking-sync-outlook-trigger {
+				display: block;
+			}
+		}
+
+		&.booking-should-be-syncable {
+			.os-booking-sync-outlook-trigger {
+				display: block;
+			}
+		}
+
+		&.not-synced {
+			.os-edit-booking-btn {
+				border-color: #fff;
+				color: $body-color;
+			}
+		}
+
+		&.is-synced {
+			background-color: #e3fff6;
+			border-left-color: #91f1d2;
+
+			.os-name {
+				color: #0c2521;
+			}
+
+			.os-date {
+				color: #5e9e91;
+			}
+
+			&:hover {
+				.os-booking-unsync-outlook-trigger {
+					display: block;
+				}
+
+				.os-booking-sync-outlook-trigger {
+					&::before {
+						@include latepointfont_admin( "\e95f" );
+					}
+				}
+			}
+
+			.os-booking-sync-outlook-trigger {
+				color: #58c5b2;
+
+				&::before {
+					content: "";
+				}
+
+				&:hover {
+					&::before {
+						@include latepointfont_admin( "\e95f" );
+					}
+				}
+			}
+		}
+
+		&.is-synced-not-exist {
+			background-color: #ffeded;
+
+			.os-date {
+				color: #b12c2c;
+			}
+
+			.os-name {
+				color: #980b0b;
+			}
+
+			.os-booking-unsync-outlook-trigger {
+				right: 2px;
+				display: block;
+
+				&::before {
+					@include latepointfont_admin( "\e95a" );
+				}
+			}
+
+			// &:hover {
+			// .os-booking-unsync-outlook-trigger {}
+			// }
+		}
+	}
+}
+
+.syncing-calendar-wrapper,
+.calendar-available-for-sync.is-disconnected {
+	animation: 0.4s cubic-bezier( 0.5, 1.1, 0.4, 1 ) 0s wizardWrapperAnimation;
+	animation-fill-mode: both;
+}
+
+.os-outlook-meet-info-link {
+	display: flex;
+	align-items: center;
+	gap: 15px;
+	text-decoration: none;
+	padding: 10px;
+	border: 1px solid #ccc;
+	border-bottom-color: #999;
+	box-shadow: 0 2px 0 0 rgba( 0, 0, 0, 0.05 );
+	border-radius: 6px;
+
+	&:hover,
+	&:focus {
+		border-color: $brand-primary;
+		box-shadow: 0 0 0 1px $brand-primary;
+	}
+
+	.latepoint-icon {
+		font-size: 18px;
+		margin-left: auto;
+		display: block;
+	}
+
+	img {
+		height: 30px;
+		width: auto;
+	}
+
+	.meet-info {
+		.meet-id {
+			color: $color-faded;
+			font-size: 12px;
+			display: block;
+		}
+
+		.meet-label {
+			display: block;
+		}
+	}
+}
+
+.latepoint-ocal-agent-connections {
+	display: grid;
+	gap: 20px;
+	grid-template-columns: 1fr 1fr 1fr;
+	align-items: flex-start;
+
+	.ocal-agent-connection-breakdown {
+		display: flex;
+		margin-top: 5px;
+		font-size: floor( $font-size-base * 0.8 );
+		gap: 3px;
+
+		// div:first-child {}
+
+		div:last-child {
+			font-weight: $body-font-weight-bold;
+		}
+	}
+
+	.ocal-agent-connection-status {
+		border: 1px solid $border-color-main;
+		padding: 12px 10px;
+		box-shadow: 0 2px 0 0 rgba( 0, 0, 0, 0.05 );
+		border-bottom-color: $border-color-strong;
+		border-radius: 6px;
+		display: flex;
+		align-items: center;
+		margin-bottom: 10px;
+		gap: 20px;
+		justify-content: space-between;
+
+		.ocal-agent-avatar {
+			background-size: cover;
+			background-position: center center;
+			width: 40px;
+			height: 40px;
+			flex: 0 0 40px;
+			display: block;
+			border-radius: 50%;
+		}
+
+		.ocal-agent-info {
+			flex: 1;
+
+			.ocal-agent-name {
+				font-weight: $body-font-weight-bold;
+				font-size: floor( $font-size-base * 1.1 );
+			}
+
+			.ocal-agent-email {
+				color: $color-faded;
+				font-size: floor( $font-size-base * 0.8 );
+			}
+		}
+
+		a {
+			text-decoration: none;
+			display: inline-flex;
+			gap: 5px;
+			align-items: center;
+			margin-top: 10px;
+			margin-bottom: 5px;
+			font-size: floor( $font-size-base * 1 );
+
+			span {
+				border-bottom: 1px dotted $brand-primary;
+			}
+
+			&:hover {
+				span {
+					border-bottom-style: solid;
+				}
+			}
+		}
+
+		&.not-connected {
+			a {
+				color: #e13333;
+
+				span {
+					border-bottom-color: #e13333;
+				}
+			}
+		}
+
+		// &.connected {}
+	}
+}
+
+@media ( max-width: 600px ) {
+	.latepoint-ocal-agent-connections {
+		grid-template-columns: 1fr;
+		gap: 10px;
+	}
+}

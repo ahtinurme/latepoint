@@ -1,0 +1,23 @@
+/*!
+ * Copyright (c) 2024 LatePoint LLC. All rights reserved.
+ */
+
+@import '../../../../latepoint/lib/assets/stylesheets/shared/_variables.scss';
+@import '../../../../latepoint/lib/assets/stylesheets/admin/_variables.scss';
+@import '../../../../latepoint/lib/assets/stylesheets/admin/_mixins.scss';
+
+$addon-pro-features-images-path: '/wp-content/plugins/latepoint-pro-features/public/images';
+
+@import '_shared';
+@import '_webhooks-admin';
+@import '_locations-admin';
+@import '_assets-admin';
+@import '_agents-admin';
+@import '_messages-admin';
+@import '_service-durations-admin';
+@import '_taxes-admin';
+@import '_coupons-admin';
+@import '_invoices-admin';
+@import '_custom-fields-admin';
+@import '_whatsapp-admin';
+@import '_responsive-admin';

@@ -1,0 +1,33 @@
+/*!
+ * Copyright (c) 2022 LatePoint LLC. All rights reserved.
+ */
+
+.os-additional-service-durations {
+  h4 {
+    font-size: floor($headings-font-size * 0.7);
+    margin-bottom: 15px;
+    border-bottom: 1px solid rgba(0,0,0,0.1);
+    padding-bottom: 10px;
+  }
+}
+
+.extra-duration {
+  position: relative;
+}
+
+.service-duration-box.extra-duration {
+  margin-top: 10px;
+  padding-top: 20px;
+  border-top: 1px solid $border-color-lightest;
+  .os-remove-duration {
+    @include remove-block-x();
+    top: auto;
+    right: -15px;
+    bottom: 8px;
+  }
+  &:hover {
+    .os-remove-duration {
+      display: block;
+    }
+  }
+}

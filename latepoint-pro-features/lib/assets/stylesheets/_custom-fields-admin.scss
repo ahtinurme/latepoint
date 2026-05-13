@@ -1,0 +1,222 @@
+@import '../../../../latepoint/lib/assets/stylesheets/shared/_variables.scss';
+@import '../../../../latepoint/lib/assets/stylesheets/admin/_variables.scss';
+@import '../../../../latepoint/lib/assets/stylesheets/admin/_mixins.scss';
+
+.pac-container {
+  font-family: $body-font-family;
+  font-size: $font-size-base;
+  z-index: 9999999;
+}
+
+.os-uploaded-file-info {
+  text-decoration: none;
+  padding: 8px;
+  border-radius: 6px;
+  border: 1px solid #ddd;
+  border-bottom: 1px solid #bbb;
+  margin-bottom: 15px;
+  background-color: #fff;
+  display: flex;
+  align-items: center;
+  box-shadow: 0px 1px 2px rgba(0,0,0,0.05);
+  position: relative;
+  cursor: default;
+  line-height: 1;
+  &:before {
+    position: absolute;
+    @include latepointfont_admin('\e91a');
+    font-size: 14px;
+    top: 48%;
+    right: 15px;
+    color: $brand-primary;
+    transform: translateY(-50%);
+    display: none;
+  }
+  &:hover {
+    &:before {
+    }
+  }
+  .uf-remove {
+    content: "";
+    width: 18px;
+    height: 18px;
+    font-size: 14px;
+    position: absolute;
+    top: -6px;
+    right: -6px;
+    background-color: #dc5454;
+    color: #fff;
+    border-radius: 50%;
+    padding: 2px;
+    box-shadow: 0px 0px 0px 2px #fff;
+    cursor: pointer;
+    &:hover {
+      background-color: #e32b2b;
+      box-shadow: 0px 0px 0px 2px #841414;
+    }
+  }
+
+  .uf-icon {
+    flex: 0 0 30px;
+    font-size: 18px;
+    line-height: 1;
+    color: $body-color;
+    position: relative;
+    i {
+      display: block;
+    }
+  }
+  &.is-uploaded {
+    cursor: pointer;
+    &:hover {
+      border-color: $brand-primary;
+      box-shadow: 0px 0px 0px 2px #d6ebff;
+      background-color: #fff;
+      .uf-label {
+        color: $brand-primary;
+      }
+      &:before {
+        display: block;
+      }
+    }
+    .uf-icon {
+      &:before {
+        content: "";
+        width: 12px;
+        height: 12px;
+        font-size: 8px;
+        @include latepointfont_admin('\e904');
+        position: absolute;
+        top: -4px;
+        right: 7px;
+        background-color: #83d476;
+        color: #fff;
+        border-radius: 50%;
+        padding: 2px;
+        box-shadow: 0px 0px 0px 2px #fff;
+      }
+    }
+  }
+  .uf-data {
+    padding-left: 10px;
+    border-left: 1px solid #eee;
+    flex: 1;
+    overflow: hidden;
+  }
+  .uf-label {
+    display: block;
+    color: $body-color;
+  }
+  .uf-name {
+    display: block;
+    color: $color-faded;
+    font-size: floor($font-size-base * 0.8);
+  }
+}
+
+.cf-condition {
+  display: flex;
+  border: 1px solid $border-color-main;
+  padding: 15px;
+  border-radius: $form-controls-border-radius $form-controls-border-radius 0px 0px;
+  align-items: center;
+  position: relative;
+  &:hover {
+    .cf-remove-condition {
+      display: block;
+    }
+  }
+
+  .cf-remove-condition {
+    outline: none;
+    border: none;
+    position: absolute;
+    left: 0px;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 14px;
+    color: #eb3a3a;
+    text-decoration: none;
+    padding: 0px 2px;
+    line-height: 20px;
+    width: 20px;
+    height: 20px;
+    border-radius: 10px;
+    background-color: #fff;
+    box-shadow: $box-shadow;
+    text-align: center;
+    z-index: 3;
+    display: none;
+    cursor: pointer;
+    &:focus {
+      outline: none;
+    }
+    &:hover {
+      color: #dc5858;
+      box-shadow: 0px 0px 0px 2px #dc5858;
+    }
+    i {
+      vertical-align: middle;
+      line-height: 21px;
+      display: block;
+    }
+    &.os-loading {
+      &:after {
+        display: block;
+        content: "";
+        width: 19px;
+        height: 19px;
+        border-bottom: 2px solid #dc5858;
+        border-left: 2px solid #dc5858;
+        border-top: 2px solid #dc5858;
+        border-right: 2px solid rgba(255,255,255,0);
+        border-radius: 20px;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        animation: os-loading 700ms infinite linear;
+      }
+      i {
+        color: transparent;
+      }
+    }
+  }
+  .os-form-group {
+    margin-right: 10px;
+  }
+  .custom-field-condition-values-w {
+    flex: 1;
+  }
+  & + .cf-condition {
+    border-top-left-radius: 0px;
+    border-top-right-radius: 0px;
+    border-top: none;
+  }
+  &:last-child {
+    border-bottom-left-radius: $form-controls-border-radius;
+    border-bottom-right-radius: $form-controls-border-radius;
+  }
+}
+
+.cf-conditions {
+  display: none;
+  &.is-active {
+    display: block;
+  }
+  h3 {
+    margin-top: 20px;
+    margin-bottom: 10px;
+  }
+}
+
+.latepoint-custom-fields-for-booking-wrapper {
+  &.os-loading {
+    opacity: 0.4;
+    position: relative;
+    &:before {
+      @include loading-circle($brand-primary, 12px);
+    }
+
+  }
+}

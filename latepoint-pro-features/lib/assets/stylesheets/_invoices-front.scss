@@ -1,0 +1,98 @@
+.latepoint-w {
+
+
+  .os-invoice-wrapper {
+    max-width: 760px;
+    box-shadow: 0 1px 2px rgba(0,0,0,0.1), 0 8px 35px -3px rgba(0,0,0,0.1);
+    background-color: #fff;
+    margin: 0px auto;
+    position: relative;
+    &.os-loading {
+      .os-invoice-inner {
+        filter: blur(3px);
+      }
+      &:after {
+        @include loading-circle($brand-primary, 20px);
+        top: 85px;
+        z-index: 9999;
+      }
+    }
+    .os-invoice-inner {
+      padding: 50px;
+      padding-top: 70px;
+    }
+    .manage-status-info {
+      display: flex;
+      gap: 5px;
+      align-items: center;
+      margin-right: auto;
+      .status-info-label {
+        color: rgba(255,255,255,0.5);
+        display: none;
+      }
+      .status-info-value {
+        color: #fff;
+        font-weight: $body-font-weight-bold;
+        padding: 2px 6px;
+        &.status-approved {
+          background-color: #74ff60;
+          color: #000;
+        }
+        &.status-cancelled {
+          background-color: #e81818;
+          color: #fff;
+        }
+        &.status-pending, &.status-pending_approval, &.status-payment_pending{
+          background-color: #ffe75e;
+          color: #000;
+        }
+      }
+    }
+    .os-invoice-controls {
+      padding: 15px 25px;
+      background-color: $brand-primary;
+      display: flex;
+      gap: 25px;
+      align-items: center;
+      justify-content: space-between;
+      position: sticky;
+      top: 0;
+      z-index: 2;
+      &.status-cancelled {
+        background-color: #e81819;
+      }
+      &.status-pending, &.status-pending_approval, &.status-payment_pending {
+        background-color: #c6a573;
+      }
+      .latepoint-request-booking-cancellation {
+      }
+      .latepoint-btn {
+        padding: 0!important;
+      }
+      .os-form-group {
+        display: flex;
+        align-items: center;
+        margin: 0!important;
+        gap: 8px;
+        .os-form-control {
+          transition: none!important;
+        }
+        label {
+          font-size: floor($font-size-base * 1.2);
+          font-weight: $body-font-weight-bold;
+          color: #fff;
+        }
+        select {
+          font-size: floor($font-size-base * 1.2) !important;
+          padding:6px!important;
+          border-radius: 6px!important;
+          border: none!important;
+          box-shadow: 0 1px 2px rgba(0,0,0,0.3)!important;
+          background-color: #fff!important;
+          color: #111!important;
+          height: auto!important;
+        }
+      }
+    }
+  }
+}

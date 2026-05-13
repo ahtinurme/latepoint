@@ -1,0 +1,733 @@
+@keyframes messageButtonAnimation {
+  0% {
+    transform: translate3d(40px, -50%, 0);
+    opacity: 0;
+  }
+  100% {
+    transform: translate3d(0, -50%, 0);
+    opacity: 1;
+  }
+}
+
+
+.os-conversation-mobile-open-conversations {
+  font-size: 24px;
+  color: $brand-primary;
+  border-right: 1px solid $border-color-light;
+  padding-right: 15px;
+  margin-right: auto;
+  display: none;
+}
+
+.os-conversation-mobile-open-booking-info {
+  font-size: 24px;
+  color: $brand-primary;
+  border-left: 1px solid $border-color-light;
+  padding-left: 15px;
+  margin-left: auto;
+  display: none;
+}
+
+.os-conversations-wrapper {
+  display: flex;
+  align-items: stretch;
+  height: calc(100dvh - 150px);
+  border-radius: $border-radius-lg;
+  @include white-box();
+  overflow: hidden;
+
+  .os-conversation-close-booking-info {
+    display: none;
+    padding-left: 15px;
+    margin-left: auto;
+    border-left: 1px solid $border-color-light;
+    font-size: 24px;
+  }
+
+  .os-conversations-list {
+    flex: 1;
+    overflow-y: auto;
+  }
+
+  .no-conversations-found {
+    margin: 15px;
+    text-align: center;
+    color: $color-faded;
+    font-weight: 700;
+    font-size: floor($font-size-base * 1.2);
+  }
+
+  .osc-search-wrapper {
+    position: relative;
+    padding: 11px;
+    border-bottom: 1px solid $border-color-main;
+
+    input {
+      padding: 9px;
+      line-height: 1;
+      padding-left: 35px;
+      background-color: #f4f5f6;
+      font-size: $font-size-base;
+      border: none;
+      border-radius: $border-radius;
+      box-shadow: none;
+      display: block;
+      width: 100%;
+
+      &::placeholder {
+        color: $color-faded;
+      }
+    }
+
+    &:before {
+      @include latepointfont_admin("\e938");
+      top: 50%;
+      position: absolute;
+      left: 20px;
+      font-size: 16px;
+      color: $color-faded;
+      transform: translateY(-50%);
+    }
+
+    &.os-loading {
+      &:before {
+        display: none;
+      }
+
+      &:after {
+        @include loading-circle($brand-primary, 12px);
+        left: 37px;
+      }
+    }
+  }
+
+  .os-conversations-list-wrapper {
+    flex: 0 0 280px;
+    display: flex;
+    flex-direction: column;
+    border-right: 1px solid $border-color-main;
+
+    h3 {
+      padding: 17px 20px 18px;
+      margin: 0px;
+      font-size: $body-font-size-m;
+      border-bottom: 1px solid $border-color-main;
+      display: flex;
+      align-items: center;
+
+      span {
+        display: block;
+        margin-left: 10px;
+      }
+
+      .latepoint-icon {
+        color: $brand-primary;
+      }
+    }
+  }
+
+  .os-conversation-content {
+    display: flex;
+    flex: 1;
+  }
+
+  .os-conversation-box {
+    display: flex;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+    position: relative;
+    align-items: center;
+    padding: 11px 20px;
+    cursor: pointer;
+    line-height: 1;
+
+    &.is-new {
+      background-color: #fff0c7;
+    }
+
+    &.os-loading {
+      .os-conversation-customer-avatar {
+        &:before {
+          @include loading-circle($brand-primary, 45px);
+        }
+      }
+
+      &.is-selected {
+        .os-conversation-customer-avatar {
+          &:before {
+            @include loading-circle(#fff, 45px);
+          }
+        }
+      }
+    }
+
+    &:hover {
+    }
+
+    &.is-selected {
+      background-color: $brand-primary;
+      box-shadow: 0px 1px 0px 0px $brand-primary;
+
+      .os-conversation-customer-name {
+        color: #fff;
+      }
+
+      .os-conversation-last-message {
+        color: rgba(255, 255, 255, 0.4);
+      }
+    }
+
+    .os-conversation-customer-avatar {
+      position: relative;
+      flex: 0 0 35px;
+      height: 35px;
+      width: 35px;
+      border-radius: 50%;
+      background-position: center center;
+      background-size: cover;
+      margin-right: 15px;
+    }
+
+    .os-conversation-customer-info {
+      flex: 1;
+      position: relative;
+    }
+
+    .os-conversation-booking-id {
+      position: absolute;
+      top: 0px;
+      right: 0px;
+      color: $brand-primary;
+      font-size: floor($font-size-base * 0.8);
+    }
+
+    .os-conversation-customer-name {
+      font-weight: $body-font-weight-bold;
+      color: $headings-color;
+      font-size: 16px;
+      margin-bottom: 3px;
+    }
+
+    .os-conversation-last-message {
+      color: $body-color-light;
+      font-size: 14px;
+      line-height: 18px;
+      height: 18px;
+      overflow: hidden;
+    }
+
+    .os-conversation-booking {
+
+    }
+
+    .os-conversation-last-content {
+
+    }
+  }
+
+  .os-conversation-messages {
+    flex: 1;
+    position: relative;
+    border-right: 1px solid $border-color-main;
+    display: flex;
+    flex-direction: column;
+
+    .os-booking-messages-input-wrapper {
+      border-top: 1px solid $border-color-main;
+      padding: 20px;
+    }
+
+    .booking-messages-list-wrapper {
+      flex: 1;
+      overflow-y: auto;
+    }
+    .booking-messages-list {
+      padding: 30px;
+    }
+
+    .os-booking-messages-input-w {
+      position: relative;
+      top: auto;
+      bottom: auto;
+      left: auto;
+      right: auto;
+    }
+
+    .os-conversation-info {
+      display: flex;
+      align-items: center;
+      border-bottom: 1px solid $border-color-main;
+      padding: 12px 20px;
+
+      .os-conversation-info-customer {
+
+        font-size: $body-font-size-m;
+        font-weight: $body-font-weight-bold;
+
+        a {
+          text-decoration: none;
+          border-bottom: 1px dotted $brand-primary;
+        }
+      }
+
+      .os-conversation-info-customer-avatar {
+        flex: 0 0 31px;
+        height: 31px;
+        width: 31px;
+        border-radius: 50%;
+        overflow: hidden;
+        background-position: center center;
+        background-size: cover;
+        margin-right: 15px;
+      }
+    }
+  }
+
+  .os-conversation-booking-info {
+    flex: 0 0 250px;
+    background-color: #fff;
+    display: flex;
+    flex-direction: column;
+
+    h3 {
+      padding: 17px 20px 18px;
+      margin: 0px;
+
+      font-size: $body-font-size-m;
+      border-bottom: 1px solid $border-color-main;
+      border-radius: 0px 4px 0px 0px;
+      display: flex;
+      align-items: center;
+
+      span {
+        display: block;
+        margin-left: 10px;
+      }
+
+      .latepoint-icon {
+        color: $brand-primary;
+      }
+    }
+
+    ul {
+      list-style: none;
+      padding: 20px;
+      margin: 0px;
+      display: block;
+      flex: 1;
+      overflow-y: auto;
+    }
+
+    li {
+      & + li {
+        margin-top: 8px;
+        padding-top: 8px;
+        border-top: 1px solid rgba(0, 0, 0, 0.05);
+      }
+
+      div {
+        font-weight: $body-font-weight-bold;
+        color: $body-color-light;
+        font-size: 10px;
+        letter-spacing: 1px;
+        text-transform: uppercase;
+        margin-bottom: 3px;
+      }
+
+      strong {
+        text-transform: none;
+        letter-spacing: normal;
+        color: $headings-color;
+        font-size: 15px;
+
+        + a {
+          margin-left: 5px;
+        }
+      }
+
+      a {
+        display: inline-block;
+        text-decoration: none;
+        color: $brand-primary;
+        border-bottom: 1px dotted rgba($brand-primary, 0.5);
+
+        .latepoint-icon {
+          margin-right: 3px;
+        }
+      }
+    }
+  }
+}
+
+.booking-messages-list {
+  .os-bm-info-w {
+    display: flex;
+    align-items: center;
+
+    .os-bm-avatar {
+      margin-top: -10px;
+      width: 40px;
+      height: 40px;
+      background-size: cover;
+      background-position: center center;
+      border-radius: 50%;
+      box-shadow: 0px 0px 0px 5px #fff;
+      background-color: #fff;
+    }
+
+    .os-bm-date {
+      color: #a1a3af;
+      font-size: 12px;
+    }
+  }
+
+  .os-booking-message-w {
+    margin-bottom: 15px;
+
+    .os-booking-message {
+      padding: 15px 20px;
+      border-radius: $border-radius-lg;
+      max-width: 370px;
+      display: inline-block;
+    }
+
+    .os-bm-info-w {
+      position: relative;
+    }
+
+    &.os-bm-customer {
+      .os-bm-info-w {
+        .os-bm-avatar {
+          margin-right: 10px;
+        }
+      }
+
+      .os-booking-message {
+        background-color: #2d53de;
+        color: #ffffff;
+        margin-left: 20px;
+      }
+    }
+
+    &.os-bm-agent, &.os-bm-admin, &.os-bm-custom {
+      text-align: right;
+
+      .os-bm-info-w {
+        flex-direction: row-reverse;
+
+        .os-bm-avatar {
+          margin-left: 10px;
+        }
+      }
+
+      .os-booking-message {
+        background-color: #edeff6;
+        color: #363e4c;
+        margin-left: auto;
+        margin-right: 20px;
+      }
+    }
+  }
+
+  .os-booking-message-attachment-w {
+    margin-bottom: 15px;
+
+    .os-booking-message-attachment {
+      border-radius: 10px;
+      padding: 10px 20px;
+      text-align: center;
+      position: relative;
+      border: 2px solid #eee;
+      text-decoration: none;
+      display: inline-block;
+      cursor: pointer;
+
+      span {
+        display: inline-block;
+        vertical-align: middle;
+        margin-left: 10px;
+        font-weight: $body-font-weight-bold;
+        color: $brand-primary;
+      }
+
+      .latepoint-icon {
+        display: inline-block;
+        vertical-align: middle;
+        font-size: 20px;
+        color: $brand-primary;
+      }
+
+      &:hover {
+        border-color: $brand-primary;
+      }
+    }
+
+    .os-bm-info-w {
+      position: relative;
+    }
+
+    &.os-bm-customer {
+      .os-bm-info-w {
+        .os-bm-avatar {
+          margin-right: 10px;
+        }
+      }
+
+      .os-booking-message {
+        margin-left: 20px;
+      }
+    }
+
+    &.os-bm-agent, &.os-bm-admin {
+      text-align: right;
+
+      .os-bm-info-w {
+        flex-direction: row-reverse;
+
+        .os-bm-avatar {
+          margin-left: 10px;
+        }
+      }
+
+      .os-booking-message-attachment {
+        margin-left: auto;
+        margin-right: 20px;
+      }
+    }
+  }
+}
+
+.os-booking-messages-input-w {
+  padding: 0px 115px 0px 0px;
+  position: relative;
+
+  input {
+    display: block;
+    width: 100%;
+    border: none;
+    padding: 11px 0px 12px;
+    box-shadow: none;
+    outline: none;
+    font-size: 16px;
+    line-height: 1;
+
+    &:focus {
+      box-shadow: none;
+      outline: none;
+      border-bottom-color: #aaa;
+    }
+  }
+
+  .os-bm-upload-file-btn {
+    position: absolute !important;
+    top: 50%;
+    right: 0;
+    transform: translateY(-50%);
+    cursor: pointer;
+    animation: 0.3s cubic-bezier(0.05, 0.45, 0.1, 1) 0s messageButtonAnimation;
+    animation-fill-mode: both;
+  }
+
+  .os-bm-send-btn {
+    position: absolute !important;
+    top: 50%;
+    right: 0;
+    transform: translateY(-50%);
+    cursor: pointer;
+    display: none !important;
+
+    animation: 0.3s cubic-bezier(0.05, 0.45, 0.1, 1) 0s messageButtonAnimation;
+    animation-fill-mode: both;
+  }
+
+  &.os-is-typing {
+    .os-bm-send-btn {
+      display: inline-flex !important;
+    }
+
+    .os-bm-upload-file-btn {
+      display: none;
+    }
+  }
+}
+
+.os-bm-no-messages {
+  background-color: $faded-bg;
+  border-radius: $border-radius;
+  color: $body-color;
+  font-size: 14px;
+  padding: 8px 10px;
+  margin-bottom: 10px;
+  text-align: center;
+}
+
+.os-bm-open-quick-messages {
+  border: 2px dotted rgba(0, 0, 0, 0.1);
+  padding: 7px 10px;
+  text-align: center;
+  border-radius: $border-radius;
+  color: $brand-primary;
+  cursor: pointer;
+  font-size: $body-font-size-s;
+  margin-bottom: 5px;
+
+  &:hover {
+    border: 2px solid $brand-primary;
+  }
+
+  i, span {
+    display: inline-block;
+    vertical-align: middle;
+  }
+
+  span {
+    margin-left: 5px;
+    font-weight: $body-font-weight-bold;
+  }
+
+  &.os-loading {
+    position: relative;
+    color: transparent;
+
+    &:after {
+      @include loading-circle($brand-primary);
+    }
+  }
+}
+
+
+
+@keyframes bookingInfo {
+  0% {
+    transform: translate3d(30px, 0px, 0);
+    opacity: 0;
+  }
+  100% {
+    transform: translate3d(0, 0px, 0);
+    opacity: 1;
+  }
+}
+
+.os-conversation-booking-info {
+  ul {
+    animation: 0.4s cubic-bezier(0.05, 0.45, 0.1, 1) 0s bookingInfo;
+    animation-fill-mode: both;
+  }
+}
+
+.os-conversations-no-booking {
+  border-left: 1px solid $border-color-light;
+}
+
+@media (max-width: 1024px) {
+  .os-conversations-wrapper {
+    overflow: hidden;
+
+    .os-conversations-list-wrapper h3 {
+      padding: 15px 20px;
+    }
+
+    .os-conversation-booking-info h3 {
+      padding: 15px 15px 15px 20px;
+    }
+
+    .os-conversations-list-wrapper,
+    .os-conversation-booking-info {
+      display: none;
+      flex: 1;
+      width: auto;
+    }
+
+    &.mobile-show-conversations {
+      .os-conversations-list-wrapper {
+        display: block;
+      }
+
+      .os-conversation-content {
+        display: none;
+      }
+    }
+
+    &.mobile-show-booking-info {
+      .os-conversation-booking-info {
+        display: block;
+      }
+
+      .os-conversation-messages {
+        display: none;
+      }
+    }
+
+    .os-conversation-close-booking-info {
+      display: block;
+    }
+  }
+  .os-conversation-info-label {
+    display: none;
+  }
+  .os-conversations-wrapper .os-conversation-messages .os-conversation-info .os-conversation-info-customer-avatar {
+    width: 30px;
+    height: 30px;
+    flex: 0 0 30px;
+    display: none;
+  }
+
+  .os-conversation-mobile-open-conversations,
+  .os-conversation-mobile-open-booking-info {
+    display: block;
+  }
+  .os-conversations-wrapper .os-conversation-messages .os-conversation-info {
+    padding: 15px 15px;
+  }
+  .os-conversations-wrapper .os-conversation-messages {
+    border: none;
+    border-radius: 4px;
+  }
+  .os-booking-messages-input-w {
+    border-radius: 0px 0px 4px 4px;
+  }
+  .os-booking-messages-input-w .os-bm-upload-file-btn {
+    right: 15px;
+  }
+  .os-booking-messages-input-w {
+    padding-left: 15px;
+  }
+  .os-conversations-wrapper .os-conversation-messages .booking-messages-list {
+    height: calc(100dvh - 290px);
+  }
+  .os-conversations-wrapper .os-conversations-list,
+  .os-conversations-wrapper .os-search-conversations-list {
+    height: calc(100dvh - 310px);
+  }
+
+  @keyframes conversationsPanelAnimation {
+    0% {
+      transform: translate3d(-40px, 0px, 0);
+      opacity: 0;
+    }
+    100% {
+      transform: translate3d(0, 0px, 0);
+      opacity: 1;
+    }
+  }
+
+  .os-conversations-list-wrapper {
+    animation: 0.4s cubic-bezier(0.05, 0.45, 0.1, 1) 0s conversationsPanelAnimation;
+    animation-fill-mode: both;
+  }
+  @keyframes conversationsBookingInfoPanelAnimation {
+    0% {
+      transform: translate3d(40px, 0px, 0);
+      opacity: 0;
+    }
+    100% {
+      transform: translate3d(0, 0px, 0);
+      opacity: 1;
+    }
+  }
+
+  .os-conversations-wrapper .os-conversation-content,
+  .os-conversation-booking-info {
+    animation: 0.4s cubic-bezier(0.05, 0.45, 0.1, 1) 0s conversationsBookingInfoPanelAnimation;
+    animation-fill-mode: both;
+  }
+}

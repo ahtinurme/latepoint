@@ -1,0 +1,203 @@
+.action-preview-wrapper.type-trigger_webhook {
+  .action-preview-content-wrapper {
+  }
+}
+
+.os-webhook-form {
+  position: relative;
+
+  & + .os-webhook-form {
+    margin-top: 15px;
+  }
+
+  .os-form-message-w.status-success {
+    display: none;
+  }
+
+  .os-remove-webhook {
+    position: absolute;
+    right: 0px;
+    top: 0px;
+    transform: translate(50%, -50%);
+    font-size: 14px;
+    color: $body-color;
+    text-decoration: none;
+    padding: 0px 2px;
+    line-height: 20px;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    background-color: #fff;
+    box-shadow: $box-shadow;
+    text-align: center;
+    display: none;
+
+    &:hover {
+      color: #dc5858;
+      transform: translate(50%, -50%);
+    }
+
+    i {
+      vertical-align: middle;
+      line-height: 22px;
+      display: block;
+    }
+
+    &.os-loading {
+      &:after {
+        display: block;
+        content: "";
+        width: 19px;
+        height: 19px;
+        border-bottom: 2px solid #dc5858;
+        border-left: 2px solid #dc5858;
+        border-top: 2px solid #dc5858;
+        border-right: 2px solid rgba(255, 255, 255, 0);
+        border-radius: 20px;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        animation: os-loading 700ms infinite linear;
+      }
+
+      i {
+        color: transparent;
+      }
+    }
+  }
+
+  &:hover {
+    .os-remove-webhook {
+      display: block;
+    }
+
+    .os-webhook-form-info .os-webhook-edit-btn {
+      opacity: 1;
+    }
+  }
+
+  .os-webhook-form-info {
+    display: flex;
+    cursor: pointer;
+    align-items: center;
+    padding: 5px 0px;
+
+    &:hover {
+      .os-webhook-name {
+        color: $brand-primary;
+      }
+    }
+
+    .os-webhook-name {
+      margin-right: 10px;
+      font-size: floor($font-size-base * 1.2);
+      font-weight: $body-font-weight-bold;
+    }
+
+    .os-webhook-trigger {
+      border-left: 1px solid rgba(0, 0, 0, 0.15);
+      border-right: 1px solid rgba(0, 0, 0, 0.15);
+      padding: 0px 15px;
+      margin-left: 15px;
+      margin-right: 15px;
+      display: flex;
+      align-items: center;
+      text-transform: uppercase;
+      letter-spacing: 1.5px;
+      color: $color-faded;
+      font-weight: $body-font-weight-bold;
+      font-size: floor($font-size-base * 0.8);
+
+      .latepoint-icon {
+        color: $brand-primary;
+        margin-right: 10px;
+        font-size: 12px;
+      }
+
+      span {
+        display: inline-block;
+      }
+    }
+
+    .os-webhook-url {
+      position: relative;
+      display: flex;
+      align-items: center;
+
+      .latepoint-icon {
+        color: $brand-primary;
+        margin-right: 10px;
+        font-size: 12px;
+      }
+
+      span {
+        border-bottom: 1px dotted $brand-primary;
+        font-size: floor($font-size-base * 0.8);
+        color: $brand-primary;
+        display: inline-block;
+      }
+    }
+
+    .os-webhook-edit-btn {
+      margin-left: auto;
+      font-size: 16px;
+      color: $brand-primary;
+      opacity: 0.4;
+    }
+  }
+
+  .os-webhook-form-params {
+    display: none;
+    padding-top: 20px;
+    margin-top: 10px;
+    border-top: 1px solid rgba(0, 0, 0, 0.05);
+  }
+
+  .os-webhook-form-i {
+    padding: 15px 20px;
+    background-color: #fff;
+    box-shadow: $box-shadow;
+    border-radius: $border-radius;
+
+    .os-form-group {
+      margin-bottom: 20px;
+
+      &:first-child {
+        flex: 1;
+      }
+
+      + .os-form-group {
+      }
+
+      &.os-form-checkbox-group {
+      }
+
+      &.os-form-select-group {
+        label {
+        }
+      }
+
+      &.os-form-checkbox-group {
+        label {
+        }
+      }
+    }
+
+    button {
+    }
+  }
+
+  .os-webhook-type-select {
+  }
+
+  &.os-is-editing {
+    .os-webhook-url {
+      display: none;
+    }
+
+    .os-webhook-form-params {
+      display: block;
+    }
+  }
+}

@@ -1,0 +1,53 @@
+.turnstile-loading-message {
+  padding: 15px;
+  padding-left: 55px;
+  position: relative;
+  background-color: #eee;
+  display: none;
+  margin-bottom: 20px;
+}
+
+.turnstile-widget-wrapper {
+  &.os-loading {
+    .turnstile-loading-message {
+      display: block;
+      color: #111;
+
+      &:before {
+        @include loading-circle(#111, 16px);
+        left: 23px;
+      }
+    }
+  }
+}
+
+.turnstile-widget-wrapper.required-interaction {
+  margin-bottom: 10px;
+}
+
+.turnstile-widget-wrapper:not(.required-interaction) {
+  .turnstile-widget {
+    position: relative;
+
+    &>div {
+      height: 0;
+    }
+  }
+}
+
+.turnstile-error-message {
+  padding: 15px;
+  background-color: #fff1f1;
+  border: 1px solid #f2c3c3;
+  color: #7f0d0d;
+  margin-bottom: 20px;
+  display: none;
+}
+
+.latepoint-w .latepoint-booking-form-element.latepoint-border-radius-rounded {
+
+  .turnstile-loading-message,
+  .turnstile-error-message {
+    border-radius: $rounded-borders-radius;
+  }
+}

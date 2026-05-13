@@ -1,0 +1,33 @@
+// Agent schedule location dropdown & panels
+.agent-schedule-tabs {
+	.schedule-tab-panel {
+		display: none;
+		&.is-active {
+			display: block;
+		}
+	}
+
+	.os-form-checkbox-group.is-checked.has-toggle-element label {
+		border-radius: $form-controls-border-radius;
+	}
+	.custom-schedule-wrapper {
+		margin-top: 15px;
+	}
+}
+
+// Agent schedule location selector
+.schedule-location-label {
+	margin-right: 8px;
+	font-size: 13px;
+	color: #4a4b65;
+}
+
+.schedule-location-selector {
+	padding: 4px 8px;
+	font-size: 13px;
+	border: 1px solid #e8e8ef;
+	border-radius: 4px;
+	color: #4a4b65;
+	background: #fff;
+	cursor: pointer;
+}

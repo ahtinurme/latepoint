@@ -1,0 +1,435 @@
+.latepoint-chat-box-w {
+  background-color: #fff;
+  box-shadow: 0 10px 20px 0 rgba(0, 0, 0, 0.08), 0 1px 2px 0 rgba(0, 0, 0, 0.1);
+
+  .lc-heading {
+    display: flex;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+    font-weight: $body-font-weight-bold;
+    font-size: floor($font-size-base * 1.2);
+
+    .lc-conversations-header {
+      flex: 0 0 300px;
+      border-right: 1px solid rgba(0, 0, 0, 0.1);
+      background-color: #fff;
+      padding: 15px 20px;
+    }
+
+    .lc-contents-header {
+      padding: 15px 20px;
+      flex: 1;
+    }
+  }
+
+  .lc-contents {
+    display: flex;
+    max-height: 500px;
+
+    .lc-conversations {
+      flex: 0 0 300px;
+      border-right: 1px solid rgba(0, 0, 0, 0.1);
+      overflow: auto;
+      background-color: #fff;
+      position: relative;
+      display: flex;
+      flex-direction: column;
+
+      .lc-conversation {
+        flex: 0;
+        padding: 20px;
+        border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+        display: flex;
+        align-items: center;
+        position: relative;
+        cursor: pointer;
+
+        &.lc-selected {
+          background-color: $brand-primary;
+          color: #fff;
+
+          .lc-meta {
+            color: rgba(255, 255, 255, 0.5);
+          }
+        }
+
+        &:hover {
+          &:after {
+            content: "";
+            display: block;
+            position: absolute;
+            top: 0px;
+            right: 0px;
+            bottom: 0px;
+            background-color: $brand-primary;
+            width: 3px;
+            z-index: 2;
+          }
+        }
+        &.has-unread:not(.lc-selected){
+          background-color: #fff9e4;
+        }
+
+        &.has-unread {
+          order: -1;
+          .lc-unread {
+            display: block;
+          }
+        }
+
+        .lc-agent {
+          flex: 0 0 40px;
+          margin-right: 15px;
+
+          .lca-avatar {
+            height: 40px;
+            width: 40px;
+            border-radius: 20px;
+            background-size: cover;
+          }
+        }
+      }
+    }
+  }
+
+  .lc-title {
+    font-weight: $body-font-weight-bold;
+    font-size: floor($font-size-base * 1.1);
+  }
+
+  .lc-meta {
+    color: $color-faded;
+    font-size: floor($font-size-base * 0.8);
+  }
+
+  .lc-unread {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    background-color: #ff4a4a;
+    color: #fff;
+    padding: 3px 7px;
+    border-radius: 10px;
+    font-size: 12px;
+    font-weight: $body-font-weight-bold;
+    display: none;
+  }
+
+  .lcb-content {
+    position: relative;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+  }
+
+
+  .booking-messages-list {
+    flex: 1;
+    overflow: auto;
+    padding: 25px 25px 0px;
+
+    &:after {
+      content: "";
+      height: 80px;
+      display: block;
+    }
+  }
+
+  .os-booking-messages-input-w {
+    position: absolute;
+    z-index: 11;
+    bottom: 0px;
+    left: 0px;
+    right: 0px;
+    padding: 0px 115px 0px 25px;
+    background-color: #fff;
+    border-top: 1px solid #aaa;
+
+    input {
+      display: block;
+      width: 100%;
+      border: none;
+      padding: 23px 0px;
+      box-shadow: none;
+      outline: none;
+
+      &:focus {
+        box-shadow: none;
+        outline: none;
+        border-bottom-color: #aaa;
+      }
+    }
+
+    .os-bm-upload-file-btn {
+      position: absolute !important;
+      top: 50%;
+      right: 25px;
+      transform: translateY(-50%);
+      cursor: pointer;
+      animation: 0.3s cubic-bezier(0.05, 0.45, 0.1, 1) 0s messageButtonAnimation;
+      animation-fill-mode: both;
+    }
+
+    .os-bm-send-btn {
+      position: absolute !important;
+      top: 50%;
+      right: 25px;
+      transform: translateY(-50%);
+      cursor: pointer;
+      display: none !important;
+
+      animation: 0.3s cubic-bezier(0.05, 0.45, 0.1, 1) 0s messageButtonAnimation;
+      animation-fill-mode: both;
+    }
+
+    &.os-is-typing {
+      .os-bm-send-btn {
+        display: inline-block !important;
+      }
+
+      .os-bm-upload-file-btn {
+        display: none;
+      }
+    }
+  }
+
+  .os-bm-no-messages {
+    background-color: #f5f7fb;
+    color: #6f78b1;
+    font-size: 14px;
+    padding: 8px 10px;
+    margin-bottom: 10px;
+    text-align: center;
+  }
+
+  .booking-messages-list {
+    .os-bm-info-w {
+      display: flex;
+      align-items: center;
+
+      .os-bm-avatar {
+        margin-top: -10px;
+        width: 40px;
+        height: 40px;
+        background-size: cover;
+        background-position: center center;
+        border-radius: 50%;
+        box-shadow: 0px 0px 0px 5px #fff;
+        background-color: #fff;
+      }
+
+      .os-bm-date {
+        color: #a1a3af;
+        font-size: 12px;
+      }
+    }
+
+    .os-booking-message-w {
+      margin-bottom: 15px;
+
+      .os-booking-message {
+        padding: 15px 20px;
+        border-radius: 10px;
+        max-width: 370px;
+        display: inline-block;
+      }
+
+      .os-bm-info-w {
+        position: relative;
+      }
+
+      &.os-bm-agent, &.os-bm-admin {
+        .os-bm-info-w {
+          .os-bm-avatar {
+            margin-right: 10px;
+          }
+        }
+
+        .os-booking-message {
+          background-color: #2d53de;
+          color: #ffffff;
+          margin-left: 20px;
+        }
+      }
+
+      &.os-bm-customer {
+        text-align: right;
+
+        .os-bm-info-w {
+          flex-direction: row-reverse;
+
+          .os-bm-avatar {
+            margin-left: 10px;
+          }
+        }
+
+        .os-booking-message {
+          background-color: #edeff6;
+          color: #363e4c;
+          margin-left: auto;
+          margin-right: 20px;
+        }
+      }
+    }
+
+    .os-booking-message-attachment-w {
+      margin-bottom: 15px;
+
+      .os-booking-message-attachment {
+        border-radius: 10px;
+        padding: 10px 20px;
+        text-align: center;
+        position: relative;
+        border: 2px solid #eee;
+        text-decoration: none;
+        display: inline-block;
+        cursor: pointer;
+
+        span {
+          display: inline-block;
+          vertical-align: middle;
+          margin-left: 10px;
+          font-weight: $body-font-weight-bold;
+          color: $brand-primary;
+        }
+
+        .latepoint-icon {
+          display: inline-block;
+          vertical-align: middle;
+          font-size: 20px;
+          color: $brand-primary;
+        }
+
+        &:hover {
+          border-color: $brand-primary;
+        }
+      }
+
+      .os-bm-info-w {
+        position: relative;
+      }
+
+      &.os-bm-agent, &.os-bm-admin {
+        .os-bm-info-w {
+          .os-bm-avatar {
+            margin-right: 10px;
+          }
+        }
+
+        .os-booking-message {
+          margin-left: 20px;
+        }
+      }
+
+      &.os-bm-customer {
+        text-align: right;
+
+        .os-bm-info-w {
+          flex-direction: row-reverse;
+
+          .os-bm-avatar {
+            margin-left: 10px;
+          }
+        }
+
+        .os-booking-message-attachment {
+          margin-left: auto;
+          margin-right: 20px;
+        }
+      }
+    }
+  }
+
+  &.os-loading {
+    .lcb-content {
+      &:before {
+        content: "";
+        background-color: #fff;
+        position: absolute;
+        top: 0px;
+        right: 0px;
+        bottom: 0px;
+        left: 0px;
+        z-index: 10;
+      }
+
+      &:after {
+        @include loading-circle($brand-primary, 30px);
+        z-index: 11;
+      }
+    }
+  }
+}
+
+.lp-new-messages-count {
+  background-color: #ff4a4a;
+  display: inline-block;
+  vertical-align: middle;
+  margin-left: 5px;
+  color: #fff;
+  padding: 3px 7px;
+  border-radius: 10px;
+  font-size: 12px;
+  font-weight: $body-font-weight-bold;
+}
+
+
+@media (max-width: 600px) {
+  .latepoint-chat-box-w {
+    .lc-heading {
+      display: block;
+
+      .lc-conversations-header {
+        flex: 1;
+        text-align: center;
+        border: none;
+      }
+
+      .lc-contents-header {
+        display: none;
+      }
+    }
+
+    .lc-contents {
+      display: block;
+      max-height: inherit;
+
+      .lc-conversations {
+        flex: 1;
+        border: none;
+        max-height: 180px;
+        overflow: auto;
+        border-bottom: 1px solid #aaa;
+
+        .lc-conversation {
+          padding: 10px;
+        }
+      }
+    }
+
+    .os-booking-messages-input-w {
+      padding-left: 15px;
+    }
+
+    .os-booking-messages-input-w .os-bm-upload-file-btn {
+      right: 15px;
+    }
+
+    .os-booking-messages-input-w .os-bm-send-btn {
+      right: 15px;
+    }
+
+    .booking-messages-list .os-booking-message-w .os-booking-message {
+      font-size: 16px;
+      padding-top: 10px;
+      padding-bottom: 10px;
+    }
+
+    .booking-messages-list {
+      padding-left: 15px;
+      padding-right: 15px;
+      max-height: 400px;
+      min-height: 400px;
+      overflow: auto;
+    }
+  }
+}

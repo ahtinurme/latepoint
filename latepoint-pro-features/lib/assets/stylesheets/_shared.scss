@@ -1,0 +1,309 @@
+.latepoint-login-form-w, .step-customer-w, .booking-form-preview-wrapper {
+  .os-social-or {
+    color: $brand-primary;
+    text-align: center;
+    padding-bottom: 25px;
+    padding-top: 15px;
+    font-weight: $body-font-weight-bold;
+    font-size: $body-font-size-xs;
+    letter-spacing: 1px;
+
+    span {
+      display: inline-block;
+      position: relative;
+
+      &:before,
+      &:after {
+        content: "";
+        position: absolute;
+        top: 50%;
+        height: 1px;
+        background-color: #E2E5EF;
+        width: 20px;
+        left: -30px;
+      }
+
+      &:after {
+        left: auto;
+        right: -30px;
+      }
+    }
+  }
+
+  .os-social-login-options {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: stretch;
+    gap: 15px;
+    overflow: hidden;
+
+    .os-social-login-option {
+      padding: 8px;
+      color: $brand-primary;
+      text-decoration: none;
+      font-weight: $body-font-weight-bold;
+      white-space: nowrap;
+      overflow: hidden;
+      display: flex;
+      align-items: center;
+      border-radius: $border-radius;
+
+      i, span {
+        display: block;
+      }
+
+      i {
+        margin-right: 8px;
+      }
+
+      span {
+        display: block;
+        text-align: center;
+        padding-right: 40px;
+        flex: 1;
+      }
+
+      &.os-social-login-google {
+        color: $body-color;
+        border: 1px solid #d5d5d5;
+        cursor: pointer;
+
+        &:hover {
+          border-color: #999;
+        }
+
+        img {
+          width: 23px;
+          height: auto;
+          margin-right: 10px;
+          display: inline-block;
+          vertical-align: middle;
+        }
+      }
+
+      &.os-social-login-facebook {
+        color: $body-color;
+        border: 1px solid #d5d5d5;
+        cursor: pointer;
+
+        &:hover {
+          border-color: #999;
+        }
+
+        img {
+          width: 23px;
+          height: auto;
+          margin-right: 10px;
+          display: inline-block;
+          vertical-align: middle;
+        }
+      }
+    }
+  }
+}
+
+.latepoint {
+  .invoice-document {
+    line-height: 1.45;
+
+    .invoice-document-i {
+      position: relative;
+    }
+
+    &.status-not_paid {
+      .invoice-controls {
+      }
+    }
+
+    .invoice-status-draft-label {
+      font-weight: $headings-font-weight-black;
+      font-family: $headings-font-family;
+      font-size: 100px;
+      position: absolute;
+      color: rgba(0,0,0,0.2);
+      line-height: 1;
+      opacity: 0.8;
+      border-radius: 10px;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%,-50%);
+      text-transform: uppercase;
+      letter-spacing: 5px;
+    }
+
+    .invoice-status-paid-label {
+      font-weight: $headings-font-weight-black;
+      font-family: $headings-font-family;
+      font-size: 40px;
+      position: absolute;
+      color: #67bf08;
+      padding: 6px 20px;
+      line-height: 1;
+      opacity: 0.8;
+      border: 4px solid #67bf08;
+      border-radius: 10px;
+      bottom: 0px;
+      left: 0px;
+      text-transform: uppercase;
+      letter-spacing: 5px;
+    }
+
+    .invoice-status-voided-label {
+      font-weight: $headings-font-weight-black;
+      font-family: $headings-font-family;
+      font-size: 100px;
+      position: absolute;
+      color: #e12f2f;
+      padding: 6px 20px;
+      line-height: 1;
+      opacity: 0.8;
+      border: 4px solid #fb4c4c;
+      border-radius: 10px;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%,-50%);
+      text-transform: uppercase;
+      letter-spacing: 5px;
+    }
+
+    .invoice-heading {
+      display: flex;
+      justify-content: space-between;
+    }
+
+    .invoice-title {
+      font-weight: $headings-font-weight-black;
+      color: $headings-color;
+      font-family: $headings-font-family;
+      margin-bottom: 5px;
+      font-size: $headings-font-size-xl;
+    }
+
+    .invoice-data {
+      margin-top: 40px;
+
+      .invoice-row {
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-start;
+        gap: 20px;
+
+        .id-label {
+          color: $color-faded;
+        }
+
+        .id-value {
+          font-weight: $headings-font-weight-black;
+          color: $headings-color;
+          font-family: $headings-font-family;
+        }
+      }
+    }
+
+    .invoice-to-from {
+      display: flex;
+      justify-content: space-between;
+      margin-top: 60px;
+
+      .if-heading {
+        font-weight: $headings-font-weight-black;
+        color: $headings-color;
+        font-family: $headings-font-family;
+        margin-bottom: 5px;
+        font-size: $headings-font-size-s;
+      }
+    }
+
+    .invoice-due-info {
+      margin-top: 40px;
+
+      .invoice-due-amount {
+        font-weight: $headings-font-weight-black;
+        color: $headings-color;
+        font-family: $headings-font-family;
+        font-size: $headings-font-size-s;
+      }
+
+      .invoice-due-pay-link-w {
+        a {
+          color: $brand-primary;
+          text-decoration: none;
+          display: inline-block;
+          border-bottom: 1px dotted $brand-primary;
+          font-weight: $headings-font-weight-black;
+          font-family: $headings-font-family;
+        }
+      }
+    }
+
+    .invoice-items {
+      margin-top: 50px;
+
+      .invoice-items-table-heading {
+        display: flex;
+        justify-content: space-between;
+        color: $color-faded;
+        border-bottom: 1px solid $headings-color;
+        margin-bottom: 5px;
+        padding-bottom: 5px;
+      }
+
+      .summary-box-heading {
+        display: none;
+      }
+    }
+
+    .invoice-totals {
+      padding-left: 50%;
+
+      .it-row {
+        display: flex;
+        gap: 40px;
+        border-top: 1px solid #eee;
+        justify-content: space-between;
+        padding: 5px 0;
+
+        &.it-row-bold {
+          font-weight: $headings-font-weight-black;
+          font-family: $headings-font-family;
+          color: $headings-color;
+          border-top-color: $headings-color;
+          border-top-width: 2px;
+        }
+
+        &.it-row-positive {
+        }
+      }
+
+    }
+  }
+}
+
+
+
+.topit-links {
+  display: flex;
+  gap: 15px;
+  align-items: center;
+}
+.topit-invoice-link,
+.topit-receipt-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  font-size: $body-font-size-xs;
+  color: $brand-primary;
+  text-decoration: none;
+  margin-top: 5px;
+  span {
+    border-bottom: 1px dotted $brand-primary;
+  }
+  i {
+    font-size: 11px;
+  }
+}
+
+.quick-calendar-locked-feature {
+  display: none;
+}

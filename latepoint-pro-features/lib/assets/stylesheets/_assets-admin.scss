@@ -1,0 +1,103 @@
+@use 'sass:math';
+
+// List of assets on assets index in admin
+.os-assets-list {
+
+	.os-asset {
+
+		@include white-box();
+		display: flex;
+		flex-direction: column;
+
+		.os-asset-header {
+			padding: 15px;
+			border-bottom: 1px solid rgba( 0, 0, 0, 0.05 );
+			position: relative;
+
+			.asset-name {
+				display: inline-block;
+				vertical-align: middle;
+				margin: 0;
+				color: $headings-color;
+				font-size: $body-font-size-m;
+			}
+		}
+
+		&.os-asset-status-disabled {
+			opacity: 0.7;
+
+			.os-asset-header {
+				box-shadow: inset 0 3px 0 0 #ca1616;
+				border-radius: $border-radius-lg $border-radius-lg 0 0;
+
+				.asset-name {
+					color: #ca1616;
+				}
+			}
+		}
+	}
+
+	.os-asset-body {
+		flex: 1;
+
+		.selected-count {
+			background-color: #fff6c7;
+			border: 1px solid #e0be0d;
+			color: #c18018;
+			border-radius: 4px;
+			font-size: math.floor( $font-size-base * 0.8 );
+			padding: 3px 5px;
+			line-height: 1.1;
+
+			&.selected-count-all {
+				background-color: #ceffce;
+				border-color: #15c340;
+				color: #0e8e25;
+			}
+		}
+
+		.asset-info-row {
+			display: flex;
+			align-items: center;
+			margin-bottom: 5px;
+		}
+
+		.os-asset-connections,
+		.os-asset-info {
+			padding: 15px;
+			border-bottom: 1px solid rgba( 0, 0, 0, 0.05 );
+			display: flex;
+			align-items: center;
+
+			.label {
+				flex: 0 0 50%;
+				color: $body-color-light;
+				font-weight: $body-font-weight-bold;
+				padding-right: 10px;
+			}
+
+			.value {
+				flex: 1;
+				color: $body-color-light;
+
+				strong {
+					color: $body-color;
+				}
+			}
+		}
+
+		.os-asset-info {
+			display: block;
+			border-bottom: none;
+		}
+	}
+
+	.os-asset-foot {
+		padding: 10px;
+		padding-top: 0;
+	}
+
+	.create-resource-link-w {
+		min-height: 270px;
+	}
+}

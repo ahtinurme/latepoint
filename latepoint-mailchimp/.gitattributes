@@ -1,0 +1,15 @@
+# Exclude from git exports (git archive, GitHub releases)
+/.github/ export-ignore
+/artifacts/ export-ignore
+/dist/ export-ignore
+/docs/ export-ignore
+/tests/ export-ignore
+/bin/ export-ignore
+config.codekit3 export-ignore
+devlog.txt export-ignore
+changelog.txt export-ignore
+phpcs.xml export-ignore
+phpstan.neon export-ignore
+phpinsights.php export-ignore
+composer.json export-ignore
+composer.lock export-ignore

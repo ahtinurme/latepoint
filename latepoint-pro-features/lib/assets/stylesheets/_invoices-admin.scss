@@ -1,0 +1,327 @@
+.invoices-info-w {
+  &.setting-new-invoice {
+    .quick-add-item-button {
+      display: none;
+    }
+  }
+  .os-invoice-wrapper {
+    background-color: #fff;
+    border: 1px solid $border-color-main;
+    box-shadow: 0 2px 0 0 #eee;
+    border-radius: $border-radius;
+    border-bottom-color: darken($border-color-main, 20%);
+    animation: 0.3s cubic-bezier(.45, 1.1, .4, 1.2) 0s wizardWrapperAnimation;
+    animation-fill-mode: both;
+    cursor: pointer;
+    margin-bottom: 15px;
+
+    &.selected {
+      border-color: #000;
+      box-shadow: 0px 0px 0px 1px #000, 0 0 0 5px #eee;
+    }
+
+    &.os-loading {
+      .quick-invoice-icon {
+        .latepoint-icon {
+          visibility: hidden;
+        }
+
+        &:before {
+          @include loading-circle($brand-primary, 12px);
+        }
+      }
+    }
+
+    &:hover:not(.selected) {
+      border-color: $brand-primary;
+      box-shadow: 0px 0px 0px 1px $brand-primary;
+    }
+
+    .quick-invoice-head {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 10px;
+    }
+
+    .quick-invoice-sub {
+      border-top: 1px solid rgba(0, 0, 0, 0.1);
+      color: $color-faded;
+      font-size: floor($font-size-base * 0.8);
+      display: flex;
+      justify-content: space-between;
+      padding: 10px;
+      align-items: center;
+      border-radius: 0 0 $border-radius $border-radius;
+    }
+
+    .lp-processor-logo {
+      margin-left: 5px;
+      margin-right: 10px;
+      width: 70px;
+      background-position: center right;
+      background-repeat: no-repeat;
+      overflow: hidden;
+    }
+
+    .lp-invoice-status {
+      padding: 3px 5px;
+      border-radius: $border-radius;
+      background-color: #eee;
+      color: #333;
+      border: 1px solid #aaa;
+      font-weight: $body-font-weight-bold;
+      font-size: floor($font-size-base * 0.8);
+      line-height: 1;
+
+      &-paid {
+        background-color: #cbfad7;
+        border-color: #65bf99;
+        color: #347159;
+      }
+
+      &-open {
+        background-color: #d1e8ff;
+        border-color: #2382ed;
+        color: #0143a6;
+      }
+
+      &-void {
+        background-color: #ffc3c3;
+        border-color: #e62a31;
+        color: #5d2222;
+      }
+
+      &-uncollectible {
+        background-color: #000;
+        border-color: #000;
+        color: #fff;
+      }
+
+      &-draft {
+      }
+
+      &-partially_paid {
+        background-color: #d1e8ff;
+        border-color: #2382ed;
+        color: #0143a6;
+      }
+    }
+
+
+    .quick-invoice-icon {
+      position: relative;
+      font-size: 16px;
+      line-height: 1;
+      color: $brand-primary;
+      text-decoration: none;
+      margin-right: 10px;
+
+      i {
+        display: block;
+      }
+    }
+
+    .quick-invoice-amount {
+      font-weight: $body-font-weight-bold;
+      font-size: floor($font-size-base * 1.2);
+      margin-right: auto;
+    }
+
+    .lp-method-logo {
+      &.lp-method-logo-card {
+        &:before {
+          @include latepointfont_admin("\e916");
+        }
+
+        span {
+          display: none;
+        }
+      }
+    }
+
+  }
+}
+
+.latepoint-side-panel-w {
+  .side-sub-panel-wrapper.wide {
+    width: 700px;
+  }
+
+  .invoice-document {
+    background-color: #fff;
+    box-shadow: 0 2px 4px -1px rgba(0, 0, 0, 0.2);
+    &.os-loading {
+      .invoice-document-i {
+        &:before {
+          @include loading-circle($brand-primary, 16px);
+          top: 15px;
+          left: 15px;
+        }
+      }
+    }
+
+    .invoice-document-i {
+      padding: 80px;
+      position: relative;
+
+      .invoice-status-paid-label {
+        bottom: 90px;
+        left: 80px;
+        font-size: 28px;
+      }
+    }
+
+    .invoice-controls {
+      display: flex;
+      gap: 20px;
+      align-items: center;
+      border-bottom: 1px solid $border-color-main;
+      position: sticky;
+      top: -30px;
+      padding: 10px 20px;
+      background-color: #fff;
+      z-index: 1;
+
+      .ic-block {
+        display: flex;
+        gap: 10px;
+        .os-form-select-group {
+          display: flex;
+          gap: 5px;
+          align-items: center;
+          margin-bottom: 0;
+
+          label {
+            margin-bottom: 0;
+          }
+
+          select {
+            font-size: $body-font-size-xs;
+            padding: 3px 5px !important;
+            min-height: auto;
+          }
+        }
+
+        &.make-last {
+          margin-left: auto;
+        }
+      }
+
+      .ic-external-link {
+        display: flex;
+        text-decoration: none;
+        color: $brand-primary;
+        align-items: center;
+        gap: 5px;
+
+        span {
+          border-bottom: 1px dotted $brand-primary;
+        }
+      }
+    }
+  }
+}
+
+
+.invoice-settings-wrapper {
+  margin-top: 15px;
+  background-color: #fff;
+  border-radius: 6px;
+  border: 1px solid #e4e5e7;
+  box-shadow: 0 2px 0 0 #eee;
+  border-bottom-color: #aeb1b7;
+
+  .invoice-settings-heading {
+    padding: 10px 15px;
+    font-size: $body-font-size-s;
+    font-weight: $body-font-weight-black;
+    border-bottom: 1px solid $border-color-main;
+    display: flex;
+    align-items: center;
+    .invoice-settings-close {
+      color: #111;
+      font-size: 16px;
+      line-height: 1;
+      padding: 5px;
+      display: block;
+      text-decoration: none;
+      margin-left: auto;
+      border-radius: 6px;
+      i {
+        display: block;
+      }
+      &:hover {
+        background-color: #eee;
+      }
+    }
+  }
+  .invoice-settings-body {
+    padding: 15px;
+    display: flex;
+    gap: 15px;
+  }
+  .invoice-settings-buttons {
+    padding: 10px 15px;
+    border-top: 1px solid $border-color-main;
+    display: flex;
+    justify-content: flex-end;
+    padding-top: 10px;
+    gap: 10px;
+  }
+
+  .invoice-setting-column {
+    flex: 1;
+  }
+
+  .custom-charge-amount-wrapper {
+  }
+
+  .label-for-select {
+    color: $color-faded;
+    font-weight: $body-font-weight-bold;
+    border-radius: $form-controls-border-radius;
+    line-height: 1.4;
+    flex: 0 0 60px;
+    white-space: nowrap;
+  }
+
+
+  .os-form-group {
+    margin-bottom: 0 !important;
+    flex: 1;
+  }
+}
+
+.invoice-settings-wrapper, .invoice-data-form {
+
+  .os-date-range-picker {
+    flex: 1;
+    background-color: #fff;
+    border: 1px solid $border-color-strong;
+    padding: 7px 1px 6px 10px;
+    border-radius: $form-controls-border-radius;
+    line-height: 1.4;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    cursor: pointer;
+    &.size-small {
+      padding: 5px 2px 5px 8px;
+      font-size: $body-font-size-xs;
+    }
+
+    &:hover {
+      border-color: $brand-primary;
+    }
+
+    i {
+      font-size: 12px;
+    }
+
+    .range-picker-value {
+      flex: 1;
+      white-space: nowrap;
+    }
+  }
+}
