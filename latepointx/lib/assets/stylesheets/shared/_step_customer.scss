@@ -1,0 +1,94 @@
+/*!
+ * Copyright (c) 2024 LatePoint LLC. All rights reserved.
+ */
+
+
+.os-step-tabs {
+  display: flex;
+  color: $color-faded;
+  margin-bottom: 20px;
+  font-weight: $body-font-weight-bold;
+  font-size: floor($font-size-base);
+  line-height: floor($font-size-base);
+  justify-content: space-between;
+  align-items: flex-end;
+  box-shadow: 0px 1px 0px 0px #E2E5EF;
+  height: floor($font-size-base + 20);
+  .os-step-tab {
+    transition: all 0.2s ease;
+    text-align: center;
+    padding: 8px 0px;
+    position: relative;
+    line-height: floor($font-size-base);
+    font-size: floor($font-size-base);
+    &:hover {
+      cursor: pointer;
+      color: $body-color;
+    }
+    &:before {
+      position: absolute;
+      content: "";
+      background-color: $brand-primary;
+      height: 3px;
+      left: 0px;
+      bottom: -1px;
+      width: 0%;
+    }
+    &.active {
+      color: $body-color;
+      font-size: $body-font-size-m;
+      padding-bottom: 12px;
+      padding-top: 8px;
+      &:before {
+        width: 100%;
+      }
+    }
+  }
+}
+
+.step-customer-logged-in-header-w {
+  display: flex;
+  color: #898C98;
+  margin-bottom: 20px;
+  font-weight: $body-font-weight-bold;
+  font-size: floor($font-size-base);
+  line-height: floor($font-size-base);
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid #E2E5EF;
+  height: floor($font-size-base + 20);
+  span {
+    display: block;
+    margin-right: 5px;
+    margin-left: auto;
+  }
+  a {
+    display: block;
+    color: $brand-primary;
+    text-decoration: underline;
+  }
+  div {
+    color: $body-color;
+    font-size: $body-font-size-m;
+    line-height: floor($font-size-base);
+    padding-bottom: 12px;
+    padding-top: 8px;
+    position: relative;
+    &:before {
+      position: absolute;
+      content: "";
+      background-color: $brand-primary;
+      height: 2px;
+      left: 0px;
+      bottom: -1px;
+      width: 100%;
+      transition: all 0.2s ease;
+    }
+  }
+}
+.os-form-buttons {
+  align-items: flex-start;
+}
+.os-step-existing-customer-login-w {
+  margin-bottom: 10px;
+}
