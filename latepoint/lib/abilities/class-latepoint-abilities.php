@@ -69,10 +69,23 @@ class LatePointAbilities {
 
 	/**
 	 * Register all abilities from every module.
+	 *
+	 * Read-only abilities register whenever the master toggle is on.
+	 * Mutating abilities require the write toggle; destructive ones
+	 * require the delete toggle.
 	 */
 	public static function register_all(): void {
+		$allow_write  = OsSettingsHelper::is_on( 'latepoint_abilities_api_edit' );
+		$allow_delete = OsSettingsHelper::is_on( 'latepoint_abilities_api_delete' );
+
 		foreach ( self::$config_modules as $class ) {
 			foreach ( $class::get_abilities() as $ability ) {
+				if ( $ability->is_destructive() && ! $allow_delete ) {
+					continue;
+				}
+				if ( ! $ability->is_read_only() && ! $ability->is_destructive() && ! $allow_write ) {
+					continue;
+				}
 				wp_register_ability( $ability->get_id(), $ability->to_definition() );
 			}
 		}

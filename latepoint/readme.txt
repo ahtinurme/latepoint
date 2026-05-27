@@ -3,7 +3,7 @@ Contributors: latepoint
 Tags: appointments, booking, scheduling, events, calendar
 Requires at least: 6.5
 Tested up to: 6.9
-Stable tag: 5.5.1
+Stable tag: 5.6.0
 Requires PHP: 7.4
 License: GPLv3
 License URI: https://www.gnu.org/licenses/gpl-3.0.html
@@ -202,6 +202,18 @@ If you want a modern, effortless way to let your customers book online, give Lat
 3. Make sure to disable caching on your customer cabinet page
 
 == Changelog ==
+
+= 5.6.0 - May 18, 2026 =
+  - New: Introduces the RazorPay payment gateway integration.
+  - Improvement: Added a new “Create invoices for free bookings” toggle under Settings -> Invoices, allowing admins to optionally generate invoices for free bookings.
+  - Improvement: Updated all LatePoint Gutenberg blocks (Booking Button, Booking Form, Calendar, Customer Dashboard, Customer Login, and List of Resources) to Block API version 3.
+  - Improvement: Removed source map from CSS and JS to reduce output size.
+  - Fix: Fixed Gutenberg block preview rendering inside the WordPress iframe editor, preventing blank booking form and calendar previews in responsive/device preview modes.
+
+= 5.5.2 - May 14, 2026 =
+  - Added support for custom `.ics` calendar attachment filenames in workflow email notifications, including smart variables such as `{{service_name}}` and `{{booking_id}}` for more personalized calendar invites.
+  - Added new MCP settings in General -> MCP to enable and manage Abilities support.
+  - Security: Addressed security bugs. Props to WordFence for reporting it.
 
 = 5.5.1 - May 5, 2026 =
   - Security: Addressed security bugs. Props to WordFence for reporting it.

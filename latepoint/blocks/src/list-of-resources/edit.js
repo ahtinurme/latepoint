@@ -25,6 +25,7 @@ import TypographyControl from "../../controls/TypographyControl";
 import ColorSelectorControl from "../../controls/ColorSelectorControl";
 import BorderControl from "../../controls/BorderControl";
 import PaddingBoxControl from "../../controls/PaddingBoxControl";
+import IframeEmotionCacheProvider from '../utils/IframeEmotionCacheProvider';
 /**
  * React hook that is used to mark the block wrapper element.
  * It provides all the necessary props like the class name.
@@ -862,9 +863,11 @@ export default function Edit({attributes, setAttributes}) {
                 </Panel>
             </InspectorControls>
 
+            <IframeEmotionCacheProvider>
             <ListOfResourcesWrapper>
                 {renderResources()}
             </ListOfResourcesWrapper>
+            </IframeEmotionCacheProvider>
         </div>
     );
 }

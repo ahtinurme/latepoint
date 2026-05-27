@@ -17,6 +17,7 @@ import {
   InspectorControls,
 } from '@wordpress/block-editor';
 import styled from "@emotion/styled";
+import IframeEmotionCacheProvider from '../utils/IframeEmotionCacheProvider';
 
 
 /**
@@ -103,6 +104,7 @@ export default function Edit({attributes, setAttributes}) {
             </PanelBody>
           </Panel>
         </InspectorControls>
+          <IframeEmotionCacheProvider>
           <div>
           <LatepointBlockCaption>{attributes.caption}</LatepointBlockCaption>
             <LatepointFormWrapper>
@@ -117,6 +119,7 @@ export default function Edit({attributes, setAttributes}) {
                 </LatepointFormFooter>
             </LatepointFormWrapper>
           </div>
+          </IframeEmotionCacheProvider>
       </div>
   );
 }

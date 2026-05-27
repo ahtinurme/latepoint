@@ -2,7 +2,7 @@
 /**
  * Plugin Name: LatePoint
  * Description: Appointment Scheduling Software for WordPress
- * Version: 5.5.1
+ * Version: 5.6.0
  * Author: LatePoint
  * Author URI: https://latepoint.com
  * Plugin URI: https://latepoint.com
@@ -29,7 +29,7 @@ if ( ! class_exists( 'LatePoint' ) ) :
 		 * LatePoint version.
 		 *
 		 */
-		public $version    = '5.5.1';
+		public $version    = '5.6.0';
 		public $db_version = '2.3.0';
 
 
@@ -728,6 +728,11 @@ if ( ! class_exists( 'LatePoint' ) ) :
 			if ( ! defined( 'LATEPOINT_STRIPE_CONNECT_URL' ) ) {
 				define( 'LATEPOINT_STRIPE_CONNECT_URL', LATEPOINT_APP_CONNECT_URL );
 			}
+
+			// Razorpay Connect
+			if ( ! defined( 'LATEPOINT_RAZORPAY_CONNECT_URL' ) ) {
+				define( 'LATEPOINT_RAZORPAY_CONNECT_URL', LATEPOINT_APP_CONNECT_URL );
+			}
 		}
 
 
@@ -765,6 +770,7 @@ if ( ! class_exists( 'LatePoint' ) ) :
 			include_once LATEPOINT_ABSPATH . 'lib/controllers/manage_order_by_key_controller.php';
 			include_once LATEPOINT_ABSPATH . 'lib/controllers/events_controller.php';
 			include_once LATEPOINT_ABSPATH . 'lib/controllers/stripe_connect_controller.php';
+			include_once LATEPOINT_ABSPATH . 'lib/controllers/razorpay_connect_controller.php';
 			include_once LATEPOINT_ABSPATH . 'lib/controllers/invoices_controller.php';
 			include_once LATEPOINT_ABSPATH . 'lib/controllers/support_topics_controller.php';
 
@@ -871,6 +877,7 @@ if ( ! class_exists( 'LatePoint' ) ) :
 			include_once LATEPOINT_ABSPATH . 'lib/helpers/roles_helper.php';
 			include_once LATEPOINT_ABSPATH . 'lib/helpers/price_breakdown_helper.php';
 			include_once LATEPOINT_ABSPATH . 'lib/helpers/stripe_connect_helper.php';
+			include_once LATEPOINT_ABSPATH . 'lib/helpers/razorpay_connect_helper.php';
 			include_once LATEPOINT_ABSPATH . 'lib/helpers/pages_helper.php';
 			include_once LATEPOINT_ABSPATH . 'lib/helpers/elementor_helper.php';
 			include_once LATEPOINT_ABSPATH . 'lib/helpers/bricks_helper.php';
@@ -905,7 +912,8 @@ if ( ! class_exists( 'LatePoint' ) ) :
 			include_once LATEPOINT_ABSPATH . 'lib/mailers/customer_mailer.php';
 
 			// ABILITIES (WordPress 6.9+ Abilities API)
-			if ( apply_filters( 'latepoint_enable_abilities', false ) && function_exists( 'wp_register_ability' ) ) {
+			$abilities_enabled = OsSettingsHelper::is_on( 'latepoint_abilities_api' );
+			if ( $abilities_enabled && function_exists( 'wp_register_ability' ) ) {
 				include_once LATEPOINT_ABSPATH . 'lib/abilities/class-latepoint-abilities.php';
 			}
 
@@ -1042,6 +1050,20 @@ if ( ! class_exists( 'LatePoint' ) ) :
 			add_filter( 'latepoint_process_refund', 'OsStripeConnectHelper::process_refund', 10, 3 );
 			add_filter( 'plugin_action_links', [ $this, 'add_upgrade_link' ], 10, 2 );
 
+			// Razorpay Connect
+			add_filter( 'latepoint_payment_processors', 'OsRazorpayConnectHelper::register_payment_processor' );
+			add_action( 'latepoint_payment_processor_settings', 'OsRazorpayConnectHelper::add_settings_fields', 10 );
+			add_action( 'latepoint_step_payment__pay_content', 'OsRazorpayConnectHelper::output_payment_step_contents', 10 );
+			add_action( 'latepoint_order_payment__pay_content_after', 'OsRazorpayConnectHelper::output_order_payment_pay_contents', 10 );
+			add_filter( 'latepoint_convert_charge_amount_to_requirements', 'OsRazorpayConnectHelper::convert_charge_amount_to_requirements', 10, 2 );
+			add_filter( 'latepoint_process_payment_for_order_intent', 'OsRazorpayConnectHelper::process_payment', 10, 2 );
+			add_filter( 'latepoint_process_payment_for_transaction_intent', 'OsRazorpayConnectHelper::process_payment_for_transaction_intent', 10, 2 );
+			add_filter( 'latepoint_transaction_intent_specs_charge_amount', 'OsRazorpayConnectHelper::convert_transaction_intent_charge_amount_to_specs', 10, 2 );
+			add_filter( 'latepoint_get_all_payment_times', 'OsRazorpayConnectHelper::add_all_payment_methods_to_payment_times' );
+			add_filter( 'latepoint_get_enabled_payment_times', 'OsRazorpayConnectHelper::add_enabled_payment_methods_to_payment_times' );
+			add_filter( 'latepoint_transaction_is_refund_available', 'OsRazorpayConnectHelper::transaction_is_refund_available', 10, 2 );
+			add_filter( 'latepoint_process_refund', 'OsRazorpayConnectHelper::process_refund', 10, 3 );
+
 
 			add_action( 'latepoint_customer_edit_form_after', 'OsStripeConnectHelper::output_stripe_link_on_customer_quick_form' );
 
@@ -1158,7 +1180,7 @@ if ( ! class_exists( 'LatePoint' ) ) :
 			if ( $customer->wordpress_user_id ) {
 				// has connected wp user
 				$wp_user = get_user_by( 'id', $customer->wordpress_user_id );
-				if ( $wp_user && ! is_super_admin( $wp_user->ID ) ) {
+				if ( $wp_user && OsCustomerHelper::is_wp_user_safe_for_customer_link( $wp_user->ID ) ) {
 					// Only sync to the linked WP user when request comes from the account owner or an admin.
 					// This prevents unauthenticated guest booking requests from overwriting WP user data.
 					$current_user_id   = get_current_user_id();
@@ -1473,6 +1495,13 @@ if ( ! class_exists( 'LatePoint' ) ) :
 			$localized_vars['stripe_connect_route_create_payment_intent']                        = OsRouterHelper::build_route_name( 'stripe_connect', 'create_payment_intent' );
 			$localized_vars['stripe_connect_route_create_payment_intent_for_transaction_intent'] = OsRouterHelper::build_route_name( 'stripe_connect', 'create_payment_intent_for_transaction' );
 
+			$localized_vars['is_razorpay_connect_enabled']                         = OsPaymentsHelper::is_payment_processor_enabled( OsRazorpayConnectHelper::$processor_code );
+			$localized_vars['razorpay_connect_route_create_order']                 = OsRouterHelper::build_route_name( 'razorpay_connect', 'create_razorpay_order' );
+			$localized_vars['razorpay_connect_route_create_order_for_transaction'] = OsRouterHelper::build_route_name( 'razorpay_connect', 'create_razorpay_order_for_transaction' );
+			if ( OsPaymentsHelper::is_payment_processor_enabled( OsRazorpayConnectHelper::$processor_code ) ) {
+				$localized_vars['razorpay_connect_account_id'] = OsRazorpayConnectHelper::get_connect_account_id();
+			}
+
 			// Stylesheets
 			wp_enqueue_style( 'latepoint-main-front', $this->public_stylesheets() . 'front.css', false, $this->version );
 
@@ -1486,6 +1515,9 @@ if ( ! class_exists( 'LatePoint' ) ) :
 
 			if ( OsPaymentsHelper::is_payment_processor_enabled( OsStripeConnectHelper::$processor_code ) ) {
 				wp_enqueue_script( 'stripe', 'https://js.stripe.com/v3/', false, null );
+			}
+			if ( OsPaymentsHelper::is_payment_processor_enabled( OsRazorpayConnectHelper::$processor_code ) ) {
+				wp_enqueue_script( 'razorpay-checkout', 'https://checkout.razorpay.com/v1/checkout.js', false, null );
 			}
 
 			wp_register_script( 'latepoint-vendor-front', $this->public_javascripts() . 'vendor-front.js', [ 'jquery' ], $this->version );

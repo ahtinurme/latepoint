@@ -37,6 +37,7 @@ import {
 } from '@wordpress/block-editor';
 
 import React from "react";
+import IframeEmotionCacheProvider from '../utils/IframeEmotionCacheProvider';
 import TypographyControl from "../../controls/TypographyControl";
 import ColorSelectorControl from "../../controls/ColorSelectorControl";
 import BorderControl from "../../controls/BorderControl";
@@ -362,6 +363,7 @@ export default function Edit({attributes, setAttributes}) {
 
             </InspectorControls>
 
+            <IframeEmotionCacheProvider>
             <LatepointBookButtonWrapper
                 className={'latepoint-book-button-wrapper ' + 'wp-block-button ' + (attributes.align ? `latepoint-book-button-align-${attributes.align}` : '')}>
                 <LatepointBookButton
@@ -372,6 +374,7 @@ export default function Edit({attributes, setAttributes}) {
                     {attributes.caption}
                 </LatepointBookButton>
             </LatepointBookButtonWrapper>
+            </IframeEmotionCacheProvider>
         </div>
     );
 }

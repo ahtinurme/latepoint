@@ -19,6 +19,7 @@
 // @codekit-prepend "bin/admin/_steps.js";
 // @codekit-prepend "bin/admin/_orders.js";
 // @codekit-prepend "bin/admin/_stripe_connect.js";
+// @codekit-prepend "bin/admin/_razorpay_connect.js";
 
 
 
@@ -176,7 +177,7 @@ jQuery(document).ready(function( $ ) {
 
 
 
-  
+
 
 
   jQuery('.download-csv-with-filters').on('click', function(){
@@ -598,7 +599,7 @@ jQuery(document).ready(function( $ ) {
                   params: {ordered_fields: blocks_order_data,
                   fields_for: $draggable_form_blocks_wrapper.data('fields-for'),
                   _wpnonce: $draggable_form_blocks_wrapper.data('order-update-nonce')},
-                  return_format: 'json' } 
+                  return_format: 'json' }
     $draggable_form_blocks_wrapper.addClass('os-loading');
     jQuery.ajax({
       type : "post",
@@ -621,17 +622,17 @@ jQuery(document).ready(function( $ ) {
     jQuery(this).closest('.step-w').toggleClass('editing');
     return false;
   });
-    
+
   jQuery('body.latepoint-admin').on('click', '.agent-info-change-agent-btn', function(){
     jQuery(this).closest('.agent-info-w').removeClass('selected').addClass('selecting');
     return false;
   });
-  
+
   jQuery('body.latepoint-admin').on('click', '.agent-info-change-agent-btn', function(){
     jQuery(this).closest('.agent-info-w').removeClass('selected').addClass('selecting');
     return false;
   });
-  
+
 
   jQuery('body.latepoint-admin').on('click', '.customer-info-create-btn', function(){
     jQuery(this).closest('.customer-info-w').removeClass('selecting').addClass('selected');
@@ -669,7 +670,7 @@ jQuery(document).ready(function( $ ) {
     var text = jQuery(this).val().toLowerCase();
     $list.find('.service-option').hide();
 
-    // Search 
+    // Search
     $list.find('.service-option').each(function(){
 
       if(jQuery(this).text().toLowerCase().indexOf(""+text+"") != -1 ){
@@ -869,7 +870,7 @@ jQuery(document).ready(function( $ ) {
         frame.open();
         return false;
       }
-      
+
       // Create a new media frame
       frame = wp.media({
         title: 'Select or Upload Media',
@@ -891,7 +892,7 @@ jQuery(document).ready(function( $ ) {
 
       frame.open();
     }
-    
+
     return false;
   });
 
@@ -984,7 +985,7 @@ jQuery(document).ready(function( $ ) {
     jQuery(this).closest('.side-sub-panel-wrapper').remove();
     return false;
   });
-  
+
 
 
   jQuery('body.latepoint-admin').on('click', '.time-ampm-select', function(){
@@ -1032,6 +1033,6 @@ jQuery(document).ready(function( $ ) {
     return false;
   });
 
-  
+
 
 });

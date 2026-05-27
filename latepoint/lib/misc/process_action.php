@@ -46,6 +46,28 @@ class ProcessAction {
 		return ! empty( $this->settings['attach_calendar'] ) && \OsUtilHelper::is_on( $this->settings['attach_calendar'] );
 	}
 
+	public function get_ics_filename_prefix(): string {
+		return isset( $this->settings['ics_filename_prefix'] )
+			? trim( (string) $this->settings['ics_filename_prefix'] )
+			: '';
+	}
+
+	private function resolve_ics_filename_basename(): string {
+		$raw = $this->get_ics_filename_prefix();
+		if ( $raw === '' ) {
+			return '';
+		}
+		$resolved = \OsReplacerHelper::replace_all_vars( $raw, $this->replacement_vars );
+		// Strip any leftover {{...}} placeholders that the workflow context didn't supply.
+		$resolved = (string) preg_replace( '/\{\{[^}]*\}\}/', '', $resolved );
+		$resolved = sanitize_file_name( trim( $resolved ) );
+		// User typed `.ics` themselves — drop it; we always append our own extension.
+		if ( strtolower( substr( $resolved, -4 ) ) === '.ics' ) {
+			$resolved = substr( $resolved, 0, -4 );
+		}
+		return $resolved;
+	}
+
 	public function get_nice_type_name() {
 		return self::get_action_name_for_type( $this->type );
 	}
@@ -218,9 +240,33 @@ class ProcessAction {
 					[
 						'id'    => 'process_actions_' . $action->id . '_settings_content',
 						'class' => 'os-wp-editor-textarea',
-					] 
+					]
 				);
-				$html .= \OsFormHelper::toggler_field( 'process[actions][' . $action->id . '][settings][attach_calendar]', __( 'Attach Booking Calendar', 'latepoint' ), $action->is_attach_calendar() );
+
+				$attach_calendar_settings_id = 'process_action_' . $action->id . '_attach_calendar_settings';
+
+				$html .= '<div class="os-row pa-attach-calendar-row">';
+				$html .= '<div class="os-col-4">';
+				$html .= \OsFormHelper::toggler_field(
+					'process[actions][' . $action->id . '][settings][attach_calendar]',
+					__( 'Attach Booking Calendar', 'latepoint' ),
+					$action->is_attach_calendar(),
+					$attach_calendar_settings_id
+				);
+				$html .= '</div>';
+				$html .= '<div class="os-col-8" id="' . esc_attr( $attach_calendar_settings_id ) . '"' . ( $action->is_attach_calendar() ? '' : ' style="display:none"' ) . '>';
+				$html .= \OsFormHelper::text_field(
+					'process[actions][' . $action->id . '][settings][ics_filename_prefix]',
+					__( 'Calendar attachment filename', 'latepoint' ),
+					$action->settings['ics_filename_prefix'] ?? '',
+					[
+						'theme'       => 'simple',
+						'placeholder' => __( 'e.g. MyBusiness_{{service_name}}_{{booking_id}}', 'latepoint' ),
+						'sub_label'   => __( 'Optional. Use the "Show smart variables" button above to insert placeholders. Leave blank to use the default.', 'latepoint' ),
+					]
+				);
+				$html .= '</div>';
+				$html .= '</div>';
 				$html .= \OsFormHelper::multiple_files_uploader_field( 'process[actions][' . $action->id . '][settings][attachments]', esc_html__( '+ Attach File', 'latepoint' ), esc_html__( 'Remove File', 'latepoint' ), $action->get_attachments() );
 				break;
 			case 'send_sms':
@@ -671,9 +717,17 @@ class ProcessAction {
 				throw new \Exception( 'iCal content is empty' );
 			}
 
-			$temp_file      = tempnam( sys_get_temp_dir(), 'latepoint_ical_' );
-			$ical_temp_file = $temp_file . '.ics';
-			rename( $temp_file, $ical_temp_file );
+			$resolved_basename = $this->resolve_ics_filename_basename();
+
+			if ( $resolved_basename !== '' ) {
+				$temp_file      = tempnam( sys_get_temp_dir(), $resolved_basename . '_' );
+				$ical_temp_file = $temp_file . '.ics';
+				rename( $temp_file, $ical_temp_file );
+			} else {
+				$temp_file      = tempnam( sys_get_temp_dir(), 'latepoint_ical_' );
+				$ical_temp_file = $temp_file . '.ics';
+				rename( $temp_file, $ical_temp_file );
+			}
 
 			if ( file_put_contents( $ical_temp_file, $ical_content ) !== false ) {
 				return $ical_temp_file;

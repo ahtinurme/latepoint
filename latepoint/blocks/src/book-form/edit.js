@@ -49,6 +49,8 @@ import {
   InspectorControls,
 } from '@wordpress/block-editor';
 
+import IframeEmotionCacheProvider from '../utils/IframeEmotionCacheProvider';
+
 const LatepointBookFormWrapper = styled.div`
   display: flex;
   justify-content: space-around;
@@ -374,6 +376,7 @@ export default function Edit({attributes, setAttributes}) {
           </PanelBody>
         </Panel>
       </InspectorControls>
+      <IframeEmotionCacheProvider>
       <LatepointBookFormWrapper>
         <LatepointBookForm style={generateStyles()}>
           {!attributes.hide_side_panel && <SidePanel>
@@ -410,6 +413,7 @@ export default function Edit({attributes, setAttributes}) {
           </SummaryPanel>}
         </LatepointBookForm>
       </LatepointBookFormWrapper>
+      </IframeEmotionCacheProvider>
     </div>
   );
 }

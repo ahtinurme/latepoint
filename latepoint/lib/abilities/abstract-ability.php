@@ -44,7 +44,28 @@ abstract class LatePointAbstractAbility {
 		return $this->id;
 	}
 
+	public function is_read_only(): bool {
+		return $this->read_only;
+	}
+
+	public function is_destructive(): bool {
+		return $this->destructive;
+	}
+
 	public function check_permission(): bool {
+		// Master gate. In case the ability was registered
+		// while the master toggle was on but has since been disabled.
+		if ( ! OsSettingsHelper::is_on( 'latepoint_abilities_api' ) ) {
+			return false;
+		}
+		if ( $this->destructive && ! OsSettingsHelper::is_on( 'latepoint_abilities_api_delete' ) ) {
+			return false;
+		}
+		if ( ! $this->read_only && ! $this->destructive
+			&& ! OsSettingsHelper::is_on( 'latepoint_abilities_api_edit' ) ) {
+			return false;
+		}
+
 		return OsRolesHelper::can_user( $this->permission );
 	}
 

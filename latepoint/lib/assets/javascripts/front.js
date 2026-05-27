@@ -9,6 +9,7 @@
 // @codekit-prepend "bin/front/_customer.js"
 // @codekit-prepend "bin/front/_events.js"
 // @codekit-prepend "bin/front/_stripe_connect.js"
+// @codekit-prepend "bin/front/_razorpay_connect.js"
 
 
 // DOCUMENT READY
@@ -114,7 +115,7 @@ jQuery(document).ready(function ($) {
             }
         });
     }
-  
+
     if (latepoint_helper.start_from_transaction_access_key) {
         const invoice_access_key = latepoint_helper.start_from_transaction_access_key;
         show_summary_before_payment(invoice_access_key);

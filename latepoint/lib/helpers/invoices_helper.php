@@ -460,6 +460,9 @@ class OsInvoicesHelper {
 		if ( ! self::is_enabled() ) {
 			return;
 		}
+		if ( $order->get_total() <= 0 && ! OsSettingsHelper::is_on( 'create_invoices_for_free_bookings', LATEPOINT_VALUE_OFF ) ) {
+			return;
+		}
 		$existing_invoices     = new OsInvoiceModel();
 		$existing_invoices     = $existing_invoices->where( [ 'order_id' => $order->id ] )->get_results_as_models();
 		$total_invoiced_amount = 0;
@@ -1016,6 +1019,7 @@ class OsInvoicesHelper {
 				</div>
 				<div id="lp-invoice-settings" style="border-top: 1px solid #dcdad7; <?php echo self::is_enabled() ? '' : ' display: none;'; ?>">
 				<?php
+
 				echo '<div class="sub-section-row">';
 					echo '<div class="sub-section-label">
                             <h3>' . __( 'Invoice Data', 'latepoint' ) . '</h3>
@@ -1062,6 +1066,20 @@ class OsInvoicesHelper {
 						echo OsFormHelper::text_field( 'settings[invoices_email_subject]', __( 'Subject', 'latepoint' ), self::get_subject_for_invoice_email(), [ 'theme' => 'simple' ] );
 
 						OsFormHelper::wp_editor_field( 'settings[invoices_email_content]', 'settingsInvoiceEmailContent', __( 'Email Content', 'latepoint' ), self::get_content_for_invoice_email() );
+					echo '</div>';
+				echo '</div>';
+
+				echo '<div class="sub-section-row">';
+					echo '<div class="sub-section-label"><h3>' . esc_html__( 'Free Bookings', 'latepoint' ) . '</h3></div>';
+					echo '<div class="sub-section-content">';
+						echo OsFormHelper::toggler_field(
+							'settings[create_invoices_for_free_bookings]',
+							__( 'Create invoices for free bookings', 'latepoint' ),
+							OsSettingsHelper::is_on( 'create_invoices_for_free_bookings', LATEPOINT_VALUE_OFF ),
+							'',
+							false,
+							[ 'sub_label' => __( 'When disabled, no invoice is created and no invoice email/notification is sent for bookings with a $0.00 total (e.g. free services or fully discounted by coupon).', 'latepoint' ) ]
+						);
 					echo '</div>';
 				echo '</div>';
 				?>

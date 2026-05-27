@@ -392,6 +392,75 @@ if ( ! defined( 'ABSPATH' ) ) {
                 </div>
             </div>
         </div>
+        <div class="white-box section-anchor" id="stickySectionAbilities">
+            <div class="white-box-header">
+                <div class="os-form-sub-header"><h3><?php esc_html_e( 'MCP', 'latepoint' ); ?></h3></div>
+            </div>
+            <div class="white-box-content no-padding">
+                <?php if ( ! function_exists( 'wp_register_ability' ) ) : ?>
+                <div class="sub-section-row">
+                    <div class="sub-section-content">
+                        <div class="latepoint-message latepoint-message-subtle">
+                            <?php esc_html_e( 'MCP requires WordPress 6.9 or newer. Your changes will be saved but will not take effect until WordPress is updated.', 'latepoint' ); ?>
+                        </div>
+                    </div>
+                </div>
+                <?php endif; ?>
+                <div class="sub-section-row">
+                    <div class="sub-section-label">
+                        <h3><?php esc_html_e( 'Enable Abilities', 'latepoint' ); ?></h3>
+                    </div>
+                    <div class="sub-section-content">
+                        <?php
+                        echo OsFormHelper::toggler_field(
+                            'settings[latepoint_abilities_api]',
+                            __( 'Enable Abilities', 'latepoint' ),
+                            OsSettingsHelper::is_on( 'latepoint_abilities_api' ),
+                            'abilitiesPermissionsToggle',
+                            false,
+                            [ 'sub_label' => __( 'Register LatePoint abilities with the WordPress Abilities API. When enabled, AI clients can list, read, create, edit, and delete your bookings, customers, services, agents, and orders. When disabled, no abilities are registered and AI clients cannot perform any actions on your LatePoint data.', 'latepoint' ) ]
+                        );
+                        ?>
+                    </div>
+                </div>
+                <div id="abilitiesPermissionsToggle" style="border-top: 1px solid rgb(220, 218, 215); <?php echo OsSettingsHelper::is_on( 'latepoint_abilities_api' ) ? '' : 'display: none;'; ?>">
+                    <div class="sub-section-row">
+                        <div class="sub-section-label">
+                            <h3><?php esc_html_e( 'Enable Edit Abilities', 'latepoint' ); ?></h3>
+                        </div>
+                        <div class="sub-section-content">
+                            <?php
+                            echo OsFormHelper::toggler_field(
+                                'settings[latepoint_abilities_api_edit]',
+                                __( 'Enable Edit Abilities', 'latepoint' ),
+                                OsSettingsHelper::is_on( 'latepoint_abilities_api_edit' ),
+                                false,
+                                false,
+                                [ 'sub_label' => __( 'When enabled, AI clients can create new bookings, update customers, services, agents, and locations, and change appointment statuses (approve, cancel, reschedule). When disabled, these abilities are unregistered and AI clients can only read your data.', 'latepoint' ) ]
+                            );
+                            ?>
+                        </div>
+                    </div>
+                    <div class="sub-section-row">
+                        <div class="sub-section-label">
+                            <h3><?php esc_html_e( 'Enable Delete Abilities', 'latepoint' ); ?></h3>
+                        </div>
+                        <div class="sub-section-content">
+                            <?php
+                            echo OsFormHelper::toggler_field(
+                                'settings[latepoint_abilities_api_delete]',
+                                __( 'Enable Delete Abilities', 'latepoint' ),
+                                OsSettingsHelper::is_on( 'latepoint_abilities_api_delete' ),
+                                false,
+                                false,
+                                [ 'sub_label' => __( 'When enabled, AI clients can permanently delete bookings, customers, services, agents, and locations, and process refunds. Deleted data cannot be recovered. When disabled, delete abilities are unregistered and AI clients cannot remove any data.', 'latepoint' ) ]
+                            );
+                            ?>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
 		<?php
 		/**
 		 * Plug before "Other" section in general settings
@@ -674,6 +743,7 @@ if ( ! defined( 'ABSPATH' ) ) {
             echo '<div><a href="#'.esc_attr($item['href']).'">'.esc_html( $item['label'] ).'</a></div>';
         }
         ?>
+        <div><a href="#stickySectionAbilities"><?php esc_html_e( 'MCP', 'latepoint' ); ?></a></div>
         <div><a href="#stickySectionOther"><?php esc_html_e( 'Other', 'latepoint' ); ?></a></div>
     </div>
 

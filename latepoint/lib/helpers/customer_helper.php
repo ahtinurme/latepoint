@@ -235,6 +235,22 @@ class OsCustomerHelper {
 		return $customer->where( [ 'account_nonse' => $account_nonse ] )->set_limit( 1 )->get_results_as_models();
 	}
 
+	/**
+	 * Check whether a WP user has only customer-safe roles (subscriber, customer, latepoint_customer).
+	 * Used to prevent linking a LatePoint customer record to a privileged WordPress account.
+	 *
+	 * @param int $wp_user_id WordPress user ID to check.
+	 * @return bool True if the user exists and has only allowlisted roles; false otherwise.
+	 */
+	public static function is_wp_user_safe_for_customer_link( int $wp_user_id ): bool {
+		$wp_user = get_userdata( $wp_user_id );
+		if ( ! $wp_user || empty( $wp_user->roles ) ) {
+			return false;
+		}
+		$allowed_roles = array( LATEPOINT_WP_CUSTOMER_ROLE, 'subscriber', 'customer' );
+		return empty( array_diff( (array) $wp_user->roles, $allowed_roles ) );
+	}
+
 	public static function create_wp_user_for_customer( $customer ) {
 		// NO connected wp user, create one
 		// check if wp user with this customer email already exists
@@ -243,19 +259,25 @@ class OsCustomerHelper {
 			$wp_user_id = username_exists( $customer->email );
 		}
 		if ( $wp_user_id ) {
-			// wp user with this email or username exists - check if its linked to another customer already - if not link it to current customer
-			$linked_customer = new OsCustomerModel();
-			$linked_customer = $linked_customer->where( [ 'wordpress_user_id' => $wp_user_id ] )->set_limit( 1 )->get_results_as_models();
-			if ( $linked_customer ) {
-				// wp user with this email exists and is linked already to a different latepoint customer
-				$customer->add_error( 'customer_exists', __( 'Customer with this email already exists', 'latepoint' ) );
+			// wp user with this email or username exists
+			if ( ! self::is_wp_user_safe_for_customer_link( $wp_user_id ) ) {
+				// Do not link to privileged WP accounts (admin, editor, etc.)
+				$customer->add_error( 'privileged_user', __( 'Cannot link to a privileged WordPress account.', 'latepoint' ) );
 			} else {
-				$customer->update_attributes(
-					[
-						'wordpress_user_id' => $wp_user_id,
-						'is_guest'          => false,
-					] 
-				);
+				// check if its linked to another customer already - if not link it to current customer
+				$linked_customer = new OsCustomerModel();
+				$linked_customer = $linked_customer->where( [ 'wordpress_user_id' => $wp_user_id ] )->set_limit( 1 )->get_results_as_models();
+				if ( $linked_customer ) {
+					// wp user with this email exists and is linked already to a different latepoint customer
+					$customer->add_error( 'customer_exists', __( 'Customer with this email already exists', 'latepoint' ) );
+				} else {
+					$customer->update_attributes(
+						[
+							'wordpress_user_id' => $wp_user_id,
+							'is_guest'          => false,
+						]
+					);
+				}
 			}
 		} else {
 

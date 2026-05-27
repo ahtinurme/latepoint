@@ -315,6 +315,16 @@ class OsCustomerModel extends OsModel {
 	public function update_password( $password ) {
 		// update connected wp user password
 		if ( OsAuthHelper::can_wp_users_login_as_customers() && $this->wordpress_user_id ) {
+			// Only reset the WP password for non-privileged accounts to prevent takeover of admin/editor users
+			if ( ! OsCustomerHelper::is_wp_user_safe_for_customer_link( (int) $this->wordpress_user_id ) ) {
+				return $this->update_attributes(
+					[
+						'password' => wp_hash_password( $password ),
+						'is_guest' => false,
+					]
+				);
+			}
+
 			$is_logged_in      = OsWpUserHelper::get_current_user_id() == $this->wordpress_user_id;
 			$logged_in_wp_user = $is_logged_in ? OsWpUserHelper::get_current_user() : false;
 
