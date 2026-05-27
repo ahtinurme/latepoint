@@ -62,21 +62,58 @@ class OsWhatsappMetaHelper {
 		}
 	}
 
+	const TEMPLATES_CACHE_TTL  = 15 * MINUTE_IN_SECONDS;
+	const TEMPLATES_PAGE_LIMIT = 100;
+	const TEMPLATES_MAX_PAGES  = 50;
+
 	/**
+	 * Fetches every approved WhatsApp template for the connected business account,
+	 * walking Meta's cursor pagination and caching the merged list in a transient
+	 * to avoid redundant API calls. Returns a partial result if a later page fails.
+	 *
 	 * @return array
-	 * @throws Exception
+	 * @throws Exception When the first page fails (preserves original UI error path).
 	 */
 	public static function get_templates(): array {
-		$response = self::do_request( 'message_templates' );
-		if ( $response['code'] == 200 ) {
-			if ( ! empty( $response['data']['data'] ) ) {
-				return $response['data']['data'];
-			} else {
-				return [];
-			}
-		} else {
-			throw new Exception( $response['data']['error']['message'] ?? 'Error parsing whatsapp request' );
+		$cache_key = 'latepoint_whatsapp_meta_templates_' . md5( self::get_business_account_id() );
+
+		$cached = get_transient( $cache_key );
+		if ( is_array( $cached ) ) {
+			return $cached;
 		}
+
+		$templates = [];
+		$params    = [ 'limit' => self::TEMPLATES_PAGE_LIMIT ];
+
+		for ( $page = 1; $page <= self::TEMPLATES_MAX_PAGES; $page ++ ) {
+			$response = self::do_request( 'message_templates', 'GET', $params );
+
+			if ( $response['code'] != 200 ) {
+				$error_message = $response['data']['error']['message'] ?? ( $response['message'] ?? 'Error parsing whatsapp request' );
+				if ( empty( $templates ) ) {
+					throw new Exception( $error_message );
+				}
+				if ( class_exists( 'OsDebugHelper' ) ) {
+					OsDebugHelper::log( 'WhatsApp templates pagination stopped on page ' . $page . ': ' . $error_message, 'whatsapp_meta_error' );
+				}
+				break;
+			}
+
+			if ( ! empty( $response['data']['data'] ) && is_array( $response['data']['data'] ) ) {
+				$templates = array_merge( $templates, $response['data']['data'] );
+			}
+
+			$next_cursor = $response['data']['paging']['cursors']['after'] ?? '';
+			if ( '' === $next_cursor || empty( $response['data']['paging']['next'] ) ) {
+				break;
+			}
+
+			$params['after'] = $next_cursor;
+		}
+
+		set_transient( $cache_key, $templates, self::TEMPLATES_CACHE_TTL );
+
+		return $templates;
 	}
 
 	public static function get_system_user_access_token(): string {

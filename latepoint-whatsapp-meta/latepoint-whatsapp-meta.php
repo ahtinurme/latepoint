@@ -3,7 +3,7 @@
  * Plugin Name: LatePoint Addon - Whatsapp by Meta
  * Plugin URI:  https://latepoint.com/
  * Description: LatePoint addon for whatsapp notifications
- * Version:     1.0.0
+ * Version:     1.1.0
  * Author:      LatePoint
  * Author URI:  https://latepoint.com/
  * Text Domain: latepoint-whatsapp-meta
@@ -29,7 +29,7 @@ if ( ! class_exists( 'LatePointWhatsappMeta' ) ) :
 		 * Addon version.
 		 *
 		 */
-		public $version = '1.0.0';
+		public $version = '1.1.0';
 		public $db_version = '1.0.0';
 		public $addon_name = 'latepoint-whatsapp-meta';
 		public $whatsapp_processor_code = 'whatsapp-meta';
@@ -99,6 +99,8 @@ if ( ! class_exists( 'LatePointWhatsappMeta' ) ) :
 			add_filter( 'latepoint_get_whatsapp_templates', 'OsWhatsappMetaHelper::get_templates' );
 			add_filter( 'latepoint_whatsapp_business_id', 'OsWhatsappMetaHelper::get_business_account_id' );
 
+			add_action( 'latepoint_admin_enqueue_scripts', [ $this, 'load_admin_scripts_and_styles' ] );
+
 			// addon specific filters
 
 			add_action( 'init', array( $this, 'init' ), 0 );
@@ -106,6 +108,12 @@ if ( ! class_exists( 'LatePointWhatsappMeta' ) ) :
 			register_activation_hook( __FILE__, [ $this, 'on_activate' ] );
 			register_deactivation_hook( __FILE__, [ $this, 'on_deactivate' ] );
 
+		}
+
+
+		public function load_admin_scripts_and_styles( $localized_vars ) {
+			wp_enqueue_script( 'latepoint-whatsapp-meta-admin', self::public_javascripts() . 'latepoint-whatsapp-meta-admin.js', [ 'jquery' ], $this->version );
+			wp_enqueue_style( 'latepoint-whatsapp-meta-admin', self::public_stylesheets() . 'latepoint-whatsapp-meta-admin.css', false, $this->version );
 		}
 
 
