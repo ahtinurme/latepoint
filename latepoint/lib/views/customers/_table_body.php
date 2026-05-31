@@ -4,6 +4,7 @@
 if ( ! defined( 'ABSPATH' ) ) {
 	exit; // Exit if accessed directly
 }
+$customer_table_custom_fields = class_exists('OsFeatureCustomFieldsHelper') ? OsFeatureCustomFieldsHelper::get_customer_custom_fields_for_table() : [];
 if($customers){
   foreach ($customers as $customer):
 	  $next_booking = $customer->get_future_bookings(1, true);
@@ -31,6 +32,7 @@ if($customers){
       <td><?php echo ($next_booking) ? esc_html($next_booking->nice_start_datetime) : esc_html__('n/a', 'latepoint'); ?></td>
       <td><?php echo ($next_booking) ? $next_booking->time_left : '<span class="time-left is-past">'.esc_html__('Past', 'latepoint').'</span>'; ?></td>
       <?php if(OsAuthHelper::can_wp_users_login_as_customers()) echo ($customer->wordpress_user_id) ? '<td><a target="_blank" href="' . esc_url(get_edit_user_link($customer->wordpress_user_id)) . '">' . esc_html($customer->wordpress_user_id) . '</a></td>' : '<td><div class="not-connected-pill"></div></td>'; ?>
+      <?php foreach($customer_table_custom_fields as $custom_field) echo '<td>' . esc_html(OsFeatureCustomFieldsHelper::get_custom_field_value($custom_field, $customer)) . '</td>'; ?>
       <td><?php echo esc_html($customer->formatted_created_date()); ?></td>
     </tr>
     <?php 
