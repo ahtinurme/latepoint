@@ -1,0 +1,3499 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: LatePoint Addon - Pro Features\n"
+"Report-Msgid-Bugs-To: \n"
+"Last-Translator: gpt-po v1.2.4\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"POT-Creation-Date: 2026-05-28T07:41:41+00:00\n"
+"PO-Revision-Date: 2026-05-28T07:41:41+00:00\n"
+"Language: zh_CN\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+
+#. Plugin Name of the plugin
+#: latepoint-pro-features.php
+msgid "LatePoint Addon - Pro Features"
+msgstr "LatePoint 附加组件 - 专业功能"
+
+#. Plugin URI of the plugin
+#. Author URI of the plugin
+#: latepoint-pro-features.php
+msgid "https://latepoint.com/"
+msgstr "https://latepoint.com/"
+
+#. Description of the plugin
+#: latepoint-pro-features.php
+msgid "LatePoint Addon that adds a set of Pro features to a base plugin"
+msgstr "为基础插件添加一组专业功能的 LatePoint 附加组件"
+
+#. Author of the plugin
+#: latepoint-pro-features.php
+msgid "LatePoint"
+msgstr "LatePoint"
+
+#. translators: 1: bold open tag, 2: bold close tag, 3: required version, 4: current version
+#: latepoint-pro-features.php:92
+#, php-format
+msgid "You are using an older version of the %1$sLatePoint%2$s plugin (v%4$s). Please update the %1$sLatePoint%2$s plugin to version %1$s%3$s or later%2$s."
+msgstr "您正在使用较旧版本的 %1$sLatePoint%2$s 插件（v%4$s）。请将 %1$sLatePoint%2$s 插件更新到 %1$s%3$s 或更高版本%2$s。"
+
+#: latepoint-pro-features.php:98
+#: lib/helpers/addons_helper.php:126
+#: lib/views/addons/load_addons_list.php:93
+#: lib/views/addons/load_addons_list.php:109
+#: lib/views/updates/check_version_status.php:33
+msgid "Update Now"
+msgstr "立即更新"
+
+#: latepoint-pro-features.php:767
+#: lib/helpers/feature_recurring_bookings_helper.php:61
+msgid "Recurring Appointments"
+msgstr "重复预约"
+
+#: latepoint-pro-features.php:771
+#: lib/helpers/feature_group_bookings_helper.php:278
+msgid "Group Bookings"
+msgstr "团体预订"
+
+#: latepoint-pro-features.php:775
+#: lib/controllers/service_extras_controller.php:25
+#: lib/helpers/feature_service_extras_helper.php:7
+#: lib/helpers/feature_service_extras_helper.php:143
+#: lib/helpers/feature_service_extras_helper.php:452
+#: lib/helpers/service_extras_helper.php:86
+msgid "Service Extras"
+msgstr "服务附加项"
+
+#: latepoint-pro-features.php:779
+msgid "Restrictions for Extras"
+msgstr "附加项限制"
+
+#: latepoint-pro-features.php:783
+#: latepoint-pro-features.php:1239
+#: lib/controllers/assets_controller.php:20
+#: lib/helpers/feature_assets_helper.php:50
+msgid "Assets"
+msgstr "资源"
+
+#: latepoint-pro-features.php:790
+msgid "Allow customers reschedule their bookings"
+msgstr "允许客户重新安排其预订"
+
+#: latepoint-pro-features.php:790
+msgid "If enable, shows a button on customer cabinet to reschedule an appointment"
+msgstr "如果启用，会在客户面板中显示一个用于重新安排预约的按钮"
+
+#: latepoint-pro-features.php:793
+msgid "Set restriction on when customer can reschedule"
+msgstr "设置客户可重新安排的时间限制"
+
+#: latepoint-pro-features.php:797
+msgid "Can reschedule when it is at least"
+msgstr "可重新安排的最早时间为"
+
+#: latepoint-pro-features.php:798
+#: lib/helpers/feature_recurring_bookings_helper.php:69
+#: lib/helpers/feature_service_extras_helper.php:498
+#: lib/helpers/feature_service_extras_helper.php:508
+#: lib/views/agents/quick_edit.php:92
+#: lib/views/agents/_form.php:82
+msgid "Value"
+msgstr "数值"
+
+#: latepoint-pro-features.php:803
+#: lib/helpers/feature_reminders_helper.php:15
+msgid "minutes"
+msgstr "分钟"
+
+#: latepoint-pro-features.php:804
+#: lib/helpers/feature_reminders_helper.php:16
+msgid "hours"
+msgstr "小时"
+
+#: latepoint-pro-features.php:805
+#: lib/helpers/feature_reminders_helper.php:17
+msgid "days"
+msgstr "天"
+
+#: latepoint-pro-features.php:809
+msgid "before appointment start time"
+msgstr "在预约开始时间之前"
+
+#: latepoint-pro-features.php:812
+msgid "Change booking status when customer reschedules"
+msgstr "当客户重新安排时更改预订状态"
+
+#: latepoint-pro-features.php:816
+msgid "Change status to:"
+msgstr "将状态更改为："
+
+#: latepoint-pro-features.php:836
+msgid "All Day"
+msgstr "全天"
+
+#: latepoint-pro-features.php:837
+msgid "Specific Time"
+msgstr "特定时间"
+
+#: latepoint-pro-features.php:843
+msgid "Reason for blocking (optional)"
+msgstr "阻止原因（可选）"
+
+#: latepoint-pro-features.php:846
+msgid "Enter a reason..."
+msgstr "输入原因..."
+
+#: latepoint-pro-features.php:866
+#, php-format
+msgid "Select resources you want to be unavailable during this time on %s"
+msgstr "选择您希望在 %s 的此时间段内不可用的资源"
+
+#: latepoint-pro-features.php:867
+#, php-format
+msgid "Select resources you want to be unavailable on %s"
+msgstr "选择您希望在 %s 上不可用的资源"
+
+#: latepoint-pro-features.php:876
+msgid "All Agents"
+msgstr "所有员工"
+
+#: latepoint-pro-features.php:891
+msgid "All Services"
+msgstr "所有服务"
+
+#: latepoint-pro-features.php:906
+msgid "All Locations"
+msgstr "所有地点"
+
+#: latepoint-pro-features.php:922
+#: lib/views/webhooks/_webhook_form.php:45
+msgid "Save"
+msgstr "保存"
+
+#: latepoint-pro-features.php:928
+msgid "Are you sure you want to delete this blocked time period?"
+msgstr "您确定要删除此被阻止的时间段吗？"
+
+#: latepoint-pro-features.php:930
+msgid "Delete Blocked Period"
+msgstr "删除被阻止的时间段"
+
+#: latepoint-pro-features.php:987
+msgid "Blocked Period"
+msgstr "被阻止的时间段"
+
+#: latepoint-pro-features.php:1056
+msgid "Enable this feature by installing an appropriate addon."
+msgstr "通过安装合适的附加组件来启用此功能。"
+
+#: latepoint-pro-features.php:1067
+msgid "Not applied to invoice"
+msgstr "未应用到发票"
+
+#: latepoint-pro-features.php:1073
+#, php-format
+msgid "#%s"
+msgstr "#%s"
+
+#: latepoint-pro-features.php:1076
+msgid "Apply to Invoice"
+msgstr "应用到发票"
+
+#: latepoint-pro-features.php:1081
+msgid "View Receipt"
+msgstr "查看收据"
+
+#: latepoint-pro-features.php:1083
+msgid "View Invoice"
+msgstr "查看发票"
+
+#: latepoint-pro-features.php:1100
+#: lib/controllers/addons_controller.php:18
+msgid "Add-ons"
+msgstr "附加组件"
+
+#: latepoint-pro-features.php:1112
+msgid "Premium Features"
+msgstr "高级功能"
+
+#: latepoint-pro-features.php:1194
+msgid "Form Fields"
+msgstr "表单字段"
+
+#: latepoint-pro-features.php:1199
+msgid "Customer Fields"
+msgstr "客户字段"
+
+#: latepoint-pro-features.php:1204
+msgid "Booking Fields"
+msgstr "预订字段"
+
+#: latepoint-pro-features.php:1217
+#: latepoint-pro-features.php:1222
+#: lib/controllers/locations_controller.php:21
+#: lib/helpers/feature_locations_helper.php:70
+msgid "Locations"
+msgstr "地点"
+
+#: latepoint-pro-features.php:1227
+msgid "Categories"
+msgstr "分类"
+
+#: latepoint-pro-features.php:1271
+msgid "Cart Settings"
+msgstr "购物车设置"
+
+#: latepoint-pro-features.php:1274
+msgid "Disable Shopping Cart Functionality"
+msgstr "禁用购物车功能"
+
+#: latepoint-pro-features.php:1274
+msgid "This will disable ability to book multiple services in one order"
+msgstr "这将禁用在一笔订单中预订多个服务的能力"
+
+#: latepoint-pro-features.php:1275
+msgid "Reset Presets When Adding New Item"
+msgstr "添加新项目时重置预设"
+
+#: latepoint-pro-features.php:1275
+msgid "This will reset presets settings when adding new item"
+msgstr "这将在添加新项目时重置预设设置"
+
+#: latepoint-pro-features.php:1286
+msgid "Assets Settings"
+msgstr "资源设置"
+
+#: latepoint-pro-features.php:1289
+msgid "Enable Assets Functionality"
+msgstr "启用资源功能"
+
+#: latepoint-pro-features.php:1289
+msgid "Enable to use assets for managing booking availability. When disabled, assets will not affect booking availability"
+msgstr "启用后可使用资源来管理预订可用性。禁用后，资源将不会影响预订可用性"
+
+#: latepoint-pro-features.php:1490
+#: latepoint-pro-features.php:1503
+msgid "Are you sure you want to remove this file?"
+msgstr "您确定要移除此文件吗？"
+
+#: latepoint-pro-features.php:1491
+#: latepoint-pro-features.php:1504
+msgid "This file is required and cannot be removed, but you can replace it with a different file. Do you want to replace it?"
+msgstr "此文件是必需的，无法移除，但您可以用其他文件替换它。您要替换吗？"
+
+#: latepoint-pro-features.php:1609
+msgid "Activate LatePoint"
+msgstr "激活 LatePoint"
+
+#: latepoint-pro-features.php:1613
+msgid "Install LatePoint"
+msgstr "安装 LatePoint"
+
+#: latepoint-pro-features.php:1617
+#, php-format
+msgid "%1$sPRO Features for LatePoint%2$s plugin requires %1$sLatePoint%2$s core plugin installed & activated."
+msgstr "%1$sLatePoint%2$s 的 %1$sPRO 功能%2$s 插件需要已安装并激活 %1$sLatePoint%2$s 核心插件。"
+
+#: lib/controllers/addons_controller.php:37
+msgid "Addon \"Pro Features\" has been installed"
+msgstr "已安装“专业功能”附加组件"
+
+#: lib/controllers/addons_controller.php:42
+msgid "Invalid license key. Activate in LatePoint settings."
+msgstr "许可证密钥无效。请在 LatePoint 设置中激活。"
+
+#: lib/controllers/addons_controller.php:63
+msgid "You do not have permission to delete plugins."
+msgstr "您没有删除插件的权限。"
+
+#: lib/controllers/addons_controller.php:80
+msgid "Addon deleted"
+msgstr "附加组件已删除"
+
+#: lib/controllers/addons_controller.php:93
+msgid "You do not have permission to manage plugins."
+msgstr "您没有管理插件的权限。"
+
+#: lib/controllers/addons_controller.php:108
+msgid "Addon deactivated"
+msgstr "插件已停用"
+
+#: lib/controllers/addons_controller.php:126
+msgid "You do not have permission to activate plugins."
+msgstr "您没有激活插件的权限。"
+
+#: lib/controllers/addons_controller.php:141
+msgid "Addon activated"
+msgstr "插件已激活"
+
+#: lib/controllers/addons_controller.php:158
+msgid "You do not have permission to install plugins."
+msgstr "您没有安装插件的权限。"
+
+#: lib/controllers/addons_controller.php:185
+msgid "Addon installed successfully."
+msgstr "插件安装成功。"
+
+#: lib/controllers/agents_controller.php:23
+#: lib/views/coupons/quick_edit.php:89
+#: lib/views/locations/_form.php:221
+msgid "Agents"
+msgstr "代理"
+
+#: lib/controllers/agents_controller.php:35
+msgid "Index"
+msgstr "索引"
+
+#: lib/controllers/agents_controller.php:52
+#: lib/controllers/agents_controller.php:54
+#: lib/views/agents/index.php:66
+#: lib/views/agents/index.php:73
+#: lib/views/agents/quick_edit.php:14
+msgid "New Agent"
+msgstr "新建代理"
+
+#: lib/controllers/agents_controller.php:136
+#: lib/controllers/agents_controller.php:138
+#: lib/views/agents/index.php:58
+#: lib/views/agents/quick_edit.php:16
+msgid "Edit Agent"
+msgstr "编辑代理"
+
+#: lib/controllers/agents_controller.php:214
+msgid "Agent Created. ID:"
+msgstr "代理已创建。ID:"
+
+#: lib/controllers/agents_controller.php:222
+msgid "Agent Updated. ID:"
+msgstr "代理已更新。ID:"
+
+#: lib/controllers/agents_controller.php:277
+msgid "Agent Removed"
+msgstr "代理已移除"
+
+#: lib/controllers/agents_controller.php:280
+#: lib/controllers/agents_controller.php:284
+msgid "Error Removing Agent"
+msgstr "移除代理时出错"
+
+#: lib/controllers/agents_controller.php:325
+msgid "Error Accessing Agent"
+msgstr "访问代理时出错"
+
+#: lib/controllers/agents_controller.php:347
+#: lib/controllers/locations_controller.php:253
+msgid "Copy"
+msgstr "复制"
+
+#: lib/controllers/agents_controller.php:380
+#: lib/controllers/agents_controller.php:384
+msgid "Error Creating Agent"
+msgstr "创建代理时出错"
+
+#: lib/controllers/assets_controller.php:39
+#: lib/controllers/assets_controller.php:41
+#: lib/views/assets/index.php:73
+msgid "New Asset"
+msgstr "新建资产"
+
+#: lib/controllers/assets_controller.php:58
+#: lib/controllers/assets_controller.php:60
+#: lib/views/assets/index.php:66
+msgid "Edit Asset"
+msgstr "编辑资产"
+
+#: lib/controllers/assets_controller.php:90
+msgid "Asset Created. ID:"
+msgstr "资产已创建。ID:"
+
+#: lib/controllers/assets_controller.php:92
+msgid "Asset Updated. ID:"
+msgstr "资产已更新。ID:"
+
+#: lib/controllers/assets_controller.php:117
+msgid "Asset Removed"
+msgstr "资产已移除"
+
+#: lib/controllers/assets_controller.php:120
+#: lib/controllers/assets_controller.php:124
+msgid "Error Removing Asset"
+msgstr "移除资产时出错"
+
+#: lib/controllers/bundles_controller.php:24
+#: lib/views/coupons/quick_edit.php:125
+msgid "Bundles"
+msgstr "捆绑包"
+
+#: lib/controllers/bundles_controller.php:36
+#: lib/controllers/bundles_controller.php:38
+#: lib/views/bundles/index.php:37
+msgid "Edit Bundle"
+msgstr "编辑捆绑包"
+
+#: lib/controllers/bundles_controller.php:60
+#: lib/controllers/bundles_controller.php:62
+#: lib/views/bundles/index.php:47
+#: lib/views/bundles/index.php:57
+msgid "New Bundle"
+msgstr "新建捆绑包"
+
+#: lib/controllers/bundles_controller.php:124
+msgid "Bundle Created. ID:"
+msgstr "捆绑包已创建。ID:"
+
+#: lib/controllers/bundles_controller.php:132
+msgid "Bundle Updated. ID:"
+msgstr "捆绑包已更新。ID:"
+
+#: lib/controllers/bundles_controller.php:171
+msgid "Bundle Removed"
+msgstr "捆绑包已移除"
+
+#: lib/controllers/bundles_controller.php:174
+#: lib/controllers/bundles_controller.php:178
+msgid "Error Removing Bundle"
+msgstr "移除捆绑包时出错"
+
+#: lib/controllers/coupons_controller.php:22
+#: lib/helpers/feature_coupons_helper.php:131
+#: lib/views/coupons/index.php:8
+msgid "Coupons"
+msgstr "优惠券"
+
+#: lib/controllers/coupons_controller.php:73
+#: lib/views/coupons/index.php:24
+#: lib/views/coupons/index.php:32
+#: lib/views/coupons/index.php:54
+msgid "ID"
+msgstr "ID"
+
+#: lib/controllers/coupons_controller.php:74
+#: lib/models/asset_model.php:22
+#: lib/models/service_extra_model.php:20
+#: lib/views/coupons/index.php:25
+#: lib/views/coupons/index.php:55
+#: lib/views/roles/_form.php:21
+msgid "Name"
+msgstr "名称"
+
+#: lib/controllers/coupons_controller.php:75
+#: lib/views/coupons/index.php:26
+#: lib/views/coupons/index.php:56
+#: lib/views/coupons/quick_edit.php:51
+msgid "Code"
+msgstr "代码"
+
+#: lib/controllers/coupons_controller.php:76
+#: lib/views/coupons/index.php:27
+#: lib/views/coupons/index.php:57
+msgid "Discount"
+msgstr "折扣"
+
+#: lib/controllers/coupons_controller.php:77
+#: lib/views/agents/quick_edit.php:57
+#: lib/views/agents/_form.php:41
+#: lib/views/assets/_form.php:35
+#: lib/views/bundles/_form.php:30
+#: lib/views/coupons/index.php:28
+#: lib/views/coupons/index.php:58
+#: lib/views/coupons/quick_edit.php:62
+#: lib/views/locations/_form.php:18
+#: lib/views/service_extras/_form.php:31
+msgid "Status"
+msgstr "状态"
+
+#: lib/controllers/coupons_controller.php:78
+#: lib/views/coupons/index.php:29
+#: lib/views/coupons/index.php:59
+msgid "Created On"
+msgstr "创建于"
+
+#: lib/controllers/coupons_controller.php:169
+msgid "Coupon Code was removed from your cart"
+msgstr "优惠券代码已从您的购物车中移除"
+
+#: lib/controllers/coupons_controller.php:181
+msgid "Coupon Code was applied to your cart"
+msgstr "优惠券代码已应用到您的购物车"
+
+#: lib/controllers/coupons_controller.php:202
+msgid "Coupon Removed"
+msgstr "优惠券已移除"
+
+#: lib/controllers/coupons_controller.php:205
+#: lib/controllers/coupons_controller.php:209
+msgid "Error Removing Coupon"
+msgstr "移除优惠券时出错"
+
+#: lib/controllers/coupons_controller.php:299
+#, php-format
+msgid "Coupon Updated ID: %s"
+msgstr "优惠券已更新 ID: %s"
+
+#: lib/controllers/coupons_controller.php:299
+#, php-format
+msgid "Coupon Created ID: %s"
+msgstr "优惠券已创建 ID: %s"
+
+#: lib/controllers/custom_fields_controller.php:27
+#: lib/controllers/custom_fields_controller.php:291
+#: lib/helpers/feature_custom_fields_helper.php:402
+#: lib/helpers/feature_custom_fields_helper.php:671
+#: lib/views/custom_fields/for_customer.php:3
+msgid "Custom Fields"
+msgstr "自定义字段"
+
+#: lib/controllers/custom_fields_controller.php:99
+#: lib/controllers/custom_fields_controller.php:126
+msgid "Field Removed"
+msgstr "字段已移除"
+
+#: lib/controllers/custom_fields_controller.php:102
+#: lib/controllers/custom_fields_controller.php:129
+#: lib/controllers/whatsapp_controller.php:28
+#: lib/controllers/whatsapp_controller.php:58
+msgid "Invalid Data"
+msgstr "无效数据"
+
+#: lib/controllers/custom_fields_controller.php:106
+#: lib/controllers/custom_fields_controller.php:133
+msgid "Not Authorized"
+msgstr "未授权"
+
+#: lib/controllers/custom_fields_controller.php:153
+msgid "Custom Field Removed"
+msgstr "自定义字段已移除"
+
+#: lib/controllers/custom_fields_controller.php:156
+msgid "Error Removing Custom Field"
+msgstr "移除自定义字段时出错"
+
+#: lib/controllers/custom_fields_controller.php:160
+msgid "Invalid Field ID"
+msgstr "无效的字段 ID"
+
+#: lib/controllers/custom_fields_controller.php:202
+#: lib/controllers/custom_fields_controller.php:237
+#: lib/controllers/roles_controller.php:159
+#: lib/controllers/taxes_controller.php:67
+#: lib/controllers/webhooks_controller.php:75
+msgid "Invalid params"
+msgstr "无效参数"
+
+#: lib/controllers/custom_fields_controller.php:228
+msgid "Custom Field Saved"
+msgstr "自定义字段已保存"
+
+#: lib/controllers/custom_fields_controller.php:231
+msgid "Error Saving Custom Field"
+msgstr "保存自定义字段时出错"
+
+#: lib/controllers/custom_fields_controller.php:264
+#: lib/controllers/taxes_controller.php:91
+msgid "Order Updated"
+msgstr "订单已更新"
+
+#: lib/controllers/custom_fields_controller.php:267
+msgid "Error Updating Order of Custom Fields"
+msgstr "更新自定义字段顺序时出错"
+
+#: lib/controllers/debug_controller.php:17
+msgid "LatePoint Status"
+msgstr "LatePoint 状态"
+
+#: lib/controllers/debug_controller.php:28
+#: lib/controllers/debug_controller.php:42
+msgid "DB Version was reset"
+msgstr "数据库版本已重置"
+
+#: lib/controllers/locations_controller.php:35
+#: lib/controllers/locations_controller.php:37
+#: lib/views/locations/_location_index_item.php:35
+msgid "Edit Location"
+msgstr "编辑地点"
+
+#: lib/controllers/locations_controller.php:75
+#: lib/controllers/locations_controller.php:77
+#: lib/controllers/location_categories_controller.php:42
+#: lib/controllers/location_categories_controller.php:44
+msgid "Create New Location"
+msgstr "创建新地点"
+
+#: lib/controllers/locations_controller.php:171
+msgid "Location Created. ID:"
+msgstr "地点已创建。ID:"
+
+#: lib/controllers/locations_controller.php:179
+msgid "Location Updated. ID:"
+msgstr "地点已更新。ID:"
+
+#: lib/controllers/locations_controller.php:221
+msgid "Location Removed"
+msgstr "地点已移除"
+
+#: lib/controllers/locations_controller.php:224
+#: lib/controllers/locations_controller.php:228
+msgid "Error Removing Location"
+msgstr "移除地点时出错"
+
+#: lib/controllers/locations_controller.php:285
+#: lib/controllers/locations_controller.php:289
+msgid "Error Creating Location"
+msgstr "创建地点时出错"
+
+#: lib/controllers/location_categories_controller.php:21
+msgid "Location Categories"
+msgstr "地点分类"
+
+#: lib/controllers/location_categories_controller.php:75
+msgid "Not categorized"
+msgstr "未分类"
+
+#: lib/controllers/location_categories_controller.php:121
+msgid "Location Category Removed"
+msgstr "地点分类已移除"
+
+#: lib/controllers/location_categories_controller.php:124
+msgid "Error Removing Location Category. Error: FJI8321"
+msgstr "移除地点分类时出错。错误：FJI8321"
+
+#: lib/controllers/location_categories_controller.php:128
+msgid "Error Removing Location Category. Error: SIF2348"
+msgstr "移除地点分类时出错。错误：SIF2348"
+
+#: lib/controllers/location_categories_controller.php:149
+msgid "Location Order Updated"
+msgstr "地点顺序已更新"
+
+#: lib/controllers/location_categories_controller.php:163
+msgid "Location Categories Order Updated"
+msgstr "地点分类顺序已更新"
+
+#: lib/controllers/location_categories_controller.php:192
+msgid "Location Category Created."
+msgstr "地点分类已创建。"
+
+#: lib/controllers/location_categories_controller.php:219
+msgid "Location Category Updated. ID: "
+msgstr "地点分类已更新。ID:"
+
+#: lib/controllers/location_categories_controller.php:227
+msgid "Error Updating Location (Invalid ID)"
+msgstr "更新地点时出错（无效 ID）"
+
+#: lib/controllers/messages_controller.php:25
+#: lib/controllers/messages_controller.php:27
+#: lib/helpers/feature_messages_helper.php:17
+#: lib/helpers/feature_messages_helper.php:89
+msgid "Messages"
+msgstr "消息"
+
+#: lib/controllers/messages_controller.php:241
+msgid "Success"
+msgstr "成功"
+
+#: lib/controllers/messages_controller.php:244
+#: lib/controllers/messages_controller.php:248
+msgid "Error sending message. Try again later."
+msgstr "发送消息时出错。请稍后再试。"
+
+#: lib/controllers/reminders_controller.php:23
+#: lib/controllers/reminders_controller.php:25
+msgid "Reminders"
+msgstr "提醒"
+
+#: lib/controllers/roles_controller.php:21
+msgid "Roles"
+msgstr "角色"
+
+#: lib/controllers/roles_controller.php:30
+#: lib/controllers/roles_controller.php:194
+msgid "You do not have permission to edit users."
+msgstr "您没有编辑用户的权限。"
+
+#: lib/controllers/roles_controller.php:36
+msgid "Invalid User ID"
+msgstr "无效的用户 ID"
+
+#: lib/controllers/roles_controller.php:79
+msgid "User Roles Updated"
+msgstr "用户角色已更新"
+
+#: lib/controllers/roles_controller.php:95
+#: lib/controllers/roles_controller.php:130
+msgid "You do not have permission to manage roles."
+msgstr "您没有管理角色的权限。"
+
+#: lib/controllers/roles_controller.php:106
+msgid "Role Removed"
+msgstr "角色已移除"
+
+#: lib/controllers/roles_controller.php:109
+msgid "Error Removing Role"
+msgstr "移除角色时出错"
+
+#: lib/controllers/roles_controller.php:113
+msgid "Invalid Role"
+msgstr "无效角色"
+
+#: lib/controllers/roles_controller.php:155
+msgid "Custom Role saved"
+msgstr "自定义角色已保存"
+
+#: lib/controllers/service_categories_controller.php:22
+#: lib/controllers/service_categories_controller.php:25
+msgid "Service Categories"
+msgstr "服务分类"
+
+#: lib/controllers/service_categories_controller.php:46
+#: lib/controllers/service_categories_controller.php:48
+msgid "Create New Service"
+msgstr "创建新服务"
+
+#: lib/controllers/service_categories_controller.php:79
+#: lib/views/locations/index.php:3
+msgid "Uncategorized"
+msgstr "未分类"
+
+#: lib/controllers/service_categories_controller.php:117
+msgid "Service Category Removed"
+msgstr "服务分类已移除"
+
+#: lib/controllers/service_categories_controller.php:120
+msgid "Error Removing Service Category. Error: FJI8321"
+msgstr "移除服务分类时出错。错误：FJI8321"
+
+#: lib/controllers/service_categories_controller.php:124
+msgid "Error Removing Service Category. Error: SIF2348"
+msgstr "移除服务分类时出错。错误：SIF2348"
+
+#: lib/controllers/service_categories_controller.php:145
+msgid "Service Order Updated"
+msgstr "服务顺序已更新"
+
+#: lib/controllers/service_categories_controller.php:159
+msgid "Service Categories Order Updated"
+msgstr "服务分类顺序已更新"
+
+#: lib/controllers/service_categories_controller.php:188
+msgid "Service Category Created. ID: "
+msgstr "服务分类已创建。ID:"
+
+#: lib/controllers/service_categories_controller.php:215
+msgid "Service Category Updated. ID: "
+msgstr "服务分类已更新。ID:"
+
+#: lib/controllers/service_categories_controller.php:222
+msgid "Invalid Service Category ID"
+msgstr "无效的服务分类 ID"
+
+#: lib/controllers/service_durations_controller.php:18
+#: lib/controllers/service_durations_controller.php:20
+#: lib/helpers/feature_service_durations_helper.php:88
+msgid "Service Durations"
+msgstr "服务时长"
+
+#: lib/controllers/service_extras_controller.php:56
+#: lib/controllers/service_extras_controller.php:58
+msgid "Edit Service Extra"
+msgstr "编辑服务附加项"
+
+#: lib/controllers/service_extras_controller.php:78
+#: lib/controllers/service_extras_controller.php:80
+#: lib/views/service_extras/index.php:40
+msgid "New Service Extra"
+msgstr "新建服务附加项"
+
+#: lib/controllers/service_extras_controller.php:129
+msgid "Service Extra Created. ID:"
+msgstr "服务附加项已创建。ID:"
+
+#: lib/controllers/service_extras_controller.php:131
+msgid "Service Extra Updated. ID:"
+msgstr "服务附加项已更新。ID:"
+
+#: lib/controllers/service_extras_controller.php:160
+msgid "Service Extra Removed"
+msgstr "服务附加项已移除"
+
+#: lib/controllers/service_extras_controller.php:163
+#: lib/controllers/service_extras_controller.php:167
+msgid "Error Removing Service Extra"
+msgstr "移除服务附加项时出错"
+
+#: lib/controllers/taxes_controller.php:20
+#: lib/views/taxes/index.php:1
+msgid "Taxes"
+msgstr "税费"
+
+#: lib/controllers/taxes_controller.php:30
+msgid "Tax Removed"
+msgstr "税费已移除"
+
+#: lib/controllers/taxes_controller.php:33
+msgid "Error Removing Tax"
+msgstr "移除税费时出错"
+
+#: lib/controllers/taxes_controller.php:37
+msgid "Invalid Tax ID"
+msgstr "无效的税费 ID"
+
+#: lib/controllers/taxes_controller.php:63
+msgid "Taxes saved"
+msgstr "税费已保存"
+
+#: lib/controllers/taxes_controller.php:94
+msgid "Error Updating Order of Taxes"
+msgstr "更新税费顺序时出错"
+
+#: lib/controllers/timezone_selector_controller.php:18
+#: lib/controllers/timezone_selector_controller.php:20
+msgid "Timezone Selector"
+msgstr "时区选择器"
+
+#: lib/controllers/timezone_selector_controller.php:38
+msgid "Timezone Updated"
+msgstr "时区已更新"
+
+#: lib/controllers/updates_controller.php:46
+msgid "License Deactivated"
+msgstr "许可证已停用"
+
+#: lib/controllers/webhooks_controller.php:18
+#: lib/controllers/webhooks_controller.php:20
+msgid "Webhooks"
+msgstr "Webhooks"
+
+#: lib/controllers/webhooks_controller.php:34
+msgid "Webhook Removed"
+msgstr "Webhook 已移除"
+
+#: lib/controllers/webhooks_controller.php:37
+msgid "Error Removing Webhook"
+msgstr "移除 Webhook 时出错"
+
+#: lib/controllers/webhooks_controller.php:41
+msgid "Invalid Hook ID"
+msgstr "无效的 Hook ID"
+
+#: lib/controllers/webhooks_controller.php:66
+msgid "Webhook Saved"
+msgstr "Webhook 已保存"
+
+#: lib/controllers/webhooks_controller.php:69
+msgid "Error Saving Webhook"
+msgstr "保存 Webhook 时出错"
+
+#: lib/controllers/whatsapp_controller.php:18
+msgid "Whatsapp"
+msgstr "Whatsapp"
+
+#: lib/controllers/whatsapp_controller.php:66
+#, php-format
+msgid "No templates found in your WhatsApp account. %s to learn how to setup WhatsApp connection and add templates."
+msgstr "在您的 WhatsApp 账户中未找到模板。请查看 %s 以了解如何设置 WhatsApp 连接并添加模板。"
+
+#: lib/controllers/whatsapp_controller.php:93
+#, php-format
+msgid "You can use %s as values for the fields below. Make sure to read %s on how to set up your WhatsApp integration."
+msgstr "您可以使用 %s 作为下面字段的值。请务必阅读 %s 了解如何设置您的 WhatsApp 集成。"
+
+#: lib/controllers/whatsapp_controller.php:93
+msgid "Smart Variables"
+msgstr "智能变量"
+
+#: lib/controllers/whatsapp_controller.php:93
+msgid "this article"
+msgstr "这篇文章"
+
+#: lib/controllers/whatsapp_controller.php:98
+msgid "To Phone Number"
+msgstr "目标电话号码"
+
+#: lib/controllers/whatsapp_controller.php:102
+#: lib/views/agents/quick_edit.php:49
+#: lib/views/agents/_form.php:36
+msgid "Phone Number"
+msgstr "电话号码"
+
+#: lib/controllers/whatsapp_controller.php:109
+msgid "Template"
+msgstr "模板"
+
+#: lib/helpers/addons_helper.php:63
+msgid "Connection Error. Please try again in a few minutes or contact us via email addons@latepoint.com. KLJSD734"
+msgstr "连接错误。请在几分钟后重试，或通过电子邮件 addons@latepoint.com 联系我们。KLJSD734"
+
+#. translators: 1: bold open tag, 2: bold close tag, 3: current Pro version, 4: required Pro version
+#: lib/helpers/addons_helper.php:120
+#, php-format
+msgid "You are using an older version of the %1$sLatePoint Pro Features%2$s plugin (v%3$s). Please update the %1$sLatePoint Pro Features%2$s plugin to version %1$s%4$s or later%2$s."
+msgstr "您正在使用较旧版本的 %1$sLatePoint Pro Features%2$s 插件（v%3$s）。请将 %1$sLatePoint Pro Features%2$s 插件更新到 %1$s%4$s 或更高版本%2$s。"
+
+#: lib/helpers/addons_helper.php:170
+msgid "Unable to install addon. Invalid info (KFE73463)"
+msgstr "无法安装附加组件。信息无效 (KFE73463)"
+
+#: lib/helpers/coupons_helper.php:24
+msgid "Total booking price: "
+msgstr "总预订价格："
+
+#: lib/helpers/coupons_helper.php:27
+msgid "Deposit Amount: "
+msgstr "定金金额："
+
+#: lib/helpers/coupons_helper.php:33
+#: lib/helpers/feature_coupons_helper.php:203
+msgid "Have a coupon code?"
+msgstr "有优惠码吗？"
+
+#: lib/helpers/coupons_helper.php:35
+#: lib/helpers/feature_coupons_helper.php:205
+msgid "Enter Code..."
+msgstr "输入代码..."
+
+#: lib/helpers/coupons_helper.php:36
+msgid "OK"
+msgstr "确定"
+
+#: lib/helpers/coupons_helper.php:62
+msgid "Invalid coupon code."
+msgstr "优惠码无效。"
+
+#: lib/helpers/coupons_helper.php:93
+#: lib/helpers/coupons_helper.php:106
+#: lib/helpers/coupons_helper.php:117
+#: lib/helpers/coupons_helper.php:154
+#: lib/helpers/coupons_helper.php:158
+#: lib/helpers/coupons_helper.php:162
+#: lib/helpers/coupons_helper.php:253
+msgid "This coupon code is invalid or has expired"
+msgstr "此优惠码无效或已过期"
+
+#. translators: %s: formatted minimum order subtotal
+#: lib/helpers/coupons_helper.php:173
+#, php-format
+msgid "This coupon requires a minimum order total of %s"
+msgstr "此优惠码要求最低订单总额为 %s"
+
+#: lib/helpers/coupons_helper.php:188
+#, php-format
+msgid "This coupon can only be used %d times"
+msgstr "此优惠码只能使用 %d 次"
+
+#: lib/helpers/coupons_helper.php:195
+#: lib/helpers/coupons_helper.php:217
+#: lib/helpers/coupons_helper.php:234
+msgid "Customer is missing"
+msgstr "客户缺失"
+
+#: lib/helpers/coupons_helper.php:209
+msgid "This coupon can only be used once per customer."
+msgid_plural "This coupon is limited to %d uses per customer"
+msgstr[0] "此优惠码每位客户只能使用一次。"
+
+#: lib/helpers/coupons_helper.php:226
+#, php-format
+msgid "You need to have at least %d orders to use this coupon"
+msgstr "您需要至少有 %d 个订单才能使用此优惠码"
+
+#: lib/helpers/coupons_helper.php:244
+msgid "This coupon can only be applied on your first order"
+msgstr "此优惠码只能用于您的首单"
+
+#: lib/helpers/coupons_helper.php:246
+#, php-format
+msgid "This coupon can only be applied on your first %d orders"
+msgstr "此优惠码只能用于您的前 %d 个订单"
+
+#: lib/helpers/coupons_helper.php:265
+#: lib/views/addons/load_addons_list.php:100
+#: lib/views/agents/quick_edit.php:57
+#: lib/views/agents/_form.php:41
+#: lib/views/assets/_form.php:37
+#: lib/views/bundles/_form.php:30
+#: lib/views/locations/_form.php:18
+#: lib/views/service_extras/_form.php:31
+#: lib/views/webhooks/_webhook_form.php:40
+msgid "Active"
+msgstr "启用"
+
+#: lib/helpers/coupons_helper.php:266
+#: lib/views/agents/quick_edit.php:58
+#: lib/views/agents/_form.php:42
+#: lib/views/agents/_form.php:136
+#: lib/views/assets/_form.php:38
+#: lib/views/bundles/_form.php:30
+#: lib/views/locations/_form.php:19
+#: lib/views/service_extras/_form.php:31
+#: lib/views/webhooks/_webhook_form.php:41
+msgid "Disabled"
+msgstr "已禁用"
+
+#: lib/helpers/coupons_helper.php:302
+msgid "Undefined Status"
+msgstr "状态未定义"
+
+#: lib/helpers/coupons_helper.php:309
+#: lib/helpers/coupons_helper.php:330
+#: lib/helpers/coupons_helper.php:337
+#: lib/helpers/feature_timezone_helper.php:14
+#: lib/views/coupons/quick_edit.php:41
+msgid "n/a"
+msgstr "无"
+
+#: lib/helpers/custom_fields_helper.php:37
+msgid "Text Field"
+msgstr "文本字段"
+
+#: lib/helpers/custom_fields_helper.php:38
+msgid "Phone Number Field"
+msgstr "电话号码字段"
+
+#: lib/helpers/custom_fields_helper.php:39
+msgid "Number Field"
+msgstr "数字字段"
+
+#: lib/helpers/custom_fields_helper.php:40
+msgid "Hidden Field"
+msgstr "隐藏字段"
+
+#: lib/helpers/custom_fields_helper.php:41
+msgid "Select Box"
+msgstr "下拉选择框"
+
+#: lib/helpers/custom_fields_helper.php:42
+msgid "Multiple Selectable Options"
+msgstr "多选项"
+
+#: lib/helpers/custom_fields_helper.php:43
+msgid "Text Area Field"
+msgstr "文本区域字段"
+
+#: lib/helpers/custom_fields_helper.php:44
+msgid "Checkbox"
+msgstr "复选框"
+
+#: lib/helpers/custom_fields_helper.php:45
+msgid "Google Address Autocomplete"
+msgstr "Google 地址自动完成"
+
+#: lib/helpers/custom_fields_helper.php:46
+msgid "File Upload"
+msgstr "文件上传"
+
+#: lib/helpers/custom_fields_helper.php:79
+msgid "Enter Field Default Value"
+msgstr "输入字段默认值"
+
+#: lib/helpers/custom_fields_helper.php:120
+msgid "No Restrictions"
+msgstr "无限制"
+
+#: lib/helpers/custom_fields_helper.php:360
+msgid "Field Label cannot be empty"
+msgstr "字段标签不能为空"
+
+#: lib/helpers/custom_fields_helper.php:363
+msgid "Type cannot be empty"
+msgstr "类型不能为空"
+
+#: lib/helpers/custom_fields_helper.php:367
+msgid "Options for select box cannot be blank"
+msgstr "下拉选择框的选项不能为空"
+
+#: lib/helpers/custom_fields_helper.php:388
+#, php-format
+msgid "%s field must be checked"
+msgstr "%s 字段必须被勾选"
+
+#: lib/helpers/custom_fields_helper.php:399
+#, php-format
+msgid "%s must be attached"
+msgstr "必须附加 %s"
+
+#: lib/helpers/custom_fields_helper.php:412
+#, php-format
+msgid "%s file type is not supported."
+msgstr "%s 文件类型不受支持。"
+
+#: lib/helpers/custom_fields_helper.php:424
+#, php-format
+msgid "%s cannot be blank"
+msgstr "%s 不能为空"
+
+#: lib/helpers/custom_fields_helper.php:465
+#: lib/helpers/feature_recurring_bookings_helper.php:31
+msgid "Yes"
+msgstr "是"
+
+#: lib/helpers/custom_fields_helper.php:465
+#: lib/helpers/feature_recurring_bookings_helper.php:32
+msgid "No"
+msgstr "否"
+
+#: lib/helpers/custom_fields_helper.php:483
+#: lib/views/bundles/index.php:20
+#: lib/views/messages/messages_with_info_for_booking.php:76
+msgid "Service"
+msgstr "服务"
+
+#: lib/helpers/custom_fields_helper.php:484
+#: lib/views/messages/messages_with_info_for_booking.php:74
+msgid "Agent"
+msgstr "员工"
+
+#: lib/helpers/custom_fields_helper.php:513
+msgid "is equal to"
+msgstr "等于"
+
+#: lib/helpers/custom_fields_helper.php:514
+msgid "is not equal to"
+msgstr "不等于"
+
+#: lib/helpers/custom_fields_helper.php:527
+msgid "AND"
+msgstr "并且"
+
+#: lib/helpers/feature_assets_helper.php:52
+#: lib/helpers/feature_service_extras_helper.php:454
+#: lib/views/agents/quick_edit.php:102
+#: lib/views/agents/_form.php:96
+#: lib/views/assets/_form.php:54
+#: lib/views/assets/_form.php:87
+#: lib/views/locations/_form.php:44
+#: lib/views/service_extras/_form.php:58
+msgid "Select All"
+msgstr "全选"
+
+#: lib/helpers/feature_assets_helper.php:68
+#, php-format
+msgid "Qty: %d"
+msgstr "数量：%d"
+
+#: lib/helpers/feature_assets_helper.php:76
+msgid "You have not created any assets yet."
+msgstr "您尚未创建任何资产。"
+
+#: lib/helpers/feature_cloudflare_turnstile_helper.php:37
+#: lib/helpers/feature_cloudflare_turnstile_helper.php:43
+#: lib/helpers/feature_cloudflare_turnstile_helper.php:65
+#: lib/helpers/feature_cloudflare_turnstile_helper.php:71
+#: lib/helpers/feature_cloudflare_turnstile_helper.php:79
+#: lib/helpers/feature_cloudflare_turnstile_helper.php:85
+#: lib/helpers/feature_cloudflare_turnstile_helper.php:91
+msgid "Verification Error."
+msgstr "验证错误。"
+
+#: lib/helpers/feature_cloudflare_turnstile_helper.php:42
+msgid "Invalid secret key for cloudflare."
+msgstr "Cloudflare 的密钥无效。"
+
+#: lib/helpers/feature_cloudflare_turnstile_helper.php:78
+msgid "Turnstile: Invalid JSON response from API"
+msgstr "Turnstile：来自 API 的 JSON 响应无效"
+
+#: lib/helpers/feature_cloudflare_turnstile_helper.php:112
+msgid "Verifying that you are not a robot..."
+msgstr "正在验证您不是机器人..."
+
+#: lib/helpers/feature_cloudflare_turnstile_helper.php:133
+msgid "Cloudflare Turnstile will not work as required keys are empty. Please provide both Site Key and Secret Key."
+msgstr "Cloudflare Turnstile 将无法正常工作，因为所需密钥为空。请同时提供 Site Key 和 Secret Key。"
+
+#: lib/helpers/feature_cloudflare_turnstile_helper.php:142
+msgid "Log Customer IP Address for Orders"
+msgstr "为订单记录客户 IP 地址"
+
+#: lib/helpers/feature_cloudflare_turnstile_helper.php:142
+msgid "If enabled, will save IP Address of a customer and you can view it under order log"
+msgstr "如果启用，将保存客户的 IP 地址，您可以在订单日志中查看"
+
+#: lib/helpers/feature_cloudflare_turnstile_helper.php:143
+msgid "Enable Cloudflare Turnstile CAPTCHA"
+msgstr "启用 Cloudflare Turnstile CAPTCHA"
+
+#: lib/helpers/feature_cloudflare_turnstile_helper.php:143
+msgid "Enable Captcha alternative from Cloudflare called Turnstile."
+msgstr "启用 Cloudflare 提供的 Captcha 替代方案 Turnstile。"
+
+#: lib/helpers/feature_cloudflare_turnstile_helper.php:145
+msgid "Turnstile Site Key"
+msgstr "Turnstile 站点密钥"
+
+#: lib/helpers/feature_cloudflare_turnstile_helper.php:146
+msgid "Turnstile Secret Key"
+msgstr "Turnstile 密钥"
+
+#: lib/helpers/feature_coupons_helper.php:10
+msgid "Coupon Code:"
+msgstr "优惠码："
+
+#: lib/helpers/feature_coupons_helper.php:11
+msgid "Coupon Discount:"
+msgstr "优惠折扣："
+
+#: lib/helpers/feature_coupons_helper.php:181
+msgid "Coupon Settings"
+msgstr "优惠设置"
+
+#: lib/helpers/feature_coupons_helper.php:183
+msgid "Hide coupon field"
+msgstr "隐藏优惠券字段"
+
+#: lib/helpers/feature_coupons_helper.php:183
+msgid "Hides field to enter coupons"
+msgstr "隐藏输入优惠券的字段"
+
+#: lib/helpers/feature_coupons_helper.php:206
+msgid "Apply"
+msgstr "应用"
+
+#: lib/helpers/feature_coupons_helper.php:207
+#: lib/views/agents/modal_list.php:14
+#: lib/views/location_categories/_form.php:22
+#: lib/views/service_categories/_form.php:22
+msgid "Cancel"
+msgstr "取消"
+
+#: lib/helpers/feature_coupons_helper.php:210
+msgid "Applied Coupon:"
+msgstr "已应用优惠券："
+
+#: lib/helpers/feature_coupons_helper.php:240
+msgid "Use Coupon"
+msgstr "使用优惠券"
+
+#: lib/helpers/feature_coupons_helper.php:249
+#: lib/helpers/feature_coupons_helper.php:289
+#: lib/helpers/feature_coupons_helper.php:297
+#: lib/models/coupon_model.php:20
+msgid "Coupon Code"
+msgstr "优惠码"
+
+#: lib/helpers/feature_coupons_helper.php:253
+msgid "apply"
+msgstr "应用"
+
+#: lib/helpers/feature_coupons_helper.php:268
+msgid "Coupon"
+msgstr "优惠券"
+
+#: lib/helpers/feature_coupons_helper.php:290
+#: lib/helpers/feature_coupons_helper.php:298
+msgid "Coupon Discount"
+msgstr "优惠折扣"
+
+#: lib/helpers/feature_custom_fields_helper.php:135
+#: lib/helpers/feature_custom_fields_helper.php:143
+msgid "Customer/"
+msgstr "客户/"
+
+#: lib/helpers/feature_custom_fields_helper.php:138
+msgid "Booking/"
+msgstr "预订/"
+
+#: lib/helpers/feature_custom_fields_helper.php:154
+msgid "Google Places API"
+msgstr "Google Places API"
+
+#: lib/helpers/feature_custom_fields_helper.php:157
+msgid "In order for address autocomplete to work, you need an API key. To learn how to create an API key for Google Places API"
+msgstr "为了使地址自动补全正常工作，您需要一个 API 密钥。要了解如何为 Google Places API 创建 API 密钥"
+
+#: lib/helpers/feature_custom_fields_helper.php:157
+msgid "click here"
+msgstr "点击这里"
+
+#: lib/helpers/feature_custom_fields_helper.php:159
+msgid "Google Places API key"
+msgstr "Google Places API 密钥"
+
+#: lib/helpers/feature_custom_fields_helper.php:160
+msgid "Country Restriction"
+msgstr "国家限制"
+
+#: lib/helpers/feature_custom_fields_helper.php:675
+msgid "For Customer:"
+msgstr "针对客户："
+
+#: lib/helpers/feature_custom_fields_helper.php:681
+msgid "For Booking:"
+msgstr "针对预订："
+
+#: lib/helpers/feature_custom_fields_helper.php:746
+msgid "You have not created any custom fields for booking, this step will be skipped"
+msgstr "您尚未为预订创建任何自定义字段，此步骤将被跳过"
+
+#: lib/helpers/feature_custom_fields_helper.php:774
+msgid "Custom Fields for Booking"
+msgstr "预订自定义字段"
+
+#: lib/helpers/feature_group_bookings_helper.php:69
+#: lib/helpers/feature_group_bookings_helper.php:226
+#: lib/helpers/feature_group_bookings_helper.php:264
+#: lib/helpers/feature_group_bookings_helper.php:352
+#: lib/helpers/feature_group_bookings_helper.php:366
+msgid "Total Attendees"
+msgstr "总参与人数"
+
+#: lib/helpers/feature_group_bookings_helper.php:138
+msgid "Capacity:"
+msgstr "容量："
+
+#: lib/helpers/feature_group_bookings_helper.php:140
+msgid "person"
+msgstr "人"
+
+#: lib/helpers/feature_group_bookings_helper.php:149
+msgid "Multiply cost of this service extra by number of attendees"
+msgstr "按参与人数额外乘以此服务的费用"
+
+#: lib/helpers/feature_group_bookings_helper.php:233
+#: lib/views/bundles/_form.php:105
+msgid "Attendees"
+msgstr "参与者"
+
+#: lib/helpers/feature_group_bookings_helper.php:234
+#, php-format
+msgid "%s person"
+msgid_plural "%s people"
+msgstr[0] "%s 人"
+
+#: lib/helpers/feature_group_bookings_helper.php:267
+msgid "Max Capacity:"
+msgstr "最大容量："
+
+#: lib/helpers/feature_group_bookings_helper.php:284
+msgid "Capacity"
+msgstr "容量"
+
+#: lib/helpers/feature_group_bookings_helper.php:289
+#: lib/views/coupons/quick_edit.php:166
+msgid "Minimum"
+msgstr "最小值"
+
+#: lib/helpers/feature_group_bookings_helper.php:292
+#: lib/views/coupons/quick_edit.php:169
+msgid "Maximum"
+msgstr "最大值"
+
+#: lib/helpers/feature_group_bookings_helper.php:299
+msgid "Pricing"
+msgstr "定价"
+
+#: lib/helpers/feature_group_bookings_helper.php:302
+msgid "Do not multiply charge amount by the number of attendees"
+msgstr "不要按参与人数乘以收费金额"
+
+#: lib/helpers/feature_group_bookings_helper.php:303
+msgid "Do not multiply deposit amount by the number of attendees"
+msgstr "不要按参与人数乘以定金金额"
+
+#: lib/helpers/feature_group_bookings_helper.php:308
+msgid "Other"
+msgstr "其他"
+
+#: lib/helpers/feature_group_bookings_helper.php:311
+msgid "Do not ask customers to select number of attendees"
+msgstr "不要要求客户选择参与人数"
+
+#: lib/helpers/feature_group_bookings_helper.php:312
+msgid "Block timeslot if minimum capacity is reached"
+msgstr "当达到最小容量时阻止该时间段"
+
+#: lib/helpers/feature_group_bookings_helper.php:318
+msgid "Meeting Link"
+msgstr "会议链接"
+
+#: lib/helpers/feature_group_bookings_helper.php:326
+msgid "Meeting Link Mode for Group Bookings"
+msgstr "团体预订的会议链接模式"
+
+#: lib/helpers/feature_group_bookings_helper.php:330
+msgid "Separate - Each booking gets its own meeting link"
+msgstr "独立 - 每个预订都有自己的会议链接"
+
+#: lib/helpers/feature_group_bookings_helper.php:334
+msgid "Shared - All attendees in the same time slot get the same meeting link"
+msgstr "共享 - 同一时间段内的所有参与者使用相同的会议链接"
+
+#: lib/helpers/feature_locations_helper.php:131
+#: lib/helpers/feature_locations_helper.php:135
+#: lib/helpers/feature_locations_helper.php:176
+#: lib/helpers/feature_locations_helper.php:187
+#: lib/views/messages/messages_with_info_for_booking.php:70
+msgid "Location"
+msgstr "位置"
+
+#: lib/helpers/feature_locations_helper.php:134
+msgid "Previous Location"
+msgstr "上一个位置"
+
+#: lib/helpers/feature_locations_helper.php:195
+msgid "Show location categories"
+msgstr "显示位置分类"
+
+#: lib/helpers/feature_locations_helper.php:195
+msgid "If turned on, locations will be displayed in categories"
+msgstr "如果开启，位置将按分类显示"
+
+#: lib/helpers/feature_messages_helper.php:8
+msgid "Message Content:"
+msgstr "消息内容："
+
+#: lib/helpers/feature_messages_helper.php:42
+#, php-format
+msgid "Read %d Message"
+msgid_plural "Read %d Messages"
+msgstr[0] "阅读 %d 条消息"
+
+#: lib/helpers/feature_messages_helper.php:47
+msgid "Start Chatting"
+msgstr "开始聊天"
+
+#: lib/helpers/feature_messages_helper.php:58
+msgid "Chat Notifications"
+msgstr "聊天通知"
+
+#: lib/helpers/feature_messages_helper.php:62
+msgid "Settings"
+msgstr "设置"
+
+#: lib/helpers/feature_messages_helper.php:65
+msgid "Notify customers about new messages"
+msgstr "通知客户有新消息"
+
+#: lib/helpers/feature_messages_helper.php:67
+#: lib/helpers/feature_messages_helper.php:72
+msgid "Email Subject"
+msgstr "邮件主题"
+
+#: lib/helpers/feature_messages_helper.php:68
+#: lib/helpers/feature_messages_helper.php:73
+msgid "Email Message"
+msgstr "邮件内容"
+
+#: lib/helpers/feature_messages_helper.php:70
+msgid "Notify agents about new messages"
+msgstr "通知代理有新消息"
+
+#: lib/helpers/feature_messages_helper.php:103
+msgid "Your Appointments"
+msgstr "您的预约"
+
+#: lib/helpers/feature_messages_helper.php:104
+msgid "Conversation"
+msgstr "对话"
+
+#: lib/helpers/feature_messages_helper.php:141
+#: lib/views/messages/messages_with_info_for_booking.php:48
+#: lib/views/messages/quick_form_chat_box.php:14
+msgid "Type your message here.."
+msgstr "在此输入您的消息.."
+
+#: lib/helpers/feature_messages_helper.php:142
+#: lib/views/messages/messages_with_info_for_booking.php:49
+#: lib/views/messages/quick_form_chat_box.php:15
+msgid "Send"
+msgstr "发送"
+
+#: lib/helpers/feature_messages_helper.php:148
+msgid "You don't have any appointments to send messages."
+msgstr "您没有任何可发送消息的预约。"
+
+#: lib/helpers/feature_no_show_restrictions_helper.php:50
+msgid "Your account has been restricted from booking due to repeated missed appointments. Please contact us for assistance."
+msgstr "由于多次错过预约，您的账户已被限制预订。请联系我们寻求帮助。"
+
+#. translators: %d: number of no-show appointments
+#: lib/helpers/feature_no_show_restrictions_helper.php:228
+#, php-format
+msgid "%d No-Show Appointment."
+msgid_plural "%d No-Show Appointments."
+msgstr[0] "%d 次未到场预约。"
+
+#: lib/helpers/feature_no_show_restrictions_helper.php:233
+msgid "This customer has exceeded the no-show threshold and is restricted from booking."
+msgstr "该客户已超过未到场阈值，已被限制预订。"
+
+#: lib/helpers/feature_no_show_restrictions_helper.php:249
+msgid "No-Show Restrictions"
+msgstr "未到场限制"
+
+#: lib/helpers/feature_no_show_restrictions_helper.php:255
+msgid "Enable No-Show Customers Restrictions"
+msgstr "启用未到场客户限制"
+
+#: lib/helpers/feature_no_show_restrictions_helper.php:259
+msgid "Restrict booking for customers who repeatedly miss appointments, by blocking or requiring upfront payment"
+msgstr "通过阻止或要求预付款，限制经常错过预约的客户进行预订"
+
+#: lib/helpers/feature_no_show_restrictions_helper.php:269
+msgid "No-Show Threshold"
+msgstr "未到场阈值"
+
+#: lib/helpers/feature_no_show_restrictions_helper.php:282
+msgid "Action"
+msgstr "操作"
+
+#: lib/helpers/feature_no_show_restrictions_helper.php:284
+msgid "Block bookings entirely"
+msgstr "完全阻止预订"
+
+#: lib/helpers/feature_no_show_restrictions_helper.php:285
+msgid "Require upfront payment"
+msgstr "要求预付款"
+
+#: lib/helpers/feature_qrcode_helper.php:16
+msgid "Point your smartphone camera at this QR code and you will be able to copy your booking confirmation code"
+msgstr "将智能手机摄像头对准此二维码，您就可以复制您的预订确认码"
+
+#: lib/helpers/feature_qrcode_helper.php:20
+msgid "Point your smartphone camera at this QR code and it will automatically add this appointment to your calendar"
+msgstr "将智能手机摄像头对准此二维码，它会自动将此预约添加到您的日历中"
+
+#: lib/helpers/feature_qrcode_helper.php:33
+msgid "Show QR"
+msgstr "显示二维码"
+
+#: lib/helpers/feature_recurring_bookings_helper.php:28
+msgid "Make it a recurring appointment?"
+msgstr "将其设为重复预约？"
+
+#: lib/helpers/feature_recurring_bookings_helper.php:29
+msgid "You will set the frequency in the next step."
+msgstr "您将在下一步设置频率。"
+
+#: lib/helpers/feature_recurring_bookings_helper.php:65
+msgid "Allow Recurring Appointments"
+msgstr "允许重复预约"
+
+#: lib/helpers/feature_recurring_bookings_helper.php:65
+msgid "Allows customers to book this service in a recurring schedule"
+msgstr "允许客户按重复计划预订此服务"
+
+#: lib/helpers/feature_recurring_bookings_helper.php:68
+msgid "Allow a maximum of"
+msgstr "允许最多"
+
+#: lib/helpers/feature_recurring_bookings_helper.php:70
+msgid "future appointments"
+msgstr "未来预约"
+
+#: lib/helpers/feature_recurring_bookings_helper.php:73
+msgid "Allow Repeat Intervals"
+msgstr "允许重复间隔"
+
+#: lib/helpers/feature_recurring_bookings_helper.php:78
+#: lib/views/agents/quick_edit.php:115
+#: lib/views/agents/quick_edit.php:117
+#: lib/views/agents/quick_edit.php:122
+#: lib/views/agents/_form.php:111
+#: lib/views/agents/_form.php:113
+#: lib/views/agents/_form.php:118
+#: lib/views/locations/_form.php:59
+#: lib/views/locations/_form.php:61
+#: lib/views/locations/_form.php:67
+msgid "All"
+msgstr "全部"
+
+#: lib/helpers/feature_recurring_bookings_helper.php:79
+msgid "Daily"
+msgstr "每日"
+
+#: lib/helpers/feature_recurring_bookings_helper.php:80
+msgid "Weekly"
+msgstr "每周"
+
+#: lib/helpers/feature_recurring_bookings_helper.php:81
+msgid "Monthly"
+msgstr "每月"
+
+#: lib/helpers/feature_recurring_bookings_helper.php:196
+msgid "Recurring Appointment"
+msgstr "重复预约"
+
+#: lib/helpers/feature_recurring_bookings_helper.php:242
+#, php-format
+msgid "Found %s Available Slots"
+msgstr "找到 %s 个可用时段"
+
+#: lib/helpers/feature_recurring_bookings_helper.php:242
+msgid "Review"
+msgstr "审核"
+
+#: lib/helpers/feature_recurring_bookings_helper.php:265
+msgid "Selected"
+msgstr "已选择"
+
+#: lib/helpers/feature_recurring_bookings_helper.php:265
+#: lib/views/coupons/index.php:9
+#: lib/views/coupons/index.php:66
+msgid "of"
+msgstr "共"
+
+#: lib/helpers/feature_recurring_bookings_helper.php:338
+#, php-format
+msgid "This bundle has only %s remaining appointments to schedule."
+msgstr "此套餐仅剩 %s 个待安排预约。"
+
+#: lib/helpers/feature_recurring_bookings_helper.php:340
+#, php-format
+msgid "You can only schedule a maximum of %s recurring bookings at once."
+msgstr "您一次最多只能安排 %s 个重复预订。"
+
+#: lib/helpers/feature_recurring_bookings_helper.php:434
+#: lib/helpers/feature_recurring_bookings_helper.php:442
+msgid "day"
+msgstr "天"
+
+#: lib/helpers/feature_recurring_bookings_helper.php:435
+#: lib/helpers/feature_recurring_bookings_helper.php:446
+msgid "week"
+msgstr "周"
+
+#: lib/helpers/feature_recurring_bookings_helper.php:436
+#: lib/helpers/feature_recurring_bookings_helper.php:450
+msgid "month"
+msgstr "月"
+
+#: lib/helpers/feature_recurring_bookings_helper.php:460
+msgid "First on"
+msgstr "首次在"
+
+#: lib/helpers/feature_recurring_bookings_helper.php:465
+msgid "Repeats every"
+msgstr "每隔"
+
+#: lib/helpers/feature_recurring_bookings_helper.php:489
+msgid "Ends"
+msgstr "结束"
+
+#: lib/helpers/feature_recurring_bookings_helper.php:496
+msgid "After"
+msgstr "在"
+
+#: lib/helpers/feature_recurring_bookings_helper.php:497
+msgid "On"
+msgstr "于"
+
+#: lib/helpers/feature_recurring_bookings_helper.php:506
+msgid "occurrences"
+msgstr "次发生后"
+
+#: lib/helpers/feature_recurring_bookings_helper.php:536
+#, php-format
+msgid "+%s Recurring Appointments:"
+msgstr "+%s 个重复预约："
+
+#: lib/helpers/feature_recurring_bookings_helper.php:552
+msgid "show all"
+msgstr "显示全部"
+
+#: lib/helpers/feature_reminders_helper.php:9
+msgid "Actions will be executed:"
+msgstr "操作将执行："
+
+#: lib/helpers/feature_reminders_helper.php:25
+msgid "before the event"
+msgstr "事件前"
+
+#: lib/helpers/feature_reminders_helper.php:26
+msgid "after the event"
+msgstr "事件后"
+
+#: lib/helpers/feature_service_categories_helper.php:20
+#: lib/views/location_categories/index.php:9
+#: lib/views/messages/conversations.php:15
+#: lib/views/service_categories/index.php:9
+msgid "ID: "
+msgstr "ID:"
+
+#: lib/helpers/feature_service_categories_helper.php:21
+msgid "Services Linked"
+msgstr "关联服务"
+
+#: lib/helpers/feature_service_durations_helper.php:112
+msgid "Show service durations in minutes"
+msgstr "以分钟显示服务时长"
+
+#: lib/helpers/feature_service_durations_helper.php:112
+msgid "Will show duration in minutes, even when duration is longer than 60 minutes"
+msgstr "即使时长超过 60 分钟，也将以分钟显示时长"
+
+#: lib/helpers/feature_service_durations_helper.php:131
+msgid "Create Another Service Duration"
+msgstr "创建另一个服务时长"
+
+#: lib/helpers/feature_service_extras_helper.php:135
+msgid "Extras"
+msgstr "附加项"
+
+#: lib/helpers/feature_service_extras_helper.php:160
+#: lib/helpers/feature_service_extras_helper.php:175
+msgid "None"
+msgstr "无"
+
+#: lib/helpers/feature_service_extras_helper.php:181
+msgid "Service Extras:"
+msgstr "服务附加项："
+
+#: lib/helpers/feature_service_extras_helper.php:387
+#, php-format
+msgid "Please select at least %d service extras"
+msgstr "请至少选择 %d 个服务附加项"
+
+#: lib/helpers/feature_service_extras_helper.php:392
+#, php-format
+msgid "You cannot select more than %d service extras"
+msgstr "您不能选择超过 %d 个服务附加项"
+
+#: lib/helpers/feature_service_extras_helper.php:481
+msgid "You have not created any service extras yet."
+msgstr "您尚未创建任何服务附加项。"
+
+#: lib/helpers/feature_service_extras_helper.php:489
+msgid "Restrictions for Service Extras"
+msgstr "服务附加项限制"
+
+#: lib/helpers/feature_service_extras_helper.php:493
+msgid "Require a minimum to be selected"
+msgstr "要求选择最少数量"
+
+#: lib/helpers/feature_service_extras_helper.php:493
+msgid "Requires user to pick a minimum number of service extras"
+msgstr "要求用户选择最少数量的服务附加项"
+
+#: lib/helpers/feature_service_extras_helper.php:497
+msgid "At least"
+msgstr "至少"
+
+#: lib/helpers/feature_service_extras_helper.php:500
+msgid "service extras must be selected"
+msgstr "个服务附加项必须被选择"
+
+#: lib/helpers/feature_service_extras_helper.php:503
+msgid "Limit maximum number that can be selected"
+msgstr "限制可选择的最大数量"
+
+#: lib/helpers/feature_service_extras_helper.php:503
+msgid "Limits user from picking more than a set maximum"
+msgstr "限制用户选择超过设定的最大值"
+
+#: lib/helpers/feature_service_extras_helper.php:507
+msgid "At most"
+msgstr "最多"
+
+#: lib/helpers/feature_service_extras_helper.php:510
+msgid "service extras can be selected"
+msgstr "个服务附加项可以被选择"
+
+#: lib/helpers/feature_timezone_helper.php:8
+#: lib/helpers/feature_timezone_helper.php:76
+msgid "Timezone:"
+msgstr "时区："
+
+#: lib/helpers/feature_timezone_helper.php:55
+msgid "Invalid Date/Time"
+msgstr "日期/时间无效"
+
+#: lib/helpers/feature_timezone_helper.php:68
+msgid "My Timezone:"
+msgstr "我的时区："
+
+#: lib/helpers/feature_timezone_helper.php:81
+msgid "Start Date (in customer timezone):"
+msgstr "开始日期（客户时区）："
+
+#: lib/helpers/feature_timezone_helper.php:82
+msgid "Start Time (in customer timezone):"
+msgstr "开始时间（客户时区）："
+
+#: lib/helpers/feature_timezone_helper.php:83
+msgid "End Time (in customer timezone)"
+msgstr "结束时间（客户时区）"
+
+#: lib/helpers/feature_timezone_helper.php:312
+msgid "Customer Timezone"
+msgstr "客户时区"
+
+#: lib/helpers/feature_timezone_helper.php:345
+msgid "Timezone Settings"
+msgstr "时区设置"
+
+#: lib/helpers/feature_timezone_helper.php:348
+msgid "Enable timezone selector"
+msgstr "启用时区选择器"
+
+#: lib/helpers/feature_timezone_helper.php:348
+msgid "Will let customer change default timezone, will try to auto-detect timezone from the browser"
+msgstr "允许客户更改默认时区，并尝试从浏览器自动检测时区"
+
+#: lib/helpers/feature_timezone_helper.php:349
+msgid "Show timezone information"
+msgstr "显示时区信息"
+
+#: lib/helpers/feature_timezone_helper.php:349
+msgid "Timezone name will appear next to appointment time"
+msgstr "时区名称将显示在预约时间旁边"
+
+#: lib/helpers/feature_timezone_helper.php:365
+msgid "No matching timezone found"
+msgstr "未找到匹配的时区"
+
+#: lib/helpers/feature_timezone_helper.php:365
+msgid "Type to search..."
+msgstr "输入以搜索..."
+
+#: lib/helpers/feature_webhooks_helper.php:6
+msgid "Webhook Run"
+msgstr "Webhook 运行"
+
+#: lib/helpers/feature_webhooks_helper.php:37
+msgid "URL:"
+msgstr "URL："
+
+#: lib/helpers/feature_webhooks_helper.php:88
+#: lib/helpers/feature_webhooks_helper.php:92
+msgid "URL"
+msgstr "URL"
+
+#: lib/helpers/messages_helper.php:152
+#: lib/helpers/messages_helper.php:196
+msgid "File Attachment"
+msgstr "文件附件"
+
+#: lib/helpers/messages_helper.php:206
+#: lib/helpers/messages_helper.php:211
+msgid "You have a new message"
+msgstr "您有一条新消息"
+
+#: lib/helpers/pro_license_helper.php:15
+msgid "Please enter your license key"
+msgstr "请输入您的许可证密钥"
+
+#: lib/helpers/pro_license_helper.php:47
+msgid "Unable to verify license. Please try again or contact us at license@latepoint.com. Error code: UDF732S83"
+msgstr "无法验证许可证。请重试或通过 license@latepoint.com 联系我们。错误代码：UDF732S83"
+
+#: lib/helpers/pro_license_helper.php:58
+msgid "Unable to verify license. Please try again or contact us at license@latepoint.com. Error code: SUYF8362"
+msgstr "无法验证许可证。请重试或通过 license@latepoint.com 联系我们。错误代码：SUYF8362"
+
+#: lib/helpers/service_extras_helper.php:81
+#, php-format
+msgid "Service extras [ %s ] applied to this booking are not available for this service. Either pick a service that offers them, or clear them."
+msgstr "应用于此预约的服务附加项 [ %s ] 不适用于此服务。请选择提供这些附加项的服务，或将其清除。"
+
+#: lib/helpers/service_extras_helper.php:81
+msgid "Clear"
+msgstr "清除"
+
+#: lib/helpers/service_extras_helper.php:87
+msgid "Click here to select..."
+msgstr "点击此处选择..."
+
+#: lib/helpers/social_helper.php:18
+msgid "Continue with Facebook"
+msgstr "继续使用 Facebook"
+
+#: lib/helpers/social_helper.php:26
+msgid "Continue with Google"
+msgstr "继续使用 Google"
+
+#: lib/helpers/social_helper.php:37
+msgid "Social Login"
+msgstr "社交登录"
+
+#: lib/helpers/social_helper.php:40
+msgid "Enable login with Google"
+msgstr "启用 Google 登录"
+
+#: lib/helpers/social_helper.php:40
+msgid "Display Google Login button on customer login and registration forms"
+msgstr "在客户登录和注册表单上显示 Google 登录按钮"
+
+#: lib/helpers/social_helper.php:43
+msgid "Google Client ID"
+msgstr "Google 客户端 ID"
+
+#: lib/helpers/social_helper.php:44
+msgid "Google Client Secret"
+msgstr "Google 客户端密钥"
+
+#: lib/helpers/social_helper.php:46
+msgid "Enable login with Facebook"
+msgstr "启用 Facebook 登录"
+
+#: lib/helpers/social_helper.php:46
+msgid "Display Facebook Login button on customer login and registration forms"
+msgstr "在客户登录和注册表单上显示 Facebook 登录按钮"
+
+#: lib/helpers/social_helper.php:48
+msgid "Facebook App ID"
+msgstr "Facebook 应用 ID"
+
+#: lib/helpers/social_helper.php:49
+msgid "Facebook App Secret"
+msgstr "Facebook 应用密钥"
+
+#: lib/helpers/taxes_helper.php:60
+msgid "Tax Name cannot be empty"
+msgstr "税名称不能为空"
+
+#: lib/helpers/taxes_helper.php:63
+msgid "Tax Type cannot be empty"
+msgstr "税类型不能为空"
+
+#: lib/helpers/taxes_helper.php:66
+msgid "Tax Value cannot be empty"
+msgstr "税值不能为空"
+
+#: lib/helpers/updates_helper.php:19
+#, php-format
+msgid "To enable updates, you need to purchase a PRO license, install \"PRO Features\" addon and enter that key on %s page"
+msgstr "要启用更新，您需要购买 PRO 许可证，安装“PRO Features”插件，并在 %s 页面输入该密钥"
+
+#: lib/helpers/updates_helper.php:19
+msgid "Pro Features"
+msgstr "专业功能"
+
+#: lib/helpers/webhooks_helper.php:26
+msgid "Webhook executed"
+msgstr "Webhook 已执行"
+
+#: lib/helpers/webhooks_helper.php:73
+msgid "Webhook URL cannot be empty"
+msgstr "Webhook URL 不能为空"
+
+#: lib/helpers/webhooks_helper.php:76
+msgid "Webhook URL must be a valid URL"
+msgstr "Webhook URL 必须是有效的 URL"
+
+#: lib/helpers/webhooks_helper.php:80
+msgid "Select a trigger event for this hook"
+msgstr "为此钩子选择一个触发事件"
+
+#: lib/models/message_model.php:18
+msgid "Content"
+msgstr "内容"
+
+#: lib/views/addons/index.php:7
+msgid "Loading Addons Information"
+msgstr "正在加载插件信息"
+
+#: lib/views/addons/load_addons_list.php:57
+msgid "Featured"
+msgstr "精选"
+
+#: lib/views/addons/load_addons_list.php:73
+#: lib/views/addons/load_addons_list.php:79
+msgid "Latest:"
+msgstr "最新："
+
+#: lib/views/addons/load_addons_list.php:74
+#: lib/views/addons/load_addons_list.php:76
+msgid "Installed:"
+msgstr "已安装："
+
+#: lib/views/addons/load_addons_list.php:86
+msgid "Requires LatePoint"
+msgstr "需要 LatePoint"
+
+#: lib/views/addons/load_addons_list.php:98
+msgid "Deactivate"
+msgstr "停用"
+
+#: lib/views/addons/load_addons_list.php:113
+#: lib/views/agents/_form.php:318
+#: lib/views/custom_fields/_custom_field_form.php:127
+#: lib/views/locations/_form.php:189
+#: lib/views/roles/_form.php:123
+#: lib/views/taxes/_tax_form.php:49
+msgid "Delete"
+msgstr "删除"
+
+#: lib/views/addons/load_addons_list.php:117
+msgid "Activate"
+msgstr "启用"
+
+#: lib/views/addons/load_addons_list.php:125
+#: lib/views/addons/load_addons_list.php:134
+msgid "Install Now"
+msgstr "立即安装"
+
+#: lib/views/addons/load_addons_list.php:129
+msgid "Activate License to Install"
+msgstr "激活许可证以安装"
+
+#: lib/views/addons/load_addons_list.php:143
+msgid "Try for FREE"
+msgstr "免费试用"
+
+#: lib/views/addons/load_addons_list.php:148
+msgid "Learn More"
+msgstr "了解更多"
+
+#: lib/views/agents/index.php:22
+#: lib/views/agents/index.php:88
+msgid "Connected to WordPress User"
+msgstr "已连接到 WordPress 用户"
+
+#: lib/views/agents/index.php:72
+msgid "No Active Agents Found"
+msgstr "未找到活跃的服务人员"
+
+#: lib/views/agents/index.php:78
+#, php-format
+msgid "%d Disabled Agent"
+msgid_plural "%d Disabled Agents"
+msgstr[0] "%d 个已禁用的服务人员"
+
+#: lib/views/agents/mini_profile.php:7
+msgid "email:"
+msgstr "电子邮件："
+
+#: lib/views/agents/mini_profile.php:8
+msgid "phone:"
+msgstr "电话："
+
+#: lib/views/agents/modal_list.php:2
+msgid "Select Agents"
+msgstr "选择服务人员"
+
+#: lib/views/agents/modal_list.php:15
+msgid "Save Agents"
+msgstr "保存服务人员"
+
+#: lib/views/agents/quick_edit.php:23
+msgid "Agent ID:"
+msgstr "服务人员 ID："
+
+#: lib/views/agents/quick_edit.php:24
+#: lib/views/coupons/quick_edit.php:26
+msgid "History"
+msgstr "历史记录"
+
+#: lib/views/agents/quick_edit.php:31
+#: lib/views/agents/_form.php:28
+msgid "Set Avatar"
+msgstr "设置头像"
+
+#: lib/views/agents/quick_edit.php:31
+#: lib/views/agents/_form.php:28
+msgid "Remove Avatar"
+msgstr "移除头像"
+
+#: lib/views/agents/quick_edit.php:35
+#: lib/views/agents/_form.php:30
+msgid "First Name"
+msgstr "名"
+
+#: lib/views/agents/quick_edit.php:38
+#: lib/views/agents/_form.php:31
+msgid "Last Name"
+msgstr "姓"
+
+#: lib/views/agents/quick_edit.php:43
+msgid "Contact Info"
+msgstr "联系信息"
+
+#: lib/views/agents/quick_edit.php:46
+#: lib/views/agents/_form.php:35
+msgid "Email Address"
+msgstr "电子邮件地址"
+
+#: lib/views/agents/quick_edit.php:52
+#: lib/views/agents/_form.php:32
+msgid "Display Name"
+msgstr "显示名称"
+
+#: lib/views/agents/quick_edit.php:56
+#: lib/views/agents/_form.php:40
+msgid "Connect to WP User"
+msgstr "连接到 WP 用户"
+
+#: lib/views/agents/quick_edit.php:56
+#: lib/views/agents/_form.php:40
+msgid "Select User"
+msgstr "选择用户"
+
+#: lib/views/agents/quick_edit.php:63
+#: lib/views/agents/_form.php:51
+#: lib/views/agents/_form.php:352
+msgid "Additional Contacts"
+msgstr "附加联系人"
+
+#: lib/views/agents/quick_edit.php:65
+#: lib/views/agents/_form.php:55
+msgid "If you need to notify multiple persons about the appointment, you can list additional email addresses and phone numbers to send notification emails and sms to. You can list multiple numbers and emails separated by commas."
+msgstr "如果您需要通知多个人关于此预约，您可以列出额外的电子邮件地址和电话号码，以发送通知邮件和短信。您可以用逗号分隔列出多个号码和邮箱。"
+
+#: lib/views/agents/quick_edit.php:67
+#: lib/views/agents/_form.php:57
+msgid "Additional Email Addresses"
+msgstr "附加电子邮件地址"
+
+#: lib/views/agents/quick_edit.php:70
+#: lib/views/agents/_form.php:58
+msgid "Additional Phone Numbers"
+msgstr "附加电话号码"
+
+#: lib/views/agents/quick_edit.php:73
+#: lib/views/agents/_form.php:65
+msgid "Extra Information"
+msgstr "额外信息"
+
+#: lib/views/agents/quick_edit.php:77
+#: lib/views/agents/_form.php:70
+msgid "Set Bio Image"
+msgstr "设置简介图片"
+
+#: lib/views/agents/quick_edit.php:77
+#: lib/views/agents/_form.php:70
+msgid "Remove Bio Image"
+msgstr "移除简介图片"
+
+#: lib/views/agents/quick_edit.php:79
+#: lib/views/agents/_form.php:71
+msgid "Agent Title"
+msgstr "服务人员头衔"
+
+#: lib/views/agents/quick_edit.php:80
+#: lib/views/agents/_form.php:72
+msgid "Bio Text"
+msgstr "简介文本"
+
+#: lib/views/agents/quick_edit.php:82
+#: lib/views/agents/_form.php:73
+msgid "Agent Highlights"
+msgstr "服务人员亮点"
+
+#: lib/views/agents/quick_edit.php:84
+#: lib/views/agents/_form.php:74
+msgid "These value-label pairs will appear on agent information popup. You can enter things like years of experience, or number of clients served, to highlight agent accomplishments."
+msgstr "这些“值-标签”对将显示在服务人员信息弹窗中。您可以输入如工作年限或服务客户数量等内容，以突出服务人员的成就。"
+
+#: lib/views/agents/quick_edit.php:93
+#: lib/views/agents/_form.php:83
+msgid "Label"
+msgstr "标签"
+
+#: lib/views/agents/quick_edit.php:100
+#: lib/views/agents/_form.php:94
+msgid "Offered Services"
+msgstr "提供的服务"
+
+#: lib/views/agents/quick_edit.php:124
+#: lib/views/agents/_form.php:120
+msgid "Locations Selected"
+msgstr "已选择的位置"
+
+#: lib/views/agents/quick_edit.php:127
+#: lib/views/agents/_form.php:123
+#: lib/views/locations/_form.php:72
+msgid "Customize"
+msgstr "自定义"
+
+#: lib/views/agents/quick_edit.php:131
+#: lib/views/agents/_form.php:127
+#, php-format
+msgid "Select locations where this agent will offer %s:"
+msgstr "选择此服务人员将提供 %s 的位置："
+
+#: lib/views/agents/quick_edit.php:165
+#: lib/views/agents/_form.php:165
+#: lib/views/bundles/_form.php:124
+msgid "No Existing Services Found"
+msgstr "未找到现有服务"
+
+#: lib/views/agents/quick_edit.php:167
+#: lib/views/agents/_form.php:167
+#: lib/views/bundles/_form.php:126
+msgid "Add First Service"
+msgstr "添加第一个服务"
+
+#: lib/views/agents/quick_edit.php:175
+#: lib/views/agents/_form.php:190
+msgid "Agent Schedule"
+msgstr "服务人员日程"
+
+#: lib/views/agents/quick_edit.php:177
+#: lib/views/agents/_form.php:208
+#: lib/views/locations/_form.php:127
+msgid "Set Custom Schedule"
+msgstr "设置自定义日程"
+
+#: lib/views/agents/quick_edit.php:193
+#: lib/views/agents/_form.php:214
+msgid "This agent is using general schedule which is set in main settings"
+msgstr "此服务人员正在使用主设置中配置的通用日程"
+
+#: lib/views/agents/quick_edit.php:199
+#: lib/views/agents/_form.php:249
+#: lib/views/locations/_form.php:154
+msgid "Days With Custom Schedules"
+msgstr "自定义排班的日期"
+
+#: lib/views/agents/quick_edit.php:200
+#: lib/views/agents/_form.php:257
+msgid "Agent shares custom daily schedules that you set in general settings for your company, however you can add additional days with custom hours which will be specific to this agent only."
+msgstr "代理使用您在公司常规设置中设置的自定义每日排班，不过您可以添加额外的自定义工时日期，这些日期将仅适用于此代理。"
+
+#: lib/views/agents/quick_edit.php:202
+#: lib/views/agents/_form.php:275
+#: lib/views/locations/_form.php:163
+msgid "Holidays & Days Off"
+msgstr "节假日和休息日"
+
+#: lib/views/agents/quick_edit.php:203
+#: lib/views/agents/_form.php:283
+msgid "Agent uses the same holidays you set in general settings for your company, however you can add additional holidays for this agent here."
+msgstr "代理使用您在公司常规设置中设置的相同节假日，不过您可以在此为该代理添加额外的节假日。"
+
+#: lib/views/agents/quick_edit.php:213
+#: lib/views/agents/_form.php:306
+msgid "Add Agent"
+msgstr "添加代理"
+
+#: lib/views/agents/quick_edit.php:217
+#: lib/views/agents/_form.php:333
+#: lib/views/agents/_form.php:347
+#: lib/views/assets/_form.php:127
+#: lib/views/coupons/quick_edit.php:182
+#: lib/views/locations/_form.php:202
+#: lib/views/locations/_form.php:216
+#: lib/views/roles/edit_wp_user.php:82
+#: lib/views/roles/_form.php:126
+#: lib/views/service_extras/_form.php:99
+msgid "Save Changes"
+msgstr "保存更改"
+
+#: lib/views/agents/quick_edit.php:221
+#: lib/views/agents/_form.php:314
+msgid "Are you sure you want to remove this agent?"
+msgstr "您确定要移除此代理吗？"
+
+#: lib/views/agents/view_agent_log.php:15
+msgid "Activity Log"
+msgstr "活动日志"
+
+#: lib/views/agents/view_agent_log.php:21
+#: lib/views/coupons/view_coupon_log.php:21
+msgid "Created On: "
+msgstr "创建于："
+
+#: lib/views/agents/_form.php:21
+#: lib/views/bundles/_form.php:15
+msgid "General Information"
+msgstr "基本信息"
+
+#: lib/views/agents/_form.php:23
+#, php-format
+msgid "Agent ID: %d"
+msgstr "代理 ID：%d"
+
+#: lib/views/agents/_form.php:80
+msgid "Highlight #"
+msgstr "高亮 #"
+
+#: lib/views/agents/_form.php:230
+#, php-format
+msgid "Set Custom Schedule for %s"
+msgstr "为 %s 设置自定义排班"
+
+#: lib/views/agents/_form.php:236
+msgid "This location is using the agent's general schedule"
+msgstr "此位置正在使用该代理的常规排班"
+
+#: lib/views/agents/_form.php:323
+msgid "Are you sure you want to duplicate this agent?"
+msgstr "您确定要复制此代理吗？"
+
+#: lib/views/agents/_form.php:326
+#: lib/views/locations/_form.php:196
+msgid "Duplicate"
+msgstr "复制"
+
+#: lib/views/agents/_schedule_location_selector.php:14
+msgid "Location:"
+msgstr "位置："
+
+#: lib/views/agents/_form.php:351
+#: lib/views/agents/_schedule_location_selector.php:16
+#: lib/views/locations/_form.php:220
+msgid "General"
+msgstr "常规"
+
+#. translators: %1$s and %2$s are opening and closing anchor tags
+#: lib/views/assets/index.php:14
+#, php-format
+msgid "Assets functionality is currently disabled. You can enable it in %1$sGeneral Settings%2$s."
+msgstr "资产功能当前已禁用。您可以在 %1$s常规设置%2$s 中启用它。"
+
+#: lib/views/assets/index.php:33
+#: lib/views/service_extras/index.php:10
+msgid "Services:"
+msgstr "服务："
+
+#: lib/views/assets/index.php:37
+#: lib/views/assets/index.php:47
+#: lib/views/service_extras/index.php:12
+msgid " of "
+msgstr "/"
+
+#: lib/views/assets/index.php:38
+#: lib/views/assets/index.php:48
+#: lib/views/service_extras/index.php:12
+msgid "All Selected"
+msgstr "全部已选"
+
+#: lib/views/assets/index.php:43
+#: lib/views/locations/_location_index_item.php:20
+msgid "Agents:"
+msgstr "代理："
+
+#: lib/views/assets/index.php:54
+msgid "Quantity:"
+msgstr "数量："
+
+#: lib/views/assets/index.php:58
+msgid "Status:"
+msgstr "状态："
+
+#: lib/views/assets/_form.php:19
+#: lib/views/locations/_form.php:8
+#: lib/views/service_extras/_form.php:12
+msgid "Basic Information"
+msgstr "基本信息"
+
+#: lib/views/assets/_form.php:21
+msgid "Asset ID:"
+msgstr "资产 ID："
+
+#: lib/views/assets/_form.php:26
+msgid "Asset Name"
+msgstr "资产名称"
+
+#: lib/views/assets/_form.php:29
+msgid "Quantity (Capacity)"
+msgstr "数量（容量）"
+
+#: lib/views/assets/_form.php:45
+#: lib/views/bundles/_form.php:35
+#: lib/views/location_categories/_form.php:9
+#: lib/views/service_categories/_form.php:9
+#: lib/views/service_extras/_form.php:32
+msgid "Short Description"
+msgstr "简短描述"
+
+#: lib/views/assets/_form.php:52
+#: lib/views/service_extras/_form.php:56
+msgid "Connected Services"
+msgstr "关联服务"
+
+#: lib/views/assets/_form.php:85
+msgid "Connected Agents"
+msgstr "关联代理"
+
+#: lib/views/assets/_form.php:118
+msgid "Add Asset"
+msgstr "添加资产"
+
+#: lib/views/assets/_form.php:122
+msgid "Are you sure you want to remove this asset? You can also change status to disabled if you want to temporarily disable it instead."
+msgstr "您确定要移除此资产吗？如果您只是想暂时停用它，也可以将状态更改为已禁用。"
+
+#: lib/views/assets/_form.php:126
+msgid "Delete Asset"
+msgstr "删除资产"
+
+#: lib/views/bundles/index.php:21
+msgid "Quantity"
+msgstr "数量"
+
+#: lib/views/bundles/index.php:54
+msgid "No Bundles Found"
+msgstr "未找到套餐"
+
+#: lib/views/bundles/_form.php:17
+msgid "Bundle ID:"
+msgstr "套餐 ID："
+
+#: lib/views/bundles/_form.php:24
+msgid "Bundle Name"
+msgstr "套餐名称"
+
+#: lib/views/bundles/_form.php:27
+msgid "Visibility"
+msgstr "可见性"
+
+#: lib/views/bundles/_form.php:27
+msgid "Visible to everyone"
+msgstr "所有人可见"
+
+#: lib/views/bundles/_form.php:27
+msgid "Visible only to admins and agents"
+msgstr "仅管理员和代理可见"
+
+#: lib/views/bundles/_form.php:42
+msgid "Price"
+msgstr "价格"
+
+#: lib/views/bundles/_form.php:48
+#: lib/views/service_durations/duration_fields.php:15
+#: lib/views/service_extras/_form.php:25
+msgid "Charge Amount"
+msgstr "收费金额"
+
+#: lib/views/bundles/_form.php:51
+#: lib/views/service_durations/duration_fields.php:18
+msgid "Deposit Amount"
+msgstr "定金金额"
+
+#: lib/views/bundles/_form.php:60
+msgid "Included Services"
+msgstr "包含的服务"
+
+#: lib/views/bundles/_form.php:80
+#: lib/views/service_extras/index.php:17
+msgid "Duration:"
+msgstr "时长："
+
+#: lib/views/bundles/_form.php:85
+#, php-format
+msgid "%d minutes"
+msgstr "%d 分钟"
+
+#: lib/views/bundles/_form.php:113
+msgid "Bundle Quantity:"
+msgstr "套餐数量："
+
+#: lib/views/bundles/_form.php:115
+msgid "qty"
+msgstr "数量"
+
+#: lib/views/bundles/_form.php:139
+#: lib/views/bundles/_form.php:152
+msgid "Save Bundle"
+msgstr "保存套餐"
+
+#: lib/views/bundles/_form.php:145
+msgid "Are you sure you want to remove this bundle? It will remove all appointments associated with it. You can also change status to disabled if you want to temporary disable it instead."
+msgstr "您确定要移除此套餐吗？这将删除与其关联的所有预约。您也可以将状态更改为已禁用，以便临时停用它。"
+
+#: lib/views/bundles/_form.php:149
+msgid "Delete Bundle"
+msgstr "删除套餐"
+
+#: lib/views/coupons/index.php:9
+#: lib/views/coupons/index.php:66
+msgid "Showing"
+msgstr "显示"
+
+#: lib/views/coupons/index.php:14
+msgid "Download .csv"
+msgstr "下载 .csv"
+
+#: lib/views/coupons/index.php:16
+#: lib/views/coupons/quick_edit.php:15
+msgid "New Coupon"
+msgstr "新优惠券"
+
+#: lib/views/coupons/index.php:33
+msgid "Search by Name"
+msgstr "按名称搜索"
+
+#: lib/views/coupons/index.php:34
+msgid "Code..."
+msgstr "代码..."
+
+#: lib/views/coupons/index.php:36
+msgid "Show All"
+msgstr "显示全部"
+
+#: lib/views/coupons/index.php:39
+#: lib/views/coupons/index.php:40
+msgid "Filter By Date"
+msgstr "按日期筛选"
+
+#: lib/views/coupons/index.php:39
+msgid "Reset Date Filtering"
+msgstr "重置日期筛选"
+
+#: lib/views/coupons/index.php:68
+msgid "Page:"
+msgstr "页："
+
+#: lib/views/coupons/index.php:82
+msgid "No Coupons Found"
+msgstr "未找到优惠券"
+
+#: lib/views/coupons/index.php:83
+msgid "Add Coupon"
+msgstr "添加优惠券"
+
+#: lib/views/coupons/quick_edit.php:17
+msgid "Edit Coupon"
+msgstr "编辑优惠券"
+
+#: lib/views/coupons/quick_edit.php:24
+msgid "Coupon ID:"
+msgstr "优惠券 ID："
+
+#: lib/views/coupons/quick_edit.php:31
+msgid "Used"
+msgstr "已使用"
+
+#: lib/views/coupons/quick_edit.php:35
+#, php-format
+msgid "%d time"
+msgid_plural "%d times"
+msgstr[0] "%d 次"
+
+#: lib/views/coupons/quick_edit.php:40
+msgid "Last Used"
+msgstr "上次使用"
+
+#: lib/views/coupons/quick_edit.php:44
+msgid "Total Saved"
+msgstr "总节省"
+
+#: lib/views/coupons/quick_edit.php:50
+#: lib/views/webhooks/_webhook_form.php:29
+msgid "Name (For Internal Use)"
+msgstr "名称（内部使用）"
+
+#: lib/views/coupons/quick_edit.php:54
+msgid "Discount Value"
+msgstr "折扣值"
+
+#: lib/views/coupons/quick_edit.php:57
+msgid "Discount Type"
+msgstr "折扣类型"
+
+#: lib/views/coupons/quick_edit.php:57
+msgid "Percent"
+msgstr "百分比"
+
+#: lib/views/coupons/quick_edit.php:57
+msgid "Fixed Value"
+msgstr "固定值"
+
+#: lib/views/coupons/quick_edit.php:66
+msgid "Time Restrictions"
+msgstr "时间限制"
+
+#: lib/views/coupons/quick_edit.php:69
+msgid "You can set a specific time frame for when this coupon is active, which is helpful for seasonal promotions. Leaving either field blank will remove any time restrictions."
+msgstr "您可以设置此优惠券生效的具体时间范围，这对于季节性促销很有帮助。将任一字段留空将移除任何时间限制。"
+
+#: lib/views/coupons/quick_edit.php:74
+msgid "Active From"
+msgstr "生效开始"
+
+#: lib/views/coupons/quick_edit.php:77
+msgid "Active To"
+msgstr "生效结束"
+
+#: lib/views/coupons/quick_edit.php:81
+msgid "Use Restrictions"
+msgstr "使用限制"
+
+#: lib/views/coupons/quick_edit.php:84
+msgid "Here you can specify which service, agent or customer this coupon is applicable to. Leaving a field blank will make it applicable to all."
+msgstr "您可以在此指定此优惠券适用于哪些服务、代理或客户。将某个字段留空则表示适用于所有对象。"
+
+#: lib/views/agents/_form.php:354
+#: lib/views/coupons/quick_edit.php:88
+msgid "Services"
+msgstr "服务"
+
+#: lib/views/coupons/quick_edit.php:99
+msgid "Start typing to search..."
+msgstr "开始输入以搜索..."
+
+#: lib/views/coupons/quick_edit.php:100
+msgid "cancel"
+msgstr "取消"
+
+#: lib/views/coupons/quick_edit.php:101
+msgid "Customers"
+msgstr "客户"
+
+#: lib/views/coupons/quick_edit.php:104
+msgid "Click to select..."
+msgstr "点击选择..."
+
+#: lib/views/coupons/quick_edit.php:129
+msgid "Usage Limits"
+msgstr "使用限制"
+
+#: lib/views/coupons/quick_edit.php:132
+msgid "You can set a limit on how many times this coupon can be used, either per customer or in total. Leave blank to have no limits."
+msgstr "您可以设置此优惠券可使用的次数限制，可按每位客户或总次数限制。留空则表示不限制。"
+
+#: lib/views/coupons/quick_edit.php:137
+msgid "Per Customer"
+msgstr "每位客户"
+
+#: lib/views/coupons/quick_edit.php:140
+msgid "Per Order"
+msgstr "每个订单"
+
+#: lib/views/coupons/quick_edit.php:143
+msgid "Total"
+msgstr "总计"
+
+#: lib/views/coupons/quick_edit.php:148
+msgid "Order Requirements"
+msgstr "订单要求"
+
+#: lib/views/coupons/quick_edit.php:151
+msgid "You can set an order requirements that must be met for this coupon to be applied. Leave blank to have no requirements."
+msgstr "您可以设置此优惠券生效前必须满足的订单要求。留空则表示没有要求。"
+
+#: lib/views/coupons/quick_edit.php:155
+msgid "Minimum Order Subtotal"
+msgstr "最低订单小计"
+
+#: lib/views/coupons/quick_edit.php:159
+msgid "Order Count Requirements"
+msgstr "订单数量要求"
+
+#: lib/views/coupons/quick_edit.php:162
+msgid "You can set requirements on how many orders a customer needs to have in order to use this coupon. Leave blank to have no requirements."
+msgstr "您可以设置客户使用此优惠券所需拥有的订单数量要求。留空则表示没有要求。"
+
+#: lib/views/coupons/quick_edit.php:177
+msgid "Create Coupon"
+msgstr "创建优惠券"
+
+#: lib/views/coupons/quick_edit.php:188
+msgid "Are you sure you want to delete this coupon?"
+msgstr "您确定要删除此优惠券吗？"
+
+#: lib/views/coupons/quick_edit.php:193
+msgid "Delete Coupon"
+msgstr "删除优惠券"
+
+#: lib/views/coupons/view_coupon_log.php:15
+msgid "Coupon History"
+msgstr "优惠券历史"
+
+#: lib/views/coupons/view_coupon_log.php:25
+msgid "No activity found."
+msgstr "未找到活动。"
+
+#: lib/views/custom_fields/for_booking.php:10
+#: lib/views/custom_fields/for_customer.php:14
+msgid "Add Custom Field"
+msgstr "添加自定义字段"
+
+#: lib/views/custom_fields/for_customer.php:1
+msgid "Default Fields"
+msgstr "默认字段"
+
+#: lib/views/custom_fields/_custom_field_form.php:7
+msgid "New Field"
+msgstr "新字段"
+
+#: lib/views/custom_fields/_custom_field_form.php:14
+msgid "Field Label"
+msgstr "字段标签"
+
+#: lib/views/custom_fields/_custom_field_form.php:17
+msgid "Enter Field Label"
+msgstr "输入字段标签"
+
+#: lib/views/custom_fields/_custom_field_form.php:23
+msgid "Placeholder"
+msgstr "占位符"
+
+#: lib/views/custom_fields/_custom_field_form.php:26
+msgid "Enter Field Placeholder"
+msgstr "输入字段占位符"
+
+#: lib/views/custom_fields/_custom_field_form.php:32
+msgid "Field Type"
+msgstr "字段类型"
+
+#: lib/views/custom_fields/_custom_field_form.php:41
+msgid "To use address field, enter a Google API key in general settings."
+msgstr "要使用地址字段，请在常规设置中输入 Google API 密钥。"
+
+#: lib/views/custom_fields/_custom_field_form.php:48
+msgid "Options List"
+msgstr "选项列表"
+
+#: lib/views/custom_fields/_custom_field_form.php:51
+msgid "Choices for Select. Enter each choice on a new line."
+msgstr "下拉选择的选项。每个选项请单独占一行。"
+
+#: lib/views/custom_fields/_custom_field_form.php:57
+msgid "Default Value"
+msgstr "默认值"
+
+#: lib/views/custom_fields/_custom_field_form.php:67
+msgid "Conditional"
+msgstr "条件"
+
+#: lib/views/custom_fields/_custom_field_form.php:70
+msgid "Show this field only when conditions are met"
+msgstr "仅在满足条件时显示此字段"
+
+#: lib/views/custom_fields/_custom_field_form.php:72
+msgid "Show this field if:"
+msgstr "如果满足以下条件则显示此字段："
+
+#: lib/views/custom_fields/_custom_field_form.php:89
+msgid "Field Width"
+msgstr "字段宽度"
+
+#: lib/views/custom_fields/_custom_field_form.php:92
+msgid "Full Width"
+msgstr "全宽"
+
+#: lib/views/custom_fields/_custom_field_form.php:93
+msgid "Half Width"
+msgstr "半宽"
+
+#: lib/views/custom_fields/_custom_field_form.php:99
+msgid "Field Visibility"
+msgstr "字段可见性"
+
+#: lib/views/custom_fields/_custom_field_form.php:102
+msgid "Visible to Everyone"
+msgstr "所有人可见"
+
+#: lib/views/custom_fields/_custom_field_form.php:103
+msgid "Admin and Agents Only"
+msgstr "仅管理员和客服可见"
+
+#: lib/views/custom_fields/_custom_field_form.php:104
+msgid "Temporary Hidden"
+msgstr "临时隐藏"
+
+#: lib/views/custom_fields/_custom_field_form.php:110
+msgid "Required"
+msgstr "必填"
+
+#: lib/views/custom_fields/_custom_field_form.php:113
+msgid "Make this field required"
+msgstr "将此字段设为必填"
+
+#: lib/views/custom_fields/_custom_field_form.php:119
+msgid "Hide from Summary"
+msgstr "从摘要中隐藏"
+
+#: lib/views/custom_fields/_custom_field_form.php:122
+msgid "Hide from Summary Panel and Confirmation Step"
+msgstr "从摘要面板和确认步骤中隐藏"
+
+#: lib/views/custom_fields/_custom_field_form.php:127
+#: lib/views/custom_fields/_custom_field_form.php:135
+msgid "Are you sure you want to delete this field?"
+msgstr "您确定要删除此字段吗？"
+
+#: lib/views/custom_fields/_custom_field_form.php:128
+msgid "Save Field"
+msgstr "保存字段"
+
+#: lib/views/debug/status.php:10
+msgid "Features"
+msgstr "功能"
+
+#: lib/views/debug/status.php:12
+msgid "Chat With Customers"
+msgstr "与客户聊天"
+
+#: lib/views/debug/status.php:18
+msgid "System Info"
+msgstr "系统信息"
+
+#: lib/views/debug/status.php:23
+msgid "LatePoint Plugin Version:"
+msgstr "LatePoint 插件版本："
+
+#: lib/views/debug/status.php:27
+msgid "LatePoint Database Version:"
+msgstr "LatePoint 数据库版本："
+
+#: lib/views/debug/status.php:31
+#: lib/views/debug/status.php:72
+msgid "reset"
+msgstr "重置"
+
+#: lib/views/debug/status.php:35
+msgid "PHP Version:"
+msgstr "PHP 版本："
+
+#: lib/views/debug/status.php:40
+msgid "MySQL Version:"
+msgstr "MySQL 版本："
+
+#: lib/views/debug/status.php:45
+msgid "WordPress Version:"
+msgstr "WordPress 版本："
+
+#: lib/views/debug/status.php:53
+msgid "Installed Addons"
+msgstr "已安装的附加组件"
+
+#: lib/views/debug/status.php:63
+msgid "Update Available"
+msgstr "有可用更新"
+
+#: lib/views/debug/status.php:68
+msgid "Core:"
+msgstr "核心："
+
+#: lib/views/debug/status.php:69
+msgid "Database:"
+msgstr "数据库："
+
+#: lib/views/debug/status.php:82
+msgid "Tasks Due"
+msgstr "待处理任务"
+
+#: lib/views/debug/status.php:90
+#: lib/views/debug/status.php:96
+msgid "Run Migration"
+msgstr "运行迁移"
+
+#: lib/views/debug/status.php:101
+msgid "Nothing to do"
+msgstr "无需处理"
+
+#: lib/views/group_bookings/_step_booking__group_bookings.php:15
+msgid "How Many People?"
+msgstr "需要多少人？"
+
+#: lib/views/group_bookings/_step_booking__group_bookings.php:16
+msgid "Maximum capacity is"
+msgstr "最大容量为"
+
+#: lib/views/group_bookings/_step_booking__group_bookings.php:24
+msgid "Person"
+msgstr "人"
+
+#: lib/views/group_bookings/_step_booking__group_bookings.php:25
+msgid "People"
+msgstr "人"
+
+#: lib/views/group_bookings/_step_booking__group_bookings.php:28
+#: lib/views/service_extras/_step_booking__service_extras.php:52
+msgid "Qty"
+msgstr "数量"
+
+#: lib/views/locations/index.php:10
+#: lib/views/locations/index.php:30
+#: lib/views/locations/index.php:45
+msgid "New Location"
+msgstr "新地点"
+
+#: lib/views/locations/index.php:41
+msgid "No Active Locations Found"
+msgstr "未找到活跃地点"
+
+#: lib/views/locations/index.php:55
+#, php-format
+msgid "%d Disabled Location"
+msgid_plural "%d Disabled Locations"
+msgstr[0] "%d 个已禁用地点"
+
+#: lib/views/locations/_form.php:10
+#, php-format
+msgid "Location ID: %d"
+msgstr "地点 ID：%d"
+
+#: lib/views/locations/_form.php:17
+msgid "Location Name"
+msgstr "地点名称"
+
+#: lib/views/locations/_form.php:21
+msgid "Category"
+msgstr "分类"
+
+#: lib/views/locations/_form.php:21
+msgid "Add Category"
+msgstr "添加分类"
+
+#: lib/views/locations/_form.php:22
+msgid "Location Photo"
+msgstr "地点照片"
+
+#: lib/views/locations/_form.php:22
+#: lib/views/location_categories/_form.php:13
+#: lib/views/service_categories/_form.php:13
+#: lib/views/service_extras/_form.php:48
+msgid "Remove Image"
+msgstr "移除图片"
+
+#: lib/views/locations/_form.php:25
+msgid "Location Address"
+msgstr "地点地址"
+
+#: lib/views/locations/_form.php:42
+msgid "Select Agents for This Location"
+msgstr "为此地点选择客服"
+
+#: lib/views/locations/_form.php:69
+msgid "Services Selected"
+msgstr "已选择的服务"
+
+#: lib/views/locations/_form.php:76
+#, php-format
+msgid "Select services that %s will be offering at this location:"
+msgstr "选择 %s 在此地点提供的服务："
+
+#: lib/views/locations/_form.php:110
+msgid "No Existing Agents Found"
+msgstr "未找到现有客服"
+
+#: lib/views/locations/_form.php:112
+msgid "Add First Agent"
+msgstr "添加第一位客服"
+
+#: lib/views/locations/_form.php:125
+msgid "Location Schedule"
+msgstr "地点日程"
+
+#: lib/views/locations/_form.php:145
+msgid "This location is using general schedule which is set in main settings"
+msgstr "此地点使用的是在主设置中配置的通用日程"
+
+#: lib/views/locations/_form.php:157
+msgid "Location shares custom daily schedules that you set in general settings for your company, however you can add additional days with custom hours which will be specific to this location only."
+msgstr "此地点共享您在公司常规设置中设置的自定义每日日程，不过您也可以添加额外的日期及自定义时间，这些将仅适用于此地点。"
+
+#: lib/views/locations/_form.php:166
+msgid "Location uses the same holidays you set in general settings for your company, however you can add additional holidays for this location here."
+msgstr "地点使用与您在公司常规设置中设置的相同节假日，不过您可以在此为该地点添加额外的节假日。"
+
+#: lib/views/locations/_form.php:177
+msgid "Save Location"
+msgstr "保存地点"
+
+#: lib/views/locations/_form.php:185
+msgid "Are you sure you want to remove this location? It will remove all appointments associated with it. If you only want to temprorary disable it - it is better to just change status to disabled."
+msgstr "您确定要移除此地点吗？这将移除与其关联的所有预约。如果您只是想暂时禁用它，最好只将状态更改为已禁用。"
+
+#: lib/views/locations/_form.php:193
+msgid "Are you sure you want to duplicate this location?"
+msgstr "您确定要复制此地点吗？"
+
+#: lib/views/agents/_form.php:355
+#: lib/views/locations/_form.php:223
+msgid "Schedule"
+msgstr "日程"
+
+#: lib/views/agents/_form.php:358
+#: lib/views/locations/_form.php:226
+msgid "Custom Days"
+msgstr "自定义日期"
+
+#: lib/views/agents/_form.php:359
+#: lib/views/locations/_form.php:227
+msgid "Holidays & Days off"
+msgstr "节假日和休息日"
+
+#: lib/views/locations/_location_index_item.php:28
+msgid "No Agents Assigned"
+msgstr "未分配代理"
+
+#: lib/views/location_categories/index.php:18
+#: lib/views/service_categories/index.php:18
+msgid "New Category"
+msgstr "新分类"
+
+#: lib/views/location_categories/index.php:22
+msgid "Create New Location Category"
+msgstr "创建新地点分类"
+
+#: lib/views/location_categories/new_form.php:3
+msgid "Add Location Category"
+msgstr "添加地点分类"
+
+#: lib/views/location_categories/new_form.php:8
+#: lib/views/location_categories/_form.php:6
+#: lib/views/service_categories/new_form.php:8
+#: lib/views/service_categories/_form.php:6
+msgid "Category Name"
+msgstr "分类名称"
+
+#: lib/views/location_categories/new_form.php:9
+#: lib/views/service_categories/new_form.php:9
+msgid "Quick Description"
+msgstr "简要说明"
+
+#: lib/views/location_categories/new_form.php:14
+msgid "Save Location Category"
+msgstr "保存地点分类"
+
+#: lib/views/location_categories/_form.php:13
+#: lib/views/service_categories/_form.php:13
+msgid "Category Image"
+msgstr "分类图片"
+
+#: lib/views/location_categories/_form.php:19
+#: lib/views/service_categories/_form.php:19
+msgid "Save Category"
+msgstr "保存分类"
+
+#: lib/views/location_categories/_form.php:25
+#: lib/views/service_categories/_form.php:25
+msgid "Are you sure you want to remove this category?"
+msgstr "您确定要移除此分类吗？"
+
+#: lib/views/location_categories/_form.php:28
+#: lib/views/service_categories/_form.php:28
+msgid "Delete Category"
+msgstr "删除分类"
+
+#: lib/views/messages/backend_chat_box.php:5
+msgid "Your Conversations"
+msgstr "您的会话"
+
+#: lib/views/messages/backend_chat_box.php:8
+msgid "Find booking to start chat..."
+msgstr "查找预约以开始聊天..."
+
+#: lib/views/messages/conversations.php:16
+msgid "Start new conversation..."
+msgstr "开始新会话..."
+
+#: lib/views/messages/messages_for_booking.php:22
+#: lib/views/messages/messages_with_info_for_booking.php:42
+msgid "No Messages Exist."
+msgstr "没有消息。"
+
+#: lib/views/messages/messages_with_info_for_booking.php:8
+msgid "Chat with"
+msgstr "与...聊天"
+
+#: lib/views/messages/messages_with_info_for_booking.php:50
+#: lib/views/messages/quick_form_chat_box.php:16
+msgid "Attach File"
+msgstr "附加文件"
+
+#: lib/views/messages/messages_with_info_for_booking.php:57
+msgid "Appointment Info"
+msgstr "预约信息"
+
+#: lib/views/messages/messages_with_info_for_booking.php:64
+msgid "Booking ID"
+msgstr "预订 ID"
+
+#: lib/views/messages/messages_with_info_for_booking.php:66
+msgid "Edit"
+msgstr "编辑"
+
+#: lib/views/messages/messages_with_info_for_booking.php:68
+msgid "Date/Time"
+msgstr "日期/时间"
+
+#: lib/views/messages/messages_with_info_for_booking.php:72
+msgid "Customer"
+msgstr "客户"
+
+#: lib/views/messages/quick_form_chat_box.php:3
+msgid "Message History"
+msgstr "消息历史"
+
+#: lib/views/recurring_bookings/recurring_bookings_preview.php:9
+msgid "Review Slots"
+msgstr "查看时段"
+
+#: lib/views/recurring_bookings/recurring_bookings_preview.php:16
+#, php-format
+msgid "%s of %s time slots are not available. Please review them below."
+msgstr "%s 个共 %s 个时间段不可用。请在下方查看。"
+
+#: lib/views/recurring_bookings/recurring_bookings_preview.php:34
+msgid "This slot is unavailable. You can choose a different one, or it will be skipped automatically."
+msgstr "此时段不可用。您可以选择其他时段，或者它将被自动跳过。"
+
+#: lib/views/recurring_bookings/recurring_bookings_preview.php:51
+msgid "Continue"
+msgstr "继续"
+
+#: lib/views/roles/edit_wp_user.php:9
+msgid "Edit User"
+msgstr "编辑用户"
+
+#: lib/views/roles/edit_wp_user.php:21
+msgid "WP User"
+msgstr "WP 用户"
+
+#: lib/views/roles/edit_wp_user.php:30
+msgid "Not Connected"
+msgstr "未连接"
+
+#: lib/views/roles/edit_wp_user.php:31
+msgid "Connected to agent"
+msgstr "已连接到代理"
+
+#: lib/views/roles/edit_wp_user.php:36
+#: lib/views/roles/_form.php:70
+msgid "Allowed Records"
+msgstr "允许的记录"
+
+#: lib/views/roles/edit_wp_user.php:40
+msgid "This user has \"Administrator\" role and can access all records"
+msgstr "此用户具有“管理员”角色，可以访问所有记录"
+
+#: lib/views/roles/edit_wp_user.php:42
+msgid "This user has \"Agent\" role and can execute permitted actions only on records that belong to a LatePoint agent they are connected to."
+msgstr "此用户具有“代理”角色，只能在其所连接的 LatePoint 代理所属记录上执行允许的操作。"
+
+#: lib/views/roles/edit_wp_user.php:47
+msgid "Custom Selection"
+msgstr "自定义选择"
+
+#: lib/views/roles/edit_wp_user.php:57
+#: lib/views/roles/_form.php:91
+msgid "Permitted Actions"
+msgstr "允许的操作"
+
+#: lib/views/roles/edit_wp_user.php:58
+msgid "Custom"
+msgstr "自定义"
+
+#: lib/views/roles/edit_wp_user.php:77
+msgid "Permitted actions are defined by user's role settings."
+msgstr "允许的操作由用户的角色设置定义。"
+
+#: lib/views/roles/index.php:9
+msgid "Default Roles"
+msgstr "默认角色"
+
+#: lib/views/roles/index.php:19
+msgid "Custom Roles"
+msgstr "自定义角色"
+
+#: lib/views/roles/index.php:37
+msgid "Create Custom Role"
+msgstr "创建自定义角色"
+
+#: lib/views/roles/_form.php:12
+#, php-format
+msgid "%d user"
+msgid_plural "%d users"
+msgstr[0] "%d 个用户"
+
+#: lib/views/roles/_form.php:32
+msgid "Users"
+msgstr "用户"
+
+#: lib/views/roles/_form.php:50
+msgid "Custom Settings"
+msgstr "自定义设置"
+
+#: lib/views/roles/_form.php:54
+msgid "Connected to:"
+msgstr "连接到："
+
+#: lib/views/roles/_form.php:54
+msgid "Connect to an agent"
+msgstr "连接到代理"
+
+#: lib/views/roles/_form.php:63
+#, php-format
+msgid "You have not assigned any WordPress users to this role. Create a new WP user or edit existing user and assign them a role called: %s"
+msgstr "您尚未为此角色分配任何 WordPress 用户。请创建新的 WP 用户，或编辑现有用户并为其分配名为：%s 的角色"
+
+#: lib/views/roles/_form.php:77
+#, php-format
+msgid "Users with \"%s\" role are allowed to perform all available actions on any agent, location and service records."
+msgstr "具有“%s”角色的用户可在任何代理、地点和服务记录上执行所有可用操作。"
+
+#: lib/views/roles/_form.php:80
+#, php-format
+msgid "Users with \"%s\" role can execute permitted actions only on records that belong to a LatePoint agent they are connected to."
+msgstr "具有“%s”角色的用户只能在其所连接的 LatePoint 代理所属记录上执行允许的操作。"
+
+#: lib/views/roles/_form.php:83
+msgid "Once you assign users to this role, they will appear in \"Users\" section above, click on each user to set restrictions on which records each of them can access."
+msgstr "一旦您将用户分配到此角色，他们将出现在上方的“用户”部分中，点击每个用户可设置其可访问哪些记录的限制。"
+
+#: lib/views/roles/_form.php:97
+#, php-format
+msgid "Users with \"%s\" role are permitted to execute all available actions in the system."
+msgstr "具有“%s”角色的用户可在系统中执行所有可用操作。"
+
+#: lib/views/roles/_form.php:119
+#: lib/views/roles/_form.php:133
+msgid "Are you sure you want to delete this role?"
+msgstr "您确定要删除此角色吗？"
+
+#: lib/views/service_categories/index.php:22
+msgid "Create New Service Category"
+msgstr "创建新的服务类别"
+
+#: lib/views/service_categories/new_form.php:3
+msgid "Add Service Category"
+msgstr "添加服务类别"
+
+#: lib/views/service_categories/new_form.php:15
+msgid "Save Service Category"
+msgstr "保存服务类别"
+
+#: lib/views/service_durations/duration_fields.php:9
+msgid "Duration Name (optional)"
+msgstr "时长名称（可选）"
+
+#: lib/views/service_durations/duration_fields.php:12
+msgid "Duration"
+msgstr "时长"
+
+#: lib/views/service_durations/_step_booking__service_durations.php:40
+msgid "Hours"
+msgstr "小时"
+
+#: lib/views/service_durations/_step_booking__service_durations.php:40
+msgid "Hour"
+msgstr "小时"
+
+#: lib/views/service_durations/_step_booking__service_durations.php:41
+#: lib/views/service_durations/_step_booking__service_durations.php:44
+msgid "Minutes"
+msgstr "分钟"
+
+#: lib/views/service_extras/index.php:18
+msgid "min"
+msgstr "分"
+
+#: lib/views/service_extras/index.php:21
+msgid "Price:"
+msgstr "价格："
+
+#: lib/views/service_extras/index.php:25
+msgid "Max Qty:"
+msgstr "最大数量："
+
+#: lib/views/service_extras/index.php:33
+msgid "Edit Extra"
+msgstr "编辑附加项"
+
+#: lib/views/service_extras/index.php:46
+msgid "No Service Extras Found"
+msgstr "未找到服务附加项"
+
+#: lib/views/service_extras/index.php:50
+#: lib/views/service_extras/_form.php:90
+msgid "Add Service Extra"
+msgstr "添加服务附加项"
+
+#: lib/views/service_extras/_form.php:14
+msgid "Service Extra ID:"
+msgstr "服务附加项 ID："
+
+#: lib/views/service_extras/_form.php:19
+msgid "Service Extra Name"
+msgstr "服务附加项名称"
+
+#: lib/views/service_extras/_form.php:22
+msgid "Duration (minutes)"
+msgstr "时长（分钟）"
+
+#: lib/views/service_extras/_form.php:28
+msgid "Maximum Quantity"
+msgstr "最大数量"
+
+#: lib/views/service_extras/_form.php:41
+msgid "Media"
+msgstr "媒体"
+
+#: lib/views/service_extras/_form.php:45
+msgid "Selection Image"
+msgstr "选择图片"
+
+#: lib/views/service_extras/_form.php:46
+msgid "This image will be used as a background image of the service extra tile on booking form"
+msgstr "此图片将用作预订表单中服务附加项卡片的背景图片"
+
+#: lib/views/service_extras/_form.php:48
+msgid "Service Extra Image"
+msgstr "服务附加项图片"
+
+#: lib/views/service_extras/_form.php:94
+msgid "Are you sure you want to remove this service extra? You can also change status to disabled if you want to temprorary disable it instead."
+msgstr "您确定要移除此服务附加项吗？如果您只是想暂时禁用它，也可以将状态更改为已禁用。"
+
+#: lib/views/service_extras/_form.php:98
+msgid "Delete Service Extra"
+msgstr "删除服务附加项"
+
+#: lib/views/taxes/index.php:15
+msgid "Add Tax"
+msgstr "添加税费"
+
+#: lib/views/taxes/_tax_form.php:7
+msgid "New Tax"
+msgstr "新税费"
+
+#: lib/views/taxes/_tax_form.php:14
+msgid "Tax Name"
+msgstr "税费名称"
+
+#: lib/views/taxes/_tax_form.php:17
+msgid "Enter Tax Name"
+msgstr "输入税费名称"
+
+#: lib/views/taxes/_tax_form.php:23
+msgid "Tax Type"
+msgstr "税费类型"
+
+#: lib/views/taxes/_tax_form.php:31
+msgid "Percentage of the booking price"
+msgstr "预订价格的百分比"
+
+#: lib/views/taxes/_tax_form.php:32
+msgid "Fixed amount"
+msgstr "固定金额"
+
+#: lib/views/taxes/_tax_form.php:38
+msgid "Enter Tax Value"
+msgstr "输入税费值"
+
+#: lib/views/taxes/_tax_form.php:45
+#: lib/views/taxes/_tax_form.php:55
+msgid "Are you sure you want to delete this tax?"
+msgstr "您确定要删除此税费吗？"
+
+#: lib/views/taxes/_tax_form.php:50
+msgid "Save Tax"
+msgstr "保存税费"
+
+#: lib/views/updates/check_version_status.php:11
+msgid "Update is Available"
+msgstr "有可用更新"
+
+#. translators: %s is version number
+#: lib/views/updates/check_version_status.php:18
+#, php-format
+msgid "LatePoint %s is available."
+msgstr "LatePoint %s 可用。"
+
+#. translators: %s is version number
+#: lib/views/updates/check_version_status.php:23
+#, php-format
+msgid "You're running version %s"
+msgstr "您正在运行版本 %s"
+
+#: lib/views/updates/check_version_status.php:40
+#: lib/views/updates/check_version_status.php:57
+msgid "View Changelog"
+msgstr "查看更新日志"
+
+#: lib/views/updates/check_version_status.php:49
+msgid "You are using the latest version"
+msgstr "您正在使用最新版本"
+
+#: lib/views/updates/check_version_status.php:52
+msgid "Installed Version: "
+msgstr "已安装版本："
+
+#: lib/views/updates/check_version_status.php:61
+msgid "Official Website"
+msgstr "官方网站"
+
+#: lib/views/updates/migrate_from_version4.php:12
+msgid "Migration from Version 4"
+msgstr "从版本 4 迁移"
+
+#: lib/views/updates/version_5_intro.php:8
+msgid "Dismiss"
+msgstr "关闭"
+
+#: lib/views/updates/version_5_intro.php:60
+msgid "Start Using Version 5"
+msgstr "开始使用版本 5"
+
+#: lib/views/updates/_license_form.php:7
+msgid "License Key Registration"
+msgstr "许可证密钥注册"
+
+#: lib/views/updates/_license_form.php:17
+msgid "Please enter your LatePoint license key to receive free plugin updates and install addons."
+msgstr "请输入您的 LatePoint 许可证密钥，以接收免费的插件更新并安装附加组件。"
+
+#: lib/views/updates/_license_form.php:21
+msgid "Your Name"
+msgstr "您的姓名"
+
+#: lib/views/updates/_license_form.php:24
+msgid "Your Email Address"
+msgstr "您的电子邮件地址"
+
+#: lib/views/updates/_license_form.php:27
+msgid "License Key"
+msgstr "许可证密钥"
+
+#: lib/views/updates/_license_form.php:31
+msgid "Activate Now"
+msgstr "立即激活"
+
+#: lib/views/webhooks/index.php:12
+msgid "Add Webhook"
+msgstr "添加 Webhook"
+
+#: lib/views/webhooks/_webhook_form.php:2
+msgid "New Booking"
+msgstr "新预订"
+
+#: lib/views/webhooks/_webhook_form.php:3
+msgid "Updated Booking"
+msgstr "已更新的预订"
+
+#: lib/views/webhooks/_webhook_form.php:4
+msgid "New Customer"
+msgstr "新客户"
+
+#: lib/views/webhooks/_webhook_form.php:5
+msgid "New Transaction"
+msgstr "新交易"
+
+#: lib/views/webhooks/_webhook_form.php:12
+msgid "New Webhook"
+msgstr "新 Webhook"
+
+#: lib/views/webhooks/_webhook_form.php:26
+msgid "Webhook URL"
+msgstr "Webhook URL"
+
+#: lib/views/webhooks/_webhook_form.php:26
+msgid "Webhook URL (https://example.com)"
+msgstr "Webhook URL (https://example.com)"
+
+#: lib/views/webhooks/_webhook_form.php:33
+msgid "Event that will trigger this hook"
+msgstr "将触发此 Hook 的事件"
+
+#: lib/views/webhooks/_webhook_form.php:39
+msgid "Hook Status"
+msgstr "Hook 状态"
+
+#: lib/views/webhooks/_webhook_form.php:50
+msgid "Are you sure you want to delete this webhook?"
+msgstr "您确定要删除此 webhook 吗？"
+
+#: lib/views/agents/_form.php:353
+msgid "Extra Info"
+msgstr "额外信息"
+
+#: lib/views/messages/conversations.php:22
+msgid "No conversations found."
+msgstr "未找到任何会话。"
+
+#: lib/views/roles/edit_wp_user.php:47
+msgid "All Connected"
+msgstr "全部已连接"
+
+#: lib/views/roles/_form.php:54
+msgid "Not connected"
+msgstr "未连接"

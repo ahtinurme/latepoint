@@ -1,0 +1,3507 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: LatePoint Addon - Pro Features\n"
+"Report-Msgid-Bugs-To: \n"
+"Last-Translator: gpt-po v1.2.4\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"POT-Creation-Date: 2026-05-28T07:41:41+00:00\n"
+"PO-Revision-Date: 2026-05-28T07:41:41+00:00\n"
+"Language: nl_NL\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#. Plugin Name of the plugin
+#: latepoint-pro-features.php
+msgid "LatePoint Addon - Pro Features"
+msgstr "LatePoint Add-on - Pro-functies"
+
+#. Plugin URI of the plugin
+#. Author URI of the plugin
+#: latepoint-pro-features.php
+msgid "https://latepoint.com/"
+msgstr "https://latepoint.com/"
+
+#. Description of the plugin
+#: latepoint-pro-features.php
+msgid "LatePoint Addon that adds a set of Pro features to a base plugin"
+msgstr "LatePoint Add-on dat een reeks Pro-functies toevoegt aan een basisplugin"
+
+#. Author of the plugin
+#: latepoint-pro-features.php
+msgid "LatePoint"
+msgstr "LatePoint"
+
+#. translators: 1: bold open tag, 2: bold close tag, 3: required version, 4: current version
+#: latepoint-pro-features.php:92
+#, php-format
+msgid "You are using an older version of the %1$sLatePoint%2$s plugin (v%4$s). Please update the %1$sLatePoint%2$s plugin to version %1$s%3$s or later%2$s."
+msgstr "U gebruikt een oudere versie van de plugin %1$sLatePoint%2$s (v%4$s). Werk de plugin %1$sLatePoint%2$s bij naar versie %1$s%3$s of later%2$s."
+
+#: latepoint-pro-features.php:98
+#: lib/helpers/addons_helper.php:126
+#: lib/views/addons/load_addons_list.php:93
+#: lib/views/addons/load_addons_list.php:109
+#: lib/views/updates/check_version_status.php:33
+msgid "Update Now"
+msgstr "Nu bijwerken"
+
+#: latepoint-pro-features.php:767
+#: lib/helpers/feature_recurring_bookings_helper.php:61
+msgid "Recurring Appointments"
+msgstr "Terugkerende afspraken"
+
+#: latepoint-pro-features.php:771
+#: lib/helpers/feature_group_bookings_helper.php:278
+msgid "Group Bookings"
+msgstr "Groepsboekingen"
+
+#: latepoint-pro-features.php:775
+#: lib/controllers/service_extras_controller.php:25
+#: lib/helpers/feature_service_extras_helper.php:7
+#: lib/helpers/feature_service_extras_helper.php:143
+#: lib/helpers/feature_service_extras_helper.php:452
+#: lib/helpers/service_extras_helper.php:86
+msgid "Service Extras"
+msgstr "Extra's voor diensten"
+
+#: latepoint-pro-features.php:779
+msgid "Restrictions for Extras"
+msgstr "Beperkingen voor extra's"
+
+#: latepoint-pro-features.php:783
+#: latepoint-pro-features.php:1239
+#: lib/controllers/assets_controller.php:20
+#: lib/helpers/feature_assets_helper.php:50
+msgid "Assets"
+msgstr "Middelen"
+
+#: latepoint-pro-features.php:790
+msgid "Allow customers reschedule their bookings"
+msgstr "Sta klanten toe hun boekingen te verzetten"
+
+#: latepoint-pro-features.php:790
+msgid "If enable, shows a button on customer cabinet to reschedule an appointment"
+msgstr "Indien ingeschakeld, toont dit een knop in het klantportaal om een afspraak te verzetten"
+
+#: latepoint-pro-features.php:793
+msgid "Set restriction on when customer can reschedule"
+msgstr "Stel een beperking in voor wanneer de klant kan verzetten"
+
+#: latepoint-pro-features.php:797
+msgid "Can reschedule when it is at least"
+msgstr "Kan verzetten wanneer het minstens"
+
+#: latepoint-pro-features.php:798
+#: lib/helpers/feature_recurring_bookings_helper.php:69
+#: lib/helpers/feature_service_extras_helper.php:498
+#: lib/helpers/feature_service_extras_helper.php:508
+#: lib/views/agents/quick_edit.php:92
+#: lib/views/agents/_form.php:82
+msgid "Value"
+msgstr "Waarde"
+
+#: latepoint-pro-features.php:803
+#: lib/helpers/feature_reminders_helper.php:15
+msgid "minutes"
+msgstr "minuten"
+
+#: latepoint-pro-features.php:804
+#: lib/helpers/feature_reminders_helper.php:16
+msgid "hours"
+msgstr "uur"
+
+#: latepoint-pro-features.php:805
+#: lib/helpers/feature_reminders_helper.php:17
+msgid "days"
+msgstr "dagen"
+
+#: latepoint-pro-features.php:809
+msgid "before appointment start time"
+msgstr "vóór de starttijd van de afspraak"
+
+#: latepoint-pro-features.php:812
+msgid "Change booking status when customer reschedules"
+msgstr "Wijzig boekingsstatus wanneer de klant verzet"
+
+#: latepoint-pro-features.php:816
+msgid "Change status to:"
+msgstr "Wijzig status naar:"
+
+#: latepoint-pro-features.php:836
+msgid "All Day"
+msgstr "Hele dag"
+
+#: latepoint-pro-features.php:837
+msgid "Specific Time"
+msgstr "Specifieke tijd"
+
+#: latepoint-pro-features.php:843
+msgid "Reason for blocking (optional)"
+msgstr "Reden voor blokkering (optioneel)"
+
+#: latepoint-pro-features.php:846
+msgid "Enter a reason..."
+msgstr "Voer een reden in..."
+
+#: latepoint-pro-features.php:866
+#, php-format
+msgid "Select resources you want to be unavailable during this time on %s"
+msgstr "Selecteer middelen die tijdens deze tijd niet beschikbaar moeten zijn op %s"
+
+#: latepoint-pro-features.php:867
+#, php-format
+msgid "Select resources you want to be unavailable on %s"
+msgstr "Selecteer middelen die niet beschikbaar moeten zijn op %s"
+
+#: latepoint-pro-features.php:876
+msgid "All Agents"
+msgstr "Alle medewerkers"
+
+#: latepoint-pro-features.php:891
+msgid "All Services"
+msgstr "Alle diensten"
+
+#: latepoint-pro-features.php:906
+msgid "All Locations"
+msgstr "Alle locaties"
+
+#: latepoint-pro-features.php:922
+#: lib/views/webhooks/_webhook_form.php:45
+msgid "Save"
+msgstr "Opslaan"
+
+#: latepoint-pro-features.php:928
+msgid "Are you sure you want to delete this blocked time period?"
+msgstr "Weet u zeker dat u deze geblokkeerde periode wilt verwijderen?"
+
+#: latepoint-pro-features.php:930
+msgid "Delete Blocked Period"
+msgstr "Geblokkeerde periode verwijderen"
+
+#: latepoint-pro-features.php:987
+msgid "Blocked Period"
+msgstr "Geblokkeerde periode"
+
+#: latepoint-pro-features.php:1056
+msgid "Enable this feature by installing an appropriate addon."
+msgstr "Schakel deze functie in door een geschikte add-on te installeren."
+
+#: latepoint-pro-features.php:1067
+msgid "Not applied to invoice"
+msgstr "Niet toegepast op factuur"
+
+#: latepoint-pro-features.php:1073
+#, php-format
+msgid "#%s"
+msgstr "#%s"
+
+#: latepoint-pro-features.php:1076
+msgid "Apply to Invoice"
+msgstr "Toepassen op factuur"
+
+#: latepoint-pro-features.php:1081
+msgid "View Receipt"
+msgstr "Ontvangstbewijs bekijken"
+
+#: latepoint-pro-features.php:1083
+msgid "View Invoice"
+msgstr "Factuur bekijken"
+
+#: latepoint-pro-features.php:1100
+#: lib/controllers/addons_controller.php:18
+msgid "Add-ons"
+msgstr "Add-ons"
+
+#: latepoint-pro-features.php:1112
+msgid "Premium Features"
+msgstr "Premiumfuncties"
+
+#: latepoint-pro-features.php:1194
+msgid "Form Fields"
+msgstr "Formuliervelden"
+
+#: latepoint-pro-features.php:1199
+msgid "Customer Fields"
+msgstr "Klantvelden"
+
+#: latepoint-pro-features.php:1204
+msgid "Booking Fields"
+msgstr "Boekingsvelden"
+
+#: latepoint-pro-features.php:1217
+#: latepoint-pro-features.php:1222
+#: lib/controllers/locations_controller.php:21
+#: lib/helpers/feature_locations_helper.php:70
+msgid "Locations"
+msgstr "Locaties"
+
+#: latepoint-pro-features.php:1227
+msgid "Categories"
+msgstr "Categorieën"
+
+#: latepoint-pro-features.php:1271
+msgid "Cart Settings"
+msgstr "Winkelwageninstellingen"
+
+#: latepoint-pro-features.php:1274
+msgid "Disable Shopping Cart Functionality"
+msgstr "Winkelwagenfunctionaliteit uitschakelen"
+
+#: latepoint-pro-features.php:1274
+msgid "This will disable ability to book multiple services in one order"
+msgstr "Hierdoor wordt de mogelijkheid uitgeschakeld om meerdere diensten in één bestelling te boeken"
+
+#: latepoint-pro-features.php:1275
+msgid "Reset Presets When Adding New Item"
+msgstr "Presets opnieuw instellen bij het toevoegen van een nieuw item"
+
+#: latepoint-pro-features.php:1275
+msgid "This will reset presets settings when adding new item"
+msgstr "Hierdoor worden de presetinstellingen opnieuw ingesteld bij het toevoegen van een nieuw item"
+
+#: latepoint-pro-features.php:1286
+msgid "Assets Settings"
+msgstr "Instellingen voor middelen"
+
+#: latepoint-pro-features.php:1289
+msgid "Enable Assets Functionality"
+msgstr "Functionaliteit voor middelen inschakelen"
+
+#: latepoint-pro-features.php:1289
+msgid "Enable to use assets for managing booking availability. When disabled, assets will not affect booking availability"
+msgstr "Inschakelen om middelen te gebruiken voor het beheren van boekingsbeschikbaarheid. Wanneer uitgeschakeld, hebben middelen geen invloed op de boekingsbeschikbaarheid"
+
+#: latepoint-pro-features.php:1490
+#: latepoint-pro-features.php:1503
+msgid "Are you sure you want to remove this file?"
+msgstr "Weet u zeker dat u dit bestand wilt verwijderen?"
+
+#: latepoint-pro-features.php:1491
+#: latepoint-pro-features.php:1504
+msgid "This file is required and cannot be removed, but you can replace it with a different file. Do you want to replace it?"
+msgstr "Dit bestand is vereist en kan niet worden verwijderd, maar u kunt het vervangen door een ander bestand. Wilt u het vervangen?"
+
+#: latepoint-pro-features.php:1609
+msgid "Activate LatePoint"
+msgstr "LatePoint activeren"
+
+#: latepoint-pro-features.php:1613
+msgid "Install LatePoint"
+msgstr "LatePoint installeren"
+
+#: latepoint-pro-features.php:1617
+#, php-format
+msgid "%1$sPRO Features for LatePoint%2$s plugin requires %1$sLatePoint%2$s core plugin installed & activated."
+msgstr "%1$sPRO-functies voor de plugin LatePoint%2$s vereisen dat de kernplugin %1$sLatePoint%2$s is geïnstalleerd en geactiveerd."
+
+#: lib/controllers/addons_controller.php:37
+msgid "Addon \"Pro Features\" has been installed"
+msgstr "Add-on \"Pro Features\" is geïnstalleerd"
+
+#: lib/controllers/addons_controller.php:42
+msgid "Invalid license key. Activate in LatePoint settings."
+msgstr "Ongeldige licentiesleutel. Activeer in de LatePoint-instellingen."
+
+#: lib/controllers/addons_controller.php:63
+msgid "You do not have permission to delete plugins."
+msgstr "U heeft geen toestemming om plugins te verwijderen."
+
+#: lib/controllers/addons_controller.php:80
+msgid "Addon deleted"
+msgstr "Add-on verwijderd"
+
+#: lib/controllers/addons_controller.php:93
+msgid "You do not have permission to manage plugins."
+msgstr "U heeft geen toestemming om plugins te beheren."
+
+#: lib/controllers/addons_controller.php:108
+msgid "Addon deactivated"
+msgstr "Addon gedeactiveerd"
+
+#: lib/controllers/addons_controller.php:126
+msgid "You do not have permission to activate plugins."
+msgstr "U heeft geen toestemming om plugins te activeren."
+
+#: lib/controllers/addons_controller.php:141
+msgid "Addon activated"
+msgstr "Addon geactiveerd"
+
+#: lib/controllers/addons_controller.php:158
+msgid "You do not have permission to install plugins."
+msgstr "U heeft geen toestemming om plugins te installeren."
+
+#: lib/controllers/addons_controller.php:185
+msgid "Addon installed successfully."
+msgstr "Addon succesvol geïnstalleerd."
+
+#: lib/controllers/agents_controller.php:23
+#: lib/views/coupons/quick_edit.php:89
+#: lib/views/locations/_form.php:221
+msgid "Agents"
+msgstr "Agenten"
+
+#: lib/controllers/agents_controller.php:35
+msgid "Index"
+msgstr "Index"
+
+#: lib/controllers/agents_controller.php:52
+#: lib/controllers/agents_controller.php:54
+#: lib/views/agents/index.php:66
+#: lib/views/agents/index.php:73
+#: lib/views/agents/quick_edit.php:14
+msgid "New Agent"
+msgstr "Nieuwe agent"
+
+#: lib/controllers/agents_controller.php:136
+#: lib/controllers/agents_controller.php:138
+#: lib/views/agents/index.php:58
+#: lib/views/agents/quick_edit.php:16
+msgid "Edit Agent"
+msgstr "Agent bewerken"
+
+#: lib/controllers/agents_controller.php:214
+msgid "Agent Created. ID:"
+msgstr "Agent aangemaakt. ID:"
+
+#: lib/controllers/agents_controller.php:222
+msgid "Agent Updated. ID:"
+msgstr "Agent bijgewerkt. ID:"
+
+#: lib/controllers/agents_controller.php:277
+msgid "Agent Removed"
+msgstr "Agent verwijderd"
+
+#: lib/controllers/agents_controller.php:280
+#: lib/controllers/agents_controller.php:284
+msgid "Error Removing Agent"
+msgstr "Fout bij het verwijderen van agent"
+
+#: lib/controllers/agents_controller.php:325
+msgid "Error Accessing Agent"
+msgstr "Fout bij toegang tot agent"
+
+#: lib/controllers/agents_controller.php:347
+#: lib/controllers/locations_controller.php:253
+msgid "Copy"
+msgstr "Kopiëren"
+
+#: lib/controllers/agents_controller.php:380
+#: lib/controllers/agents_controller.php:384
+msgid "Error Creating Agent"
+msgstr "Fout bij het aanmaken van agent"
+
+#: lib/controllers/assets_controller.php:39
+#: lib/controllers/assets_controller.php:41
+#: lib/views/assets/index.php:73
+msgid "New Asset"
+msgstr "Nieuw activum"
+
+#: lib/controllers/assets_controller.php:58
+#: lib/controllers/assets_controller.php:60
+#: lib/views/assets/index.php:66
+msgid "Edit Asset"
+msgstr "Activum bewerken"
+
+#: lib/controllers/assets_controller.php:90
+msgid "Asset Created. ID:"
+msgstr "Activum aangemaakt. ID:"
+
+#: lib/controllers/assets_controller.php:92
+msgid "Asset Updated. ID:"
+msgstr "Activum bijgewerkt. ID:"
+
+#: lib/controllers/assets_controller.php:117
+msgid "Asset Removed"
+msgstr "Activum verwijderd"
+
+#: lib/controllers/assets_controller.php:120
+#: lib/controllers/assets_controller.php:124
+msgid "Error Removing Asset"
+msgstr "Fout bij het verwijderen van activum"
+
+#: lib/controllers/bundles_controller.php:24
+#: lib/views/coupons/quick_edit.php:125
+msgid "Bundles"
+msgstr "Bundels"
+
+#: lib/controllers/bundles_controller.php:36
+#: lib/controllers/bundles_controller.php:38
+#: lib/views/bundles/index.php:37
+msgid "Edit Bundle"
+msgstr "Bundel bewerken"
+
+#: lib/controllers/bundles_controller.php:60
+#: lib/controllers/bundles_controller.php:62
+#: lib/views/bundles/index.php:47
+#: lib/views/bundles/index.php:57
+msgid "New Bundle"
+msgstr "Nieuwe bundel"
+
+#: lib/controllers/bundles_controller.php:124
+msgid "Bundle Created. ID:"
+msgstr "Bundel aangemaakt. ID:"
+
+#: lib/controllers/bundles_controller.php:132
+msgid "Bundle Updated. ID:"
+msgstr "Bundel bijgewerkt. ID:"
+
+#: lib/controllers/bundles_controller.php:171
+msgid "Bundle Removed"
+msgstr "Bundel verwijderd"
+
+#: lib/controllers/bundles_controller.php:174
+#: lib/controllers/bundles_controller.php:178
+msgid "Error Removing Bundle"
+msgstr "Fout bij het verwijderen van bundel"
+
+#: lib/controllers/coupons_controller.php:22
+#: lib/helpers/feature_coupons_helper.php:131
+#: lib/views/coupons/index.php:8
+msgid "Coupons"
+msgstr "Coupons"
+
+#: lib/controllers/coupons_controller.php:73
+#: lib/views/coupons/index.php:24
+#: lib/views/coupons/index.php:32
+#: lib/views/coupons/index.php:54
+msgid "ID"
+msgstr "ID"
+
+#: lib/controllers/coupons_controller.php:74
+#: lib/models/asset_model.php:22
+#: lib/models/service_extra_model.php:20
+#: lib/views/coupons/index.php:25
+#: lib/views/coupons/index.php:55
+#: lib/views/roles/_form.php:21
+msgid "Name"
+msgstr "Naam"
+
+#: lib/controllers/coupons_controller.php:75
+#: lib/views/coupons/index.php:26
+#: lib/views/coupons/index.php:56
+#: lib/views/coupons/quick_edit.php:51
+msgid "Code"
+msgstr "Code"
+
+#: lib/controllers/coupons_controller.php:76
+#: lib/views/coupons/index.php:27
+#: lib/views/coupons/index.php:57
+msgid "Discount"
+msgstr "Korting"
+
+#: lib/controllers/coupons_controller.php:77
+#: lib/views/agents/quick_edit.php:57
+#: lib/views/agents/_form.php:41
+#: lib/views/assets/_form.php:35
+#: lib/views/bundles/_form.php:30
+#: lib/views/coupons/index.php:28
+#: lib/views/coupons/index.php:58
+#: lib/views/coupons/quick_edit.php:62
+#: lib/views/locations/_form.php:18
+#: lib/views/service_extras/_form.php:31
+msgid "Status"
+msgstr "Status"
+
+#: lib/controllers/coupons_controller.php:78
+#: lib/views/coupons/index.php:29
+#: lib/views/coupons/index.php:59
+msgid "Created On"
+msgstr "Aangemaakt op"
+
+#: lib/controllers/coupons_controller.php:169
+msgid "Coupon Code was removed from your cart"
+msgstr "Couponcode is uit uw winkelwagen verwijderd"
+
+#: lib/controllers/coupons_controller.php:181
+msgid "Coupon Code was applied to your cart"
+msgstr "Couponcode is toegepast op uw winkelwagen"
+
+#: lib/controllers/coupons_controller.php:202
+msgid "Coupon Removed"
+msgstr "Coupon verwijderd"
+
+#: lib/controllers/coupons_controller.php:205
+#: lib/controllers/coupons_controller.php:209
+msgid "Error Removing Coupon"
+msgstr "Fout bij het verwijderen van coupon"
+
+#: lib/controllers/coupons_controller.php:299
+#, php-format
+msgid "Coupon Updated ID: %s"
+msgstr "Coupon bijgewerkt ID: %s"
+
+#: lib/controllers/coupons_controller.php:299
+#, php-format
+msgid "Coupon Created ID: %s"
+msgstr "Coupon aangemaakt ID: %s"
+
+#: lib/controllers/custom_fields_controller.php:27
+#: lib/controllers/custom_fields_controller.php:291
+#: lib/helpers/feature_custom_fields_helper.php:402
+#: lib/helpers/feature_custom_fields_helper.php:671
+#: lib/views/custom_fields/for_customer.php:3
+msgid "Custom Fields"
+msgstr "Aangepaste velden"
+
+#: lib/controllers/custom_fields_controller.php:99
+#: lib/controllers/custom_fields_controller.php:126
+msgid "Field Removed"
+msgstr "Veld verwijderd"
+
+#: lib/controllers/custom_fields_controller.php:102
+#: lib/controllers/custom_fields_controller.php:129
+#: lib/controllers/whatsapp_controller.php:28
+#: lib/controllers/whatsapp_controller.php:58
+msgid "Invalid Data"
+msgstr "Ongeldige gegevens"
+
+#: lib/controllers/custom_fields_controller.php:106
+#: lib/controllers/custom_fields_controller.php:133
+msgid "Not Authorized"
+msgstr "Niet geautoriseerd"
+
+#: lib/controllers/custom_fields_controller.php:153
+msgid "Custom Field Removed"
+msgstr "Aangepast veld verwijderd"
+
+#: lib/controllers/custom_fields_controller.php:156
+msgid "Error Removing Custom Field"
+msgstr "Fout bij het verwijderen van aangepast veld"
+
+#: lib/controllers/custom_fields_controller.php:160
+msgid "Invalid Field ID"
+msgstr "Ongeldige veld-ID"
+
+#: lib/controllers/custom_fields_controller.php:202
+#: lib/controllers/custom_fields_controller.php:237
+#: lib/controllers/roles_controller.php:159
+#: lib/controllers/taxes_controller.php:67
+#: lib/controllers/webhooks_controller.php:75
+msgid "Invalid params"
+msgstr "Ongeldige parameters"
+
+#: lib/controllers/custom_fields_controller.php:228
+msgid "Custom Field Saved"
+msgstr "Aangepast veld opgeslagen"
+
+#: lib/controllers/custom_fields_controller.php:231
+msgid "Error Saving Custom Field"
+msgstr "Fout bij het opslaan van aangepast veld"
+
+#: lib/controllers/custom_fields_controller.php:264
+#: lib/controllers/taxes_controller.php:91
+msgid "Order Updated"
+msgstr "Volgorde bijgewerkt"
+
+#: lib/controllers/custom_fields_controller.php:267
+msgid "Error Updating Order of Custom Fields"
+msgstr "Fout bij het bijwerken van de volgorde van aangepaste velden"
+
+#: lib/controllers/debug_controller.php:17
+msgid "LatePoint Status"
+msgstr "LatePoint-status"
+
+#: lib/controllers/debug_controller.php:28
+#: lib/controllers/debug_controller.php:42
+msgid "DB Version was reset"
+msgstr "DB-versie is gereset"
+
+#: lib/controllers/locations_controller.php:35
+#: lib/controllers/locations_controller.php:37
+#: lib/views/locations/_location_index_item.php:35
+msgid "Edit Location"
+msgstr "Locatie bewerken"
+
+#: lib/controllers/locations_controller.php:75
+#: lib/controllers/locations_controller.php:77
+#: lib/controllers/location_categories_controller.php:42
+#: lib/controllers/location_categories_controller.php:44
+msgid "Create New Location"
+msgstr "Nieuwe locatie aanmaken"
+
+#: lib/controllers/locations_controller.php:171
+msgid "Location Created. ID:"
+msgstr "Locatie aangemaakt. ID:"
+
+#: lib/controllers/locations_controller.php:179
+msgid "Location Updated. ID:"
+msgstr "Locatie bijgewerkt. ID:"
+
+#: lib/controllers/locations_controller.php:221
+msgid "Location Removed"
+msgstr "Locatie verwijderd"
+
+#: lib/controllers/locations_controller.php:224
+#: lib/controllers/locations_controller.php:228
+msgid "Error Removing Location"
+msgstr "Fout bij het verwijderen van locatie"
+
+#: lib/controllers/locations_controller.php:285
+#: lib/controllers/locations_controller.php:289
+msgid "Error Creating Location"
+msgstr "Fout bij het aanmaken van locatie"
+
+#: lib/controllers/location_categories_controller.php:21
+msgid "Location Categories"
+msgstr "Locatiecategorieën"
+
+#: lib/controllers/location_categories_controller.php:75
+msgid "Not categorized"
+msgstr "Niet gecategoriseerd"
+
+#: lib/controllers/location_categories_controller.php:121
+msgid "Location Category Removed"
+msgstr "Locatiecategorie verwijderd"
+
+#: lib/controllers/location_categories_controller.php:124
+msgid "Error Removing Location Category. Error: FJI8321"
+msgstr "Fout bij het verwijderen van locatiecategorie. Fout: FJI8321"
+
+#: lib/controllers/location_categories_controller.php:128
+msgid "Error Removing Location Category. Error: SIF2348"
+msgstr "Fout bij het verwijderen van locatiecategorie. Fout: SIF2348"
+
+#: lib/controllers/location_categories_controller.php:149
+msgid "Location Order Updated"
+msgstr "Locatievolgorde bijgewerkt"
+
+#: lib/controllers/location_categories_controller.php:163
+msgid "Location Categories Order Updated"
+msgstr "Volgorde van locatiecategorieën bijgewerkt"
+
+#: lib/controllers/location_categories_controller.php:192
+msgid "Location Category Created."
+msgstr "Locatiecategorie aangemaakt."
+
+#: lib/controllers/location_categories_controller.php:219
+msgid "Location Category Updated. ID: "
+msgstr "Locatiecategorie bijgewerkt. ID:"
+
+#: lib/controllers/location_categories_controller.php:227
+msgid "Error Updating Location (Invalid ID)"
+msgstr "Fout bij het bijwerken van locatie (ongeldige ID)"
+
+#: lib/controllers/messages_controller.php:25
+#: lib/controllers/messages_controller.php:27
+#: lib/helpers/feature_messages_helper.php:17
+#: lib/helpers/feature_messages_helper.php:89
+msgid "Messages"
+msgstr "Berichten"
+
+#: lib/controllers/messages_controller.php:241
+msgid "Success"
+msgstr "Succes"
+
+#: lib/controllers/messages_controller.php:244
+#: lib/controllers/messages_controller.php:248
+msgid "Error sending message. Try again later."
+msgstr "Fout bij het verzenden van bericht. Probeer het later opnieuw."
+
+#: lib/controllers/reminders_controller.php:23
+#: lib/controllers/reminders_controller.php:25
+msgid "Reminders"
+msgstr "Herinneringen"
+
+#: lib/controllers/roles_controller.php:21
+msgid "Roles"
+msgstr "Rollen"
+
+#: lib/controllers/roles_controller.php:30
+#: lib/controllers/roles_controller.php:194
+msgid "You do not have permission to edit users."
+msgstr "U heeft geen toestemming om gebruikers te bewerken."
+
+#: lib/controllers/roles_controller.php:36
+msgid "Invalid User ID"
+msgstr "Ongeldige gebruikers-ID"
+
+#: lib/controllers/roles_controller.php:79
+msgid "User Roles Updated"
+msgstr "Gebruikersrollen bijgewerkt"
+
+#: lib/controllers/roles_controller.php:95
+#: lib/controllers/roles_controller.php:130
+msgid "You do not have permission to manage roles."
+msgstr "U heeft geen toestemming om rollen te beheren."
+
+#: lib/controllers/roles_controller.php:106
+msgid "Role Removed"
+msgstr "Rol verwijderd"
+
+#: lib/controllers/roles_controller.php:109
+msgid "Error Removing Role"
+msgstr "Fout bij het verwijderen van rol"
+
+#: lib/controllers/roles_controller.php:113
+msgid "Invalid Role"
+msgstr "Ongeldige rol"
+
+#: lib/controllers/roles_controller.php:155
+msgid "Custom Role saved"
+msgstr "Aangepaste rol opgeslagen"
+
+#: lib/controllers/service_categories_controller.php:22
+#: lib/controllers/service_categories_controller.php:25
+msgid "Service Categories"
+msgstr "Servicecategorieën"
+
+#: lib/controllers/service_categories_controller.php:46
+#: lib/controllers/service_categories_controller.php:48
+msgid "Create New Service"
+msgstr "Nieuwe service aanmaken"
+
+#: lib/controllers/service_categories_controller.php:79
+#: lib/views/locations/index.php:3
+msgid "Uncategorized"
+msgstr "Niet gecategoriseerd"
+
+#: lib/controllers/service_categories_controller.php:117
+msgid "Service Category Removed"
+msgstr "Servicecategorie verwijderd"
+
+#: lib/controllers/service_categories_controller.php:120
+msgid "Error Removing Service Category. Error: FJI8321"
+msgstr "Fout bij het verwijderen van servicecategorie. Fout: FJI8321"
+
+#: lib/controllers/service_categories_controller.php:124
+msgid "Error Removing Service Category. Error: SIF2348"
+msgstr "Fout bij het verwijderen van servicecategorie. Fout: SIF2348"
+
+#: lib/controllers/service_categories_controller.php:145
+msgid "Service Order Updated"
+msgstr "Servicevolgorde bijgewerkt"
+
+#: lib/controllers/service_categories_controller.php:159
+msgid "Service Categories Order Updated"
+msgstr "Volgorde van servicecategorieën bijgewerkt"
+
+#: lib/controllers/service_categories_controller.php:188
+msgid "Service Category Created. ID: "
+msgstr "Servicecategorie aangemaakt. ID:"
+
+#: lib/controllers/service_categories_controller.php:215
+msgid "Service Category Updated. ID: "
+msgstr "Servicecategorie bijgewerkt. ID:"
+
+#: lib/controllers/service_categories_controller.php:222
+msgid "Invalid Service Category ID"
+msgstr "Ongeldige servicecategorie-ID"
+
+#: lib/controllers/service_durations_controller.php:18
+#: lib/controllers/service_durations_controller.php:20
+#: lib/helpers/feature_service_durations_helper.php:88
+msgid "Service Durations"
+msgstr "Serviceduur"
+
+#: lib/controllers/service_extras_controller.php:56
+#: lib/controllers/service_extras_controller.php:58
+msgid "Edit Service Extra"
+msgstr "Service-extra bewerken"
+
+#: lib/controllers/service_extras_controller.php:78
+#: lib/controllers/service_extras_controller.php:80
+#: lib/views/service_extras/index.php:40
+msgid "New Service Extra"
+msgstr "Nieuwe service-extra"
+
+#: lib/controllers/service_extras_controller.php:129
+msgid "Service Extra Created. ID:"
+msgstr "Service-extra aangemaakt. ID:"
+
+#: lib/controllers/service_extras_controller.php:131
+msgid "Service Extra Updated. ID:"
+msgstr "Service Extra bijgewerkt. ID:"
+
+#: lib/controllers/service_extras_controller.php:160
+msgid "Service Extra Removed"
+msgstr "Service Extra verwijderd"
+
+#: lib/controllers/service_extras_controller.php:163
+#: lib/controllers/service_extras_controller.php:167
+msgid "Error Removing Service Extra"
+msgstr "Fout bij verwijderen van Service Extra"
+
+#: lib/controllers/taxes_controller.php:20
+#: lib/views/taxes/index.php:1
+msgid "Taxes"
+msgstr "Belastingen"
+
+#: lib/controllers/taxes_controller.php:30
+msgid "Tax Removed"
+msgstr "Belasting verwijderd"
+
+#: lib/controllers/taxes_controller.php:33
+msgid "Error Removing Tax"
+msgstr "Fout bij verwijderen van belasting"
+
+#: lib/controllers/taxes_controller.php:37
+msgid "Invalid Tax ID"
+msgstr "Ongeldige belasting-ID"
+
+#: lib/controllers/taxes_controller.php:63
+msgid "Taxes saved"
+msgstr "Belastingen opgeslagen"
+
+#: lib/controllers/taxes_controller.php:94
+msgid "Error Updating Order of Taxes"
+msgstr "Fout bij bijwerken van de volgorde van belastingen"
+
+#: lib/controllers/timezone_selector_controller.php:18
+#: lib/controllers/timezone_selector_controller.php:20
+msgid "Timezone Selector"
+msgstr "Tijdzonekiezer"
+
+#: lib/controllers/timezone_selector_controller.php:38
+msgid "Timezone Updated"
+msgstr "Tijdzone bijgewerkt"
+
+#: lib/controllers/updates_controller.php:46
+msgid "License Deactivated"
+msgstr "Licentie gedeactiveerd"
+
+#: lib/controllers/webhooks_controller.php:18
+#: lib/controllers/webhooks_controller.php:20
+msgid "Webhooks"
+msgstr "Webhooks"
+
+#: lib/controllers/webhooks_controller.php:34
+msgid "Webhook Removed"
+msgstr "Webhook verwijderd"
+
+#: lib/controllers/webhooks_controller.php:37
+msgid "Error Removing Webhook"
+msgstr "Fout bij verwijderen van webhook"
+
+#: lib/controllers/webhooks_controller.php:41
+msgid "Invalid Hook ID"
+msgstr "Ongeldige hook-ID"
+
+#: lib/controllers/webhooks_controller.php:66
+msgid "Webhook Saved"
+msgstr "Webhook opgeslagen"
+
+#: lib/controllers/webhooks_controller.php:69
+msgid "Error Saving Webhook"
+msgstr "Fout bij opslaan van webhook"
+
+#: lib/controllers/whatsapp_controller.php:18
+msgid "Whatsapp"
+msgstr "Whatsapp"
+
+#: lib/controllers/whatsapp_controller.php:66
+#, php-format
+msgid "No templates found in your WhatsApp account. %s to learn how to setup WhatsApp connection and add templates."
+msgstr "Er zijn geen sjablonen gevonden in je WhatsApp-account. %s om te leren hoe je de WhatsApp-verbinding instelt en sjablonen toevoegt."
+
+#: lib/controllers/whatsapp_controller.php:93
+#, php-format
+msgid "You can use %s as values for the fields below. Make sure to read %s on how to set up your WhatsApp integration."
+msgstr "Je kunt %s gebruiken als waarden voor de onderstaande velden. Lees zeker %s over hoe je je WhatsApp-integratie instelt."
+
+#: lib/controllers/whatsapp_controller.php:93
+msgid "Smart Variables"
+msgstr "Slimme variabelen"
+
+#: lib/controllers/whatsapp_controller.php:93
+msgid "this article"
+msgstr "dit artikel"
+
+#: lib/controllers/whatsapp_controller.php:98
+msgid "To Phone Number"
+msgstr "Naar telefoonnummer"
+
+#: lib/controllers/whatsapp_controller.php:102
+#: lib/views/agents/quick_edit.php:49
+#: lib/views/agents/_form.php:36
+msgid "Phone Number"
+msgstr "Telefoonnummer"
+
+#: lib/controllers/whatsapp_controller.php:109
+msgid "Template"
+msgstr "Sjabloon"
+
+#: lib/helpers/addons_helper.php:63
+msgid "Connection Error. Please try again in a few minutes or contact us via email addons@latepoint.com. KLJSD734"
+msgstr "Verbindingsfout. Probeer het over een paar minuten opnieuw of neem contact met ons op via e-mail addons@latepoint.com. KLJSD734"
+
+#. translators: 1: bold open tag, 2: bold close tag, 3: current Pro version, 4: required Pro version
+#: lib/helpers/addons_helper.php:120
+#, php-format
+msgid "You are using an older version of the %1$sLatePoint Pro Features%2$s plugin (v%3$s). Please update the %1$sLatePoint Pro Features%2$s plugin to version %1$s%4$s or later%2$s."
+msgstr "Je gebruikt een oudere versie van de plugin %1$sLatePoint Pro Features%2$s (v%3$s). Werk de plugin %1$sLatePoint Pro Features%2$s bij naar versie %1$s%4$s of later%2$s."
+
+#: lib/helpers/addons_helper.php:170
+msgid "Unable to install addon. Invalid info (KFE73463)"
+msgstr "Addon kan niet worden geïnstalleerd. Ongeldige info (KFE73463)"
+
+#: lib/helpers/coupons_helper.php:24
+msgid "Total booking price: "
+msgstr "Totale boekingsprijs:"
+
+#: lib/helpers/coupons_helper.php:27
+msgid "Deposit Amount: "
+msgstr "Aanbetalingsbedrag:"
+
+#: lib/helpers/coupons_helper.php:33
+#: lib/helpers/feature_coupons_helper.php:203
+msgid "Have a coupon code?"
+msgstr "Heb je een couponcode?"
+
+#: lib/helpers/coupons_helper.php:35
+#: lib/helpers/feature_coupons_helper.php:205
+msgid "Enter Code..."
+msgstr "Code invoeren..."
+
+#: lib/helpers/coupons_helper.php:36
+msgid "OK"
+msgstr "OK"
+
+#: lib/helpers/coupons_helper.php:62
+msgid "Invalid coupon code."
+msgstr "Ongeldige couponcode."
+
+#: lib/helpers/coupons_helper.php:93
+#: lib/helpers/coupons_helper.php:106
+#: lib/helpers/coupons_helper.php:117
+#: lib/helpers/coupons_helper.php:154
+#: lib/helpers/coupons_helper.php:158
+#: lib/helpers/coupons_helper.php:162
+#: lib/helpers/coupons_helper.php:253
+msgid "This coupon code is invalid or has expired"
+msgstr "Deze couponcode is ongeldig of verlopen"
+
+#. translators: %s: formatted minimum order subtotal
+#: lib/helpers/coupons_helper.php:173
+#, php-format
+msgid "This coupon requires a minimum order total of %s"
+msgstr "Voor deze coupon is een minimale bestelwaarde van %s vereist"
+
+#: lib/helpers/coupons_helper.php:188
+#, php-format
+msgid "This coupon can only be used %d times"
+msgstr "Deze coupon kan slechts %d keer worden gebruikt"
+
+#: lib/helpers/coupons_helper.php:195
+#: lib/helpers/coupons_helper.php:217
+#: lib/helpers/coupons_helper.php:234
+msgid "Customer is missing"
+msgstr "Klant ontbreekt"
+
+#: lib/helpers/coupons_helper.php:209
+msgid "This coupon can only be used once per customer."
+msgid_plural "This coupon is limited to %d uses per customer"
+msgstr[0] "Deze coupon kan slechts één keer per klant worden gebruikt."
+msgstr[1] ""
+
+#: lib/helpers/coupons_helper.php:226
+#, php-format
+msgid "You need to have at least %d orders to use this coupon"
+msgstr "Je moet minstens %d bestellingen hebben om deze coupon te gebruiken"
+
+#: lib/helpers/coupons_helper.php:244
+msgid "This coupon can only be applied on your first order"
+msgstr "Deze coupon kan alleen worden toegepast op je eerste bestelling"
+
+#: lib/helpers/coupons_helper.php:246
+#, php-format
+msgid "This coupon can only be applied on your first %d orders"
+msgstr "Deze coupon kan alleen worden toegepast op je eerste %d bestellingen"
+
+#: lib/helpers/coupons_helper.php:265
+#: lib/views/addons/load_addons_list.php:100
+#: lib/views/agents/quick_edit.php:57
+#: lib/views/agents/_form.php:41
+#: lib/views/assets/_form.php:37
+#: lib/views/bundles/_form.php:30
+#: lib/views/locations/_form.php:18
+#: lib/views/service_extras/_form.php:31
+#: lib/views/webhooks/_webhook_form.php:40
+msgid "Active"
+msgstr "Actief"
+
+#: lib/helpers/coupons_helper.php:266
+#: lib/views/agents/quick_edit.php:58
+#: lib/views/agents/_form.php:42
+#: lib/views/agents/_form.php:136
+#: lib/views/assets/_form.php:38
+#: lib/views/bundles/_form.php:30
+#: lib/views/locations/_form.php:19
+#: lib/views/service_extras/_form.php:31
+#: lib/views/webhooks/_webhook_form.php:41
+msgid "Disabled"
+msgstr "Uitgeschakeld"
+
+#: lib/helpers/coupons_helper.php:302
+msgid "Undefined Status"
+msgstr "Ongedefinieerde status"
+
+#: lib/helpers/coupons_helper.php:309
+#: lib/helpers/coupons_helper.php:330
+#: lib/helpers/coupons_helper.php:337
+#: lib/helpers/feature_timezone_helper.php:14
+#: lib/views/coupons/quick_edit.php:41
+msgid "n/a"
+msgstr "n.v.t."
+
+#: lib/helpers/custom_fields_helper.php:37
+msgid "Text Field"
+msgstr "Tekstveld"
+
+#: lib/helpers/custom_fields_helper.php:38
+msgid "Phone Number Field"
+msgstr "Telefoonnummer-veld"
+
+#: lib/helpers/custom_fields_helper.php:39
+msgid "Number Field"
+msgstr "Getalveld"
+
+#: lib/helpers/custom_fields_helper.php:40
+msgid "Hidden Field"
+msgstr "Verborgen veld"
+
+#: lib/helpers/custom_fields_helper.php:41
+msgid "Select Box"
+msgstr "Keuzelijst"
+
+#: lib/helpers/custom_fields_helper.php:42
+msgid "Multiple Selectable Options"
+msgstr "Meerdere selecteerbare opties"
+
+#: lib/helpers/custom_fields_helper.php:43
+msgid "Text Area Field"
+msgstr "Tekstvakveld"
+
+#: lib/helpers/custom_fields_helper.php:44
+msgid "Checkbox"
+msgstr "Selectievakje"
+
+#: lib/helpers/custom_fields_helper.php:45
+msgid "Google Address Autocomplete"
+msgstr "Google-adres automatisch aanvullen"
+
+#: lib/helpers/custom_fields_helper.php:46
+msgid "File Upload"
+msgstr "Bestand uploaden"
+
+#: lib/helpers/custom_fields_helper.php:79
+msgid "Enter Field Default Value"
+msgstr "Standaardwaarde van veld invoeren"
+
+#: lib/helpers/custom_fields_helper.php:120
+msgid "No Restrictions"
+msgstr "Geen beperkingen"
+
+#: lib/helpers/custom_fields_helper.php:360
+msgid "Field Label cannot be empty"
+msgstr "Veldlabel mag niet leeg zijn"
+
+#: lib/helpers/custom_fields_helper.php:363
+msgid "Type cannot be empty"
+msgstr "Type mag niet leeg zijn"
+
+#: lib/helpers/custom_fields_helper.php:367
+msgid "Options for select box cannot be blank"
+msgstr "Opties voor keuzelijst mogen niet leeg zijn"
+
+#: lib/helpers/custom_fields_helper.php:388
+#, php-format
+msgid "%s field must be checked"
+msgstr "%s-veld moet aangevinkt zijn"
+
+#: lib/helpers/custom_fields_helper.php:399
+#, php-format
+msgid "%s must be attached"
+msgstr "%s moet worden bijgevoegd"
+
+#: lib/helpers/custom_fields_helper.php:412
+#, php-format
+msgid "%s file type is not supported."
+msgstr "Bestandstype %s wordt niet ondersteund."
+
+#: lib/helpers/custom_fields_helper.php:424
+#, php-format
+msgid "%s cannot be blank"
+msgstr "%s mag niet leeg zijn"
+
+#: lib/helpers/custom_fields_helper.php:465
+#: lib/helpers/feature_recurring_bookings_helper.php:31
+msgid "Yes"
+msgstr "Ja"
+
+#: lib/helpers/custom_fields_helper.php:465
+#: lib/helpers/feature_recurring_bookings_helper.php:32
+msgid "No"
+msgstr "Nee"
+
+#: lib/helpers/custom_fields_helper.php:483
+#: lib/views/bundles/index.php:20
+#: lib/views/messages/messages_with_info_for_booking.php:76
+msgid "Service"
+msgstr "Service"
+
+#: lib/helpers/custom_fields_helper.php:484
+#: lib/views/messages/messages_with_info_for_booking.php:74
+msgid "Agent"
+msgstr "Medewerker"
+
+#: lib/helpers/custom_fields_helper.php:513
+msgid "is equal to"
+msgstr "is gelijk aan"
+
+#: lib/helpers/custom_fields_helper.php:514
+msgid "is not equal to"
+msgstr "is niet gelijk aan"
+
+#: lib/helpers/custom_fields_helper.php:527
+msgid "AND"
+msgstr "EN"
+
+#: lib/helpers/feature_assets_helper.php:52
+#: lib/helpers/feature_service_extras_helper.php:454
+#: lib/views/agents/quick_edit.php:102
+#: lib/views/agents/_form.php:96
+#: lib/views/assets/_form.php:54
+#: lib/views/assets/_form.php:87
+#: lib/views/locations/_form.php:44
+#: lib/views/service_extras/_form.php:58
+msgid "Select All"
+msgstr "Alles selecteren"
+
+#: lib/helpers/feature_assets_helper.php:68
+#, php-format
+msgid "Qty: %d"
+msgstr "Aantal: %d"
+
+#: lib/helpers/feature_assets_helper.php:76
+msgid "You have not created any assets yet."
+msgstr "Je hebt nog geen assets aangemaakt."
+
+#: lib/helpers/feature_cloudflare_turnstile_helper.php:37
+#: lib/helpers/feature_cloudflare_turnstile_helper.php:43
+#: lib/helpers/feature_cloudflare_turnstile_helper.php:65
+#: lib/helpers/feature_cloudflare_turnstile_helper.php:71
+#: lib/helpers/feature_cloudflare_turnstile_helper.php:79
+#: lib/helpers/feature_cloudflare_turnstile_helper.php:85
+#: lib/helpers/feature_cloudflare_turnstile_helper.php:91
+msgid "Verification Error."
+msgstr "Verificatiefout."
+
+#: lib/helpers/feature_cloudflare_turnstile_helper.php:42
+msgid "Invalid secret key for cloudflare."
+msgstr "Ongeldige geheime sleutel voor Cloudflare."
+
+#: lib/helpers/feature_cloudflare_turnstile_helper.php:78
+msgid "Turnstile: Invalid JSON response from API"
+msgstr "Turnstile: Ongeldig JSON-antwoord van API"
+
+#: lib/helpers/feature_cloudflare_turnstile_helper.php:112
+msgid "Verifying that you are not a robot..."
+msgstr "Controleren of je geen robot bent..."
+
+#: lib/helpers/feature_cloudflare_turnstile_helper.php:133
+msgid "Cloudflare Turnstile will not work as required keys are empty. Please provide both Site Key and Secret Key."
+msgstr "Cloudflare Turnstile werkt niet omdat de vereiste sleutels leeg zijn. Geef zowel de Site Key als de Secret Key op."
+
+#: lib/helpers/feature_cloudflare_turnstile_helper.php:142
+msgid "Log Customer IP Address for Orders"
+msgstr "Log het IP-adres van de klant voor bestellingen"
+
+#: lib/helpers/feature_cloudflare_turnstile_helper.php:142
+msgid "If enabled, will save IP Address of a customer and you can view it under order log"
+msgstr "Indien ingeschakeld, wordt het IP-adres van een klant opgeslagen en kunt u dit bekijken in het besteloverzicht"
+
+#: lib/helpers/feature_cloudflare_turnstile_helper.php:143
+msgid "Enable Cloudflare Turnstile CAPTCHA"
+msgstr "Cloudflare Turnstile CAPTCHA inschakelen"
+
+#: lib/helpers/feature_cloudflare_turnstile_helper.php:143
+msgid "Enable Captcha alternative from Cloudflare called Turnstile."
+msgstr "Schakel het CAPTCHA-alternatief van Cloudflare genaamd Turnstile in."
+
+#: lib/helpers/feature_cloudflare_turnstile_helper.php:145
+msgid "Turnstile Site Key"
+msgstr "Turnstile-site-sleutel"
+
+#: lib/helpers/feature_cloudflare_turnstile_helper.php:146
+msgid "Turnstile Secret Key"
+msgstr "Turnstile-geheime sleutel"
+
+#: lib/helpers/feature_coupons_helper.php:10
+msgid "Coupon Code:"
+msgstr "Couponcode:"
+
+#: lib/helpers/feature_coupons_helper.php:11
+msgid "Coupon Discount:"
+msgstr "Couponkorting:"
+
+#: lib/helpers/feature_coupons_helper.php:181
+msgid "Coupon Settings"
+msgstr "Couponinstellingen"
+
+#: lib/helpers/feature_coupons_helper.php:183
+msgid "Hide coupon field"
+msgstr "Couponveld verbergen"
+
+#: lib/helpers/feature_coupons_helper.php:183
+msgid "Hides field to enter coupons"
+msgstr "Verbergt het veld om coupons in te voeren"
+
+#: lib/helpers/feature_coupons_helper.php:206
+msgid "Apply"
+msgstr "Toepassen"
+
+#: lib/helpers/feature_coupons_helper.php:207
+#: lib/views/agents/modal_list.php:14
+#: lib/views/location_categories/_form.php:22
+#: lib/views/service_categories/_form.php:22
+msgid "Cancel"
+msgstr "Annuleren"
+
+#: lib/helpers/feature_coupons_helper.php:210
+msgid "Applied Coupon:"
+msgstr "Toegepaste coupon:"
+
+#: lib/helpers/feature_coupons_helper.php:240
+msgid "Use Coupon"
+msgstr "Coupon gebruiken"
+
+#: lib/helpers/feature_coupons_helper.php:249
+#: lib/helpers/feature_coupons_helper.php:289
+#: lib/helpers/feature_coupons_helper.php:297
+#: lib/models/coupon_model.php:20
+msgid "Coupon Code"
+msgstr "Couponcode"
+
+#: lib/helpers/feature_coupons_helper.php:253
+msgid "apply"
+msgstr "toepassen"
+
+#: lib/helpers/feature_coupons_helper.php:268
+msgid "Coupon"
+msgstr "Coupon"
+
+#: lib/helpers/feature_coupons_helper.php:290
+#: lib/helpers/feature_coupons_helper.php:298
+msgid "Coupon Discount"
+msgstr "Couponkorting"
+
+#: lib/helpers/feature_custom_fields_helper.php:135
+#: lib/helpers/feature_custom_fields_helper.php:143
+msgid "Customer/"
+msgstr "Klant/"
+
+#: lib/helpers/feature_custom_fields_helper.php:138
+msgid "Booking/"
+msgstr "Boeking/"
+
+#: lib/helpers/feature_custom_fields_helper.php:154
+msgid "Google Places API"
+msgstr "Google Places API"
+
+#: lib/helpers/feature_custom_fields_helper.php:157
+msgid "In order for address autocomplete to work, you need an API key. To learn how to create an API key for Google Places API"
+msgstr "Om automatisch aanvullen van adressen te laten werken, hebt u een API-sleutel nodig. Om te leren hoe u een API-sleutel voor Google Places API maakt"
+
+#: lib/helpers/feature_custom_fields_helper.php:157
+msgid "click here"
+msgstr "klik hier"
+
+#: lib/helpers/feature_custom_fields_helper.php:159
+msgid "Google Places API key"
+msgstr "Google Places API-sleutel"
+
+#: lib/helpers/feature_custom_fields_helper.php:160
+msgid "Country Restriction"
+msgstr "Landbeperking"
+
+#: lib/helpers/feature_custom_fields_helper.php:675
+msgid "For Customer:"
+msgstr "Voor klant:"
+
+#: lib/helpers/feature_custom_fields_helper.php:681
+msgid "For Booking:"
+msgstr "Voor boeking:"
+
+#: lib/helpers/feature_custom_fields_helper.php:746
+msgid "You have not created any custom fields for booking, this step will be skipped"
+msgstr "U hebt nog geen aangepaste velden voor boekingen gemaakt, deze stap wordt overgeslagen"
+
+#: lib/helpers/feature_custom_fields_helper.php:774
+msgid "Custom Fields for Booking"
+msgstr "Aangepaste velden voor boeking"
+
+#: lib/helpers/feature_group_bookings_helper.php:69
+#: lib/helpers/feature_group_bookings_helper.php:226
+#: lib/helpers/feature_group_bookings_helper.php:264
+#: lib/helpers/feature_group_bookings_helper.php:352
+#: lib/helpers/feature_group_bookings_helper.php:366
+msgid "Total Attendees"
+msgstr "Totaal aantal deelnemers"
+
+#: lib/helpers/feature_group_bookings_helper.php:138
+msgid "Capacity:"
+msgstr "Capaciteit:"
+
+#: lib/helpers/feature_group_bookings_helper.php:140
+msgid "person"
+msgstr "persoon"
+
+#: lib/helpers/feature_group_bookings_helper.php:149
+msgid "Multiply cost of this service extra by number of attendees"
+msgstr "Vermenigvuldig de extra kosten van deze service met het aantal deelnemers"
+
+#: lib/helpers/feature_group_bookings_helper.php:233
+#: lib/views/bundles/_form.php:105
+msgid "Attendees"
+msgstr "Deelnemers"
+
+#: lib/helpers/feature_group_bookings_helper.php:234
+#, php-format
+msgid "%s person"
+msgid_plural "%s people"
+msgstr[0] "%s persoon"
+msgstr[1] ""
+
+#: lib/helpers/feature_group_bookings_helper.php:267
+msgid "Max Capacity:"
+msgstr "Maximale capaciteit:"
+
+#: lib/helpers/feature_group_bookings_helper.php:284
+msgid "Capacity"
+msgstr "Capaciteit"
+
+#: lib/helpers/feature_group_bookings_helper.php:289
+#: lib/views/coupons/quick_edit.php:166
+msgid "Minimum"
+msgstr "Minimum"
+
+#: lib/helpers/feature_group_bookings_helper.php:292
+#: lib/views/coupons/quick_edit.php:169
+msgid "Maximum"
+msgstr "Maximum"
+
+#: lib/helpers/feature_group_bookings_helper.php:299
+msgid "Pricing"
+msgstr "Prijzen"
+
+#: lib/helpers/feature_group_bookings_helper.php:302
+msgid "Do not multiply charge amount by the number of attendees"
+msgstr "Vermenigvuldig het bedrag van de kosten niet met het aantal deelnemers"
+
+#: lib/helpers/feature_group_bookings_helper.php:303
+msgid "Do not multiply deposit amount by the number of attendees"
+msgstr "Vermenigvuldig het bedrag van de aanbetaling niet met het aantal deelnemers"
+
+#: lib/helpers/feature_group_bookings_helper.php:308
+msgid "Other"
+msgstr "Overig"
+
+#: lib/helpers/feature_group_bookings_helper.php:311
+msgid "Do not ask customers to select number of attendees"
+msgstr "Vraag klanten niet om het aantal deelnemers te selecteren"
+
+#: lib/helpers/feature_group_bookings_helper.php:312
+msgid "Block timeslot if minimum capacity is reached"
+msgstr "Blokkeer het tijdslot als de minimale capaciteit is bereikt"
+
+#: lib/helpers/feature_group_bookings_helper.php:318
+msgid "Meeting Link"
+msgstr "Vergaderlink"
+
+#: lib/helpers/feature_group_bookings_helper.php:326
+msgid "Meeting Link Mode for Group Bookings"
+msgstr "Modus voor vergaderlink bij groepsboekingen"
+
+#: lib/helpers/feature_group_bookings_helper.php:330
+msgid "Separate - Each booking gets its own meeting link"
+msgstr "Apart - Elke boeking krijgt zijn eigen vergaderlink"
+
+#: lib/helpers/feature_group_bookings_helper.php:334
+msgid "Shared - All attendees in the same time slot get the same meeting link"
+msgstr "Gedeeld - Alle deelnemers in hetzelfde tijdslot krijgen dezelfde vergaderlink"
+
+#: lib/helpers/feature_locations_helper.php:131
+#: lib/helpers/feature_locations_helper.php:135
+#: lib/helpers/feature_locations_helper.php:176
+#: lib/helpers/feature_locations_helper.php:187
+#: lib/views/messages/messages_with_info_for_booking.php:70
+msgid "Location"
+msgstr "Locatie"
+
+#: lib/helpers/feature_locations_helper.php:134
+msgid "Previous Location"
+msgstr "Vorige locatie"
+
+#: lib/helpers/feature_locations_helper.php:195
+msgid "Show location categories"
+msgstr "Locatiecategorieën tonen"
+
+#: lib/helpers/feature_locations_helper.php:195
+msgid "If turned on, locations will be displayed in categories"
+msgstr "Indien ingeschakeld, worden locaties weergegeven in categorieën"
+
+#: lib/helpers/feature_messages_helper.php:8
+msgid "Message Content:"
+msgstr "Berichtinhoud:"
+
+#: lib/helpers/feature_messages_helper.php:42
+#, php-format
+msgid "Read %d Message"
+msgid_plural "Read %d Messages"
+msgstr[0] "Lees %d bericht"
+msgstr[1] ""
+
+#: lib/helpers/feature_messages_helper.php:47
+msgid "Start Chatting"
+msgstr "Begin met chatten"
+
+#: lib/helpers/feature_messages_helper.php:58
+msgid "Chat Notifications"
+msgstr "Chatmeldingen"
+
+#: lib/helpers/feature_messages_helper.php:62
+msgid "Settings"
+msgstr "Instellingen"
+
+#: lib/helpers/feature_messages_helper.php:65
+msgid "Notify customers about new messages"
+msgstr "Breng klanten op de hoogte van nieuwe berichten"
+
+#: lib/helpers/feature_messages_helper.php:67
+#: lib/helpers/feature_messages_helper.php:72
+msgid "Email Subject"
+msgstr "E-mailonderwerp"
+
+#: lib/helpers/feature_messages_helper.php:68
+#: lib/helpers/feature_messages_helper.php:73
+msgid "Email Message"
+msgstr "E-mailbericht"
+
+#: lib/helpers/feature_messages_helper.php:70
+msgid "Notify agents about new messages"
+msgstr "Breng agenten op de hoogte van nieuwe berichten"
+
+#: lib/helpers/feature_messages_helper.php:103
+msgid "Your Appointments"
+msgstr "Uw afspraken"
+
+#: lib/helpers/feature_messages_helper.php:104
+msgid "Conversation"
+msgstr "Gesprek"
+
+#: lib/helpers/feature_messages_helper.php:141
+#: lib/views/messages/messages_with_info_for_booking.php:48
+#: lib/views/messages/quick_form_chat_box.php:14
+msgid "Type your message here.."
+msgstr "Typ hier uw bericht.."
+
+#: lib/helpers/feature_messages_helper.php:142
+#: lib/views/messages/messages_with_info_for_booking.php:49
+#: lib/views/messages/quick_form_chat_box.php:15
+msgid "Send"
+msgstr "Verzenden"
+
+#: lib/helpers/feature_messages_helper.php:148
+msgid "You don't have any appointments to send messages."
+msgstr "U hebt geen afspraken om berichten te verzenden."
+
+#: lib/helpers/feature_no_show_restrictions_helper.php:50
+msgid "Your account has been restricted from booking due to repeated missed appointments. Please contact us for assistance."
+msgstr "Uw account is beperkt van boeken vanwege herhaaldelijk gemiste afspraken. Neem contact met ons op voor hulp."
+
+#. translators: %d: number of no-show appointments
+#: lib/helpers/feature_no_show_restrictions_helper.php:228
+#, php-format
+msgid "%d No-Show Appointment."
+msgid_plural "%d No-Show Appointments."
+msgstr[0] "%d afspraak niet nagekomen."
+msgstr[1] ""
+
+#: lib/helpers/feature_no_show_restrictions_helper.php:233
+msgid "This customer has exceeded the no-show threshold and is restricted from booking."
+msgstr "Deze klant heeft de drempel voor niet-nakomen overschreden en mag niet meer boeken."
+
+#: lib/helpers/feature_no_show_restrictions_helper.php:249
+msgid "No-Show Restrictions"
+msgstr "Beperkingen bij niet-nakomen"
+
+#: lib/helpers/feature_no_show_restrictions_helper.php:255
+msgid "Enable No-Show Customers Restrictions"
+msgstr "Beperkingen voor klanten die afspraken niet nakomen inschakelen"
+
+#: lib/helpers/feature_no_show_restrictions_helper.php:259
+msgid "Restrict booking for customers who repeatedly miss appointments, by blocking or requiring upfront payment"
+msgstr "Beperk het boeken voor klanten die herhaaldelijk afspraken missen, door te blokkeren of vooruitbetaling te vereisen"
+
+#: lib/helpers/feature_no_show_restrictions_helper.php:269
+msgid "No-Show Threshold"
+msgstr "No-showdrempel"
+
+#: lib/helpers/feature_no_show_restrictions_helper.php:282
+msgid "Action"
+msgstr "Actie"
+
+#: lib/helpers/feature_no_show_restrictions_helper.php:284
+msgid "Block bookings entirely"
+msgstr "Boekingen volledig blokkeren"
+
+#: lib/helpers/feature_no_show_restrictions_helper.php:285
+msgid "Require upfront payment"
+msgstr "Vooraf betaling vereisen"
+
+#: lib/helpers/feature_qrcode_helper.php:16
+msgid "Point your smartphone camera at this QR code and you will be able to copy your booking confirmation code"
+msgstr "Richt de camera van uw smartphone op deze QR-code en u kunt uw boekingsbevestigingscode kopiëren"
+
+#: lib/helpers/feature_qrcode_helper.php:20
+msgid "Point your smartphone camera at this QR code and it will automatically add this appointment to your calendar"
+msgstr "Richt de camera van uw smartphone op deze QR-code en deze afspraak wordt automatisch aan uw agenda toegevoegd"
+
+#: lib/helpers/feature_qrcode_helper.php:33
+msgid "Show QR"
+msgstr "QR tonen"
+
+#: lib/helpers/feature_recurring_bookings_helper.php:28
+msgid "Make it a recurring appointment?"
+msgstr "Maak er een terugkerende afspraak van?"
+
+#: lib/helpers/feature_recurring_bookings_helper.php:29
+msgid "You will set the frequency in the next step."
+msgstr "U stelt de frequentie in de volgende stap in."
+
+#: lib/helpers/feature_recurring_bookings_helper.php:65
+msgid "Allow Recurring Appointments"
+msgstr "Terugkerende afspraken toestaan"
+
+#: lib/helpers/feature_recurring_bookings_helper.php:65
+msgid "Allows customers to book this service in a recurring schedule"
+msgstr "Hiermee kunnen klanten deze dienst boeken volgens een terugkerend schema"
+
+#: lib/helpers/feature_recurring_bookings_helper.php:68
+msgid "Allow a maximum of"
+msgstr "Sta maximaal"
+
+#: lib/helpers/feature_recurring_bookings_helper.php:70
+msgid "future appointments"
+msgstr "toekomstige afspraken toe"
+
+#: lib/helpers/feature_recurring_bookings_helper.php:73
+msgid "Allow Repeat Intervals"
+msgstr "Herhaalintervallen toestaan"
+
+#: lib/helpers/feature_recurring_bookings_helper.php:78
+#: lib/views/agents/quick_edit.php:115
+#: lib/views/agents/quick_edit.php:117
+#: lib/views/agents/quick_edit.php:122
+#: lib/views/agents/_form.php:111
+#: lib/views/agents/_form.php:113
+#: lib/views/agents/_form.php:118
+#: lib/views/locations/_form.php:59
+#: lib/views/locations/_form.php:61
+#: lib/views/locations/_form.php:67
+msgid "All"
+msgstr "Alle"
+
+#: lib/helpers/feature_recurring_bookings_helper.php:79
+msgid "Daily"
+msgstr "Dagelijks"
+
+#: lib/helpers/feature_recurring_bookings_helper.php:80
+msgid "Weekly"
+msgstr "Wekelijks"
+
+#: lib/helpers/feature_recurring_bookings_helper.php:81
+msgid "Monthly"
+msgstr "Maandelijks"
+
+#: lib/helpers/feature_recurring_bookings_helper.php:196
+msgid "Recurring Appointment"
+msgstr "Terugkerende afspraak"
+
+#: lib/helpers/feature_recurring_bookings_helper.php:242
+#, php-format
+msgid "Found %s Available Slots"
+msgstr "Er zijn %s beschikbare slots gevonden"
+
+#: lib/helpers/feature_recurring_bookings_helper.php:242
+msgid "Review"
+msgstr "Beoordeling"
+
+#: lib/helpers/feature_recurring_bookings_helper.php:265
+msgid "Selected"
+msgstr "Geselecteerd"
+
+#: lib/helpers/feature_recurring_bookings_helper.php:265
+#: lib/views/coupons/index.php:9
+#: lib/views/coupons/index.php:66
+msgid "of"
+msgstr "van"
+
+#: lib/helpers/feature_recurring_bookings_helper.php:338
+#, php-format
+msgid "This bundle has only %s remaining appointments to schedule."
+msgstr "Dit pakket heeft nog maar %s resterende afspraken om in te plannen."
+
+#: lib/helpers/feature_recurring_bookings_helper.php:340
+#, php-format
+msgid "You can only schedule a maximum of %s recurring bookings at once."
+msgstr "U kunt maximaal %s terugkerende boekingen tegelijk inplannen."
+
+#: lib/helpers/feature_recurring_bookings_helper.php:434
+#: lib/helpers/feature_recurring_bookings_helper.php:442
+msgid "day"
+msgstr "dag"
+
+#: lib/helpers/feature_recurring_bookings_helper.php:435
+#: lib/helpers/feature_recurring_bookings_helper.php:446
+msgid "week"
+msgstr "week"
+
+#: lib/helpers/feature_recurring_bookings_helper.php:436
+#: lib/helpers/feature_recurring_bookings_helper.php:450
+msgid "month"
+msgstr "maand"
+
+#: lib/helpers/feature_recurring_bookings_helper.php:460
+msgid "First on"
+msgstr "Eerst op"
+
+#: lib/helpers/feature_recurring_bookings_helper.php:465
+msgid "Repeats every"
+msgstr "Herhaalt elke"
+
+#: lib/helpers/feature_recurring_bookings_helper.php:489
+msgid "Ends"
+msgstr "Eindigt"
+
+#: lib/helpers/feature_recurring_bookings_helper.php:496
+msgid "After"
+msgstr "Na"
+
+#: lib/helpers/feature_recurring_bookings_helper.php:497
+msgid "On"
+msgstr "Op"
+
+#: lib/helpers/feature_recurring_bookings_helper.php:506
+msgid "occurrences"
+msgstr "voorkomens"
+
+#: lib/helpers/feature_recurring_bookings_helper.php:536
+#, php-format
+msgid "+%s Recurring Appointments:"
+msgstr "+%s terugkerende afspraken:"
+
+#: lib/helpers/feature_recurring_bookings_helper.php:552
+msgid "show all"
+msgstr "alles tonen"
+
+#: lib/helpers/feature_reminders_helper.php:9
+msgid "Actions will be executed:"
+msgstr "Acties worden uitgevoerd:"
+
+#: lib/helpers/feature_reminders_helper.php:25
+msgid "before the event"
+msgstr "vóór het evenement"
+
+#: lib/helpers/feature_reminders_helper.php:26
+msgid "after the event"
+msgstr "na het evenement"
+
+#: lib/helpers/feature_service_categories_helper.php:20
+#: lib/views/location_categories/index.php:9
+#: lib/views/messages/conversations.php:15
+#: lib/views/service_categories/index.php:9
+msgid "ID: "
+msgstr "ID:"
+
+#: lib/helpers/feature_service_categories_helper.php:21
+msgid "Services Linked"
+msgstr "Gekoppelde diensten"
+
+#: lib/helpers/feature_service_durations_helper.php:112
+msgid "Show service durations in minutes"
+msgstr "Duur van diensten in minuten tonen"
+
+#: lib/helpers/feature_service_durations_helper.php:112
+msgid "Will show duration in minutes, even when duration is longer than 60 minutes"
+msgstr "Toont de duur in minuten, zelfs wanneer de duur langer is dan 60 minuten"
+
+#: lib/helpers/feature_service_durations_helper.php:131
+msgid "Create Another Service Duration"
+msgstr "Nog een dienstduur toevoegen"
+
+#: lib/helpers/feature_service_extras_helper.php:135
+msgid "Extras"
+msgstr "Extra's"
+
+#: lib/helpers/feature_service_extras_helper.php:160
+#: lib/helpers/feature_service_extras_helper.php:175
+msgid "None"
+msgstr "Geen"
+
+#: lib/helpers/feature_service_extras_helper.php:181
+msgid "Service Extras:"
+msgstr "Dienstextra's:"
+
+#: lib/helpers/feature_service_extras_helper.php:387
+#, php-format
+msgid "Please select at least %d service extras"
+msgstr "Selecteer ten minste %d dienstextra's"
+
+#: lib/helpers/feature_service_extras_helper.php:392
+#, php-format
+msgid "You cannot select more than %d service extras"
+msgstr "U kunt niet meer dan %d dienstextra's selecteren"
+
+#: lib/helpers/feature_service_extras_helper.php:481
+msgid "You have not created any service extras yet."
+msgstr "U heeft nog geen dienstextra's aangemaakt."
+
+#: lib/helpers/feature_service_extras_helper.php:489
+msgid "Restrictions for Service Extras"
+msgstr "Beperkingen voor dienstextra's"
+
+#: lib/helpers/feature_service_extras_helper.php:493
+msgid "Require a minimum to be selected"
+msgstr "Vereis dat een minimum wordt geselecteerd"
+
+#: lib/helpers/feature_service_extras_helper.php:493
+msgid "Requires user to pick a minimum number of service extras"
+msgstr "Vereist dat de gebruiker een minimumaantal dienstextra's kiest"
+
+#: lib/helpers/feature_service_extras_helper.php:497
+msgid "At least"
+msgstr "Minstens"
+
+#: lib/helpers/feature_service_extras_helper.php:500
+msgid "service extras must be selected"
+msgstr "dienstextra's moeten worden geselecteerd"
+
+#: lib/helpers/feature_service_extras_helper.php:503
+msgid "Limit maximum number that can be selected"
+msgstr "Beperk het maximale aantal dat kan worden geselecteerd"
+
+#: lib/helpers/feature_service_extras_helper.php:503
+msgid "Limits user from picking more than a set maximum"
+msgstr "Beperkt de gebruiker om meer dan een ingesteld maximum te kiezen"
+
+#: lib/helpers/feature_service_extras_helper.php:507
+msgid "At most"
+msgstr "Maximaal"
+
+#: lib/helpers/feature_service_extras_helper.php:510
+msgid "service extras can be selected"
+msgstr "dienstextra's kunnen worden geselecteerd"
+
+#: lib/helpers/feature_timezone_helper.php:8
+#: lib/helpers/feature_timezone_helper.php:76
+msgid "Timezone:"
+msgstr "Tijdzone:"
+
+#: lib/helpers/feature_timezone_helper.php:55
+msgid "Invalid Date/Time"
+msgstr "Ongeldige datum/tijd"
+
+#: lib/helpers/feature_timezone_helper.php:68
+msgid "My Timezone:"
+msgstr "Mijn tijdzone:"
+
+#: lib/helpers/feature_timezone_helper.php:81
+msgid "Start Date (in customer timezone):"
+msgstr "Startdatum (in tijdzone van klant):"
+
+#: lib/helpers/feature_timezone_helper.php:82
+msgid "Start Time (in customer timezone):"
+msgstr "Starttijd (in tijdzone van klant):"
+
+#: lib/helpers/feature_timezone_helper.php:83
+msgid "End Time (in customer timezone)"
+msgstr "Eindtijd (in tijdzone van klant)"
+
+#: lib/helpers/feature_timezone_helper.php:312
+msgid "Customer Timezone"
+msgstr "Tijdzone van klant"
+
+#: lib/helpers/feature_timezone_helper.php:345
+msgid "Timezone Settings"
+msgstr "Tijdzone-instellingen"
+
+#: lib/helpers/feature_timezone_helper.php:348
+msgid "Enable timezone selector"
+msgstr "Tijdzonekiezer inschakelen"
+
+#: lib/helpers/feature_timezone_helper.php:348
+msgid "Will let customer change default timezone, will try to auto-detect timezone from the browser"
+msgstr "Hiermee kan de klant de standaardtijdzone wijzigen; de browser zal proberen de tijdzone automatisch te detecteren"
+
+#: lib/helpers/feature_timezone_helper.php:349
+msgid "Show timezone information"
+msgstr "Tijdzone-informatie tonen"
+
+#: lib/helpers/feature_timezone_helper.php:349
+msgid "Timezone name will appear next to appointment time"
+msgstr "De tijdzonenaam verschijnt naast de afspraaktijd"
+
+#: lib/helpers/feature_timezone_helper.php:365
+msgid "No matching timezone found"
+msgstr "Geen overeenkomende tijdzone gevonden"
+
+#: lib/helpers/feature_timezone_helper.php:365
+msgid "Type to search..."
+msgstr "Typ om te zoeken..."
+
+#: lib/helpers/feature_webhooks_helper.php:6
+msgid "Webhook Run"
+msgstr "Webhook-uitvoering"
+
+#: lib/helpers/feature_webhooks_helper.php:37
+msgid "URL:"
+msgstr "URL:"
+
+#: lib/helpers/feature_webhooks_helper.php:88
+#: lib/helpers/feature_webhooks_helper.php:92
+msgid "URL"
+msgstr "URL"
+
+#: lib/helpers/messages_helper.php:152
+#: lib/helpers/messages_helper.php:196
+msgid "File Attachment"
+msgstr "Bestandsbijlage"
+
+#: lib/helpers/messages_helper.php:206
+#: lib/helpers/messages_helper.php:211
+msgid "You have a new message"
+msgstr "U heeft een nieuw bericht"
+
+#: lib/helpers/pro_license_helper.php:15
+msgid "Please enter your license key"
+msgstr "Voer uw licentiesleutel in"
+
+#: lib/helpers/pro_license_helper.php:47
+msgid "Unable to verify license. Please try again or contact us at license@latepoint.com. Error code: UDF732S83"
+msgstr "Kan licentie niet verifiëren. Probeer het opnieuw of neem contact met ons op via license@latepoint.com. Foutcode: UDF732S83"
+
+#: lib/helpers/pro_license_helper.php:58
+msgid "Unable to verify license. Please try again or contact us at license@latepoint.com. Error code: SUYF8362"
+msgstr "Kan licentie niet verifiëren. Probeer het opnieuw of neem contact met ons op via license@latepoint.com. Foutcode: SUYF8362"
+
+#: lib/helpers/service_extras_helper.php:81
+#, php-format
+msgid "Service extras [ %s ] applied to this booking are not available for this service. Either pick a service that offers them, or clear them."
+msgstr "Service-extra's [ %s ] die op deze boeking zijn toegepast, zijn niet beschikbaar voor deze service. Kies een service die ze aanbiedt, of verwijder ze."
+
+#: lib/helpers/service_extras_helper.php:81
+msgid "Clear"
+msgstr "Wissen"
+
+#: lib/helpers/service_extras_helper.php:87
+msgid "Click here to select..."
+msgstr "Klik hier om te selecteren..."
+
+#: lib/helpers/social_helper.php:18
+msgid "Continue with Facebook"
+msgstr "Doorgaan met Facebook"
+
+#: lib/helpers/social_helper.php:26
+msgid "Continue with Google"
+msgstr "Doorgaan met Google"
+
+#: lib/helpers/social_helper.php:37
+msgid "Social Login"
+msgstr "Sociale login"
+
+#: lib/helpers/social_helper.php:40
+msgid "Enable login with Google"
+msgstr "Inloggen met Google inschakelen"
+
+#: lib/helpers/social_helper.php:40
+msgid "Display Google Login button on customer login and registration forms"
+msgstr "Google-inlogknop weergeven op klantlogin- en registratieformulieren"
+
+#: lib/helpers/social_helper.php:43
+msgid "Google Client ID"
+msgstr "Google-client-ID"
+
+#: lib/helpers/social_helper.php:44
+msgid "Google Client Secret"
+msgstr "Google-clientgeheim"
+
+#: lib/helpers/social_helper.php:46
+msgid "Enable login with Facebook"
+msgstr "Inloggen met Facebook inschakelen"
+
+#: lib/helpers/social_helper.php:46
+msgid "Display Facebook Login button on customer login and registration forms"
+msgstr "Facebook-inlogknop weergeven op klantlogin- en registratieformulieren"
+
+#: lib/helpers/social_helper.php:48
+msgid "Facebook App ID"
+msgstr "Facebook-app-ID"
+
+#: lib/helpers/social_helper.php:49
+msgid "Facebook App Secret"
+msgstr "Facebook-appgeheim"
+
+#: lib/helpers/taxes_helper.php:60
+msgid "Tax Name cannot be empty"
+msgstr "Belastingnaam mag niet leeg zijn"
+
+#: lib/helpers/taxes_helper.php:63
+msgid "Tax Type cannot be empty"
+msgstr "Belastingtype mag niet leeg zijn"
+
+#: lib/helpers/taxes_helper.php:66
+msgid "Tax Value cannot be empty"
+msgstr "Belastingwaarde mag niet leeg zijn"
+
+#: lib/helpers/updates_helper.php:19
+#, php-format
+msgid "To enable updates, you need to purchase a PRO license, install \"PRO Features\" addon and enter that key on %s page"
+msgstr "Om updates in te schakelen, moet je een PRO-licentie kopen, de add-on \"PRO Features\" installeren en die sleutel invoeren op de pagina %s"
+
+#: lib/helpers/updates_helper.php:19
+msgid "Pro Features"
+msgstr "Pro-functies"
+
+#: lib/helpers/webhooks_helper.php:26
+msgid "Webhook executed"
+msgstr "Webhook uitgevoerd"
+
+#: lib/helpers/webhooks_helper.php:73
+msgid "Webhook URL cannot be empty"
+msgstr "Webhook-URL mag niet leeg zijn"
+
+#: lib/helpers/webhooks_helper.php:76
+msgid "Webhook URL must be a valid URL"
+msgstr "Webhook-URL moet een geldige URL zijn"
+
+#: lib/helpers/webhooks_helper.php:80
+msgid "Select a trigger event for this hook"
+msgstr "Selecteer een triggergebeurtenis voor deze hook"
+
+#: lib/models/message_model.php:18
+msgid "Content"
+msgstr "Inhoud"
+
+#: lib/views/addons/index.php:7
+msgid "Loading Addons Information"
+msgstr "Add-oninformatie laden"
+
+#: lib/views/addons/load_addons_list.php:57
+msgid "Featured"
+msgstr "Uitgelicht"
+
+#: lib/views/addons/load_addons_list.php:73
+#: lib/views/addons/load_addons_list.php:79
+msgid "Latest:"
+msgstr "Nieuwste:"
+
+#: lib/views/addons/load_addons_list.php:74
+#: lib/views/addons/load_addons_list.php:76
+msgid "Installed:"
+msgstr "Geïnstalleerd:"
+
+#: lib/views/addons/load_addons_list.php:86
+msgid "Requires LatePoint"
+msgstr "Vereist LatePoint"
+
+#: lib/views/addons/load_addons_list.php:98
+msgid "Deactivate"
+msgstr "Deactiveren"
+
+#: lib/views/addons/load_addons_list.php:113
+#: lib/views/agents/_form.php:318
+#: lib/views/custom_fields/_custom_field_form.php:127
+#: lib/views/locations/_form.php:189
+#: lib/views/roles/_form.php:123
+#: lib/views/taxes/_tax_form.php:49
+msgid "Delete"
+msgstr "Verwijderen"
+
+#: lib/views/addons/load_addons_list.php:117
+msgid "Activate"
+msgstr "Activeren"
+
+#: lib/views/addons/load_addons_list.php:125
+#: lib/views/addons/load_addons_list.php:134
+msgid "Install Now"
+msgstr "Nu installeren"
+
+#: lib/views/addons/load_addons_list.php:129
+msgid "Activate License to Install"
+msgstr "Activeer licentie om te installeren"
+
+#: lib/views/addons/load_addons_list.php:143
+msgid "Try for FREE"
+msgstr "Probeer GRATIS"
+
+#: lib/views/addons/load_addons_list.php:148
+msgid "Learn More"
+msgstr "Meer informatie"
+
+#: lib/views/agents/index.php:22
+#: lib/views/agents/index.php:88
+msgid "Connected to WordPress User"
+msgstr "Verbonden met WordPress-gebruiker"
+
+#: lib/views/agents/index.php:72
+msgid "No Active Agents Found"
+msgstr "Geen actieve medewerkers gevonden"
+
+#: lib/views/agents/index.php:78
+#, php-format
+msgid "%d Disabled Agent"
+msgid_plural "%d Disabled Agents"
+msgstr[0] "%d uitgeschakelde medewerker"
+msgstr[1] ""
+
+#: lib/views/agents/mini_profile.php:7
+msgid "email:"
+msgstr "e-mail:"
+
+#: lib/views/agents/mini_profile.php:8
+msgid "phone:"
+msgstr "telefoon:"
+
+#: lib/views/agents/modal_list.php:2
+msgid "Select Agents"
+msgstr "Selecteer medewerkers"
+
+#: lib/views/agents/modal_list.php:15
+msgid "Save Agents"
+msgstr "Medewerkers opslaan"
+
+#: lib/views/agents/quick_edit.php:23
+msgid "Agent ID:"
+msgstr "Medewerker-ID:"
+
+#: lib/views/agents/quick_edit.php:24
+#: lib/views/coupons/quick_edit.php:26
+msgid "History"
+msgstr "Geschiedenis"
+
+#: lib/views/agents/quick_edit.php:31
+#: lib/views/agents/_form.php:28
+msgid "Set Avatar"
+msgstr "Avatar instellen"
+
+#: lib/views/agents/quick_edit.php:31
+#: lib/views/agents/_form.php:28
+msgid "Remove Avatar"
+msgstr "Avatar verwijderen"
+
+#: lib/views/agents/quick_edit.php:35
+#: lib/views/agents/_form.php:30
+msgid "First Name"
+msgstr "Voornaam"
+
+#: lib/views/agents/quick_edit.php:38
+#: lib/views/agents/_form.php:31
+msgid "Last Name"
+msgstr "Achternaam"
+
+#: lib/views/agents/quick_edit.php:43
+msgid "Contact Info"
+msgstr "Contactgegevens"
+
+#: lib/views/agents/quick_edit.php:46
+#: lib/views/agents/_form.php:35
+msgid "Email Address"
+msgstr "E-mailadres"
+
+#: lib/views/agents/quick_edit.php:52
+#: lib/views/agents/_form.php:32
+msgid "Display Name"
+msgstr "Weergavenaam"
+
+#: lib/views/agents/quick_edit.php:56
+#: lib/views/agents/_form.php:40
+msgid "Connect to WP User"
+msgstr "Verbinden met WP-gebruiker"
+
+#: lib/views/agents/quick_edit.php:56
+#: lib/views/agents/_form.php:40
+msgid "Select User"
+msgstr "Gebruiker selecteren"
+
+#: lib/views/agents/quick_edit.php:63
+#: lib/views/agents/_form.php:51
+#: lib/views/agents/_form.php:352
+msgid "Additional Contacts"
+msgstr "Aanvullende contacten"
+
+#: lib/views/agents/quick_edit.php:65
+#: lib/views/agents/_form.php:55
+msgid "If you need to notify multiple persons about the appointment, you can list additional email addresses and phone numbers to send notification emails and sms to. You can list multiple numbers and emails separated by commas."
+msgstr "Als je meerdere personen over de afspraak wilt informeren, kun je extra e-mailadressen en telefoonnummers opgeven om meldingsmails en sms'jes naar te sturen. Je kunt meerdere nummers en e-mails scheiden met komma's."
+
+#: lib/views/agents/quick_edit.php:67
+#: lib/views/agents/_form.php:57
+msgid "Additional Email Addresses"
+msgstr "Extra e-mailadressen"
+
+#: lib/views/agents/quick_edit.php:70
+#: lib/views/agents/_form.php:58
+msgid "Additional Phone Numbers"
+msgstr "Extra telefoonnummers"
+
+#: lib/views/agents/quick_edit.php:73
+#: lib/views/agents/_form.php:65
+msgid "Extra Information"
+msgstr "Extra informatie"
+
+#: lib/views/agents/quick_edit.php:77
+#: lib/views/agents/_form.php:70
+msgid "Set Bio Image"
+msgstr "Bio-afbeelding instellen"
+
+#: lib/views/agents/quick_edit.php:77
+#: lib/views/agents/_form.php:70
+msgid "Remove Bio Image"
+msgstr "Bio-afbeelding verwijderen"
+
+#: lib/views/agents/quick_edit.php:79
+#: lib/views/agents/_form.php:71
+msgid "Agent Title"
+msgstr "Titel van medewerker"
+
+#: lib/views/agents/quick_edit.php:80
+#: lib/views/agents/_form.php:72
+msgid "Bio Text"
+msgstr "Biotekst"
+
+#: lib/views/agents/quick_edit.php:82
+#: lib/views/agents/_form.php:73
+msgid "Agent Highlights"
+msgstr "Hoogtepunten van medewerker"
+
+#: lib/views/agents/quick_edit.php:84
+#: lib/views/agents/_form.php:74
+msgid "These value-label pairs will appear on agent information popup. You can enter things like years of experience, or number of clients served, to highlight agent accomplishments."
+msgstr "Deze waarde-labelparen worden weergegeven in de pop-up met informatie over de medewerker. Je kunt zaken invoeren zoals jaren ervaring of aantal bediende klanten om de prestaties van de medewerker te benadrukken."
+
+#: lib/views/agents/quick_edit.php:93
+#: lib/views/agents/_form.php:83
+msgid "Label"
+msgstr "Label"
+
+#: lib/views/agents/quick_edit.php:100
+#: lib/views/agents/_form.php:94
+msgid "Offered Services"
+msgstr "Aangeboden diensten"
+
+#: lib/views/agents/quick_edit.php:124
+#: lib/views/agents/_form.php:120
+msgid "Locations Selected"
+msgstr "Geselecteerde locaties"
+
+#: lib/views/agents/quick_edit.php:127
+#: lib/views/agents/_form.php:123
+#: lib/views/locations/_form.php:72
+msgid "Customize"
+msgstr "Aanpassen"
+
+#: lib/views/agents/quick_edit.php:131
+#: lib/views/agents/_form.php:127
+#, php-format
+msgid "Select locations where this agent will offer %s:"
+msgstr "Selecteer locaties waar deze medewerker %s zal aanbieden:"
+
+#: lib/views/agents/quick_edit.php:165
+#: lib/views/agents/_form.php:165
+#: lib/views/bundles/_form.php:124
+msgid "No Existing Services Found"
+msgstr "Geen bestaande services gevonden"
+
+#: lib/views/agents/quick_edit.php:167
+#: lib/views/agents/_form.php:167
+#: lib/views/bundles/_form.php:126
+msgid "Add First Service"
+msgstr "Eerste service toevoegen"
+
+#: lib/views/agents/quick_edit.php:175
+#: lib/views/agents/_form.php:190
+msgid "Agent Schedule"
+msgstr "Medewerkersrooster"
+
+#: lib/views/agents/quick_edit.php:177
+#: lib/views/agents/_form.php:208
+#: lib/views/locations/_form.php:127
+msgid "Set Custom Schedule"
+msgstr "Aangepast rooster instellen"
+
+#: lib/views/agents/quick_edit.php:193
+#: lib/views/agents/_form.php:214
+msgid "This agent is using general schedule which is set in main settings"
+msgstr "Deze medewerker gebruikt het algemene rooster dat is ingesteld in de hoofdinstellingen"
+
+#: lib/views/agents/quick_edit.php:199
+#: lib/views/agents/_form.php:249
+#: lib/views/locations/_form.php:154
+msgid "Days With Custom Schedules"
+msgstr "Dagen met aangepaste roosters"
+
+#: lib/views/agents/quick_edit.php:200
+#: lib/views/agents/_form.php:257
+msgid "Agent shares custom daily schedules that you set in general settings for your company, however you can add additional days with custom hours which will be specific to this agent only."
+msgstr "De agent deelt aangepaste dagelijkse roosters die u instelt in de algemene instellingen voor uw bedrijf; u kunt echter extra dagen met aangepaste uren toevoegen die alleen voor deze agent gelden."
+
+#: lib/views/agents/quick_edit.php:202
+#: lib/views/agents/_form.php:275
+#: lib/views/locations/_form.php:163
+msgid "Holidays & Days Off"
+msgstr "Feestdagen & vrije dagen"
+
+#: lib/views/agents/quick_edit.php:203
+#: lib/views/agents/_form.php:283
+msgid "Agent uses the same holidays you set in general settings for your company, however you can add additional holidays for this agent here."
+msgstr "De agent gebruikt dezelfde feestdagen die u instelt in de algemene instellingen voor uw bedrijf; u kunt hier echter extra feestdagen voor deze agent toevoegen."
+
+#: lib/views/agents/quick_edit.php:213
+#: lib/views/agents/_form.php:306
+msgid "Add Agent"
+msgstr "Agent toevoegen"
+
+#: lib/views/agents/quick_edit.php:217
+#: lib/views/agents/_form.php:333
+#: lib/views/agents/_form.php:347
+#: lib/views/assets/_form.php:127
+#: lib/views/coupons/quick_edit.php:182
+#: lib/views/locations/_form.php:202
+#: lib/views/locations/_form.php:216
+#: lib/views/roles/edit_wp_user.php:82
+#: lib/views/roles/_form.php:126
+#: lib/views/service_extras/_form.php:99
+msgid "Save Changes"
+msgstr "Wijzigingen opslaan"
+
+#: lib/views/agents/quick_edit.php:221
+#: lib/views/agents/_form.php:314
+msgid "Are you sure you want to remove this agent?"
+msgstr "Weet u zeker dat u deze agent wilt verwijderen?"
+
+#: lib/views/agents/view_agent_log.php:15
+msgid "Activity Log"
+msgstr "Activiteitenlogboek"
+
+#: lib/views/agents/view_agent_log.php:21
+#: lib/views/coupons/view_coupon_log.php:21
+msgid "Created On: "
+msgstr "Aangemaakt op:"
+
+#: lib/views/agents/_form.php:21
+#: lib/views/bundles/_form.php:15
+msgid "General Information"
+msgstr "Algemene informatie"
+
+#: lib/views/agents/_form.php:23
+#, php-format
+msgid "Agent ID: %d"
+msgstr "Agent-ID: %d"
+
+#: lib/views/agents/_form.php:80
+msgid "Highlight #"
+msgstr "Markering #"
+
+#: lib/views/agents/_form.php:230
+#, php-format
+msgid "Set Custom Schedule for %s"
+msgstr "Aangepast rooster instellen voor %s"
+
+#: lib/views/agents/_form.php:236
+msgid "This location is using the agent's general schedule"
+msgstr "Deze locatie gebruikt het algemene rooster van de agent"
+
+#: lib/views/agents/_form.php:323
+msgid "Are you sure you want to duplicate this agent?"
+msgstr "Weet u zeker dat u deze agent wilt dupliceren?"
+
+#: lib/views/agents/_form.php:326
+#: lib/views/locations/_form.php:196
+msgid "Duplicate"
+msgstr "Dupliceren"
+
+#: lib/views/agents/_schedule_location_selector.php:14
+msgid "Location:"
+msgstr "Locatie:"
+
+#: lib/views/agents/_form.php:351
+#: lib/views/agents/_schedule_location_selector.php:16
+#: lib/views/locations/_form.php:220
+msgid "General"
+msgstr "Algemeen"
+
+#. translators: %1$s and %2$s are opening and closing anchor tags
+#: lib/views/assets/index.php:14
+#, php-format
+msgid "Assets functionality is currently disabled. You can enable it in %1$sGeneral Settings%2$s."
+msgstr "De functionaliteit voor assets is momenteel uitgeschakeld. U kunt deze inschakelen in %1$sAlgemene instellingen%2$s."
+
+#: lib/views/assets/index.php:33
+#: lib/views/service_extras/index.php:10
+msgid "Services:"
+msgstr "Diensten:"
+
+#: lib/views/assets/index.php:37
+#: lib/views/assets/index.php:47
+#: lib/views/service_extras/index.php:12
+msgid " of "
+msgstr "van"
+
+#: lib/views/assets/index.php:38
+#: lib/views/assets/index.php:48
+#: lib/views/service_extras/index.php:12
+msgid "All Selected"
+msgstr "Alles geselecteerd"
+
+#: lib/views/assets/index.php:43
+#: lib/views/locations/_location_index_item.php:20
+msgid "Agents:"
+msgstr "Agenten:"
+
+#: lib/views/assets/index.php:54
+msgid "Quantity:"
+msgstr "Aantal:"
+
+#: lib/views/assets/index.php:58
+msgid "Status:"
+msgstr "Status:"
+
+#: lib/views/assets/_form.php:19
+#: lib/views/locations/_form.php:8
+#: lib/views/service_extras/_form.php:12
+msgid "Basic Information"
+msgstr "Basisinformatie"
+
+#: lib/views/assets/_form.php:21
+msgid "Asset ID:"
+msgstr "Asset-ID:"
+
+#: lib/views/assets/_form.php:26
+msgid "Asset Name"
+msgstr "Assetnaam"
+
+#: lib/views/assets/_form.php:29
+msgid "Quantity (Capacity)"
+msgstr "Aantal (capaciteit)"
+
+#: lib/views/assets/_form.php:45
+#: lib/views/bundles/_form.php:35
+#: lib/views/location_categories/_form.php:9
+#: lib/views/service_categories/_form.php:9
+#: lib/views/service_extras/_form.php:32
+msgid "Short Description"
+msgstr "Korte beschrijving"
+
+#: lib/views/assets/_form.php:52
+#: lib/views/service_extras/_form.php:56
+msgid "Connected Services"
+msgstr "Verbonden diensten"
+
+#: lib/views/assets/_form.php:85
+msgid "Connected Agents"
+msgstr "Verbonden agenten"
+
+#: lib/views/assets/_form.php:118
+msgid "Add Asset"
+msgstr "Asset toevoegen"
+
+#: lib/views/assets/_form.php:122
+msgid "Are you sure you want to remove this asset? You can also change status to disabled if you want to temporarily disable it instead."
+msgstr "Weet u zeker dat u dit asset wilt verwijderen? U kunt ook de status op uitgeschakeld zetten als u het in plaats daarvan tijdelijk wilt uitschakelen."
+
+#: lib/views/assets/_form.php:126
+msgid "Delete Asset"
+msgstr "Asset verwijderen"
+
+#: lib/views/bundles/index.php:21
+msgid "Quantity"
+msgstr "Aantal"
+
+#: lib/views/bundles/index.php:54
+msgid "No Bundles Found"
+msgstr "Geen bundels gevonden"
+
+#: lib/views/bundles/_form.php:17
+msgid "Bundle ID:"
+msgstr "Bundel-ID:"
+
+#: lib/views/bundles/_form.php:24
+msgid "Bundle Name"
+msgstr "Bundelnaam"
+
+#: lib/views/bundles/_form.php:27
+msgid "Visibility"
+msgstr "Zichtbaarheid"
+
+#: lib/views/bundles/_form.php:27
+msgid "Visible to everyone"
+msgstr "Zichtbaar voor iedereen"
+
+#: lib/views/bundles/_form.php:27
+msgid "Visible only to admins and agents"
+msgstr "Alleen zichtbaar voor beheerders en agenten"
+
+#: lib/views/bundles/_form.php:42
+msgid "Price"
+msgstr "Prijs"
+
+#: lib/views/bundles/_form.php:48
+#: lib/views/service_durations/duration_fields.php:15
+#: lib/views/service_extras/_form.php:25
+msgid "Charge Amount"
+msgstr "Bedrag in rekening brengen"
+
+#: lib/views/bundles/_form.php:51
+#: lib/views/service_durations/duration_fields.php:18
+msgid "Deposit Amount"
+msgstr "Aanbetalingsbedrag"
+
+#: lib/views/bundles/_form.php:60
+msgid "Included Services"
+msgstr "Inbegrepen diensten"
+
+#: lib/views/bundles/_form.php:80
+#: lib/views/service_extras/index.php:17
+msgid "Duration:"
+msgstr "Duur:"
+
+#: lib/views/bundles/_form.php:85
+#, php-format
+msgid "%d minutes"
+msgstr "%d minuten"
+
+#: lib/views/bundles/_form.php:113
+msgid "Bundle Quantity:"
+msgstr "Bundelhoeveelheid:"
+
+#: lib/views/bundles/_form.php:115
+msgid "qty"
+msgstr "aantal"
+
+#: lib/views/bundles/_form.php:139
+#: lib/views/bundles/_form.php:152
+msgid "Save Bundle"
+msgstr "Bundel opslaan"
+
+#: lib/views/bundles/_form.php:145
+msgid "Are you sure you want to remove this bundle? It will remove all appointments associated with it. You can also change status to disabled if you want to temporary disable it instead."
+msgstr "Weet u zeker dat u deze bundel wilt verwijderen? Alle afspraken die eraan gekoppeld zijn, worden verwijderd. U kunt ook de status op uitgeschakeld zetten als u het in plaats daarvan tijdelijk wilt uitschakelen."
+
+#: lib/views/bundles/_form.php:149
+msgid "Delete Bundle"
+msgstr "Bundel verwijderen"
+
+#: lib/views/coupons/index.php:9
+#: lib/views/coupons/index.php:66
+msgid "Showing"
+msgstr "Weergegeven"
+
+#: lib/views/coupons/index.php:14
+msgid "Download .csv"
+msgstr ".csv downloaden"
+
+#: lib/views/coupons/index.php:16
+#: lib/views/coupons/quick_edit.php:15
+msgid "New Coupon"
+msgstr "Nieuwe coupon"
+
+#: lib/views/coupons/index.php:33
+msgid "Search by Name"
+msgstr "Zoeken op naam"
+
+#: lib/views/coupons/index.php:34
+msgid "Code..."
+msgstr "Code..."
+
+#: lib/views/coupons/index.php:36
+msgid "Show All"
+msgstr "Alles tonen"
+
+#: lib/views/coupons/index.php:39
+#: lib/views/coupons/index.php:40
+msgid "Filter By Date"
+msgstr "Filteren op datum"
+
+#: lib/views/coupons/index.php:39
+msgid "Reset Date Filtering"
+msgstr "Datumsfilter resetten"
+
+#: lib/views/coupons/index.php:68
+msgid "Page:"
+msgstr "Pagina:"
+
+#: lib/views/coupons/index.php:82
+msgid "No Coupons Found"
+msgstr "Geen coupons gevonden"
+
+#: lib/views/coupons/index.php:83
+msgid "Add Coupon"
+msgstr "Coupon toevoegen"
+
+#: lib/views/coupons/quick_edit.php:17
+msgid "Edit Coupon"
+msgstr "Coupon bewerken"
+
+#: lib/views/coupons/quick_edit.php:24
+msgid "Coupon ID:"
+msgstr "Coupon-ID:"
+
+#: lib/views/coupons/quick_edit.php:31
+msgid "Used"
+msgstr "Gebruikt"
+
+#: lib/views/coupons/quick_edit.php:35
+#, php-format
+msgid "%d time"
+msgid_plural "%d times"
+msgstr[0] "%d keer"
+msgstr[1] ""
+
+#: lib/views/coupons/quick_edit.php:40
+msgid "Last Used"
+msgstr "Laatst gebruikt"
+
+#: lib/views/coupons/quick_edit.php:44
+msgid "Total Saved"
+msgstr "Totaal bespaard"
+
+#: lib/views/coupons/quick_edit.php:50
+#: lib/views/webhooks/_webhook_form.php:29
+msgid "Name (For Internal Use)"
+msgstr "Naam (voor intern gebruik)"
+
+#: lib/views/coupons/quick_edit.php:54
+msgid "Discount Value"
+msgstr "Kortingswaarde"
+
+#: lib/views/coupons/quick_edit.php:57
+msgid "Discount Type"
+msgstr "Kortingstype"
+
+#: lib/views/coupons/quick_edit.php:57
+msgid "Percent"
+msgstr "Percentage"
+
+#: lib/views/coupons/quick_edit.php:57
+msgid "Fixed Value"
+msgstr "Vaste waarde"
+
+#: lib/views/coupons/quick_edit.php:66
+msgid "Time Restrictions"
+msgstr "Tijdsbeperkingen"
+
+#: lib/views/coupons/quick_edit.php:69
+msgid "You can set a specific time frame for when this coupon is active, which is helpful for seasonal promotions. Leaving either field blank will remove any time restrictions."
+msgstr "U kunt een specifiek tijdsbestek instellen waarin deze coupon actief is, wat handig is voor seizoensgebonden promoties. Als u een van beide velden leeg laat, worden eventuele tijdsbeperkingen verwijderd."
+
+#: lib/views/coupons/quick_edit.php:74
+msgid "Active From"
+msgstr "Actief vanaf"
+
+#: lib/views/coupons/quick_edit.php:77
+msgid "Active To"
+msgstr "Actief tot"
+
+#: lib/views/coupons/quick_edit.php:81
+msgid "Use Restrictions"
+msgstr "Gebruikbeperkingen"
+
+#: lib/views/coupons/quick_edit.php:84
+msgid "Here you can specify which service, agent or customer this coupon is applicable to. Leaving a field blank will make it applicable to all."
+msgstr "Hier kunt u specificeren op welke dienst, agent of klant deze coupon van toepassing is. Als u een veld leeg laat, is deze op alles van toepassing."
+
+#: lib/views/agents/_form.php:354
+#: lib/views/coupons/quick_edit.php:88
+msgid "Services"
+msgstr "Diensten"
+
+#: lib/views/coupons/quick_edit.php:99
+msgid "Start typing to search..."
+msgstr "Begin met typen om te zoeken..."
+
+#: lib/views/coupons/quick_edit.php:100
+msgid "cancel"
+msgstr "annuleren"
+
+#: lib/views/coupons/quick_edit.php:101
+msgid "Customers"
+msgstr "Klanten"
+
+#: lib/views/coupons/quick_edit.php:104
+msgid "Click to select..."
+msgstr "Klik om te selecteren..."
+
+#: lib/views/coupons/quick_edit.php:129
+msgid "Usage Limits"
+msgstr "Gebruikslimieten"
+
+#: lib/views/coupons/quick_edit.php:132
+msgid "You can set a limit on how many times this coupon can be used, either per customer or in total. Leave blank to have no limits."
+msgstr "U kunt een limiet instellen op hoe vaak deze coupon kan worden gebruikt, per klant of in totaal. Laat dit leeg om geen limieten te hebben."
+
+#: lib/views/coupons/quick_edit.php:137
+msgid "Per Customer"
+msgstr "Per klant"
+
+#: lib/views/coupons/quick_edit.php:140
+msgid "Per Order"
+msgstr "Per bestelling"
+
+#: lib/views/coupons/quick_edit.php:143
+msgid "Total"
+msgstr "Totaal"
+
+#: lib/views/coupons/quick_edit.php:148
+msgid "Order Requirements"
+msgstr "Bestellingsvereisten"
+
+#: lib/views/coupons/quick_edit.php:151
+msgid "You can set an order requirements that must be met for this coupon to be applied. Leave blank to have no requirements."
+msgstr "U kunt een bestellingsvereiste instellen waaraan moet worden voldaan voordat deze coupon kan worden toegepast. Laat dit leeg om geen vereisten te hebben."
+
+#: lib/views/coupons/quick_edit.php:155
+msgid "Minimum Order Subtotal"
+msgstr "Minimale subtotaal van bestelling"
+
+#: lib/views/coupons/quick_edit.php:159
+msgid "Order Count Requirements"
+msgstr "Vereisten voor aantal bestellingen"
+
+#: lib/views/coupons/quick_edit.php:162
+msgid "You can set requirements on how many orders a customer needs to have in order to use this coupon. Leave blank to have no requirements."
+msgstr "U kunt vereisten instellen voor hoeveel bestellingen een klant moet hebben om deze coupon te kunnen gebruiken. Laat dit leeg om geen vereisten te hebben."
+
+#: lib/views/coupons/quick_edit.php:177
+msgid "Create Coupon"
+msgstr "Coupon maken"
+
+#: lib/views/coupons/quick_edit.php:188
+msgid "Are you sure you want to delete this coupon?"
+msgstr "Weet u zeker dat u deze coupon wilt verwijderen?"
+
+#: lib/views/coupons/quick_edit.php:193
+msgid "Delete Coupon"
+msgstr "Coupon verwijderen"
+
+#: lib/views/coupons/view_coupon_log.php:15
+msgid "Coupon History"
+msgstr "Couponhistorie"
+
+#: lib/views/coupons/view_coupon_log.php:25
+msgid "No activity found."
+msgstr "Geen activiteit gevonden."
+
+#: lib/views/custom_fields/for_booking.php:10
+#: lib/views/custom_fields/for_customer.php:14
+msgid "Add Custom Field"
+msgstr "Aangepast veld toevoegen"
+
+#: lib/views/custom_fields/for_customer.php:1
+msgid "Default Fields"
+msgstr "Standaardvelden"
+
+#: lib/views/custom_fields/_custom_field_form.php:7
+msgid "New Field"
+msgstr "Nieuw veld"
+
+#: lib/views/custom_fields/_custom_field_form.php:14
+msgid "Field Label"
+msgstr "Veldlabel"
+
+#: lib/views/custom_fields/_custom_field_form.php:17
+msgid "Enter Field Label"
+msgstr "Voer veldlabel in"
+
+#: lib/views/custom_fields/_custom_field_form.php:23
+msgid "Placeholder"
+msgstr "Plaatshouder"
+
+#: lib/views/custom_fields/_custom_field_form.php:26
+msgid "Enter Field Placeholder"
+msgstr "Voer veldplaatshouder in"
+
+#: lib/views/custom_fields/_custom_field_form.php:32
+msgid "Field Type"
+msgstr "Veldtype"
+
+#: lib/views/custom_fields/_custom_field_form.php:41
+msgid "To use address field, enter a Google API key in general settings."
+msgstr "Om het adresveld te gebruiken, voert u een Google API-sleutel in bij de algemene instellingen."
+
+#: lib/views/custom_fields/_custom_field_form.php:48
+msgid "Options List"
+msgstr "Optielijst"
+
+#: lib/views/custom_fields/_custom_field_form.php:51
+msgid "Choices for Select. Enter each choice on a new line."
+msgstr "Keuzes voor selecteren. Voer elke keuze op een nieuwe regel in."
+
+#: lib/views/custom_fields/_custom_field_form.php:57
+msgid "Default Value"
+msgstr "Standaardwaarde"
+
+#: lib/views/custom_fields/_custom_field_form.php:67
+msgid "Conditional"
+msgstr "Voorwaardelijk"
+
+#: lib/views/custom_fields/_custom_field_form.php:70
+msgid "Show this field only when conditions are met"
+msgstr "Toon dit veld alleen wanneer aan de voorwaarden is voldaan"
+
+#: lib/views/custom_fields/_custom_field_form.php:72
+msgid "Show this field if:"
+msgstr "Toon dit veld als:"
+
+#: lib/views/custom_fields/_custom_field_form.php:89
+msgid "Field Width"
+msgstr "Veldbreedte"
+
+#: lib/views/custom_fields/_custom_field_form.php:92
+msgid "Full Width"
+msgstr "Volledige breedte"
+
+#: lib/views/custom_fields/_custom_field_form.php:93
+msgid "Half Width"
+msgstr "Halve breedte"
+
+#: lib/views/custom_fields/_custom_field_form.php:99
+msgid "Field Visibility"
+msgstr "Zichtbaarheid van veld"
+
+#: lib/views/custom_fields/_custom_field_form.php:102
+msgid "Visible to Everyone"
+msgstr "Zichtbaar voor iedereen"
+
+#: lib/views/custom_fields/_custom_field_form.php:103
+msgid "Admin and Agents Only"
+msgstr "Alleen beheerder en medewerkers"
+
+#: lib/views/custom_fields/_custom_field_form.php:104
+msgid "Temporary Hidden"
+msgstr "Tijdelijk verborgen"
+
+#: lib/views/custom_fields/_custom_field_form.php:110
+msgid "Required"
+msgstr "Verplicht"
+
+#: lib/views/custom_fields/_custom_field_form.php:113
+msgid "Make this field required"
+msgstr "Maak dit veld verplicht"
+
+#: lib/views/custom_fields/_custom_field_form.php:119
+msgid "Hide from Summary"
+msgstr "Verbergen uit samenvatting"
+
+#: lib/views/custom_fields/_custom_field_form.php:122
+msgid "Hide from Summary Panel and Confirmation Step"
+msgstr "Verbergen uit samenvattingspaneel en bevestigingsstap"
+
+#: lib/views/custom_fields/_custom_field_form.php:127
+#: lib/views/custom_fields/_custom_field_form.php:135
+msgid "Are you sure you want to delete this field?"
+msgstr "Weet u zeker dat u dit veld wilt verwijderen?"
+
+#: lib/views/custom_fields/_custom_field_form.php:128
+msgid "Save Field"
+msgstr "Veld opslaan"
+
+#: lib/views/debug/status.php:10
+msgid "Features"
+msgstr "Functies"
+
+#: lib/views/debug/status.php:12
+msgid "Chat With Customers"
+msgstr "Chatten met klanten"
+
+#: lib/views/debug/status.php:18
+msgid "System Info"
+msgstr "Systeeminformatie"
+
+#: lib/views/debug/status.php:23
+msgid "LatePoint Plugin Version:"
+msgstr "LatePoint-plug-inversie:"
+
+#: lib/views/debug/status.php:27
+msgid "LatePoint Database Version:"
+msgstr "LatePoint-databaseversie:"
+
+#: lib/views/debug/status.php:31
+#: lib/views/debug/status.php:72
+msgid "reset"
+msgstr "opnieuw instellen"
+
+#: lib/views/debug/status.php:35
+msgid "PHP Version:"
+msgstr "PHP-versie:"
+
+#: lib/views/debug/status.php:40
+msgid "MySQL Version:"
+msgstr "MySQL-versie:"
+
+#: lib/views/debug/status.php:45
+msgid "WordPress Version:"
+msgstr "WordPress-versie:"
+
+#: lib/views/debug/status.php:53
+msgid "Installed Addons"
+msgstr "Geïnstalleerde add-ons"
+
+#: lib/views/debug/status.php:63
+msgid "Update Available"
+msgstr "Update beschikbaar"
+
+#: lib/views/debug/status.php:68
+msgid "Core:"
+msgstr "Kern:"
+
+#: lib/views/debug/status.php:69
+msgid "Database:"
+msgstr "Database:"
+
+#: lib/views/debug/status.php:82
+msgid "Tasks Due"
+msgstr "Taken die moeten worden uitgevoerd"
+
+#: lib/views/debug/status.php:90
+#: lib/views/debug/status.php:96
+msgid "Run Migration"
+msgstr "Migratie uitvoeren"
+
+#: lib/views/debug/status.php:101
+msgid "Nothing to do"
+msgstr "Niets te doen"
+
+#: lib/views/group_bookings/_step_booking__group_bookings.php:15
+msgid "How Many People?"
+msgstr "Hoeveel personen?"
+
+#: lib/views/group_bookings/_step_booking__group_bookings.php:16
+msgid "Maximum capacity is"
+msgstr "Maximale capaciteit is"
+
+#: lib/views/group_bookings/_step_booking__group_bookings.php:24
+msgid "Person"
+msgstr "Persoon"
+
+#: lib/views/group_bookings/_step_booking__group_bookings.php:25
+msgid "People"
+msgstr "Personen"
+
+#: lib/views/group_bookings/_step_booking__group_bookings.php:28
+#: lib/views/service_extras/_step_booking__service_extras.php:52
+msgid "Qty"
+msgstr "Aantal"
+
+#: lib/views/locations/index.php:10
+#: lib/views/locations/index.php:30
+#: lib/views/locations/index.php:45
+msgid "New Location"
+msgstr "Nieuwe locatie"
+
+#: lib/views/locations/index.php:41
+msgid "No Active Locations Found"
+msgstr "Geen actieve locaties gevonden"
+
+#: lib/views/locations/index.php:55
+#, php-format
+msgid "%d Disabled Location"
+msgid_plural "%d Disabled Locations"
+msgstr[0] "%d uitgeschakelde locatie"
+msgstr[1] ""
+
+#: lib/views/locations/_form.php:10
+#, php-format
+msgid "Location ID: %d"
+msgstr "Locatie-ID: %d"
+
+#: lib/views/locations/_form.php:17
+msgid "Location Name"
+msgstr "Locatienaam"
+
+#: lib/views/locations/_form.php:21
+msgid "Category"
+msgstr "Categorie"
+
+#: lib/views/locations/_form.php:21
+msgid "Add Category"
+msgstr "Categorie toevoegen"
+
+#: lib/views/locations/_form.php:22
+msgid "Location Photo"
+msgstr "Locatiefoto"
+
+#: lib/views/locations/_form.php:22
+#: lib/views/location_categories/_form.php:13
+#: lib/views/service_categories/_form.php:13
+#: lib/views/service_extras/_form.php:48
+msgid "Remove Image"
+msgstr "Afbeelding verwijderen"
+
+#: lib/views/locations/_form.php:25
+msgid "Location Address"
+msgstr "Locatieadres"
+
+#: lib/views/locations/_form.php:42
+msgid "Select Agents for This Location"
+msgstr "Selecteer medewerkers voor deze locatie"
+
+#: lib/views/locations/_form.php:69
+msgid "Services Selected"
+msgstr "Geselecteerde diensten"
+
+#: lib/views/locations/_form.php:76
+#, php-format
+msgid "Select services that %s will be offering at this location:"
+msgstr "Selecteer diensten die %s op deze locatie zal aanbieden:"
+
+#: lib/views/locations/_form.php:110
+msgid "No Existing Agents Found"
+msgstr "Geen bestaande medewerkers gevonden"
+
+#: lib/views/locations/_form.php:112
+msgid "Add First Agent"
+msgstr "Eerste medewerker toevoegen"
+
+#: lib/views/locations/_form.php:125
+msgid "Location Schedule"
+msgstr "Locatieschema"
+
+#: lib/views/locations/_form.php:145
+msgid "This location is using general schedule which is set in main settings"
+msgstr "Deze locatie gebruikt het algemene schema dat is ingesteld in de hoofdinstellingen"
+
+#: lib/views/locations/_form.php:157
+msgid "Location shares custom daily schedules that you set in general settings for your company, however you can add additional days with custom hours which will be specific to this location only."
+msgstr "De locatie gebruikt aangepaste dagelijkse schema's die u hebt ingesteld in de algemene instellingen voor uw bedrijf, maar u kunt extra dagen toevoegen met aangepaste uren die alleen voor deze locatie gelden."
+
+#: lib/views/locations/_form.php:166
+msgid "Location uses the same holidays you set in general settings for your company, however you can add additional holidays for this location here."
+msgstr "Locatie gebruikt dezelfde feestdagen die je hebt ingesteld in de algemene instellingen voor je bedrijf, maar je kunt hier extra feestdagen voor deze locatie toevoegen."
+
+#: lib/views/locations/_form.php:177
+msgid "Save Location"
+msgstr "Locatie opslaan"
+
+#: lib/views/locations/_form.php:185
+msgid "Are you sure you want to remove this location? It will remove all appointments associated with it. If you only want to temprorary disable it - it is better to just change status to disabled."
+msgstr "Weet je zeker dat je deze locatie wilt verwijderen? Hiermee worden alle afspraken die eraan gekoppeld zijn verwijderd. Als je hem alleen tijdelijk wilt uitschakelen, is het beter om de status gewoon op uitgeschakeld te zetten."
+
+#: lib/views/locations/_form.php:193
+msgid "Are you sure you want to duplicate this location?"
+msgstr "Weet je zeker dat je deze locatie wilt dupliceren?"
+
+#: lib/views/agents/_form.php:355
+#: lib/views/locations/_form.php:223
+msgid "Schedule"
+msgstr "Planning"
+
+#: lib/views/agents/_form.php:358
+#: lib/views/locations/_form.php:226
+msgid "Custom Days"
+msgstr "Aangepaste dagen"
+
+#: lib/views/agents/_form.php:359
+#: lib/views/locations/_form.php:227
+msgid "Holidays & Days off"
+msgstr "Feestdagen & vrije dagen"
+
+#: lib/views/locations/_location_index_item.php:28
+msgid "No Agents Assigned"
+msgstr "Geen agenten toegewezen"
+
+#: lib/views/location_categories/index.php:18
+#: lib/views/service_categories/index.php:18
+msgid "New Category"
+msgstr "Nieuwe categorie"
+
+#: lib/views/location_categories/index.php:22
+msgid "Create New Location Category"
+msgstr "Nieuwe locatiecategorie maken"
+
+#: lib/views/location_categories/new_form.php:3
+msgid "Add Location Category"
+msgstr "Locatiecategorie toevoegen"
+
+#: lib/views/location_categories/new_form.php:8
+#: lib/views/location_categories/_form.php:6
+#: lib/views/service_categories/new_form.php:8
+#: lib/views/service_categories/_form.php:6
+msgid "Category Name"
+msgstr "Categorienaam"
+
+#: lib/views/location_categories/new_form.php:9
+#: lib/views/service_categories/new_form.php:9
+msgid "Quick Description"
+msgstr "Korte beschrijving"
+
+#: lib/views/location_categories/new_form.php:14
+msgid "Save Location Category"
+msgstr "Locatiecategorie opslaan"
+
+#: lib/views/location_categories/_form.php:13
+#: lib/views/service_categories/_form.php:13
+msgid "Category Image"
+msgstr "Categorieafbeelding"
+
+#: lib/views/location_categories/_form.php:19
+#: lib/views/service_categories/_form.php:19
+msgid "Save Category"
+msgstr "Categorie opslaan"
+
+#: lib/views/location_categories/_form.php:25
+#: lib/views/service_categories/_form.php:25
+msgid "Are you sure you want to remove this category?"
+msgstr "Weet je zeker dat je deze categorie wilt verwijderen?"
+
+#: lib/views/location_categories/_form.php:28
+#: lib/views/service_categories/_form.php:28
+msgid "Delete Category"
+msgstr "Categorie verwijderen"
+
+#: lib/views/messages/backend_chat_box.php:5
+msgid "Your Conversations"
+msgstr "Jouw gesprekken"
+
+#: lib/views/messages/backend_chat_box.php:8
+msgid "Find booking to start chat..."
+msgstr "Zoek boeking om chat te starten..."
+
+#: lib/views/messages/conversations.php:16
+msgid "Start new conversation..."
+msgstr "Nieuw gesprek starten..."
+
+#: lib/views/messages/messages_for_booking.php:22
+#: lib/views/messages/messages_with_info_for_booking.php:42
+msgid "No Messages Exist."
+msgstr "Er zijn geen berichten."
+
+#: lib/views/messages/messages_with_info_for_booking.php:8
+msgid "Chat with"
+msgstr "Chat met"
+
+#: lib/views/messages/messages_with_info_for_booking.php:50
+#: lib/views/messages/quick_form_chat_box.php:16
+msgid "Attach File"
+msgstr "Bestand bijvoegen"
+
+#: lib/views/messages/messages_with_info_for_booking.php:57
+msgid "Appointment Info"
+msgstr "Afspraakinfo"
+
+#: lib/views/messages/messages_with_info_for_booking.php:64
+msgid "Booking ID"
+msgstr "Boekings-ID"
+
+#: lib/views/messages/messages_with_info_for_booking.php:66
+msgid "Edit"
+msgstr "Bewerken"
+
+#: lib/views/messages/messages_with_info_for_booking.php:68
+msgid "Date/Time"
+msgstr "Datum/tijd"
+
+#: lib/views/messages/messages_with_info_for_booking.php:72
+msgid "Customer"
+msgstr "Klant"
+
+#: lib/views/messages/quick_form_chat_box.php:3
+msgid "Message History"
+msgstr "Berichtgeschiedenis"
+
+#: lib/views/recurring_bookings/recurring_bookings_preview.php:9
+msgid "Review Slots"
+msgstr "Tijdsloten controleren"
+
+#: lib/views/recurring_bookings/recurring_bookings_preview.php:16
+#, php-format
+msgid "%s of %s time slots are not available. Please review them below."
+msgstr "%s van de %s tijdsloten zijn niet beschikbaar. Controleer ze hieronder."
+
+#: lib/views/recurring_bookings/recurring_bookings_preview.php:34
+msgid "This slot is unavailable. You can choose a different one, or it will be skipped automatically."
+msgstr "Dit tijdslot is niet beschikbaar. Je kunt een ander kiezen, of het wordt automatisch overgeslagen."
+
+#: lib/views/recurring_bookings/recurring_bookings_preview.php:51
+msgid "Continue"
+msgstr "Doorgaan"
+
+#: lib/views/roles/edit_wp_user.php:9
+msgid "Edit User"
+msgstr "Gebruiker bewerken"
+
+#: lib/views/roles/edit_wp_user.php:21
+msgid "WP User"
+msgstr "WP-gebruiker"
+
+#: lib/views/roles/edit_wp_user.php:30
+msgid "Not Connected"
+msgstr "Niet verbonden"
+
+#: lib/views/roles/edit_wp_user.php:31
+msgid "Connected to agent"
+msgstr "Verbonden met agent"
+
+#: lib/views/roles/edit_wp_user.php:36
+#: lib/views/roles/_form.php:70
+msgid "Allowed Records"
+msgstr "Toegestane records"
+
+#: lib/views/roles/edit_wp_user.php:40
+msgid "This user has \"Administrator\" role and can access all records"
+msgstr "Deze gebruiker heeft de rol \"Administrator\" en heeft toegang tot alle records"
+
+#: lib/views/roles/edit_wp_user.php:42
+msgid "This user has \"Agent\" role and can execute permitted actions only on records that belong to a LatePoint agent they are connected to."
+msgstr "Deze gebruiker heeft de rol \"Agent\" en kan alleen toegestane acties uitvoeren op records die behoren tot een LatePoint-agent waarmee hij/zij verbonden is."
+
+#: lib/views/roles/edit_wp_user.php:47
+msgid "Custom Selection"
+msgstr "Aangepaste selectie"
+
+#: lib/views/roles/edit_wp_user.php:57
+#: lib/views/roles/_form.php:91
+msgid "Permitted Actions"
+msgstr "Toegestane acties"
+
+#: lib/views/roles/edit_wp_user.php:58
+msgid "Custom"
+msgstr "Aangepast"
+
+#: lib/views/roles/edit_wp_user.php:77
+msgid "Permitted actions are defined by user's role settings."
+msgstr "Toegestane acties worden bepaald door de rolinstellingen van de gebruiker."
+
+#: lib/views/roles/index.php:9
+msgid "Default Roles"
+msgstr "Standaardrollen"
+
+#: lib/views/roles/index.php:19
+msgid "Custom Roles"
+msgstr "Aangepaste rollen"
+
+#: lib/views/roles/index.php:37
+msgid "Create Custom Role"
+msgstr "Aangepaste rol maken"
+
+#: lib/views/roles/_form.php:12
+#, php-format
+msgid "%d user"
+msgid_plural "%d users"
+msgstr[0] "%d gebruiker"
+msgstr[1] ""
+
+#: lib/views/roles/_form.php:32
+msgid "Users"
+msgstr "Gebruikers"
+
+#: lib/views/roles/_form.php:50
+msgid "Custom Settings"
+msgstr "Aangepaste instellingen"
+
+#: lib/views/roles/_form.php:54
+msgid "Connected to:"
+msgstr "Verbonden met:"
+
+#: lib/views/roles/_form.php:54
+msgid "Connect to an agent"
+msgstr "Verbinden met een agent"
+
+#: lib/views/roles/_form.php:63
+#, php-format
+msgid "You have not assigned any WordPress users to this role. Create a new WP user or edit existing user and assign them a role called: %s"
+msgstr "Je hebt geen WordPress-gebruikers aan deze rol toegewezen. Maak een nieuwe WP-gebruiker aan of bewerk een bestaande gebruiker en wijs hem/haar een rol toe met de naam: %s"
+
+#: lib/views/roles/_form.php:77
+#, php-format
+msgid "Users with \"%s\" role are allowed to perform all available actions on any agent, location and service records."
+msgstr "Gebruikers met de rol \"%s\" mogen alle beschikbare acties uitvoeren op alle agent-, locatie- en servicerecords."
+
+#: lib/views/roles/_form.php:80
+#, php-format
+msgid "Users with \"%s\" role can execute permitted actions only on records that belong to a LatePoint agent they are connected to."
+msgstr "Gebruikers met de rol \"%s\" kunnen alleen toegestane acties uitvoeren op records die behoren tot een LatePoint-agent waarmee ze verbonden zijn."
+
+#: lib/views/roles/_form.php:83
+msgid "Once you assign users to this role, they will appear in \"Users\" section above, click on each user to set restrictions on which records each of them can access."
+msgstr "Zodra je gebruikers aan deze rol toewijst, verschijnen ze in de sectie \"Gebruikers\" hierboven. Klik op elke gebruiker om beperkingen in te stellen voor welke records zij kunnen openen."
+
+#: lib/views/roles/_form.php:97
+#, php-format
+msgid "Users with \"%s\" role are permitted to execute all available actions in the system."
+msgstr "Gebruikers met de rol \"%s\" mogen alle beschikbare acties in het systeem uitvoeren."
+
+#: lib/views/roles/_form.php:119
+#: lib/views/roles/_form.php:133
+msgid "Are you sure you want to delete this role?"
+msgstr "Weet u zeker dat u deze rol wilt verwijderen?"
+
+#: lib/views/service_categories/index.php:22
+msgid "Create New Service Category"
+msgstr "Nieuwe servicecategorie maken"
+
+#: lib/views/service_categories/new_form.php:3
+msgid "Add Service Category"
+msgstr "Servicecategorie toevoegen"
+
+#: lib/views/service_categories/new_form.php:15
+msgid "Save Service Category"
+msgstr "Servicecategorie opslaan"
+
+#: lib/views/service_durations/duration_fields.php:9
+msgid "Duration Name (optional)"
+msgstr "Duurnaam (optioneel)"
+
+#: lib/views/service_durations/duration_fields.php:12
+msgid "Duration"
+msgstr "Duur"
+
+#: lib/views/service_durations/_step_booking__service_durations.php:40
+msgid "Hours"
+msgstr "Uren"
+
+#: lib/views/service_durations/_step_booking__service_durations.php:40
+msgid "Hour"
+msgstr "Uur"
+
+#: lib/views/service_durations/_step_booking__service_durations.php:41
+#: lib/views/service_durations/_step_booking__service_durations.php:44
+msgid "Minutes"
+msgstr "Minuten"
+
+#: lib/views/service_extras/index.php:18
+msgid "min"
+msgstr "min"
+
+#: lib/views/service_extras/index.php:21
+msgid "Price:"
+msgstr "Prijs:"
+
+#: lib/views/service_extras/index.php:25
+msgid "Max Qty:"
+msgstr "Max. aantal:"
+
+#: lib/views/service_extras/index.php:33
+msgid "Edit Extra"
+msgstr "Extra bewerken"
+
+#: lib/views/service_extras/index.php:46
+msgid "No Service Extras Found"
+msgstr "Geen service-extra's gevonden"
+
+#: lib/views/service_extras/index.php:50
+#: lib/views/service_extras/_form.php:90
+msgid "Add Service Extra"
+msgstr "Service-extra toevoegen"
+
+#: lib/views/service_extras/_form.php:14
+msgid "Service Extra ID:"
+msgstr "Service-extra-ID:"
+
+#: lib/views/service_extras/_form.php:19
+msgid "Service Extra Name"
+msgstr "Naam van service-extra"
+
+#: lib/views/service_extras/_form.php:22
+msgid "Duration (minutes)"
+msgstr "Duur (minuten)"
+
+#: lib/views/service_extras/_form.php:28
+msgid "Maximum Quantity"
+msgstr "Maximale hoeveelheid"
+
+#: lib/views/service_extras/_form.php:41
+msgid "Media"
+msgstr "Media"
+
+#: lib/views/service_extras/_form.php:45
+msgid "Selection Image"
+msgstr "Selectieafbeelding"
+
+#: lib/views/service_extras/_form.php:46
+msgid "This image will be used as a background image of the service extra tile on booking form"
+msgstr "Deze afbeelding wordt gebruikt als achtergrondafbeelding van de service-extra-tegel op het boekingsformulier"
+
+#: lib/views/service_extras/_form.php:48
+msgid "Service Extra Image"
+msgstr "Afbeelding van service-extra"
+
+#: lib/views/service_extras/_form.php:94
+msgid "Are you sure you want to remove this service extra? You can also change status to disabled if you want to temprorary disable it instead."
+msgstr "Weet u zeker dat u deze service-extra wilt verwijderen? U kunt ook de status op uitgeschakeld zetten als u deze tijdelijk wilt uitschakelen."
+
+#: lib/views/service_extras/_form.php:98
+msgid "Delete Service Extra"
+msgstr "Service-extra verwijderen"
+
+#: lib/views/taxes/index.php:15
+msgid "Add Tax"
+msgstr "Belasting toevoegen"
+
+#: lib/views/taxes/_tax_form.php:7
+msgid "New Tax"
+msgstr "Nieuwe belasting"
+
+#: lib/views/taxes/_tax_form.php:14
+msgid "Tax Name"
+msgstr "Belastingnaam"
+
+#: lib/views/taxes/_tax_form.php:17
+msgid "Enter Tax Name"
+msgstr "Voer belastingnaam in"
+
+#: lib/views/taxes/_tax_form.php:23
+msgid "Tax Type"
+msgstr "Belastingtype"
+
+#: lib/views/taxes/_tax_form.php:31
+msgid "Percentage of the booking price"
+msgstr "Percentage van de boekingsprijs"
+
+#: lib/views/taxes/_tax_form.php:32
+msgid "Fixed amount"
+msgstr "Vast bedrag"
+
+#: lib/views/taxes/_tax_form.php:38
+msgid "Enter Tax Value"
+msgstr "Voer belastingwaarde in"
+
+#: lib/views/taxes/_tax_form.php:45
+#: lib/views/taxes/_tax_form.php:55
+msgid "Are you sure you want to delete this tax?"
+msgstr "Weet u zeker dat u deze belasting wilt verwijderen?"
+
+#: lib/views/taxes/_tax_form.php:50
+msgid "Save Tax"
+msgstr "Belasting opslaan"
+
+#: lib/views/updates/check_version_status.php:11
+msgid "Update is Available"
+msgstr "Update beschikbaar"
+
+#. translators: %s is version number
+#: lib/views/updates/check_version_status.php:18
+#, php-format
+msgid "LatePoint %s is available."
+msgstr "LatePoint %s is beschikbaar."
+
+#. translators: %s is version number
+#: lib/views/updates/check_version_status.php:23
+#, php-format
+msgid "You're running version %s"
+msgstr "U gebruikt versie %s"
+
+#: lib/views/updates/check_version_status.php:40
+#: lib/views/updates/check_version_status.php:57
+msgid "View Changelog"
+msgstr "Wijzigingslog bekijken"
+
+#: lib/views/updates/check_version_status.php:49
+msgid "You are using the latest version"
+msgstr "U gebruikt de nieuwste versie"
+
+#: lib/views/updates/check_version_status.php:52
+msgid "Installed Version: "
+msgstr "Geïnstalleerde versie:"
+
+#: lib/views/updates/check_version_status.php:61
+msgid "Official Website"
+msgstr "Officiële website"
+
+#: lib/views/updates/migrate_from_version4.php:12
+msgid "Migration from Version 4"
+msgstr "Migratie vanaf versie 4"
+
+#: lib/views/updates/version_5_intro.php:8
+msgid "Dismiss"
+msgstr "Sluiten"
+
+#: lib/views/updates/version_5_intro.php:60
+msgid "Start Using Version 5"
+msgstr "Begin met versie 5"
+
+#: lib/views/updates/_license_form.php:7
+msgid "License Key Registration"
+msgstr "Licentiesleutelregistratie"
+
+#: lib/views/updates/_license_form.php:17
+msgid "Please enter your LatePoint license key to receive free plugin updates and install addons."
+msgstr "Voer uw LatePoint-licentiesleutel in om gratis plugin-updates te ontvangen en add-ons te installeren."
+
+#: lib/views/updates/_license_form.php:21
+msgid "Your Name"
+msgstr "Uw naam"
+
+#: lib/views/updates/_license_form.php:24
+msgid "Your Email Address"
+msgstr "Uw e-mailadres"
+
+#: lib/views/updates/_license_form.php:27
+msgid "License Key"
+msgstr "Licentiesleutel"
+
+#: lib/views/updates/_license_form.php:31
+msgid "Activate Now"
+msgstr "Nu activeren"
+
+#: lib/views/webhooks/index.php:12
+msgid "Add Webhook"
+msgstr "Webhook toevoegen"
+
+#: lib/views/webhooks/_webhook_form.php:2
+msgid "New Booking"
+msgstr "Nieuwe boeking"
+
+#: lib/views/webhooks/_webhook_form.php:3
+msgid "Updated Booking"
+msgstr "Bijgewerkte boeking"
+
+#: lib/views/webhooks/_webhook_form.php:4
+msgid "New Customer"
+msgstr "Nieuwe klant"
+
+#: lib/views/webhooks/_webhook_form.php:5
+msgid "New Transaction"
+msgstr "Nieuwe transactie"
+
+#: lib/views/webhooks/_webhook_form.php:12
+msgid "New Webhook"
+msgstr "Nieuwe webhook"
+
+#: lib/views/webhooks/_webhook_form.php:26
+msgid "Webhook URL"
+msgstr "Webhook-URL"
+
+#: lib/views/webhooks/_webhook_form.php:26
+msgid "Webhook URL (https://example.com)"
+msgstr "Webhook-URL (https://example.com)"
+
+#: lib/views/webhooks/_webhook_form.php:33
+msgid "Event that will trigger this hook"
+msgstr "Gebeurtenis die deze hook activeert"
+
+#: lib/views/webhooks/_webhook_form.php:39
+msgid "Hook Status"
+msgstr "Hookstatus"
+
+#: lib/views/webhooks/_webhook_form.php:50
+msgid "Are you sure you want to delete this webhook?"
+msgstr "Weet u zeker dat u deze webhook wilt verwijderen?"
+
+#: lib/views/agents/_form.php:353
+msgid "Extra Info"
+msgstr "Extra informatie"
+
+#: lib/views/messages/conversations.php:22
+msgid "No conversations found."
+msgstr "Geen gesprekken gevonden."
+
+#: lib/views/roles/edit_wp_user.php:47
+msgid "All Connected"
+msgstr "Alles verbonden"
+
+#: lib/views/roles/_form.php:54
+msgid "Not connected"
+msgstr "Niet verbonden"

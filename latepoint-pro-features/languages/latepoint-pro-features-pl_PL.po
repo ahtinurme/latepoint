@@ -1,0 +1,3515 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: LatePoint Addon - Pro Features\n"
+"Report-Msgid-Bugs-To: \n"
+"Last-Translator: gpt-po v1.2.4\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"POT-Creation-Date: 2026-05-28T07:41:41+00:00\n"
+"PO-Revision-Date: 2026-05-28T07:41:41+00:00\n"
+"Language: pl_PL\n"
+"Plural-Forms: nplurals=3; plural=(n==1 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
+
+#. Plugin Name of the plugin
+#: latepoint-pro-features.php
+msgid "LatePoint Addon - Pro Features"
+msgstr "LatePoint Dodatek - Funkcje Pro"
+
+#. Plugin URI of the plugin
+#. Author URI of the plugin
+#: latepoint-pro-features.php
+msgid "https://latepoint.com/"
+msgstr "https://latepoint.com/"
+
+#. Description of the plugin
+#: latepoint-pro-features.php
+msgid "LatePoint Addon that adds a set of Pro features to a base plugin"
+msgstr "Dodatek LatePoint, który dodaje zestaw funkcji Pro do podstawowej wtyczki"
+
+#. Author of the plugin
+#: latepoint-pro-features.php
+msgid "LatePoint"
+msgstr "LatePoint"
+
+#. translators: 1: bold open tag, 2: bold close tag, 3: required version, 4: current version
+#: latepoint-pro-features.php:92
+#, php-format
+msgid "You are using an older version of the %1$sLatePoint%2$s plugin (v%4$s). Please update the %1$sLatePoint%2$s plugin to version %1$s%3$s or later%2$s."
+msgstr "Używasz starszej wersji wtyczki %1$sLatePoint%2$s (v%4$s). Zaktualizuj wtyczkę %1$sLatePoint%2$s do wersji %1$s%3$s lub nowszej%2$s."
+
+#: latepoint-pro-features.php:98
+#: lib/helpers/addons_helper.php:126
+#: lib/views/addons/load_addons_list.php:93
+#: lib/views/addons/load_addons_list.php:109
+#: lib/views/updates/check_version_status.php:33
+msgid "Update Now"
+msgstr "Zaktualizuj teraz"
+
+#: latepoint-pro-features.php:767
+#: lib/helpers/feature_recurring_bookings_helper.php:61
+msgid "Recurring Appointments"
+msgstr "Cykliczne wizyty"
+
+#: latepoint-pro-features.php:771
+#: lib/helpers/feature_group_bookings_helper.php:278
+msgid "Group Bookings"
+msgstr "Rezerwacje grupowe"
+
+#: latepoint-pro-features.php:775
+#: lib/controllers/service_extras_controller.php:25
+#: lib/helpers/feature_service_extras_helper.php:7
+#: lib/helpers/feature_service_extras_helper.php:143
+#: lib/helpers/feature_service_extras_helper.php:452
+#: lib/helpers/service_extras_helper.php:86
+msgid "Service Extras"
+msgstr "Dodatki do usług"
+
+#: latepoint-pro-features.php:779
+msgid "Restrictions for Extras"
+msgstr "Ograniczenia dla dodatków"
+
+#: latepoint-pro-features.php:783
+#: latepoint-pro-features.php:1239
+#: lib/controllers/assets_controller.php:20
+#: lib/helpers/feature_assets_helper.php:50
+msgid "Assets"
+msgstr "Zasoby"
+
+#: latepoint-pro-features.php:790
+msgid "Allow customers reschedule their bookings"
+msgstr "Zezwalaj klientom na zmianę terminu rezerwacji"
+
+#: latepoint-pro-features.php:790
+msgid "If enable, shows a button on customer cabinet to reschedule an appointment"
+msgstr "Jeśli włączone, pokazuje przycisk w panelu klienta do zmiany terminu wizyty"
+
+#: latepoint-pro-features.php:793
+msgid "Set restriction on when customer can reschedule"
+msgstr "Ustaw ograniczenie, kiedy klient może zmienić termin"
+
+#: latepoint-pro-features.php:797
+msgid "Can reschedule when it is at least"
+msgstr "Można zmienić termin, gdy pozostało co najmniej"
+
+#: latepoint-pro-features.php:798
+#: lib/helpers/feature_recurring_bookings_helper.php:69
+#: lib/helpers/feature_service_extras_helper.php:498
+#: lib/helpers/feature_service_extras_helper.php:508
+#: lib/views/agents/quick_edit.php:92
+#: lib/views/agents/_form.php:82
+msgid "Value"
+msgstr "Wartość"
+
+#: latepoint-pro-features.php:803
+#: lib/helpers/feature_reminders_helper.php:15
+msgid "minutes"
+msgstr "minut"
+
+#: latepoint-pro-features.php:804
+#: lib/helpers/feature_reminders_helper.php:16
+msgid "hours"
+msgstr "godzin"
+
+#: latepoint-pro-features.php:805
+#: lib/helpers/feature_reminders_helper.php:17
+msgid "days"
+msgstr "dni"
+
+#: latepoint-pro-features.php:809
+msgid "before appointment start time"
+msgstr "przed godziną rozpoczęcia wizyty"
+
+#: latepoint-pro-features.php:812
+msgid "Change booking status when customer reschedules"
+msgstr "Zmień status rezerwacji, gdy klient zmieni termin"
+
+#: latepoint-pro-features.php:816
+msgid "Change status to:"
+msgstr "Zmień status na:"
+
+#: latepoint-pro-features.php:836
+msgid "All Day"
+msgstr "Cały dzień"
+
+#: latepoint-pro-features.php:837
+msgid "Specific Time"
+msgstr "Określony czas"
+
+#: latepoint-pro-features.php:843
+msgid "Reason for blocking (optional)"
+msgstr "Powód blokady (opcjonalnie)"
+
+#: latepoint-pro-features.php:846
+msgid "Enter a reason..."
+msgstr "Wpisz powód..."
+
+#: latepoint-pro-features.php:866
+#, php-format
+msgid "Select resources you want to be unavailable during this time on %s"
+msgstr "Wybierz zasoby, które mają być niedostępne w tym czasie na %s"
+
+#: latepoint-pro-features.php:867
+#, php-format
+msgid "Select resources you want to be unavailable on %s"
+msgstr "Wybierz zasoby, które mają być niedostępne na %s"
+
+#: latepoint-pro-features.php:876
+msgid "All Agents"
+msgstr "Wszyscy agenci"
+
+#: latepoint-pro-features.php:891
+msgid "All Services"
+msgstr "Wszystkie usługi"
+
+#: latepoint-pro-features.php:906
+msgid "All Locations"
+msgstr "Wszystkie lokalizacje"
+
+#: latepoint-pro-features.php:922
+#: lib/views/webhooks/_webhook_form.php:45
+msgid "Save"
+msgstr "Zapisz"
+
+#: latepoint-pro-features.php:928
+msgid "Are you sure you want to delete this blocked time period?"
+msgstr "Czy na pewno chcesz usunąć ten zablokowany okres czasu?"
+
+#: latepoint-pro-features.php:930
+msgid "Delete Blocked Period"
+msgstr "Usuń zablokowany okres"
+
+#: latepoint-pro-features.php:987
+msgid "Blocked Period"
+msgstr "Zablokowany okres"
+
+#: latepoint-pro-features.php:1056
+msgid "Enable this feature by installing an appropriate addon."
+msgstr "Włącz tę funkcję, instalując odpowiedni dodatek."
+
+#: latepoint-pro-features.php:1067
+msgid "Not applied to invoice"
+msgstr "Nie zastosowano do faktury"
+
+#: latepoint-pro-features.php:1073
+#, php-format
+msgid "#%s"
+msgstr "#%s"
+
+#: latepoint-pro-features.php:1076
+msgid "Apply to Invoice"
+msgstr "Zastosuj do faktury"
+
+#: latepoint-pro-features.php:1081
+msgid "View Receipt"
+msgstr "Wyświetl paragon"
+
+#: latepoint-pro-features.php:1083
+msgid "View Invoice"
+msgstr "Wyświetl fakturę"
+
+#: latepoint-pro-features.php:1100
+#: lib/controllers/addons_controller.php:18
+msgid "Add-ons"
+msgstr "Dodatki"
+
+#: latepoint-pro-features.php:1112
+msgid "Premium Features"
+msgstr "Funkcje premium"
+
+#: latepoint-pro-features.php:1194
+msgid "Form Fields"
+msgstr "Pola formularza"
+
+#: latepoint-pro-features.php:1199
+msgid "Customer Fields"
+msgstr "Pola klienta"
+
+#: latepoint-pro-features.php:1204
+msgid "Booking Fields"
+msgstr "Pola rezerwacji"
+
+#: latepoint-pro-features.php:1217
+#: latepoint-pro-features.php:1222
+#: lib/controllers/locations_controller.php:21
+#: lib/helpers/feature_locations_helper.php:70
+msgid "Locations"
+msgstr "Lokalizacje"
+
+#: latepoint-pro-features.php:1227
+msgid "Categories"
+msgstr "Kategorie"
+
+#: latepoint-pro-features.php:1271
+msgid "Cart Settings"
+msgstr "Ustawienia koszyka"
+
+#: latepoint-pro-features.php:1274
+msgid "Disable Shopping Cart Functionality"
+msgstr "Wyłącz funkcjonalność koszyka zakupowego"
+
+#: latepoint-pro-features.php:1274
+msgid "This will disable ability to book multiple services in one order"
+msgstr "Spowoduje to wyłączenie możliwości rezerwacji wielu usług w jednym zamówieniu"
+
+#: latepoint-pro-features.php:1275
+msgid "Reset Presets When Adding New Item"
+msgstr "Resetuj presety podczas dodawania nowego elementu"
+
+#: latepoint-pro-features.php:1275
+msgid "This will reset presets settings when adding new item"
+msgstr "Spowoduje to zresetowanie ustawień presetów podczas dodawania nowego elementu"
+
+#: latepoint-pro-features.php:1286
+msgid "Assets Settings"
+msgstr "Ustawienia zasobów"
+
+#: latepoint-pro-features.php:1289
+msgid "Enable Assets Functionality"
+msgstr "Włącz funkcjonalność zasobów"
+
+#: latepoint-pro-features.php:1289
+msgid "Enable to use assets for managing booking availability. When disabled, assets will not affect booking availability"
+msgstr "Włącz, aby używać zasobów do zarządzania dostępnością rezerwacji. Gdy wyłączone, zasoby nie będą wpływać na dostępność rezerwacji"
+
+#: latepoint-pro-features.php:1490
+#: latepoint-pro-features.php:1503
+msgid "Are you sure you want to remove this file?"
+msgstr "Czy na pewno chcesz usunąć ten plik?"
+
+#: latepoint-pro-features.php:1491
+#: latepoint-pro-features.php:1504
+msgid "This file is required and cannot be removed, but you can replace it with a different file. Do you want to replace it?"
+msgstr "Ten plik jest wymagany i nie można go usunąć, ale możesz zastąpić go innym plikiem. Czy chcesz go zastąpić?"
+
+#: latepoint-pro-features.php:1609
+msgid "Activate LatePoint"
+msgstr "Aktywuj LatePoint"
+
+#: latepoint-pro-features.php:1613
+msgid "Install LatePoint"
+msgstr "Zainstaluj LatePoint"
+
+#: latepoint-pro-features.php:1617
+#, php-format
+msgid "%1$sPRO Features for LatePoint%2$s plugin requires %1$sLatePoint%2$s core plugin installed & activated."
+msgstr "Wtyczka %1$sFunkcje PRO dla LatePoint%2$s wymaga zainstalowanej i aktywowanej wtyczki głównej %1$sLatePoint%2$s."
+
+#: lib/controllers/addons_controller.php:37
+msgid "Addon \"Pro Features\" has been installed"
+msgstr "Dodatek „Funkcje Pro” został zainstalowany"
+
+#: lib/controllers/addons_controller.php:42
+msgid "Invalid license key. Activate in LatePoint settings."
+msgstr "Nieprawidłowy klucz licencyjny. Aktywuj w ustawieniach LatePoint."
+
+#: lib/controllers/addons_controller.php:63
+msgid "You do not have permission to delete plugins."
+msgstr "Nie masz uprawnień do usuwania wtyczek."
+
+#: lib/controllers/addons_controller.php:80
+msgid "Addon deleted"
+msgstr "Dodatek usunięty"
+
+#: lib/controllers/addons_controller.php:93
+msgid "You do not have permission to manage plugins."
+msgstr "Nie masz uprawnień do zarządzania wtyczkami."
+
+#: lib/controllers/addons_controller.php:108
+msgid "Addon deactivated"
+msgstr "Dodatek dezaktywowany"
+
+#: lib/controllers/addons_controller.php:126
+msgid "You do not have permission to activate plugins."
+msgstr "Nie masz uprawnień do aktywowania wtyczek."
+
+#: lib/controllers/addons_controller.php:141
+msgid "Addon activated"
+msgstr "Dodatek aktywowany"
+
+#: lib/controllers/addons_controller.php:158
+msgid "You do not have permission to install plugins."
+msgstr "Nie masz uprawnień do instalowania wtyczek."
+
+#: lib/controllers/addons_controller.php:185
+msgid "Addon installed successfully."
+msgstr "Dodatek został pomyślnie zainstalowany."
+
+#: lib/controllers/agents_controller.php:23
+#: lib/views/coupons/quick_edit.php:89
+#: lib/views/locations/_form.php:221
+msgid "Agents"
+msgstr "Agenci"
+
+#: lib/controllers/agents_controller.php:35
+msgid "Index"
+msgstr "Indeks"
+
+#: lib/controllers/agents_controller.php:52
+#: lib/controllers/agents_controller.php:54
+#: lib/views/agents/index.php:66
+#: lib/views/agents/index.php:73
+#: lib/views/agents/quick_edit.php:14
+msgid "New Agent"
+msgstr "Nowy agent"
+
+#: lib/controllers/agents_controller.php:136
+#: lib/controllers/agents_controller.php:138
+#: lib/views/agents/index.php:58
+#: lib/views/agents/quick_edit.php:16
+msgid "Edit Agent"
+msgstr "Edytuj agenta"
+
+#: lib/controllers/agents_controller.php:214
+msgid "Agent Created. ID:"
+msgstr "Agent utworzony. ID:"
+
+#: lib/controllers/agents_controller.php:222
+msgid "Agent Updated. ID:"
+msgstr "Agent zaktualizowany. ID:"
+
+#: lib/controllers/agents_controller.php:277
+msgid "Agent Removed"
+msgstr "Agent usunięty"
+
+#: lib/controllers/agents_controller.php:280
+#: lib/controllers/agents_controller.php:284
+msgid "Error Removing Agent"
+msgstr "Błąd podczas usuwania agenta"
+
+#: lib/controllers/agents_controller.php:325
+msgid "Error Accessing Agent"
+msgstr "Błąd podczas uzyskiwania dostępu do agenta"
+
+#: lib/controllers/agents_controller.php:347
+#: lib/controllers/locations_controller.php:253
+msgid "Copy"
+msgstr "Kopiuj"
+
+#: lib/controllers/agents_controller.php:380
+#: lib/controllers/agents_controller.php:384
+msgid "Error Creating Agent"
+msgstr "Błąd podczas tworzenia agenta"
+
+#: lib/controllers/assets_controller.php:39
+#: lib/controllers/assets_controller.php:41
+#: lib/views/assets/index.php:73
+msgid "New Asset"
+msgstr "Nowy zasób"
+
+#: lib/controllers/assets_controller.php:58
+#: lib/controllers/assets_controller.php:60
+#: lib/views/assets/index.php:66
+msgid "Edit Asset"
+msgstr "Edytuj zasób"
+
+#: lib/controllers/assets_controller.php:90
+msgid "Asset Created. ID:"
+msgstr "Zasób utworzony. ID:"
+
+#: lib/controllers/assets_controller.php:92
+msgid "Asset Updated. ID:"
+msgstr "Zasób zaktualizowany. ID:"
+
+#: lib/controllers/assets_controller.php:117
+msgid "Asset Removed"
+msgstr "Zasób usunięty"
+
+#: lib/controllers/assets_controller.php:120
+#: lib/controllers/assets_controller.php:124
+msgid "Error Removing Asset"
+msgstr "Błąd podczas usuwania zasobu"
+
+#: lib/controllers/bundles_controller.php:24
+#: lib/views/coupons/quick_edit.php:125
+msgid "Bundles"
+msgstr "Pakiety"
+
+#: lib/controllers/bundles_controller.php:36
+#: lib/controllers/bundles_controller.php:38
+#: lib/views/bundles/index.php:37
+msgid "Edit Bundle"
+msgstr "Edytuj pakiet"
+
+#: lib/controllers/bundles_controller.php:60
+#: lib/controllers/bundles_controller.php:62
+#: lib/views/bundles/index.php:47
+#: lib/views/bundles/index.php:57
+msgid "New Bundle"
+msgstr "Nowy pakiet"
+
+#: lib/controllers/bundles_controller.php:124
+msgid "Bundle Created. ID:"
+msgstr "Pakiet utworzony. ID:"
+
+#: lib/controllers/bundles_controller.php:132
+msgid "Bundle Updated. ID:"
+msgstr "Pakiet zaktualizowany. ID:"
+
+#: lib/controllers/bundles_controller.php:171
+msgid "Bundle Removed"
+msgstr "Pakiet usunięty"
+
+#: lib/controllers/bundles_controller.php:174
+#: lib/controllers/bundles_controller.php:178
+msgid "Error Removing Bundle"
+msgstr "Błąd podczas usuwania pakietu"
+
+#: lib/controllers/coupons_controller.php:22
+#: lib/helpers/feature_coupons_helper.php:131
+#: lib/views/coupons/index.php:8
+msgid "Coupons"
+msgstr "Kupony"
+
+#: lib/controllers/coupons_controller.php:73
+#: lib/views/coupons/index.php:24
+#: lib/views/coupons/index.php:32
+#: lib/views/coupons/index.php:54
+msgid "ID"
+msgstr "ID"
+
+#: lib/controllers/coupons_controller.php:74
+#: lib/models/asset_model.php:22
+#: lib/models/service_extra_model.php:20
+#: lib/views/coupons/index.php:25
+#: lib/views/coupons/index.php:55
+#: lib/views/roles/_form.php:21
+msgid "Name"
+msgstr "Nazwa"
+
+#: lib/controllers/coupons_controller.php:75
+#: lib/views/coupons/index.php:26
+#: lib/views/coupons/index.php:56
+#: lib/views/coupons/quick_edit.php:51
+msgid "Code"
+msgstr "Kod"
+
+#: lib/controllers/coupons_controller.php:76
+#: lib/views/coupons/index.php:27
+#: lib/views/coupons/index.php:57
+msgid "Discount"
+msgstr "Rabat"
+
+#: lib/controllers/coupons_controller.php:77
+#: lib/views/agents/quick_edit.php:57
+#: lib/views/agents/_form.php:41
+#: lib/views/assets/_form.php:35
+#: lib/views/bundles/_form.php:30
+#: lib/views/coupons/index.php:28
+#: lib/views/coupons/index.php:58
+#: lib/views/coupons/quick_edit.php:62
+#: lib/views/locations/_form.php:18
+#: lib/views/service_extras/_form.php:31
+msgid "Status"
+msgstr "Status"
+
+#: lib/controllers/coupons_controller.php:78
+#: lib/views/coupons/index.php:29
+#: lib/views/coupons/index.php:59
+msgid "Created On"
+msgstr "Utworzono dnia"
+
+#: lib/controllers/coupons_controller.php:169
+msgid "Coupon Code was removed from your cart"
+msgstr "Kod kuponu został usunięty z Twojego koszyka"
+
+#: lib/controllers/coupons_controller.php:181
+msgid "Coupon Code was applied to your cart"
+msgstr "Kod kuponu został zastosowany do Twojego koszyka"
+
+#: lib/controllers/coupons_controller.php:202
+msgid "Coupon Removed"
+msgstr "Kupon usunięty"
+
+#: lib/controllers/coupons_controller.php:205
+#: lib/controllers/coupons_controller.php:209
+msgid "Error Removing Coupon"
+msgstr "Błąd podczas usuwania kuponu"
+
+#: lib/controllers/coupons_controller.php:299
+#, php-format
+msgid "Coupon Updated ID: %s"
+msgstr "Kupon zaktualizowany ID: %s"
+
+#: lib/controllers/coupons_controller.php:299
+#, php-format
+msgid "Coupon Created ID: %s"
+msgstr "Kupon utworzony ID: %s"
+
+#: lib/controllers/custom_fields_controller.php:27
+#: lib/controllers/custom_fields_controller.php:291
+#: lib/helpers/feature_custom_fields_helper.php:402
+#: lib/helpers/feature_custom_fields_helper.php:671
+#: lib/views/custom_fields/for_customer.php:3
+msgid "Custom Fields"
+msgstr "Pola niestandardowe"
+
+#: lib/controllers/custom_fields_controller.php:99
+#: lib/controllers/custom_fields_controller.php:126
+msgid "Field Removed"
+msgstr "Pole usunięte"
+
+#: lib/controllers/custom_fields_controller.php:102
+#: lib/controllers/custom_fields_controller.php:129
+#: lib/controllers/whatsapp_controller.php:28
+#: lib/controllers/whatsapp_controller.php:58
+msgid "Invalid Data"
+msgstr "Nieprawidłowe dane"
+
+#: lib/controllers/custom_fields_controller.php:106
+#: lib/controllers/custom_fields_controller.php:133
+msgid "Not Authorized"
+msgstr "Brak autoryzacji"
+
+#: lib/controllers/custom_fields_controller.php:153
+msgid "Custom Field Removed"
+msgstr "Pole niestandardowe usunięte"
+
+#: lib/controllers/custom_fields_controller.php:156
+msgid "Error Removing Custom Field"
+msgstr "Błąd podczas usuwania pola niestandardowego"
+
+#: lib/controllers/custom_fields_controller.php:160
+msgid "Invalid Field ID"
+msgstr "Nieprawidłowy identyfikator pola"
+
+#: lib/controllers/custom_fields_controller.php:202
+#: lib/controllers/custom_fields_controller.php:237
+#: lib/controllers/roles_controller.php:159
+#: lib/controllers/taxes_controller.php:67
+#: lib/controllers/webhooks_controller.php:75
+msgid "Invalid params"
+msgstr "Nieprawidłowe parametry"
+
+#: lib/controllers/custom_fields_controller.php:228
+msgid "Custom Field Saved"
+msgstr "Pole niestandardowe zapisane"
+
+#: lib/controllers/custom_fields_controller.php:231
+msgid "Error Saving Custom Field"
+msgstr "Błąd podczas zapisywania pola niestandardowego"
+
+#: lib/controllers/custom_fields_controller.php:264
+#: lib/controllers/taxes_controller.php:91
+msgid "Order Updated"
+msgstr "Zamówienie zaktualizowane"
+
+#: lib/controllers/custom_fields_controller.php:267
+msgid "Error Updating Order of Custom Fields"
+msgstr "Błąd podczas aktualizacji kolejności pól niestandardowych"
+
+#: lib/controllers/debug_controller.php:17
+msgid "LatePoint Status"
+msgstr "Status LatePoint"
+
+#: lib/controllers/debug_controller.php:28
+#: lib/controllers/debug_controller.php:42
+msgid "DB Version was reset"
+msgstr "Wersja bazy danych została zresetowana"
+
+#: lib/controllers/locations_controller.php:35
+#: lib/controllers/locations_controller.php:37
+#: lib/views/locations/_location_index_item.php:35
+msgid "Edit Location"
+msgstr "Edytuj lokalizację"
+
+#: lib/controllers/locations_controller.php:75
+#: lib/controllers/locations_controller.php:77
+#: lib/controllers/location_categories_controller.php:42
+#: lib/controllers/location_categories_controller.php:44
+msgid "Create New Location"
+msgstr "Utwórz nową lokalizację"
+
+#: lib/controllers/locations_controller.php:171
+msgid "Location Created. ID:"
+msgstr "Lokalizacja utworzona. ID:"
+
+#: lib/controllers/locations_controller.php:179
+msgid "Location Updated. ID:"
+msgstr "Lokalizacja zaktualizowana. ID:"
+
+#: lib/controllers/locations_controller.php:221
+msgid "Location Removed"
+msgstr "Lokalizacja usunięta"
+
+#: lib/controllers/locations_controller.php:224
+#: lib/controllers/locations_controller.php:228
+msgid "Error Removing Location"
+msgstr "Błąd podczas usuwania lokalizacji"
+
+#: lib/controllers/locations_controller.php:285
+#: lib/controllers/locations_controller.php:289
+msgid "Error Creating Location"
+msgstr "Błąd podczas tworzenia lokalizacji"
+
+#: lib/controllers/location_categories_controller.php:21
+msgid "Location Categories"
+msgstr "Kategorie lokalizacji"
+
+#: lib/controllers/location_categories_controller.php:75
+msgid "Not categorized"
+msgstr "Bez kategorii"
+
+#: lib/controllers/location_categories_controller.php:121
+msgid "Location Category Removed"
+msgstr "Kategoria lokalizacji usunięta"
+
+#: lib/controllers/location_categories_controller.php:124
+msgid "Error Removing Location Category. Error: FJI8321"
+msgstr "Błąd podczas usuwania kategorii lokalizacji. Błąd: FJI8321"
+
+#: lib/controllers/location_categories_controller.php:128
+msgid "Error Removing Location Category. Error: SIF2348"
+msgstr "Błąd podczas usuwania kategorii lokalizacji. Błąd: SIF2348"
+
+#: lib/controllers/location_categories_controller.php:149
+msgid "Location Order Updated"
+msgstr "Kolejność lokalizacji zaktualizowana"
+
+#: lib/controllers/location_categories_controller.php:163
+msgid "Location Categories Order Updated"
+msgstr "Kolejność kategorii lokalizacji zaktualizowana"
+
+#: lib/controllers/location_categories_controller.php:192
+msgid "Location Category Created."
+msgstr "Kategoria lokalizacji utworzona."
+
+#: lib/controllers/location_categories_controller.php:219
+msgid "Location Category Updated. ID: "
+msgstr "Kategoria lokalizacji zaktualizowana. ID:"
+
+#: lib/controllers/location_categories_controller.php:227
+msgid "Error Updating Location (Invalid ID)"
+msgstr "Błąd podczas aktualizacji lokalizacji (nieprawidłowy ID)"
+
+#: lib/controllers/messages_controller.php:25
+#: lib/controllers/messages_controller.php:27
+#: lib/helpers/feature_messages_helper.php:17
+#: lib/helpers/feature_messages_helper.php:89
+msgid "Messages"
+msgstr "Wiadomości"
+
+#: lib/controllers/messages_controller.php:241
+msgid "Success"
+msgstr "Sukces"
+
+#: lib/controllers/messages_controller.php:244
+#: lib/controllers/messages_controller.php:248
+msgid "Error sending message. Try again later."
+msgstr "Błąd podczas wysyłania wiadomości. Spróbuj ponownie później."
+
+#: lib/controllers/reminders_controller.php:23
+#: lib/controllers/reminders_controller.php:25
+msgid "Reminders"
+msgstr "Przypomnienia"
+
+#: lib/controllers/roles_controller.php:21
+msgid "Roles"
+msgstr "Role"
+
+#: lib/controllers/roles_controller.php:30
+#: lib/controllers/roles_controller.php:194
+msgid "You do not have permission to edit users."
+msgstr "Nie masz uprawnień do edycji użytkowników."
+
+#: lib/controllers/roles_controller.php:36
+msgid "Invalid User ID"
+msgstr "Nieprawidłowy ID użytkownika"
+
+#: lib/controllers/roles_controller.php:79
+msgid "User Roles Updated"
+msgstr "Role użytkownika zaktualizowane"
+
+#: lib/controllers/roles_controller.php:95
+#: lib/controllers/roles_controller.php:130
+msgid "You do not have permission to manage roles."
+msgstr "Nie masz uprawnień do zarządzania rolami."
+
+#: lib/controllers/roles_controller.php:106
+msgid "Role Removed"
+msgstr "Rola usunięta"
+
+#: lib/controllers/roles_controller.php:109
+msgid "Error Removing Role"
+msgstr "Błąd podczas usuwania roli"
+
+#: lib/controllers/roles_controller.php:113
+msgid "Invalid Role"
+msgstr "Nieprawidłowa rola"
+
+#: lib/controllers/roles_controller.php:155
+msgid "Custom Role saved"
+msgstr "Niestandardowa rola zapisana"
+
+#: lib/controllers/service_categories_controller.php:22
+#: lib/controllers/service_categories_controller.php:25
+msgid "Service Categories"
+msgstr "Kategorie usług"
+
+#: lib/controllers/service_categories_controller.php:46
+#: lib/controllers/service_categories_controller.php:48
+msgid "Create New Service"
+msgstr "Utwórz nową usługę"
+
+#: lib/controllers/service_categories_controller.php:79
+#: lib/views/locations/index.php:3
+msgid "Uncategorized"
+msgstr "Bez kategorii"
+
+#: lib/controllers/service_categories_controller.php:117
+msgid "Service Category Removed"
+msgstr "Kategoria usługi usunięta"
+
+#: lib/controllers/service_categories_controller.php:120
+msgid "Error Removing Service Category. Error: FJI8321"
+msgstr "Błąd podczas usuwania kategorii usługi. Błąd: FJI8321"
+
+#: lib/controllers/service_categories_controller.php:124
+msgid "Error Removing Service Category. Error: SIF2348"
+msgstr "Błąd podczas usuwania kategorii usługi. Błąd: SIF2348"
+
+#: lib/controllers/service_categories_controller.php:145
+msgid "Service Order Updated"
+msgstr "Kolejność usług zaktualizowana"
+
+#: lib/controllers/service_categories_controller.php:159
+msgid "Service Categories Order Updated"
+msgstr "Kolejność kategorii usług zaktualizowana"
+
+#: lib/controllers/service_categories_controller.php:188
+msgid "Service Category Created. ID: "
+msgstr "Kategoria usługi utworzona. ID:"
+
+#: lib/controllers/service_categories_controller.php:215
+msgid "Service Category Updated. ID: "
+msgstr "Kategoria usługi zaktualizowana. ID:"
+
+#: lib/controllers/service_categories_controller.php:222
+msgid "Invalid Service Category ID"
+msgstr "Nieprawidłowy ID kategorii usługi"
+
+#: lib/controllers/service_durations_controller.php:18
+#: lib/controllers/service_durations_controller.php:20
+#: lib/helpers/feature_service_durations_helper.php:88
+msgid "Service Durations"
+msgstr "Czas trwania usług"
+
+#: lib/controllers/service_extras_controller.php:56
+#: lib/controllers/service_extras_controller.php:58
+msgid "Edit Service Extra"
+msgstr "Edytuj dodatek usługi"
+
+#: lib/controllers/service_extras_controller.php:78
+#: lib/controllers/service_extras_controller.php:80
+#: lib/views/service_extras/index.php:40
+msgid "New Service Extra"
+msgstr "Nowy dodatek usługi"
+
+#: lib/controllers/service_extras_controller.php:129
+msgid "Service Extra Created. ID:"
+msgstr "Dodatek usługi utworzony. ID:"
+
+#: lib/controllers/service_extras_controller.php:131
+msgid "Service Extra Updated. ID:"
+msgstr "Usługa dodatkowa zaktualizowana. ID:"
+
+#: lib/controllers/service_extras_controller.php:160
+msgid "Service Extra Removed"
+msgstr "Usługa dodatkowa usunięta"
+
+#: lib/controllers/service_extras_controller.php:163
+#: lib/controllers/service_extras_controller.php:167
+msgid "Error Removing Service Extra"
+msgstr "Błąd podczas usuwania usługi dodatkowej"
+
+#: lib/controllers/taxes_controller.php:20
+#: lib/views/taxes/index.php:1
+msgid "Taxes"
+msgstr "Podatki"
+
+#: lib/controllers/taxes_controller.php:30
+msgid "Tax Removed"
+msgstr "Podatek usunięty"
+
+#: lib/controllers/taxes_controller.php:33
+msgid "Error Removing Tax"
+msgstr "Błąd podczas usuwania podatku"
+
+#: lib/controllers/taxes_controller.php:37
+msgid "Invalid Tax ID"
+msgstr "Nieprawidłowe ID podatku"
+
+#: lib/controllers/taxes_controller.php:63
+msgid "Taxes saved"
+msgstr "Podatki zapisane"
+
+#: lib/controllers/taxes_controller.php:94
+msgid "Error Updating Order of Taxes"
+msgstr "Błąd podczas aktualizacji kolejności podatków"
+
+#: lib/controllers/timezone_selector_controller.php:18
+#: lib/controllers/timezone_selector_controller.php:20
+msgid "Timezone Selector"
+msgstr "Wybór strefy czasowej"
+
+#: lib/controllers/timezone_selector_controller.php:38
+msgid "Timezone Updated"
+msgstr "Strefa czasowa zaktualizowana"
+
+#: lib/controllers/updates_controller.php:46
+msgid "License Deactivated"
+msgstr "Licencja dezaktywowana"
+
+#: lib/controllers/webhooks_controller.php:18
+#: lib/controllers/webhooks_controller.php:20
+msgid "Webhooks"
+msgstr "Webhooki"
+
+#: lib/controllers/webhooks_controller.php:34
+msgid "Webhook Removed"
+msgstr "Webhook usunięty"
+
+#: lib/controllers/webhooks_controller.php:37
+msgid "Error Removing Webhook"
+msgstr "Błąd podczas usuwania webhooka"
+
+#: lib/controllers/webhooks_controller.php:41
+msgid "Invalid Hook ID"
+msgstr "Nieprawidłowe ID hooka"
+
+#: lib/controllers/webhooks_controller.php:66
+msgid "Webhook Saved"
+msgstr "Webhook zapisany"
+
+#: lib/controllers/webhooks_controller.php:69
+msgid "Error Saving Webhook"
+msgstr "Błąd podczas zapisywania webhooka"
+
+#: lib/controllers/whatsapp_controller.php:18
+msgid "Whatsapp"
+msgstr "Whatsapp"
+
+#: lib/controllers/whatsapp_controller.php:66
+#, php-format
+msgid "No templates found in your WhatsApp account. %s to learn how to setup WhatsApp connection and add templates."
+msgstr "Nie znaleziono żadnych szablonów na Twoim koncie WhatsApp. %s, aby dowiedzieć się, jak skonfigurować połączenie WhatsApp i dodać szablony."
+
+#: lib/controllers/whatsapp_controller.php:93
+#, php-format
+msgid "You can use %s as values for the fields below. Make sure to read %s on how to set up your WhatsApp integration."
+msgstr "Możesz użyć %s jako wartości dla poniższych pól. Upewnij się, że przeczytasz %s, aby dowiedzieć się, jak skonfigurować integrację WhatsApp."
+
+#: lib/controllers/whatsapp_controller.php:93
+msgid "Smart Variables"
+msgstr "Inteligentne zmienne"
+
+#: lib/controllers/whatsapp_controller.php:93
+msgid "this article"
+msgstr "ten artykuł"
+
+#: lib/controllers/whatsapp_controller.php:98
+msgid "To Phone Number"
+msgstr "Na numer telefonu"
+
+#: lib/controllers/whatsapp_controller.php:102
+#: lib/views/agents/quick_edit.php:49
+#: lib/views/agents/_form.php:36
+msgid "Phone Number"
+msgstr "Numer telefonu"
+
+#: lib/controllers/whatsapp_controller.php:109
+msgid "Template"
+msgstr "Szablon"
+
+#: lib/helpers/addons_helper.php:63
+msgid "Connection Error. Please try again in a few minutes or contact us via email addons@latepoint.com. KLJSD734"
+msgstr "Błąd połączenia. Spróbuj ponownie za kilka minut lub skontaktuj się z nami przez e-mail addons@latepoint.com. KLJSD734"
+
+#. translators: 1: bold open tag, 2: bold close tag, 3: current Pro version, 4: required Pro version
+#: lib/helpers/addons_helper.php:120
+#, php-format
+msgid "You are using an older version of the %1$sLatePoint Pro Features%2$s plugin (v%3$s). Please update the %1$sLatePoint Pro Features%2$s plugin to version %1$s%4$s or later%2$s."
+msgstr "Używasz starszej wersji wtyczki %1$sLatePoint Pro Features%2$s (v%3$s). Zaktualizuj wtyczkę %1$sLatePoint Pro Features%2$s do wersji %1$s%4$s lub nowszej%2$s."
+
+#: lib/helpers/addons_helper.php:170
+msgid "Unable to install addon. Invalid info (KFE73463)"
+msgstr "Nie można zainstalować dodatku. Nieprawidłowe informacje (KFE73463)"
+
+#: lib/helpers/coupons_helper.php:24
+msgid "Total booking price: "
+msgstr "Całkowita cena rezerwacji:"
+
+#: lib/helpers/coupons_helper.php:27
+msgid "Deposit Amount: "
+msgstr "Kwota zaliczki:"
+
+#: lib/helpers/coupons_helper.php:33
+#: lib/helpers/feature_coupons_helper.php:203
+msgid "Have a coupon code?"
+msgstr "Masz kod kuponu?"
+
+#: lib/helpers/coupons_helper.php:35
+#: lib/helpers/feature_coupons_helper.php:205
+msgid "Enter Code..."
+msgstr "Wpisz kod..."
+
+#: lib/helpers/coupons_helper.php:36
+msgid "OK"
+msgstr "OK"
+
+#: lib/helpers/coupons_helper.php:62
+msgid "Invalid coupon code."
+msgstr "Nieprawidłowy kod kuponu."
+
+#: lib/helpers/coupons_helper.php:93
+#: lib/helpers/coupons_helper.php:106
+#: lib/helpers/coupons_helper.php:117
+#: lib/helpers/coupons_helper.php:154
+#: lib/helpers/coupons_helper.php:158
+#: lib/helpers/coupons_helper.php:162
+#: lib/helpers/coupons_helper.php:253
+msgid "This coupon code is invalid or has expired"
+msgstr "Ten kod kuponu jest nieprawidłowy lub wygasł"
+
+#. translators: %s: formatted minimum order subtotal
+#: lib/helpers/coupons_helper.php:173
+#, php-format
+msgid "This coupon requires a minimum order total of %s"
+msgstr "Ten kupon wymaga minimalnej wartości zamówienia %s"
+
+#: lib/helpers/coupons_helper.php:188
+#, php-format
+msgid "This coupon can only be used %d times"
+msgstr "Ten kupon może być użyty tylko %d razy"
+
+#: lib/helpers/coupons_helper.php:195
+#: lib/helpers/coupons_helper.php:217
+#: lib/helpers/coupons_helper.php:234
+msgid "Customer is missing"
+msgstr "Brakuje klienta"
+
+#: lib/helpers/coupons_helper.php:209
+msgid "This coupon can only be used once per customer."
+msgid_plural "This coupon is limited to %d uses per customer"
+msgstr[0] "Ten kupon może być użyty tylko raz na klienta."
+msgstr[1] ""
+msgstr[2] ""
+
+#: lib/helpers/coupons_helper.php:226
+#, php-format
+msgid "You need to have at least %d orders to use this coupon"
+msgstr "Musisz mieć co najmniej %d zamówień, aby użyć tego kuponu"
+
+#: lib/helpers/coupons_helper.php:244
+msgid "This coupon can only be applied on your first order"
+msgstr "Ten kupon może być zastosowany tylko przy Twoim pierwszym zamówieniu"
+
+#: lib/helpers/coupons_helper.php:246
+#, php-format
+msgid "This coupon can only be applied on your first %d orders"
+msgstr "Ten kupon może być zastosowany tylko przy Twoich pierwszych %d zamówieniach"
+
+#: lib/helpers/coupons_helper.php:265
+#: lib/views/addons/load_addons_list.php:100
+#: lib/views/agents/quick_edit.php:57
+#: lib/views/agents/_form.php:41
+#: lib/views/assets/_form.php:37
+#: lib/views/bundles/_form.php:30
+#: lib/views/locations/_form.php:18
+#: lib/views/service_extras/_form.php:31
+#: lib/views/webhooks/_webhook_form.php:40
+msgid "Active"
+msgstr "Aktywny"
+
+#: lib/helpers/coupons_helper.php:266
+#: lib/views/agents/quick_edit.php:58
+#: lib/views/agents/_form.php:42
+#: lib/views/agents/_form.php:136
+#: lib/views/assets/_form.php:38
+#: lib/views/bundles/_form.php:30
+#: lib/views/locations/_form.php:19
+#: lib/views/service_extras/_form.php:31
+#: lib/views/webhooks/_webhook_form.php:41
+msgid "Disabled"
+msgstr "Wyłączony"
+
+#: lib/helpers/coupons_helper.php:302
+msgid "Undefined Status"
+msgstr "Nieokreślony status"
+
+#: lib/helpers/coupons_helper.php:309
+#: lib/helpers/coupons_helper.php:330
+#: lib/helpers/coupons_helper.php:337
+#: lib/helpers/feature_timezone_helper.php:14
+#: lib/views/coupons/quick_edit.php:41
+msgid "n/a"
+msgstr "n/d"
+
+#: lib/helpers/custom_fields_helper.php:37
+msgid "Text Field"
+msgstr "Pole tekstowe"
+
+#: lib/helpers/custom_fields_helper.php:38
+msgid "Phone Number Field"
+msgstr "Pole numeru telefonu"
+
+#: lib/helpers/custom_fields_helper.php:39
+msgid "Number Field"
+msgstr "Pole liczbowe"
+
+#: lib/helpers/custom_fields_helper.php:40
+msgid "Hidden Field"
+msgstr "Pole ukryte"
+
+#: lib/helpers/custom_fields_helper.php:41
+msgid "Select Box"
+msgstr "Pole wyboru"
+
+#: lib/helpers/custom_fields_helper.php:42
+msgid "Multiple Selectable Options"
+msgstr "Wiele opcji do wyboru"
+
+#: lib/helpers/custom_fields_helper.php:43
+msgid "Text Area Field"
+msgstr "Pole tekstowe wielowierszowe"
+
+#: lib/helpers/custom_fields_helper.php:44
+msgid "Checkbox"
+msgstr "Pole wyboru"
+
+#: lib/helpers/custom_fields_helper.php:45
+msgid "Google Address Autocomplete"
+msgstr "Autouzupełnianie adresu Google"
+
+#: lib/helpers/custom_fields_helper.php:46
+msgid "File Upload"
+msgstr "Przesyłanie pliku"
+
+#: lib/helpers/custom_fields_helper.php:79
+msgid "Enter Field Default Value"
+msgstr "Wprowadź domyślną wartość pola"
+
+#: lib/helpers/custom_fields_helper.php:120
+msgid "No Restrictions"
+msgstr "Brak ograniczeń"
+
+#: lib/helpers/custom_fields_helper.php:360
+msgid "Field Label cannot be empty"
+msgstr "Etykieta pola nie może być pusta"
+
+#: lib/helpers/custom_fields_helper.php:363
+msgid "Type cannot be empty"
+msgstr "Typ nie może być pusty"
+
+#: lib/helpers/custom_fields_helper.php:367
+msgid "Options for select box cannot be blank"
+msgstr "Opcje dla pola wyboru nie mogą być puste"
+
+#: lib/helpers/custom_fields_helper.php:388
+#, php-format
+msgid "%s field must be checked"
+msgstr "Pole %s musi być zaznaczone"
+
+#: lib/helpers/custom_fields_helper.php:399
+#, php-format
+msgid "%s must be attached"
+msgstr "%s musi być dołączony"
+
+#: lib/helpers/custom_fields_helper.php:412
+#, php-format
+msgid "%s file type is not supported."
+msgstr "Typ pliku %s nie jest obsługiwany."
+
+#: lib/helpers/custom_fields_helper.php:424
+#, php-format
+msgid "%s cannot be blank"
+msgstr "%s nie może być puste"
+
+#: lib/helpers/custom_fields_helper.php:465
+#: lib/helpers/feature_recurring_bookings_helper.php:31
+msgid "Yes"
+msgstr "Tak"
+
+#: lib/helpers/custom_fields_helper.php:465
+#: lib/helpers/feature_recurring_bookings_helper.php:32
+msgid "No"
+msgstr "Nie"
+
+#: lib/helpers/custom_fields_helper.php:483
+#: lib/views/bundles/index.php:20
+#: lib/views/messages/messages_with_info_for_booking.php:76
+msgid "Service"
+msgstr "Usługa"
+
+#: lib/helpers/custom_fields_helper.php:484
+#: lib/views/messages/messages_with_info_for_booking.php:74
+msgid "Agent"
+msgstr "Agent"
+
+#: lib/helpers/custom_fields_helper.php:513
+msgid "is equal to"
+msgstr "jest równe"
+
+#: lib/helpers/custom_fields_helper.php:514
+msgid "is not equal to"
+msgstr "nie jest równe"
+
+#: lib/helpers/custom_fields_helper.php:527
+msgid "AND"
+msgstr "ORAZ"
+
+#: lib/helpers/feature_assets_helper.php:52
+#: lib/helpers/feature_service_extras_helper.php:454
+#: lib/views/agents/quick_edit.php:102
+#: lib/views/agents/_form.php:96
+#: lib/views/assets/_form.php:54
+#: lib/views/assets/_form.php:87
+#: lib/views/locations/_form.php:44
+#: lib/views/service_extras/_form.php:58
+msgid "Select All"
+msgstr "Zaznacz wszystko"
+
+#: lib/helpers/feature_assets_helper.php:68
+#, php-format
+msgid "Qty: %d"
+msgstr "Ilość: %d"
+
+#: lib/helpers/feature_assets_helper.php:76
+msgid "You have not created any assets yet."
+msgstr "Nie utworzono jeszcze żadnych zasobów."
+
+#: lib/helpers/feature_cloudflare_turnstile_helper.php:37
+#: lib/helpers/feature_cloudflare_turnstile_helper.php:43
+#: lib/helpers/feature_cloudflare_turnstile_helper.php:65
+#: lib/helpers/feature_cloudflare_turnstile_helper.php:71
+#: lib/helpers/feature_cloudflare_turnstile_helper.php:79
+#: lib/helpers/feature_cloudflare_turnstile_helper.php:85
+#: lib/helpers/feature_cloudflare_turnstile_helper.php:91
+msgid "Verification Error."
+msgstr "Błąd weryfikacji."
+
+#: lib/helpers/feature_cloudflare_turnstile_helper.php:42
+msgid "Invalid secret key for cloudflare."
+msgstr "Nieprawidłowy tajny klucz dla Cloudflare."
+
+#: lib/helpers/feature_cloudflare_turnstile_helper.php:78
+msgid "Turnstile: Invalid JSON response from API"
+msgstr "Turnstile: Nieprawidłowa odpowiedź JSON z API"
+
+#: lib/helpers/feature_cloudflare_turnstile_helper.php:112
+msgid "Verifying that you are not a robot..."
+msgstr "Weryfikacja, czy nie jesteś robotem..."
+
+#: lib/helpers/feature_cloudflare_turnstile_helper.php:133
+msgid "Cloudflare Turnstile will not work as required keys are empty. Please provide both Site Key and Secret Key."
+msgstr "Cloudflare Turnstile nie będzie działać, ponieważ wymagane klucze są puste. Podaj zarówno Site Key, jak i Secret Key."
+
+#: lib/helpers/feature_cloudflare_turnstile_helper.php:142
+msgid "Log Customer IP Address for Orders"
+msgstr "Rejestruj adres IP klienta dla zamówień"
+
+#: lib/helpers/feature_cloudflare_turnstile_helper.php:142
+msgid "If enabled, will save IP Address of a customer and you can view it under order log"
+msgstr "Jeśli włączone, zapisze adres IP klienta i będzie można go wyświetlić w dzienniku zamówień"
+
+#: lib/helpers/feature_cloudflare_turnstile_helper.php:143
+msgid "Enable Cloudflare Turnstile CAPTCHA"
+msgstr "Włącz CAPTCHA Cloudflare Turnstile"
+
+#: lib/helpers/feature_cloudflare_turnstile_helper.php:143
+msgid "Enable Captcha alternative from Cloudflare called Turnstile."
+msgstr "Włącz alternatywę CAPTCHA od Cloudflare o nazwie Turnstile."
+
+#: lib/helpers/feature_cloudflare_turnstile_helper.php:145
+msgid "Turnstile Site Key"
+msgstr "Klucz witryny Turnstile"
+
+#: lib/helpers/feature_cloudflare_turnstile_helper.php:146
+msgid "Turnstile Secret Key"
+msgstr "Sekretny klucz Turnstile"
+
+#: lib/helpers/feature_coupons_helper.php:10
+msgid "Coupon Code:"
+msgstr "Kod kuponu:"
+
+#: lib/helpers/feature_coupons_helper.php:11
+msgid "Coupon Discount:"
+msgstr "Rabat kuponu:"
+
+#: lib/helpers/feature_coupons_helper.php:181
+msgid "Coupon Settings"
+msgstr "Ustawienia kuponu"
+
+#: lib/helpers/feature_coupons_helper.php:183
+msgid "Hide coupon field"
+msgstr "Ukryj pole kuponu"
+
+#: lib/helpers/feature_coupons_helper.php:183
+msgid "Hides field to enter coupons"
+msgstr "Ukrywa pole do wpisywania kuponów"
+
+#: lib/helpers/feature_coupons_helper.php:206
+msgid "Apply"
+msgstr "Zastosuj"
+
+#: lib/helpers/feature_coupons_helper.php:207
+#: lib/views/agents/modal_list.php:14
+#: lib/views/location_categories/_form.php:22
+#: lib/views/service_categories/_form.php:22
+msgid "Cancel"
+msgstr "Anuluj"
+
+#: lib/helpers/feature_coupons_helper.php:210
+msgid "Applied Coupon:"
+msgstr "Zastosowany kupon:"
+
+#: lib/helpers/feature_coupons_helper.php:240
+msgid "Use Coupon"
+msgstr "Użyj kuponu"
+
+#: lib/helpers/feature_coupons_helper.php:249
+#: lib/helpers/feature_coupons_helper.php:289
+#: lib/helpers/feature_coupons_helper.php:297
+#: lib/models/coupon_model.php:20
+msgid "Coupon Code"
+msgstr "Kod kuponu"
+
+#: lib/helpers/feature_coupons_helper.php:253
+msgid "apply"
+msgstr "zastosuj"
+
+#: lib/helpers/feature_coupons_helper.php:268
+msgid "Coupon"
+msgstr "Kupon"
+
+#: lib/helpers/feature_coupons_helper.php:290
+#: lib/helpers/feature_coupons_helper.php:298
+msgid "Coupon Discount"
+msgstr "Rabat kuponu"
+
+#: lib/helpers/feature_custom_fields_helper.php:135
+#: lib/helpers/feature_custom_fields_helper.php:143
+msgid "Customer/"
+msgstr "Klient/"
+
+#: lib/helpers/feature_custom_fields_helper.php:138
+msgid "Booking/"
+msgstr "Rezerwacja/"
+
+#: lib/helpers/feature_custom_fields_helper.php:154
+msgid "Google Places API"
+msgstr "Google Places API"
+
+#: lib/helpers/feature_custom_fields_helper.php:157
+msgid "In order for address autocomplete to work, you need an API key. To learn how to create an API key for Google Places API"
+msgstr "Aby autouzupełnianie adresu działało, potrzebujesz klucza API. Aby dowiedzieć się, jak utworzyć klucz API dla Google Places API"
+
+#: lib/helpers/feature_custom_fields_helper.php:157
+msgid "click here"
+msgstr "kliknij tutaj"
+
+#: lib/helpers/feature_custom_fields_helper.php:159
+msgid "Google Places API key"
+msgstr "Klucz API Google Places"
+
+#: lib/helpers/feature_custom_fields_helper.php:160
+msgid "Country Restriction"
+msgstr "Ograniczenie kraju"
+
+#: lib/helpers/feature_custom_fields_helper.php:675
+msgid "For Customer:"
+msgstr "Dla klienta:"
+
+#: lib/helpers/feature_custom_fields_helper.php:681
+msgid "For Booking:"
+msgstr "Dla rezerwacji:"
+
+#: lib/helpers/feature_custom_fields_helper.php:746
+msgid "You have not created any custom fields for booking, this step will be skipped"
+msgstr "Nie utworzono żadnych niestandardowych pól dla rezerwacji, ten krok zostanie pominięty"
+
+#: lib/helpers/feature_custom_fields_helper.php:774
+msgid "Custom Fields for Booking"
+msgstr "Niestandardowe pola dla rezerwacji"
+
+#: lib/helpers/feature_group_bookings_helper.php:69
+#: lib/helpers/feature_group_bookings_helper.php:226
+#: lib/helpers/feature_group_bookings_helper.php:264
+#: lib/helpers/feature_group_bookings_helper.php:352
+#: lib/helpers/feature_group_bookings_helper.php:366
+msgid "Total Attendees"
+msgstr "Łączna liczba uczestników"
+
+#: lib/helpers/feature_group_bookings_helper.php:138
+msgid "Capacity:"
+msgstr "Pojemność:"
+
+#: lib/helpers/feature_group_bookings_helper.php:140
+msgid "person"
+msgstr "osoba"
+
+#: lib/helpers/feature_group_bookings_helper.php:149
+msgid "Multiply cost of this service extra by number of attendees"
+msgstr "Pomnóż dodatkowy koszt tej usługi przez liczbę uczestników"
+
+#: lib/helpers/feature_group_bookings_helper.php:233
+#: lib/views/bundles/_form.php:105
+msgid "Attendees"
+msgstr "Uczestnicy"
+
+#: lib/helpers/feature_group_bookings_helper.php:234
+#, php-format
+msgid "%s person"
+msgid_plural "%s people"
+msgstr[0] "%s osoba"
+msgstr[1] ""
+msgstr[2] ""
+
+#: lib/helpers/feature_group_bookings_helper.php:267
+msgid "Max Capacity:"
+msgstr "Maksymalna pojemność:"
+
+#: lib/helpers/feature_group_bookings_helper.php:284
+msgid "Capacity"
+msgstr "Pojemność"
+
+#: lib/helpers/feature_group_bookings_helper.php:289
+#: lib/views/coupons/quick_edit.php:166
+msgid "Minimum"
+msgstr "Minimum"
+
+#: lib/helpers/feature_group_bookings_helper.php:292
+#: lib/views/coupons/quick_edit.php:169
+msgid "Maximum"
+msgstr "Maksimum"
+
+#: lib/helpers/feature_group_bookings_helper.php:299
+msgid "Pricing"
+msgstr "Cennik"
+
+#: lib/helpers/feature_group_bookings_helper.php:302
+msgid "Do not multiply charge amount by the number of attendees"
+msgstr "Nie mnoż kwoty opłaty przez liczbę uczestników"
+
+#: lib/helpers/feature_group_bookings_helper.php:303
+msgid "Do not multiply deposit amount by the number of attendees"
+msgstr "Nie mnoż kwoty zaliczki przez liczbę uczestników"
+
+#: lib/helpers/feature_group_bookings_helper.php:308
+msgid "Other"
+msgstr "Inne"
+
+#: lib/helpers/feature_group_bookings_helper.php:311
+msgid "Do not ask customers to select number of attendees"
+msgstr "Nie proś klientów o wybór liczby uczestników"
+
+#: lib/helpers/feature_group_bookings_helper.php:312
+msgid "Block timeslot if minimum capacity is reached"
+msgstr "Zablokuj przedział czasowy, jeśli osiągnięto minimalną pojemność"
+
+#: lib/helpers/feature_group_bookings_helper.php:318
+msgid "Meeting Link"
+msgstr "Link do spotkania"
+
+#: lib/helpers/feature_group_bookings_helper.php:326
+msgid "Meeting Link Mode for Group Bookings"
+msgstr "Tryb linku do spotkania dla rezerwacji grupowych"
+
+#: lib/helpers/feature_group_bookings_helper.php:330
+msgid "Separate - Each booking gets its own meeting link"
+msgstr "Oddzielny - każda rezerwacja otrzymuje własny link do spotkania"
+
+#: lib/helpers/feature_group_bookings_helper.php:334
+msgid "Shared - All attendees in the same time slot get the same meeting link"
+msgstr "Wspólny - wszyscy uczestnicy w tym samym przedziale czasowym otrzymują ten sam link do spotkania"
+
+#: lib/helpers/feature_locations_helper.php:131
+#: lib/helpers/feature_locations_helper.php:135
+#: lib/helpers/feature_locations_helper.php:176
+#: lib/helpers/feature_locations_helper.php:187
+#: lib/views/messages/messages_with_info_for_booking.php:70
+msgid "Location"
+msgstr "Lokalizacja"
+
+#: lib/helpers/feature_locations_helper.php:134
+msgid "Previous Location"
+msgstr "Poprzednia lokalizacja"
+
+#: lib/helpers/feature_locations_helper.php:195
+msgid "Show location categories"
+msgstr "Pokaż kategorie lokalizacji"
+
+#: lib/helpers/feature_locations_helper.php:195
+msgid "If turned on, locations will be displayed in categories"
+msgstr "Jeśli włączone, lokalizacje będą wyświetlane w kategoriach"
+
+#: lib/helpers/feature_messages_helper.php:8
+msgid "Message Content:"
+msgstr "Treść wiadomości:"
+
+#: lib/helpers/feature_messages_helper.php:42
+#, php-format
+msgid "Read %d Message"
+msgid_plural "Read %d Messages"
+msgstr[0] "Przeczytaj %d wiadomość"
+msgstr[1] ""
+msgstr[2] ""
+
+#: lib/helpers/feature_messages_helper.php:47
+msgid "Start Chatting"
+msgstr "Rozpocznij czat"
+
+#: lib/helpers/feature_messages_helper.php:58
+msgid "Chat Notifications"
+msgstr "Powiadomienia czatu"
+
+#: lib/helpers/feature_messages_helper.php:62
+msgid "Settings"
+msgstr "Ustawienia"
+
+#: lib/helpers/feature_messages_helper.php:65
+msgid "Notify customers about new messages"
+msgstr "Powiadamiaj klientów o nowych wiadomościach"
+
+#: lib/helpers/feature_messages_helper.php:67
+#: lib/helpers/feature_messages_helper.php:72
+msgid "Email Subject"
+msgstr "Temat e-maila"
+
+#: lib/helpers/feature_messages_helper.php:68
+#: lib/helpers/feature_messages_helper.php:73
+msgid "Email Message"
+msgstr "Wiadomość e-mail"
+
+#: lib/helpers/feature_messages_helper.php:70
+msgid "Notify agents about new messages"
+msgstr "Powiadamiaj agentów o nowych wiadomościach"
+
+#: lib/helpers/feature_messages_helper.php:103
+msgid "Your Appointments"
+msgstr "Twoje wizyty"
+
+#: lib/helpers/feature_messages_helper.php:104
+msgid "Conversation"
+msgstr "Rozmowa"
+
+#: lib/helpers/feature_messages_helper.php:141
+#: lib/views/messages/messages_with_info_for_booking.php:48
+#: lib/views/messages/quick_form_chat_box.php:14
+msgid "Type your message here.."
+msgstr "Wpisz tutaj swoją wiadomość.."
+
+#: lib/helpers/feature_messages_helper.php:142
+#: lib/views/messages/messages_with_info_for_booking.php:49
+#: lib/views/messages/quick_form_chat_box.php:15
+msgid "Send"
+msgstr "Wyślij"
+
+#: lib/helpers/feature_messages_helper.php:148
+msgid "You don't have any appointments to send messages."
+msgstr "Nie masz żadnych wizyt, aby wysłać wiadomości."
+
+#: lib/helpers/feature_no_show_restrictions_helper.php:50
+msgid "Your account has been restricted from booking due to repeated missed appointments. Please contact us for assistance."
+msgstr "Twoje konto zostało ograniczone w zakresie rezerwacji z powodu wielokrotnie opuszczonych wizyt. Skontaktuj się z nami, aby uzyskać pomoc."
+
+#. translators: %d: number of no-show appointments
+#: lib/helpers/feature_no_show_restrictions_helper.php:228
+#, php-format
+msgid "%d No-Show Appointment."
+msgid_plural "%d No-Show Appointments."
+msgstr[0] "%d nieodbyta wizyta."
+msgstr[1] ""
+msgstr[2] ""
+
+#: lib/helpers/feature_no_show_restrictions_helper.php:233
+msgid "This customer has exceeded the no-show threshold and is restricted from booking."
+msgstr "Ten klient przekroczył próg niepojawiania się i ma ograniczony dostęp do rezerwacji."
+
+#: lib/helpers/feature_no_show_restrictions_helper.php:249
+msgid "No-Show Restrictions"
+msgstr "Ograniczenia niepojawiania się"
+
+#: lib/helpers/feature_no_show_restrictions_helper.php:255
+msgid "Enable No-Show Customers Restrictions"
+msgstr "Włącz ograniczenia dla klientów niepojawiających się"
+
+#: lib/helpers/feature_no_show_restrictions_helper.php:259
+msgid "Restrict booking for customers who repeatedly miss appointments, by blocking or requiring upfront payment"
+msgstr "Ogranicz rezerwacje dla klientów, którzy wielokrotnie opuszczają wizyty, poprzez blokowanie lub wymaganie wcześniejszej płatności"
+
+#: lib/helpers/feature_no_show_restrictions_helper.php:269
+msgid "No-Show Threshold"
+msgstr "Próg niepojawienia się"
+
+#: lib/helpers/feature_no_show_restrictions_helper.php:282
+msgid "Action"
+msgstr "Działanie"
+
+#: lib/helpers/feature_no_show_restrictions_helper.php:284
+msgid "Block bookings entirely"
+msgstr "Zablokuj całkowicie rezerwacje"
+
+#: lib/helpers/feature_no_show_restrictions_helper.php:285
+msgid "Require upfront payment"
+msgstr "Wymagaj płatności z góry"
+
+#: lib/helpers/feature_qrcode_helper.php:16
+msgid "Point your smartphone camera at this QR code and you will be able to copy your booking confirmation code"
+msgstr "Skieruj aparat swojego smartfona na ten kod QR, a będziesz mógł skopiować kod potwierdzenia rezerwacji"
+
+#: lib/helpers/feature_qrcode_helper.php:20
+msgid "Point your smartphone camera at this QR code and it will automatically add this appointment to your calendar"
+msgstr "Skieruj aparat swojego smartfona na ten kod QR, a automatycznie doda to spotkanie do twojego kalendarza"
+
+#: lib/helpers/feature_qrcode_helper.php:33
+msgid "Show QR"
+msgstr "Pokaż QR"
+
+#: lib/helpers/feature_recurring_bookings_helper.php:28
+msgid "Make it a recurring appointment?"
+msgstr "Ustawić to jako cykliczne spotkanie?"
+
+#: lib/helpers/feature_recurring_bookings_helper.php:29
+msgid "You will set the frequency in the next step."
+msgstr "Częstotliwość ustawisz w następnym kroku."
+
+#: lib/helpers/feature_recurring_bookings_helper.php:65
+msgid "Allow Recurring Appointments"
+msgstr "Zezwól na cykliczne spotkania"
+
+#: lib/helpers/feature_recurring_bookings_helper.php:65
+msgid "Allows customers to book this service in a recurring schedule"
+msgstr "Umożliwia klientom rezerwację tej usługi w cyklicznym harmonogramie"
+
+#: lib/helpers/feature_recurring_bookings_helper.php:68
+msgid "Allow a maximum of"
+msgstr "Zezwól na maksymalnie"
+
+#: lib/helpers/feature_recurring_bookings_helper.php:70
+msgid "future appointments"
+msgstr "przyszłych spotkań"
+
+#: lib/helpers/feature_recurring_bookings_helper.php:73
+msgid "Allow Repeat Intervals"
+msgstr "Zezwól na interwały powtarzania"
+
+#: lib/helpers/feature_recurring_bookings_helper.php:78
+#: lib/views/agents/quick_edit.php:115
+#: lib/views/agents/quick_edit.php:117
+#: lib/views/agents/quick_edit.php:122
+#: lib/views/agents/_form.php:111
+#: lib/views/agents/_form.php:113
+#: lib/views/agents/_form.php:118
+#: lib/views/locations/_form.php:59
+#: lib/views/locations/_form.php:61
+#: lib/views/locations/_form.php:67
+msgid "All"
+msgstr "Wszystkie"
+
+#: lib/helpers/feature_recurring_bookings_helper.php:79
+msgid "Daily"
+msgstr "Codziennie"
+
+#: lib/helpers/feature_recurring_bookings_helper.php:80
+msgid "Weekly"
+msgstr "Co tydzień"
+
+#: lib/helpers/feature_recurring_bookings_helper.php:81
+msgid "Monthly"
+msgstr "Miesięcznie"
+
+#: lib/helpers/feature_recurring_bookings_helper.php:196
+msgid "Recurring Appointment"
+msgstr "Spotkanie cykliczne"
+
+#: lib/helpers/feature_recurring_bookings_helper.php:242
+#, php-format
+msgid "Found %s Available Slots"
+msgstr "Znaleziono %s dostępnych terminów"
+
+#: lib/helpers/feature_recurring_bookings_helper.php:242
+msgid "Review"
+msgstr "Recenzja"
+
+#: lib/helpers/feature_recurring_bookings_helper.php:265
+msgid "Selected"
+msgstr "Wybrane"
+
+#: lib/helpers/feature_recurring_bookings_helper.php:265
+#: lib/views/coupons/index.php:9
+#: lib/views/coupons/index.php:66
+msgid "of"
+msgstr "z"
+
+#: lib/helpers/feature_recurring_bookings_helper.php:338
+#, php-format
+msgid "This bundle has only %s remaining appointments to schedule."
+msgstr "Ten pakiet ma tylko %s pozostałych spotkań do zaplanowania."
+
+#: lib/helpers/feature_recurring_bookings_helper.php:340
+#, php-format
+msgid "You can only schedule a maximum of %s recurring bookings at once."
+msgstr "Możesz zaplanować jednocześnie maksymalnie %s rezerwacji cyklicznych."
+
+#: lib/helpers/feature_recurring_bookings_helper.php:434
+#: lib/helpers/feature_recurring_bookings_helper.php:442
+msgid "day"
+msgstr "dzień"
+
+#: lib/helpers/feature_recurring_bookings_helper.php:435
+#: lib/helpers/feature_recurring_bookings_helper.php:446
+msgid "week"
+msgstr "tydzień"
+
+#: lib/helpers/feature_recurring_bookings_helper.php:436
+#: lib/helpers/feature_recurring_bookings_helper.php:450
+msgid "month"
+msgstr "miesiąc"
+
+#: lib/helpers/feature_recurring_bookings_helper.php:460
+msgid "First on"
+msgstr "Pierwsze w"
+
+#: lib/helpers/feature_recurring_bookings_helper.php:465
+msgid "Repeats every"
+msgstr "Powtarza się co"
+
+#: lib/helpers/feature_recurring_bookings_helper.php:489
+msgid "Ends"
+msgstr "Kończy się"
+
+#: lib/helpers/feature_recurring_bookings_helper.php:496
+msgid "After"
+msgstr "Po"
+
+#: lib/helpers/feature_recurring_bookings_helper.php:497
+msgid "On"
+msgstr "W"
+
+#: lib/helpers/feature_recurring_bookings_helper.php:506
+msgid "occurrences"
+msgstr "wystąpieniach"
+
+#: lib/helpers/feature_recurring_bookings_helper.php:536
+#, php-format
+msgid "+%s Recurring Appointments:"
+msgstr "+%s spotkań cyklicznych:"
+
+#: lib/helpers/feature_recurring_bookings_helper.php:552
+msgid "show all"
+msgstr "pokaż wszystko"
+
+#: lib/helpers/feature_reminders_helper.php:9
+msgid "Actions will be executed:"
+msgstr "Działania zostaną wykonane:"
+
+#: lib/helpers/feature_reminders_helper.php:25
+msgid "before the event"
+msgstr "przed wydarzeniem"
+
+#: lib/helpers/feature_reminders_helper.php:26
+msgid "after the event"
+msgstr "po wydarzeniu"
+
+#: lib/helpers/feature_service_categories_helper.php:20
+#: lib/views/location_categories/index.php:9
+#: lib/views/messages/conversations.php:15
+#: lib/views/service_categories/index.php:9
+msgid "ID: "
+msgstr "ID:"
+
+#: lib/helpers/feature_service_categories_helper.php:21
+msgid "Services Linked"
+msgstr "Powiązane usługi"
+
+#: lib/helpers/feature_service_durations_helper.php:112
+msgid "Show service durations in minutes"
+msgstr "Pokaż czas trwania usługi w minutach"
+
+#: lib/helpers/feature_service_durations_helper.php:112
+msgid "Will show duration in minutes, even when duration is longer than 60 minutes"
+msgstr "Pokaże czas trwania w minutach, nawet gdy czas trwania jest dłuższy niż 60 minut"
+
+#: lib/helpers/feature_service_durations_helper.php:131
+msgid "Create Another Service Duration"
+msgstr "Utwórz kolejny czas trwania usługi"
+
+#: lib/helpers/feature_service_extras_helper.php:135
+msgid "Extras"
+msgstr "Dodatki"
+
+#: lib/helpers/feature_service_extras_helper.php:160
+#: lib/helpers/feature_service_extras_helper.php:175
+msgid "None"
+msgstr "Brak"
+
+#: lib/helpers/feature_service_extras_helper.php:181
+msgid "Service Extras:"
+msgstr "Dodatki do usługi:"
+
+#: lib/helpers/feature_service_extras_helper.php:387
+#, php-format
+msgid "Please select at least %d service extras"
+msgstr "Wybierz co najmniej %d dodatków do usługi"
+
+#: lib/helpers/feature_service_extras_helper.php:392
+#, php-format
+msgid "You cannot select more than %d service extras"
+msgstr "Nie możesz wybrać więcej niż %d dodatków do usługi"
+
+#: lib/helpers/feature_service_extras_helper.php:481
+msgid "You have not created any service extras yet."
+msgstr "Nie utworzyłeś jeszcze żadnych dodatków do usługi."
+
+#: lib/helpers/feature_service_extras_helper.php:489
+msgid "Restrictions for Service Extras"
+msgstr "Ograniczenia dla dodatków do usługi"
+
+#: lib/helpers/feature_service_extras_helper.php:493
+msgid "Require a minimum to be selected"
+msgstr "Wymagaj wybrania minimum"
+
+#: lib/helpers/feature_service_extras_helper.php:493
+msgid "Requires user to pick a minimum number of service extras"
+msgstr "Wymaga od użytkownika wybrania minimalnej liczby dodatków do usługi"
+
+#: lib/helpers/feature_service_extras_helper.php:497
+msgid "At least"
+msgstr "Co najmniej"
+
+#: lib/helpers/feature_service_extras_helper.php:500
+msgid "service extras must be selected"
+msgstr "dodatków do usługi musi zostać wybranych"
+
+#: lib/helpers/feature_service_extras_helper.php:503
+msgid "Limit maximum number that can be selected"
+msgstr "Ogranicz maksymalną liczbę, którą można wybrać"
+
+#: lib/helpers/feature_service_extras_helper.php:503
+msgid "Limits user from picking more than a set maximum"
+msgstr "Ogranicza użytkownika przed wybraniem więcej niż ustalony maksymalny limit"
+
+#: lib/helpers/feature_service_extras_helper.php:507
+msgid "At most"
+msgstr "Co najwyżej"
+
+#: lib/helpers/feature_service_extras_helper.php:510
+msgid "service extras can be selected"
+msgstr "dodatków do usługi można wybrać"
+
+#: lib/helpers/feature_timezone_helper.php:8
+#: lib/helpers/feature_timezone_helper.php:76
+msgid "Timezone:"
+msgstr "Strefa czasowa:"
+
+#: lib/helpers/feature_timezone_helper.php:55
+msgid "Invalid Date/Time"
+msgstr "Nieprawidłowa data/godzina"
+
+#: lib/helpers/feature_timezone_helper.php:68
+msgid "My Timezone:"
+msgstr "Moja strefa czasowa:"
+
+#: lib/helpers/feature_timezone_helper.php:81
+msgid "Start Date (in customer timezone):"
+msgstr "Data rozpoczęcia (w strefie czasowej klienta):"
+
+#: lib/helpers/feature_timezone_helper.php:82
+msgid "Start Time (in customer timezone):"
+msgstr "Godzina rozpoczęcia (w strefie czasowej klienta):"
+
+#: lib/helpers/feature_timezone_helper.php:83
+msgid "End Time (in customer timezone)"
+msgstr "Godzina zakończenia (w strefie czasowej klienta)"
+
+#: lib/helpers/feature_timezone_helper.php:312
+msgid "Customer Timezone"
+msgstr "Strefa czasowa klienta"
+
+#: lib/helpers/feature_timezone_helper.php:345
+msgid "Timezone Settings"
+msgstr "Ustawienia strefy czasowej"
+
+#: lib/helpers/feature_timezone_helper.php:348
+msgid "Enable timezone selector"
+msgstr "Włącz selektor strefy czasowej"
+
+#: lib/helpers/feature_timezone_helper.php:348
+msgid "Will let customer change default timezone, will try to auto-detect timezone from the browser"
+msgstr "Pozwoli klientowi zmienić domyślną strefę czasową, spróbuje automatycznie wykryć strefę czasową z przeglądarki"
+
+#: lib/helpers/feature_timezone_helper.php:349
+msgid "Show timezone information"
+msgstr "Pokaż informacje o strefie czasowej"
+
+#: lib/helpers/feature_timezone_helper.php:349
+msgid "Timezone name will appear next to appointment time"
+msgstr "Nazwa strefy czasowej pojawi się obok godziny spotkania"
+
+#: lib/helpers/feature_timezone_helper.php:365
+msgid "No matching timezone found"
+msgstr "Nie znaleziono pasującej strefy czasowej"
+
+#: lib/helpers/feature_timezone_helper.php:365
+msgid "Type to search..."
+msgstr "Wpisz, aby wyszukać..."
+
+#: lib/helpers/feature_webhooks_helper.php:6
+msgid "Webhook Run"
+msgstr "Uruchomienie webhooka"
+
+#: lib/helpers/feature_webhooks_helper.php:37
+msgid "URL:"
+msgstr "URL:"
+
+#: lib/helpers/feature_webhooks_helper.php:88
+#: lib/helpers/feature_webhooks_helper.php:92
+msgid "URL"
+msgstr "URL"
+
+#: lib/helpers/messages_helper.php:152
+#: lib/helpers/messages_helper.php:196
+msgid "File Attachment"
+msgstr "Załącznik pliku"
+
+#: lib/helpers/messages_helper.php:206
+#: lib/helpers/messages_helper.php:211
+msgid "You have a new message"
+msgstr "Masz nową wiadomość"
+
+#: lib/helpers/pro_license_helper.php:15
+msgid "Please enter your license key"
+msgstr "Wprowadź swój klucz licencyjny"
+
+#: lib/helpers/pro_license_helper.php:47
+msgid "Unable to verify license. Please try again or contact us at license@latepoint.com. Error code: UDF732S83"
+msgstr "Nie można zweryfikować licencji. Spróbuj ponownie lub skontaktuj się z nami pod adresem license@latepoint.com. Kod błędu: UDF732S83"
+
+#: lib/helpers/pro_license_helper.php:58
+msgid "Unable to verify license. Please try again or contact us at license@latepoint.com. Error code: SUYF8362"
+msgstr "Nie można zweryfikować licencji. Spróbuj ponownie lub skontaktuj się z nami pod adresem license@latepoint.com. Kod błędu: SUYF8362"
+
+#: lib/helpers/service_extras_helper.php:81
+#, php-format
+msgid "Service extras [ %s ] applied to this booking are not available for this service. Either pick a service that offers them, or clear them."
+msgstr "Dodatki do usługi [ %s ] zastosowane do tej rezerwacji nie są dostępne dla tej usługi. Wybierz usługę, która je oferuje, albo usuń je."
+
+#: lib/helpers/service_extras_helper.php:81
+msgid "Clear"
+msgstr "Wyczyść"
+
+#: lib/helpers/service_extras_helper.php:87
+msgid "Click here to select..."
+msgstr "Kliknij tutaj, aby wybrać..."
+
+#: lib/helpers/social_helper.php:18
+msgid "Continue with Facebook"
+msgstr "Kontynuuj z Facebookiem"
+
+#: lib/helpers/social_helper.php:26
+msgid "Continue with Google"
+msgstr "Kontynuuj z Google"
+
+#: lib/helpers/social_helper.php:37
+msgid "Social Login"
+msgstr "Logowanie społecznościowe"
+
+#: lib/helpers/social_helper.php:40
+msgid "Enable login with Google"
+msgstr "Włącz logowanie przez Google"
+
+#: lib/helpers/social_helper.php:40
+msgid "Display Google Login button on customer login and registration forms"
+msgstr "Wyświetl przycisk logowania Google na formularzach logowania i rejestracji klientów"
+
+#: lib/helpers/social_helper.php:43
+msgid "Google Client ID"
+msgstr "Google Client ID"
+
+#: lib/helpers/social_helper.php:44
+msgid "Google Client Secret"
+msgstr "Google Client Secret"
+
+#: lib/helpers/social_helper.php:46
+msgid "Enable login with Facebook"
+msgstr "Włącz logowanie przez Facebooka"
+
+#: lib/helpers/social_helper.php:46
+msgid "Display Facebook Login button on customer login and registration forms"
+msgstr "Wyświetl przycisk logowania Facebooka na formularzach logowania i rejestracji klientów"
+
+#: lib/helpers/social_helper.php:48
+msgid "Facebook App ID"
+msgstr "Facebook App ID"
+
+#: lib/helpers/social_helper.php:49
+msgid "Facebook App Secret"
+msgstr "Facebook App Secret"
+
+#: lib/helpers/taxes_helper.php:60
+msgid "Tax Name cannot be empty"
+msgstr "Nazwa podatku nie może być pusta"
+
+#: lib/helpers/taxes_helper.php:63
+msgid "Tax Type cannot be empty"
+msgstr "Typ podatku nie może być pusty"
+
+#: lib/helpers/taxes_helper.php:66
+msgid "Tax Value cannot be empty"
+msgstr "Wartość podatku nie może być pusta"
+
+#: lib/helpers/updates_helper.php:19
+#, php-format
+msgid "To enable updates, you need to purchase a PRO license, install \"PRO Features\" addon and enter that key on %s page"
+msgstr "Aby włączyć aktualizacje, musisz kupić licencję PRO, zainstalować dodatek „PRO Features” i wpisać ten klucz na stronie %s"
+
+#: lib/helpers/updates_helper.php:19
+msgid "Pro Features"
+msgstr "Funkcje Pro"
+
+#: lib/helpers/webhooks_helper.php:26
+msgid "Webhook executed"
+msgstr "Webhook wykonany"
+
+#: lib/helpers/webhooks_helper.php:73
+msgid "Webhook URL cannot be empty"
+msgstr "Adres URL webhooka nie może być pusty"
+
+#: lib/helpers/webhooks_helper.php:76
+msgid "Webhook URL must be a valid URL"
+msgstr "Adres URL webhooka musi być prawidłowym adresem URL"
+
+#: lib/helpers/webhooks_helper.php:80
+msgid "Select a trigger event for this hook"
+msgstr "Wybierz zdarzenie wyzwalające dla tego hooka"
+
+#: lib/models/message_model.php:18
+msgid "Content"
+msgstr "Treść"
+
+#: lib/views/addons/index.php:7
+msgid "Loading Addons Information"
+msgstr "Ładowanie informacji o dodatkach"
+
+#: lib/views/addons/load_addons_list.php:57
+msgid "Featured"
+msgstr "Wyróżnione"
+
+#: lib/views/addons/load_addons_list.php:73
+#: lib/views/addons/load_addons_list.php:79
+msgid "Latest:"
+msgstr "Najnowsze:"
+
+#: lib/views/addons/load_addons_list.php:74
+#: lib/views/addons/load_addons_list.php:76
+msgid "Installed:"
+msgstr "Zainstalowane:"
+
+#: lib/views/addons/load_addons_list.php:86
+msgid "Requires LatePoint"
+msgstr "Wymaga LatePoint"
+
+#: lib/views/addons/load_addons_list.php:98
+msgid "Deactivate"
+msgstr "Dezaktywuj"
+
+#: lib/views/addons/load_addons_list.php:113
+#: lib/views/agents/_form.php:318
+#: lib/views/custom_fields/_custom_field_form.php:127
+#: lib/views/locations/_form.php:189
+#: lib/views/roles/_form.php:123
+#: lib/views/taxes/_tax_form.php:49
+msgid "Delete"
+msgstr "Usuń"
+
+#: lib/views/addons/load_addons_list.php:117
+msgid "Activate"
+msgstr "Aktywuj"
+
+#: lib/views/addons/load_addons_list.php:125
+#: lib/views/addons/load_addons_list.php:134
+msgid "Install Now"
+msgstr "Zainstaluj teraz"
+
+#: lib/views/addons/load_addons_list.php:129
+msgid "Activate License to Install"
+msgstr "Aktywuj licencję, aby zainstalować"
+
+#: lib/views/addons/load_addons_list.php:143
+msgid "Try for FREE"
+msgstr "Wypróbuj ZA DARMO"
+
+#: lib/views/addons/load_addons_list.php:148
+msgid "Learn More"
+msgstr "Dowiedz się więcej"
+
+#: lib/views/agents/index.php:22
+#: lib/views/agents/index.php:88
+msgid "Connected to WordPress User"
+msgstr "Połączono z użytkownikiem WordPress"
+
+#: lib/views/agents/index.php:72
+msgid "No Active Agents Found"
+msgstr "Nie znaleziono aktywnych agentów"
+
+#: lib/views/agents/index.php:78
+#, php-format
+msgid "%d Disabled Agent"
+msgid_plural "%d Disabled Agents"
+msgstr[0] "%d wyłączony agent"
+msgstr[1] ""
+msgstr[2] ""
+
+#: lib/views/agents/mini_profile.php:7
+msgid "email:"
+msgstr "e-mail:"
+
+#: lib/views/agents/mini_profile.php:8
+msgid "phone:"
+msgstr "telefon:"
+
+#: lib/views/agents/modal_list.php:2
+msgid "Select Agents"
+msgstr "Wybierz agentów"
+
+#: lib/views/agents/modal_list.php:15
+msgid "Save Agents"
+msgstr "Zapisz agentów"
+
+#: lib/views/agents/quick_edit.php:23
+msgid "Agent ID:"
+msgstr "ID agenta:"
+
+#: lib/views/agents/quick_edit.php:24
+#: lib/views/coupons/quick_edit.php:26
+msgid "History"
+msgstr "Historia"
+
+#: lib/views/agents/quick_edit.php:31
+#: lib/views/agents/_form.php:28
+msgid "Set Avatar"
+msgstr "Ustaw awatar"
+
+#: lib/views/agents/quick_edit.php:31
+#: lib/views/agents/_form.php:28
+msgid "Remove Avatar"
+msgstr "Usuń awatar"
+
+#: lib/views/agents/quick_edit.php:35
+#: lib/views/agents/_form.php:30
+msgid "First Name"
+msgstr "Imię"
+
+#: lib/views/agents/quick_edit.php:38
+#: lib/views/agents/_form.php:31
+msgid "Last Name"
+msgstr "Nazwisko"
+
+#: lib/views/agents/quick_edit.php:43
+msgid "Contact Info"
+msgstr "Dane kontaktowe"
+
+#: lib/views/agents/quick_edit.php:46
+#: lib/views/agents/_form.php:35
+msgid "Email Address"
+msgstr "Adres e-mail"
+
+#: lib/views/agents/quick_edit.php:52
+#: lib/views/agents/_form.php:32
+msgid "Display Name"
+msgstr "Nazwa wyświetlana"
+
+#: lib/views/agents/quick_edit.php:56
+#: lib/views/agents/_form.php:40
+msgid "Connect to WP User"
+msgstr "Połącz z użytkownikiem WP"
+
+#: lib/views/agents/quick_edit.php:56
+#: lib/views/agents/_form.php:40
+msgid "Select User"
+msgstr "Wybierz użytkownika"
+
+#: lib/views/agents/quick_edit.php:63
+#: lib/views/agents/_form.php:51
+#: lib/views/agents/_form.php:352
+msgid "Additional Contacts"
+msgstr "Dodatkowe kontakty"
+
+#: lib/views/agents/quick_edit.php:65
+#: lib/views/agents/_form.php:55
+msgid "If you need to notify multiple persons about the appointment, you can list additional email addresses and phone numbers to send notification emails and sms to. You can list multiple numbers and emails separated by commas."
+msgstr "Jeśli musisz powiadomić o spotkaniu wiele osób, możesz podać dodatkowe adresy e-mail i numery telefonów, aby wysyłać im powiadomienia e-mail i SMS. Możesz podać wiele numerów i adresów e-mail, oddzielając je przecinkami."
+
+#: lib/views/agents/quick_edit.php:67
+#: lib/views/agents/_form.php:57
+msgid "Additional Email Addresses"
+msgstr "Dodatkowe adresy e-mail"
+
+#: lib/views/agents/quick_edit.php:70
+#: lib/views/agents/_form.php:58
+msgid "Additional Phone Numbers"
+msgstr "Dodatkowe numery telefonów"
+
+#: lib/views/agents/quick_edit.php:73
+#: lib/views/agents/_form.php:65
+msgid "Extra Information"
+msgstr "Dodatkowe informacje"
+
+#: lib/views/agents/quick_edit.php:77
+#: lib/views/agents/_form.php:70
+msgid "Set Bio Image"
+msgstr "Ustaw obraz biografii"
+
+#: lib/views/agents/quick_edit.php:77
+#: lib/views/agents/_form.php:70
+msgid "Remove Bio Image"
+msgstr "Usuń obraz biografii"
+
+#: lib/views/agents/quick_edit.php:79
+#: lib/views/agents/_form.php:71
+msgid "Agent Title"
+msgstr "Tytuł agenta"
+
+#: lib/views/agents/quick_edit.php:80
+#: lib/views/agents/_form.php:72
+msgid "Bio Text"
+msgstr "Tekst biografii"
+
+#: lib/views/agents/quick_edit.php:82
+#: lib/views/agents/_form.php:73
+msgid "Agent Highlights"
+msgstr "Najważniejsze informacje o agencie"
+
+#: lib/views/agents/quick_edit.php:84
+#: lib/views/agents/_form.php:74
+msgid "These value-label pairs will appear on agent information popup. You can enter things like years of experience, or number of clients served, to highlight agent accomplishments."
+msgstr "Te pary wartość-etykieta pojawią się w oknie informacji o agencie. Możesz wpisać takie rzeczy jak lata doświadczenia lub liczba obsłużonych klientów, aby podkreślić osiągnięcia agenta."
+
+#: lib/views/agents/quick_edit.php:93
+#: lib/views/agents/_form.php:83
+msgid "Label"
+msgstr "Etykieta"
+
+#: lib/views/agents/quick_edit.php:100
+#: lib/views/agents/_form.php:94
+msgid "Offered Services"
+msgstr "Oferowane usługi"
+
+#: lib/views/agents/quick_edit.php:124
+#: lib/views/agents/_form.php:120
+msgid "Locations Selected"
+msgstr "Wybrane lokalizacje"
+
+#: lib/views/agents/quick_edit.php:127
+#: lib/views/agents/_form.php:123
+#: lib/views/locations/_form.php:72
+msgid "Customize"
+msgstr "Dostosuj"
+
+#: lib/views/agents/quick_edit.php:131
+#: lib/views/agents/_form.php:127
+#, php-format
+msgid "Select locations where this agent will offer %s:"
+msgstr "Wybierz lokalizacje, w których ten agent będzie oferować %s:"
+
+#: lib/views/agents/quick_edit.php:165
+#: lib/views/agents/_form.php:165
+#: lib/views/bundles/_form.php:124
+msgid "No Existing Services Found"
+msgstr "Nie znaleziono istniejących usług"
+
+#: lib/views/agents/quick_edit.php:167
+#: lib/views/agents/_form.php:167
+#: lib/views/bundles/_form.php:126
+msgid "Add First Service"
+msgstr "Dodaj pierwszą usługę"
+
+#: lib/views/agents/quick_edit.php:175
+#: lib/views/agents/_form.php:190
+msgid "Agent Schedule"
+msgstr "Harmonogram agenta"
+
+#: lib/views/agents/quick_edit.php:177
+#: lib/views/agents/_form.php:208
+#: lib/views/locations/_form.php:127
+msgid "Set Custom Schedule"
+msgstr "Ustaw własny harmonogram"
+
+#: lib/views/agents/quick_edit.php:193
+#: lib/views/agents/_form.php:214
+msgid "This agent is using general schedule which is set in main settings"
+msgstr "Ten agent korzysta z ogólnego harmonogramu ustawionego w głównych ustawieniach"
+
+#: lib/views/agents/quick_edit.php:199
+#: lib/views/agents/_form.php:249
+#: lib/views/locations/_form.php:154
+msgid "Days With Custom Schedules"
+msgstr "Dni z niestandardowymi harmonogramami"
+
+#: lib/views/agents/quick_edit.php:200
+#: lib/views/agents/_form.php:257
+msgid "Agent shares custom daily schedules that you set in general settings for your company, however you can add additional days with custom hours which will be specific to this agent only."
+msgstr "Agent korzysta z niestandardowych dziennych harmonogramów, które ustawiasz w ustawieniach ogólnych dla swojej firmy, jednak możesz dodać dodatkowe dni z niestandardowymi godzinami, które będą dotyczyć wyłącznie tego agenta."
+
+#: lib/views/agents/quick_edit.php:202
+#: lib/views/agents/_form.php:275
+#: lib/views/locations/_form.php:163
+msgid "Holidays & Days Off"
+msgstr "Święta i dni wolne"
+
+#: lib/views/agents/quick_edit.php:203
+#: lib/views/agents/_form.php:283
+msgid "Agent uses the same holidays you set in general settings for your company, however you can add additional holidays for this agent here."
+msgstr "Agent korzysta z tych samych świąt, które ustawiasz w ustawieniach ogólnych dla swojej firmy, jednak możesz tutaj dodać dodatkowe święta dla tego agenta."
+
+#: lib/views/agents/quick_edit.php:213
+#: lib/views/agents/_form.php:306
+msgid "Add Agent"
+msgstr "Dodaj agenta"
+
+#: lib/views/agents/quick_edit.php:217
+#: lib/views/agents/_form.php:333
+#: lib/views/agents/_form.php:347
+#: lib/views/assets/_form.php:127
+#: lib/views/coupons/quick_edit.php:182
+#: lib/views/locations/_form.php:202
+#: lib/views/locations/_form.php:216
+#: lib/views/roles/edit_wp_user.php:82
+#: lib/views/roles/_form.php:126
+#: lib/views/service_extras/_form.php:99
+msgid "Save Changes"
+msgstr "Zapisz zmiany"
+
+#: lib/views/agents/quick_edit.php:221
+#: lib/views/agents/_form.php:314
+msgid "Are you sure you want to remove this agent?"
+msgstr "Czy na pewno chcesz usunąć tego agenta?"
+
+#: lib/views/agents/view_agent_log.php:15
+msgid "Activity Log"
+msgstr "Dziennik aktywności"
+
+#: lib/views/agents/view_agent_log.php:21
+#: lib/views/coupons/view_coupon_log.php:21
+msgid "Created On: "
+msgstr "Utworzono:"
+
+#: lib/views/agents/_form.php:21
+#: lib/views/bundles/_form.php:15
+msgid "General Information"
+msgstr "Informacje ogólne"
+
+#: lib/views/agents/_form.php:23
+#, php-format
+msgid "Agent ID: %d"
+msgstr "ID agenta: %d"
+
+#: lib/views/agents/_form.php:80
+msgid "Highlight #"
+msgstr "Podświetlenie #"
+
+#: lib/views/agents/_form.php:230
+#, php-format
+msgid "Set Custom Schedule for %s"
+msgstr "Ustaw niestandardowy harmonogram dla %s"
+
+#: lib/views/agents/_form.php:236
+msgid "This location is using the agent's general schedule"
+msgstr "Ta lokalizacja korzysta z ogólnego harmonogramu agenta"
+
+#: lib/views/agents/_form.php:323
+msgid "Are you sure you want to duplicate this agent?"
+msgstr "Czy na pewno chcesz zduplikować tego agenta?"
+
+#: lib/views/agents/_form.php:326
+#: lib/views/locations/_form.php:196
+msgid "Duplicate"
+msgstr "Duplikuj"
+
+#: lib/views/agents/_schedule_location_selector.php:14
+msgid "Location:"
+msgstr "Lokalizacja:"
+
+#: lib/views/agents/_form.php:351
+#: lib/views/agents/_schedule_location_selector.php:16
+#: lib/views/locations/_form.php:220
+msgid "General"
+msgstr "Ogólne"
+
+#. translators: %1$s and %2$s are opening and closing anchor tags
+#: lib/views/assets/index.php:14
+#, php-format
+msgid "Assets functionality is currently disabled. You can enable it in %1$sGeneral Settings%2$s."
+msgstr "Funkcjonalność zasobów jest obecnie wyłączona. Możesz ją włączyć w %1$sUstawieniach ogólnych%2$s."
+
+#: lib/views/assets/index.php:33
+#: lib/views/service_extras/index.php:10
+msgid "Services:"
+msgstr "Usługi:"
+
+#: lib/views/assets/index.php:37
+#: lib/views/assets/index.php:47
+#: lib/views/service_extras/index.php:12
+msgid " of "
+msgstr "z"
+
+#: lib/views/assets/index.php:38
+#: lib/views/assets/index.php:48
+#: lib/views/service_extras/index.php:12
+msgid "All Selected"
+msgstr "Wszystkie zaznaczone"
+
+#: lib/views/assets/index.php:43
+#: lib/views/locations/_location_index_item.php:20
+msgid "Agents:"
+msgstr "Agenci:"
+
+#: lib/views/assets/index.php:54
+msgid "Quantity:"
+msgstr "Ilość:"
+
+#: lib/views/assets/index.php:58
+msgid "Status:"
+msgstr "Status:"
+
+#: lib/views/assets/_form.php:19
+#: lib/views/locations/_form.php:8
+#: lib/views/service_extras/_form.php:12
+msgid "Basic Information"
+msgstr "Podstawowe informacje"
+
+#: lib/views/assets/_form.php:21
+msgid "Asset ID:"
+msgstr "ID zasobu:"
+
+#: lib/views/assets/_form.php:26
+msgid "Asset Name"
+msgstr "Nazwa zasobu"
+
+#: lib/views/assets/_form.php:29
+msgid "Quantity (Capacity)"
+msgstr "Ilość (pojemność)"
+
+#: lib/views/assets/_form.php:45
+#: lib/views/bundles/_form.php:35
+#: lib/views/location_categories/_form.php:9
+#: lib/views/service_categories/_form.php:9
+#: lib/views/service_extras/_form.php:32
+msgid "Short Description"
+msgstr "Krótki opis"
+
+#: lib/views/assets/_form.php:52
+#: lib/views/service_extras/_form.php:56
+msgid "Connected Services"
+msgstr "Połączone usługi"
+
+#: lib/views/assets/_form.php:85
+msgid "Connected Agents"
+msgstr "Połączeni agenci"
+
+#: lib/views/assets/_form.php:118
+msgid "Add Asset"
+msgstr "Dodaj zasób"
+
+#: lib/views/assets/_form.php:122
+msgid "Are you sure you want to remove this asset? You can also change status to disabled if you want to temporarily disable it instead."
+msgstr "Czy na pewno chcesz usunąć ten zasób? Możesz też zmienić status na wyłączony, jeśli chcesz go tymczasowo dezaktywować."
+
+#: lib/views/assets/_form.php:126
+msgid "Delete Asset"
+msgstr "Usuń zasób"
+
+#: lib/views/bundles/index.php:21
+msgid "Quantity"
+msgstr "Ilość"
+
+#: lib/views/bundles/index.php:54
+msgid "No Bundles Found"
+msgstr "Nie znaleziono pakietów"
+
+#: lib/views/bundles/_form.php:17
+msgid "Bundle ID:"
+msgstr "ID pakietu:"
+
+#: lib/views/bundles/_form.php:24
+msgid "Bundle Name"
+msgstr "Nazwa pakietu"
+
+#: lib/views/bundles/_form.php:27
+msgid "Visibility"
+msgstr "Widoczność"
+
+#: lib/views/bundles/_form.php:27
+msgid "Visible to everyone"
+msgstr "Widoczny dla wszystkich"
+
+#: lib/views/bundles/_form.php:27
+msgid "Visible only to admins and agents"
+msgstr "Widoczny tylko dla administratorów i agentów"
+
+#: lib/views/bundles/_form.php:42
+msgid "Price"
+msgstr "Cena"
+
+#: lib/views/bundles/_form.php:48
+#: lib/views/service_durations/duration_fields.php:15
+#: lib/views/service_extras/_form.php:25
+msgid "Charge Amount"
+msgstr "Kwota do pobrania"
+
+#: lib/views/bundles/_form.php:51
+#: lib/views/service_durations/duration_fields.php:18
+msgid "Deposit Amount"
+msgstr "Kwota depozytu"
+
+#: lib/views/bundles/_form.php:60
+msgid "Included Services"
+msgstr "Uwzględnione usługi"
+
+#: lib/views/bundles/_form.php:80
+#: lib/views/service_extras/index.php:17
+msgid "Duration:"
+msgstr "Czas trwania:"
+
+#: lib/views/bundles/_form.php:85
+#, php-format
+msgid "%d minutes"
+msgstr "%d minut"
+
+#: lib/views/bundles/_form.php:113
+msgid "Bundle Quantity:"
+msgstr "Ilość pakietu:"
+
+#: lib/views/bundles/_form.php:115
+msgid "qty"
+msgstr "szt."
+
+#: lib/views/bundles/_form.php:139
+#: lib/views/bundles/_form.php:152
+msgid "Save Bundle"
+msgstr "Zapisz pakiet"
+
+#: lib/views/bundles/_form.php:145
+msgid "Are you sure you want to remove this bundle? It will remove all appointments associated with it. You can also change status to disabled if you want to temporary disable it instead."
+msgstr "Czy na pewno chcesz usunąć ten pakiet? Spowoduje to usunięcie wszystkich powiązanych z nim wizyt. Możesz też zmienić status na wyłączony, jeśli chcesz go tymczasowo dezaktywować."
+
+#: lib/views/bundles/_form.php:149
+msgid "Delete Bundle"
+msgstr "Usuń pakiet"
+
+#: lib/views/coupons/index.php:9
+#: lib/views/coupons/index.php:66
+msgid "Showing"
+msgstr "Wyświetlanie"
+
+#: lib/views/coupons/index.php:14
+msgid "Download .csv"
+msgstr "Pobierz .csv"
+
+#: lib/views/coupons/index.php:16
+#: lib/views/coupons/quick_edit.php:15
+msgid "New Coupon"
+msgstr "Nowy kupon"
+
+#: lib/views/coupons/index.php:33
+msgid "Search by Name"
+msgstr "Szukaj po nazwie"
+
+#: lib/views/coupons/index.php:34
+msgid "Code..."
+msgstr "Kod..."
+
+#: lib/views/coupons/index.php:36
+msgid "Show All"
+msgstr "Pokaż wszystko"
+
+#: lib/views/coupons/index.php:39
+#: lib/views/coupons/index.php:40
+msgid "Filter By Date"
+msgstr "Filtruj według daty"
+
+#: lib/views/coupons/index.php:39
+msgid "Reset Date Filtering"
+msgstr "Resetuj filtrowanie daty"
+
+#: lib/views/coupons/index.php:68
+msgid "Page:"
+msgstr "Strona:"
+
+#: lib/views/coupons/index.php:82
+msgid "No Coupons Found"
+msgstr "Nie znaleziono kuponów"
+
+#: lib/views/coupons/index.php:83
+msgid "Add Coupon"
+msgstr "Dodaj kupon"
+
+#: lib/views/coupons/quick_edit.php:17
+msgid "Edit Coupon"
+msgstr "Edytuj kupon"
+
+#: lib/views/coupons/quick_edit.php:24
+msgid "Coupon ID:"
+msgstr "ID kuponu:"
+
+#: lib/views/coupons/quick_edit.php:31
+msgid "Used"
+msgstr "Użyto"
+
+#: lib/views/coupons/quick_edit.php:35
+#, php-format
+msgid "%d time"
+msgid_plural "%d times"
+msgstr[0] "%d raz"
+msgstr[1] ""
+msgstr[2] ""
+
+#: lib/views/coupons/quick_edit.php:40
+msgid "Last Used"
+msgstr "Ostatnio użyty"
+
+#: lib/views/coupons/quick_edit.php:44
+msgid "Total Saved"
+msgstr "Łącznie zaoszczędzono"
+
+#: lib/views/coupons/quick_edit.php:50
+#: lib/views/webhooks/_webhook_form.php:29
+msgid "Name (For Internal Use)"
+msgstr "Nazwa (do użytku wewnętrznego)"
+
+#: lib/views/coupons/quick_edit.php:54
+msgid "Discount Value"
+msgstr "Wartość rabatu"
+
+#: lib/views/coupons/quick_edit.php:57
+msgid "Discount Type"
+msgstr "Typ rabatu"
+
+#: lib/views/coupons/quick_edit.php:57
+msgid "Percent"
+msgstr "Procent"
+
+#: lib/views/coupons/quick_edit.php:57
+msgid "Fixed Value"
+msgstr "Wartość stała"
+
+#: lib/views/coupons/quick_edit.php:66
+msgid "Time Restrictions"
+msgstr "Ograniczenia czasowe"
+
+#: lib/views/coupons/quick_edit.php:69
+msgid "You can set a specific time frame for when this coupon is active, which is helpful for seasonal promotions. Leaving either field blank will remove any time restrictions."
+msgstr "Możesz ustawić określony przedział czasowy, w którym ten kupon jest aktywny, co jest przydatne w przypadku promocji sezonowych. Pozostawienie któregokolwiek pola pustego spowoduje usunięcie wszelkich ograniczeń czasowych."
+
+#: lib/views/coupons/quick_edit.php:74
+msgid "Active From"
+msgstr "Aktywny od"
+
+#: lib/views/coupons/quick_edit.php:77
+msgid "Active To"
+msgstr "Aktywny do"
+
+#: lib/views/coupons/quick_edit.php:81
+msgid "Use Restrictions"
+msgstr "Ograniczenia użycia"
+
+#: lib/views/coupons/quick_edit.php:84
+msgid "Here you can specify which service, agent or customer this coupon is applicable to. Leaving a field blank will make it applicable to all."
+msgstr "Tutaj możesz określić, do której usługi, agenta lub klienta ten kupon ma zastosowanie. Pozostawienie pola pustego spowoduje, że będzie on obowiązywał dla wszystkich."
+
+#: lib/views/agents/_form.php:354
+#: lib/views/coupons/quick_edit.php:88
+msgid "Services"
+msgstr "Usługi"
+
+#: lib/views/coupons/quick_edit.php:99
+msgid "Start typing to search..."
+msgstr "Zacznij pisać, aby wyszukać..."
+
+#: lib/views/coupons/quick_edit.php:100
+msgid "cancel"
+msgstr "anuluj"
+
+#: lib/views/coupons/quick_edit.php:101
+msgid "Customers"
+msgstr "Klienci"
+
+#: lib/views/coupons/quick_edit.php:104
+msgid "Click to select..."
+msgstr "Kliknij, aby wybrać..."
+
+#: lib/views/coupons/quick_edit.php:129
+msgid "Usage Limits"
+msgstr "Limity użycia"
+
+#: lib/views/coupons/quick_edit.php:132
+msgid "You can set a limit on how many times this coupon can be used, either per customer or in total. Leave blank to have no limits."
+msgstr "Możesz ustawić limit liczby użyć tego kuponu, osobno na klienta lub łącznie. Pozostaw puste, aby nie ustawiać limitów."
+
+#: lib/views/coupons/quick_edit.php:137
+msgid "Per Customer"
+msgstr "Na klienta"
+
+#: lib/views/coupons/quick_edit.php:140
+msgid "Per Order"
+msgstr "Na zamówienie"
+
+#: lib/views/coupons/quick_edit.php:143
+msgid "Total"
+msgstr "Łącznie"
+
+#: lib/views/coupons/quick_edit.php:148
+msgid "Order Requirements"
+msgstr "Wymagania dotyczące zamówienia"
+
+#: lib/views/coupons/quick_edit.php:151
+msgid "You can set an order requirements that must be met for this coupon to be applied. Leave blank to have no requirements."
+msgstr "Możesz ustawić wymagania dotyczące zamówienia, które muszą zostać spełnione, aby ten kupon mógł zostać zastosowany. Pozostaw puste, aby nie ustawiać żadnych wymagań."
+
+#: lib/views/coupons/quick_edit.php:155
+msgid "Minimum Order Subtotal"
+msgstr "Minimalna wartość zamówienia"
+
+#: lib/views/coupons/quick_edit.php:159
+msgid "Order Count Requirements"
+msgstr "Wymagania dotyczące liczby zamówień"
+
+#: lib/views/coupons/quick_edit.php:162
+msgid "You can set requirements on how many orders a customer needs to have in order to use this coupon. Leave blank to have no requirements."
+msgstr "Możesz ustawić wymagania dotyczące liczby zamówień, jakie klient musi mieć, aby użyć tego kuponu. Pozostaw puste, aby nie ustawiać żadnych wymagań."
+
+#: lib/views/coupons/quick_edit.php:177
+msgid "Create Coupon"
+msgstr "Utwórz kupon"
+
+#: lib/views/coupons/quick_edit.php:188
+msgid "Are you sure you want to delete this coupon?"
+msgstr "Czy na pewno chcesz usunąć ten kupon?"
+
+#: lib/views/coupons/quick_edit.php:193
+msgid "Delete Coupon"
+msgstr "Usuń kupon"
+
+#: lib/views/coupons/view_coupon_log.php:15
+msgid "Coupon History"
+msgstr "Historia kuponu"
+
+#: lib/views/coupons/view_coupon_log.php:25
+msgid "No activity found."
+msgstr "Nie znaleziono aktywności."
+
+#: lib/views/custom_fields/for_booking.php:10
+#: lib/views/custom_fields/for_customer.php:14
+msgid "Add Custom Field"
+msgstr "Dodaj pole niestandardowe"
+
+#: lib/views/custom_fields/for_customer.php:1
+msgid "Default Fields"
+msgstr "Domyślne pola"
+
+#: lib/views/custom_fields/_custom_field_form.php:7
+msgid "New Field"
+msgstr "Nowe pole"
+
+#: lib/views/custom_fields/_custom_field_form.php:14
+msgid "Field Label"
+msgstr "Etykieta pola"
+
+#: lib/views/custom_fields/_custom_field_form.php:17
+msgid "Enter Field Label"
+msgstr "Wprowadź etykietę pola"
+
+#: lib/views/custom_fields/_custom_field_form.php:23
+msgid "Placeholder"
+msgstr "Tekst zastępczy"
+
+#: lib/views/custom_fields/_custom_field_form.php:26
+msgid "Enter Field Placeholder"
+msgstr "Wprowadź tekst zastępczy pola"
+
+#: lib/views/custom_fields/_custom_field_form.php:32
+msgid "Field Type"
+msgstr "Typ pola"
+
+#: lib/views/custom_fields/_custom_field_form.php:41
+msgid "To use address field, enter a Google API key in general settings."
+msgstr "Aby użyć pola adresu, wprowadź klucz Google API w ustawieniach ogólnych."
+
+#: lib/views/custom_fields/_custom_field_form.php:48
+msgid "Options List"
+msgstr "Lista opcji"
+
+#: lib/views/custom_fields/_custom_field_form.php:51
+msgid "Choices for Select. Enter each choice on a new line."
+msgstr "Opcje dla wyboru. Wprowadź każdą opcję w nowej linii."
+
+#: lib/views/custom_fields/_custom_field_form.php:57
+msgid "Default Value"
+msgstr "Wartość domyślna"
+
+#: lib/views/custom_fields/_custom_field_form.php:67
+msgid "Conditional"
+msgstr "Warunkowe"
+
+#: lib/views/custom_fields/_custom_field_form.php:70
+msgid "Show this field only when conditions are met"
+msgstr "Pokaż to pole tylko wtedy, gdy warunki są spełnione"
+
+#: lib/views/custom_fields/_custom_field_form.php:72
+msgid "Show this field if:"
+msgstr "Pokaż to pole, jeśli:"
+
+#: lib/views/custom_fields/_custom_field_form.php:89
+msgid "Field Width"
+msgstr "Szerokość pola"
+
+#: lib/views/custom_fields/_custom_field_form.php:92
+msgid "Full Width"
+msgstr "Pełna szerokość"
+
+#: lib/views/custom_fields/_custom_field_form.php:93
+msgid "Half Width"
+msgstr "Połowa szerokości"
+
+#: lib/views/custom_fields/_custom_field_form.php:99
+msgid "Field Visibility"
+msgstr "Widoczność pola"
+
+#: lib/views/custom_fields/_custom_field_form.php:102
+msgid "Visible to Everyone"
+msgstr "Widoczne dla wszystkich"
+
+#: lib/views/custom_fields/_custom_field_form.php:103
+msgid "Admin and Agents Only"
+msgstr "Tylko dla administratora i agentów"
+
+#: lib/views/custom_fields/_custom_field_form.php:104
+msgid "Temporary Hidden"
+msgstr "Tymczasowo ukryte"
+
+#: lib/views/custom_fields/_custom_field_form.php:110
+msgid "Required"
+msgstr "Wymagane"
+
+#: lib/views/custom_fields/_custom_field_form.php:113
+msgid "Make this field required"
+msgstr "Uczyń to pole wymaganym"
+
+#: lib/views/custom_fields/_custom_field_form.php:119
+msgid "Hide from Summary"
+msgstr "Ukryj w podsumowaniu"
+
+#: lib/views/custom_fields/_custom_field_form.php:122
+msgid "Hide from Summary Panel and Confirmation Step"
+msgstr "Ukryj w panelu podsumowania i kroku potwierdzenia"
+
+#: lib/views/custom_fields/_custom_field_form.php:127
+#: lib/views/custom_fields/_custom_field_form.php:135
+msgid "Are you sure you want to delete this field?"
+msgstr "Czy na pewno chcesz usunąć to pole?"
+
+#: lib/views/custom_fields/_custom_field_form.php:128
+msgid "Save Field"
+msgstr "Zapisz pole"
+
+#: lib/views/debug/status.php:10
+msgid "Features"
+msgstr "Funkcje"
+
+#: lib/views/debug/status.php:12
+msgid "Chat With Customers"
+msgstr "Czat z klientami"
+
+#: lib/views/debug/status.php:18
+msgid "System Info"
+msgstr "Informacje o systemie"
+
+#: lib/views/debug/status.php:23
+msgid "LatePoint Plugin Version:"
+msgstr "Wersja wtyczki LatePoint:"
+
+#: lib/views/debug/status.php:27
+msgid "LatePoint Database Version:"
+msgstr "Wersja bazy danych LatePoint:"
+
+#: lib/views/debug/status.php:31
+#: lib/views/debug/status.php:72
+msgid "reset"
+msgstr "resetuj"
+
+#: lib/views/debug/status.php:35
+msgid "PHP Version:"
+msgstr "Wersja PHP:"
+
+#: lib/views/debug/status.php:40
+msgid "MySQL Version:"
+msgstr "Wersja MySQL:"
+
+#: lib/views/debug/status.php:45
+msgid "WordPress Version:"
+msgstr "Wersja WordPress:"
+
+#: lib/views/debug/status.php:53
+msgid "Installed Addons"
+msgstr "Zainstalowane dodatki"
+
+#: lib/views/debug/status.php:63
+msgid "Update Available"
+msgstr "Dostępna aktualizacja"
+
+#: lib/views/debug/status.php:68
+msgid "Core:"
+msgstr "Rdzeń:"
+
+#: lib/views/debug/status.php:69
+msgid "Database:"
+msgstr "Baza danych:"
+
+#: lib/views/debug/status.php:82
+msgid "Tasks Due"
+msgstr "Zadania do wykonania"
+
+#: lib/views/debug/status.php:90
+#: lib/views/debug/status.php:96
+msgid "Run Migration"
+msgstr "Uruchom migrację"
+
+#: lib/views/debug/status.php:101
+msgid "Nothing to do"
+msgstr "Nic do zrobienia"
+
+#: lib/views/group_bookings/_step_booking__group_bookings.php:15
+msgid "How Many People?"
+msgstr "Ile osób?"
+
+#: lib/views/group_bookings/_step_booking__group_bookings.php:16
+msgid "Maximum capacity is"
+msgstr "Maksymalna pojemność to"
+
+#: lib/views/group_bookings/_step_booking__group_bookings.php:24
+msgid "Person"
+msgstr "Osoba"
+
+#: lib/views/group_bookings/_step_booking__group_bookings.php:25
+msgid "People"
+msgstr "Osoby"
+
+#: lib/views/group_bookings/_step_booking__group_bookings.php:28
+#: lib/views/service_extras/_step_booking__service_extras.php:52
+msgid "Qty"
+msgstr "Ilość"
+
+#: lib/views/locations/index.php:10
+#: lib/views/locations/index.php:30
+#: lib/views/locations/index.php:45
+msgid "New Location"
+msgstr "Nowa lokalizacja"
+
+#: lib/views/locations/index.php:41
+msgid "No Active Locations Found"
+msgstr "Nie znaleziono aktywnych lokalizacji"
+
+#: lib/views/locations/index.php:55
+#, php-format
+msgid "%d Disabled Location"
+msgid_plural "%d Disabled Locations"
+msgstr[0] "%d wyłączona lokalizacja"
+msgstr[1] ""
+msgstr[2] ""
+
+#: lib/views/locations/_form.php:10
+#, php-format
+msgid "Location ID: %d"
+msgstr "ID lokalizacji: %d"
+
+#: lib/views/locations/_form.php:17
+msgid "Location Name"
+msgstr "Nazwa lokalizacji"
+
+#: lib/views/locations/_form.php:21
+msgid "Category"
+msgstr "Kategoria"
+
+#: lib/views/locations/_form.php:21
+msgid "Add Category"
+msgstr "Dodaj kategorię"
+
+#: lib/views/locations/_form.php:22
+msgid "Location Photo"
+msgstr "Zdjęcie lokalizacji"
+
+#: lib/views/locations/_form.php:22
+#: lib/views/location_categories/_form.php:13
+#: lib/views/service_categories/_form.php:13
+#: lib/views/service_extras/_form.php:48
+msgid "Remove Image"
+msgstr "Usuń obraz"
+
+#: lib/views/locations/_form.php:25
+msgid "Location Address"
+msgstr "Adres lokalizacji"
+
+#: lib/views/locations/_form.php:42
+msgid "Select Agents for This Location"
+msgstr "Wybierz agentów dla tej lokalizacji"
+
+#: lib/views/locations/_form.php:69
+msgid "Services Selected"
+msgstr "Wybrane usługi"
+
+#: lib/views/locations/_form.php:76
+#, php-format
+msgid "Select services that %s will be offering at this location:"
+msgstr "Wybierz usługi, które %s będzie oferować w tej lokalizacji:"
+
+#: lib/views/locations/_form.php:110
+msgid "No Existing Agents Found"
+msgstr "Nie znaleziono istniejących agentów"
+
+#: lib/views/locations/_form.php:112
+msgid "Add First Agent"
+msgstr "Dodaj pierwszego agenta"
+
+#: lib/views/locations/_form.php:125
+msgid "Location Schedule"
+msgstr "Harmonogram lokalizacji"
+
+#: lib/views/locations/_form.php:145
+msgid "This location is using general schedule which is set in main settings"
+msgstr "Ta lokalizacja korzysta z ogólnego harmonogramu ustawionego w głównych ustawieniach"
+
+#: lib/views/locations/_form.php:157
+msgid "Location shares custom daily schedules that you set in general settings for your company, however you can add additional days with custom hours which will be specific to this location only."
+msgstr "Lokalizacja korzysta z niestandardowych dziennych harmonogramów ustawionych w ogólnych ustawieniach dla Twojej firmy, jednak możesz dodać dodatkowe dni z niestandardowymi godzinami, które będą dotyczyć wyłącznie tej lokalizacji."
+
+#: lib/views/locations/_form.php:166
+msgid "Location uses the same holidays you set in general settings for your company, however you can add additional holidays for this location here."
+msgstr "Lokalizacja korzysta z tych samych świąt, które ustawiasz w ustawieniach ogólnych dla swojej firmy, jednak tutaj możesz dodać dodatkowe święta dla tej lokalizacji."
+
+#: lib/views/locations/_form.php:177
+msgid "Save Location"
+msgstr "Zapisz lokalizację"
+
+#: lib/views/locations/_form.php:185
+msgid "Are you sure you want to remove this location? It will remove all appointments associated with it. If you only want to temprorary disable it - it is better to just change status to disabled."
+msgstr "Czy na pewno chcesz usunąć tę lokalizację? Spowoduje to usunięcie wszystkich powiązanych z nią wizyt. Jeśli chcesz ją tylko tymczasowo wyłączyć — lepiej po prostu zmień status na wyłączony."
+
+#: lib/views/locations/_form.php:193
+msgid "Are you sure you want to duplicate this location?"
+msgstr "Czy na pewno chcesz zduplikować tę lokalizację?"
+
+#: lib/views/agents/_form.php:355
+#: lib/views/locations/_form.php:223
+msgid "Schedule"
+msgstr "Harmonogram"
+
+#: lib/views/agents/_form.php:358
+#: lib/views/locations/_form.php:226
+msgid "Custom Days"
+msgstr "Dni niestandardowe"
+
+#: lib/views/agents/_form.php:359
+#: lib/views/locations/_form.php:227
+msgid "Holidays & Days off"
+msgstr "Święta i dni wolne"
+
+#: lib/views/locations/_location_index_item.php:28
+msgid "No Agents Assigned"
+msgstr "Brak przypisanych agentów"
+
+#: lib/views/location_categories/index.php:18
+#: lib/views/service_categories/index.php:18
+msgid "New Category"
+msgstr "Nowa kategoria"
+
+#: lib/views/location_categories/index.php:22
+msgid "Create New Location Category"
+msgstr "Utwórz nową kategorię lokalizacji"
+
+#: lib/views/location_categories/new_form.php:3
+msgid "Add Location Category"
+msgstr "Dodaj kategorię lokalizacji"
+
+#: lib/views/location_categories/new_form.php:8
+#: lib/views/location_categories/_form.php:6
+#: lib/views/service_categories/new_form.php:8
+#: lib/views/service_categories/_form.php:6
+msgid "Category Name"
+msgstr "Nazwa kategorii"
+
+#: lib/views/location_categories/new_form.php:9
+#: lib/views/service_categories/new_form.php:9
+msgid "Quick Description"
+msgstr "Krótki opis"
+
+#: lib/views/location_categories/new_form.php:14
+msgid "Save Location Category"
+msgstr "Zapisz kategorię lokalizacji"
+
+#: lib/views/location_categories/_form.php:13
+#: lib/views/service_categories/_form.php:13
+msgid "Category Image"
+msgstr "Obraz kategorii"
+
+#: lib/views/location_categories/_form.php:19
+#: lib/views/service_categories/_form.php:19
+msgid "Save Category"
+msgstr "Zapisz kategorię"
+
+#: lib/views/location_categories/_form.php:25
+#: lib/views/service_categories/_form.php:25
+msgid "Are you sure you want to remove this category?"
+msgstr "Czy na pewno chcesz usunąć tę kategorię?"
+
+#: lib/views/location_categories/_form.php:28
+#: lib/views/service_categories/_form.php:28
+msgid "Delete Category"
+msgstr "Usuń kategorię"
+
+#: lib/views/messages/backend_chat_box.php:5
+msgid "Your Conversations"
+msgstr "Twoje rozmowy"
+
+#: lib/views/messages/backend_chat_box.php:8
+msgid "Find booking to start chat..."
+msgstr "Znajdź rezerwację, aby rozpocząć czat..."
+
+#: lib/views/messages/conversations.php:16
+msgid "Start new conversation..."
+msgstr "Rozpocznij nową rozmowę..."
+
+#: lib/views/messages/messages_for_booking.php:22
+#: lib/views/messages/messages_with_info_for_booking.php:42
+msgid "No Messages Exist."
+msgstr "Nie ma żadnych wiadomości."
+
+#: lib/views/messages/messages_with_info_for_booking.php:8
+msgid "Chat with"
+msgstr "Czat z"
+
+#: lib/views/messages/messages_with_info_for_booking.php:50
+#: lib/views/messages/quick_form_chat_box.php:16
+msgid "Attach File"
+msgstr "Dołącz plik"
+
+#: lib/views/messages/messages_with_info_for_booking.php:57
+msgid "Appointment Info"
+msgstr "Informacje o wizycie"
+
+#: lib/views/messages/messages_with_info_for_booking.php:64
+msgid "Booking ID"
+msgstr "ID rezerwacji"
+
+#: lib/views/messages/messages_with_info_for_booking.php:66
+msgid "Edit"
+msgstr "Edytuj"
+
+#: lib/views/messages/messages_with_info_for_booking.php:68
+msgid "Date/Time"
+msgstr "Data/godzina"
+
+#: lib/views/messages/messages_with_info_for_booking.php:72
+msgid "Customer"
+msgstr "Klient"
+
+#: lib/views/messages/quick_form_chat_box.php:3
+msgid "Message History"
+msgstr "Historia wiadomości"
+
+#: lib/views/recurring_bookings/recurring_bookings_preview.php:9
+msgid "Review Slots"
+msgstr "Sprawdź sloty"
+
+#: lib/views/recurring_bookings/recurring_bookings_preview.php:16
+#, php-format
+msgid "%s of %s time slots are not available. Please review them below."
+msgstr "%s z %s slotów czasowych jest niedostępnych. Proszę sprawdzić je poniżej."
+
+#: lib/views/recurring_bookings/recurring_bookings_preview.php:34
+msgid "This slot is unavailable. You can choose a different one, or it will be skipped automatically."
+msgstr "Ten slot jest niedostępny. Możesz wybrać inny lub zostanie on automatycznie pominięty."
+
+#: lib/views/recurring_bookings/recurring_bookings_preview.php:51
+msgid "Continue"
+msgstr "Kontynuuj"
+
+#: lib/views/roles/edit_wp_user.php:9
+msgid "Edit User"
+msgstr "Edytuj użytkownika"
+
+#: lib/views/roles/edit_wp_user.php:21
+msgid "WP User"
+msgstr "Użytkownik WP"
+
+#: lib/views/roles/edit_wp_user.php:30
+msgid "Not Connected"
+msgstr "Niepołączony"
+
+#: lib/views/roles/edit_wp_user.php:31
+msgid "Connected to agent"
+msgstr "Połączony z agentem"
+
+#: lib/views/roles/edit_wp_user.php:36
+#: lib/views/roles/_form.php:70
+msgid "Allowed Records"
+msgstr "Dozwolone rekordy"
+
+#: lib/views/roles/edit_wp_user.php:40
+msgid "This user has \"Administrator\" role and can access all records"
+msgstr "Ten użytkownik ma rolę „Administrator” i może uzyskać dostęp do wszystkich rekordów"
+
+#: lib/views/roles/edit_wp_user.php:42
+msgid "This user has \"Agent\" role and can execute permitted actions only on records that belong to a LatePoint agent they are connected to."
+msgstr "Ten użytkownik ma rolę „Agent” i może wykonywać dozwolone գործողności tylko na rekordach należących do agenta LatePoint, z którym jest połączony."
+
+#: lib/views/roles/edit_wp_user.php:47
+msgid "Custom Selection"
+msgstr "Wybór niestandardowy"
+
+#: lib/views/roles/edit_wp_user.php:57
+#: lib/views/roles/_form.php:91
+msgid "Permitted Actions"
+msgstr "Dozwolone działania"
+
+#: lib/views/roles/edit_wp_user.php:58
+msgid "Custom"
+msgstr "Niestandardowe"
+
+#: lib/views/roles/edit_wp_user.php:77
+msgid "Permitted actions are defined by user's role settings."
+msgstr "Dozwolone działania są określane przez ustawienia roli użytkownika."
+
+#: lib/views/roles/index.php:9
+msgid "Default Roles"
+msgstr "Role domyślne"
+
+#: lib/views/roles/index.php:19
+msgid "Custom Roles"
+msgstr "Role niestandardowe"
+
+#: lib/views/roles/index.php:37
+msgid "Create Custom Role"
+msgstr "Utwórz niestandardową rolę"
+
+#: lib/views/roles/_form.php:12
+#, php-format
+msgid "%d user"
+msgid_plural "%d users"
+msgstr[0] "%d użytkownik"
+msgstr[1] ""
+msgstr[2] ""
+
+#: lib/views/roles/_form.php:32
+msgid "Users"
+msgstr "Użytkownicy"
+
+#: lib/views/roles/_form.php:50
+msgid "Custom Settings"
+msgstr "Ustawienia niestandardowe"
+
+#: lib/views/roles/_form.php:54
+msgid "Connected to:"
+msgstr "Połączony z:"
+
+#: lib/views/roles/_form.php:54
+msgid "Connect to an agent"
+msgstr "Połącz z agentem"
+
+#: lib/views/roles/_form.php:63
+#, php-format
+msgid "You have not assigned any WordPress users to this role. Create a new WP user or edit existing user and assign them a role called: %s"
+msgstr "Nie przypisałeś żadnych użytkowników WordPress do tej roli. Utwórz nowego użytkownika WP lub edytuj istniejącego użytkownika i przypisz mu rolę o nazwie: %s"
+
+#: lib/views/roles/_form.php:77
+#, php-format
+msgid "Users with \"%s\" role are allowed to perform all available actions on any agent, location and service records."
+msgstr "Użytkownicy z rolą „%s” mogą wykonywać wszystkie dostępne działania na dowolnych rekordach agentów, lokalizacji i usług."
+
+#: lib/views/roles/_form.php:80
+#, php-format
+msgid "Users with \"%s\" role can execute permitted actions only on records that belong to a LatePoint agent they are connected to."
+msgstr "Użytkownicy z rolą „%s” mogą wykonywać dozwolone działania tylko na rekordach należących do agenta LatePoint, z którym są połączeni."
+
+#: lib/views/roles/_form.php:83
+msgid "Once you assign users to this role, they will appear in \"Users\" section above, click on each user to set restrictions on which records each of them can access."
+msgstr "Gdy przypiszesz użytkowników do tej roli, pojawią się oni w sekcji „Użytkownicy” powyżej. Kliknij każdego użytkownika, aby ustawić ograniczenia dotyczące rekordów, do których każdy z nich może uzyskać dostęp."
+
+#: lib/views/roles/_form.php:97
+#, php-format
+msgid "Users with \"%s\" role are permitted to execute all available actions in the system."
+msgstr "Użytkownicy z rolą „%s” mogą wykonywać wszystkie dostępne działania w systemie."
+
+#: lib/views/roles/_form.php:119
+#: lib/views/roles/_form.php:133
+msgid "Are you sure you want to delete this role?"
+msgstr "Czy na pewno chcesz usunąć tę rolę?"
+
+#: lib/views/service_categories/index.php:22
+msgid "Create New Service Category"
+msgstr "Utwórz nową kategorię usług"
+
+#: lib/views/service_categories/new_form.php:3
+msgid "Add Service Category"
+msgstr "Dodaj kategorię usług"
+
+#: lib/views/service_categories/new_form.php:15
+msgid "Save Service Category"
+msgstr "Zapisz kategorię usług"
+
+#: lib/views/service_durations/duration_fields.php:9
+msgid "Duration Name (optional)"
+msgstr "Nazwa czasu trwania (opcjonalnie)"
+
+#: lib/views/service_durations/duration_fields.php:12
+msgid "Duration"
+msgstr "Czas trwania"
+
+#: lib/views/service_durations/_step_booking__service_durations.php:40
+msgid "Hours"
+msgstr "Godziny"
+
+#: lib/views/service_durations/_step_booking__service_durations.php:40
+msgid "Hour"
+msgstr "Godzina"
+
+#: lib/views/service_durations/_step_booking__service_durations.php:41
+#: lib/views/service_durations/_step_booking__service_durations.php:44
+msgid "Minutes"
+msgstr "Minuty"
+
+#: lib/views/service_extras/index.php:18
+msgid "min"
+msgstr "min"
+
+#: lib/views/service_extras/index.php:21
+msgid "Price:"
+msgstr "Cena:"
+
+#: lib/views/service_extras/index.php:25
+msgid "Max Qty:"
+msgstr "Maks. ilość:"
+
+#: lib/views/service_extras/index.php:33
+msgid "Edit Extra"
+msgstr "Edytuj dodatek"
+
+#: lib/views/service_extras/index.php:46
+msgid "No Service Extras Found"
+msgstr "Nie znaleziono dodatków do usługi"
+
+#: lib/views/service_extras/index.php:50
+#: lib/views/service_extras/_form.php:90
+msgid "Add Service Extra"
+msgstr "Dodaj dodatek do usługi"
+
+#: lib/views/service_extras/_form.php:14
+msgid "Service Extra ID:"
+msgstr "ID dodatku do usługi:"
+
+#: lib/views/service_extras/_form.php:19
+msgid "Service Extra Name"
+msgstr "Nazwa dodatku do usługi"
+
+#: lib/views/service_extras/_form.php:22
+msgid "Duration (minutes)"
+msgstr "Czas trwania (minuty)"
+
+#: lib/views/service_extras/_form.php:28
+msgid "Maximum Quantity"
+msgstr "Maksymalna ilość"
+
+#: lib/views/service_extras/_form.php:41
+msgid "Media"
+msgstr "Media"
+
+#: lib/views/service_extras/_form.php:45
+msgid "Selection Image"
+msgstr "Obraz wyboru"
+
+#: lib/views/service_extras/_form.php:46
+msgid "This image will be used as a background image of the service extra tile on booking form"
+msgstr "Ten obraz będzie używany jako obraz tła kafelka dodatku do usługi w formularzu rezerwacji"
+
+#: lib/views/service_extras/_form.php:48
+msgid "Service Extra Image"
+msgstr "Obraz dodatku do usługi"
+
+#: lib/views/service_extras/_form.php:94
+msgid "Are you sure you want to remove this service extra? You can also change status to disabled if you want to temprorary disable it instead."
+msgstr "Czy na pewno chcesz usunąć ten dodatek do usługi? Możesz też zmienić status na wyłączony, jeśli chcesz go zamiast tego tymczasowo wyłączyć."
+
+#: lib/views/service_extras/_form.php:98
+msgid "Delete Service Extra"
+msgstr "Usuń dodatek do usługi"
+
+#: lib/views/taxes/index.php:15
+msgid "Add Tax"
+msgstr "Dodaj podatek"
+
+#: lib/views/taxes/_tax_form.php:7
+msgid "New Tax"
+msgstr "Nowy podatek"
+
+#: lib/views/taxes/_tax_form.php:14
+msgid "Tax Name"
+msgstr "Nazwa podatku"
+
+#: lib/views/taxes/_tax_form.php:17
+msgid "Enter Tax Name"
+msgstr "Wprowadź nazwę podatku"
+
+#: lib/views/taxes/_tax_form.php:23
+msgid "Tax Type"
+msgstr "Typ podatku"
+
+#: lib/views/taxes/_tax_form.php:31
+msgid "Percentage of the booking price"
+msgstr "Procent ceny rezerwacji"
+
+#: lib/views/taxes/_tax_form.php:32
+msgid "Fixed amount"
+msgstr "Stała kwota"
+
+#: lib/views/taxes/_tax_form.php:38
+msgid "Enter Tax Value"
+msgstr "Wprowadź wartość podatku"
+
+#: lib/views/taxes/_tax_form.php:45
+#: lib/views/taxes/_tax_form.php:55
+msgid "Are you sure you want to delete this tax?"
+msgstr "Czy na pewno chcesz usunąć ten podatek?"
+
+#: lib/views/taxes/_tax_form.php:50
+msgid "Save Tax"
+msgstr "Zapisz podatek"
+
+#: lib/views/updates/check_version_status.php:11
+msgid "Update is Available"
+msgstr "Dostępna jest aktualizacja"
+
+#. translators: %s is version number
+#: lib/views/updates/check_version_status.php:18
+#, php-format
+msgid "LatePoint %s is available."
+msgstr "LatePoint %s jest dostępny."
+
+#. translators: %s is version number
+#: lib/views/updates/check_version_status.php:23
+#, php-format
+msgid "You're running version %s"
+msgstr "Używasz wersji %s"
+
+#: lib/views/updates/check_version_status.php:40
+#: lib/views/updates/check_version_status.php:57
+msgid "View Changelog"
+msgstr "Zobacz dziennik zmian"
+
+#: lib/views/updates/check_version_status.php:49
+msgid "You are using the latest version"
+msgstr "Używasz najnowszej wersji"
+
+#: lib/views/updates/check_version_status.php:52
+msgid "Installed Version: "
+msgstr "Zainstalowana wersja:"
+
+#: lib/views/updates/check_version_status.php:61
+msgid "Official Website"
+msgstr "Oficjalna strona internetowa"
+
+#: lib/views/updates/migrate_from_version4.php:12
+msgid "Migration from Version 4"
+msgstr "Migracja z wersji 4"
+
+#: lib/views/updates/version_5_intro.php:8
+msgid "Dismiss"
+msgstr "Odrzuć"
+
+#: lib/views/updates/version_5_intro.php:60
+msgid "Start Using Version 5"
+msgstr "Rozpocznij korzystanie z wersji 5"
+
+#: lib/views/updates/_license_form.php:7
+msgid "License Key Registration"
+msgstr "Rejestracja klucza licencyjnego"
+
+#: lib/views/updates/_license_form.php:17
+msgid "Please enter your LatePoint license key to receive free plugin updates and install addons."
+msgstr "Wprowadź swój klucz licencyjny LatePoint, aby otrzymywać bezpłatne aktualizacje wtyczki i instalować dodatki."
+
+#: lib/views/updates/_license_form.php:21
+msgid "Your Name"
+msgstr "Twoje imię"
+
+#: lib/views/updates/_license_form.php:24
+msgid "Your Email Address"
+msgstr "Twój adres e-mail"
+
+#: lib/views/updates/_license_form.php:27
+msgid "License Key"
+msgstr "Klucz licencyjny"
+
+#: lib/views/updates/_license_form.php:31
+msgid "Activate Now"
+msgstr "Aktywuj teraz"
+
+#: lib/views/webhooks/index.php:12
+msgid "Add Webhook"
+msgstr "Dodaj webhook"
+
+#: lib/views/webhooks/_webhook_form.php:2
+msgid "New Booking"
+msgstr "Nowa rezerwacja"
+
+#: lib/views/webhooks/_webhook_form.php:3
+msgid "Updated Booking"
+msgstr "Zaktualizowana rezerwacja"
+
+#: lib/views/webhooks/_webhook_form.php:4
+msgid "New Customer"
+msgstr "Nowy klient"
+
+#: lib/views/webhooks/_webhook_form.php:5
+msgid "New Transaction"
+msgstr "Nowa transakcja"
+
+#: lib/views/webhooks/_webhook_form.php:12
+msgid "New Webhook"
+msgstr "Nowy webhook"
+
+#: lib/views/webhooks/_webhook_form.php:26
+msgid "Webhook URL"
+msgstr "URL webhooka"
+
+#: lib/views/webhooks/_webhook_form.php:26
+msgid "Webhook URL (https://example.com)"
+msgstr "URL webhooka (https://example.com)"
+
+#: lib/views/webhooks/_webhook_form.php:33
+msgid "Event that will trigger this hook"
+msgstr "Zdarzenie, które wyzwoli ten hook"
+
+#: lib/views/webhooks/_webhook_form.php:39
+msgid "Hook Status"
+msgstr "Status hooka"
+
+#: lib/views/webhooks/_webhook_form.php:50
+msgid "Are you sure you want to delete this webhook?"
+msgstr "Czy na pewno chcesz usunąć ten webhook?"
+
+#: lib/views/agents/_form.php:353
+msgid "Extra Info"
+msgstr "Dodatkowe informacje"
+
+#: lib/views/messages/conversations.php:22
+msgid "No conversations found."
+msgstr "Nie znaleziono rozmów."
+
+#: lib/views/roles/edit_wp_user.php:47
+msgid "All Connected"
+msgstr "Wszystko połączone"
+
+#: lib/views/roles/_form.php:54
+msgid "Not connected"
+msgstr "Brak połączenia"

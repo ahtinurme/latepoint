@@ -1,0 +1,3499 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: LatePoint Addon - Pro Features\n"
+"Report-Msgid-Bugs-To: \n"
+"Last-Translator: gpt-po v1.2.4\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"POT-Creation-Date: 2026-05-28T07:41:41+00:00\n"
+"PO-Revision-Date: 2026-05-28T07:41:41+00:00\n"
+"Language: vi\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+
+#. Plugin Name of the plugin
+#: latepoint-pro-features.php
+msgid "LatePoint Addon - Pro Features"
+msgstr "LatePoint Addon - Tính năng Pro"
+
+#. Plugin URI of the plugin
+#. Author URI of the plugin
+#: latepoint-pro-features.php
+msgid "https://latepoint.com/"
+msgstr "https://latepoint.com/"
+
+#. Description of the plugin
+#: latepoint-pro-features.php
+msgid "LatePoint Addon that adds a set of Pro features to a base plugin"
+msgstr "Addon LatePoint bổ sung một bộ tính năng Pro cho plugin cơ bản"
+
+#. Author of the plugin
+#: latepoint-pro-features.php
+msgid "LatePoint"
+msgstr "LatePoint"
+
+#. translators: 1: bold open tag, 2: bold close tag, 3: required version, 4: current version
+#: latepoint-pro-features.php:92
+#, php-format
+msgid "You are using an older version of the %1$sLatePoint%2$s plugin (v%4$s). Please update the %1$sLatePoint%2$s plugin to version %1$s%3$s or later%2$s."
+msgstr "Bạn đang sử dụng phiên bản cũ hơn của plugin %1$sLatePoint%2$s (v%4$s). Vui lòng cập nhật plugin %1$sLatePoint%2$s lên phiên bản %1$s%3$s hoặc mới hơn%2$s."
+
+#: latepoint-pro-features.php:98
+#: lib/helpers/addons_helper.php:126
+#: lib/views/addons/load_addons_list.php:93
+#: lib/views/addons/load_addons_list.php:109
+#: lib/views/updates/check_version_status.php:33
+msgid "Update Now"
+msgstr "Cập nhật ngay"
+
+#: latepoint-pro-features.php:767
+#: lib/helpers/feature_recurring_bookings_helper.php:61
+msgid "Recurring Appointments"
+msgstr "Lịch hẹn định kỳ"
+
+#: latepoint-pro-features.php:771
+#: lib/helpers/feature_group_bookings_helper.php:278
+msgid "Group Bookings"
+msgstr "Đặt chỗ theo nhóm"
+
+#: latepoint-pro-features.php:775
+#: lib/controllers/service_extras_controller.php:25
+#: lib/helpers/feature_service_extras_helper.php:7
+#: lib/helpers/feature_service_extras_helper.php:143
+#: lib/helpers/feature_service_extras_helper.php:452
+#: lib/helpers/service_extras_helper.php:86
+msgid "Service Extras"
+msgstr "Dịch vụ bổ sung"
+
+#: latepoint-pro-features.php:779
+msgid "Restrictions for Extras"
+msgstr "Giới hạn cho dịch vụ bổ sung"
+
+#: latepoint-pro-features.php:783
+#: latepoint-pro-features.php:1239
+#: lib/controllers/assets_controller.php:20
+#: lib/helpers/feature_assets_helper.php:50
+msgid "Assets"
+msgstr "Tài nguyên"
+
+#: latepoint-pro-features.php:790
+msgid "Allow customers reschedule their bookings"
+msgstr "Cho phép khách hàng đổi lịch đặt chỗ của họ"
+
+#: latepoint-pro-features.php:790
+msgid "If enable, shows a button on customer cabinet to reschedule an appointment"
+msgstr "Nếu bật, sẽ hiển thị nút trong trang khách hàng để đổi lịch hẹn"
+
+#: latepoint-pro-features.php:793
+msgid "Set restriction on when customer can reschedule"
+msgstr "Đặt giới hạn thời điểm khách hàng có thể đổi lịch"
+
+#: latepoint-pro-features.php:797
+msgid "Can reschedule when it is at least"
+msgstr "Có thể đổi lịch khi còn ít nhất"
+
+#: latepoint-pro-features.php:798
+#: lib/helpers/feature_recurring_bookings_helper.php:69
+#: lib/helpers/feature_service_extras_helper.php:498
+#: lib/helpers/feature_service_extras_helper.php:508
+#: lib/views/agents/quick_edit.php:92
+#: lib/views/agents/_form.php:82
+msgid "Value"
+msgstr "Giá trị"
+
+#: latepoint-pro-features.php:803
+#: lib/helpers/feature_reminders_helper.php:15
+msgid "minutes"
+msgstr "phút"
+
+#: latepoint-pro-features.php:804
+#: lib/helpers/feature_reminders_helper.php:16
+msgid "hours"
+msgstr "giờ"
+
+#: latepoint-pro-features.php:805
+#: lib/helpers/feature_reminders_helper.php:17
+msgid "days"
+msgstr "ngày"
+
+#: latepoint-pro-features.php:809
+msgid "before appointment start time"
+msgstr "trước thời gian bắt đầu cuộc hẹn"
+
+#: latepoint-pro-features.php:812
+msgid "Change booking status when customer reschedules"
+msgstr "Thay đổi trạng thái đặt chỗ khi khách hàng đổi lịch"
+
+#: latepoint-pro-features.php:816
+msgid "Change status to:"
+msgstr "Đổi trạng thái thành:"
+
+#: latepoint-pro-features.php:836
+msgid "All Day"
+msgstr "Cả ngày"
+
+#: latepoint-pro-features.php:837
+msgid "Specific Time"
+msgstr "Thời gian cụ thể"
+
+#: latepoint-pro-features.php:843
+msgid "Reason for blocking (optional)"
+msgstr "Lý do chặn (không bắt buộc)"
+
+#: latepoint-pro-features.php:846
+msgid "Enter a reason..."
+msgstr "Nhập lý do..."
+
+#: latepoint-pro-features.php:866
+#, php-format
+msgid "Select resources you want to be unavailable during this time on %s"
+msgstr "Chọn các tài nguyên bạn muốn không khả dụng trong thời gian này trên %s"
+
+#: latepoint-pro-features.php:867
+#, php-format
+msgid "Select resources you want to be unavailable on %s"
+msgstr "Chọn các tài nguyên bạn muốn không khả dụng trên %s"
+
+#: latepoint-pro-features.php:876
+msgid "All Agents"
+msgstr "Tất cả nhân viên"
+
+#: latepoint-pro-features.php:891
+msgid "All Services"
+msgstr "Tất cả dịch vụ"
+
+#: latepoint-pro-features.php:906
+msgid "All Locations"
+msgstr "Tất cả địa điểm"
+
+#: latepoint-pro-features.php:922
+#: lib/views/webhooks/_webhook_form.php:45
+msgid "Save"
+msgstr "Lưu"
+
+#: latepoint-pro-features.php:928
+msgid "Are you sure you want to delete this blocked time period?"
+msgstr "Bạn có chắc chắn muốn xóa khoảng thời gian bị chặn này không?"
+
+#: latepoint-pro-features.php:930
+msgid "Delete Blocked Period"
+msgstr "Xóa khoảng thời gian bị chặn"
+
+#: latepoint-pro-features.php:987
+msgid "Blocked Period"
+msgstr "Khoảng thời gian bị chặn"
+
+#: latepoint-pro-features.php:1056
+msgid "Enable this feature by installing an appropriate addon."
+msgstr "Bật tính năng này bằng cách cài đặt một addon phù hợp."
+
+#: latepoint-pro-features.php:1067
+msgid "Not applied to invoice"
+msgstr "Chưa áp dụng cho hóa đơn"
+
+#: latepoint-pro-features.php:1073
+#, php-format
+msgid "#%s"
+msgstr "#%s"
+
+#: latepoint-pro-features.php:1076
+msgid "Apply to Invoice"
+msgstr "Áp dụng cho hóa đơn"
+
+#: latepoint-pro-features.php:1081
+msgid "View Receipt"
+msgstr "Xem biên lai"
+
+#: latepoint-pro-features.php:1083
+msgid "View Invoice"
+msgstr "Xem hóa đơn"
+
+#: latepoint-pro-features.php:1100
+#: lib/controllers/addons_controller.php:18
+msgid "Add-ons"
+msgstr "Tiện ích bổ sung"
+
+#: latepoint-pro-features.php:1112
+msgid "Premium Features"
+msgstr "Tính năng cao cấp"
+
+#: latepoint-pro-features.php:1194
+msgid "Form Fields"
+msgstr "Các trường biểu mẫu"
+
+#: latepoint-pro-features.php:1199
+msgid "Customer Fields"
+msgstr "Trường khách hàng"
+
+#: latepoint-pro-features.php:1204
+msgid "Booking Fields"
+msgstr "Trường đặt chỗ"
+
+#: latepoint-pro-features.php:1217
+#: latepoint-pro-features.php:1222
+#: lib/controllers/locations_controller.php:21
+#: lib/helpers/feature_locations_helper.php:70
+msgid "Locations"
+msgstr "Địa điểm"
+
+#: latepoint-pro-features.php:1227
+msgid "Categories"
+msgstr "Danh mục"
+
+#: latepoint-pro-features.php:1271
+msgid "Cart Settings"
+msgstr "Cài đặt giỏ hàng"
+
+#: latepoint-pro-features.php:1274
+msgid "Disable Shopping Cart Functionality"
+msgstr "Tắt chức năng giỏ hàng"
+
+#: latepoint-pro-features.php:1274
+msgid "This will disable ability to book multiple services in one order"
+msgstr "Điều này sẽ tắt khả năng đặt nhiều dịch vụ trong một đơn hàng"
+
+#: latepoint-pro-features.php:1275
+msgid "Reset Presets When Adding New Item"
+msgstr "Đặt lại các thiết lập sẵn khi thêm mục mới"
+
+#: latepoint-pro-features.php:1275
+msgid "This will reset presets settings when adding new item"
+msgstr "Điều này sẽ đặt lại các thiết lập sẵn khi thêm mục mới"
+
+#: latepoint-pro-features.php:1286
+msgid "Assets Settings"
+msgstr "Cài đặt tài nguyên"
+
+#: latepoint-pro-features.php:1289
+msgid "Enable Assets Functionality"
+msgstr "Bật chức năng tài nguyên"
+
+#: latepoint-pro-features.php:1289
+msgid "Enable to use assets for managing booking availability. When disabled, assets will not affect booking availability"
+msgstr "Bật để sử dụng tài nguyên trong việc quản lý khả năng đặt chỗ. Khi tắt, tài nguyên sẽ không ảnh hưởng đến khả năng đặt chỗ"
+
+#: latepoint-pro-features.php:1490
+#: latepoint-pro-features.php:1503
+msgid "Are you sure you want to remove this file?"
+msgstr "Bạn có chắc chắn muốn xóa tệp này không?"
+
+#: latepoint-pro-features.php:1491
+#: latepoint-pro-features.php:1504
+msgid "This file is required and cannot be removed, but you can replace it with a different file. Do you want to replace it?"
+msgstr "Tệp này là bắt buộc và không thể xóa, nhưng bạn có thể thay thế nó bằng một tệp khác. Bạn có muốn thay thế nó không?"
+
+#: latepoint-pro-features.php:1609
+msgid "Activate LatePoint"
+msgstr "Kích hoạt LatePoint"
+
+#: latepoint-pro-features.php:1613
+msgid "Install LatePoint"
+msgstr "Cài đặt LatePoint"
+
+#: latepoint-pro-features.php:1617
+#, php-format
+msgid "%1$sPRO Features for LatePoint%2$s plugin requires %1$sLatePoint%2$s core plugin installed & activated."
+msgstr "Plugin %1$sTính năng PRO cho LatePoint%2$s yêu cầu plugin lõi %1$sLatePoint%2$s được cài đặt và kích hoạt."
+
+#: lib/controllers/addons_controller.php:37
+msgid "Addon \"Pro Features\" has been installed"
+msgstr "Addon \"Tính năng Pro\" đã được cài đặt"
+
+#: lib/controllers/addons_controller.php:42
+msgid "Invalid license key. Activate in LatePoint settings."
+msgstr "Mã bản quyền không hợp lệ. Kích hoạt trong phần cài đặt LatePoint."
+
+#: lib/controllers/addons_controller.php:63
+msgid "You do not have permission to delete plugins."
+msgstr "Bạn không có quyền xóa plugin."
+
+#: lib/controllers/addons_controller.php:80
+msgid "Addon deleted"
+msgstr "Addon đã bị xóa"
+
+#: lib/controllers/addons_controller.php:93
+msgid "You do not have permission to manage plugins."
+msgstr "Bạn không có quyền quản lý plugin."
+
+#: lib/controllers/addons_controller.php:108
+msgid "Addon deactivated"
+msgstr "Addon đã bị vô hiệu hóa"
+
+#: lib/controllers/addons_controller.php:126
+msgid "You do not have permission to activate plugins."
+msgstr "Bạn không có quyền kích hoạt plugin."
+
+#: lib/controllers/addons_controller.php:141
+msgid "Addon activated"
+msgstr "Addon đã được kích hoạt"
+
+#: lib/controllers/addons_controller.php:158
+msgid "You do not have permission to install plugins."
+msgstr "Bạn không có quyền cài đặt plugin."
+
+#: lib/controllers/addons_controller.php:185
+msgid "Addon installed successfully."
+msgstr "Addon đã được cài đặt thành công."
+
+#: lib/controllers/agents_controller.php:23
+#: lib/views/coupons/quick_edit.php:89
+#: lib/views/locations/_form.php:221
+msgid "Agents"
+msgstr "Nhân viên"
+
+#: lib/controllers/agents_controller.php:35
+msgid "Index"
+msgstr "Chỉ mục"
+
+#: lib/controllers/agents_controller.php:52
+#: lib/controllers/agents_controller.php:54
+#: lib/views/agents/index.php:66
+#: lib/views/agents/index.php:73
+#: lib/views/agents/quick_edit.php:14
+msgid "New Agent"
+msgstr "Nhân viên mới"
+
+#: lib/controllers/agents_controller.php:136
+#: lib/controllers/agents_controller.php:138
+#: lib/views/agents/index.php:58
+#: lib/views/agents/quick_edit.php:16
+msgid "Edit Agent"
+msgstr "Chỉnh sửa nhân viên"
+
+#: lib/controllers/agents_controller.php:214
+msgid "Agent Created. ID:"
+msgstr "Đã tạo nhân viên. ID:"
+
+#: lib/controllers/agents_controller.php:222
+msgid "Agent Updated. ID:"
+msgstr "Đã cập nhật nhân viên. ID:"
+
+#: lib/controllers/agents_controller.php:277
+msgid "Agent Removed"
+msgstr "Đã xóa nhân viên"
+
+#: lib/controllers/agents_controller.php:280
+#: lib/controllers/agents_controller.php:284
+msgid "Error Removing Agent"
+msgstr "Lỗi khi xóa nhân viên"
+
+#: lib/controllers/agents_controller.php:325
+msgid "Error Accessing Agent"
+msgstr "Lỗi khi truy cập nhân viên"
+
+#: lib/controllers/agents_controller.php:347
+#: lib/controllers/locations_controller.php:253
+msgid "Copy"
+msgstr "Sao chép"
+
+#: lib/controllers/agents_controller.php:380
+#: lib/controllers/agents_controller.php:384
+msgid "Error Creating Agent"
+msgstr "Lỗi khi tạo nhân viên"
+
+#: lib/controllers/assets_controller.php:39
+#: lib/controllers/assets_controller.php:41
+#: lib/views/assets/index.php:73
+msgid "New Asset"
+msgstr "Tài sản mới"
+
+#: lib/controllers/assets_controller.php:58
+#: lib/controllers/assets_controller.php:60
+#: lib/views/assets/index.php:66
+msgid "Edit Asset"
+msgstr "Chỉnh sửa tài sản"
+
+#: lib/controllers/assets_controller.php:90
+msgid "Asset Created. ID:"
+msgstr "Đã tạo tài sản. ID:"
+
+#: lib/controllers/assets_controller.php:92
+msgid "Asset Updated. ID:"
+msgstr "Đã cập nhật tài sản. ID:"
+
+#: lib/controllers/assets_controller.php:117
+msgid "Asset Removed"
+msgstr "Đã xóa tài sản"
+
+#: lib/controllers/assets_controller.php:120
+#: lib/controllers/assets_controller.php:124
+msgid "Error Removing Asset"
+msgstr "Lỗi khi xóa tài sản"
+
+#: lib/controllers/bundles_controller.php:24
+#: lib/views/coupons/quick_edit.php:125
+msgid "Bundles"
+msgstr "Gói"
+
+#: lib/controllers/bundles_controller.php:36
+#: lib/controllers/bundles_controller.php:38
+#: lib/views/bundles/index.php:37
+msgid "Edit Bundle"
+msgstr "Chỉnh sửa gói"
+
+#: lib/controllers/bundles_controller.php:60
+#: lib/controllers/bundles_controller.php:62
+#: lib/views/bundles/index.php:47
+#: lib/views/bundles/index.php:57
+msgid "New Bundle"
+msgstr "Gói mới"
+
+#: lib/controllers/bundles_controller.php:124
+msgid "Bundle Created. ID:"
+msgstr "Đã tạo gói. ID:"
+
+#: lib/controllers/bundles_controller.php:132
+msgid "Bundle Updated. ID:"
+msgstr "Đã cập nhật gói. ID:"
+
+#: lib/controllers/bundles_controller.php:171
+msgid "Bundle Removed"
+msgstr "Đã xóa gói"
+
+#: lib/controllers/bundles_controller.php:174
+#: lib/controllers/bundles_controller.php:178
+msgid "Error Removing Bundle"
+msgstr "Lỗi khi xóa gói"
+
+#: lib/controllers/coupons_controller.php:22
+#: lib/helpers/feature_coupons_helper.php:131
+#: lib/views/coupons/index.php:8
+msgid "Coupons"
+msgstr "Phiếu giảm giá"
+
+#: lib/controllers/coupons_controller.php:73
+#: lib/views/coupons/index.php:24
+#: lib/views/coupons/index.php:32
+#: lib/views/coupons/index.php:54
+msgid "ID"
+msgstr "ID"
+
+#: lib/controllers/coupons_controller.php:74
+#: lib/models/asset_model.php:22
+#: lib/models/service_extra_model.php:20
+#: lib/views/coupons/index.php:25
+#: lib/views/coupons/index.php:55
+#: lib/views/roles/_form.php:21
+msgid "Name"
+msgstr "Tên"
+
+#: lib/controllers/coupons_controller.php:75
+#: lib/views/coupons/index.php:26
+#: lib/views/coupons/index.php:56
+#: lib/views/coupons/quick_edit.php:51
+msgid "Code"
+msgstr "Mã"
+
+#: lib/controllers/coupons_controller.php:76
+#: lib/views/coupons/index.php:27
+#: lib/views/coupons/index.php:57
+msgid "Discount"
+msgstr "Giảm giá"
+
+#: lib/controllers/coupons_controller.php:77
+#: lib/views/agents/quick_edit.php:57
+#: lib/views/agents/_form.php:41
+#: lib/views/assets/_form.php:35
+#: lib/views/bundles/_form.php:30
+#: lib/views/coupons/index.php:28
+#: lib/views/coupons/index.php:58
+#: lib/views/coupons/quick_edit.php:62
+#: lib/views/locations/_form.php:18
+#: lib/views/service_extras/_form.php:31
+msgid "Status"
+msgstr "Trạng thái"
+
+#: lib/controllers/coupons_controller.php:78
+#: lib/views/coupons/index.php:29
+#: lib/views/coupons/index.php:59
+msgid "Created On"
+msgstr "Ngày tạo"
+
+#: lib/controllers/coupons_controller.php:169
+msgid "Coupon Code was removed from your cart"
+msgstr "Mã phiếu giảm giá đã được xóa khỏi giỏ hàng của bạn"
+
+#: lib/controllers/coupons_controller.php:181
+msgid "Coupon Code was applied to your cart"
+msgstr "Mã phiếu giảm giá đã được áp dụng vào giỏ hàng của bạn"
+
+#: lib/controllers/coupons_controller.php:202
+msgid "Coupon Removed"
+msgstr "Đã xóa phiếu giảm giá"
+
+#: lib/controllers/coupons_controller.php:205
+#: lib/controllers/coupons_controller.php:209
+msgid "Error Removing Coupon"
+msgstr "Lỗi khi xóa phiếu giảm giá"
+
+#: lib/controllers/coupons_controller.php:299
+#, php-format
+msgid "Coupon Updated ID: %s"
+msgstr "Đã cập nhật phiếu giảm giá ID: %s"
+
+#: lib/controllers/coupons_controller.php:299
+#, php-format
+msgid "Coupon Created ID: %s"
+msgstr "Đã tạo phiếu giảm giá ID: %s"
+
+#: lib/controllers/custom_fields_controller.php:27
+#: lib/controllers/custom_fields_controller.php:291
+#: lib/helpers/feature_custom_fields_helper.php:402
+#: lib/helpers/feature_custom_fields_helper.php:671
+#: lib/views/custom_fields/for_customer.php:3
+msgid "Custom Fields"
+msgstr "Trường tùy chỉnh"
+
+#: lib/controllers/custom_fields_controller.php:99
+#: lib/controllers/custom_fields_controller.php:126
+msgid "Field Removed"
+msgstr "Đã xóa trường"
+
+#: lib/controllers/custom_fields_controller.php:102
+#: lib/controllers/custom_fields_controller.php:129
+#: lib/controllers/whatsapp_controller.php:28
+#: lib/controllers/whatsapp_controller.php:58
+msgid "Invalid Data"
+msgstr "Dữ liệu không hợp lệ"
+
+#: lib/controllers/custom_fields_controller.php:106
+#: lib/controllers/custom_fields_controller.php:133
+msgid "Not Authorized"
+msgstr "Không được phép"
+
+#: lib/controllers/custom_fields_controller.php:153
+msgid "Custom Field Removed"
+msgstr "Đã xóa trường tùy chỉnh"
+
+#: lib/controllers/custom_fields_controller.php:156
+msgid "Error Removing Custom Field"
+msgstr "Lỗi khi xóa trường tùy chỉnh"
+
+#: lib/controllers/custom_fields_controller.php:160
+msgid "Invalid Field ID"
+msgstr "ID trường không hợp lệ"
+
+#: lib/controllers/custom_fields_controller.php:202
+#: lib/controllers/custom_fields_controller.php:237
+#: lib/controllers/roles_controller.php:159
+#: lib/controllers/taxes_controller.php:67
+#: lib/controllers/webhooks_controller.php:75
+msgid "Invalid params"
+msgstr "Tham số không hợp lệ"
+
+#: lib/controllers/custom_fields_controller.php:228
+msgid "Custom Field Saved"
+msgstr "Đã lưu trường tùy chỉnh"
+
+#: lib/controllers/custom_fields_controller.php:231
+msgid "Error Saving Custom Field"
+msgstr "Lỗi khi lưu trường tùy chỉnh"
+
+#: lib/controllers/custom_fields_controller.php:264
+#: lib/controllers/taxes_controller.php:91
+msgid "Order Updated"
+msgstr "Đã cập nhật thứ tự"
+
+#: lib/controllers/custom_fields_controller.php:267
+msgid "Error Updating Order of Custom Fields"
+msgstr "Lỗi khi cập nhật thứ tự của các trường tùy chỉnh"
+
+#: lib/controllers/debug_controller.php:17
+msgid "LatePoint Status"
+msgstr "Trạng thái LatePoint"
+
+#: lib/controllers/debug_controller.php:28
+#: lib/controllers/debug_controller.php:42
+msgid "DB Version was reset"
+msgstr "Phiên bản DB đã được đặt lại"
+
+#: lib/controllers/locations_controller.php:35
+#: lib/controllers/locations_controller.php:37
+#: lib/views/locations/_location_index_item.php:35
+msgid "Edit Location"
+msgstr "Chỉnh sửa địa điểm"
+
+#: lib/controllers/locations_controller.php:75
+#: lib/controllers/locations_controller.php:77
+#: lib/controllers/location_categories_controller.php:42
+#: lib/controllers/location_categories_controller.php:44
+msgid "Create New Location"
+msgstr "Tạo địa điểm mới"
+
+#: lib/controllers/locations_controller.php:171
+msgid "Location Created. ID:"
+msgstr "Đã tạo địa điểm. ID:"
+
+#: lib/controllers/locations_controller.php:179
+msgid "Location Updated. ID:"
+msgstr "Đã cập nhật địa điểm. ID:"
+
+#: lib/controllers/locations_controller.php:221
+msgid "Location Removed"
+msgstr "Đã xóa địa điểm"
+
+#: lib/controllers/locations_controller.php:224
+#: lib/controllers/locations_controller.php:228
+msgid "Error Removing Location"
+msgstr "Lỗi khi xóa địa điểm"
+
+#: lib/controllers/locations_controller.php:285
+#: lib/controllers/locations_controller.php:289
+msgid "Error Creating Location"
+msgstr "Lỗi khi tạo địa điểm"
+
+#: lib/controllers/location_categories_controller.php:21
+msgid "Location Categories"
+msgstr "Danh mục địa điểm"
+
+#: lib/controllers/location_categories_controller.php:75
+msgid "Not categorized"
+msgstr "Chưa được phân loại"
+
+#: lib/controllers/location_categories_controller.php:121
+msgid "Location Category Removed"
+msgstr "Đã xóa danh mục địa điểm"
+
+#: lib/controllers/location_categories_controller.php:124
+msgid "Error Removing Location Category. Error: FJI8321"
+msgstr "Lỗi khi xóa danh mục địa điểm. Lỗi: FJI8321"
+
+#: lib/controllers/location_categories_controller.php:128
+msgid "Error Removing Location Category. Error: SIF2348"
+msgstr "Lỗi khi xóa danh mục địa điểm. Lỗi: SIF2348"
+
+#: lib/controllers/location_categories_controller.php:149
+msgid "Location Order Updated"
+msgstr "Đã cập nhật thứ tự địa điểm"
+
+#: lib/controllers/location_categories_controller.php:163
+msgid "Location Categories Order Updated"
+msgstr "Đã cập nhật thứ tự danh mục địa điểm"
+
+#: lib/controllers/location_categories_controller.php:192
+msgid "Location Category Created."
+msgstr "Đã tạo danh mục địa điểm."
+
+#: lib/controllers/location_categories_controller.php:219
+msgid "Location Category Updated. ID: "
+msgstr "Đã cập nhật danh mục địa điểm. ID:"
+
+#: lib/controllers/location_categories_controller.php:227
+msgid "Error Updating Location (Invalid ID)"
+msgstr "Lỗi khi cập nhật địa điểm (ID không hợp lệ)"
+
+#: lib/controllers/messages_controller.php:25
+#: lib/controllers/messages_controller.php:27
+#: lib/helpers/feature_messages_helper.php:17
+#: lib/helpers/feature_messages_helper.php:89
+msgid "Messages"
+msgstr "Tin nhắn"
+
+#: lib/controllers/messages_controller.php:241
+msgid "Success"
+msgstr "Thành công"
+
+#: lib/controllers/messages_controller.php:244
+#: lib/controllers/messages_controller.php:248
+msgid "Error sending message. Try again later."
+msgstr "Lỗi khi gửi tin nhắn. Hãy thử lại sau."
+
+#: lib/controllers/reminders_controller.php:23
+#: lib/controllers/reminders_controller.php:25
+msgid "Reminders"
+msgstr "Nhắc nhở"
+
+#: lib/controllers/roles_controller.php:21
+msgid "Roles"
+msgstr "Vai trò"
+
+#: lib/controllers/roles_controller.php:30
+#: lib/controllers/roles_controller.php:194
+msgid "You do not have permission to edit users."
+msgstr "Bạn không có quyền chỉnh sửa người dùng."
+
+#: lib/controllers/roles_controller.php:36
+msgid "Invalid User ID"
+msgstr "ID người dùng không hợp lệ"
+
+#: lib/controllers/roles_controller.php:79
+msgid "User Roles Updated"
+msgstr "Đã cập nhật vai trò người dùng"
+
+#: lib/controllers/roles_controller.php:95
+#: lib/controllers/roles_controller.php:130
+msgid "You do not have permission to manage roles."
+msgstr "Bạn không có quyền quản lý vai trò."
+
+#: lib/controllers/roles_controller.php:106
+msgid "Role Removed"
+msgstr "Đã xóa vai trò"
+
+#: lib/controllers/roles_controller.php:109
+msgid "Error Removing Role"
+msgstr "Lỗi khi xóa vai trò"
+
+#: lib/controllers/roles_controller.php:113
+msgid "Invalid Role"
+msgstr "Vai trò không hợp lệ"
+
+#: lib/controllers/roles_controller.php:155
+msgid "Custom Role saved"
+msgstr "Đã lưu vai trò tùy chỉnh"
+
+#: lib/controllers/service_categories_controller.php:22
+#: lib/controllers/service_categories_controller.php:25
+msgid "Service Categories"
+msgstr "Danh mục dịch vụ"
+
+#: lib/controllers/service_categories_controller.php:46
+#: lib/controllers/service_categories_controller.php:48
+msgid "Create New Service"
+msgstr "Tạo dịch vụ mới"
+
+#: lib/controllers/service_categories_controller.php:79
+#: lib/views/locations/index.php:3
+msgid "Uncategorized"
+msgstr "Chưa phân loại"
+
+#: lib/controllers/service_categories_controller.php:117
+msgid "Service Category Removed"
+msgstr "Đã xóa danh mục dịch vụ"
+
+#: lib/controllers/service_categories_controller.php:120
+msgid "Error Removing Service Category. Error: FJI8321"
+msgstr "Lỗi khi xóa danh mục dịch vụ. Lỗi: FJI8321"
+
+#: lib/controllers/service_categories_controller.php:124
+msgid "Error Removing Service Category. Error: SIF2348"
+msgstr "Lỗi khi xóa danh mục dịch vụ. Lỗi: SIF2348"
+
+#: lib/controllers/service_categories_controller.php:145
+msgid "Service Order Updated"
+msgstr "Đã cập nhật thứ tự dịch vụ"
+
+#: lib/controllers/service_categories_controller.php:159
+msgid "Service Categories Order Updated"
+msgstr "Đã cập nhật thứ tự danh mục dịch vụ"
+
+#: lib/controllers/service_categories_controller.php:188
+msgid "Service Category Created. ID: "
+msgstr "Đã tạo danh mục dịch vụ. ID:"
+
+#: lib/controllers/service_categories_controller.php:215
+msgid "Service Category Updated. ID: "
+msgstr "Đã cập nhật danh mục dịch vụ. ID:"
+
+#: lib/controllers/service_categories_controller.php:222
+msgid "Invalid Service Category ID"
+msgstr "ID danh mục dịch vụ không hợp lệ"
+
+#: lib/controllers/service_durations_controller.php:18
+#: lib/controllers/service_durations_controller.php:20
+#: lib/helpers/feature_service_durations_helper.php:88
+msgid "Service Durations"
+msgstr "Thời lượng dịch vụ"
+
+#: lib/controllers/service_extras_controller.php:56
+#: lib/controllers/service_extras_controller.php:58
+msgid "Edit Service Extra"
+msgstr "Chỉnh sửa dịch vụ bổ sung"
+
+#: lib/controllers/service_extras_controller.php:78
+#: lib/controllers/service_extras_controller.php:80
+#: lib/views/service_extras/index.php:40
+msgid "New Service Extra"
+msgstr "Dịch vụ bổ sung mới"
+
+#: lib/controllers/service_extras_controller.php:129
+msgid "Service Extra Created. ID:"
+msgstr "Đã tạo dịch vụ bổ sung. ID:"
+
+#: lib/controllers/service_extras_controller.php:131
+msgid "Service Extra Updated. ID:"
+msgstr "Dịch vụ bổ sung đã được cập nhật. ID:"
+
+#: lib/controllers/service_extras_controller.php:160
+msgid "Service Extra Removed"
+msgstr "Dịch vụ bổ sung đã được xóa"
+
+#: lib/controllers/service_extras_controller.php:163
+#: lib/controllers/service_extras_controller.php:167
+msgid "Error Removing Service Extra"
+msgstr "Lỗi khi xóa dịch vụ bổ sung"
+
+#: lib/controllers/taxes_controller.php:20
+#: lib/views/taxes/index.php:1
+msgid "Taxes"
+msgstr "Thuế"
+
+#: lib/controllers/taxes_controller.php:30
+msgid "Tax Removed"
+msgstr "Thuế đã được xóa"
+
+#: lib/controllers/taxes_controller.php:33
+msgid "Error Removing Tax"
+msgstr "Lỗi khi xóa thuế"
+
+#: lib/controllers/taxes_controller.php:37
+msgid "Invalid Tax ID"
+msgstr "ID thuế không hợp lệ"
+
+#: lib/controllers/taxes_controller.php:63
+msgid "Taxes saved"
+msgstr "Đã lưu thuế"
+
+#: lib/controllers/taxes_controller.php:94
+msgid "Error Updating Order of Taxes"
+msgstr "Lỗi khi cập nhật thứ tự thuế"
+
+#: lib/controllers/timezone_selector_controller.php:18
+#: lib/controllers/timezone_selector_controller.php:20
+msgid "Timezone Selector"
+msgstr "Bộ chọn múi giờ"
+
+#: lib/controllers/timezone_selector_controller.php:38
+msgid "Timezone Updated"
+msgstr "Đã cập nhật múi giờ"
+
+#: lib/controllers/updates_controller.php:46
+msgid "License Deactivated"
+msgstr "Giấy phép đã bị vô hiệu hóa"
+
+#: lib/controllers/webhooks_controller.php:18
+#: lib/controllers/webhooks_controller.php:20
+msgid "Webhooks"
+msgstr "Webhook"
+
+#: lib/controllers/webhooks_controller.php:34
+msgid "Webhook Removed"
+msgstr "Webhook đã được xóa"
+
+#: lib/controllers/webhooks_controller.php:37
+msgid "Error Removing Webhook"
+msgstr "Lỗi khi xóa webhook"
+
+#: lib/controllers/webhooks_controller.php:41
+msgid "Invalid Hook ID"
+msgstr "ID hook không hợp lệ"
+
+#: lib/controllers/webhooks_controller.php:66
+msgid "Webhook Saved"
+msgstr "Đã lưu webhook"
+
+#: lib/controllers/webhooks_controller.php:69
+msgid "Error Saving Webhook"
+msgstr "Lỗi khi lưu webhook"
+
+#: lib/controllers/whatsapp_controller.php:18
+msgid "Whatsapp"
+msgstr "Whatsapp"
+
+#: lib/controllers/whatsapp_controller.php:66
+#, php-format
+msgid "No templates found in your WhatsApp account. %s to learn how to setup WhatsApp connection and add templates."
+msgstr "Không tìm thấy mẫu nào trong tài khoản WhatsApp của bạn. %s để tìm hiểu cách thiết lập kết nối WhatsApp và thêm mẫu."
+
+#: lib/controllers/whatsapp_controller.php:93
+#, php-format
+msgid "You can use %s as values for the fields below. Make sure to read %s on how to set up your WhatsApp integration."
+msgstr "Bạn có thể dùng %s làm giá trị cho các trường bên dưới. Hãy nhớ đọc %s về cách thiết lập tích hợp WhatsApp của bạn."
+
+#: lib/controllers/whatsapp_controller.php:93
+msgid "Smart Variables"
+msgstr "Biến thông minh"
+
+#: lib/controllers/whatsapp_controller.php:93
+msgid "this article"
+msgstr "bài viết này"
+
+#: lib/controllers/whatsapp_controller.php:98
+msgid "To Phone Number"
+msgstr "Đến số điện thoại"
+
+#: lib/controllers/whatsapp_controller.php:102
+#: lib/views/agents/quick_edit.php:49
+#: lib/views/agents/_form.php:36
+msgid "Phone Number"
+msgstr "Số điện thoại"
+
+#: lib/controllers/whatsapp_controller.php:109
+msgid "Template"
+msgstr "Mẫu"
+
+#: lib/helpers/addons_helper.php:63
+msgid "Connection Error. Please try again in a few minutes or contact us via email addons@latepoint.com. KLJSD734"
+msgstr "Lỗi kết nối. Vui lòng thử lại sau vài phút hoặc liên hệ với chúng tôi qua email addons@latepoint.com. KLJSD734"
+
+#. translators: 1: bold open tag, 2: bold close tag, 3: current Pro version, 4: required Pro version
+#: lib/helpers/addons_helper.php:120
+#, php-format
+msgid "You are using an older version of the %1$sLatePoint Pro Features%2$s plugin (v%3$s). Please update the %1$sLatePoint Pro Features%2$s plugin to version %1$s%4$s or later%2$s."
+msgstr "Bạn đang sử dụng phiên bản cũ hơn của plugin %1$sLatePoint Pro Features%2$s (v%3$s). Vui lòng cập nhật plugin %1$sLatePoint Pro Features%2$s lên phiên bản %1$s%4$s hoặc mới hơn%2$s."
+
+#: lib/helpers/addons_helper.php:170
+msgid "Unable to install addon. Invalid info (KFE73463)"
+msgstr "Không thể cài đặt addon. Thông tin không hợp lệ (KFE73463)"
+
+#: lib/helpers/coupons_helper.php:24
+msgid "Total booking price: "
+msgstr "Tổng giá đặt chỗ:"
+
+#: lib/helpers/coupons_helper.php:27
+msgid "Deposit Amount: "
+msgstr "Số tiền đặt cọc:"
+
+#: lib/helpers/coupons_helper.php:33
+#: lib/helpers/feature_coupons_helper.php:203
+msgid "Have a coupon code?"
+msgstr "Bạn có mã giảm giá không?"
+
+#: lib/helpers/coupons_helper.php:35
+#: lib/helpers/feature_coupons_helper.php:205
+msgid "Enter Code..."
+msgstr "Nhập mã..."
+
+#: lib/helpers/coupons_helper.php:36
+msgid "OK"
+msgstr "OK"
+
+#: lib/helpers/coupons_helper.php:62
+msgid "Invalid coupon code."
+msgstr "Mã giảm giá không hợp lệ."
+
+#: lib/helpers/coupons_helper.php:93
+#: lib/helpers/coupons_helper.php:106
+#: lib/helpers/coupons_helper.php:117
+#: lib/helpers/coupons_helper.php:154
+#: lib/helpers/coupons_helper.php:158
+#: lib/helpers/coupons_helper.php:162
+#: lib/helpers/coupons_helper.php:253
+msgid "This coupon code is invalid or has expired"
+msgstr "Mã giảm giá này không hợp lệ hoặc đã hết hạn"
+
+#. translators: %s: formatted minimum order subtotal
+#: lib/helpers/coupons_helper.php:173
+#, php-format
+msgid "This coupon requires a minimum order total of %s"
+msgstr "Mã giảm giá này yêu cầu tổng đơn hàng tối thiểu là %s"
+
+#: lib/helpers/coupons_helper.php:188
+#, php-format
+msgid "This coupon can only be used %d times"
+msgstr "Mã giảm giá này chỉ có thể được sử dụng %d lần"
+
+#: lib/helpers/coupons_helper.php:195
+#: lib/helpers/coupons_helper.php:217
+#: lib/helpers/coupons_helper.php:234
+msgid "Customer is missing"
+msgstr "Thiếu khách hàng"
+
+#: lib/helpers/coupons_helper.php:209
+msgid "This coupon can only be used once per customer."
+msgid_plural "This coupon is limited to %d uses per customer"
+msgstr[0] "Mã giảm giá này chỉ có thể được sử dụng một lần cho mỗi khách hàng."
+
+#: lib/helpers/coupons_helper.php:226
+#, php-format
+msgid "You need to have at least %d orders to use this coupon"
+msgstr "Bạn cần có ít nhất %d đơn hàng để sử dụng mã giảm giá này"
+
+#: lib/helpers/coupons_helper.php:244
+msgid "This coupon can only be applied on your first order"
+msgstr "Mã giảm giá này chỉ có thể áp dụng cho đơn hàng đầu tiên của bạn"
+
+#: lib/helpers/coupons_helper.php:246
+#, php-format
+msgid "This coupon can only be applied on your first %d orders"
+msgstr "Mã giảm giá này chỉ có thể áp dụng cho %d đơn hàng đầu tiên của bạn"
+
+#: lib/helpers/coupons_helper.php:265
+#: lib/views/addons/load_addons_list.php:100
+#: lib/views/agents/quick_edit.php:57
+#: lib/views/agents/_form.php:41
+#: lib/views/assets/_form.php:37
+#: lib/views/bundles/_form.php:30
+#: lib/views/locations/_form.php:18
+#: lib/views/service_extras/_form.php:31
+#: lib/views/webhooks/_webhook_form.php:40
+msgid "Active"
+msgstr "Đang hoạt động"
+
+#: lib/helpers/coupons_helper.php:266
+#: lib/views/agents/quick_edit.php:58
+#: lib/views/agents/_form.php:42
+#: lib/views/agents/_form.php:136
+#: lib/views/assets/_form.php:38
+#: lib/views/bundles/_form.php:30
+#: lib/views/locations/_form.php:19
+#: lib/views/service_extras/_form.php:31
+#: lib/views/webhooks/_webhook_form.php:41
+msgid "Disabled"
+msgstr "Đã tắt"
+
+#: lib/helpers/coupons_helper.php:302
+msgid "Undefined Status"
+msgstr "Trạng thái không xác định"
+
+#: lib/helpers/coupons_helper.php:309
+#: lib/helpers/coupons_helper.php:330
+#: lib/helpers/coupons_helper.php:337
+#: lib/helpers/feature_timezone_helper.php:14
+#: lib/views/coupons/quick_edit.php:41
+msgid "n/a"
+msgstr "không áp dụng"
+
+#: lib/helpers/custom_fields_helper.php:37
+msgid "Text Field"
+msgstr "Trường văn bản"
+
+#: lib/helpers/custom_fields_helper.php:38
+msgid "Phone Number Field"
+msgstr "Trường số điện thoại"
+
+#: lib/helpers/custom_fields_helper.php:39
+msgid "Number Field"
+msgstr "Trường số"
+
+#: lib/helpers/custom_fields_helper.php:40
+msgid "Hidden Field"
+msgstr "Trường ẩn"
+
+#: lib/helpers/custom_fields_helper.php:41
+msgid "Select Box"
+msgstr "Hộp chọn"
+
+#: lib/helpers/custom_fields_helper.php:42
+msgid "Multiple Selectable Options"
+msgstr "Nhiều tùy chọn có thể chọn"
+
+#: lib/helpers/custom_fields_helper.php:43
+msgid "Text Area Field"
+msgstr "Trường vùng văn bản"
+
+#: lib/helpers/custom_fields_helper.php:44
+msgid "Checkbox"
+msgstr "Hộp kiểm"
+
+#: lib/helpers/custom_fields_helper.php:45
+msgid "Google Address Autocomplete"
+msgstr "Tự động hoàn thành địa chỉ Google"
+
+#: lib/helpers/custom_fields_helper.php:46
+msgid "File Upload"
+msgstr "Tải tệp lên"
+
+#: lib/helpers/custom_fields_helper.php:79
+msgid "Enter Field Default Value"
+msgstr "Nhập giá trị mặc định của trường"
+
+#: lib/helpers/custom_fields_helper.php:120
+msgid "No Restrictions"
+msgstr "Không có giới hạn"
+
+#: lib/helpers/custom_fields_helper.php:360
+msgid "Field Label cannot be empty"
+msgstr "Nhãn trường không được để trống"
+
+#: lib/helpers/custom_fields_helper.php:363
+msgid "Type cannot be empty"
+msgstr "Loại không được để trống"
+
+#: lib/helpers/custom_fields_helper.php:367
+msgid "Options for select box cannot be blank"
+msgstr "Tùy chọn cho hộp chọn không được để trống"
+
+#: lib/helpers/custom_fields_helper.php:388
+#, php-format
+msgid "%s field must be checked"
+msgstr "Trường %s phải được chọn"
+
+#: lib/helpers/custom_fields_helper.php:399
+#, php-format
+msgid "%s must be attached"
+msgstr "%s phải được đính kèm"
+
+#: lib/helpers/custom_fields_helper.php:412
+#, php-format
+msgid "%s file type is not supported."
+msgstr "Loại tệp %s không được hỗ trợ."
+
+#: lib/helpers/custom_fields_helper.php:424
+#, php-format
+msgid "%s cannot be blank"
+msgstr "%s không được để trống"
+
+#: lib/helpers/custom_fields_helper.php:465
+#: lib/helpers/feature_recurring_bookings_helper.php:31
+msgid "Yes"
+msgstr "Có"
+
+#: lib/helpers/custom_fields_helper.php:465
+#: lib/helpers/feature_recurring_bookings_helper.php:32
+msgid "No"
+msgstr "Không"
+
+#: lib/helpers/custom_fields_helper.php:483
+#: lib/views/bundles/index.php:20
+#: lib/views/messages/messages_with_info_for_booking.php:76
+msgid "Service"
+msgstr "Dịch vụ"
+
+#: lib/helpers/custom_fields_helper.php:484
+#: lib/views/messages/messages_with_info_for_booking.php:74
+msgid "Agent"
+msgstr "Nhân viên"
+
+#: lib/helpers/custom_fields_helper.php:513
+msgid "is equal to"
+msgstr "bằng"
+
+#: lib/helpers/custom_fields_helper.php:514
+msgid "is not equal to"
+msgstr "không bằng"
+
+#: lib/helpers/custom_fields_helper.php:527
+msgid "AND"
+msgstr "VÀ"
+
+#: lib/helpers/feature_assets_helper.php:52
+#: lib/helpers/feature_service_extras_helper.php:454
+#: lib/views/agents/quick_edit.php:102
+#: lib/views/agents/_form.php:96
+#: lib/views/assets/_form.php:54
+#: lib/views/assets/_form.php:87
+#: lib/views/locations/_form.php:44
+#: lib/views/service_extras/_form.php:58
+msgid "Select All"
+msgstr "Chọn tất cả"
+
+#: lib/helpers/feature_assets_helper.php:68
+#, php-format
+msgid "Qty: %d"
+msgstr "SL: %d"
+
+#: lib/helpers/feature_assets_helper.php:76
+msgid "You have not created any assets yet."
+msgstr "Bạn chưa tạo bất kỳ tài sản nào."
+
+#: lib/helpers/feature_cloudflare_turnstile_helper.php:37
+#: lib/helpers/feature_cloudflare_turnstile_helper.php:43
+#: lib/helpers/feature_cloudflare_turnstile_helper.php:65
+#: lib/helpers/feature_cloudflare_turnstile_helper.php:71
+#: lib/helpers/feature_cloudflare_turnstile_helper.php:79
+#: lib/helpers/feature_cloudflare_turnstile_helper.php:85
+#: lib/helpers/feature_cloudflare_turnstile_helper.php:91
+msgid "Verification Error."
+msgstr "Lỗi xác minh."
+
+#: lib/helpers/feature_cloudflare_turnstile_helper.php:42
+msgid "Invalid secret key for cloudflare."
+msgstr "Khóa bí mật cho cloudflare không hợp lệ."
+
+#: lib/helpers/feature_cloudflare_turnstile_helper.php:78
+msgid "Turnstile: Invalid JSON response from API"
+msgstr "Turnstile: Phản hồi JSON không hợp lệ từ API"
+
+#: lib/helpers/feature_cloudflare_turnstile_helper.php:112
+msgid "Verifying that you are not a robot..."
+msgstr "Đang xác minh rằng bạn không phải là robot..."
+
+#: lib/helpers/feature_cloudflare_turnstile_helper.php:133
+msgid "Cloudflare Turnstile will not work as required keys are empty. Please provide both Site Key and Secret Key."
+msgstr "Cloudflare Turnstile sẽ không hoạt động vì các khóa bắt buộc đang trống. Vui lòng cung cấp cả Site Key và Secret Key."
+
+#: lib/helpers/feature_cloudflare_turnstile_helper.php:142
+msgid "Log Customer IP Address for Orders"
+msgstr "Ghi lại địa chỉ IP của khách hàng cho đơn hàng"
+
+#: lib/helpers/feature_cloudflare_turnstile_helper.php:142
+msgid "If enabled, will save IP Address of a customer and you can view it under order log"
+msgstr "Nếu được bật, sẽ lưu địa chỉ IP của khách hàng và bạn có thể xem nó trong nhật ký đơn hàng"
+
+#: lib/helpers/feature_cloudflare_turnstile_helper.php:143
+msgid "Enable Cloudflare Turnstile CAPTCHA"
+msgstr "Bật CAPTCHA Cloudflare Turnstile"
+
+#: lib/helpers/feature_cloudflare_turnstile_helper.php:143
+msgid "Enable Captcha alternative from Cloudflare called Turnstile."
+msgstr "Bật giải pháp CAPTCHA thay thế từ Cloudflare gọi là Turnstile."
+
+#: lib/helpers/feature_cloudflare_turnstile_helper.php:145
+msgid "Turnstile Site Key"
+msgstr "Khóa trang web Turnstile"
+
+#: lib/helpers/feature_cloudflare_turnstile_helper.php:146
+msgid "Turnstile Secret Key"
+msgstr "Khóa bí mật Turnstile"
+
+#: lib/helpers/feature_coupons_helper.php:10
+msgid "Coupon Code:"
+msgstr "Mã giảm giá:"
+
+#: lib/helpers/feature_coupons_helper.php:11
+msgid "Coupon Discount:"
+msgstr "Giảm giá mã:"
+
+#: lib/helpers/feature_coupons_helper.php:181
+msgid "Coupon Settings"
+msgstr "Cài đặt mã giảm giá"
+
+#: lib/helpers/feature_coupons_helper.php:183
+msgid "Hide coupon field"
+msgstr "Ẩn trường mã giảm giá"
+
+#: lib/helpers/feature_coupons_helper.php:183
+msgid "Hides field to enter coupons"
+msgstr "Ẩn trường để nhập mã giảm giá"
+
+#: lib/helpers/feature_coupons_helper.php:206
+msgid "Apply"
+msgstr "Áp dụng"
+
+#: lib/helpers/feature_coupons_helper.php:207
+#: lib/views/agents/modal_list.php:14
+#: lib/views/location_categories/_form.php:22
+#: lib/views/service_categories/_form.php:22
+msgid "Cancel"
+msgstr "Hủy"
+
+#: lib/helpers/feature_coupons_helper.php:210
+msgid "Applied Coupon:"
+msgstr "Mã giảm giá đã áp dụng:"
+
+#: lib/helpers/feature_coupons_helper.php:240
+msgid "Use Coupon"
+msgstr "Dùng mã giảm giá"
+
+#: lib/helpers/feature_coupons_helper.php:249
+#: lib/helpers/feature_coupons_helper.php:289
+#: lib/helpers/feature_coupons_helper.php:297
+#: lib/models/coupon_model.php:20
+msgid "Coupon Code"
+msgstr "Mã giảm giá"
+
+#: lib/helpers/feature_coupons_helper.php:253
+msgid "apply"
+msgstr "áp dụng"
+
+#: lib/helpers/feature_coupons_helper.php:268
+msgid "Coupon"
+msgstr "Giảm giá"
+
+#: lib/helpers/feature_coupons_helper.php:290
+#: lib/helpers/feature_coupons_helper.php:298
+msgid "Coupon Discount"
+msgstr "Giảm giá mã"
+
+#: lib/helpers/feature_custom_fields_helper.php:135
+#: lib/helpers/feature_custom_fields_helper.php:143
+msgid "Customer/"
+msgstr "Khách hàng/"
+
+#: lib/helpers/feature_custom_fields_helper.php:138
+msgid "Booking/"
+msgstr "Đặt chỗ/"
+
+#: lib/helpers/feature_custom_fields_helper.php:154
+msgid "Google Places API"
+msgstr "Google Places API"
+
+#: lib/helpers/feature_custom_fields_helper.php:157
+msgid "In order for address autocomplete to work, you need an API key. To learn how to create an API key for Google Places API"
+msgstr "Để tự động hoàn thành địa chỉ hoạt động, bạn cần một khóa API. Để tìm hiểu cách tạo khóa API cho Google Places API"
+
+#: lib/helpers/feature_custom_fields_helper.php:157
+msgid "click here"
+msgstr "nhấp vào đây"
+
+#: lib/helpers/feature_custom_fields_helper.php:159
+msgid "Google Places API key"
+msgstr "Khóa API Google Places"
+
+#: lib/helpers/feature_custom_fields_helper.php:160
+msgid "Country Restriction"
+msgstr "Hạn chế quốc gia"
+
+#: lib/helpers/feature_custom_fields_helper.php:675
+msgid "For Customer:"
+msgstr "Cho khách hàng:"
+
+#: lib/helpers/feature_custom_fields_helper.php:681
+msgid "For Booking:"
+msgstr "Cho đặt chỗ:"
+
+#: lib/helpers/feature_custom_fields_helper.php:746
+msgid "You have not created any custom fields for booking, this step will be skipped"
+msgstr "Bạn chưa tạo bất kỳ trường tùy chỉnh nào cho đặt chỗ, bước này sẽ bị bỏ qua"
+
+#: lib/helpers/feature_custom_fields_helper.php:774
+msgid "Custom Fields for Booking"
+msgstr "Trường tùy chỉnh cho đặt chỗ"
+
+#: lib/helpers/feature_group_bookings_helper.php:69
+#: lib/helpers/feature_group_bookings_helper.php:226
+#: lib/helpers/feature_group_bookings_helper.php:264
+#: lib/helpers/feature_group_bookings_helper.php:352
+#: lib/helpers/feature_group_bookings_helper.php:366
+msgid "Total Attendees"
+msgstr "Tổng số người tham dự"
+
+#: lib/helpers/feature_group_bookings_helper.php:138
+msgid "Capacity:"
+msgstr "Sức chứa:"
+
+#: lib/helpers/feature_group_bookings_helper.php:140
+msgid "person"
+msgstr "người"
+
+#: lib/helpers/feature_group_bookings_helper.php:149
+msgid "Multiply cost of this service extra by number of attendees"
+msgstr "Nhân chi phí dịch vụ này thêm theo số lượng người tham dự"
+
+#: lib/helpers/feature_group_bookings_helper.php:233
+#: lib/views/bundles/_form.php:105
+msgid "Attendees"
+msgstr "Người tham dự"
+
+#: lib/helpers/feature_group_bookings_helper.php:234
+#, php-format
+msgid "%s person"
+msgid_plural "%s people"
+msgstr[0] "%s người"
+
+#: lib/helpers/feature_group_bookings_helper.php:267
+msgid "Max Capacity:"
+msgstr "Sức chứa tối đa:"
+
+#: lib/helpers/feature_group_bookings_helper.php:284
+msgid "Capacity"
+msgstr "Sức chứa"
+
+#: lib/helpers/feature_group_bookings_helper.php:289
+#: lib/views/coupons/quick_edit.php:166
+msgid "Minimum"
+msgstr "Tối thiểu"
+
+#: lib/helpers/feature_group_bookings_helper.php:292
+#: lib/views/coupons/quick_edit.php:169
+msgid "Maximum"
+msgstr "Tối đa"
+
+#: lib/helpers/feature_group_bookings_helper.php:299
+msgid "Pricing"
+msgstr "Giá"
+
+#: lib/helpers/feature_group_bookings_helper.php:302
+msgid "Do not multiply charge amount by the number of attendees"
+msgstr "Không nhân số tiền phí theo số lượng người tham dự"
+
+#: lib/helpers/feature_group_bookings_helper.php:303
+msgid "Do not multiply deposit amount by the number of attendees"
+msgstr "Không nhân số tiền đặt cọc theo số lượng người tham dự"
+
+#: lib/helpers/feature_group_bookings_helper.php:308
+msgid "Other"
+msgstr "Khác"
+
+#: lib/helpers/feature_group_bookings_helper.php:311
+msgid "Do not ask customers to select number of attendees"
+msgstr "Không yêu cầu khách hàng chọn số lượng người tham dự"
+
+#: lib/helpers/feature_group_bookings_helper.php:312
+msgid "Block timeslot if minimum capacity is reached"
+msgstr "Chặn khung giờ nếu đạt sức chứa tối thiểu"
+
+#: lib/helpers/feature_group_bookings_helper.php:318
+msgid "Meeting Link"
+msgstr "Liên kết cuộc họp"
+
+#: lib/helpers/feature_group_bookings_helper.php:326
+msgid "Meeting Link Mode for Group Bookings"
+msgstr "Chế độ liên kết cuộc họp cho đặt chỗ nhóm"
+
+#: lib/helpers/feature_group_bookings_helper.php:330
+msgid "Separate - Each booking gets its own meeting link"
+msgstr "Riêng biệt - Mỗi đặt chỗ có liên kết cuộc họp riêng"
+
+#: lib/helpers/feature_group_bookings_helper.php:334
+msgid "Shared - All attendees in the same time slot get the same meeting link"
+msgstr "Chia sẻ - Tất cả người tham dự trong cùng một khung giờ sẽ nhận cùng một liên kết cuộc họp"
+
+#: lib/helpers/feature_locations_helper.php:131
+#: lib/helpers/feature_locations_helper.php:135
+#: lib/helpers/feature_locations_helper.php:176
+#: lib/helpers/feature_locations_helper.php:187
+#: lib/views/messages/messages_with_info_for_booking.php:70
+msgid "Location"
+msgstr "Địa điểm"
+
+#: lib/helpers/feature_locations_helper.php:134
+msgid "Previous Location"
+msgstr "Địa điểm trước đó"
+
+#: lib/helpers/feature_locations_helper.php:195
+msgid "Show location categories"
+msgstr "Hiển thị danh mục địa điểm"
+
+#: lib/helpers/feature_locations_helper.php:195
+msgid "If turned on, locations will be displayed in categories"
+msgstr "Nếu bật, các địa điểm sẽ được hiển thị theo danh mục"
+
+#: lib/helpers/feature_messages_helper.php:8
+msgid "Message Content:"
+msgstr "Nội dung tin nhắn:"
+
+#: lib/helpers/feature_messages_helper.php:42
+#, php-format
+msgid "Read %d Message"
+msgid_plural "Read %d Messages"
+msgstr[0] "Đọc %d tin nhắn"
+
+#: lib/helpers/feature_messages_helper.php:47
+msgid "Start Chatting"
+msgstr "Bắt đầu trò chuyện"
+
+#: lib/helpers/feature_messages_helper.php:58
+msgid "Chat Notifications"
+msgstr "Thông báo trò chuyện"
+
+#: lib/helpers/feature_messages_helper.php:62
+msgid "Settings"
+msgstr "Cài đặt"
+
+#: lib/helpers/feature_messages_helper.php:65
+msgid "Notify customers about new messages"
+msgstr "Thông báo cho khách hàng về tin nhắn mới"
+
+#: lib/helpers/feature_messages_helper.php:67
+#: lib/helpers/feature_messages_helper.php:72
+msgid "Email Subject"
+msgstr "Tiêu đề email"
+
+#: lib/helpers/feature_messages_helper.php:68
+#: lib/helpers/feature_messages_helper.php:73
+msgid "Email Message"
+msgstr "Tin nhắn email"
+
+#: lib/helpers/feature_messages_helper.php:70
+msgid "Notify agents about new messages"
+msgstr "Thông báo cho nhân viên về tin nhắn mới"
+
+#: lib/helpers/feature_messages_helper.php:103
+msgid "Your Appointments"
+msgstr "Các cuộc hẹn của bạn"
+
+#: lib/helpers/feature_messages_helper.php:104
+msgid "Conversation"
+msgstr "Cuộc trò chuyện"
+
+#: lib/helpers/feature_messages_helper.php:141
+#: lib/views/messages/messages_with_info_for_booking.php:48
+#: lib/views/messages/quick_form_chat_box.php:14
+msgid "Type your message here.."
+msgstr "Nhập tin nhắn của bạn ở đây.."
+
+#: lib/helpers/feature_messages_helper.php:142
+#: lib/views/messages/messages_with_info_for_booking.php:49
+#: lib/views/messages/quick_form_chat_box.php:15
+msgid "Send"
+msgstr "Gửi"
+
+#: lib/helpers/feature_messages_helper.php:148
+msgid "You don't have any appointments to send messages."
+msgstr "Bạn không có cuộc hẹn nào để gửi tin nhắn."
+
+#: lib/helpers/feature_no_show_restrictions_helper.php:50
+msgid "Your account has been restricted from booking due to repeated missed appointments. Please contact us for assistance."
+msgstr "Tài khoản của bạn đã bị hạn chế đặt chỗ do nhiều lần vắng mặt. Vui lòng liên hệ với chúng tôi để được hỗ trợ."
+
+#. translators: %d: number of no-show appointments
+#: lib/helpers/feature_no_show_restrictions_helper.php:228
+#, php-format
+msgid "%d No-Show Appointment."
+msgid_plural "%d No-Show Appointments."
+msgstr[0] "%d cuộc hẹn vắng mặt."
+
+#: lib/helpers/feature_no_show_restrictions_helper.php:233
+msgid "This customer has exceeded the no-show threshold and is restricted from booking."
+msgstr "Khách hàng này đã vượt quá ngưỡng vắng mặt và bị hạn chế đặt chỗ."
+
+#: lib/helpers/feature_no_show_restrictions_helper.php:249
+msgid "No-Show Restrictions"
+msgstr "Hạn chế vắng mặt"
+
+#: lib/helpers/feature_no_show_restrictions_helper.php:255
+msgid "Enable No-Show Customers Restrictions"
+msgstr "Bật hạn chế đối với khách hàng vắng mặt"
+
+#: lib/helpers/feature_no_show_restrictions_helper.php:259
+msgid "Restrict booking for customers who repeatedly miss appointments, by blocking or requiring upfront payment"
+msgstr "Hạn chế đặt chỗ đối với khách hàng thường xuyên bỏ lỡ cuộc hẹn, bằng cách chặn hoặc yêu cầu thanh toán trước"
+
+#: lib/helpers/feature_no_show_restrictions_helper.php:269
+msgid "No-Show Threshold"
+msgstr "Ngưỡng không đến"
+
+#: lib/helpers/feature_no_show_restrictions_helper.php:282
+msgid "Action"
+msgstr "Hành động"
+
+#: lib/helpers/feature_no_show_restrictions_helper.php:284
+msgid "Block bookings entirely"
+msgstr "Chặn hoàn toàn việc đặt lịch"
+
+#: lib/helpers/feature_no_show_restrictions_helper.php:285
+msgid "Require upfront payment"
+msgstr "Yêu cầu thanh toán trước"
+
+#: lib/helpers/feature_qrcode_helper.php:16
+msgid "Point your smartphone camera at this QR code and you will be able to copy your booking confirmation code"
+msgstr "Đưa camera điện thoại thông minh của bạn vào mã QR này và bạn sẽ có thể sao chép mã xác nhận đặt lịch của mình"
+
+#: lib/helpers/feature_qrcode_helper.php:20
+msgid "Point your smartphone camera at this QR code and it will automatically add this appointment to your calendar"
+msgstr "Đưa camera điện thoại thông minh của bạn vào mã QR này và nó sẽ tự động thêm cuộc hẹn này vào lịch của bạn"
+
+#: lib/helpers/feature_qrcode_helper.php:33
+msgid "Show QR"
+msgstr "Hiển thị QR"
+
+#: lib/helpers/feature_recurring_bookings_helper.php:28
+msgid "Make it a recurring appointment?"
+msgstr "Đặt thành cuộc hẹn định kỳ?"
+
+#: lib/helpers/feature_recurring_bookings_helper.php:29
+msgid "You will set the frequency in the next step."
+msgstr "Bạn sẽ thiết lập tần suất ở bước tiếp theo."
+
+#: lib/helpers/feature_recurring_bookings_helper.php:65
+msgid "Allow Recurring Appointments"
+msgstr "Cho phép cuộc hẹn định kỳ"
+
+#: lib/helpers/feature_recurring_bookings_helper.php:65
+msgid "Allows customers to book this service in a recurring schedule"
+msgstr "Cho phép khách hàng đặt dịch vụ này theo lịch định kỳ"
+
+#: lib/helpers/feature_recurring_bookings_helper.php:68
+msgid "Allow a maximum of"
+msgstr "Cho phép tối đa"
+
+#: lib/helpers/feature_recurring_bookings_helper.php:70
+msgid "future appointments"
+msgstr "cuộc hẹn trong tương lai"
+
+#: lib/helpers/feature_recurring_bookings_helper.php:73
+msgid "Allow Repeat Intervals"
+msgstr "Cho phép khoảng lặp"
+
+#: lib/helpers/feature_recurring_bookings_helper.php:78
+#: lib/views/agents/quick_edit.php:115
+#: lib/views/agents/quick_edit.php:117
+#: lib/views/agents/quick_edit.php:122
+#: lib/views/agents/_form.php:111
+#: lib/views/agents/_form.php:113
+#: lib/views/agents/_form.php:118
+#: lib/views/locations/_form.php:59
+#: lib/views/locations/_form.php:61
+#: lib/views/locations/_form.php:67
+msgid "All"
+msgstr "Tất cả"
+
+#: lib/helpers/feature_recurring_bookings_helper.php:79
+msgid "Daily"
+msgstr "Hàng ngày"
+
+#: lib/helpers/feature_recurring_bookings_helper.php:80
+msgid "Weekly"
+msgstr "Hàng tuần"
+
+#: lib/helpers/feature_recurring_bookings_helper.php:81
+msgid "Monthly"
+msgstr "Hàng tháng"
+
+#: lib/helpers/feature_recurring_bookings_helper.php:196
+msgid "Recurring Appointment"
+msgstr "Cuộc hẹn định kỳ"
+
+#: lib/helpers/feature_recurring_bookings_helper.php:242
+#, php-format
+msgid "Found %s Available Slots"
+msgstr "Đã tìm thấy %s khung giờ trống"
+
+#: lib/helpers/feature_recurring_bookings_helper.php:242
+msgid "Review"
+msgstr "Xem lại"
+
+#: lib/helpers/feature_recurring_bookings_helper.php:265
+msgid "Selected"
+msgstr "Đã chọn"
+
+#: lib/helpers/feature_recurring_bookings_helper.php:265
+#: lib/views/coupons/index.php:9
+#: lib/views/coupons/index.php:66
+msgid "of"
+msgstr "trên"
+
+#: lib/helpers/feature_recurring_bookings_helper.php:338
+#, php-format
+msgid "This bundle has only %s remaining appointments to schedule."
+msgstr "Gói này chỉ còn %s cuộc hẹn để lên lịch."
+
+#: lib/helpers/feature_recurring_bookings_helper.php:340
+#, php-format
+msgid "You can only schedule a maximum of %s recurring bookings at once."
+msgstr "Bạn chỉ có thể lên lịch tối đa %s đặt lịch định kỳ cùng lúc."
+
+#: lib/helpers/feature_recurring_bookings_helper.php:434
+#: lib/helpers/feature_recurring_bookings_helper.php:442
+msgid "day"
+msgstr "ngày"
+
+#: lib/helpers/feature_recurring_bookings_helper.php:435
+#: lib/helpers/feature_recurring_bookings_helper.php:446
+msgid "week"
+msgstr "tuần"
+
+#: lib/helpers/feature_recurring_bookings_helper.php:436
+#: lib/helpers/feature_recurring_bookings_helper.php:450
+msgid "month"
+msgstr "tháng"
+
+#: lib/helpers/feature_recurring_bookings_helper.php:460
+msgid "First on"
+msgstr "Đầu tiên vào"
+
+#: lib/helpers/feature_recurring_bookings_helper.php:465
+msgid "Repeats every"
+msgstr "Lặp lại mỗi"
+
+#: lib/helpers/feature_recurring_bookings_helper.php:489
+msgid "Ends"
+msgstr "Kết thúc"
+
+#: lib/helpers/feature_recurring_bookings_helper.php:496
+msgid "After"
+msgstr "Sau"
+
+#: lib/helpers/feature_recurring_bookings_helper.php:497
+msgid "On"
+msgstr "Vào"
+
+#: lib/helpers/feature_recurring_bookings_helper.php:506
+msgid "occurrences"
+msgstr "lần"
+
+#: lib/helpers/feature_recurring_bookings_helper.php:536
+#, php-format
+msgid "+%s Recurring Appointments:"
+msgstr "+%s Cuộc hẹn định kỳ:"
+
+#: lib/helpers/feature_recurring_bookings_helper.php:552
+msgid "show all"
+msgstr "hiển thị tất cả"
+
+#: lib/helpers/feature_reminders_helper.php:9
+msgid "Actions will be executed:"
+msgstr "Các hành động sẽ được thực hiện:"
+
+#: lib/helpers/feature_reminders_helper.php:25
+msgid "before the event"
+msgstr "trước sự kiện"
+
+#: lib/helpers/feature_reminders_helper.php:26
+msgid "after the event"
+msgstr "sau sự kiện"
+
+#: lib/helpers/feature_service_categories_helper.php:20
+#: lib/views/location_categories/index.php:9
+#: lib/views/messages/conversations.php:15
+#: lib/views/service_categories/index.php:9
+msgid "ID: "
+msgstr "ID:"
+
+#: lib/helpers/feature_service_categories_helper.php:21
+msgid "Services Linked"
+msgstr "Dịch vụ liên kết"
+
+#: lib/helpers/feature_service_durations_helper.php:112
+msgid "Show service durations in minutes"
+msgstr "Hiển thị thời lượng dịch vụ theo phút"
+
+#: lib/helpers/feature_service_durations_helper.php:112
+msgid "Will show duration in minutes, even when duration is longer than 60 minutes"
+msgstr "Sẽ hiển thị thời lượng theo phút, ngay cả khi thời lượng dài hơn 60 phút"
+
+#: lib/helpers/feature_service_durations_helper.php:131
+msgid "Create Another Service Duration"
+msgstr "Tạo thời lượng dịch vụ khác"
+
+#: lib/helpers/feature_service_extras_helper.php:135
+msgid "Extras"
+msgstr "Dịch vụ bổ sung"
+
+#: lib/helpers/feature_service_extras_helper.php:160
+#: lib/helpers/feature_service_extras_helper.php:175
+msgid "None"
+msgstr "Không có"
+
+#: lib/helpers/feature_service_extras_helper.php:181
+msgid "Service Extras:"
+msgstr "Dịch vụ bổ sung:"
+
+#: lib/helpers/feature_service_extras_helper.php:387
+#, php-format
+msgid "Please select at least %d service extras"
+msgstr "Vui lòng chọn ít nhất %d dịch vụ bổ sung"
+
+#: lib/helpers/feature_service_extras_helper.php:392
+#, php-format
+msgid "You cannot select more than %d service extras"
+msgstr "Bạn không thể chọn quá %d dịch vụ bổ sung"
+
+#: lib/helpers/feature_service_extras_helper.php:481
+msgid "You have not created any service extras yet."
+msgstr "Bạn chưa tạo bất kỳ dịch vụ bổ sung nào."
+
+#: lib/helpers/feature_service_extras_helper.php:489
+msgid "Restrictions for Service Extras"
+msgstr "Giới hạn cho dịch vụ bổ sung"
+
+#: lib/helpers/feature_service_extras_helper.php:493
+msgid "Require a minimum to be selected"
+msgstr "Yêu cầu chọn tối thiểu"
+
+#: lib/helpers/feature_service_extras_helper.php:493
+msgid "Requires user to pick a minimum number of service extras"
+msgstr "Yêu cầu người dùng chọn một số lượng dịch vụ bổ sung tối thiểu"
+
+#: lib/helpers/feature_service_extras_helper.php:497
+msgid "At least"
+msgstr "Ít nhất"
+
+#: lib/helpers/feature_service_extras_helper.php:500
+msgid "service extras must be selected"
+msgstr "dịch vụ bổ sung phải được chọn"
+
+#: lib/helpers/feature_service_extras_helper.php:503
+msgid "Limit maximum number that can be selected"
+msgstr "Giới hạn số lượng tối đa có thể chọn"
+
+#: lib/helpers/feature_service_extras_helper.php:503
+msgid "Limits user from picking more than a set maximum"
+msgstr "Giới hạn người dùng không được chọn quá số lượng tối đa đã đặt"
+
+#: lib/helpers/feature_service_extras_helper.php:507
+msgid "At most"
+msgstr "Tối đa"
+
+#: lib/helpers/feature_service_extras_helper.php:510
+msgid "service extras can be selected"
+msgstr "dịch vụ bổ sung có thể được chọn"
+
+#: lib/helpers/feature_timezone_helper.php:8
+#: lib/helpers/feature_timezone_helper.php:76
+msgid "Timezone:"
+msgstr "Múi giờ:"
+
+#: lib/helpers/feature_timezone_helper.php:55
+msgid "Invalid Date/Time"
+msgstr "Ngày/Giờ không hợp lệ"
+
+#: lib/helpers/feature_timezone_helper.php:68
+msgid "My Timezone:"
+msgstr "Múi giờ của tôi:"
+
+#: lib/helpers/feature_timezone_helper.php:81
+msgid "Start Date (in customer timezone):"
+msgstr "Ngày bắt đầu (theo múi giờ của khách hàng):"
+
+#: lib/helpers/feature_timezone_helper.php:82
+msgid "Start Time (in customer timezone):"
+msgstr "Giờ bắt đầu (theo múi giờ của khách hàng):"
+
+#: lib/helpers/feature_timezone_helper.php:83
+msgid "End Time (in customer timezone)"
+msgstr "Giờ kết thúc (theo múi giờ của khách hàng)"
+
+#: lib/helpers/feature_timezone_helper.php:312
+msgid "Customer Timezone"
+msgstr "Múi giờ của khách hàng"
+
+#: lib/helpers/feature_timezone_helper.php:345
+msgid "Timezone Settings"
+msgstr "Cài đặt múi giờ"
+
+#: lib/helpers/feature_timezone_helper.php:348
+msgid "Enable timezone selector"
+msgstr "Bật bộ chọn múi giờ"
+
+#: lib/helpers/feature_timezone_helper.php:348
+msgid "Will let customer change default timezone, will try to auto-detect timezone from the browser"
+msgstr "Sẽ cho phép khách hàng thay đổi múi giờ mặc định, sẽ cố gắng tự động phát hiện múi giờ từ trình duyệt"
+
+#: lib/helpers/feature_timezone_helper.php:349
+msgid "Show timezone information"
+msgstr "Hiển thị thông tin múi giờ"
+
+#: lib/helpers/feature_timezone_helper.php:349
+msgid "Timezone name will appear next to appointment time"
+msgstr "Tên múi giờ sẽ xuất hiện bên cạnh thời gian cuộc hẹn"
+
+#: lib/helpers/feature_timezone_helper.php:365
+msgid "No matching timezone found"
+msgstr "Không tìm thấy múi giờ phù hợp"
+
+#: lib/helpers/feature_timezone_helper.php:365
+msgid "Type to search..."
+msgstr "Nhập để tìm kiếm..."
+
+#: lib/helpers/feature_webhooks_helper.php:6
+msgid "Webhook Run"
+msgstr "Webhook Run"
+
+#: lib/helpers/feature_webhooks_helper.php:37
+msgid "URL:"
+msgstr "URL:"
+
+#: lib/helpers/feature_webhooks_helper.php:88
+#: lib/helpers/feature_webhooks_helper.php:92
+msgid "URL"
+msgstr "URL"
+
+#: lib/helpers/messages_helper.php:152
+#: lib/helpers/messages_helper.php:196
+msgid "File Attachment"
+msgstr "Tệp đính kèm"
+
+#: lib/helpers/messages_helper.php:206
+#: lib/helpers/messages_helper.php:211
+msgid "You have a new message"
+msgstr "Bạn có một tin nhắn mới"
+
+#: lib/helpers/pro_license_helper.php:15
+msgid "Please enter your license key"
+msgstr "Vui lòng nhập khóa cấp phép của bạn"
+
+#: lib/helpers/pro_license_helper.php:47
+msgid "Unable to verify license. Please try again or contact us at license@latepoint.com. Error code: UDF732S83"
+msgstr "Không thể xác minh giấy phép. Vui lòng thử lại hoặc liên hệ với chúng tôi tại license@latepoint.com. Mã lỗi: UDF732S83"
+
+#: lib/helpers/pro_license_helper.php:58
+msgid "Unable to verify license. Please try again or contact us at license@latepoint.com. Error code: SUYF8362"
+msgstr "Không thể xác minh giấy phép. Vui lòng thử lại hoặc liên hệ với chúng tôi tại license@latepoint.com. Mã lỗi: SUYF8362"
+
+#: lib/helpers/service_extras_helper.php:81
+#, php-format
+msgid "Service extras [ %s ] applied to this booking are not available for this service. Either pick a service that offers them, or clear them."
+msgstr "Các tiện ích bổ sung dịch vụ [ %s ] được áp dụng cho đặt chỗ này không khả dụng cho dịch vụ này. Hãy chọn một dịch vụ có hỗ trợ chúng, hoặc xóa chúng."
+
+#: lib/helpers/service_extras_helper.php:81
+msgid "Clear"
+msgstr "Xóa"
+
+#: lib/helpers/service_extras_helper.php:87
+msgid "Click here to select..."
+msgstr "Nhấp vào đây để chọn..."
+
+#: lib/helpers/social_helper.php:18
+msgid "Continue with Facebook"
+msgstr "Tiếp tục với Facebook"
+
+#: lib/helpers/social_helper.php:26
+msgid "Continue with Google"
+msgstr "Tiếp tục với Google"
+
+#: lib/helpers/social_helper.php:37
+msgid "Social Login"
+msgstr "Đăng nhập mạng xã hội"
+
+#: lib/helpers/social_helper.php:40
+msgid "Enable login with Google"
+msgstr "Bật đăng nhập bằng Google"
+
+#: lib/helpers/social_helper.php:40
+msgid "Display Google Login button on customer login and registration forms"
+msgstr "Hiển thị nút Đăng nhập Google trên biểu mẫu đăng nhập và đăng ký của khách hàng"
+
+#: lib/helpers/social_helper.php:43
+msgid "Google Client ID"
+msgstr "Google Client ID"
+
+#: lib/helpers/social_helper.php:44
+msgid "Google Client Secret"
+msgstr "Google Client Secret"
+
+#: lib/helpers/social_helper.php:46
+msgid "Enable login with Facebook"
+msgstr "Bật đăng nhập bằng Facebook"
+
+#: lib/helpers/social_helper.php:46
+msgid "Display Facebook Login button on customer login and registration forms"
+msgstr "Hiển thị nút Đăng nhập Facebook trên biểu mẫu đăng nhập và đăng ký của khách hàng"
+
+#: lib/helpers/social_helper.php:48
+msgid "Facebook App ID"
+msgstr "Facebook App ID"
+
+#: lib/helpers/social_helper.php:49
+msgid "Facebook App Secret"
+msgstr "Facebook App Secret"
+
+#: lib/helpers/taxes_helper.php:60
+msgid "Tax Name cannot be empty"
+msgstr "Tên thuế không được để trống"
+
+#: lib/helpers/taxes_helper.php:63
+msgid "Tax Type cannot be empty"
+msgstr "Loại thuế không được để trống"
+
+#: lib/helpers/taxes_helper.php:66
+msgid "Tax Value cannot be empty"
+msgstr "Giá trị thuế không được để trống"
+
+#: lib/helpers/updates_helper.php:19
+#, php-format
+msgid "To enable updates, you need to purchase a PRO license, install \"PRO Features\" addon and enter that key on %s page"
+msgstr "Để bật cập nhật, bạn cần mua giấy phép PRO, cài đặt tiện ích bổ sung \"PRO Features\" và nhập khóa đó trên trang %s"
+
+#: lib/helpers/updates_helper.php:19
+msgid "Pro Features"
+msgstr "Tính năng Pro"
+
+#: lib/helpers/webhooks_helper.php:26
+msgid "Webhook executed"
+msgstr "Webhook đã được thực thi"
+
+#: lib/helpers/webhooks_helper.php:73
+msgid "Webhook URL cannot be empty"
+msgstr "URL Webhook không được để trống"
+
+#: lib/helpers/webhooks_helper.php:76
+msgid "Webhook URL must be a valid URL"
+msgstr "URL Webhook phải là một URL hợp lệ"
+
+#: lib/helpers/webhooks_helper.php:80
+msgid "Select a trigger event for this hook"
+msgstr "Chọn một sự kiện kích hoạt cho hook này"
+
+#: lib/models/message_model.php:18
+msgid "Content"
+msgstr "Nội dung"
+
+#: lib/views/addons/index.php:7
+msgid "Loading Addons Information"
+msgstr "Đang tải thông tin tiện ích bổ sung"
+
+#: lib/views/addons/load_addons_list.php:57
+msgid "Featured"
+msgstr "Nổi bật"
+
+#: lib/views/addons/load_addons_list.php:73
+#: lib/views/addons/load_addons_list.php:79
+msgid "Latest:"
+msgstr "Mới nhất:"
+
+#: lib/views/addons/load_addons_list.php:74
+#: lib/views/addons/load_addons_list.php:76
+msgid "Installed:"
+msgstr "Đã cài đặt:"
+
+#: lib/views/addons/load_addons_list.php:86
+msgid "Requires LatePoint"
+msgstr "Yêu cầu LatePoint"
+
+#: lib/views/addons/load_addons_list.php:98
+msgid "Deactivate"
+msgstr "Vô hiệu hóa"
+
+#: lib/views/addons/load_addons_list.php:113
+#: lib/views/agents/_form.php:318
+#: lib/views/custom_fields/_custom_field_form.php:127
+#: lib/views/locations/_form.php:189
+#: lib/views/roles/_form.php:123
+#: lib/views/taxes/_tax_form.php:49
+msgid "Delete"
+msgstr "Xóa"
+
+#: lib/views/addons/load_addons_list.php:117
+msgid "Activate"
+msgstr "Kích hoạt"
+
+#: lib/views/addons/load_addons_list.php:125
+#: lib/views/addons/load_addons_list.php:134
+msgid "Install Now"
+msgstr "Cài đặt ngay"
+
+#: lib/views/addons/load_addons_list.php:129
+msgid "Activate License to Install"
+msgstr "Kích hoạt giấy phép để cài đặt"
+
+#: lib/views/addons/load_addons_list.php:143
+msgid "Try for FREE"
+msgstr "Dùng thử MIỄN PHÍ"
+
+#: lib/views/addons/load_addons_list.php:148
+msgid "Learn More"
+msgstr "Tìm hiểu thêm"
+
+#: lib/views/agents/index.php:22
+#: lib/views/agents/index.php:88
+msgid "Connected to WordPress User"
+msgstr "Đã kết nối với người dùng WordPress"
+
+#: lib/views/agents/index.php:72
+msgid "No Active Agents Found"
+msgstr "Không tìm thấy nhân viên đang hoạt động"
+
+#: lib/views/agents/index.php:78
+#, php-format
+msgid "%d Disabled Agent"
+msgid_plural "%d Disabled Agents"
+msgstr[0] "%d Nhân viên đã bị vô hiệu hóa"
+
+#: lib/views/agents/mini_profile.php:7
+msgid "email:"
+msgstr "email:"
+
+#: lib/views/agents/mini_profile.php:8
+msgid "phone:"
+msgstr "điện thoại:"
+
+#: lib/views/agents/modal_list.php:2
+msgid "Select Agents"
+msgstr "Chọn nhân viên"
+
+#: lib/views/agents/modal_list.php:15
+msgid "Save Agents"
+msgstr "Lưu nhân viên"
+
+#: lib/views/agents/quick_edit.php:23
+msgid "Agent ID:"
+msgstr "ID nhân viên:"
+
+#: lib/views/agents/quick_edit.php:24
+#: lib/views/coupons/quick_edit.php:26
+msgid "History"
+msgstr "Lịch sử"
+
+#: lib/views/agents/quick_edit.php:31
+#: lib/views/agents/_form.php:28
+msgid "Set Avatar"
+msgstr "Đặt ảnh đại diện"
+
+#: lib/views/agents/quick_edit.php:31
+#: lib/views/agents/_form.php:28
+msgid "Remove Avatar"
+msgstr "Xóa ảnh đại diện"
+
+#: lib/views/agents/quick_edit.php:35
+#: lib/views/agents/_form.php:30
+msgid "First Name"
+msgstr "Tên"
+
+#: lib/views/agents/quick_edit.php:38
+#: lib/views/agents/_form.php:31
+msgid "Last Name"
+msgstr "Họ"
+
+#: lib/views/agents/quick_edit.php:43
+msgid "Contact Info"
+msgstr "Thông tin liên hệ"
+
+#: lib/views/agents/quick_edit.php:46
+#: lib/views/agents/_form.php:35
+msgid "Email Address"
+msgstr "Địa chỉ email"
+
+#: lib/views/agents/quick_edit.php:52
+#: lib/views/agents/_form.php:32
+msgid "Display Name"
+msgstr "Tên hiển thị"
+
+#: lib/views/agents/quick_edit.php:56
+#: lib/views/agents/_form.php:40
+msgid "Connect to WP User"
+msgstr "Kết nối với người dùng WP"
+
+#: lib/views/agents/quick_edit.php:56
+#: lib/views/agents/_form.php:40
+msgid "Select User"
+msgstr "Chọn người dùng"
+
+#: lib/views/agents/quick_edit.php:63
+#: lib/views/agents/_form.php:51
+#: lib/views/agents/_form.php:352
+msgid "Additional Contacts"
+msgstr "Liên hệ bổ sung"
+
+#: lib/views/agents/quick_edit.php:65
+#: lib/views/agents/_form.php:55
+msgid "If you need to notify multiple persons about the appointment, you can list additional email addresses and phone numbers to send notification emails and sms to. You can list multiple numbers and emails separated by commas."
+msgstr "Nếu bạn cần thông báo cho nhiều người về cuộc hẹn, bạn có thể liệt kê thêm các địa chỉ email và số điện thoại để gửi email và tin nhắn SMS thông báo. Bạn có thể liệt kê nhiều số và email, phân tách bằng dấu phẩy."
+
+#: lib/views/agents/quick_edit.php:67
+#: lib/views/agents/_form.php:57
+msgid "Additional Email Addresses"
+msgstr "Địa chỉ email bổ sung"
+
+#: lib/views/agents/quick_edit.php:70
+#: lib/views/agents/_form.php:58
+msgid "Additional Phone Numbers"
+msgstr "Số điện thoại bổ sung"
+
+#: lib/views/agents/quick_edit.php:73
+#: lib/views/agents/_form.php:65
+msgid "Extra Information"
+msgstr "Thông tin bổ sung"
+
+#: lib/views/agents/quick_edit.php:77
+#: lib/views/agents/_form.php:70
+msgid "Set Bio Image"
+msgstr "Đặt ảnh tiểu sử"
+
+#: lib/views/agents/quick_edit.php:77
+#: lib/views/agents/_form.php:70
+msgid "Remove Bio Image"
+msgstr "Xóa ảnh tiểu sử"
+
+#: lib/views/agents/quick_edit.php:79
+#: lib/views/agents/_form.php:71
+msgid "Agent Title"
+msgstr "Chức danh nhân viên"
+
+#: lib/views/agents/quick_edit.php:80
+#: lib/views/agents/_form.php:72
+msgid "Bio Text"
+msgstr "Văn bản tiểu sử"
+
+#: lib/views/agents/quick_edit.php:82
+#: lib/views/agents/_form.php:73
+msgid "Agent Highlights"
+msgstr "Điểm nổi bật của nhân viên"
+
+#: lib/views/agents/quick_edit.php:84
+#: lib/views/agents/_form.php:74
+msgid "These value-label pairs will appear on agent information popup. You can enter things like years of experience, or number of clients served, to highlight agent accomplishments."
+msgstr "Các cặp giá trị-nhãn này sẽ xuất hiện trong cửa sổ bật lên thông tin nhân viên. Bạn có thể nhập những thứ như số năm kinh nghiệm hoặc số lượng khách hàng đã phục vụ để làm nổi bật thành tựu của nhân viên."
+
+#: lib/views/agents/quick_edit.php:93
+#: lib/views/agents/_form.php:83
+msgid "Label"
+msgstr "Nhãn"
+
+#: lib/views/agents/quick_edit.php:100
+#: lib/views/agents/_form.php:94
+msgid "Offered Services"
+msgstr "Dịch vụ được cung cấp"
+
+#: lib/views/agents/quick_edit.php:124
+#: lib/views/agents/_form.php:120
+msgid "Locations Selected"
+msgstr "Địa điểm đã chọn"
+
+#: lib/views/agents/quick_edit.php:127
+#: lib/views/agents/_form.php:123
+#: lib/views/locations/_form.php:72
+msgid "Customize"
+msgstr "Tùy chỉnh"
+
+#: lib/views/agents/quick_edit.php:131
+#: lib/views/agents/_form.php:127
+#, php-format
+msgid "Select locations where this agent will offer %s:"
+msgstr "Chọn các địa điểm nơi nhân viên này sẽ cung cấp %s:"
+
+#: lib/views/agents/quick_edit.php:165
+#: lib/views/agents/_form.php:165
+#: lib/views/bundles/_form.php:124
+msgid "No Existing Services Found"
+msgstr "Không tìm thấy dịch vụ hiện có"
+
+#: lib/views/agents/quick_edit.php:167
+#: lib/views/agents/_form.php:167
+#: lib/views/bundles/_form.php:126
+msgid "Add First Service"
+msgstr "Thêm dịch vụ đầu tiên"
+
+#: lib/views/agents/quick_edit.php:175
+#: lib/views/agents/_form.php:190
+msgid "Agent Schedule"
+msgstr "Lịch làm việc của nhân viên"
+
+#: lib/views/agents/quick_edit.php:177
+#: lib/views/agents/_form.php:208
+#: lib/views/locations/_form.php:127
+msgid "Set Custom Schedule"
+msgstr "Đặt lịch tùy chỉnh"
+
+#: lib/views/agents/quick_edit.php:193
+#: lib/views/agents/_form.php:214
+msgid "This agent is using general schedule which is set in main settings"
+msgstr "Nhân viên này đang sử dụng lịch chung được thiết lập trong cài đặt chính"
+
+#: lib/views/agents/quick_edit.php:199
+#: lib/views/agents/_form.php:249
+#: lib/views/locations/_form.php:154
+msgid "Days With Custom Schedules"
+msgstr "Ngày có lịch trình tùy chỉnh"
+
+#: lib/views/agents/quick_edit.php:200
+#: lib/views/agents/_form.php:257
+msgid "Agent shares custom daily schedules that you set in general settings for your company, however you can add additional days with custom hours which will be specific to this agent only."
+msgstr "Nhân viên sử dụng các lịch trình hằng ngày tùy chỉnh mà bạn đặt trong phần cài đặt chung cho công ty của mình, tuy nhiên bạn có thể thêm các ngày bổ sung với giờ làm việc tùy chỉnh, chỉ áp dụng riêng cho nhân viên này."
+
+#: lib/views/agents/quick_edit.php:202
+#: lib/views/agents/_form.php:275
+#: lib/views/locations/_form.php:163
+msgid "Holidays & Days Off"
+msgstr "Ngày lễ &amp; Ngày nghỉ"
+
+#: lib/views/agents/quick_edit.php:203
+#: lib/views/agents/_form.php:283
+msgid "Agent uses the same holidays you set in general settings for your company, however you can add additional holidays for this agent here."
+msgstr "Nhân viên sử dụng cùng các ngày lễ mà bạn đặt trong phần cài đặt chung cho công ty của mình, tuy nhiên bạn có thể thêm các ngày lễ bổ sung cho nhân viên này tại đây."
+
+#: lib/views/agents/quick_edit.php:213
+#: lib/views/agents/_form.php:306
+msgid "Add Agent"
+msgstr "Thêm nhân viên"
+
+#: lib/views/agents/quick_edit.php:217
+#: lib/views/agents/_form.php:333
+#: lib/views/agents/_form.php:347
+#: lib/views/assets/_form.php:127
+#: lib/views/coupons/quick_edit.php:182
+#: lib/views/locations/_form.php:202
+#: lib/views/locations/_form.php:216
+#: lib/views/roles/edit_wp_user.php:82
+#: lib/views/roles/_form.php:126
+#: lib/views/service_extras/_form.php:99
+msgid "Save Changes"
+msgstr "Lưu thay đổi"
+
+#: lib/views/agents/quick_edit.php:221
+#: lib/views/agents/_form.php:314
+msgid "Are you sure you want to remove this agent?"
+msgstr "Bạn có chắc chắn muốn xóa nhân viên này không?"
+
+#: lib/views/agents/view_agent_log.php:15
+msgid "Activity Log"
+msgstr "Nhật ký hoạt động"
+
+#: lib/views/agents/view_agent_log.php:21
+#: lib/views/coupons/view_coupon_log.php:21
+msgid "Created On: "
+msgstr "Được tạo vào:"
+
+#: lib/views/agents/_form.php:21
+#: lib/views/bundles/_form.php:15
+msgid "General Information"
+msgstr "Thông tin chung"
+
+#: lib/views/agents/_form.php:23
+#, php-format
+msgid "Agent ID: %d"
+msgstr "ID nhân viên: %d"
+
+#: lib/views/agents/_form.php:80
+msgid "Highlight #"
+msgstr "Đánh dấu #"
+
+#: lib/views/agents/_form.php:230
+#, php-format
+msgid "Set Custom Schedule for %s"
+msgstr "Đặt lịch trình tùy chỉnh cho %s"
+
+#: lib/views/agents/_form.php:236
+msgid "This location is using the agent's general schedule"
+msgstr "Địa điểm này đang sử dụng lịch trình chung của nhân viên"
+
+#: lib/views/agents/_form.php:323
+msgid "Are you sure you want to duplicate this agent?"
+msgstr "Bạn có chắc chắn muốn nhân bản nhân viên này không?"
+
+#: lib/views/agents/_form.php:326
+#: lib/views/locations/_form.php:196
+msgid "Duplicate"
+msgstr "Nhân bản"
+
+#: lib/views/agents/_schedule_location_selector.php:14
+msgid "Location:"
+msgstr "Địa điểm:"
+
+#: lib/views/agents/_form.php:351
+#: lib/views/agents/_schedule_location_selector.php:16
+#: lib/views/locations/_form.php:220
+msgid "General"
+msgstr "Chung"
+
+#. translators: %1$s and %2$s are opening and closing anchor tags
+#: lib/views/assets/index.php:14
+#, php-format
+msgid "Assets functionality is currently disabled. You can enable it in %1$sGeneral Settings%2$s."
+msgstr "Chức năng tài sản hiện đang bị vô hiệu hóa. Bạn có thể bật nó trong %1$sCài đặt chung%2$s."
+
+#: lib/views/assets/index.php:33
+#: lib/views/service_extras/index.php:10
+msgid "Services:"
+msgstr "Dịch vụ:"
+
+#: lib/views/assets/index.php:37
+#: lib/views/assets/index.php:47
+#: lib/views/service_extras/index.php:12
+msgid " of "
+msgstr "trên"
+
+#: lib/views/assets/index.php:38
+#: lib/views/assets/index.php:48
+#: lib/views/service_extras/index.php:12
+msgid "All Selected"
+msgstr "Tất cả đã chọn"
+
+#: lib/views/assets/index.php:43
+#: lib/views/locations/_location_index_item.php:20
+msgid "Agents:"
+msgstr "Nhân viên:"
+
+#: lib/views/assets/index.php:54
+msgid "Quantity:"
+msgstr "Số lượng:"
+
+#: lib/views/assets/index.php:58
+msgid "Status:"
+msgstr "Trạng thái:"
+
+#: lib/views/assets/_form.php:19
+#: lib/views/locations/_form.php:8
+#: lib/views/service_extras/_form.php:12
+msgid "Basic Information"
+msgstr "Thông tin cơ bản"
+
+#: lib/views/assets/_form.php:21
+msgid "Asset ID:"
+msgstr "ID tài sản:"
+
+#: lib/views/assets/_form.php:26
+msgid "Asset Name"
+msgstr "Tên tài sản"
+
+#: lib/views/assets/_form.php:29
+msgid "Quantity (Capacity)"
+msgstr "Số lượng (Dung lượng)"
+
+#: lib/views/assets/_form.php:45
+#: lib/views/bundles/_form.php:35
+#: lib/views/location_categories/_form.php:9
+#: lib/views/service_categories/_form.php:9
+#: lib/views/service_extras/_form.php:32
+msgid "Short Description"
+msgstr "Mô tả ngắn"
+
+#: lib/views/assets/_form.php:52
+#: lib/views/service_extras/_form.php:56
+msgid "Connected Services"
+msgstr "Dịch vụ đã kết nối"
+
+#: lib/views/assets/_form.php:85
+msgid "Connected Agents"
+msgstr "Nhân viên đã kết nối"
+
+#: lib/views/assets/_form.php:118
+msgid "Add Asset"
+msgstr "Thêm tài sản"
+
+#: lib/views/assets/_form.php:122
+msgid "Are you sure you want to remove this asset? You can also change status to disabled if you want to temporarily disable it instead."
+msgstr "Bạn có chắc chắn muốn xóa tài sản này không? Bạn cũng có thể đổi trạng thái thành đã vô hiệu hóa nếu muốn tạm thời tắt nó thay vì xóa."
+
+#: lib/views/assets/_form.php:126
+msgid "Delete Asset"
+msgstr "Xóa tài sản"
+
+#: lib/views/bundles/index.php:21
+msgid "Quantity"
+msgstr "Số lượng"
+
+#: lib/views/bundles/index.php:54
+msgid "No Bundles Found"
+msgstr "Không tìm thấy gói nào"
+
+#: lib/views/bundles/_form.php:17
+msgid "Bundle ID:"
+msgstr "ID gói:"
+
+#: lib/views/bundles/_form.php:24
+msgid "Bundle Name"
+msgstr "Tên gói"
+
+#: lib/views/bundles/_form.php:27
+msgid "Visibility"
+msgstr "Hiển thị"
+
+#: lib/views/bundles/_form.php:27
+msgid "Visible to everyone"
+msgstr "Hiển thị cho mọi người"
+
+#: lib/views/bundles/_form.php:27
+msgid "Visible only to admins and agents"
+msgstr "Chỉ hiển thị cho quản trị viên và nhân viên"
+
+#: lib/views/bundles/_form.php:42
+msgid "Price"
+msgstr "Giá"
+
+#: lib/views/bundles/_form.php:48
+#: lib/views/service_durations/duration_fields.php:15
+#: lib/views/service_extras/_form.php:25
+msgid "Charge Amount"
+msgstr "Số tiền tính phí"
+
+#: lib/views/bundles/_form.php:51
+#: lib/views/service_durations/duration_fields.php:18
+msgid "Deposit Amount"
+msgstr "Số tiền đặt cọc"
+
+#: lib/views/bundles/_form.php:60
+msgid "Included Services"
+msgstr "Dịch vụ bao gồm"
+
+#: lib/views/bundles/_form.php:80
+#: lib/views/service_extras/index.php:17
+msgid "Duration:"
+msgstr "Thời lượng:"
+
+#: lib/views/bundles/_form.php:85
+#, php-format
+msgid "%d minutes"
+msgstr "%d phút"
+
+#: lib/views/bundles/_form.php:113
+msgid "Bundle Quantity:"
+msgstr "Số lượng gói:"
+
+#: lib/views/bundles/_form.php:115
+msgid "qty"
+msgstr "sl"
+
+#: lib/views/bundles/_form.php:139
+#: lib/views/bundles/_form.php:152
+msgid "Save Bundle"
+msgstr "Lưu gói"
+
+#: lib/views/bundles/_form.php:145
+msgid "Are you sure you want to remove this bundle? It will remove all appointments associated with it. You can also change status to disabled if you want to temporary disable it instead."
+msgstr "Bạn có chắc chắn muốn xóa gói này không? Việc này sẽ xóa tất cả các cuộc hẹn liên quan đến nó. Bạn cũng có thể đổi trạng thái thành đã vô hiệu hóa nếu muốn tạm thời tắt nó thay vì xóa."
+
+#: lib/views/bundles/_form.php:149
+msgid "Delete Bundle"
+msgstr "Xóa gói"
+
+#: lib/views/coupons/index.php:9
+#: lib/views/coupons/index.php:66
+msgid "Showing"
+msgstr "Đang hiển thị"
+
+#: lib/views/coupons/index.php:14
+msgid "Download .csv"
+msgstr "Tải xuống .csv"
+
+#: lib/views/coupons/index.php:16
+#: lib/views/coupons/quick_edit.php:15
+msgid "New Coupon"
+msgstr "Mã giảm giá mới"
+
+#: lib/views/coupons/index.php:33
+msgid "Search by Name"
+msgstr "Tìm theo tên"
+
+#: lib/views/coupons/index.php:34
+msgid "Code..."
+msgstr "Mã..."
+
+#: lib/views/coupons/index.php:36
+msgid "Show All"
+msgstr "Hiển thị tất cả"
+
+#: lib/views/coupons/index.php:39
+#: lib/views/coupons/index.php:40
+msgid "Filter By Date"
+msgstr "Lọc theo ngày"
+
+#: lib/views/coupons/index.php:39
+msgid "Reset Date Filtering"
+msgstr "Đặt lại bộ lọc ngày"
+
+#: lib/views/coupons/index.php:68
+msgid "Page:"
+msgstr "Trang:"
+
+#: lib/views/coupons/index.php:82
+msgid "No Coupons Found"
+msgstr "Không tìm thấy mã giảm giá nào"
+
+#: lib/views/coupons/index.php:83
+msgid "Add Coupon"
+msgstr "Thêm mã giảm giá"
+
+#: lib/views/coupons/quick_edit.php:17
+msgid "Edit Coupon"
+msgstr "Chỉnh sửa mã giảm giá"
+
+#: lib/views/coupons/quick_edit.php:24
+msgid "Coupon ID:"
+msgstr "ID mã giảm giá:"
+
+#: lib/views/coupons/quick_edit.php:31
+msgid "Used"
+msgstr "Đã dùng"
+
+#: lib/views/coupons/quick_edit.php:35
+#, php-format
+msgid "%d time"
+msgid_plural "%d times"
+msgstr[0] "%d lần"
+
+#: lib/views/coupons/quick_edit.php:40
+msgid "Last Used"
+msgstr "Lần dùng cuối"
+
+#: lib/views/coupons/quick_edit.php:44
+msgid "Total Saved"
+msgstr "Tổng đã tiết kiệm"
+
+#: lib/views/coupons/quick_edit.php:50
+#: lib/views/webhooks/_webhook_form.php:29
+msgid "Name (For Internal Use)"
+msgstr "Tên (Dùng nội bộ)"
+
+#: lib/views/coupons/quick_edit.php:54
+msgid "Discount Value"
+msgstr "Giá trị giảm giá"
+
+#: lib/views/coupons/quick_edit.php:57
+msgid "Discount Type"
+msgstr "Loại giảm giá"
+
+#: lib/views/coupons/quick_edit.php:57
+msgid "Percent"
+msgstr "Phần trăm"
+
+#: lib/views/coupons/quick_edit.php:57
+msgid "Fixed Value"
+msgstr "Giá trị cố định"
+
+#: lib/views/coupons/quick_edit.php:66
+msgid "Time Restrictions"
+msgstr "Giới hạn thời gian"
+
+#: lib/views/coupons/quick_edit.php:69
+msgid "You can set a specific time frame for when this coupon is active, which is helpful for seasonal promotions. Leaving either field blank will remove any time restrictions."
+msgstr "Bạn có thể đặt một khung thời gian cụ thể để mã giảm giá này hoạt động, điều này hữu ích cho các chương trình khuyến mãi theo mùa. Để trống một trong hai trường sẽ xóa mọi giới hạn thời gian."
+
+#: lib/views/coupons/quick_edit.php:74
+msgid "Active From"
+msgstr "Có hiệu lực từ"
+
+#: lib/views/coupons/quick_edit.php:77
+msgid "Active To"
+msgstr "Có hiệu lực đến"
+
+#: lib/views/coupons/quick_edit.php:81
+msgid "Use Restrictions"
+msgstr "Giới hạn sử dụng"
+
+#: lib/views/coupons/quick_edit.php:84
+msgid "Here you can specify which service, agent or customer this coupon is applicable to. Leaving a field blank will make it applicable to all."
+msgstr "Tại đây bạn có thể chỉ định mã giảm giá này áp dụng cho dịch vụ, nhân viên hoặc khách hàng nào. Để trống một trường sẽ áp dụng cho tất cả."
+
+#: lib/views/agents/_form.php:354
+#: lib/views/coupons/quick_edit.php:88
+msgid "Services"
+msgstr "Dịch vụ"
+
+#: lib/views/coupons/quick_edit.php:99
+msgid "Start typing to search..."
+msgstr "Bắt đầu nhập để tìm kiếm..."
+
+#: lib/views/coupons/quick_edit.php:100
+msgid "cancel"
+msgstr "hủy"
+
+#: lib/views/coupons/quick_edit.php:101
+msgid "Customers"
+msgstr "Khách hàng"
+
+#: lib/views/coupons/quick_edit.php:104
+msgid "Click to select..."
+msgstr "Nhấp để chọn..."
+
+#: lib/views/coupons/quick_edit.php:129
+msgid "Usage Limits"
+msgstr "Giới hạn sử dụng"
+
+#: lib/views/coupons/quick_edit.php:132
+msgid "You can set a limit on how many times this coupon can be used, either per customer or in total. Leave blank to have no limits."
+msgstr "Bạn có thể đặt giới hạn số lần mã giảm giá này có thể được sử dụng, theo từng khách hàng hoặc tổng cộng. Để trống nếu không có giới hạn."
+
+#: lib/views/coupons/quick_edit.php:137
+msgid "Per Customer"
+msgstr "Mỗi khách hàng"
+
+#: lib/views/coupons/quick_edit.php:140
+msgid "Per Order"
+msgstr "Mỗi đơn hàng"
+
+#: lib/views/coupons/quick_edit.php:143
+msgid "Total"
+msgstr "Tổng cộng"
+
+#: lib/views/coupons/quick_edit.php:148
+msgid "Order Requirements"
+msgstr "Yêu cầu đơn hàng"
+
+#: lib/views/coupons/quick_edit.php:151
+msgid "You can set an order requirements that must be met for this coupon to be applied. Leave blank to have no requirements."
+msgstr "Bạn có thể đặt các yêu cầu đơn hàng phải được đáp ứng để mã giảm giá này được áp dụng. Để trống nếu không có yêu cầu nào."
+
+#: lib/views/coupons/quick_edit.php:155
+msgid "Minimum Order Subtotal"
+msgstr "Tổng phụ đơn hàng tối thiểu"
+
+#: lib/views/coupons/quick_edit.php:159
+msgid "Order Count Requirements"
+msgstr "Yêu cầu số lượng đơn hàng"
+
+#: lib/views/coupons/quick_edit.php:162
+msgid "You can set requirements on how many orders a customer needs to have in order to use this coupon. Leave blank to have no requirements."
+msgstr "Bạn có thể đặt yêu cầu về số đơn hàng mà khách hàng cần có để sử dụng mã giảm giá này. Để trống nếu không có yêu cầu nào."
+
+#: lib/views/coupons/quick_edit.php:177
+msgid "Create Coupon"
+msgstr "Tạo mã giảm giá"
+
+#: lib/views/coupons/quick_edit.php:188
+msgid "Are you sure you want to delete this coupon?"
+msgstr "Bạn có chắc chắn muốn xóa mã giảm giá này không?"
+
+#: lib/views/coupons/quick_edit.php:193
+msgid "Delete Coupon"
+msgstr "Xóa mã giảm giá"
+
+#: lib/views/coupons/view_coupon_log.php:15
+msgid "Coupon History"
+msgstr "Lịch sử mã giảm giá"
+
+#: lib/views/coupons/view_coupon_log.php:25
+msgid "No activity found."
+msgstr "Không tìm thấy hoạt động nào."
+
+#: lib/views/custom_fields/for_booking.php:10
+#: lib/views/custom_fields/for_customer.php:14
+msgid "Add Custom Field"
+msgstr "Thêm trường tùy chỉnh"
+
+#: lib/views/custom_fields/for_customer.php:1
+msgid "Default Fields"
+msgstr "Trường mặc định"
+
+#: lib/views/custom_fields/_custom_field_form.php:7
+msgid "New Field"
+msgstr "Trường mới"
+
+#: lib/views/custom_fields/_custom_field_form.php:14
+msgid "Field Label"
+msgstr "Nhãn trường"
+
+#: lib/views/custom_fields/_custom_field_form.php:17
+msgid "Enter Field Label"
+msgstr "Nhập nhãn trường"
+
+#: lib/views/custom_fields/_custom_field_form.php:23
+msgid "Placeholder"
+msgstr "Văn bản giữ chỗ"
+
+#: lib/views/custom_fields/_custom_field_form.php:26
+msgid "Enter Field Placeholder"
+msgstr "Nhập văn bản giữ chỗ của trường"
+
+#: lib/views/custom_fields/_custom_field_form.php:32
+msgid "Field Type"
+msgstr "Loại trường"
+
+#: lib/views/custom_fields/_custom_field_form.php:41
+msgid "To use address field, enter a Google API key in general settings."
+msgstr "Để sử dụng trường địa chỉ, hãy nhập khóa Google API trong cài đặt chung."
+
+#: lib/views/custom_fields/_custom_field_form.php:48
+msgid "Options List"
+msgstr "Danh sách tùy chọn"
+
+#: lib/views/custom_fields/_custom_field_form.php:51
+msgid "Choices for Select. Enter each choice on a new line."
+msgstr "Các lựa chọn cho Select. Nhập mỗi lựa chọn trên một dòng mới."
+
+#: lib/views/custom_fields/_custom_field_form.php:57
+msgid "Default Value"
+msgstr "Giá trị mặc định"
+
+#: lib/views/custom_fields/_custom_field_form.php:67
+msgid "Conditional"
+msgstr "Điều kiện"
+
+#: lib/views/custom_fields/_custom_field_form.php:70
+msgid "Show this field only when conditions are met"
+msgstr "Chỉ hiển thị trường này khi các điều kiện được đáp ứng"
+
+#: lib/views/custom_fields/_custom_field_form.php:72
+msgid "Show this field if:"
+msgstr "Hiển thị trường này nếu:"
+
+#: lib/views/custom_fields/_custom_field_form.php:89
+msgid "Field Width"
+msgstr "Chiều rộng trường"
+
+#: lib/views/custom_fields/_custom_field_form.php:92
+msgid "Full Width"
+msgstr "Toàn chiều rộng"
+
+#: lib/views/custom_fields/_custom_field_form.php:93
+msgid "Half Width"
+msgstr "Nửa chiều rộng"
+
+#: lib/views/custom_fields/_custom_field_form.php:99
+msgid "Field Visibility"
+msgstr "Hiển thị trường"
+
+#: lib/views/custom_fields/_custom_field_form.php:102
+msgid "Visible to Everyone"
+msgstr "Hiển thị cho mọi người"
+
+#: lib/views/custom_fields/_custom_field_form.php:103
+msgid "Admin and Agents Only"
+msgstr "Chỉ quản trị viên và nhân viên"
+
+#: lib/views/custom_fields/_custom_field_form.php:104
+msgid "Temporary Hidden"
+msgstr "Tạm thời ẩn"
+
+#: lib/views/custom_fields/_custom_field_form.php:110
+msgid "Required"
+msgstr "Bắt buộc"
+
+#: lib/views/custom_fields/_custom_field_form.php:113
+msgid "Make this field required"
+msgstr "Đặt trường này là bắt buộc"
+
+#: lib/views/custom_fields/_custom_field_form.php:119
+msgid "Hide from Summary"
+msgstr "Ẩn khỏi tóm tắt"
+
+#: lib/views/custom_fields/_custom_field_form.php:122
+msgid "Hide from Summary Panel and Confirmation Step"
+msgstr "Ẩn khỏi bảng tóm tắt và bước xác nhận"
+
+#: lib/views/custom_fields/_custom_field_form.php:127
+#: lib/views/custom_fields/_custom_field_form.php:135
+msgid "Are you sure you want to delete this field?"
+msgstr "Bạn có chắc chắn muốn xóa trường này không?"
+
+#: lib/views/custom_fields/_custom_field_form.php:128
+msgid "Save Field"
+msgstr "Lưu trường"
+
+#: lib/views/debug/status.php:10
+msgid "Features"
+msgstr "Tính năng"
+
+#: lib/views/debug/status.php:12
+msgid "Chat With Customers"
+msgstr "Trò chuyện với khách hàng"
+
+#: lib/views/debug/status.php:18
+msgid "System Info"
+msgstr "Thông tin hệ thống"
+
+#: lib/views/debug/status.php:23
+msgid "LatePoint Plugin Version:"
+msgstr "Phiên bản plugin LatePoint:"
+
+#: lib/views/debug/status.php:27
+msgid "LatePoint Database Version:"
+msgstr "Phiên bản cơ sở dữ liệu LatePoint:"
+
+#: lib/views/debug/status.php:31
+#: lib/views/debug/status.php:72
+msgid "reset"
+msgstr "đặt lại"
+
+#: lib/views/debug/status.php:35
+msgid "PHP Version:"
+msgstr "Phiên bản PHP:"
+
+#: lib/views/debug/status.php:40
+msgid "MySQL Version:"
+msgstr "Phiên bản MySQL:"
+
+#: lib/views/debug/status.php:45
+msgid "WordPress Version:"
+msgstr "Phiên bản WordPress:"
+
+#: lib/views/debug/status.php:53
+msgid "Installed Addons"
+msgstr "Tiện ích đã cài đặt"
+
+#: lib/views/debug/status.php:63
+msgid "Update Available"
+msgstr "Có bản cập nhật"
+
+#: lib/views/debug/status.php:68
+msgid "Core:"
+msgstr "Lõi:"
+
+#: lib/views/debug/status.php:69
+msgid "Database:"
+msgstr "Cơ sở dữ liệu:"
+
+#: lib/views/debug/status.php:82
+msgid "Tasks Due"
+msgstr "Tác vụ đến hạn"
+
+#: lib/views/debug/status.php:90
+#: lib/views/debug/status.php:96
+msgid "Run Migration"
+msgstr "Chạy di chuyển"
+
+#: lib/views/debug/status.php:101
+msgid "Nothing to do"
+msgstr "Không có gì để làm"
+
+#: lib/views/group_bookings/_step_booking__group_bookings.php:15
+msgid "How Many People?"
+msgstr "Có bao nhiêu người?"
+
+#: lib/views/group_bookings/_step_booking__group_bookings.php:16
+msgid "Maximum capacity is"
+msgstr "Sức chứa tối đa là"
+
+#: lib/views/group_bookings/_step_booking__group_bookings.php:24
+msgid "Person"
+msgstr "Người"
+
+#: lib/views/group_bookings/_step_booking__group_bookings.php:25
+msgid "People"
+msgstr "Mọi người"
+
+#: lib/views/group_bookings/_step_booking__group_bookings.php:28
+#: lib/views/service_extras/_step_booking__service_extras.php:52
+msgid "Qty"
+msgstr "SL"
+
+#: lib/views/locations/index.php:10
+#: lib/views/locations/index.php:30
+#: lib/views/locations/index.php:45
+msgid "New Location"
+msgstr "Địa điểm mới"
+
+#: lib/views/locations/index.php:41
+msgid "No Active Locations Found"
+msgstr "Không tìm thấy địa điểm đang hoạt động"
+
+#: lib/views/locations/index.php:55
+#, php-format
+msgid "%d Disabled Location"
+msgid_plural "%d Disabled Locations"
+msgstr[0] "%d địa điểm đã vô hiệu hóa"
+
+#: lib/views/locations/_form.php:10
+#, php-format
+msgid "Location ID: %d"
+msgstr "ID địa điểm: %d"
+
+#: lib/views/locations/_form.php:17
+msgid "Location Name"
+msgstr "Tên địa điểm"
+
+#: lib/views/locations/_form.php:21
+msgid "Category"
+msgstr "Danh mục"
+
+#: lib/views/locations/_form.php:21
+msgid "Add Category"
+msgstr "Thêm danh mục"
+
+#: lib/views/locations/_form.php:22
+msgid "Location Photo"
+msgstr "Ảnh địa điểm"
+
+#: lib/views/locations/_form.php:22
+#: lib/views/location_categories/_form.php:13
+#: lib/views/service_categories/_form.php:13
+#: lib/views/service_extras/_form.php:48
+msgid "Remove Image"
+msgstr "Xóa hình ảnh"
+
+#: lib/views/locations/_form.php:25
+msgid "Location Address"
+msgstr "Địa chỉ địa điểm"
+
+#: lib/views/locations/_form.php:42
+msgid "Select Agents for This Location"
+msgstr "Chọn nhân viên cho địa điểm này"
+
+#: lib/views/locations/_form.php:69
+msgid "Services Selected"
+msgstr "Dịch vụ đã chọn"
+
+#: lib/views/locations/_form.php:76
+#, php-format
+msgid "Select services that %s will be offering at this location:"
+msgstr "Chọn các dịch vụ mà %s sẽ cung cấp tại địa điểm này:"
+
+#: lib/views/locations/_form.php:110
+msgid "No Existing Agents Found"
+msgstr "Không tìm thấy nhân viên hiện có nào"
+
+#: lib/views/locations/_form.php:112
+msgid "Add First Agent"
+msgstr "Thêm nhân viên đầu tiên"
+
+#: lib/views/locations/_form.php:125
+msgid "Location Schedule"
+msgstr "Lịch làm việc của địa điểm"
+
+#: lib/views/locations/_form.php:145
+msgid "This location is using general schedule which is set in main settings"
+msgstr "Địa điểm này đang sử dụng lịch chung được thiết lập trong cài đặt chính"
+
+#: lib/views/locations/_form.php:157
+msgid "Location shares custom daily schedules that you set in general settings for your company, however you can add additional days with custom hours which will be specific to this location only."
+msgstr "Địa điểm chia sẻ các lịch hằng ngày tùy chỉnh mà bạn thiết lập trong cài đặt chung cho công ty của mình, tuy nhiên bạn có thể thêm các ngày bổ sung với giờ tùy chỉnh, chỉ áp dụng riêng cho địa điểm này."
+
+#: lib/views/locations/_form.php:166
+msgid "Location uses the same holidays you set in general settings for your company, however you can add additional holidays for this location here."
+msgstr "Địa điểm sử dụng cùng các ngày nghỉ mà bạn đã thiết lập trong phần cài đặt chung cho công ty của mình, tuy nhiên bạn có thể thêm các ngày nghỉ bổ sung cho địa điểm này tại đây."
+
+#: lib/views/locations/_form.php:177
+msgid "Save Location"
+msgstr "Lưu địa điểm"
+
+#: lib/views/locations/_form.php:185
+msgid "Are you sure you want to remove this location? It will remove all appointments associated with it. If you only want to temprorary disable it - it is better to just change status to disabled."
+msgstr "Bạn có chắc chắn muốn xóa địa điểm này không? Việc này sẽ xóa tất cả các cuộc hẹn liên quan đến nó. Nếu bạn chỉ muốn tạm thời vô hiệu hóa nó - tốt hơn là chỉ cần đổi trạng thái thành đã vô hiệu hóa."
+
+#: lib/views/locations/_form.php:193
+msgid "Are you sure you want to duplicate this location?"
+msgstr "Bạn có chắc chắn muốn nhân bản địa điểm này không?"
+
+#: lib/views/agents/_form.php:355
+#: lib/views/locations/_form.php:223
+msgid "Schedule"
+msgstr "Lịch"
+
+#: lib/views/agents/_form.php:358
+#: lib/views/locations/_form.php:226
+msgid "Custom Days"
+msgstr "Ngày tùy chỉnh"
+
+#: lib/views/agents/_form.php:359
+#: lib/views/locations/_form.php:227
+msgid "Holidays & Days off"
+msgstr "Ngày nghỉ &amp; ngày không làm việc"
+
+#: lib/views/locations/_location_index_item.php:28
+msgid "No Agents Assigned"
+msgstr "Chưa gán nhân viên nào"
+
+#: lib/views/location_categories/index.php:18
+#: lib/views/service_categories/index.php:18
+msgid "New Category"
+msgstr "Danh mục mới"
+
+#: lib/views/location_categories/index.php:22
+msgid "Create New Location Category"
+msgstr "Tạo danh mục địa điểm mới"
+
+#: lib/views/location_categories/new_form.php:3
+msgid "Add Location Category"
+msgstr "Thêm danh mục địa điểm"
+
+#: lib/views/location_categories/new_form.php:8
+#: lib/views/location_categories/_form.php:6
+#: lib/views/service_categories/new_form.php:8
+#: lib/views/service_categories/_form.php:6
+msgid "Category Name"
+msgstr "Tên danh mục"
+
+#: lib/views/location_categories/new_form.php:9
+#: lib/views/service_categories/new_form.php:9
+msgid "Quick Description"
+msgstr "Mô tả nhanh"
+
+#: lib/views/location_categories/new_form.php:14
+msgid "Save Location Category"
+msgstr "Lưu danh mục địa điểm"
+
+#: lib/views/location_categories/_form.php:13
+#: lib/views/service_categories/_form.php:13
+msgid "Category Image"
+msgstr "Hình ảnh danh mục"
+
+#: lib/views/location_categories/_form.php:19
+#: lib/views/service_categories/_form.php:19
+msgid "Save Category"
+msgstr "Lưu danh mục"
+
+#: lib/views/location_categories/_form.php:25
+#: lib/views/service_categories/_form.php:25
+msgid "Are you sure you want to remove this category?"
+msgstr "Bạn có chắc chắn muốn xóa danh mục này không?"
+
+#: lib/views/location_categories/_form.php:28
+#: lib/views/service_categories/_form.php:28
+msgid "Delete Category"
+msgstr "Xóa danh mục"
+
+#: lib/views/messages/backend_chat_box.php:5
+msgid "Your Conversations"
+msgstr "Các cuộc trò chuyện của bạn"
+
+#: lib/views/messages/backend_chat_box.php:8
+msgid "Find booking to start chat..."
+msgstr "Tìm đặt chỗ để bắt đầu trò chuyện..."
+
+#: lib/views/messages/conversations.php:16
+msgid "Start new conversation..."
+msgstr "Bắt đầu cuộc trò chuyện mới..."
+
+#: lib/views/messages/messages_for_booking.php:22
+#: lib/views/messages/messages_with_info_for_booking.php:42
+msgid "No Messages Exist."
+msgstr "Không có tin nhắn nào."
+
+#: lib/views/messages/messages_with_info_for_booking.php:8
+msgid "Chat with"
+msgstr "Trò chuyện với"
+
+#: lib/views/messages/messages_with_info_for_booking.php:50
+#: lib/views/messages/quick_form_chat_box.php:16
+msgid "Attach File"
+msgstr "Đính kèm tệp"
+
+#: lib/views/messages/messages_with_info_for_booking.php:57
+msgid "Appointment Info"
+msgstr "Thông tin cuộc hẹn"
+
+#: lib/views/messages/messages_with_info_for_booking.php:64
+msgid "Booking ID"
+msgstr "ID đặt chỗ"
+
+#: lib/views/messages/messages_with_info_for_booking.php:66
+msgid "Edit"
+msgstr "Chỉnh sửa"
+
+#: lib/views/messages/messages_with_info_for_booking.php:68
+msgid "Date/Time"
+msgstr "Ngày/Giờ"
+
+#: lib/views/messages/messages_with_info_for_booking.php:72
+msgid "Customer"
+msgstr "Khách hàng"
+
+#: lib/views/messages/quick_form_chat_box.php:3
+msgid "Message History"
+msgstr "Lịch sử tin nhắn"
+
+#: lib/views/recurring_bookings/recurring_bookings_preview.php:9
+msgid "Review Slots"
+msgstr "Xem lại các khung giờ"
+
+#: lib/views/recurring_bookings/recurring_bookings_preview.php:16
+#, php-format
+msgid "%s of %s time slots are not available. Please review them below."
+msgstr "%s trong số %s khung giờ không khả dụng. Vui lòng xem lại bên dưới."
+
+#: lib/views/recurring_bookings/recurring_bookings_preview.php:34
+msgid "This slot is unavailable. You can choose a different one, or it will be skipped automatically."
+msgstr "Khung giờ này không khả dụng. Bạn có thể chọn khung giờ khác, hoặc nó sẽ được bỏ qua tự động."
+
+#: lib/views/recurring_bookings/recurring_bookings_preview.php:51
+msgid "Continue"
+msgstr "Tiếp tục"
+
+#: lib/views/roles/edit_wp_user.php:9
+msgid "Edit User"
+msgstr "Chỉnh sửa người dùng"
+
+#: lib/views/roles/edit_wp_user.php:21
+msgid "WP User"
+msgstr "Người dùng WP"
+
+#: lib/views/roles/edit_wp_user.php:30
+msgid "Not Connected"
+msgstr "Chưa kết nối"
+
+#: lib/views/roles/edit_wp_user.php:31
+msgid "Connected to agent"
+msgstr "Đã kết nối với nhân viên"
+
+#: lib/views/roles/edit_wp_user.php:36
+#: lib/views/roles/_form.php:70
+msgid "Allowed Records"
+msgstr "Bản ghi được phép"
+
+#: lib/views/roles/edit_wp_user.php:40
+msgid "This user has \"Administrator\" role and can access all records"
+msgstr "Người dùng này có vai trò \"Administrator\" và có thể truy cập tất cả các bản ghi"
+
+#: lib/views/roles/edit_wp_user.php:42
+msgid "This user has \"Agent\" role and can execute permitted actions only on records that belong to a LatePoint agent they are connected to."
+msgstr "Người dùng này có vai trò \"Agent\" và chỉ có thể thực hiện các hành động được phép trên các bản ghi thuộc về một nhân viên LatePoint mà họ được kết nối."
+
+#: lib/views/roles/edit_wp_user.php:47
+msgid "Custom Selection"
+msgstr "Lựa chọn tùy chỉnh"
+
+#: lib/views/roles/edit_wp_user.php:57
+#: lib/views/roles/_form.php:91
+msgid "Permitted Actions"
+msgstr "Các hành động được phép"
+
+#: lib/views/roles/edit_wp_user.php:58
+msgid "Custom"
+msgstr "Tùy chỉnh"
+
+#: lib/views/roles/edit_wp_user.php:77
+msgid "Permitted actions are defined by user's role settings."
+msgstr "Các hành động được phép được xác định bởi cài đặt vai trò của người dùng."
+
+#: lib/views/roles/index.php:9
+msgid "Default Roles"
+msgstr "Vai trò mặc định"
+
+#: lib/views/roles/index.php:19
+msgid "Custom Roles"
+msgstr "Vai trò tùy chỉnh"
+
+#: lib/views/roles/index.php:37
+msgid "Create Custom Role"
+msgstr "Tạo vai trò tùy chỉnh"
+
+#: lib/views/roles/_form.php:12
+#, php-format
+msgid "%d user"
+msgid_plural "%d users"
+msgstr[0] "%d người dùng"
+
+#: lib/views/roles/_form.php:32
+msgid "Users"
+msgstr "Người dùng"
+
+#: lib/views/roles/_form.php:50
+msgid "Custom Settings"
+msgstr "Cài đặt tùy chỉnh"
+
+#: lib/views/roles/_form.php:54
+msgid "Connected to:"
+msgstr "Đã kết nối với:"
+
+#: lib/views/roles/_form.php:54
+msgid "Connect to an agent"
+msgstr "Kết nối với một nhân viên"
+
+#: lib/views/roles/_form.php:63
+#, php-format
+msgid "You have not assigned any WordPress users to this role. Create a new WP user or edit existing user and assign them a role called: %s"
+msgstr "Bạn chưa gán người dùng WordPress nào cho vai trò này. Hãy tạo người dùng WP mới hoặc chỉnh sửa người dùng hiện có và gán cho họ vai trò có tên: %s"
+
+#: lib/views/roles/_form.php:77
+#, php-format
+msgid "Users with \"%s\" role are allowed to perform all available actions on any agent, location and service records."
+msgstr "Người dùng có vai trò \"%s\" được phép thực hiện tất cả các hành động có sẵn trên mọi bản ghi nhân viên, địa điểm và dịch vụ."
+
+#: lib/views/roles/_form.php:80
+#, php-format
+msgid "Users with \"%s\" role can execute permitted actions only on records that belong to a LatePoint agent they are connected to."
+msgstr "Người dùng có vai trò \"%s\" chỉ có thể thực hiện các hành động được phép trên các bản ghi thuộc về một nhân viên LatePoint mà họ được kết nối."
+
+#: lib/views/roles/_form.php:83
+msgid "Once you assign users to this role, they will appear in \"Users\" section above, click on each user to set restrictions on which records each of them can access."
+msgstr "Sau khi bạn gán người dùng cho vai trò này, họ sẽ xuất hiện trong phần \"Người dùng\" ở trên, hãy nhấp vào từng người dùng để đặt các giới hạn về những bản ghi mà mỗi người có thể truy cập."
+
+#: lib/views/roles/_form.php:97
+#, php-format
+msgid "Users with \"%s\" role are permitted to execute all available actions in the system."
+msgstr "Người dùng có vai trò \"%s\" được phép thực hiện tất cả các hành động có sẵn trong hệ thống."
+
+#: lib/views/roles/_form.php:119
+#: lib/views/roles/_form.php:133
+msgid "Are you sure you want to delete this role?"
+msgstr "Bạn có chắc chắn muốn xóa vai trò này không?"
+
+#: lib/views/service_categories/index.php:22
+msgid "Create New Service Category"
+msgstr "Tạo danh mục dịch vụ mới"
+
+#: lib/views/service_categories/new_form.php:3
+msgid "Add Service Category"
+msgstr "Thêm danh mục dịch vụ"
+
+#: lib/views/service_categories/new_form.php:15
+msgid "Save Service Category"
+msgstr "Lưu danh mục dịch vụ"
+
+#: lib/views/service_durations/duration_fields.php:9
+msgid "Duration Name (optional)"
+msgstr "Tên thời lượng (tùy chọn)"
+
+#: lib/views/service_durations/duration_fields.php:12
+msgid "Duration"
+msgstr "Thời lượng"
+
+#: lib/views/service_durations/_step_booking__service_durations.php:40
+msgid "Hours"
+msgstr "Giờ"
+
+#: lib/views/service_durations/_step_booking__service_durations.php:40
+msgid "Hour"
+msgstr "Giờ"
+
+#: lib/views/service_durations/_step_booking__service_durations.php:41
+#: lib/views/service_durations/_step_booking__service_durations.php:44
+msgid "Minutes"
+msgstr "Phút"
+
+#: lib/views/service_extras/index.php:18
+msgid "min"
+msgstr "phút"
+
+#: lib/views/service_extras/index.php:21
+msgid "Price:"
+msgstr "Giá:"
+
+#: lib/views/service_extras/index.php:25
+msgid "Max Qty:"
+msgstr "Số lượng tối đa:"
+
+#: lib/views/service_extras/index.php:33
+msgid "Edit Extra"
+msgstr "Chỉnh sửa mục bổ sung"
+
+#: lib/views/service_extras/index.php:46
+msgid "No Service Extras Found"
+msgstr "Không tìm thấy mục bổ sung dịch vụ nào"
+
+#: lib/views/service_extras/index.php:50
+#: lib/views/service_extras/_form.php:90
+msgid "Add Service Extra"
+msgstr "Thêm mục bổ sung dịch vụ"
+
+#: lib/views/service_extras/_form.php:14
+msgid "Service Extra ID:"
+msgstr "ID mục bổ sung dịch vụ:"
+
+#: lib/views/service_extras/_form.php:19
+msgid "Service Extra Name"
+msgstr "Tên mục bổ sung dịch vụ"
+
+#: lib/views/service_extras/_form.php:22
+msgid "Duration (minutes)"
+msgstr "Thời lượng (phút)"
+
+#: lib/views/service_extras/_form.php:28
+msgid "Maximum Quantity"
+msgstr "Số lượng tối đa"
+
+#: lib/views/service_extras/_form.php:41
+msgid "Media"
+msgstr "Phương tiện"
+
+#: lib/views/service_extras/_form.php:45
+msgid "Selection Image"
+msgstr "Ảnh lựa chọn"
+
+#: lib/views/service_extras/_form.php:46
+msgid "This image will be used as a background image of the service extra tile on booking form"
+msgstr "Hình ảnh này sẽ được dùng làm ảnh nền của ô mục bổ sung dịch vụ trên biểu mẫu đặt lịch"
+
+#: lib/views/service_extras/_form.php:48
+msgid "Service Extra Image"
+msgstr "Ảnh mục bổ sung dịch vụ"
+
+#: lib/views/service_extras/_form.php:94
+msgid "Are you sure you want to remove this service extra? You can also change status to disabled if you want to temprorary disable it instead."
+msgstr "Bạn có chắc chắn muốn xóa mục bổ sung dịch vụ này không? Bạn cũng có thể đổi trạng thái thành bị vô hiệu hóa nếu muốn tạm thời vô hiệu hóa nó thay vì xóa."
+
+#: lib/views/service_extras/_form.php:98
+msgid "Delete Service Extra"
+msgstr "Xóa mục bổ sung dịch vụ"
+
+#: lib/views/taxes/index.php:15
+msgid "Add Tax"
+msgstr "Thêm thuế"
+
+#: lib/views/taxes/_tax_form.php:7
+msgid "New Tax"
+msgstr "Thuế mới"
+
+#: lib/views/taxes/_tax_form.php:14
+msgid "Tax Name"
+msgstr "Tên thuế"
+
+#: lib/views/taxes/_tax_form.php:17
+msgid "Enter Tax Name"
+msgstr "Nhập tên thuế"
+
+#: lib/views/taxes/_tax_form.php:23
+msgid "Tax Type"
+msgstr "Loại thuế"
+
+#: lib/views/taxes/_tax_form.php:31
+msgid "Percentage of the booking price"
+msgstr "Phần trăm của giá đặt lịch"
+
+#: lib/views/taxes/_tax_form.php:32
+msgid "Fixed amount"
+msgstr "Số tiền cố định"
+
+#: lib/views/taxes/_tax_form.php:38
+msgid "Enter Tax Value"
+msgstr "Nhập giá trị thuế"
+
+#: lib/views/taxes/_tax_form.php:45
+#: lib/views/taxes/_tax_form.php:55
+msgid "Are you sure you want to delete this tax?"
+msgstr "Bạn có chắc chắn muốn xóa loại thuế này không?"
+
+#: lib/views/taxes/_tax_form.php:50
+msgid "Save Tax"
+msgstr "Lưu thuế"
+
+#: lib/views/updates/check_version_status.php:11
+msgid "Update is Available"
+msgstr "Có bản cập nhật mới"
+
+#. translators: %s is version number
+#: lib/views/updates/check_version_status.php:18
+#, php-format
+msgid "LatePoint %s is available."
+msgstr "LatePoint %s đã có sẵn."
+
+#. translators: %s is version number
+#: lib/views/updates/check_version_status.php:23
+#, php-format
+msgid "You're running version %s"
+msgstr "Bạn đang chạy phiên bản %s"
+
+#: lib/views/updates/check_version_status.php:40
+#: lib/views/updates/check_version_status.php:57
+msgid "View Changelog"
+msgstr "Xem nhật ký thay đổi"
+
+#: lib/views/updates/check_version_status.php:49
+msgid "You are using the latest version"
+msgstr "Bạn đang sử dụng phiên bản mới nhất"
+
+#: lib/views/updates/check_version_status.php:52
+msgid "Installed Version: "
+msgstr "Phiên bản đã cài đặt:"
+
+#: lib/views/updates/check_version_status.php:61
+msgid "Official Website"
+msgstr "Trang web chính thức"
+
+#: lib/views/updates/migrate_from_version4.php:12
+msgid "Migration from Version 4"
+msgstr "Di chuyển từ phiên bản 4"
+
+#: lib/views/updates/version_5_intro.php:8
+msgid "Dismiss"
+msgstr "Bỏ qua"
+
+#: lib/views/updates/version_5_intro.php:60
+msgid "Start Using Version 5"
+msgstr "Bắt đầu sử dụng phiên bản 5"
+
+#: lib/views/updates/_license_form.php:7
+msgid "License Key Registration"
+msgstr "Đăng ký khóa giấy phép"
+
+#: lib/views/updates/_license_form.php:17
+msgid "Please enter your LatePoint license key to receive free plugin updates and install addons."
+msgstr "Vui lòng nhập khóa giấy phép LatePoint của bạn để nhận các bản cập nhật plugin miễn phí và cài đặt các tiện ích bổ sung."
+
+#: lib/views/updates/_license_form.php:21
+msgid "Your Name"
+msgstr "Tên của bạn"
+
+#: lib/views/updates/_license_form.php:24
+msgid "Your Email Address"
+msgstr "Địa chỉ email của bạn"
+
+#: lib/views/updates/_license_form.php:27
+msgid "License Key"
+msgstr "Khóa giấy phép"
+
+#: lib/views/updates/_license_form.php:31
+msgid "Activate Now"
+msgstr "Kích hoạt ngay"
+
+#: lib/views/webhooks/index.php:12
+msgid "Add Webhook"
+msgstr "Thêm webhook"
+
+#: lib/views/webhooks/_webhook_form.php:2
+msgid "New Booking"
+msgstr "Đặt lịch mới"
+
+#: lib/views/webhooks/_webhook_form.php:3
+msgid "Updated Booking"
+msgstr "Đặt lịch đã cập nhật"
+
+#: lib/views/webhooks/_webhook_form.php:4
+msgid "New Customer"
+msgstr "Khách hàng mới"
+
+#: lib/views/webhooks/_webhook_form.php:5
+msgid "New Transaction"
+msgstr "Giao dịch mới"
+
+#: lib/views/webhooks/_webhook_form.php:12
+msgid "New Webhook"
+msgstr "Webhook mới"
+
+#: lib/views/webhooks/_webhook_form.php:26
+msgid "Webhook URL"
+msgstr "URL webhook"
+
+#: lib/views/webhooks/_webhook_form.php:26
+msgid "Webhook URL (https://example.com)"
+msgstr "URL webhook (https://example.com)"
+
+#: lib/views/webhooks/_webhook_form.php:33
+msgid "Event that will trigger this hook"
+msgstr "Sự kiện sẽ kích hoạt hook này"
+
+#: lib/views/webhooks/_webhook_form.php:39
+msgid "Hook Status"
+msgstr "Trạng thái hook"
+
+#: lib/views/webhooks/_webhook_form.php:50
+msgid "Are you sure you want to delete this webhook?"
+msgstr "Bạn có chắc chắn muốn xóa webhook này không?"
+
+#: lib/views/agents/_form.php:353
+msgid "Extra Info"
+msgstr "Thông tin bổ sung"
+
+#: lib/views/messages/conversations.php:22
+msgid "No conversations found."
+msgstr "Không tìm thấy cuộc trò chuyện nào."
+
+#: lib/views/roles/edit_wp_user.php:47
+msgid "All Connected"
+msgstr "Tất cả đã kết nối"
+
+#: lib/views/roles/_form.php:54
+msgid "Not connected"
+msgstr "Chưa kết nối"

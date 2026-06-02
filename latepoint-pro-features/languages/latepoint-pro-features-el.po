@@ -1,0 +1,3507 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: LatePoint Addon - Pro Features\n"
+"Report-Msgid-Bugs-To: \n"
+"Last-Translator: gpt-po v1.2.4\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"POT-Creation-Date: 2026-05-28T07:41:41+00:00\n"
+"PO-Revision-Date: 2026-05-28T07:41:41+00:00\n"
+"Language: el\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#. Plugin Name of the plugin
+#: latepoint-pro-features.php
+msgid "LatePoint Addon - Pro Features"
+msgstr "Πρόσθετο LatePoint - Επαγγελματικές λειτουργίες"
+
+#. Plugin URI of the plugin
+#. Author URI of the plugin
+#: latepoint-pro-features.php
+msgid "https://latepoint.com/"
+msgstr "https://latepoint.com/"
+
+#. Description of the plugin
+#: latepoint-pro-features.php
+msgid "LatePoint Addon that adds a set of Pro features to a base plugin"
+msgstr "Πρόσθετο LatePoint που προσθέτει ένα σύνολο επαγγελματικών λειτουργιών σε ένα βασικό πρόσθετο"
+
+#. Author of the plugin
+#: latepoint-pro-features.php
+msgid "LatePoint"
+msgstr "LatePoint"
+
+#. translators: 1: bold open tag, 2: bold close tag, 3: required version, 4: current version
+#: latepoint-pro-features.php:92
+#, php-format
+msgid "You are using an older version of the %1$sLatePoint%2$s plugin (v%4$s). Please update the %1$sLatePoint%2$s plugin to version %1$s%3$s or later%2$s."
+msgstr "Χρησιμοποιείτε μια παλαιότερη έκδοση του πρόσθετου %1$sLatePoint%2$s (v%4$s). Παρακαλούμε ενημερώστε το πρόσθετο %1$sLatePoint%2$s στην έκδοση %1$s%3$s ή νεότερη%2$s."
+
+#: latepoint-pro-features.php:98
+#: lib/helpers/addons_helper.php:126
+#: lib/views/addons/load_addons_list.php:93
+#: lib/views/addons/load_addons_list.php:109
+#: lib/views/updates/check_version_status.php:33
+msgid "Update Now"
+msgstr "Ενημέρωση τώρα"
+
+#: latepoint-pro-features.php:767
+#: lib/helpers/feature_recurring_bookings_helper.php:61
+msgid "Recurring Appointments"
+msgstr "Επαναλαμβανόμενα ραντεβού"
+
+#: latepoint-pro-features.php:771
+#: lib/helpers/feature_group_bookings_helper.php:278
+msgid "Group Bookings"
+msgstr "Ομαδικές κρατήσεις"
+
+#: latepoint-pro-features.php:775
+#: lib/controllers/service_extras_controller.php:25
+#: lib/helpers/feature_service_extras_helper.php:7
+#: lib/helpers/feature_service_extras_helper.php:143
+#: lib/helpers/feature_service_extras_helper.php:452
+#: lib/helpers/service_extras_helper.php:86
+msgid "Service Extras"
+msgstr "Επιπλέον υπηρεσίες"
+
+#: latepoint-pro-features.php:779
+msgid "Restrictions for Extras"
+msgstr "Περιορισμοί για τα επιπλέον στοιχεία"
+
+#: latepoint-pro-features.php:783
+#: latepoint-pro-features.php:1239
+#: lib/controllers/assets_controller.php:20
+#: lib/helpers/feature_assets_helper.php:50
+msgid "Assets"
+msgstr "Πόροι"
+
+#: latepoint-pro-features.php:790
+msgid "Allow customers reschedule their bookings"
+msgstr "Επιτρέψτε στους πελάτες να επαναπρογραμματίζουν τις κρατήσεις τους"
+
+#: latepoint-pro-features.php:790
+msgid "If enable, shows a button on customer cabinet to reschedule an appointment"
+msgstr "Αν ενεργοποιηθεί, εμφανίζει ένα κουμπί στον πίνακα πελάτη για την επαναπρογραμματισμό ενός ραντεβού"
+
+#: latepoint-pro-features.php:793
+msgid "Set restriction on when customer can reschedule"
+msgstr "Ορίστε περιορισμό για το πότε μπορεί ο πελάτης να επαναπρογραμματίσει"
+
+#: latepoint-pro-features.php:797
+msgid "Can reschedule when it is at least"
+msgstr "Μπορεί να επαναπρογραμματίσει όταν απομένουν τουλάχιστον"
+
+#: latepoint-pro-features.php:798
+#: lib/helpers/feature_recurring_bookings_helper.php:69
+#: lib/helpers/feature_service_extras_helper.php:498
+#: lib/helpers/feature_service_extras_helper.php:508
+#: lib/views/agents/quick_edit.php:92
+#: lib/views/agents/_form.php:82
+msgid "Value"
+msgstr "Τιμή"
+
+#: latepoint-pro-features.php:803
+#: lib/helpers/feature_reminders_helper.php:15
+msgid "minutes"
+msgstr "λεπτά"
+
+#: latepoint-pro-features.php:804
+#: lib/helpers/feature_reminders_helper.php:16
+msgid "hours"
+msgstr "ώρες"
+
+#: latepoint-pro-features.php:805
+#: lib/helpers/feature_reminders_helper.php:17
+msgid "days"
+msgstr "ημέρες"
+
+#: latepoint-pro-features.php:809
+msgid "before appointment start time"
+msgstr "πριν από την ώρα έναρξης του ραντεβού"
+
+#: latepoint-pro-features.php:812
+msgid "Change booking status when customer reschedules"
+msgstr "Αλλαγή κατάστασης κράτησης όταν ο πελάτης επαναπρογραμματίζει"
+
+#: latepoint-pro-features.php:816
+msgid "Change status to:"
+msgstr "Αλλαγή κατάστασης σε:"
+
+#: latepoint-pro-features.php:836
+msgid "All Day"
+msgstr "Όλη την ημέρα"
+
+#: latepoint-pro-features.php:837
+msgid "Specific Time"
+msgstr "Συγκεκριμένη ώρα"
+
+#: latepoint-pro-features.php:843
+msgid "Reason for blocking (optional)"
+msgstr "Λόγος αποκλεισμού (προαιρετικό)"
+
+#: latepoint-pro-features.php:846
+msgid "Enter a reason..."
+msgstr "Εισαγάγετε έναν λόγο..."
+
+#: latepoint-pro-features.php:866
+#, php-format
+msgid "Select resources you want to be unavailable during this time on %s"
+msgstr "Επιλέξτε πόρους που θέλετε να μην είναι διαθέσιμοι κατά τη διάρκεια αυτής της ώρας στο %s"
+
+#: latepoint-pro-features.php:867
+#, php-format
+msgid "Select resources you want to be unavailable on %s"
+msgstr "Επιλέξτε πόρους που θέλετε να μην είναι διαθέσιμοι στο %s"
+
+#: latepoint-pro-features.php:876
+msgid "All Agents"
+msgstr "Όλοι οι πράκτορες"
+
+#: latepoint-pro-features.php:891
+msgid "All Services"
+msgstr "Όλες οι υπηρεσίες"
+
+#: latepoint-pro-features.php:906
+msgid "All Locations"
+msgstr "Όλες οι τοποθεσίες"
+
+#: latepoint-pro-features.php:922
+#: lib/views/webhooks/_webhook_form.php:45
+msgid "Save"
+msgstr "Αποθήκευση"
+
+#: latepoint-pro-features.php:928
+msgid "Are you sure you want to delete this blocked time period?"
+msgstr "Είστε βέβαιοι ότι θέλετε να διαγράψετε αυτήν την αποκλεισμένη χρονική περίοδο;"
+
+#: latepoint-pro-features.php:930
+msgid "Delete Blocked Period"
+msgstr "Διαγραφή αποκλεισμένης περιόδου"
+
+#: latepoint-pro-features.php:987
+msgid "Blocked Period"
+msgstr "Αποκλεισμένη περίοδος"
+
+#: latepoint-pro-features.php:1056
+msgid "Enable this feature by installing an appropriate addon."
+msgstr "Ενεργοποιήστε αυτήν τη λειτουργία εγκαθιστώντας το κατάλληλο πρόσθετο."
+
+#: latepoint-pro-features.php:1067
+msgid "Not applied to invoice"
+msgstr "Δεν εφαρμόζεται στο τιμολόγιο"
+
+#: latepoint-pro-features.php:1073
+#, php-format
+msgid "#%s"
+msgstr "#%s"
+
+#: latepoint-pro-features.php:1076
+msgid "Apply to Invoice"
+msgstr "Εφαρμογή στο τιμολόγιο"
+
+#: latepoint-pro-features.php:1081
+msgid "View Receipt"
+msgstr "Προβολή απόδειξης"
+
+#: latepoint-pro-features.php:1083
+msgid "View Invoice"
+msgstr "Προβολή τιμολογίου"
+
+#: latepoint-pro-features.php:1100
+#: lib/controllers/addons_controller.php:18
+msgid "Add-ons"
+msgstr "Πρόσθετα"
+
+#: latepoint-pro-features.php:1112
+msgid "Premium Features"
+msgstr "Premium λειτουργίες"
+
+#: latepoint-pro-features.php:1194
+msgid "Form Fields"
+msgstr "Πεδία φόρμας"
+
+#: latepoint-pro-features.php:1199
+msgid "Customer Fields"
+msgstr "Πεδία πελάτη"
+
+#: latepoint-pro-features.php:1204
+msgid "Booking Fields"
+msgstr "Πεδία κράτησης"
+
+#: latepoint-pro-features.php:1217
+#: latepoint-pro-features.php:1222
+#: lib/controllers/locations_controller.php:21
+#: lib/helpers/feature_locations_helper.php:70
+msgid "Locations"
+msgstr "Τοποθεσίες"
+
+#: latepoint-pro-features.php:1227
+msgid "Categories"
+msgstr "Κατηγορίες"
+
+#: latepoint-pro-features.php:1271
+msgid "Cart Settings"
+msgstr "Ρυθμίσεις καλαθιού"
+
+#: latepoint-pro-features.php:1274
+msgid "Disable Shopping Cart Functionality"
+msgstr "Απενεργοποίηση λειτουργίας καλαθιού αγορών"
+
+#: latepoint-pro-features.php:1274
+msgid "This will disable ability to book multiple services in one order"
+msgstr "Αυτό θα απενεργοποιήσει τη δυνατότητα κράτησης πολλαπλών υπηρεσιών σε μία παραγγελία"
+
+#: latepoint-pro-features.php:1275
+msgid "Reset Presets When Adding New Item"
+msgstr "Επαναφορά προεπιλογών κατά την προσθήκη νέου στοιχείου"
+
+#: latepoint-pro-features.php:1275
+msgid "This will reset presets settings when adding new item"
+msgstr "Αυτό θα επαναφέρει τις ρυθμίσεις προεπιλογών κατά την προσθήκη νέου στοιχείου"
+
+#: latepoint-pro-features.php:1286
+msgid "Assets Settings"
+msgstr "Ρυθμίσεις πόρων"
+
+#: latepoint-pro-features.php:1289
+msgid "Enable Assets Functionality"
+msgstr "Ενεργοποίηση λειτουργίας πόρων"
+
+#: latepoint-pro-features.php:1289
+msgid "Enable to use assets for managing booking availability. When disabled, assets will not affect booking availability"
+msgstr "Ενεργοποιήστε για να χρησιμοποιείτε πόρους για τη διαχείριση της διαθεσιμότητας κρατήσεων. Όταν είναι απενεργοποιημένο, οι πόροι δεν θα επηρεάζουν τη διαθεσιμότητα κρατήσεων"
+
+#: latepoint-pro-features.php:1490
+#: latepoint-pro-features.php:1503
+msgid "Are you sure you want to remove this file?"
+msgstr "Είστε βέβαιοι ότι θέλετε να αφαιρέσετε αυτό το αρχείο;"
+
+#: latepoint-pro-features.php:1491
+#: latepoint-pro-features.php:1504
+msgid "This file is required and cannot be removed, but you can replace it with a different file. Do you want to replace it?"
+msgstr "Αυτό το αρχείο είναι απαραίτητο και δεν μπορεί να αφαιρεθεί, αλλά μπορείτε να το αντικαταστήσετε με διαφορετικό αρχείο. Θέλετε να το αντικαταστήσετε;"
+
+#: latepoint-pro-features.php:1609
+msgid "Activate LatePoint"
+msgstr "Ενεργοποίηση LatePoint"
+
+#: latepoint-pro-features.php:1613
+msgid "Install LatePoint"
+msgstr "Εγκατάσταση LatePoint"
+
+#: latepoint-pro-features.php:1617
+#, php-format
+msgid "%1$sPRO Features for LatePoint%2$s plugin requires %1$sLatePoint%2$s core plugin installed & activated."
+msgstr "Το πρόσθετο %1$sPRO Features for LatePoint%2$s απαιτεί να είναι εγκατεστημένο και ενεργοποιημένο το βασικό πρόσθετο %1$sLatePoint%2$s."
+
+#: lib/controllers/addons_controller.php:37
+msgid "Addon \"Pro Features\" has been installed"
+msgstr "Το πρόσθετο \"Pro Features\" έχει εγκατασταθεί"
+
+#: lib/controllers/addons_controller.php:42
+msgid "Invalid license key. Activate in LatePoint settings."
+msgstr "Μη έγκυρο κλειδί άδειας χρήσης. Ενεργοποιήστε το στις ρυθμίσεις του LatePoint."
+
+#: lib/controllers/addons_controller.php:63
+msgid "You do not have permission to delete plugins."
+msgstr "Δεν έχετε άδεια να διαγράφετε πρόσθετα."
+
+#: lib/controllers/addons_controller.php:80
+msgid "Addon deleted"
+msgstr "Το πρόσθετο διαγράφηκε"
+
+#: lib/controllers/addons_controller.php:93
+msgid "You do not have permission to manage plugins."
+msgstr "Δεν έχετε άδεια να διαχειρίζεστε πρόσθετα."
+
+#: lib/controllers/addons_controller.php:108
+msgid "Addon deactivated"
+msgstr "Το πρόσθετο απενεργοποιήθηκε"
+
+#: lib/controllers/addons_controller.php:126
+msgid "You do not have permission to activate plugins."
+msgstr "Δεν έχετε άδεια να ενεργοποιείτε πρόσθετα."
+
+#: lib/controllers/addons_controller.php:141
+msgid "Addon activated"
+msgstr "Το πρόσθετο ενεργοποιήθηκε"
+
+#: lib/controllers/addons_controller.php:158
+msgid "You do not have permission to install plugins."
+msgstr "Δεν έχετε άδεια να εγκαθιστάτε πρόσθετα."
+
+#: lib/controllers/addons_controller.php:185
+msgid "Addon installed successfully."
+msgstr "Το πρόσθετο εγκαταστάθηκε με επιτυχία."
+
+#: lib/controllers/agents_controller.php:23
+#: lib/views/coupons/quick_edit.php:89
+#: lib/views/locations/_form.php:221
+msgid "Agents"
+msgstr "Πράκτορες"
+
+#: lib/controllers/agents_controller.php:35
+msgid "Index"
+msgstr "Ευρετήριο"
+
+#: lib/controllers/agents_controller.php:52
+#: lib/controllers/agents_controller.php:54
+#: lib/views/agents/index.php:66
+#: lib/views/agents/index.php:73
+#: lib/views/agents/quick_edit.php:14
+msgid "New Agent"
+msgstr "Νέος Πράκτορας"
+
+#: lib/controllers/agents_controller.php:136
+#: lib/controllers/agents_controller.php:138
+#: lib/views/agents/index.php:58
+#: lib/views/agents/quick_edit.php:16
+msgid "Edit Agent"
+msgstr "Επεξεργασία Πράκτορα"
+
+#: lib/controllers/agents_controller.php:214
+msgid "Agent Created. ID:"
+msgstr "Ο Πράκτορας δημιουργήθηκε. ID:"
+
+#: lib/controllers/agents_controller.php:222
+msgid "Agent Updated. ID:"
+msgstr "Ο Πράκτορας ενημερώθηκε. ID:"
+
+#: lib/controllers/agents_controller.php:277
+msgid "Agent Removed"
+msgstr "Ο Πράκτορας αφαιρέθηκε"
+
+#: lib/controllers/agents_controller.php:280
+#: lib/controllers/agents_controller.php:284
+msgid "Error Removing Agent"
+msgstr "Σφάλμα κατά την αφαίρεση του Πράκτορα"
+
+#: lib/controllers/agents_controller.php:325
+msgid "Error Accessing Agent"
+msgstr "Σφάλμα πρόσβασης στον Πράκτορα"
+
+#: lib/controllers/agents_controller.php:347
+#: lib/controllers/locations_controller.php:253
+msgid "Copy"
+msgstr "Αντιγραφή"
+
+#: lib/controllers/agents_controller.php:380
+#: lib/controllers/agents_controller.php:384
+msgid "Error Creating Agent"
+msgstr "Σφάλμα κατά τη δημιουργία του Πράκτορα"
+
+#: lib/controllers/assets_controller.php:39
+#: lib/controllers/assets_controller.php:41
+#: lib/views/assets/index.php:73
+msgid "New Asset"
+msgstr "Νέο Περιουσιακό Στοιχείο"
+
+#: lib/controllers/assets_controller.php:58
+#: lib/controllers/assets_controller.php:60
+#: lib/views/assets/index.php:66
+msgid "Edit Asset"
+msgstr "Επεξεργασία Περιουσιακού Στοιχείου"
+
+#: lib/controllers/assets_controller.php:90
+msgid "Asset Created. ID:"
+msgstr "Το Περιουσιακό Στοιχείο δημιουργήθηκε. ID:"
+
+#: lib/controllers/assets_controller.php:92
+msgid "Asset Updated. ID:"
+msgstr "Το Περιουσιακό Στοιχείο ενημερώθηκε. ID:"
+
+#: lib/controllers/assets_controller.php:117
+msgid "Asset Removed"
+msgstr "Το Περιουσιακό Στοιχείο αφαιρέθηκε"
+
+#: lib/controllers/assets_controller.php:120
+#: lib/controllers/assets_controller.php:124
+msgid "Error Removing Asset"
+msgstr "Σφάλμα κατά την αφαίρεση του Περιουσιακού Στοιχείου"
+
+#: lib/controllers/bundles_controller.php:24
+#: lib/views/coupons/quick_edit.php:125
+msgid "Bundles"
+msgstr "Πακέτα"
+
+#: lib/controllers/bundles_controller.php:36
+#: lib/controllers/bundles_controller.php:38
+#: lib/views/bundles/index.php:37
+msgid "Edit Bundle"
+msgstr "Επεξεργασία Πακέτου"
+
+#: lib/controllers/bundles_controller.php:60
+#: lib/controllers/bundles_controller.php:62
+#: lib/views/bundles/index.php:47
+#: lib/views/bundles/index.php:57
+msgid "New Bundle"
+msgstr "Νέο Πακέτο"
+
+#: lib/controllers/bundles_controller.php:124
+msgid "Bundle Created. ID:"
+msgstr "Το Πακέτο δημιουργήθηκε. ID:"
+
+#: lib/controllers/bundles_controller.php:132
+msgid "Bundle Updated. ID:"
+msgstr "Το Πακέτο ενημερώθηκε. ID:"
+
+#: lib/controllers/bundles_controller.php:171
+msgid "Bundle Removed"
+msgstr "Το Πακέτο αφαιρέθηκε"
+
+#: lib/controllers/bundles_controller.php:174
+#: lib/controllers/bundles_controller.php:178
+msgid "Error Removing Bundle"
+msgstr "Σφάλμα κατά την αφαίρεση του Πακέτου"
+
+#: lib/controllers/coupons_controller.php:22
+#: lib/helpers/feature_coupons_helper.php:131
+#: lib/views/coupons/index.php:8
+msgid "Coupons"
+msgstr "Κουπόνια"
+
+#: lib/controllers/coupons_controller.php:73
+#: lib/views/coupons/index.php:24
+#: lib/views/coupons/index.php:32
+#: lib/views/coupons/index.php:54
+msgid "ID"
+msgstr "ID"
+
+#: lib/controllers/coupons_controller.php:74
+#: lib/models/asset_model.php:22
+#: lib/models/service_extra_model.php:20
+#: lib/views/coupons/index.php:25
+#: lib/views/coupons/index.php:55
+#: lib/views/roles/_form.php:21
+msgid "Name"
+msgstr "Όνομα"
+
+#: lib/controllers/coupons_controller.php:75
+#: lib/views/coupons/index.php:26
+#: lib/views/coupons/index.php:56
+#: lib/views/coupons/quick_edit.php:51
+msgid "Code"
+msgstr "Κωδικός"
+
+#: lib/controllers/coupons_controller.php:76
+#: lib/views/coupons/index.php:27
+#: lib/views/coupons/index.php:57
+msgid "Discount"
+msgstr "Έκπτωση"
+
+#: lib/controllers/coupons_controller.php:77
+#: lib/views/agents/quick_edit.php:57
+#: lib/views/agents/_form.php:41
+#: lib/views/assets/_form.php:35
+#: lib/views/bundles/_form.php:30
+#: lib/views/coupons/index.php:28
+#: lib/views/coupons/index.php:58
+#: lib/views/coupons/quick_edit.php:62
+#: lib/views/locations/_form.php:18
+#: lib/views/service_extras/_form.php:31
+msgid "Status"
+msgstr "Κατάσταση"
+
+#: lib/controllers/coupons_controller.php:78
+#: lib/views/coupons/index.php:29
+#: lib/views/coupons/index.php:59
+msgid "Created On"
+msgstr "Δημιουργήθηκε στις"
+
+#: lib/controllers/coupons_controller.php:169
+msgid "Coupon Code was removed from your cart"
+msgstr "Ο κωδικός κουπονιού αφαιρέθηκε από το καλάθι σας"
+
+#: lib/controllers/coupons_controller.php:181
+msgid "Coupon Code was applied to your cart"
+msgstr "Ο κωδικός κουπονιού εφαρμόστηκε στο καλάθι σας"
+
+#: lib/controllers/coupons_controller.php:202
+msgid "Coupon Removed"
+msgstr "Το κουπόνι αφαιρέθηκε"
+
+#: lib/controllers/coupons_controller.php:205
+#: lib/controllers/coupons_controller.php:209
+msgid "Error Removing Coupon"
+msgstr "Σφάλμα κατά την αφαίρεση του κουπονιού"
+
+#: lib/controllers/coupons_controller.php:299
+#, php-format
+msgid "Coupon Updated ID: %s"
+msgstr "Το κουπόνι ενημερώθηκε ID: %s"
+
+#: lib/controllers/coupons_controller.php:299
+#, php-format
+msgid "Coupon Created ID: %s"
+msgstr "Το κουπόνι δημιουργήθηκε ID: %s"
+
+#: lib/controllers/custom_fields_controller.php:27
+#: lib/controllers/custom_fields_controller.php:291
+#: lib/helpers/feature_custom_fields_helper.php:402
+#: lib/helpers/feature_custom_fields_helper.php:671
+#: lib/views/custom_fields/for_customer.php:3
+msgid "Custom Fields"
+msgstr "Προσαρμοσμένα Πεδία"
+
+#: lib/controllers/custom_fields_controller.php:99
+#: lib/controllers/custom_fields_controller.php:126
+msgid "Field Removed"
+msgstr "Το πεδίο αφαιρέθηκε"
+
+#: lib/controllers/custom_fields_controller.php:102
+#: lib/controllers/custom_fields_controller.php:129
+#: lib/controllers/whatsapp_controller.php:28
+#: lib/controllers/whatsapp_controller.php:58
+msgid "Invalid Data"
+msgstr "Μη έγκυρα δεδομένα"
+
+#: lib/controllers/custom_fields_controller.php:106
+#: lib/controllers/custom_fields_controller.php:133
+msgid "Not Authorized"
+msgstr "Μη εξουσιοδοτημένο"
+
+#: lib/controllers/custom_fields_controller.php:153
+msgid "Custom Field Removed"
+msgstr "Το προσαρμοσμένο πεδίο αφαιρέθηκε"
+
+#: lib/controllers/custom_fields_controller.php:156
+msgid "Error Removing Custom Field"
+msgstr "Σφάλμα κατά την αφαίρεση του προσαρμοσμένου πεδίου"
+
+#: lib/controllers/custom_fields_controller.php:160
+msgid "Invalid Field ID"
+msgstr "Μη έγκυρο ID πεδίου"
+
+#: lib/controllers/custom_fields_controller.php:202
+#: lib/controllers/custom_fields_controller.php:237
+#: lib/controllers/roles_controller.php:159
+#: lib/controllers/taxes_controller.php:67
+#: lib/controllers/webhooks_controller.php:75
+msgid "Invalid params"
+msgstr "Μη έγκυρες παράμετροι"
+
+#: lib/controllers/custom_fields_controller.php:228
+msgid "Custom Field Saved"
+msgstr "Το προσαρμοσμένο πεδίο αποθηκεύτηκε"
+
+#: lib/controllers/custom_fields_controller.php:231
+msgid "Error Saving Custom Field"
+msgstr "Σφάλμα κατά την αποθήκευση του προσαρμοσμένου πεδίου"
+
+#: lib/controllers/custom_fields_controller.php:264
+#: lib/controllers/taxes_controller.php:91
+msgid "Order Updated"
+msgstr "Η παραγγελία ενημερώθηκε"
+
+#: lib/controllers/custom_fields_controller.php:267
+msgid "Error Updating Order of Custom Fields"
+msgstr "Σφάλμα κατά την ενημέρωση της σειράς των προσαρμοσμένων πεδίων"
+
+#: lib/controllers/debug_controller.php:17
+msgid "LatePoint Status"
+msgstr "Κατάσταση LatePoint"
+
+#: lib/controllers/debug_controller.php:28
+#: lib/controllers/debug_controller.php:42
+msgid "DB Version was reset"
+msgstr "Η έκδοση της βάσης δεδομένων επαναφέρθηκε"
+
+#: lib/controllers/locations_controller.php:35
+#: lib/controllers/locations_controller.php:37
+#: lib/views/locations/_location_index_item.php:35
+msgid "Edit Location"
+msgstr "Επεξεργασία Τοποθεσίας"
+
+#: lib/controllers/locations_controller.php:75
+#: lib/controllers/locations_controller.php:77
+#: lib/controllers/location_categories_controller.php:42
+#: lib/controllers/location_categories_controller.php:44
+msgid "Create New Location"
+msgstr "Δημιουργία Νέας Τοποθεσίας"
+
+#: lib/controllers/locations_controller.php:171
+msgid "Location Created. ID:"
+msgstr "Η Τοποθεσία δημιουργήθηκε. ID:"
+
+#: lib/controllers/locations_controller.php:179
+msgid "Location Updated. ID:"
+msgstr "Η Τοποθεσία ενημερώθηκε. ID:"
+
+#: lib/controllers/locations_controller.php:221
+msgid "Location Removed"
+msgstr "Η Τοποθεσία αφαιρέθηκε"
+
+#: lib/controllers/locations_controller.php:224
+#: lib/controllers/locations_controller.php:228
+msgid "Error Removing Location"
+msgstr "Σφάλμα κατά την αφαίρεση της Τοποθεσίας"
+
+#: lib/controllers/locations_controller.php:285
+#: lib/controllers/locations_controller.php:289
+msgid "Error Creating Location"
+msgstr "Σφάλμα κατά τη δημιουργία της Τοποθεσίας"
+
+#: lib/controllers/location_categories_controller.php:21
+msgid "Location Categories"
+msgstr "Κατηγορίες Τοποθεσιών"
+
+#: lib/controllers/location_categories_controller.php:75
+msgid "Not categorized"
+msgstr "Χωρίς κατηγορία"
+
+#: lib/controllers/location_categories_controller.php:121
+msgid "Location Category Removed"
+msgstr "Η κατηγορία τοποθεσίας αφαιρέθηκε"
+
+#: lib/controllers/location_categories_controller.php:124
+msgid "Error Removing Location Category. Error: FJI8321"
+msgstr "Σφάλμα κατά την αφαίρεση της κατηγορίας τοποθεσίας. Σφάλμα: FJI8321"
+
+#: lib/controllers/location_categories_controller.php:128
+msgid "Error Removing Location Category. Error: SIF2348"
+msgstr "Σφάλμα κατά την αφαίρεση της κατηγορίας τοποθεσίας. Σφάλμα: SIF2348"
+
+#: lib/controllers/location_categories_controller.php:149
+msgid "Location Order Updated"
+msgstr "Η σειρά των τοποθεσιών ενημερώθηκε"
+
+#: lib/controllers/location_categories_controller.php:163
+msgid "Location Categories Order Updated"
+msgstr "Η σειρά των κατηγοριών τοποθεσιών ενημερώθηκε"
+
+#: lib/controllers/location_categories_controller.php:192
+msgid "Location Category Created."
+msgstr "Η κατηγορία τοποθεσίας δημιουργήθηκε."
+
+#: lib/controllers/location_categories_controller.php:219
+msgid "Location Category Updated. ID: "
+msgstr "Η κατηγορία τοποθεσίας ενημερώθηκε. ID:"
+
+#: lib/controllers/location_categories_controller.php:227
+msgid "Error Updating Location (Invalid ID)"
+msgstr "Σφάλμα κατά την ενημέρωση της τοποθεσίας (Μη έγκυρο ID)"
+
+#: lib/controllers/messages_controller.php:25
+#: lib/controllers/messages_controller.php:27
+#: lib/helpers/feature_messages_helper.php:17
+#: lib/helpers/feature_messages_helper.php:89
+msgid "Messages"
+msgstr "Μηνύματα"
+
+#: lib/controllers/messages_controller.php:241
+msgid "Success"
+msgstr "Επιτυχία"
+
+#: lib/controllers/messages_controller.php:244
+#: lib/controllers/messages_controller.php:248
+msgid "Error sending message. Try again later."
+msgstr "Σφάλμα κατά την αποστολή του μηνύματος. Δοκιμάστε ξανά αργότερα."
+
+#: lib/controllers/reminders_controller.php:23
+#: lib/controllers/reminders_controller.php:25
+msgid "Reminders"
+msgstr "Υπενθυμίσεις"
+
+#: lib/controllers/roles_controller.php:21
+msgid "Roles"
+msgstr "Ρόλοι"
+
+#: lib/controllers/roles_controller.php:30
+#: lib/controllers/roles_controller.php:194
+msgid "You do not have permission to edit users."
+msgstr "Δεν έχετε άδεια να επεξεργάζεστε χρήστες."
+
+#: lib/controllers/roles_controller.php:36
+msgid "Invalid User ID"
+msgstr "Μη έγκυρο ID χρήστη"
+
+#: lib/controllers/roles_controller.php:79
+msgid "User Roles Updated"
+msgstr "Οι ρόλοι χρήστη ενημερώθηκαν"
+
+#: lib/controllers/roles_controller.php:95
+#: lib/controllers/roles_controller.php:130
+msgid "You do not have permission to manage roles."
+msgstr "Δεν έχετε άδεια να διαχειρίζεστε ρόλους."
+
+#: lib/controllers/roles_controller.php:106
+msgid "Role Removed"
+msgstr "Ο ρόλος αφαιρέθηκε"
+
+#: lib/controllers/roles_controller.php:109
+msgid "Error Removing Role"
+msgstr "Σφάλμα κατά την αφαίρεση του ρόλου"
+
+#: lib/controllers/roles_controller.php:113
+msgid "Invalid Role"
+msgstr "Μη έγκυρος ρόλος"
+
+#: lib/controllers/roles_controller.php:155
+msgid "Custom Role saved"
+msgstr "Ο προσαρμοσμένος ρόλος αποθηκεύτηκε"
+
+#: lib/controllers/service_categories_controller.php:22
+#: lib/controllers/service_categories_controller.php:25
+msgid "Service Categories"
+msgstr "Κατηγορίες Υπηρεσιών"
+
+#: lib/controllers/service_categories_controller.php:46
+#: lib/controllers/service_categories_controller.php:48
+msgid "Create New Service"
+msgstr "Δημιουργία Νέας Υπηρεσίας"
+
+#: lib/controllers/service_categories_controller.php:79
+#: lib/views/locations/index.php:3
+msgid "Uncategorized"
+msgstr "Χωρίς κατηγορία"
+
+#: lib/controllers/service_categories_controller.php:117
+msgid "Service Category Removed"
+msgstr "Η κατηγορία υπηρεσίας αφαιρέθηκε"
+
+#: lib/controllers/service_categories_controller.php:120
+msgid "Error Removing Service Category. Error: FJI8321"
+msgstr "Σφάλμα κατά την αφαίρεση της κατηγορίας υπηρεσίας. Σφάλμα: FJI8321"
+
+#: lib/controllers/service_categories_controller.php:124
+msgid "Error Removing Service Category. Error: SIF2348"
+msgstr "Σφάλμα κατά την αφαίρεση της κατηγορίας υπηρεσίας. Σφάλμα: SIF2348"
+
+#: lib/controllers/service_categories_controller.php:145
+msgid "Service Order Updated"
+msgstr "Η σειρά των υπηρεσιών ενημερώθηκε"
+
+#: lib/controllers/service_categories_controller.php:159
+msgid "Service Categories Order Updated"
+msgstr "Η σειρά των κατηγοριών υπηρεσιών ενημερώθηκε"
+
+#: lib/controllers/service_categories_controller.php:188
+msgid "Service Category Created. ID: "
+msgstr "Η κατηγορία υπηρεσίας δημιουργήθηκε. ID:"
+
+#: lib/controllers/service_categories_controller.php:215
+msgid "Service Category Updated. ID: "
+msgstr "Η κατηγορία υπηρεσίας ενημερώθηκε. ID:"
+
+#: lib/controllers/service_categories_controller.php:222
+msgid "Invalid Service Category ID"
+msgstr "Μη έγκυρο ID κατηγορίας υπηρεσίας"
+
+#: lib/controllers/service_durations_controller.php:18
+#: lib/controllers/service_durations_controller.php:20
+#: lib/helpers/feature_service_durations_helper.php:88
+msgid "Service Durations"
+msgstr "Διάρκειες Υπηρεσιών"
+
+#: lib/controllers/service_extras_controller.php:56
+#: lib/controllers/service_extras_controller.php:58
+msgid "Edit Service Extra"
+msgstr "Επεξεργασία Επιπλέον Υπηρεσίας"
+
+#: lib/controllers/service_extras_controller.php:78
+#: lib/controllers/service_extras_controller.php:80
+#: lib/views/service_extras/index.php:40
+msgid "New Service Extra"
+msgstr "Νέο Επιπλέον Υπηρεσίας"
+
+#: lib/controllers/service_extras_controller.php:129
+msgid "Service Extra Created. ID:"
+msgstr "Το Επιπλέον Υπηρεσίας δημιουργήθηκε. ID:"
+
+#: lib/controllers/service_extras_controller.php:131
+msgid "Service Extra Updated. ID:"
+msgstr "Υπηρεσία Extra ενημερώθηκε. ID:"
+
+#: lib/controllers/service_extras_controller.php:160
+msgid "Service Extra Removed"
+msgstr "Η Υπηρεσία Extra αφαιρέθηκε"
+
+#: lib/controllers/service_extras_controller.php:163
+#: lib/controllers/service_extras_controller.php:167
+msgid "Error Removing Service Extra"
+msgstr "Σφάλμα κατά την αφαίρεση της Υπηρεσίας Extra"
+
+#: lib/controllers/taxes_controller.php:20
+#: lib/views/taxes/index.php:1
+msgid "Taxes"
+msgstr "Φόροι"
+
+#: lib/controllers/taxes_controller.php:30
+msgid "Tax Removed"
+msgstr "Ο φόρος αφαιρέθηκε"
+
+#: lib/controllers/taxes_controller.php:33
+msgid "Error Removing Tax"
+msgstr "Σφάλμα κατά την αφαίρεση του φόρου"
+
+#: lib/controllers/taxes_controller.php:37
+msgid "Invalid Tax ID"
+msgstr "Μη έγκυρο Tax ID"
+
+#: lib/controllers/taxes_controller.php:63
+msgid "Taxes saved"
+msgstr "Οι φόροι αποθηκεύτηκαν"
+
+#: lib/controllers/taxes_controller.php:94
+msgid "Error Updating Order of Taxes"
+msgstr "Σφάλμα κατά την ενημέρωση της σειράς των φόρων"
+
+#: lib/controllers/timezone_selector_controller.php:18
+#: lib/controllers/timezone_selector_controller.php:20
+msgid "Timezone Selector"
+msgstr "Επιλογέας ζώνης ώρας"
+
+#: lib/controllers/timezone_selector_controller.php:38
+msgid "Timezone Updated"
+msgstr "Η ζώνη ώρας ενημερώθηκε"
+
+#: lib/controllers/updates_controller.php:46
+msgid "License Deactivated"
+msgstr "Η άδεια απενεργοποιήθηκε"
+
+#: lib/controllers/webhooks_controller.php:18
+#: lib/controllers/webhooks_controller.php:20
+msgid "Webhooks"
+msgstr "Webhooks"
+
+#: lib/controllers/webhooks_controller.php:34
+msgid "Webhook Removed"
+msgstr "Το Webhook αφαιρέθηκε"
+
+#: lib/controllers/webhooks_controller.php:37
+msgid "Error Removing Webhook"
+msgstr "Σφάλμα κατά την αφαίρεση του Webhook"
+
+#: lib/controllers/webhooks_controller.php:41
+msgid "Invalid Hook ID"
+msgstr "Μη έγκυρο Hook ID"
+
+#: lib/controllers/webhooks_controller.php:66
+msgid "Webhook Saved"
+msgstr "Το Webhook αποθηκεύτηκε"
+
+#: lib/controllers/webhooks_controller.php:69
+msgid "Error Saving Webhook"
+msgstr "Σφάλμα κατά την αποθήκευση του Webhook"
+
+#: lib/controllers/whatsapp_controller.php:18
+msgid "Whatsapp"
+msgstr "Whatsapp"
+
+#: lib/controllers/whatsapp_controller.php:66
+#, php-format
+msgid "No templates found in your WhatsApp account. %s to learn how to setup WhatsApp connection and add templates."
+msgstr "Δεν βρέθηκαν πρότυπα στον λογαριασμό σας WhatsApp. %s για να μάθετε πώς να ρυθμίσετε τη σύνδεση WhatsApp και να προσθέσετε πρότυπα."
+
+#: lib/controllers/whatsapp_controller.php:93
+#, php-format
+msgid "You can use %s as values for the fields below. Make sure to read %s on how to set up your WhatsApp integration."
+msgstr "Μπορείτε να χρησιμοποιήσετε το %s ως τιμές για τα παρακάτω πεδία. Φροντίστε να διαβάσετε το %s για το πώς να ρυθμίσετε την ενσωμάτωση WhatsApp."
+
+#: lib/controllers/whatsapp_controller.php:93
+msgid "Smart Variables"
+msgstr "Έξυπνες Μεταβλητές"
+
+#: lib/controllers/whatsapp_controller.php:93
+msgid "this article"
+msgstr "αυτό το άρθρο"
+
+#: lib/controllers/whatsapp_controller.php:98
+msgid "To Phone Number"
+msgstr "Προς Αριθμό Τηλεφώνου"
+
+#: lib/controllers/whatsapp_controller.php:102
+#: lib/views/agents/quick_edit.php:49
+#: lib/views/agents/_form.php:36
+msgid "Phone Number"
+msgstr "Αριθμός Τηλεφώνου"
+
+#: lib/controllers/whatsapp_controller.php:109
+msgid "Template"
+msgstr "Πρότυπο"
+
+#: lib/helpers/addons_helper.php:63
+msgid "Connection Error. Please try again in a few minutes or contact us via email addons@latepoint.com. KLJSD734"
+msgstr "Σφάλμα σύνδεσης. Παρακαλώ δοκιμάστε ξανά σε λίγα λεπτά ή επικοινωνήστε μαζί μας μέσω email addons@latepoint.com. KLJSD734"
+
+#. translators: 1: bold open tag, 2: bold close tag, 3: current Pro version, 4: required Pro version
+#: lib/helpers/addons_helper.php:120
+#, php-format
+msgid "You are using an older version of the %1$sLatePoint Pro Features%2$s plugin (v%3$s). Please update the %1$sLatePoint Pro Features%2$s plugin to version %1$s%4$s or later%2$s."
+msgstr "Χρησιμοποιείτε παλαιότερη έκδοση του πρόσθετου %1$sLatePoint Pro Features%2$s (v%3$s). Παρακαλώ ενημερώστε το πρόσθετο %1$sLatePoint Pro Features%2$s στην έκδοση %1$s%4$s ή νεότερη%2$s."
+
+#: lib/helpers/addons_helper.php:170
+msgid "Unable to install addon. Invalid info (KFE73463)"
+msgstr "Δεν ήταν δυνατή η εγκατάσταση του πρόσθετου. Μη έγκυρες πληροφορίες (KFE73463)"
+
+#: lib/helpers/coupons_helper.php:24
+msgid "Total booking price: "
+msgstr "Συνολική τιμή κράτησης:"
+
+#: lib/helpers/coupons_helper.php:27
+msgid "Deposit Amount: "
+msgstr "Ποσό προκαταβολής:"
+
+#: lib/helpers/coupons_helper.php:33
+#: lib/helpers/feature_coupons_helper.php:203
+msgid "Have a coupon code?"
+msgstr "Έχετε κωδικό κουπονιού;"
+
+#: lib/helpers/coupons_helper.php:35
+#: lib/helpers/feature_coupons_helper.php:205
+msgid "Enter Code..."
+msgstr "Εισαγάγετε κωδικό..."
+
+#: lib/helpers/coupons_helper.php:36
+msgid "OK"
+msgstr "OK"
+
+#: lib/helpers/coupons_helper.php:62
+msgid "Invalid coupon code."
+msgstr "Μη έγκυρος κωδικός κουπονιού."
+
+#: lib/helpers/coupons_helper.php:93
+#: lib/helpers/coupons_helper.php:106
+#: lib/helpers/coupons_helper.php:117
+#: lib/helpers/coupons_helper.php:154
+#: lib/helpers/coupons_helper.php:158
+#: lib/helpers/coupons_helper.php:162
+#: lib/helpers/coupons_helper.php:253
+msgid "This coupon code is invalid or has expired"
+msgstr "Αυτός ο κωδικός κουπονιού είναι μη έγκυρος ή έχει λήξει"
+
+#. translators: %s: formatted minimum order subtotal
+#: lib/helpers/coupons_helper.php:173
+#, php-format
+msgid "This coupon requires a minimum order total of %s"
+msgstr "Αυτό το κουπόνι απαιτεί ελάχιστο συνολικό ποσό παραγγελίας %s"
+
+#: lib/helpers/coupons_helper.php:188
+#, php-format
+msgid "This coupon can only be used %d times"
+msgstr "Αυτό το κουπόνι μπορεί να χρησιμοποιηθεί μόνο %d φορές"
+
+#: lib/helpers/coupons_helper.php:195
+#: lib/helpers/coupons_helper.php:217
+#: lib/helpers/coupons_helper.php:234
+msgid "Customer is missing"
+msgstr "Λείπει ο πελάτης"
+
+#: lib/helpers/coupons_helper.php:209
+msgid "This coupon can only be used once per customer."
+msgid_plural "This coupon is limited to %d uses per customer"
+msgstr[0] "Αυτό το κουπόνι μπορεί να χρησιμοποιηθεί μόνο μία φορά ανά πελάτη."
+msgstr[1] ""
+
+#: lib/helpers/coupons_helper.php:226
+#, php-format
+msgid "You need to have at least %d orders to use this coupon"
+msgstr "Πρέπει να έχετε τουλάχιστον %d παραγγελίες για να χρησιμοποιήσετε αυτό το κουπόνι"
+
+#: lib/helpers/coupons_helper.php:244
+msgid "This coupon can only be applied on your first order"
+msgstr "Αυτό το κουπόνι μπορεί να εφαρμοστεί μόνο στην πρώτη σας παραγγελία"
+
+#: lib/helpers/coupons_helper.php:246
+#, php-format
+msgid "This coupon can only be applied on your first %d orders"
+msgstr "Αυτό το κουπόνι μπορεί να εφαρμοστεί μόνο στις πρώτες %d παραγγελίες σας"
+
+#: lib/helpers/coupons_helper.php:265
+#: lib/views/addons/load_addons_list.php:100
+#: lib/views/agents/quick_edit.php:57
+#: lib/views/agents/_form.php:41
+#: lib/views/assets/_form.php:37
+#: lib/views/bundles/_form.php:30
+#: lib/views/locations/_form.php:18
+#: lib/views/service_extras/_form.php:31
+#: lib/views/webhooks/_webhook_form.php:40
+msgid "Active"
+msgstr "Ενεργό"
+
+#: lib/helpers/coupons_helper.php:266
+#: lib/views/agents/quick_edit.php:58
+#: lib/views/agents/_form.php:42
+#: lib/views/agents/_form.php:136
+#: lib/views/assets/_form.php:38
+#: lib/views/bundles/_form.php:30
+#: lib/views/locations/_form.php:19
+#: lib/views/service_extras/_form.php:31
+#: lib/views/webhooks/_webhook_form.php:41
+msgid "Disabled"
+msgstr "Απενεργοποιημένο"
+
+#: lib/helpers/coupons_helper.php:302
+msgid "Undefined Status"
+msgstr "Απροσδιόριστη Κατάσταση"
+
+#: lib/helpers/coupons_helper.php:309
+#: lib/helpers/coupons_helper.php:330
+#: lib/helpers/coupons_helper.php:337
+#: lib/helpers/feature_timezone_helper.php:14
+#: lib/views/coupons/quick_edit.php:41
+msgid "n/a"
+msgstr "μη διαθέσιμο"
+
+#: lib/helpers/custom_fields_helper.php:37
+msgid "Text Field"
+msgstr "Πεδίο Κειμένου"
+
+#: lib/helpers/custom_fields_helper.php:38
+msgid "Phone Number Field"
+msgstr "Πεδίο Αριθμού Τηλεφώνου"
+
+#: lib/helpers/custom_fields_helper.php:39
+msgid "Number Field"
+msgstr "Πεδίο Αριθμού"
+
+#: lib/helpers/custom_fields_helper.php:40
+msgid "Hidden Field"
+msgstr "Κρυφό Πεδίο"
+
+#: lib/helpers/custom_fields_helper.php:41
+msgid "Select Box"
+msgstr "Πλαίσιο Επιλογής"
+
+#: lib/helpers/custom_fields_helper.php:42
+msgid "Multiple Selectable Options"
+msgstr "Πολλαπλές Επιλογές"
+
+#: lib/helpers/custom_fields_helper.php:43
+msgid "Text Area Field"
+msgstr "Πεδίο Περιοχής Κειμένου"
+
+#: lib/helpers/custom_fields_helper.php:44
+msgid "Checkbox"
+msgstr "Πλαίσιο Ελέγχου"
+
+#: lib/helpers/custom_fields_helper.php:45
+msgid "Google Address Autocomplete"
+msgstr "Αυτόματη Συμπλήρωση Διεύθυνσης Google"
+
+#: lib/helpers/custom_fields_helper.php:46
+msgid "File Upload"
+msgstr "Μεταφόρτωση Αρχείου"
+
+#: lib/helpers/custom_fields_helper.php:79
+msgid "Enter Field Default Value"
+msgstr "Εισαγάγετε την προεπιλεγμένη τιμή του πεδίου"
+
+#: lib/helpers/custom_fields_helper.php:120
+msgid "No Restrictions"
+msgstr "Χωρίς Περιορισμούς"
+
+#: lib/helpers/custom_fields_helper.php:360
+msgid "Field Label cannot be empty"
+msgstr "Η ετικέτα του πεδίου δεν μπορεί να είναι κενή"
+
+#: lib/helpers/custom_fields_helper.php:363
+msgid "Type cannot be empty"
+msgstr "Ο τύπος δεν μπορεί να είναι κενός"
+
+#: lib/helpers/custom_fields_helper.php:367
+msgid "Options for select box cannot be blank"
+msgstr "Οι επιλογές για το πλαίσιο επιλογής δεν μπορούν να είναι κενές"
+
+#: lib/helpers/custom_fields_helper.php:388
+#, php-format
+msgid "%s field must be checked"
+msgstr "Το πεδίο %s πρέπει να είναι επιλεγμένο"
+
+#: lib/helpers/custom_fields_helper.php:399
+#, php-format
+msgid "%s must be attached"
+msgstr "Το %s πρέπει να επισυναφθεί"
+
+#: lib/helpers/custom_fields_helper.php:412
+#, php-format
+msgid "%s file type is not supported."
+msgstr "Ο τύπος αρχείου %s δεν υποστηρίζεται."
+
+#: lib/helpers/custom_fields_helper.php:424
+#, php-format
+msgid "%s cannot be blank"
+msgstr "%s δεν μπορεί να είναι κενό"
+
+#: lib/helpers/custom_fields_helper.php:465
+#: lib/helpers/feature_recurring_bookings_helper.php:31
+msgid "Yes"
+msgstr "Ναι"
+
+#: lib/helpers/custom_fields_helper.php:465
+#: lib/helpers/feature_recurring_bookings_helper.php:32
+msgid "No"
+msgstr "Όχι"
+
+#: lib/helpers/custom_fields_helper.php:483
+#: lib/views/bundles/index.php:20
+#: lib/views/messages/messages_with_info_for_booking.php:76
+msgid "Service"
+msgstr "Υπηρεσία"
+
+#: lib/helpers/custom_fields_helper.php:484
+#: lib/views/messages/messages_with_info_for_booking.php:74
+msgid "Agent"
+msgstr "Πράκτορας"
+
+#: lib/helpers/custom_fields_helper.php:513
+msgid "is equal to"
+msgstr "είναι ίσο με"
+
+#: lib/helpers/custom_fields_helper.php:514
+msgid "is not equal to"
+msgstr "δεν είναι ίσο με"
+
+#: lib/helpers/custom_fields_helper.php:527
+msgid "AND"
+msgstr "ΚΑΙ"
+
+#: lib/helpers/feature_assets_helper.php:52
+#: lib/helpers/feature_service_extras_helper.php:454
+#: lib/views/agents/quick_edit.php:102
+#: lib/views/agents/_form.php:96
+#: lib/views/assets/_form.php:54
+#: lib/views/assets/_form.php:87
+#: lib/views/locations/_form.php:44
+#: lib/views/service_extras/_form.php:58
+msgid "Select All"
+msgstr "Επιλογή Όλων"
+
+#: lib/helpers/feature_assets_helper.php:68
+#, php-format
+msgid "Qty: %d"
+msgstr "Ποσότητα: %d"
+
+#: lib/helpers/feature_assets_helper.php:76
+msgid "You have not created any assets yet."
+msgstr "Δεν έχετε δημιουργήσει ακόμη κανένα στοιχείο."
+
+#: lib/helpers/feature_cloudflare_turnstile_helper.php:37
+#: lib/helpers/feature_cloudflare_turnstile_helper.php:43
+#: lib/helpers/feature_cloudflare_turnstile_helper.php:65
+#: lib/helpers/feature_cloudflare_turnstile_helper.php:71
+#: lib/helpers/feature_cloudflare_turnstile_helper.php:79
+#: lib/helpers/feature_cloudflare_turnstile_helper.php:85
+#: lib/helpers/feature_cloudflare_turnstile_helper.php:91
+msgid "Verification Error."
+msgstr "Σφάλμα επαλήθευσης."
+
+#: lib/helpers/feature_cloudflare_turnstile_helper.php:42
+msgid "Invalid secret key for cloudflare."
+msgstr "Μη έγκυρο μυστικό κλειδί για το cloudflare."
+
+#: lib/helpers/feature_cloudflare_turnstile_helper.php:78
+msgid "Turnstile: Invalid JSON response from API"
+msgstr "Turnstile: Μη έγκυρη απάντηση JSON από το API"
+
+#: lib/helpers/feature_cloudflare_turnstile_helper.php:112
+msgid "Verifying that you are not a robot..."
+msgstr "Επαλήθευση ότι δεν είστε ρομπότ..."
+
+#: lib/helpers/feature_cloudflare_turnstile_helper.php:133
+msgid "Cloudflare Turnstile will not work as required keys are empty. Please provide both Site Key and Secret Key."
+msgstr "Το Cloudflare Turnstile δεν θα λειτουργήσει επειδή τα απαιτούμενα κλειδιά είναι κενά. Παρακαλώ δώστε τόσο το Site Key όσο και το Secret Key."
+
+#: lib/helpers/feature_cloudflare_turnstile_helper.php:142
+msgid "Log Customer IP Address for Orders"
+msgstr "Καταγραφή διεύθυνσης IP πελάτη για παραγγελίες"
+
+#: lib/helpers/feature_cloudflare_turnstile_helper.php:142
+msgid "If enabled, will save IP Address of a customer and you can view it under order log"
+msgstr "Αν ενεργοποιηθεί, θα αποθηκεύεται η διεύθυνση IP ενός πελάτη και θα μπορείτε να τη δείτε στο αρχείο καταγραφής παραγγελιών"
+
+#: lib/helpers/feature_cloudflare_turnstile_helper.php:143
+msgid "Enable Cloudflare Turnstile CAPTCHA"
+msgstr "Ενεργοποίηση CAPTCHA Cloudflare Turnstile"
+
+#: lib/helpers/feature_cloudflare_turnstile_helper.php:143
+msgid "Enable Captcha alternative from Cloudflare called Turnstile."
+msgstr "Ενεργοποίηση της εναλλακτικής CAPTCHA από την Cloudflare που ονομάζεται Turnstile."
+
+#: lib/helpers/feature_cloudflare_turnstile_helper.php:145
+msgid "Turnstile Site Key"
+msgstr "Κλειδί ιστότοπου Turnstile"
+
+#: lib/helpers/feature_cloudflare_turnstile_helper.php:146
+msgid "Turnstile Secret Key"
+msgstr "Μυστικό κλειδί Turnstile"
+
+#: lib/helpers/feature_coupons_helper.php:10
+msgid "Coupon Code:"
+msgstr "Κωδικός κουπονιού:"
+
+#: lib/helpers/feature_coupons_helper.php:11
+msgid "Coupon Discount:"
+msgstr "Έκπτωση κουπονιού:"
+
+#: lib/helpers/feature_coupons_helper.php:181
+msgid "Coupon Settings"
+msgstr "Ρυθμίσεις κουπονιού"
+
+#: lib/helpers/feature_coupons_helper.php:183
+msgid "Hide coupon field"
+msgstr "Απόκρυψη πεδίου κουπονιού"
+
+#: lib/helpers/feature_coupons_helper.php:183
+msgid "Hides field to enter coupons"
+msgstr "Αποκρύπτει το πεδίο εισαγωγής κουπονιών"
+
+#: lib/helpers/feature_coupons_helper.php:206
+msgid "Apply"
+msgstr "Εφαρμογή"
+
+#: lib/helpers/feature_coupons_helper.php:207
+#: lib/views/agents/modal_list.php:14
+#: lib/views/location_categories/_form.php:22
+#: lib/views/service_categories/_form.php:22
+msgid "Cancel"
+msgstr "Ακύρωση"
+
+#: lib/helpers/feature_coupons_helper.php:210
+msgid "Applied Coupon:"
+msgstr "Εφαρμοσμένο κουπόνι:"
+
+#: lib/helpers/feature_coupons_helper.php:240
+msgid "Use Coupon"
+msgstr "Χρήση κουπονιού"
+
+#: lib/helpers/feature_coupons_helper.php:249
+#: lib/helpers/feature_coupons_helper.php:289
+#: lib/helpers/feature_coupons_helper.php:297
+#: lib/models/coupon_model.php:20
+msgid "Coupon Code"
+msgstr "Κωδικός κουπονιού"
+
+#: lib/helpers/feature_coupons_helper.php:253
+msgid "apply"
+msgstr "εφαρμογή"
+
+#: lib/helpers/feature_coupons_helper.php:268
+msgid "Coupon"
+msgstr "Κουπόνι"
+
+#: lib/helpers/feature_coupons_helper.php:290
+#: lib/helpers/feature_coupons_helper.php:298
+msgid "Coupon Discount"
+msgstr "Έκπτωση κουπονιού"
+
+#: lib/helpers/feature_custom_fields_helper.php:135
+#: lib/helpers/feature_custom_fields_helper.php:143
+msgid "Customer/"
+msgstr "Πελάτης/"
+
+#: lib/helpers/feature_custom_fields_helper.php:138
+msgid "Booking/"
+msgstr "Κράτηση/"
+
+#: lib/helpers/feature_custom_fields_helper.php:154
+msgid "Google Places API"
+msgstr "Google Places API"
+
+#: lib/helpers/feature_custom_fields_helper.php:157
+msgid "In order for address autocomplete to work, you need an API key. To learn how to create an API key for Google Places API"
+msgstr "Για να λειτουργεί η αυτόματη συμπλήρωση διεύθυνσης, χρειάζεστε ένα κλειδί API. Για να μάθετε πώς να δημιουργήσετε ένα κλειδί API για το Google Places API"
+
+#: lib/helpers/feature_custom_fields_helper.php:157
+msgid "click here"
+msgstr "κάντε κλικ εδώ"
+
+#: lib/helpers/feature_custom_fields_helper.php:159
+msgid "Google Places API key"
+msgstr "κλειδί API Google Places"
+
+#: lib/helpers/feature_custom_fields_helper.php:160
+msgid "Country Restriction"
+msgstr "Περιορισμός χώρας"
+
+#: lib/helpers/feature_custom_fields_helper.php:675
+msgid "For Customer:"
+msgstr "Για πελάτη:"
+
+#: lib/helpers/feature_custom_fields_helper.php:681
+msgid "For Booking:"
+msgstr "Για κράτηση:"
+
+#: lib/helpers/feature_custom_fields_helper.php:746
+msgid "You have not created any custom fields for booking, this step will be skipped"
+msgstr "Δεν έχετε δημιουργήσει προσαρμοσμένα πεδία για την κράτηση, αυτό το βήμα θα παραλειφθεί"
+
+#: lib/helpers/feature_custom_fields_helper.php:774
+msgid "Custom Fields for Booking"
+msgstr "Προσαρμοσμένα πεδία για κράτηση"
+
+#: lib/helpers/feature_group_bookings_helper.php:69
+#: lib/helpers/feature_group_bookings_helper.php:226
+#: lib/helpers/feature_group_bookings_helper.php:264
+#: lib/helpers/feature_group_bookings_helper.php:352
+#: lib/helpers/feature_group_bookings_helper.php:366
+msgid "Total Attendees"
+msgstr "Σύνολο συμμετεχόντων"
+
+#: lib/helpers/feature_group_bookings_helper.php:138
+msgid "Capacity:"
+msgstr "Χωρητικότητα:"
+
+#: lib/helpers/feature_group_bookings_helper.php:140
+msgid "person"
+msgstr "άτομο"
+
+#: lib/helpers/feature_group_bookings_helper.php:149
+msgid "Multiply cost of this service extra by number of attendees"
+msgstr "Πολλαπλασιάστε το επιπλέον κόστος αυτής της υπηρεσίας με τον αριθμό των συμμετεχόντων"
+
+#: lib/helpers/feature_group_bookings_helper.php:233
+#: lib/views/bundles/_form.php:105
+msgid "Attendees"
+msgstr "Συμμετέχοντες"
+
+#: lib/helpers/feature_group_bookings_helper.php:234
+#, php-format
+msgid "%s person"
+msgid_plural "%s people"
+msgstr[0] "%s άτομο"
+msgstr[1] ""
+
+#: lib/helpers/feature_group_bookings_helper.php:267
+msgid "Max Capacity:"
+msgstr "Μέγιστη χωρητικότητα:"
+
+#: lib/helpers/feature_group_bookings_helper.php:284
+msgid "Capacity"
+msgstr "Χωρητικότητα"
+
+#: lib/helpers/feature_group_bookings_helper.php:289
+#: lib/views/coupons/quick_edit.php:166
+msgid "Minimum"
+msgstr "Ελάχιστο"
+
+#: lib/helpers/feature_group_bookings_helper.php:292
+#: lib/views/coupons/quick_edit.php:169
+msgid "Maximum"
+msgstr "Μέγιστο"
+
+#: lib/helpers/feature_group_bookings_helper.php:299
+msgid "Pricing"
+msgstr "Τιμολόγηση"
+
+#: lib/helpers/feature_group_bookings_helper.php:302
+msgid "Do not multiply charge amount by the number of attendees"
+msgstr "Να μην πολλαπλασιάζεται το ποσό χρέωσης με τον αριθμό των συμμετεχόντων"
+
+#: lib/helpers/feature_group_bookings_helper.php:303
+msgid "Do not multiply deposit amount by the number of attendees"
+msgstr "Να μην πολλαπλασιάζεται το ποσό προκαταβολής με τον αριθμό των συμμετεχόντων"
+
+#: lib/helpers/feature_group_bookings_helper.php:308
+msgid "Other"
+msgstr "Άλλο"
+
+#: lib/helpers/feature_group_bookings_helper.php:311
+msgid "Do not ask customers to select number of attendees"
+msgstr "Να μην ζητείται από τους πελάτες να επιλέξουν αριθμό συμμετεχόντων"
+
+#: lib/helpers/feature_group_bookings_helper.php:312
+msgid "Block timeslot if minimum capacity is reached"
+msgstr "Αποκλεισμός χρονικής θέσης αν επιτευχθεί η ελάχιστη χωρητικότητα"
+
+#: lib/helpers/feature_group_bookings_helper.php:318
+msgid "Meeting Link"
+msgstr "Σύνδεσμος συνάντησης"
+
+#: lib/helpers/feature_group_bookings_helper.php:326
+msgid "Meeting Link Mode for Group Bookings"
+msgstr "Λειτουργία συνδέσμου συνάντησης για ομαδικές κρατήσεις"
+
+#: lib/helpers/feature_group_bookings_helper.php:330
+msgid "Separate - Each booking gets its own meeting link"
+msgstr "Ξεχωριστό - Κάθε κράτηση λαμβάνει τον δικό της σύνδεσμο συνάντησης"
+
+#: lib/helpers/feature_group_bookings_helper.php:334
+msgid "Shared - All attendees in the same time slot get the same meeting link"
+msgstr "Κοινόχρηστο - Όλοι οι συμμετέχοντες στην ίδια χρονική θέση λαμβάνουν τον ίδιο σύνδεσμο συνάντησης"
+
+#: lib/helpers/feature_locations_helper.php:131
+#: lib/helpers/feature_locations_helper.php:135
+#: lib/helpers/feature_locations_helper.php:176
+#: lib/helpers/feature_locations_helper.php:187
+#: lib/views/messages/messages_with_info_for_booking.php:70
+msgid "Location"
+msgstr "Τοποθεσία"
+
+#: lib/helpers/feature_locations_helper.php:134
+msgid "Previous Location"
+msgstr "Προηγούμενη τοποθεσία"
+
+#: lib/helpers/feature_locations_helper.php:195
+msgid "Show location categories"
+msgstr "Εμφάνιση κατηγοριών τοποθεσίας"
+
+#: lib/helpers/feature_locations_helper.php:195
+msgid "If turned on, locations will be displayed in categories"
+msgstr "Αν ενεργοποιηθεί, οι τοποθεσίες θα εμφανίζονται σε κατηγορίες"
+
+#: lib/helpers/feature_messages_helper.php:8
+msgid "Message Content:"
+msgstr "Περιεχόμενο μηνύματος:"
+
+#: lib/helpers/feature_messages_helper.php:42
+#, php-format
+msgid "Read %d Message"
+msgid_plural "Read %d Messages"
+msgstr[0] "Ανάγνωση %d μηνύματος"
+msgstr[1] ""
+
+#: lib/helpers/feature_messages_helper.php:47
+msgid "Start Chatting"
+msgstr "Έναρξη συνομιλίας"
+
+#: lib/helpers/feature_messages_helper.php:58
+msgid "Chat Notifications"
+msgstr "Ειδοποιήσεις συνομιλίας"
+
+#: lib/helpers/feature_messages_helper.php:62
+msgid "Settings"
+msgstr "Ρυθμίσεις"
+
+#: lib/helpers/feature_messages_helper.php:65
+msgid "Notify customers about new messages"
+msgstr "Ειδοποίηση πελατών για νέα μηνύματα"
+
+#: lib/helpers/feature_messages_helper.php:67
+#: lib/helpers/feature_messages_helper.php:72
+msgid "Email Subject"
+msgstr "Θέμα email"
+
+#: lib/helpers/feature_messages_helper.php:68
+#: lib/helpers/feature_messages_helper.php:73
+msgid "Email Message"
+msgstr "Μήνυμα email"
+
+#: lib/helpers/feature_messages_helper.php:70
+msgid "Notify agents about new messages"
+msgstr "Ειδοποίηση πρακτόρων για νέα μηνύματα"
+
+#: lib/helpers/feature_messages_helper.php:103
+msgid "Your Appointments"
+msgstr "Τα ραντεβού σας"
+
+#: lib/helpers/feature_messages_helper.php:104
+msgid "Conversation"
+msgstr "Συνομιλία"
+
+#: lib/helpers/feature_messages_helper.php:141
+#: lib/views/messages/messages_with_info_for_booking.php:48
+#: lib/views/messages/quick_form_chat_box.php:14
+msgid "Type your message here.."
+msgstr "Πληκτρολογήστε το μήνυμά σας εδώ.."
+
+#: lib/helpers/feature_messages_helper.php:142
+#: lib/views/messages/messages_with_info_for_booking.php:49
+#: lib/views/messages/quick_form_chat_box.php:15
+msgid "Send"
+msgstr "Αποστολή"
+
+#: lib/helpers/feature_messages_helper.php:148
+msgid "You don't have any appointments to send messages."
+msgstr "Δεν έχετε κανένα ραντεβού για να στείλετε μηνύματα."
+
+#: lib/helpers/feature_no_show_restrictions_helper.php:50
+msgid "Your account has been restricted from booking due to repeated missed appointments. Please contact us for assistance."
+msgstr "Ο λογαριασμός σας έχει περιοριστεί από κρατήσεις λόγω επαναλαμβανόμενων χαμένων ραντεβού. Επικοινωνήστε μαζί μας για βοήθεια."
+
+#. translators: %d: number of no-show appointments
+#: lib/helpers/feature_no_show_restrictions_helper.php:228
+#, php-format
+msgid "%d No-Show Appointment."
+msgid_plural "%d No-Show Appointments."
+msgstr[0] "%d ραντεβού μη εμφάνισης."
+msgstr[1] ""
+
+#: lib/helpers/feature_no_show_restrictions_helper.php:233
+msgid "This customer has exceeded the no-show threshold and is restricted from booking."
+msgstr "Αυτός ο πελάτης έχει υπερβεί το όριο μη εμφάνισης και έχει περιοριστεί από κρατήσεις."
+
+#: lib/helpers/feature_no_show_restrictions_helper.php:249
+msgid "No-Show Restrictions"
+msgstr "Περιορισμοί μη εμφάνισης"
+
+#: lib/helpers/feature_no_show_restrictions_helper.php:255
+msgid "Enable No-Show Customers Restrictions"
+msgstr "Ενεργοποίηση περιορισμών για πελάτες μη εμφάνισης"
+
+#: lib/helpers/feature_no_show_restrictions_helper.php:259
+msgid "Restrict booking for customers who repeatedly miss appointments, by blocking or requiring upfront payment"
+msgstr "Περιορίστε τις κρατήσεις για πελάτες που χάνουν επανειλημμένα ραντεβού, αποκλείοντάς τους ή απαιτώντας προκαταβολή"
+
+#: lib/helpers/feature_no_show_restrictions_helper.php:269
+msgid "No-Show Threshold"
+msgstr "Όριο μη εμφάνισης"
+
+#: lib/helpers/feature_no_show_restrictions_helper.php:282
+msgid "Action"
+msgstr "Ενέργεια"
+
+#: lib/helpers/feature_no_show_restrictions_helper.php:284
+msgid "Block bookings entirely"
+msgstr "Αποκλεισμός κρατήσεων εντελώς"
+
+#: lib/helpers/feature_no_show_restrictions_helper.php:285
+msgid "Require upfront payment"
+msgstr "Απαίτηση προκαταβολικής πληρωμής"
+
+#: lib/helpers/feature_qrcode_helper.php:16
+msgid "Point your smartphone camera at this QR code and you will be able to copy your booking confirmation code"
+msgstr "Στρέψτε την κάμερα του smartphone σας σε αυτόν τον κωδικό QR και θα μπορείτε να αντιγράψετε τον κωδικό επιβεβαίωσης της κράτησής σας"
+
+#: lib/helpers/feature_qrcode_helper.php:20
+msgid "Point your smartphone camera at this QR code and it will automatically add this appointment to your calendar"
+msgstr "Στρέψτε την κάμερα του smartphone σας σε αυτόν τον κωδικό QR και θα προσθέσει αυτόματα αυτό το ραντεβού στο ημερολόγιό σας"
+
+#: lib/helpers/feature_qrcode_helper.php:33
+msgid "Show QR"
+msgstr "Εμφάνιση QR"
+
+#: lib/helpers/feature_recurring_bookings_helper.php:28
+msgid "Make it a recurring appointment?"
+msgstr "Να γίνει επαναλαμβανόμενο ραντεβού;"
+
+#: lib/helpers/feature_recurring_bookings_helper.php:29
+msgid "You will set the frequency in the next step."
+msgstr "Θα ορίσετε τη συχνότητα στο επόμενο βήμα."
+
+#: lib/helpers/feature_recurring_bookings_helper.php:65
+msgid "Allow Recurring Appointments"
+msgstr "Επιτρέπονται επαναλαμβανόμενα ραντεβού"
+
+#: lib/helpers/feature_recurring_bookings_helper.php:65
+msgid "Allows customers to book this service in a recurring schedule"
+msgstr "Επιτρέπει στους πελάτες να κλείνουν αυτήν την υπηρεσία σε επαναλαμβανόμενο πρόγραμμα"
+
+#: lib/helpers/feature_recurring_bookings_helper.php:68
+msgid "Allow a maximum of"
+msgstr "Να επιτρέπεται μέγιστο"
+
+#: lib/helpers/feature_recurring_bookings_helper.php:70
+msgid "future appointments"
+msgstr "μελλοντικά ραντεβού"
+
+#: lib/helpers/feature_recurring_bookings_helper.php:73
+msgid "Allow Repeat Intervals"
+msgstr "Να επιτρέπονται επαναλαμβανόμενα διαστήματα"
+
+#: lib/helpers/feature_recurring_bookings_helper.php:78
+#: lib/views/agents/quick_edit.php:115
+#: lib/views/agents/quick_edit.php:117
+#: lib/views/agents/quick_edit.php:122
+#: lib/views/agents/_form.php:111
+#: lib/views/agents/_form.php:113
+#: lib/views/agents/_form.php:118
+#: lib/views/locations/_form.php:59
+#: lib/views/locations/_form.php:61
+#: lib/views/locations/_form.php:67
+msgid "All"
+msgstr "Όλα"
+
+#: lib/helpers/feature_recurring_bookings_helper.php:79
+msgid "Daily"
+msgstr "Καθημερινά"
+
+#: lib/helpers/feature_recurring_bookings_helper.php:80
+msgid "Weekly"
+msgstr "Εβδομαδιαία"
+
+#: lib/helpers/feature_recurring_bookings_helper.php:81
+msgid "Monthly"
+msgstr "Μηνιαία"
+
+#: lib/helpers/feature_recurring_bookings_helper.php:196
+msgid "Recurring Appointment"
+msgstr "Επαναλαμβανόμενο ραντεβού"
+
+#: lib/helpers/feature_recurring_bookings_helper.php:242
+#, php-format
+msgid "Found %s Available Slots"
+msgstr "Βρέθηκαν %s διαθέσιμες θέσεις"
+
+#: lib/helpers/feature_recurring_bookings_helper.php:242
+msgid "Review"
+msgstr "Έλεγχος"
+
+#: lib/helpers/feature_recurring_bookings_helper.php:265
+msgid "Selected"
+msgstr "Επιλεγμένα"
+
+#: lib/helpers/feature_recurring_bookings_helper.php:265
+#: lib/views/coupons/index.php:9
+#: lib/views/coupons/index.php:66
+msgid "of"
+msgstr "από"
+
+#: lib/helpers/feature_recurring_bookings_helper.php:338
+#, php-format
+msgid "This bundle has only %s remaining appointments to schedule."
+msgstr "Αυτό το πακέτο έχει μόνο %s ραντεβού που απομένουν για προγραμματισμό."
+
+#: lib/helpers/feature_recurring_bookings_helper.php:340
+#, php-format
+msgid "You can only schedule a maximum of %s recurring bookings at once."
+msgstr "Μπορείτε να προγραμματίσετε το πολύ %s επαναλαμβανόμενες κρατήσεις ταυτόχρονα."
+
+#: lib/helpers/feature_recurring_bookings_helper.php:434
+#: lib/helpers/feature_recurring_bookings_helper.php:442
+msgid "day"
+msgstr "ημέρα"
+
+#: lib/helpers/feature_recurring_bookings_helper.php:435
+#: lib/helpers/feature_recurring_bookings_helper.php:446
+msgid "week"
+msgstr "εβδομάδα"
+
+#: lib/helpers/feature_recurring_bookings_helper.php:436
+#: lib/helpers/feature_recurring_bookings_helper.php:450
+msgid "month"
+msgstr "μήνα"
+
+#: lib/helpers/feature_recurring_bookings_helper.php:460
+msgid "First on"
+msgstr "Πρώτα στις"
+
+#: lib/helpers/feature_recurring_bookings_helper.php:465
+msgid "Repeats every"
+msgstr "Επαναλαμβάνεται κάθε"
+
+#: lib/helpers/feature_recurring_bookings_helper.php:489
+msgid "Ends"
+msgstr "Λήγει"
+
+#: lib/helpers/feature_recurring_bookings_helper.php:496
+msgid "After"
+msgstr "Μετά από"
+
+#: lib/helpers/feature_recurring_bookings_helper.php:497
+msgid "On"
+msgstr "Στις"
+
+#: lib/helpers/feature_recurring_bookings_helper.php:506
+msgid "occurrences"
+msgstr "εμφανίσεις"
+
+#: lib/helpers/feature_recurring_bookings_helper.php:536
+#, php-format
+msgid "+%s Recurring Appointments:"
+msgstr "+%s Επαναλαμβανόμενα Ραντεβού:"
+
+#: lib/helpers/feature_recurring_bookings_helper.php:552
+msgid "show all"
+msgstr "εμφάνιση όλων"
+
+#: lib/helpers/feature_reminders_helper.php:9
+msgid "Actions will be executed:"
+msgstr "Οι ενέργειες θα εκτελεστούν:"
+
+#: lib/helpers/feature_reminders_helper.php:25
+msgid "before the event"
+msgstr "πριν από το συμβάν"
+
+#: lib/helpers/feature_reminders_helper.php:26
+msgid "after the event"
+msgstr "μετά το συμβάν"
+
+#: lib/helpers/feature_service_categories_helper.php:20
+#: lib/views/location_categories/index.php:9
+#: lib/views/messages/conversations.php:15
+#: lib/views/service_categories/index.php:9
+msgid "ID: "
+msgstr "ID:"
+
+#: lib/helpers/feature_service_categories_helper.php:21
+msgid "Services Linked"
+msgstr "Συνδεδεμένες υπηρεσίες"
+
+#: lib/helpers/feature_service_durations_helper.php:112
+msgid "Show service durations in minutes"
+msgstr "Εμφάνιση διάρκειας υπηρεσίας σε λεπτά"
+
+#: lib/helpers/feature_service_durations_helper.php:112
+msgid "Will show duration in minutes, even when duration is longer than 60 minutes"
+msgstr "Θα εμφανίζει τη διάρκεια σε λεπτά, ακόμη και όταν η διάρκεια είναι μεγαλύτερη από 60 λεπτά"
+
+#: lib/helpers/feature_service_durations_helper.php:131
+msgid "Create Another Service Duration"
+msgstr "Δημιουργία άλλης διάρκειας υπηρεσίας"
+
+#: lib/helpers/feature_service_extras_helper.php:135
+msgid "Extras"
+msgstr "Πρόσθετα"
+
+#: lib/helpers/feature_service_extras_helper.php:160
+#: lib/helpers/feature_service_extras_helper.php:175
+msgid "None"
+msgstr "Κανένα"
+
+#: lib/helpers/feature_service_extras_helper.php:181
+msgid "Service Extras:"
+msgstr "Πρόσθετα υπηρεσίας:"
+
+#: lib/helpers/feature_service_extras_helper.php:387
+#, php-format
+msgid "Please select at least %d service extras"
+msgstr "Παρακαλώ επιλέξτε τουλάχιστον %d πρόσθετα υπηρεσίας"
+
+#: lib/helpers/feature_service_extras_helper.php:392
+#, php-format
+msgid "You cannot select more than %d service extras"
+msgstr "Δεν μπορείτε να επιλέξετε περισσότερα από %d πρόσθετα υπηρεσίας"
+
+#: lib/helpers/feature_service_extras_helper.php:481
+msgid "You have not created any service extras yet."
+msgstr "Δεν έχετε δημιουργήσει ακόμη κανένα πρόσθετο υπηρεσίας."
+
+#: lib/helpers/feature_service_extras_helper.php:489
+msgid "Restrictions for Service Extras"
+msgstr "Περιορισμοί για τα πρόσθετα υπηρεσίας"
+
+#: lib/helpers/feature_service_extras_helper.php:493
+msgid "Require a minimum to be selected"
+msgstr "Απαίτηση επιλογής ελάχιστου αριθμού"
+
+#: lib/helpers/feature_service_extras_helper.php:493
+msgid "Requires user to pick a minimum number of service extras"
+msgstr "Απαιτεί από τον χρήστη να επιλέξει έναν ελάχιστο αριθμό πρόσθετων υπηρεσίας"
+
+#: lib/helpers/feature_service_extras_helper.php:497
+msgid "At least"
+msgstr "Τουλάχιστον"
+
+#: lib/helpers/feature_service_extras_helper.php:500
+msgid "service extras must be selected"
+msgstr "πρόσθετα υπηρεσίας πρέπει να επιλεγούν"
+
+#: lib/helpers/feature_service_extras_helper.php:503
+msgid "Limit maximum number that can be selected"
+msgstr "Περιορισμός μέγιστου αριθμού που μπορεί να επιλεγεί"
+
+#: lib/helpers/feature_service_extras_helper.php:503
+msgid "Limits user from picking more than a set maximum"
+msgstr "Περιορίζει τον χρήστη από το να επιλέξει περισσότερα από ένα καθορισμένο μέγιστο"
+
+#: lib/helpers/feature_service_extras_helper.php:507
+msgid "At most"
+msgstr "Το πολύ"
+
+#: lib/helpers/feature_service_extras_helper.php:510
+msgid "service extras can be selected"
+msgstr "πρόσθετα υπηρεσίας μπορούν να επιλεγούν"
+
+#: lib/helpers/feature_timezone_helper.php:8
+#: lib/helpers/feature_timezone_helper.php:76
+msgid "Timezone:"
+msgstr "Ζώνη ώρας:"
+
+#: lib/helpers/feature_timezone_helper.php:55
+msgid "Invalid Date/Time"
+msgstr "Μη έγκυρη ημερομηνία/ώρα"
+
+#: lib/helpers/feature_timezone_helper.php:68
+msgid "My Timezone:"
+msgstr "Η ζώνη ώρας μου:"
+
+#: lib/helpers/feature_timezone_helper.php:81
+msgid "Start Date (in customer timezone):"
+msgstr "Ημερομηνία έναρξης (στη ζώνη ώρας του πελάτη):"
+
+#: lib/helpers/feature_timezone_helper.php:82
+msgid "Start Time (in customer timezone):"
+msgstr "Ώρα έναρξης (στη ζώνη ώρας του πελάτη):"
+
+#: lib/helpers/feature_timezone_helper.php:83
+msgid "End Time (in customer timezone)"
+msgstr "Ώρα λήξης (στη ζώνη ώρας του πελάτη)"
+
+#: lib/helpers/feature_timezone_helper.php:312
+msgid "Customer Timezone"
+msgstr "Ζώνη ώρας πελάτη"
+
+#: lib/helpers/feature_timezone_helper.php:345
+msgid "Timezone Settings"
+msgstr "Ρυθμίσεις ζώνης ώρας"
+
+#: lib/helpers/feature_timezone_helper.php:348
+msgid "Enable timezone selector"
+msgstr "Ενεργοποίηση επιλογέα ζώνης ώρας"
+
+#: lib/helpers/feature_timezone_helper.php:348
+msgid "Will let customer change default timezone, will try to auto-detect timezone from the browser"
+msgstr "Θα επιτρέπει στον πελάτη να αλλάζει την προεπιλεγμένη ζώνη ώρας, θα προσπαθεί να ανιχνεύσει αυτόματα τη ζώνη ώρας από τον περιηγητή"
+
+#: lib/helpers/feature_timezone_helper.php:349
+msgid "Show timezone information"
+msgstr "Εμφάνιση πληροφοριών ζώνης ώρας"
+
+#: lib/helpers/feature_timezone_helper.php:349
+msgid "Timezone name will appear next to appointment time"
+msgstr "Το όνομα της ζώνης ώρας θα εμφανίζεται δίπλα στην ώρα του ραντεβού"
+
+#: lib/helpers/feature_timezone_helper.php:365
+msgid "No matching timezone found"
+msgstr "Δεν βρέθηκε αντιστοιχία ζώνης ώρας"
+
+#: lib/helpers/feature_timezone_helper.php:365
+msgid "Type to search..."
+msgstr "Πληκτρολογήστε για αναζήτηση..."
+
+#: lib/helpers/feature_webhooks_helper.php:6
+msgid "Webhook Run"
+msgstr "Εκτέλεση webhook"
+
+#: lib/helpers/feature_webhooks_helper.php:37
+msgid "URL:"
+msgstr "URL:"
+
+#: lib/helpers/feature_webhooks_helper.php:88
+#: lib/helpers/feature_webhooks_helper.php:92
+msgid "URL"
+msgstr "URL"
+
+#: lib/helpers/messages_helper.php:152
+#: lib/helpers/messages_helper.php:196
+msgid "File Attachment"
+msgstr "Συνημμένο αρχείο"
+
+#: lib/helpers/messages_helper.php:206
+#: lib/helpers/messages_helper.php:211
+msgid "You have a new message"
+msgstr "Έχετε νέο μήνυμα"
+
+#: lib/helpers/pro_license_helper.php:15
+msgid "Please enter your license key"
+msgstr "Παρακαλώ εισαγάγετε το κλειδί άδειάς σας"
+
+#: lib/helpers/pro_license_helper.php:47
+msgid "Unable to verify license. Please try again or contact us at license@latepoint.com. Error code: UDF732S83"
+msgstr "Δεν ήταν δυνατή η επαλήθευση της άδειας. Παρακαλώ δοκιμάστε ξανά ή επικοινωνήστε μαζί μας στο license@latepoint.com. Κωδικός σφάλματος: UDF732S83"
+
+#: lib/helpers/pro_license_helper.php:58
+msgid "Unable to verify license. Please try again or contact us at license@latepoint.com. Error code: SUYF8362"
+msgstr "Δεν είναι δυνατή η επαλήθευση της άδειας χρήσης. Δοκιμάστε ξανά ή επικοινωνήστε μαζί μας στο license@latepoint.com. Κωδικός σφάλματος: SUYF8362"
+
+#: lib/helpers/service_extras_helper.php:81
+#, php-format
+msgid "Service extras [ %s ] applied to this booking are not available for this service. Either pick a service that offers them, or clear them."
+msgstr "Οι πρόσθετες υπηρεσίες [ %s ] που εφαρμόζονται σε αυτήν την κράτηση δεν είναι διαθέσιμες για αυτήν την υπηρεσία. Επιλέξτε είτε μια υπηρεσία που τις προσφέρει είτε αφαιρέστε τες."
+
+#: lib/helpers/service_extras_helper.php:81
+msgid "Clear"
+msgstr "Εκκαθάριση"
+
+#: lib/helpers/service_extras_helper.php:87
+msgid "Click here to select..."
+msgstr "Κάντε κλικ εδώ για επιλογή..."
+
+#: lib/helpers/social_helper.php:18
+msgid "Continue with Facebook"
+msgstr "Συνέχεια με Facebook"
+
+#: lib/helpers/social_helper.php:26
+msgid "Continue with Google"
+msgstr "Συνέχεια με Google"
+
+#: lib/helpers/social_helper.php:37
+msgid "Social Login"
+msgstr "Σύνδεση μέσω κοινωνικών δικτύων"
+
+#: lib/helpers/social_helper.php:40
+msgid "Enable login with Google"
+msgstr "Ενεργοποίηση σύνδεσης με Google"
+
+#: lib/helpers/social_helper.php:40
+msgid "Display Google Login button on customer login and registration forms"
+msgstr "Εμφάνιση κουμπιού σύνδεσης Google στις φόρμες σύνδεσης και εγγραφής πελατών"
+
+#: lib/helpers/social_helper.php:43
+msgid "Google Client ID"
+msgstr "Αναγνωριστικό πελάτη Google"
+
+#: lib/helpers/social_helper.php:44
+msgid "Google Client Secret"
+msgstr "Μυστικό πελάτη Google"
+
+#: lib/helpers/social_helper.php:46
+msgid "Enable login with Facebook"
+msgstr "Ενεργοποίηση σύνδεσης με Facebook"
+
+#: lib/helpers/social_helper.php:46
+msgid "Display Facebook Login button on customer login and registration forms"
+msgstr "Εμφάνιση κουμπιού σύνδεσης Facebook στις φόρμες σύνδεσης και εγγραφής πελατών"
+
+#: lib/helpers/social_helper.php:48
+msgid "Facebook App ID"
+msgstr "Αναγνωριστικό εφαρμογής Facebook"
+
+#: lib/helpers/social_helper.php:49
+msgid "Facebook App Secret"
+msgstr "Μυστικό εφαρμογής Facebook"
+
+#: lib/helpers/taxes_helper.php:60
+msgid "Tax Name cannot be empty"
+msgstr "Το όνομα φόρου δεν μπορεί να είναι κενό"
+
+#: lib/helpers/taxes_helper.php:63
+msgid "Tax Type cannot be empty"
+msgstr "Ο τύπος φόρου δεν μπορεί να είναι κενός"
+
+#: lib/helpers/taxes_helper.php:66
+msgid "Tax Value cannot be empty"
+msgstr "Η τιμή φόρου δεν μπορεί να είναι κενή"
+
+#: lib/helpers/updates_helper.php:19
+#, php-format
+msgid "To enable updates, you need to purchase a PRO license, install \"PRO Features\" addon and enter that key on %s page"
+msgstr "Για να ενεργοποιήσετε τις ενημερώσεις, πρέπει να αγοράσετε άδεια PRO, να εγκαταστήσετε το πρόσθετο \"PRO Features\" και να εισαγάγετε αυτό το κλειδί στη σελίδα %s"
+
+#: lib/helpers/updates_helper.php:19
+msgid "Pro Features"
+msgstr "Pro Features"
+
+#: lib/helpers/webhooks_helper.php:26
+msgid "Webhook executed"
+msgstr "Το webhook εκτελέστηκε"
+
+#: lib/helpers/webhooks_helper.php:73
+msgid "Webhook URL cannot be empty"
+msgstr "Το URL του webhook δεν μπορεί να είναι κενό"
+
+#: lib/helpers/webhooks_helper.php:76
+msgid "Webhook URL must be a valid URL"
+msgstr "Το URL του webhook πρέπει να είναι έγκυρο URL"
+
+#: lib/helpers/webhooks_helper.php:80
+msgid "Select a trigger event for this hook"
+msgstr "Επιλέξτε ένα συμβάν ενεργοποίησης για αυτό το hook"
+
+#: lib/models/message_model.php:18
+msgid "Content"
+msgstr "Περιεχόμενο"
+
+#: lib/views/addons/index.php:7
+msgid "Loading Addons Information"
+msgstr "Φόρτωση πληροφοριών πρόσθετων"
+
+#: lib/views/addons/load_addons_list.php:57
+msgid "Featured"
+msgstr "Προτεινόμενα"
+
+#: lib/views/addons/load_addons_list.php:73
+#: lib/views/addons/load_addons_list.php:79
+msgid "Latest:"
+msgstr "Τελευταία:"
+
+#: lib/views/addons/load_addons_list.php:74
+#: lib/views/addons/load_addons_list.php:76
+msgid "Installed:"
+msgstr "Εγκατεστημένα:"
+
+#: lib/views/addons/load_addons_list.php:86
+msgid "Requires LatePoint"
+msgstr "Απαιτεί το LatePoint"
+
+#: lib/views/addons/load_addons_list.php:98
+msgid "Deactivate"
+msgstr "Απενεργοποίηση"
+
+#: lib/views/addons/load_addons_list.php:113
+#: lib/views/agents/_form.php:318
+#: lib/views/custom_fields/_custom_field_form.php:127
+#: lib/views/locations/_form.php:189
+#: lib/views/roles/_form.php:123
+#: lib/views/taxes/_tax_form.php:49
+msgid "Delete"
+msgstr "Διαγραφή"
+
+#: lib/views/addons/load_addons_list.php:117
+msgid "Activate"
+msgstr "Ενεργοποίηση"
+
+#: lib/views/addons/load_addons_list.php:125
+#: lib/views/addons/load_addons_list.php:134
+msgid "Install Now"
+msgstr "Εγκατάσταση τώρα"
+
+#: lib/views/addons/load_addons_list.php:129
+msgid "Activate License to Install"
+msgstr "Ενεργοποιήστε την άδεια για εγκατάσταση"
+
+#: lib/views/addons/load_addons_list.php:143
+msgid "Try for FREE"
+msgstr "Δοκιμάστε ΔΩΡΕΑΝ"
+
+#: lib/views/addons/load_addons_list.php:148
+msgid "Learn More"
+msgstr "Μάθετε περισσότερα"
+
+#: lib/views/agents/index.php:22
+#: lib/views/agents/index.php:88
+msgid "Connected to WordPress User"
+msgstr "Συνδεδεμένο με χρήστη WordPress"
+
+#: lib/views/agents/index.php:72
+msgid "No Active Agents Found"
+msgstr "Δεν βρέθηκαν ενεργοί πράκτορες"
+
+#: lib/views/agents/index.php:78
+#, php-format
+msgid "%d Disabled Agent"
+msgid_plural "%d Disabled Agents"
+msgstr[0] "%d απενεργοποιημένος πράκτορας"
+msgstr[1] ""
+
+#: lib/views/agents/mini_profile.php:7
+msgid "email:"
+msgstr "email:"
+
+#: lib/views/agents/mini_profile.php:8
+msgid "phone:"
+msgstr "τηλέφωνο:"
+
+#: lib/views/agents/modal_list.php:2
+msgid "Select Agents"
+msgstr "Επιλογή πρακτόρων"
+
+#: lib/views/agents/modal_list.php:15
+msgid "Save Agents"
+msgstr "Αποθήκευση πρακτόρων"
+
+#: lib/views/agents/quick_edit.php:23
+msgid "Agent ID:"
+msgstr "Αναγνωριστικό πράκτορα:"
+
+#: lib/views/agents/quick_edit.php:24
+#: lib/views/coupons/quick_edit.php:26
+msgid "History"
+msgstr "Ιστορικό"
+
+#: lib/views/agents/quick_edit.php:31
+#: lib/views/agents/_form.php:28
+msgid "Set Avatar"
+msgstr "Ορισμός avatar"
+
+#: lib/views/agents/quick_edit.php:31
+#: lib/views/agents/_form.php:28
+msgid "Remove Avatar"
+msgstr "Αφαίρεση avatar"
+
+#: lib/views/agents/quick_edit.php:35
+#: lib/views/agents/_form.php:30
+msgid "First Name"
+msgstr "Όνομα"
+
+#: lib/views/agents/quick_edit.php:38
+#: lib/views/agents/_form.php:31
+msgid "Last Name"
+msgstr "Επώνυμο"
+
+#: lib/views/agents/quick_edit.php:43
+msgid "Contact Info"
+msgstr "Στοιχεία επικοινωνίας"
+
+#: lib/views/agents/quick_edit.php:46
+#: lib/views/agents/_form.php:35
+msgid "Email Address"
+msgstr "Διεύθυνση email"
+
+#: lib/views/agents/quick_edit.php:52
+#: lib/views/agents/_form.php:32
+msgid "Display Name"
+msgstr "Εμφανιζόμενο όνομα"
+
+#: lib/views/agents/quick_edit.php:56
+#: lib/views/agents/_form.php:40
+msgid "Connect to WP User"
+msgstr "Σύνδεση με χρήστη WP"
+
+#: lib/views/agents/quick_edit.php:56
+#: lib/views/agents/_form.php:40
+msgid "Select User"
+msgstr "Επιλογή χρήστη"
+
+#: lib/views/agents/quick_edit.php:63
+#: lib/views/agents/_form.php:51
+#: lib/views/agents/_form.php:352
+msgid "Additional Contacts"
+msgstr "Πρόσθετες επαφές"
+
+#: lib/views/agents/quick_edit.php:65
+#: lib/views/agents/_form.php:55
+msgid "If you need to notify multiple persons about the appointment, you can list additional email addresses and phone numbers to send notification emails and sms to. You can list multiple numbers and emails separated by commas."
+msgstr "Αν χρειάζεται να ειδοποιήσετε πολλαπλά άτομα σχετικά με το ραντεβού, μπορείτε να καταχωρίσετε επιπλέον διευθύνσεις email και αριθμούς τηλεφώνου για αποστολή ειδοποιήσεων μέσω email και sms. Μπορείτε να καταχωρίσετε πολλαπλούς αριθμούς και email χωρισμένα με κόμματα."
+
+#: lib/views/agents/quick_edit.php:67
+#: lib/views/agents/_form.php:57
+msgid "Additional Email Addresses"
+msgstr "Πρόσθετες διευθύνσεις email"
+
+#: lib/views/agents/quick_edit.php:70
+#: lib/views/agents/_form.php:58
+msgid "Additional Phone Numbers"
+msgstr "Πρόσθετοι αριθμοί τηλεφώνου"
+
+#: lib/views/agents/quick_edit.php:73
+#: lib/views/agents/_form.php:65
+msgid "Extra Information"
+msgstr "Επιπλέον πληροφορίες"
+
+#: lib/views/agents/quick_edit.php:77
+#: lib/views/agents/_form.php:70
+msgid "Set Bio Image"
+msgstr "Ορισμός εικόνας βιογραφικού"
+
+#: lib/views/agents/quick_edit.php:77
+#: lib/views/agents/_form.php:70
+msgid "Remove Bio Image"
+msgstr "Αφαίρεση εικόνας βιογραφικού"
+
+#: lib/views/agents/quick_edit.php:79
+#: lib/views/agents/_form.php:71
+msgid "Agent Title"
+msgstr "Τίτλος πράκτορα"
+
+#: lib/views/agents/quick_edit.php:80
+#: lib/views/agents/_form.php:72
+msgid "Bio Text"
+msgstr "Κείμενο βιογραφικού"
+
+#: lib/views/agents/quick_edit.php:82
+#: lib/views/agents/_form.php:73
+msgid "Agent Highlights"
+msgstr "Σημεία προβολής πράκτορα"
+
+#: lib/views/agents/quick_edit.php:84
+#: lib/views/agents/_form.php:74
+msgid "These value-label pairs will appear on agent information popup. You can enter things like years of experience, or number of clients served, to highlight agent accomplishments."
+msgstr "Αυτά τα ζεύγη τιμής-ετικέτας θα εμφανίζονται στο αναδυόμενο παράθυρο πληροφοριών του πράκτορα. Μπορείτε να εισαγάγετε πράγματα όπως χρόνια εμπειρίας ή αριθμό εξυπηρετούμενων πελατών, για να αναδείξετε τα επιτεύγματα του πράκτορα."
+
+#: lib/views/agents/quick_edit.php:93
+#: lib/views/agents/_form.php:83
+msgid "Label"
+msgstr "Ετικέτα"
+
+#: lib/views/agents/quick_edit.php:100
+#: lib/views/agents/_form.php:94
+msgid "Offered Services"
+msgstr "Υπηρεσίες που προσφέρονται"
+
+#: lib/views/agents/quick_edit.php:124
+#: lib/views/agents/_form.php:120
+msgid "Locations Selected"
+msgstr "Επιλεγμένες τοποθεσίες"
+
+#: lib/views/agents/quick_edit.php:127
+#: lib/views/agents/_form.php:123
+#: lib/views/locations/_form.php:72
+msgid "Customize"
+msgstr "Προσαρμογή"
+
+#: lib/views/agents/quick_edit.php:131
+#: lib/views/agents/_form.php:127
+#, php-format
+msgid "Select locations where this agent will offer %s:"
+msgstr "Επιλέξτε τοποθεσίες όπου αυτός ο πράκτορας θα προσφέρει %s:"
+
+#: lib/views/agents/quick_edit.php:165
+#: lib/views/agents/_form.php:165
+#: lib/views/bundles/_form.php:124
+msgid "No Existing Services Found"
+msgstr "Δεν βρέθηκαν υπάρχουσες υπηρεσίες"
+
+#: lib/views/agents/quick_edit.php:167
+#: lib/views/agents/_form.php:167
+#: lib/views/bundles/_form.php:126
+msgid "Add First Service"
+msgstr "Προσθήκη πρώτης υπηρεσίας"
+
+#: lib/views/agents/quick_edit.php:175
+#: lib/views/agents/_form.php:190
+msgid "Agent Schedule"
+msgstr "Πρόγραμμα πράκτορα"
+
+#: lib/views/agents/quick_edit.php:177
+#: lib/views/agents/_form.php:208
+#: lib/views/locations/_form.php:127
+msgid "Set Custom Schedule"
+msgstr "Ορισμός προσαρμοσμένου προγράμματος"
+
+#: lib/views/agents/quick_edit.php:193
+#: lib/views/agents/_form.php:214
+msgid "This agent is using general schedule which is set in main settings"
+msgstr "Αυτός ο πράκτορας χρησιμοποιεί το γενικό πρόγραμμα που έχει οριστεί στις κύριες ρυθμίσεις"
+
+#: lib/views/agents/quick_edit.php:199
+#: lib/views/agents/_form.php:249
+#: lib/views/locations/_form.php:154
+msgid "Days With Custom Schedules"
+msgstr "Ημέρες με προσαρμοσμένα προγράμματα"
+
+#: lib/views/agents/quick_edit.php:200
+#: lib/views/agents/_form.php:257
+msgid "Agent shares custom daily schedules that you set in general settings for your company, however you can add additional days with custom hours which will be specific to this agent only."
+msgstr "Ο πράκτορας χρησιμοποιεί τα προσαρμοσμένα ημερήσια προγράμματα που ορίζετε στις γενικές ρυθμίσεις για την εταιρεία σας, ωστόσο μπορείτε να προσθέσετε επιπλέον ημέρες με προσαρμοσμένες ώρες που θα αφορούν μόνο αυτόν τον πράκτορα."
+
+#: lib/views/agents/quick_edit.php:202
+#: lib/views/agents/_form.php:275
+#: lib/views/locations/_form.php:163
+msgid "Holidays & Days Off"
+msgstr "Αργίες &amp; Ρεπό"
+
+#: lib/views/agents/quick_edit.php:203
+#: lib/views/agents/_form.php:283
+msgid "Agent uses the same holidays you set in general settings for your company, however you can add additional holidays for this agent here."
+msgstr "Ο πράκτορας χρησιμοποιεί τις ίδιες αργίες που ορίζετε στις γενικές ρυθμίσεις για την εταιρεία σας, ωστόσο μπορείτε να προσθέσετε επιπλέον αργίες για αυτόν τον πράκτορα εδώ."
+
+#: lib/views/agents/quick_edit.php:213
+#: lib/views/agents/_form.php:306
+msgid "Add Agent"
+msgstr "Προσθήκη πράκτορα"
+
+#: lib/views/agents/quick_edit.php:217
+#: lib/views/agents/_form.php:333
+#: lib/views/agents/_form.php:347
+#: lib/views/assets/_form.php:127
+#: lib/views/coupons/quick_edit.php:182
+#: lib/views/locations/_form.php:202
+#: lib/views/locations/_form.php:216
+#: lib/views/roles/edit_wp_user.php:82
+#: lib/views/roles/_form.php:126
+#: lib/views/service_extras/_form.php:99
+msgid "Save Changes"
+msgstr "Αποθήκευση αλλαγών"
+
+#: lib/views/agents/quick_edit.php:221
+#: lib/views/agents/_form.php:314
+msgid "Are you sure you want to remove this agent?"
+msgstr "Είστε βέβαιοι ότι θέλετε να αφαιρέσετε αυτόν τον πράκτορα;"
+
+#: lib/views/agents/view_agent_log.php:15
+msgid "Activity Log"
+msgstr "Αρχείο δραστηριότητας"
+
+#: lib/views/agents/view_agent_log.php:21
+#: lib/views/coupons/view_coupon_log.php:21
+msgid "Created On: "
+msgstr "Δημιουργήθηκε στις:"
+
+#: lib/views/agents/_form.php:21
+#: lib/views/bundles/_form.php:15
+msgid "General Information"
+msgstr "Γενικές πληροφορίες"
+
+#: lib/views/agents/_form.php:23
+#, php-format
+msgid "Agent ID: %d"
+msgstr "ID πράκτορα: %d"
+
+#: lib/views/agents/_form.php:80
+msgid "Highlight #"
+msgstr "Επισήμανση #"
+
+#: lib/views/agents/_form.php:230
+#, php-format
+msgid "Set Custom Schedule for %s"
+msgstr "Ορισμός προσαρμοσμένου προγράμματος για %s"
+
+#: lib/views/agents/_form.php:236
+msgid "This location is using the agent's general schedule"
+msgstr "Αυτή η τοποθεσία χρησιμοποιεί το γενικό πρόγραμμα του πράκτορα"
+
+#: lib/views/agents/_form.php:323
+msgid "Are you sure you want to duplicate this agent?"
+msgstr "Είστε βέβαιοι ότι θέλετε να αντιγράψετε αυτόν τον πράκτορα;"
+
+#: lib/views/agents/_form.php:326
+#: lib/views/locations/_form.php:196
+msgid "Duplicate"
+msgstr "Διπλασιασμός"
+
+#: lib/views/agents/_schedule_location_selector.php:14
+msgid "Location:"
+msgstr "Τοποθεσία:"
+
+#: lib/views/agents/_form.php:351
+#: lib/views/agents/_schedule_location_selector.php:16
+#: lib/views/locations/_form.php:220
+msgid "General"
+msgstr "Γενικά"
+
+#. translators: %1$s and %2$s are opening and closing anchor tags
+#: lib/views/assets/index.php:14
+#, php-format
+msgid "Assets functionality is currently disabled. You can enable it in %1$sGeneral Settings%2$s."
+msgstr "Η λειτουργία των στοιχείων είναι προς το παρόν απενεργοποιημένη. Μπορείτε να την ενεργοποιήσετε στις %1$sΓενικές ρυθμίσεις%2$s."
+
+#: lib/views/assets/index.php:33
+#: lib/views/service_extras/index.php:10
+msgid "Services:"
+msgstr "Υπηρεσίες:"
+
+#: lib/views/assets/index.php:37
+#: lib/views/assets/index.php:47
+#: lib/views/service_extras/index.php:12
+msgid " of "
+msgstr "από"
+
+#: lib/views/assets/index.php:38
+#: lib/views/assets/index.php:48
+#: lib/views/service_extras/index.php:12
+msgid "All Selected"
+msgstr "Όλα επιλεγμένα"
+
+#: lib/views/assets/index.php:43
+#: lib/views/locations/_location_index_item.php:20
+msgid "Agents:"
+msgstr "Πράκτορες:"
+
+#: lib/views/assets/index.php:54
+msgid "Quantity:"
+msgstr "Ποσότητα:"
+
+#: lib/views/assets/index.php:58
+msgid "Status:"
+msgstr "Κατάσταση:"
+
+#: lib/views/assets/_form.php:19
+#: lib/views/locations/_form.php:8
+#: lib/views/service_extras/_form.php:12
+msgid "Basic Information"
+msgstr "Βασικές πληροφορίες"
+
+#: lib/views/assets/_form.php:21
+msgid "Asset ID:"
+msgstr "ID στοιχείου:"
+
+#: lib/views/assets/_form.php:26
+msgid "Asset Name"
+msgstr "Όνομα στοιχείου"
+
+#: lib/views/assets/_form.php:29
+msgid "Quantity (Capacity)"
+msgstr "Ποσότητα (Χωρητικότητα)"
+
+#: lib/views/assets/_form.php:45
+#: lib/views/bundles/_form.php:35
+#: lib/views/location_categories/_form.php:9
+#: lib/views/service_categories/_form.php:9
+#: lib/views/service_extras/_form.php:32
+msgid "Short Description"
+msgstr "Σύντομη περιγραφή"
+
+#: lib/views/assets/_form.php:52
+#: lib/views/service_extras/_form.php:56
+msgid "Connected Services"
+msgstr "Συνδεδεμένες υπηρεσίες"
+
+#: lib/views/assets/_form.php:85
+msgid "Connected Agents"
+msgstr "Συνδεδεμένοι πράκτορες"
+
+#: lib/views/assets/_form.php:118
+msgid "Add Asset"
+msgstr "Προσθήκη στοιχείου"
+
+#: lib/views/assets/_form.php:122
+msgid "Are you sure you want to remove this asset? You can also change status to disabled if you want to temporarily disable it instead."
+msgstr "Είστε βέβαιοι ότι θέλετε να αφαιρέσετε αυτό το στοιχείο; Μπορείτε επίσης να αλλάξετε την κατάσταση σε απενεργοποιημένη, αν θέλετε απλώς να το απενεργοποιήσετε προσωρινά."
+
+#: lib/views/assets/_form.php:126
+msgid "Delete Asset"
+msgstr "Διαγραφή στοιχείου"
+
+#: lib/views/bundles/index.php:21
+msgid "Quantity"
+msgstr "Ποσότητα"
+
+#: lib/views/bundles/index.php:54
+msgid "No Bundles Found"
+msgstr "Δεν βρέθηκαν πακέτα"
+
+#: lib/views/bundles/_form.php:17
+msgid "Bundle ID:"
+msgstr "ID πακέτου:"
+
+#: lib/views/bundles/_form.php:24
+msgid "Bundle Name"
+msgstr "Όνομα πακέτου"
+
+#: lib/views/bundles/_form.php:27
+msgid "Visibility"
+msgstr "Ορατότητα"
+
+#: lib/views/bundles/_form.php:27
+msgid "Visible to everyone"
+msgstr "Ορατό σε όλους"
+
+#: lib/views/bundles/_form.php:27
+msgid "Visible only to admins and agents"
+msgstr "Ορατό μόνο σε διαχειριστές και πράκτορες"
+
+#: lib/views/bundles/_form.php:42
+msgid "Price"
+msgstr "Τιμή"
+
+#: lib/views/bundles/_form.php:48
+#: lib/views/service_durations/duration_fields.php:15
+#: lib/views/service_extras/_form.php:25
+msgid "Charge Amount"
+msgstr "Ποσό χρέωσης"
+
+#: lib/views/bundles/_form.php:51
+#: lib/views/service_durations/duration_fields.php:18
+msgid "Deposit Amount"
+msgstr "Ποσό προκαταβολής"
+
+#: lib/views/bundles/_form.php:60
+msgid "Included Services"
+msgstr "Συμπεριλαμβανόμενες υπηρεσίες"
+
+#: lib/views/bundles/_form.php:80
+#: lib/views/service_extras/index.php:17
+msgid "Duration:"
+msgstr "Διάρκεια:"
+
+#: lib/views/bundles/_form.php:85
+#, php-format
+msgid "%d minutes"
+msgstr "%d λεπτά"
+
+#: lib/views/bundles/_form.php:113
+msgid "Bundle Quantity:"
+msgstr "Ποσότητα πακέτου:"
+
+#: lib/views/bundles/_form.php:115
+msgid "qty"
+msgstr "τεμ."
+
+#: lib/views/bundles/_form.php:139
+#: lib/views/bundles/_form.php:152
+msgid "Save Bundle"
+msgstr "Αποθήκευση πακέτου"
+
+#: lib/views/bundles/_form.php:145
+msgid "Are you sure you want to remove this bundle? It will remove all appointments associated with it. You can also change status to disabled if you want to temporary disable it instead."
+msgstr "Είστε βέβαιοι ότι θέλετε να αφαιρέσετε αυτό το πακέτο; Θα αφαιρεθούν όλα τα ραντεβού που σχετίζονται με αυτό. Μπορείτε επίσης να αλλάξετε την κατάσταση σε απενεργοποιημένη, αν θέλετε να το απενεργοποιήσετε προσωρινά αντί γι' αυτό."
+
+#: lib/views/bundles/_form.php:149
+msgid "Delete Bundle"
+msgstr "Διαγραφή πακέτου"
+
+#: lib/views/coupons/index.php:9
+#: lib/views/coupons/index.php:66
+msgid "Showing"
+msgstr "Εμφάνιση"
+
+#: lib/views/coupons/index.php:14
+msgid "Download .csv"
+msgstr "Λήψη .csv"
+
+#: lib/views/coupons/index.php:16
+#: lib/views/coupons/quick_edit.php:15
+msgid "New Coupon"
+msgstr "Νέο κουπόνι"
+
+#: lib/views/coupons/index.php:33
+msgid "Search by Name"
+msgstr "Αναζήτηση με όνομα"
+
+#: lib/views/coupons/index.php:34
+msgid "Code..."
+msgstr "Κωδικός..."
+
+#: lib/views/coupons/index.php:36
+msgid "Show All"
+msgstr "Εμφάνιση όλων"
+
+#: lib/views/coupons/index.php:39
+#: lib/views/coupons/index.php:40
+msgid "Filter By Date"
+msgstr "Φιλτράρισμα κατά ημερομηνία"
+
+#: lib/views/coupons/index.php:39
+msgid "Reset Date Filtering"
+msgstr "Επαναφορά φιλτραρίσματος ημερομηνίας"
+
+#: lib/views/coupons/index.php:68
+msgid "Page:"
+msgstr "Σελίδα:"
+
+#: lib/views/coupons/index.php:82
+msgid "No Coupons Found"
+msgstr "Δεν βρέθηκαν κουπόνια"
+
+#: lib/views/coupons/index.php:83
+msgid "Add Coupon"
+msgstr "Προσθήκη κουπονιού"
+
+#: lib/views/coupons/quick_edit.php:17
+msgid "Edit Coupon"
+msgstr "Επεξεργασία κουπονιού"
+
+#: lib/views/coupons/quick_edit.php:24
+msgid "Coupon ID:"
+msgstr "ID κουπονιού:"
+
+#: lib/views/coupons/quick_edit.php:31
+msgid "Used"
+msgstr "Χρησιμοποιήθηκε"
+
+#: lib/views/coupons/quick_edit.php:35
+#, php-format
+msgid "%d time"
+msgid_plural "%d times"
+msgstr[0] "%d φορά"
+msgstr[1] ""
+
+#: lib/views/coupons/quick_edit.php:40
+msgid "Last Used"
+msgstr "Τελευταία χρήση"
+
+#: lib/views/coupons/quick_edit.php:44
+msgid "Total Saved"
+msgstr "Συνολική εξοικονόμηση"
+
+#: lib/views/coupons/quick_edit.php:50
+#: lib/views/webhooks/_webhook_form.php:29
+msgid "Name (For Internal Use)"
+msgstr "Όνομα (Για εσωτερική χρήση)"
+
+#: lib/views/coupons/quick_edit.php:54
+msgid "Discount Value"
+msgstr "Τιμή έκπτωσης"
+
+#: lib/views/coupons/quick_edit.php:57
+msgid "Discount Type"
+msgstr "Τύπος έκπτωσης"
+
+#: lib/views/coupons/quick_edit.php:57
+msgid "Percent"
+msgstr "Ποσοστό"
+
+#: lib/views/coupons/quick_edit.php:57
+msgid "Fixed Value"
+msgstr "Σταθερή τιμή"
+
+#: lib/views/coupons/quick_edit.php:66
+msgid "Time Restrictions"
+msgstr "Χρονικοί περιορισμοί"
+
+#: lib/views/coupons/quick_edit.php:69
+msgid "You can set a specific time frame for when this coupon is active, which is helpful for seasonal promotions. Leaving either field blank will remove any time restrictions."
+msgstr "Μπορείτε να ορίσετε ένα συγκεκριμένο χρονικό διάστημα κατά το οποίο αυτό το κουπόνι θα είναι ενεργό, κάτι που είναι χρήσιμο για εποχιακές προσφορές. Αν αφήσετε οποιοδήποτε από τα πεδία κενό, θα καταργηθούν τυχόν χρονικοί περιορισμοί."
+
+#: lib/views/coupons/quick_edit.php:74
+msgid "Active From"
+msgstr "Ενεργό από"
+
+#: lib/views/coupons/quick_edit.php:77
+msgid "Active To"
+msgstr "Ενεργό έως"
+
+#: lib/views/coupons/quick_edit.php:81
+msgid "Use Restrictions"
+msgstr "Περιορισμοί χρήσης"
+
+#: lib/views/coupons/quick_edit.php:84
+msgid "Here you can specify which service, agent or customer this coupon is applicable to. Leaving a field blank will make it applicable to all."
+msgstr "Εδώ μπορείτε να καθορίσετε σε ποια υπηρεσία, πράκτορα ή πελάτη ισχύει αυτό το κουπόνι. Αν αφήσετε ένα πεδίο κενό, θα ισχύει για όλους."
+
+#: lib/views/agents/_form.php:354
+#: lib/views/coupons/quick_edit.php:88
+msgid "Services"
+msgstr "Υπηρεσίες"
+
+#: lib/views/coupons/quick_edit.php:99
+msgid "Start typing to search..."
+msgstr "Ξεκινήστε να πληκτρολογείτε για αναζήτηση..."
+
+#: lib/views/coupons/quick_edit.php:100
+msgid "cancel"
+msgstr "ακύρωση"
+
+#: lib/views/coupons/quick_edit.php:101
+msgid "Customers"
+msgstr "Πελάτες"
+
+#: lib/views/coupons/quick_edit.php:104
+msgid "Click to select..."
+msgstr "Κάντε κλικ για επιλογή..."
+
+#: lib/views/coupons/quick_edit.php:129
+msgid "Usage Limits"
+msgstr "Όρια Χρήσης"
+
+#: lib/views/coupons/quick_edit.php:132
+msgid "You can set a limit on how many times this coupon can be used, either per customer or in total. Leave blank to have no limits."
+msgstr "Μπορείτε να ορίσετε ένα όριο για το πόσες φορές μπορεί να χρησιμοποιηθεί αυτό το κουπόνι, είτε ανά πελάτη είτε συνολικά. Αφήστε το κενό για να μην υπάρχουν όρια."
+
+#: lib/views/coupons/quick_edit.php:137
+msgid "Per Customer"
+msgstr "Ανά Πελάτη"
+
+#: lib/views/coupons/quick_edit.php:140
+msgid "Per Order"
+msgstr "Ανά Παραγγελία"
+
+#: lib/views/coupons/quick_edit.php:143
+msgid "Total"
+msgstr "Σύνολο"
+
+#: lib/views/coupons/quick_edit.php:148
+msgid "Order Requirements"
+msgstr "Απαιτήσεις Παραγγελίας"
+
+#: lib/views/coupons/quick_edit.php:151
+msgid "You can set an order requirements that must be met for this coupon to be applied. Leave blank to have no requirements."
+msgstr "Μπορείτε να ορίσετε απαιτήσεις παραγγελίας που πρέπει να πληρούνται για να εφαρμοστεί αυτό το κουπόνι. Αφήστε το κενό για να μην υπάρχουν απαιτήσεις."
+
+#: lib/views/coupons/quick_edit.php:155
+msgid "Minimum Order Subtotal"
+msgstr "Ελάχιστο Υποσύνολο Παραγγελίας"
+
+#: lib/views/coupons/quick_edit.php:159
+msgid "Order Count Requirements"
+msgstr "Απαιτήσεις Πλήθους Παραγγελιών"
+
+#: lib/views/coupons/quick_edit.php:162
+msgid "You can set requirements on how many orders a customer needs to have in order to use this coupon. Leave blank to have no requirements."
+msgstr "Μπορείτε να ορίσετε απαιτήσεις σχετικά με το πόσες παραγγελίες πρέπει να έχει ένας πελάτης για να χρησιμοποιήσει αυτό το κουπόνι. Αφήστε το κενό για να μην υπάρχουν απαιτήσεις."
+
+#: lib/views/coupons/quick_edit.php:177
+msgid "Create Coupon"
+msgstr "Δημιουργία Κουπονιού"
+
+#: lib/views/coupons/quick_edit.php:188
+msgid "Are you sure you want to delete this coupon?"
+msgstr "Είστε βέβαιοι ότι θέλετε να διαγράψετε αυτό το κουπόνι;"
+
+#: lib/views/coupons/quick_edit.php:193
+msgid "Delete Coupon"
+msgstr "Διαγραφή Κουπονιού"
+
+#: lib/views/coupons/view_coupon_log.php:15
+msgid "Coupon History"
+msgstr "Ιστορικό Κουπονιών"
+
+#: lib/views/coupons/view_coupon_log.php:25
+msgid "No activity found."
+msgstr "Δεν βρέθηκε δραστηριότητα."
+
+#: lib/views/custom_fields/for_booking.php:10
+#: lib/views/custom_fields/for_customer.php:14
+msgid "Add Custom Field"
+msgstr "Προσθήκη Προσαρμοσμένου Πεδίου"
+
+#: lib/views/custom_fields/for_customer.php:1
+msgid "Default Fields"
+msgstr "Προεπιλεγμένα Πεδία"
+
+#: lib/views/custom_fields/_custom_field_form.php:7
+msgid "New Field"
+msgstr "Νέο Πεδίο"
+
+#: lib/views/custom_fields/_custom_field_form.php:14
+msgid "Field Label"
+msgstr "Ετικέτα Πεδίου"
+
+#: lib/views/custom_fields/_custom_field_form.php:17
+msgid "Enter Field Label"
+msgstr "Εισαγάγετε Ετικέτα Πεδίου"
+
+#: lib/views/custom_fields/_custom_field_form.php:23
+msgid "Placeholder"
+msgstr "Υποκατάστατο"
+
+#: lib/views/custom_fields/_custom_field_form.php:26
+msgid "Enter Field Placeholder"
+msgstr "Εισαγάγετε Υποκατάστατο Πεδίου"
+
+#: lib/views/custom_fields/_custom_field_form.php:32
+msgid "Field Type"
+msgstr "Τύπος Πεδίου"
+
+#: lib/views/custom_fields/_custom_field_form.php:41
+msgid "To use address field, enter a Google API key in general settings."
+msgstr "Για να χρησιμοποιήσετε το πεδίο διεύθυνσης, εισαγάγετε ένα κλειδί Google API στις γενικές ρυθμίσεις."
+
+#: lib/views/custom_fields/_custom_field_form.php:48
+msgid "Options List"
+msgstr "Λίστα Επιλογών"
+
+#: lib/views/custom_fields/_custom_field_form.php:51
+msgid "Choices for Select. Enter each choice on a new line."
+msgstr "Επιλογές για Επιλογή. Εισαγάγετε κάθε επιλογή σε νέα γραμμή."
+
+#: lib/views/custom_fields/_custom_field_form.php:57
+msgid "Default Value"
+msgstr "Προεπιλεγμένη Τιμή"
+
+#: lib/views/custom_fields/_custom_field_form.php:67
+msgid "Conditional"
+msgstr "Υπό Συνθήκη"
+
+#: lib/views/custom_fields/_custom_field_form.php:70
+msgid "Show this field only when conditions are met"
+msgstr "Εμφάνιση αυτού του πεδίου μόνο όταν πληρούνται οι συνθήκες"
+
+#: lib/views/custom_fields/_custom_field_form.php:72
+msgid "Show this field if:"
+msgstr "Εμφάνιση αυτού του πεδίου αν:"
+
+#: lib/views/custom_fields/_custom_field_form.php:89
+msgid "Field Width"
+msgstr "Πλάτος Πεδίου"
+
+#: lib/views/custom_fields/_custom_field_form.php:92
+msgid "Full Width"
+msgstr "Πλήρες Πλάτος"
+
+#: lib/views/custom_fields/_custom_field_form.php:93
+msgid "Half Width"
+msgstr "Μισό Πλάτος"
+
+#: lib/views/custom_fields/_custom_field_form.php:99
+msgid "Field Visibility"
+msgstr "Ορατότητα Πεδίου"
+
+#: lib/views/custom_fields/_custom_field_form.php:102
+msgid "Visible to Everyone"
+msgstr "Ορατό σε Όλους"
+
+#: lib/views/custom_fields/_custom_field_form.php:103
+msgid "Admin and Agents Only"
+msgstr "Μόνο για Διαχειριστές και Πράκτορες"
+
+#: lib/views/custom_fields/_custom_field_form.php:104
+msgid "Temporary Hidden"
+msgstr "Προσωρινά Κρυφό"
+
+#: lib/views/custom_fields/_custom_field_form.php:110
+msgid "Required"
+msgstr "Υποχρεωτικό"
+
+#: lib/views/custom_fields/_custom_field_form.php:113
+msgid "Make this field required"
+msgstr "Κάντε αυτό το πεδίο υποχρεωτικό"
+
+#: lib/views/custom_fields/_custom_field_form.php:119
+msgid "Hide from Summary"
+msgstr "Απόκρυψη από τη Σύνοψη"
+
+#: lib/views/custom_fields/_custom_field_form.php:122
+msgid "Hide from Summary Panel and Confirmation Step"
+msgstr "Απόκρυψη από τον Πίνακα Σύνοψης και το Βήμα Επιβεβαίωσης"
+
+#: lib/views/custom_fields/_custom_field_form.php:127
+#: lib/views/custom_fields/_custom_field_form.php:135
+msgid "Are you sure you want to delete this field?"
+msgstr "Είστε βέβαιοι ότι θέλετε να διαγράψετε αυτό το πεδίο;"
+
+#: lib/views/custom_fields/_custom_field_form.php:128
+msgid "Save Field"
+msgstr "Αποθήκευση Πεδίου"
+
+#: lib/views/debug/status.php:10
+msgid "Features"
+msgstr "Χαρακτηριστικά"
+
+#: lib/views/debug/status.php:12
+msgid "Chat With Customers"
+msgstr "Συνομιλία με Πελάτες"
+
+#: lib/views/debug/status.php:18
+msgid "System Info"
+msgstr "Πληροφορίες Συστήματος"
+
+#: lib/views/debug/status.php:23
+msgid "LatePoint Plugin Version:"
+msgstr "Έκδοση Προσθήκης LatePoint:"
+
+#: lib/views/debug/status.php:27
+msgid "LatePoint Database Version:"
+msgstr "Έκδοση Βάσης Δεδομένων LatePoint:"
+
+#: lib/views/debug/status.php:31
+#: lib/views/debug/status.php:72
+msgid "reset"
+msgstr "επαναφορά"
+
+#: lib/views/debug/status.php:35
+msgid "PHP Version:"
+msgstr "Έκδοση PHP:"
+
+#: lib/views/debug/status.php:40
+msgid "MySQL Version:"
+msgstr "Έκδοση MySQL:"
+
+#: lib/views/debug/status.php:45
+msgid "WordPress Version:"
+msgstr "Έκδοση WordPress:"
+
+#: lib/views/debug/status.php:53
+msgid "Installed Addons"
+msgstr "Εγκατεστημένα Πρόσθετα"
+
+#: lib/views/debug/status.php:63
+msgid "Update Available"
+msgstr "Διαθέσιμη Ενημέρωση"
+
+#: lib/views/debug/status.php:68
+msgid "Core:"
+msgstr "Κύριο:"
+
+#: lib/views/debug/status.php:69
+msgid "Database:"
+msgstr "Βάση Δεδομένων:"
+
+#: lib/views/debug/status.php:82
+msgid "Tasks Due"
+msgstr "Εκκρεμείς Εργασίες"
+
+#: lib/views/debug/status.php:90
+#: lib/views/debug/status.php:96
+msgid "Run Migration"
+msgstr "Εκτέλεση Μετανάστευσης"
+
+#: lib/views/debug/status.php:101
+msgid "Nothing to do"
+msgstr "Δεν υπάρχει τίποτα να γίνει"
+
+#: lib/views/group_bookings/_step_booking__group_bookings.php:15
+msgid "How Many People?"
+msgstr "Πόσα Άτομα;"
+
+#: lib/views/group_bookings/_step_booking__group_bookings.php:16
+msgid "Maximum capacity is"
+msgstr "Η μέγιστη χωρητικότητα είναι"
+
+#: lib/views/group_bookings/_step_booking__group_bookings.php:24
+msgid "Person"
+msgstr "Άτομο"
+
+#: lib/views/group_bookings/_step_booking__group_bookings.php:25
+msgid "People"
+msgstr "Άτομα"
+
+#: lib/views/group_bookings/_step_booking__group_bookings.php:28
+#: lib/views/service_extras/_step_booking__service_extras.php:52
+msgid "Qty"
+msgstr "Ποσ."
+
+#: lib/views/locations/index.php:10
+#: lib/views/locations/index.php:30
+#: lib/views/locations/index.php:45
+msgid "New Location"
+msgstr "Νέα Τοποθεσία"
+
+#: lib/views/locations/index.php:41
+msgid "No Active Locations Found"
+msgstr "Δεν βρέθηκαν Ενεργές Τοποθεσίες"
+
+#: lib/views/locations/index.php:55
+#, php-format
+msgid "%d Disabled Location"
+msgid_plural "%d Disabled Locations"
+msgstr[0] "%d Απενεργοποιημένη Τοποθεσία"
+msgstr[1] ""
+
+#: lib/views/locations/_form.php:10
+#, php-format
+msgid "Location ID: %d"
+msgstr "ID Τοποθεσίας: %d"
+
+#: lib/views/locations/_form.php:17
+msgid "Location Name"
+msgstr "Όνομα Τοποθεσίας"
+
+#: lib/views/locations/_form.php:21
+msgid "Category"
+msgstr "Κατηγορία"
+
+#: lib/views/locations/_form.php:21
+msgid "Add Category"
+msgstr "Προσθήκη Κατηγορίας"
+
+#: lib/views/locations/_form.php:22
+msgid "Location Photo"
+msgstr "Φωτογραφία Τοποθεσίας"
+
+#: lib/views/locations/_form.php:22
+#: lib/views/location_categories/_form.php:13
+#: lib/views/service_categories/_form.php:13
+#: lib/views/service_extras/_form.php:48
+msgid "Remove Image"
+msgstr "Αφαίρεση Εικόνας"
+
+#: lib/views/locations/_form.php:25
+msgid "Location Address"
+msgstr "Διεύθυνση Τοποθεσίας"
+
+#: lib/views/locations/_form.php:42
+msgid "Select Agents for This Location"
+msgstr "Επιλογή Πρακτόρων για Αυτήν την Τοποθεσία"
+
+#: lib/views/locations/_form.php:69
+msgid "Services Selected"
+msgstr "Επιλεγμένες Υπηρεσίες"
+
+#: lib/views/locations/_form.php:76
+#, php-format
+msgid "Select services that %s will be offering at this location:"
+msgstr "Επιλέξτε υπηρεσίες που θα προσφέρει ο/η %s σε αυτήν την τοποθεσία:"
+
+#: lib/views/locations/_form.php:110
+msgid "No Existing Agents Found"
+msgstr "Δεν βρέθηκαν Υπάρχοντες Πράκτορες"
+
+#: lib/views/locations/_form.php:112
+msgid "Add First Agent"
+msgstr "Προσθήκη Πρώτου Πράκτορα"
+
+#: lib/views/locations/_form.php:125
+msgid "Location Schedule"
+msgstr "Πρόγραμμα Τοποθεσίας"
+
+#: lib/views/locations/_form.php:145
+msgid "This location is using general schedule which is set in main settings"
+msgstr "Αυτή η τοποθεσία χρησιμοποιεί το γενικό πρόγραμμα που έχει οριστεί στις κύριες ρυθμίσεις"
+
+#: lib/views/locations/_form.php:157
+msgid "Location shares custom daily schedules that you set in general settings for your company, however you can add additional days with custom hours which will be specific to this location only."
+msgstr "Η τοποθεσία μοιράζεται προσαρμοσμένα ημερήσια προγράμματα που ορίζετε στις γενικές ρυθμίσεις για την εταιρεία σας, ωστόσο μπορείτε να προσθέσετε επιπλέον ημέρες με προσαρμοσμένες ώρες που θα αφορούν μόνο αυτήν την τοποθεσία."
+
+#: lib/views/locations/_form.php:166
+msgid "Location uses the same holidays you set in general settings for your company, however you can add additional holidays for this location here."
+msgstr "Η τοποθεσία χρησιμοποιεί τις ίδιες αργίες που έχετε ορίσει στις γενικές ρυθμίσεις για την εταιρεία σας, ωστόσο μπορείτε να προσθέσετε επιπλέον αργίες για αυτήν την τοποθεσία εδώ."
+
+#: lib/views/locations/_form.php:177
+msgid "Save Location"
+msgstr "Αποθήκευση Τοποθεσίας"
+
+#: lib/views/locations/_form.php:185
+msgid "Are you sure you want to remove this location? It will remove all appointments associated with it. If you only want to temprorary disable it - it is better to just change status to disabled."
+msgstr "Είστε βέβαιοι ότι θέλετε να αφαιρέσετε αυτήν την τοποθεσία; Θα αφαιρεθούν όλα τα ραντεβού που σχετίζονται με αυτήν. Αν θέλετε μόνο να την απενεργοποιήσετε προσωρινά - είναι καλύτερο απλώς να αλλάξετε την κατάσταση σε απενεργοποιημένη."
+
+#: lib/views/locations/_form.php:193
+msgid "Are you sure you want to duplicate this location?"
+msgstr "Είστε βέβαιοι ότι θέλετε να αντιγράψετε αυτήν την τοποθεσία;"
+
+#: lib/views/agents/_form.php:355
+#: lib/views/locations/_form.php:223
+msgid "Schedule"
+msgstr "Πρόγραμμα"
+
+#: lib/views/agents/_form.php:358
+#: lib/views/locations/_form.php:226
+msgid "Custom Days"
+msgstr "Προσαρμοσμένες Ημέρες"
+
+#: lib/views/agents/_form.php:359
+#: lib/views/locations/_form.php:227
+msgid "Holidays & Days off"
+msgstr "Αργίες &amp; Ρεπό"
+
+#: lib/views/locations/_location_index_item.php:28
+msgid "No Agents Assigned"
+msgstr "Δεν έχουν ανατεθεί πράκτορες"
+
+#: lib/views/location_categories/index.php:18
+#: lib/views/service_categories/index.php:18
+msgid "New Category"
+msgstr "Νέα Κατηγορία"
+
+#: lib/views/location_categories/index.php:22
+msgid "Create New Location Category"
+msgstr "Δημιουργία Νέας Κατηγορίας Τοποθεσίας"
+
+#: lib/views/location_categories/new_form.php:3
+msgid "Add Location Category"
+msgstr "Προσθήκη Κατηγορίας Τοποθεσίας"
+
+#: lib/views/location_categories/new_form.php:8
+#: lib/views/location_categories/_form.php:6
+#: lib/views/service_categories/new_form.php:8
+#: lib/views/service_categories/_form.php:6
+msgid "Category Name"
+msgstr "Όνομα Κατηγορίας"
+
+#: lib/views/location_categories/new_form.php:9
+#: lib/views/service_categories/new_form.php:9
+msgid "Quick Description"
+msgstr "Σύντομη Περιγραφή"
+
+#: lib/views/location_categories/new_form.php:14
+msgid "Save Location Category"
+msgstr "Αποθήκευση Κατηγορίας Τοποθεσίας"
+
+#: lib/views/location_categories/_form.php:13
+#: lib/views/service_categories/_form.php:13
+msgid "Category Image"
+msgstr "Εικόνα Κατηγορίας"
+
+#: lib/views/location_categories/_form.php:19
+#: lib/views/service_categories/_form.php:19
+msgid "Save Category"
+msgstr "Αποθήκευση Κατηγορίας"
+
+#: lib/views/location_categories/_form.php:25
+#: lib/views/service_categories/_form.php:25
+msgid "Are you sure you want to remove this category?"
+msgstr "Είστε βέβαιοι ότι θέλετε να αφαιρέσετε αυτήν την κατηγορία;"
+
+#: lib/views/location_categories/_form.php:28
+#: lib/views/service_categories/_form.php:28
+msgid "Delete Category"
+msgstr "Διαγραφή Κατηγορίας"
+
+#: lib/views/messages/backend_chat_box.php:5
+msgid "Your Conversations"
+msgstr "Οι Συνομιλίες σας"
+
+#: lib/views/messages/backend_chat_box.php:8
+msgid "Find booking to start chat..."
+msgstr "Βρείτε κράτηση για να ξεκινήσετε συνομιλία..."
+
+#: lib/views/messages/conversations.php:16
+msgid "Start new conversation..."
+msgstr "Έναρξη νέας συνομιλίας..."
+
+#: lib/views/messages/messages_for_booking.php:22
+#: lib/views/messages/messages_with_info_for_booking.php:42
+msgid "No Messages Exist."
+msgstr "Δεν υπάρχουν μηνύματα."
+
+#: lib/views/messages/messages_with_info_for_booking.php:8
+msgid "Chat with"
+msgstr "Συνομιλία με"
+
+#: lib/views/messages/messages_with_info_for_booking.php:50
+#: lib/views/messages/quick_form_chat_box.php:16
+msgid "Attach File"
+msgstr "Επισύναψη Αρχείου"
+
+#: lib/views/messages/messages_with_info_for_booking.php:57
+msgid "Appointment Info"
+msgstr "Πληροφορίες Ραντεβού"
+
+#: lib/views/messages/messages_with_info_for_booking.php:64
+msgid "Booking ID"
+msgstr "ID Κράτησης"
+
+#: lib/views/messages/messages_with_info_for_booking.php:66
+msgid "Edit"
+msgstr "Επεξεργασία"
+
+#: lib/views/messages/messages_with_info_for_booking.php:68
+msgid "Date/Time"
+msgstr "Ημερομηνία/Ώρα"
+
+#: lib/views/messages/messages_with_info_for_booking.php:72
+msgid "Customer"
+msgstr "Πελάτης"
+
+#: lib/views/messages/quick_form_chat_box.php:3
+msgid "Message History"
+msgstr "Ιστορικό Μηνυμάτων"
+
+#: lib/views/recurring_bookings/recurring_bookings_preview.php:9
+msgid "Review Slots"
+msgstr "Έλεγχος Χρονικών Θέσεων"
+
+#: lib/views/recurring_bookings/recurring_bookings_preview.php:16
+#, php-format
+msgid "%s of %s time slots are not available. Please review them below."
+msgstr "%s από %s χρονικές θέσεις δεν είναι διαθέσιμες. Παρακαλώ ελέγξτε τις παρακάτω."
+
+#: lib/views/recurring_bookings/recurring_bookings_preview.php:34
+msgid "This slot is unavailable. You can choose a different one, or it will be skipped automatically."
+msgstr "Αυτή η χρονική θέση δεν είναι διαθέσιμη. Μπορείτε να επιλέξετε μια διαφορετική, ή θα παραλειφθεί αυτόματα."
+
+#: lib/views/recurring_bookings/recurring_bookings_preview.php:51
+msgid "Continue"
+msgstr "Συνέχεια"
+
+#: lib/views/roles/edit_wp_user.php:9
+msgid "Edit User"
+msgstr "Επεξεργασία Χρήστη"
+
+#: lib/views/roles/edit_wp_user.php:21
+msgid "WP User"
+msgstr "Χρήστης WP"
+
+#: lib/views/roles/edit_wp_user.php:30
+msgid "Not Connected"
+msgstr "Δεν Συνδέθηκε"
+
+#: lib/views/roles/edit_wp_user.php:31
+msgid "Connected to agent"
+msgstr "Συνδεδεμένος με πράκτορα"
+
+#: lib/views/roles/edit_wp_user.php:36
+#: lib/views/roles/_form.php:70
+msgid "Allowed Records"
+msgstr "Επιτρεπόμενες Εγγραφές"
+
+#: lib/views/roles/edit_wp_user.php:40
+msgid "This user has \"Administrator\" role and can access all records"
+msgstr "Αυτός ο χρήστης έχει ρόλο \"Administrator\" και μπορεί να έχει πρόσβαση σε όλες τις εγγραφές"
+
+#: lib/views/roles/edit_wp_user.php:42
+msgid "This user has \"Agent\" role and can execute permitted actions only on records that belong to a LatePoint agent they are connected to."
+msgstr "Αυτός ο χρήστης έχει ρόλο \"Agent\" και μπορεί να εκτελεί μόνο τις επιτρεπόμενες ενέργειες σε εγγραφές που ανήκουν σε έναν πράκτορα LatePoint με τον οποίο είναι συνδεδεμένος."
+
+#: lib/views/roles/edit_wp_user.php:47
+msgid "Custom Selection"
+msgstr "Προσαρμοσμένη Επιλογή"
+
+#: lib/views/roles/edit_wp_user.php:57
+#: lib/views/roles/_form.php:91
+msgid "Permitted Actions"
+msgstr "Επιτρεπόμενες Ενέργειες"
+
+#: lib/views/roles/edit_wp_user.php:58
+msgid "Custom"
+msgstr "Προσαρμοσμένο"
+
+#: lib/views/roles/edit_wp_user.php:77
+msgid "Permitted actions are defined by user's role settings."
+msgstr "Οι επιτρεπόμενες ενέργειες ορίζονται από τις ρυθμίσεις ρόλου του χρήστη."
+
+#: lib/views/roles/index.php:9
+msgid "Default Roles"
+msgstr "Προεπιλεγμένοι Ρόλοι"
+
+#: lib/views/roles/index.php:19
+msgid "Custom Roles"
+msgstr "Προσαρμοσμένοι Ρόλοι"
+
+#: lib/views/roles/index.php:37
+msgid "Create Custom Role"
+msgstr "Δημιουργία Προσαρμοσμένου Ρόλου"
+
+#: lib/views/roles/_form.php:12
+#, php-format
+msgid "%d user"
+msgid_plural "%d users"
+msgstr[0] "%d χρήστης"
+msgstr[1] ""
+
+#: lib/views/roles/_form.php:32
+msgid "Users"
+msgstr "Χρήστες"
+
+#: lib/views/roles/_form.php:50
+msgid "Custom Settings"
+msgstr "Προσαρμοσμένες Ρυθμίσεις"
+
+#: lib/views/roles/_form.php:54
+msgid "Connected to:"
+msgstr "Συνδεδεμένος με:"
+
+#: lib/views/roles/_form.php:54
+msgid "Connect to an agent"
+msgstr "Σύνδεση με πράκτορα"
+
+#: lib/views/roles/_form.php:63
+#, php-format
+msgid "You have not assigned any WordPress users to this role. Create a new WP user or edit existing user and assign them a role called: %s"
+msgstr "Δεν έχετε αναθέσει κανέναν χρήστη WordPress σε αυτόν τον ρόλο. Δημιουργήστε έναν νέο χρήστη WP ή επεξεργαστείτε έναν υπάρχοντα χρήστη και αναθέστε του έναν ρόλο με όνομα: %s"
+
+#: lib/views/roles/_form.php:77
+#, php-format
+msgid "Users with \"%s\" role are allowed to perform all available actions on any agent, location and service records."
+msgstr "Οι χρήστες με ρόλο \"%s\" επιτρέπεται να εκτελούν όλες τις διαθέσιμες ενέργειες σε οποιεσδήποτε εγγραφές πράκτορα, τοποθεσίας και υπηρεσίας."
+
+#: lib/views/roles/_form.php:80
+#, php-format
+msgid "Users with \"%s\" role can execute permitted actions only on records that belong to a LatePoint agent they are connected to."
+msgstr "Οι χρήστες με ρόλο \"%s\" μπορούν να εκτελούν μόνο τις επιτρεπόμενες ενέργειες σε εγγραφές που ανήκουν σε έναν πράκτορα LatePoint με τον οποίο είναι συνδεδεμένοι."
+
+#: lib/views/roles/_form.php:83
+msgid "Once you assign users to this role, they will appear in \"Users\" section above, click on each user to set restrictions on which records each of them can access."
+msgstr "Μόλις αναθέσετε χρήστες σε αυτόν τον ρόλο, θα εμφανιστούν στην ενότητα \"Χρήστες\" παραπάνω, κάντε κλικ σε κάθε χρήστη για να ορίσετε περιορισμούς σχετικά με το ποιες εγγραφές μπορεί να έχει πρόσβαση ο καθένας τους."
+
+#: lib/views/roles/_form.php:97
+#, php-format
+msgid "Users with \"%s\" role are permitted to execute all available actions in the system."
+msgstr "Οι χρήστες με ρόλο \"%s\" επιτρέπεται να εκτελούν όλες τις διαθέσιμες ενέργειες στο σύστημα."
+
+#: lib/views/roles/_form.php:119
+#: lib/views/roles/_form.php:133
+msgid "Are you sure you want to delete this role?"
+msgstr "Είστε βέβαιοι ότι θέλετε να διαγράψετε αυτόν τον ρόλο;"
+
+#: lib/views/service_categories/index.php:22
+msgid "Create New Service Category"
+msgstr "Δημιουργία νέας κατηγορίας υπηρεσίας"
+
+#: lib/views/service_categories/new_form.php:3
+msgid "Add Service Category"
+msgstr "Προσθήκη κατηγορίας υπηρεσίας"
+
+#: lib/views/service_categories/new_form.php:15
+msgid "Save Service Category"
+msgstr "Αποθήκευση κατηγορίας υπηρεσίας"
+
+#: lib/views/service_durations/duration_fields.php:9
+msgid "Duration Name (optional)"
+msgstr "Όνομα διάρκειας (προαιρετικό)"
+
+#: lib/views/service_durations/duration_fields.php:12
+msgid "Duration"
+msgstr "Διάρκεια"
+
+#: lib/views/service_durations/_step_booking__service_durations.php:40
+msgid "Hours"
+msgstr "Ώρες"
+
+#: lib/views/service_durations/_step_booking__service_durations.php:40
+msgid "Hour"
+msgstr "Ώρα"
+
+#: lib/views/service_durations/_step_booking__service_durations.php:41
+#: lib/views/service_durations/_step_booking__service_durations.php:44
+msgid "Minutes"
+msgstr "Λεπτά"
+
+#: lib/views/service_extras/index.php:18
+msgid "min"
+msgstr "λεπ"
+
+#: lib/views/service_extras/index.php:21
+msgid "Price:"
+msgstr "Τιμή:"
+
+#: lib/views/service_extras/index.php:25
+msgid "Max Qty:"
+msgstr "Μέγ. ποσότητα:"
+
+#: lib/views/service_extras/index.php:33
+msgid "Edit Extra"
+msgstr "Επεξεργασία επιπλέον"
+
+#: lib/views/service_extras/index.php:46
+msgid "No Service Extras Found"
+msgstr "Δεν βρέθηκαν επιπλέον υπηρεσίες"
+
+#: lib/views/service_extras/index.php:50
+#: lib/views/service_extras/_form.php:90
+msgid "Add Service Extra"
+msgstr "Προσθήκη επιπλέον υπηρεσίας"
+
+#: lib/views/service_extras/_form.php:14
+msgid "Service Extra ID:"
+msgstr "ID επιπλέον υπηρεσίας:"
+
+#: lib/views/service_extras/_form.php:19
+msgid "Service Extra Name"
+msgstr "Όνομα επιπλέον υπηρεσίας"
+
+#: lib/views/service_extras/_form.php:22
+msgid "Duration (minutes)"
+msgstr "Διάρκεια (λεπτά)"
+
+#: lib/views/service_extras/_form.php:28
+msgid "Maximum Quantity"
+msgstr "Μέγιστη ποσότητα"
+
+#: lib/views/service_extras/_form.php:41
+msgid "Media"
+msgstr "Πολυμέσα"
+
+#: lib/views/service_extras/_form.php:45
+msgid "Selection Image"
+msgstr "Εικόνα επιλογής"
+
+#: lib/views/service_extras/_form.php:46
+msgid "This image will be used as a background image of the service extra tile on booking form"
+msgstr "Αυτή η εικόνα θα χρησιμοποιηθεί ως εικόνα φόντου του πλακιδίου της επιπλέον υπηρεσίας στη φόρμα κράτησης"
+
+#: lib/views/service_extras/_form.php:48
+msgid "Service Extra Image"
+msgstr "Εικόνα επιπλέον υπηρεσίας"
+
+#: lib/views/service_extras/_form.php:94
+msgid "Are you sure you want to remove this service extra? You can also change status to disabled if you want to temprorary disable it instead."
+msgstr "Είστε βέβαιοι ότι θέλετε να αφαιρέσετε αυτήν την επιπλέον υπηρεσία; Μπορείτε επίσης να αλλάξετε την κατάσταση σε απενεργοποιημένη αν θέλετε να την απενεργοποιήσετε προσωρινά αντί γι’ αυτό."
+
+#: lib/views/service_extras/_form.php:98
+msgid "Delete Service Extra"
+msgstr "Διαγραφή επιπλέον υπηρεσίας"
+
+#: lib/views/taxes/index.php:15
+msgid "Add Tax"
+msgstr "Προσθήκη φόρου"
+
+#: lib/views/taxes/_tax_form.php:7
+msgid "New Tax"
+msgstr "Νέος φόρος"
+
+#: lib/views/taxes/_tax_form.php:14
+msgid "Tax Name"
+msgstr "Όνομα φόρου"
+
+#: lib/views/taxes/_tax_form.php:17
+msgid "Enter Tax Name"
+msgstr "Εισαγάγετε το όνομα του φόρου"
+
+#: lib/views/taxes/_tax_form.php:23
+msgid "Tax Type"
+msgstr "Τύπος φόρου"
+
+#: lib/views/taxes/_tax_form.php:31
+msgid "Percentage of the booking price"
+msgstr "Ποσοστό της τιμής κράτησης"
+
+#: lib/views/taxes/_tax_form.php:32
+msgid "Fixed amount"
+msgstr "Σταθερό ποσό"
+
+#: lib/views/taxes/_tax_form.php:38
+msgid "Enter Tax Value"
+msgstr "Εισαγάγετε την τιμή του φόρου"
+
+#: lib/views/taxes/_tax_form.php:45
+#: lib/views/taxes/_tax_form.php:55
+msgid "Are you sure you want to delete this tax?"
+msgstr "Είστε βέβαιοι ότι θέλετε να διαγράψετε αυτόν τον φόρο;"
+
+#: lib/views/taxes/_tax_form.php:50
+msgid "Save Tax"
+msgstr "Αποθήκευση φόρου"
+
+#: lib/views/updates/check_version_status.php:11
+msgid "Update is Available"
+msgstr "Διαθέσιμη ενημέρωση"
+
+#. translators: %s is version number
+#: lib/views/updates/check_version_status.php:18
+#, php-format
+msgid "LatePoint %s is available."
+msgstr "Το LatePoint %s είναι διαθέσιμο."
+
+#. translators: %s is version number
+#: lib/views/updates/check_version_status.php:23
+#, php-format
+msgid "You're running version %s"
+msgstr "Χρησιμοποιείτε την έκδοση %s"
+
+#: lib/views/updates/check_version_status.php:40
+#: lib/views/updates/check_version_status.php:57
+msgid "View Changelog"
+msgstr "Προβολή ιστορικού αλλαγών"
+
+#: lib/views/updates/check_version_status.php:49
+msgid "You are using the latest version"
+msgstr "Χρησιμοποιείτε την πιο πρόσφατη έκδοση"
+
+#: lib/views/updates/check_version_status.php:52
+msgid "Installed Version: "
+msgstr "Εγκατεστημένη έκδοση:"
+
+#: lib/views/updates/check_version_status.php:61
+msgid "Official Website"
+msgstr "Επίσημος ιστότοπος"
+
+#: lib/views/updates/migrate_from_version4.php:12
+msgid "Migration from Version 4"
+msgstr "Μετάβαση από την έκδοση 4"
+
+#: lib/views/updates/version_5_intro.php:8
+msgid "Dismiss"
+msgstr "Απόρριψη"
+
+#: lib/views/updates/version_5_intro.php:60
+msgid "Start Using Version 5"
+msgstr "Ξεκινήστε να χρησιμοποιείτε την έκδοση 5"
+
+#: lib/views/updates/_license_form.php:7
+msgid "License Key Registration"
+msgstr "Καταχώριση κλειδιού άδειας χρήσης"
+
+#: lib/views/updates/_license_form.php:17
+msgid "Please enter your LatePoint license key to receive free plugin updates and install addons."
+msgstr "Παρακαλούμε εισαγάγετε το κλειδί άδειας χρήσης του LatePoint για να λαμβάνετε δωρεάν ενημερώσεις του πρόσθετου και να εγκαθιστάτε πρόσθετα."
+
+#: lib/views/updates/_license_form.php:21
+msgid "Your Name"
+msgstr "Το όνομά σας"
+
+#: lib/views/updates/_license_form.php:24
+msgid "Your Email Address"
+msgstr "Η διεύθυνση email σας"
+
+#: lib/views/updates/_license_form.php:27
+msgid "License Key"
+msgstr "Κλειδί άδειας χρήσης"
+
+#: lib/views/updates/_license_form.php:31
+msgid "Activate Now"
+msgstr "Ενεργοποίηση τώρα"
+
+#: lib/views/webhooks/index.php:12
+msgid "Add Webhook"
+msgstr "Προσθήκη webhook"
+
+#: lib/views/webhooks/_webhook_form.php:2
+msgid "New Booking"
+msgstr "Νέα κράτηση"
+
+#: lib/views/webhooks/_webhook_form.php:3
+msgid "Updated Booking"
+msgstr "Ενημερωμένη κράτηση"
+
+#: lib/views/webhooks/_webhook_form.php:4
+msgid "New Customer"
+msgstr "Νέος πελάτης"
+
+#: lib/views/webhooks/_webhook_form.php:5
+msgid "New Transaction"
+msgstr "Νέα συναλλαγή"
+
+#: lib/views/webhooks/_webhook_form.php:12
+msgid "New Webhook"
+msgstr "Νέο webhook"
+
+#: lib/views/webhooks/_webhook_form.php:26
+msgid "Webhook URL"
+msgstr "URL webhook"
+
+#: lib/views/webhooks/_webhook_form.php:26
+msgid "Webhook URL (https://example.com)"
+msgstr "URL webhook (https://example.com)"
+
+#: lib/views/webhooks/_webhook_form.php:33
+msgid "Event that will trigger this hook"
+msgstr "Συμβάν που θα ενεργοποιήσει αυτό το hook"
+
+#: lib/views/webhooks/_webhook_form.php:39
+msgid "Hook Status"
+msgstr "Κατάσταση hook"
+
+#: lib/views/webhooks/_webhook_form.php:50
+msgid "Are you sure you want to delete this webhook?"
+msgstr "Είστε βέβαιοι ότι θέλετε να διαγράψετε αυτό το webhook;"
+
+#: lib/views/agents/_form.php:353
+msgid "Extra Info"
+msgstr "Πρόσθετες πληροφορίες"
+
+#: lib/views/messages/conversations.php:22
+msgid "No conversations found."
+msgstr "Δεν βρέθηκαν συνομιλίες."
+
+#: lib/views/roles/edit_wp_user.php:47
+msgid "All Connected"
+msgstr "Όλα συνδεδεμένα"
+
+#: lib/views/roles/_form.php:54
+msgid "Not connected"
+msgstr "Δεν είναι συνδεδεμένο"
