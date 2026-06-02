@@ -49,21 +49,21 @@ if ( ! defined( 'ABSPATH' ) ) {
                 </div>
                 <div class="fsoi-main">
                     <span><?php esc_html_e( 'Order #', 'latepoint' ); ?></span>
-                    <strong><?php esc_html_e($order->confirmation_code); ?></strong>
+                    <strong><?php echo esc_html( $order->confirmation_code ); ?></strong>
                 </div>
             </div>
             <div class="full-summary-order-info-elements">
                 <div class="fsoi-element">
                     <span><?php esc_html_e( 'Created:', 'latepoint' ); ?></span>
-                    <strong><?php esc_html_e(esc_html( OsTimeHelper::get_readable_date( new OsWpDateTime( $order->created_at, new DateTimeZone('UTC'))))); ?></strong>
+                    <strong><?php echo esc_html( OsTimeHelper::get_readable_date( new OsWpDateTime( $order->created_at, new DateTimeZone( 'UTC' ) ) ) ); ?></strong>
                 </div>
                 <div class="fsoi-element">
                     <span><?php esc_html_e( 'Status:', 'latepoint' ); ?></span>
-                    <strong><?php esc_html_e($order->get_nice_status_name()); ?></strong>
+                    <strong><?php echo esc_html( $order->get_nice_status_name() ); ?></strong>
                 </div>
                 <div class="fsoi-element">
                     <span><?php esc_html_e( 'Payment:', 'latepoint' ); ?></span>
-                    <strong><?php esc_html_e($order->get_nice_payment_status_name()); ?></strong>
+                    <strong><?php echo esc_html( $order->get_nice_payment_status_name() ); ?></strong>
                 </div>
             </div>
         </div>

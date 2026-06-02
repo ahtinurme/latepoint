@@ -37,17 +37,38 @@ class OsProcessModel extends OsModel {
 			foreach ( $this->event->trigger_conditions as $condition ) {
 				foreach ( $objects as $object ) {
 					if ( $object['model'] == \LatePoint\Misc\ProcessEvent::get_object_from_property( $condition['property'] ) ) {
-						$attribute = \LatePoint\Misc\ProcessEvent::get_object_attribute_from_property( $condition['property'] );
+						$attribute    = \LatePoint\Misc\ProcessEvent::get_object_attribute_from_property( $condition['property'] );
+						$object_value = self::resolve_attribute_value( $object, $attribute );
 						switch ( $condition['operator'] ) {
 							case 'equal':
 								$value_arr = explode( ',', $condition['value'] );
-								if ( ! in_array( $object['model_ready']->$attribute, $value_arr ) ) {
+								if ( ! in_array( $object_value, $value_arr ) ) {
 									return false;
 								}
 								break;
 							case 'not_equal':
 								$value_arr = explode( ',', $condition['value'] );
-								if ( in_array( $object['model_ready']->$attribute, $value_arr ) ) {
+								if ( in_array( $object_value, $value_arr ) ) {
+									return false;
+								}
+								break;
+							case 'greater_than':
+								if ( ! ( (float) $object_value > (float) $condition['value'] ) ) {
+									return false;
+								}
+								break;
+							case 'less_than':
+								if ( ! ( (float) $object_value < (float) $condition['value'] ) ) {
+									return false;
+								}
+								break;
+							case 'greater_or_equal':
+								if ( ! ( (float) $object_value >= (float) $condition['value'] ) ) {
+									return false;
+								}
+								break;
+							case 'less_or_equal':
+								if ( ! ( (float) $object_value <= (float) $condition['value'] ) ) {
 									return false;
 								}
 								break;
@@ -57,7 +78,7 @@ class OsProcessModel extends OsModel {
 							case 'not_changed':
 								foreach ( $objects as $object_to_compare ) {
 									if ( $object_to_compare['model'] == str_replace( 'old_', '', $object['model'] ) ) {
-										if ( $object['model_ready']->$attribute != $object_to_compare['model_ready']->$attribute ) {
+										if ( $object_value != $object_to_compare['model_ready']->$attribute ) {
 											return false;
 										}
 									}
@@ -65,7 +86,7 @@ class OsProcessModel extends OsModel {
 							case 'changed':
 								foreach ( $objects as $object_to_compare ) {
 									if ( $object_to_compare['model'] == str_replace( 'old_', '', $object['model'] ) ) {
-										if ( $object['model_ready']->$attribute == $object_to_compare['model_ready']->$attribute ) {
+										if ( $object_value == $object_to_compare['model_ready']->$attribute ) {
 											return false;
 										}
 									}
@@ -77,6 +98,68 @@ class OsProcessModel extends OsModel {
 			}
 		}
 		return true;
+	}
+
+	/**
+	 * Returns the value of the attribute on the model. Most attributes are
+	 * read directly from the model instance, but a small number are computed
+	 * (e.g. order_item_counts, which depends on related records and is not
+	 * stored on the booking or order row itself).
+	 */
+	private static function resolve_attribute_value( array $object, string $attribute ) {
+		if ( $attribute === 'order_item_counts' ) {
+			if ( $object['model'] === 'booking' ) {
+				return self::compute_order_item_counts_for_booking( $object['model_ready'] );
+			}
+			if ( $object['model'] === 'order' ) {
+				return self::compute_order_item_counts_for_order( $object['model_ready'] );
+			}
+		}
+		return $object['model_ready']->$attribute;
+	}
+
+	/**
+	 * Counts how many bookings belong to the same transaction as the given
+	 * booking. Falls back to 1 (= "single booking") for any degenerate input
+	 * so the evaluator never crashes on missing related records.
+	 *
+	 * Order of preference:
+	 *  - recurrence_id sibling count (catches recurring sets and bundle
+	 *    scheduling)
+	 *  - order item count via order_item_id -> order (catches cart checkouts
+	 *    with multiple distinct services)
+	 *  - 1 (no transaction context)
+	 */
+	private static function compute_order_item_counts_for_booking( \OsBookingModel $booking ): int {
+		if ( ! empty( $booking->order_item_id ) ) {
+			$order_item = new \OsOrderItemModel( $booking->order_item_id );
+
+			if ( ! empty( $order_item->order_id ) ) {
+				$order = new \OsOrderModel( $order_item->order_id );
+				$items = $order->get_items();
+				if ( ! empty( $items ) ) {
+					return count( $items );
+				}
+			}
+		}
+
+		return 0;
+	}
+
+	/**
+	 * Counts how many items the given order has. Falls back to 1 for any
+	 * degenerate input so the evaluator never crashes on missing related
+	 * records. Used by the "Order Item Counts" condition on Order Created.
+	 */
+	private static function compute_order_item_counts_for_order( \OsOrderModel $order ): int {
+		if ( empty( $order->id ) ) {
+			return 0;
+		}
+		$items = $order->get_items();
+		if ( empty( $items ) ) {
+			return 0;
+		}
+		return count( $items );
 	}
 
 	public function get_info() {
@@ -97,7 +180,7 @@ class OsProcessModel extends OsModel {
 					'process_id' => $id,
 					'status'     => LATEPOINT_JOB_STATUS_SCHEDULED,
 				),
-				array( '%d', '%s' ) 
+				array( '%d', '%s' )
 			);
 			do_action( 'latepoint_process_deleted', $id );
 			return true;

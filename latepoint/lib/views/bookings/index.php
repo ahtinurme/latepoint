@@ -23,6 +23,9 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit; // Exit if accessed directly
 }
 ?>
+<?php
+$can_bulk_delete = OsRolesHelper::can_user_perform_model_action( 'OsBookingModel', 'delete' );
+?>
 <?php if($bookings){ ?>
   <div class="table-with-pagination-w has-scrollable-table">
     <div class="os-pagination-w with-actions">
@@ -38,6 +41,7 @@ if ( ! defined( 'ABSPATH' ) ) {
           <?php } ?>
       </div>
     </div>
+    <?php if ( $can_bulk_delete ) { echo OsBookingHelper::render_bulk_actions_bar(); } ?>
     <div class="os-bookings-list">
       <div class="os-scrollable-table-w">
         <div class="os-table-w os-table-compact">
@@ -46,6 +50,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 	          <?php echo OsFormHelper::hidden_field('filter[records_ordered_by_direction]', $records_ordered_by_direction, ['class' => 'records-ordered-by-direction os-table-filter']); ?>
             <thead>
               <tr>
+                <?php if ( $can_bulk_delete ) { echo OsBookingHelper::render_bulk_select_header_cell(); } ?>
                 <?php
                 foreach ( $ordered_columns as $col_key => $col_def ) {
                   if ( ! OsSettingsHelper::is_bookings_column_visible( $col_def, $selected_columns, count( $services_list ), count( $agents_list ), count( $locations_list ) ) ) continue;
@@ -54,6 +59,7 @@ if ( ! defined( 'ABSPATH' ) ) {
                 ?>
               </tr>
               <tr>
+                <?php if ( $can_bulk_delete ) { echo OsBookingHelper::render_bulk_select_spacer_cell(); } ?>
                 <?php
                 foreach ( $ordered_columns as $col_key => $col_def ) {
                   if ( ! OsSettingsHelper::is_bookings_column_visible( $col_def, $selected_columns, count( $services_list ), count( $agents_list ), count( $locations_list ) ) ) continue;
@@ -67,6 +73,7 @@ if ( ! defined( 'ABSPATH' ) ) {
             </tbody>
             <tfoot>
               <tr>
+                <?php if ( $can_bulk_delete ) { echo OsBookingHelper::render_bulk_select_spacer_cell(); } ?>
                 <?php
                 foreach ( $ordered_columns as $col_key => $col_def ) {
                   if ( ! OsSettingsHelper::is_bookings_column_visible( $col_def, $selected_columns, count( $services_list ), count( $agents_list ), count( $locations_list ) ) ) continue;

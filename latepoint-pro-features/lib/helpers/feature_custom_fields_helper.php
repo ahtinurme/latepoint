@@ -244,6 +244,24 @@ class OsFeatureCustomFieldsHelper {
 		return $data;
 	}
 
+    /** FIXME: CUSTOM CODE */
+    /**
+     * Customer custom fields that are flagged to be shown as columns in the admin Customers table.
+     *
+     * @return array<string, array>
+     */
+    public static function get_customer_custom_fields_for_table(): array {
+        $custom_fields_for_customer = OsCustomFieldsHelper::get_custom_fields_arr( 'customer', 'all' );
+
+        return array_filter(
+                $custom_fields_for_customer,
+                function ( $custom_field ) {
+                    return ! empty( $custom_field['show_in_customers_table'] ) && $custom_field['show_in_customers_table'] == LATEPOINT_VALUE_ON;
+                }
+        );
+    }
+    /** FIXME: CUSTOM CODE END */
+
 	public static function add_custom_fields_to_bookings_table_columns( $columns ) {
 		$custom_fields_for_booking = OsCustomFieldsHelper::get_custom_fields_arr( 'booking', 'all' );
 		if ( $custom_fields_for_booking ) {

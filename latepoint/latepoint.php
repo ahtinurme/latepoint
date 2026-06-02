@@ -2,7 +2,7 @@
 /**
  * Plugin Name: LatePoint
  * Description: Appointment Scheduling Software for WordPress
- * Version: 5.6.0
+ * Version: 5.6.1
  * Author: LatePoint
  * Author URI: https://latepoint.com
  * Plugin URI: https://latepoint.com
@@ -29,7 +29,7 @@ if ( ! class_exists( 'LatePoint' ) ) :
 		 * LatePoint version.
 		 *
 		 */
-		public $version    = '5.6.0';
+		public $version    = '5.6.1';
 		public $db_version = '2.3.0';
 
 
@@ -1136,7 +1136,7 @@ if ( ! class_exists( 'LatePoint' ) ) :
 		function add_upgrade_link( $links, $plugin_file ) {
 			if ( plugin_basename( __FILE__ ) == $plugin_file ) {
 				if ( apply_filters( 'latepoint_show_upgrade_link_on_plugins_page', true, $plugin_file ) ) {
-					$custom_link = '<a class="latepoint-plugin-upgrade-premium-link" href="' . LATEPOINT_UPGRADE_URL . '">' . esc_html__( 'Get LatePoint Pro' ) . '</a>';
+					$custom_link = '<a class="latepoint-plugin-upgrade-premium-link" href="' . LATEPOINT_UPGRADE_URL . '">' . esc_html__( 'Get LatePoint Pro', 'latepoint' ) . '</a>';
 					$links[]     = $custom_link;
 				}
 			}
@@ -1645,6 +1645,24 @@ if ( ! class_exists( 'LatePoint' ) ) :
 			$localized_vars = apply_filters( 'latepoint_localized_vars_admin', $localized_vars );
 
 			wp_localize_script( 'latepoint-main-admin', 'latepoint_helper', $localized_vars );
+
+			wp_localize_script(
+				'latepoint-main-admin',
+				'latepoint_bookings_bulk_i18n',
+				array(
+					'modal_title'             => __( 'Are you sure you want to delete these appointments?', 'latepoint' ),
+					'modal_body_one'          => __( 'You are about to delete 1 appointment. This action cannot be undone.', 'latepoint' ),
+					'modal_body_many'         => __( 'You are about to delete %d appointments. This action cannot be undone.', 'latepoint' ),
+					'modal_confirm_prompt'    => __( 'To confirm, type %s in the box below.', 'latepoint' ),
+					'modal_confirm_word'      => __( 'delete', 'latepoint' ),
+					'modal_input_placeholder' => __( 'Type "delete" to confirm', 'latepoint' ),
+					'modal_confirm'           => __( 'Delete', 'latepoint' ),
+					'modal_cancel'            => __( 'Cancel', 'latepoint' ),
+					'selected_label_one'      => __( 'Appointment selected', 'latepoint' ),
+					'selected_label_many'     => __( 'Appointments selected', 'latepoint' ),
+					'error_generic'           => __( 'Something went wrong. Please try again.', 'latepoint' ),
+				)
+			);
 
 
 			$latepoint_css_variables = OsStylesHelper::generate_css_variables();

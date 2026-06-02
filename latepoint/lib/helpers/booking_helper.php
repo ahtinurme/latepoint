@@ -2187,4 +2187,65 @@ class OsBookingHelper {
 				return '<td>' . esc_html( $column_value ) . '</td>';
 		}
 	}
+
+	/**
+	 * Returns the <th> HTML for the bulk-selection column header (with the select-all checkbox).
+	 *
+	 * @return string
+	 */
+	public static function render_bulk_select_header_cell(): string {
+		return '<th class="os-bulk-select-cell" onclick="event.stopPropagation();">' .
+			'<label class="os-bulk-row-check-w">' .
+			'<input type="checkbox" class="os-bulk-select-all" aria-label="' . esc_attr__( 'Select all appointments on this page', 'latepoint' ) . '" />' .
+			'<span class="os-bulk-check-box"></span>' .
+			'</label>' .
+			'</th>';
+	}
+
+	/**
+	 * Returns the empty spacer <th> HTML for the bulk-selection column in filter and footer rows.
+	 *
+	 * @return string
+	 */
+	public static function render_bulk_select_spacer_cell(): string {
+		return '<th class="os-bulk-select-cell"></th>';
+	}
+
+	/**
+	 * Returns the <td> HTML for the bulk-selection column on a single body row.
+	 *
+	 * @param OsBookingModel $booking Current booking row.
+	 * @return string
+	 */
+	public static function render_bulk_select_body_cell( OsBookingModel $booking ): string {
+		/* translators: %d: appointment ID */
+		$aria_label = sprintf( __( 'Select appointment %d', 'latepoint' ), $booking->id );
+		return '<td class="os-bulk-select-cell" onclick="event.stopPropagation();">' .
+			'<label class="os-bulk-row-check-w">' .
+			'<input type="checkbox" class="os-bulk-row-check" value="' . esc_attr( $booking->id ) . '" aria-label="' . esc_attr( $aria_label ) . '" />' .
+			'<span class="os-bulk-check-box"></span>' .
+			'</label>' .
+			'</td>';
+	}
+
+	/**
+	 * Returns the HTML for the bulk-actions toolbar shown above the appointments table.
+	 *
+	 * @return string
+	 */
+	public static function render_bulk_actions_bar(): string {
+		return '<div class="os-bulk-actions-bar" data-bulk-nonce="' . esc_attr( wp_create_nonce( 'bulk_destroy_bookings' ) ) . '">' .
+			'<div class="os-bulk-actions-info">' .
+			'<span class="os-bulk-selected-count">0</span>' .
+			// Label is swapped between singular and plural by JS based on selection count.
+			'<span class="os-bulk-selected-label">' . esc_html__( 'Appointments selected', 'latepoint' ) . '</span>' .
+			'</div>' .
+			'<div class="os-bulk-actions-controls">' .
+			'<a href="#" class="latepoint-btn latepoint-btn-danger os-bulk-action-delete">' .
+			'<i class="latepoint-icon latepoint-icon-trash-2"></i><span>' . esc_html__( 'Delete Selected', 'latepoint' ) . '</span>' .
+			'</a>' .
+			'<a href="#" class="os-bulk-actions-clear">' . esc_html__( 'Clear selection', 'latepoint' ) . '</a>' .
+			'</div>' .
+			'</div>';
+	}
 }

@@ -118,7 +118,7 @@ class OsWhatsappHelper {
 			$html                .= '</div>';
 			$html                .= '<div class="latepoint-whatsapp-template-preview-variables-inner">';
 			$smart_variables_link = '<a href="#" class="open-template-variables-panel">' . esc_html__( 'Click here', 'latepoint' ) . '</a>';
-			$html                .= '<div class="latepoint-whatsapp-note">' . sprintf( __( 'You have to assign values for each variable that is used in this template. %s to show smart variables that you can use.' ), $smart_variables_link ) . '</div>';
+			$html                .= '<div class="latepoint-whatsapp-note">' . sprintf( __( 'You have to assign values for each variable that is used in this template. %s to show smart variables that you can use.', 'latepoint' ), $smart_variables_link ) . '</div>';
 			$color_index          = 0;
 			foreach ( $variables_by_type as $variable_type => $variables ) {
 				if ( ! empty( $variables ) ) {

@@ -15,6 +15,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 if($bookings){
   foreach ($bookings as $booking): ?>
     <tr class="os-clickable-row" <?php echo OsBookingHelper::quick_booking_btn_html($booking->id); ?>>
+      <?php if ( ! empty( $can_bulk_delete ) ) { echo OsBookingHelper::render_bulk_select_body_cell( $booking ); } ?>
       <?php
       foreach ( $ordered_columns as $col_key => $col_def ) {
         if ( ! OsSettingsHelper::is_bookings_column_visible( $col_def, $selected_columns, count( $services_list ), count( $agents_list ), count( $locations_list ) ) ) continue;

@@ -13,7 +13,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 
 		<?php if(OsRolesHelper::can_user('service__create')){ ?>
-            <?php echo OsUtilHelper::add_resource_link_html(__('New Service', 'latepoint-pro-features'), OsRouterHelper::build_link(OsRouterHelper::build_route_name('services', 'new_form') )); ?>
+            <?php echo OsUtilHelper::add_resource_link_html(__('New Service', 'latepoint'), OsRouterHelper::build_link(OsRouterHelper::build_route_name('services', 'new_form') )); ?>
 		<?php } ?>
       </div>
     </div>
@@ -32,7 +32,7 @@ if ( ! defined( 'ABSPATH' ) ) {
           <?php 
         } ?>
 		<?php if(OsRolesHelper::can_user('service__create')){ ?>
-            <?php echo OsUtilHelper::add_resource_link_html(__('New Service', 'latepoint-pro-features'), OsRouterHelper::build_link(OsRouterHelper::build_route_name('services', 'new_form'), ['service_category_id' => $service_category->id] )); ?>
+            <?php echo OsUtilHelper::add_resource_link_html(__('New Service', 'latepoint'), OsRouterHelper::build_link(OsRouterHelper::build_route_name('services', 'new_form'), ['service_category_id' => $service_category->id] )); ?>
 		<?php } ?>
       </div>
     </div>

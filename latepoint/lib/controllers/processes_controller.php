@@ -89,12 +89,14 @@ if ( ! class_exists( 'OsProcessesController' ) ) :
 			$operator             = $this->params['operator'];
 			$trigger_condition_id = $this->params['trigger_condition_id'];
 			$values               = OsProcessesHelper::values_for_trigger_condition_property( $property );
+			$message              = \LatePoint\Misc\ProcessEvent::value_field_html_for_trigger_condition( $property, '', $trigger_condition_id );
+
 			if ( $this->get_return_format() == 'json' ) {
 				$this->send_json(
 					array(
 						'status'  => LATEPOINT_STATUS_SUCCESS,
-						'message' => OsFormHelper::multi_select_field( 'process[event][trigger_conditions][' . $trigger_condition_id . '][value]', false, $values, false, [] ),
-					) 
+						'message' => $message,
+					)
 				);
 			}
 		}

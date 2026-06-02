@@ -40,7 +40,7 @@ class OsCustomerImportHelper {
 		if ( empty( $email ) || ! OsUtilHelper::is_valid_email( $email ) ) {
 			return [
 				'status'  => false,
-				'message' => esc_html__( 'Invalid email address: ' . $email, 'latepoint' ),
+				'message' => sprintf( esc_html__( 'Invalid email address: %s', 'latepoint' ), $email ),
 			];
 		}
 		$customer = new OsCustomerModel();
@@ -48,7 +48,7 @@ class OsCustomerImportHelper {
 		if ( $customer ) {
 			return [
 				'status'  => false,
-				'message' => esc_html__( 'Customer with email already exists: ' . $email, 'latepoint' ),
+				'message' => sprintf( esc_html__( 'Customer with email already exists: %s', 'latepoint' ), $email ),
 			];
 		}
 		return [ 'status' => true ];

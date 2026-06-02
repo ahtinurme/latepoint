@@ -56,7 +56,7 @@ if ( ! defined( 'ABSPATH' ) ) {
             <div class="payment-request-row">
             <?php
             $payment_portions = [];
-            if($total_balance > 0) $payment_portions[LATEPOINT_PAYMENT_PORTION_FULL] = sprintf( __( 'Full Price [%s]' ), OsMoneyHelper::format_price( $total_balance, true, false ) );
+            if($total_balance > 0) $payment_portions[LATEPOINT_PAYMENT_PORTION_FULL] = sprintf( __( 'Full Price [%s]', 'latepoint' ), OsMoneyHelper::format_price( $total_balance, true, false ) );
             if($deposit_amount > 0) $payment_portions[LATEPOINT_PAYMENT_PORTION_DEPOSIT] = sprintf( __( 'Deposit Only [%s]', 'latepoint' ), OsMoneyHelper::format_price( $deposit_amount, true, false ) );
             $payment_portions[LATEPOINT_PAYMENT_PORTION_CUSTOM] = __( 'Custom', 'latepoint' );
 

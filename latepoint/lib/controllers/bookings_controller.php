@@ -416,6 +416,164 @@ if ( ! class_exists( 'OsBookingsController' ) ) :
 		}
 
 
+		/**
+		 * Maximum number of appointments accepted in a single bulk-delete request.
+		 * Acts as a guard against accidental or malicious oversized payloads.
+		 */
+		const BULK_DESTROY_MAX_IDS = 100;
+
+		/**
+		 * Bulk-delete appointments by ID.
+		 *
+		 * Expects POST params:
+		 *   - _wpnonce: nonce for action 'bulk_destroy_bookings'.
+		 *   - ids:      array of booking IDs (or comma-separated string).
+		 *
+		 * Verifies the user can delete bookings, validates input, then attempts to
+		 * delete each ID after a per-record capability check. Fires the standard
+		 * latepoint_booking_will_be_deleted / latepoint_booking_deleted hooks per
+		 * successful deletion and logs activity.
+		 *
+		 * Responds with JSON containing status, message, deleted_ids, failed_ids,
+		 * deleted_count and failed_count.
+		 *
+		 * @return void
+		 */
+		public function bulk_destroy() {
+			$this->check_nonce( 'bulk_destroy_bookings' );
+
+			if ( ! OsRolesHelper::can_user_perform_model_action( 'OsBookingModel', 'delete' ) ) {
+				$this->send_json(
+					array(
+						'status'  => LATEPOINT_STATUS_ERROR,
+						'message' => __( 'You do not have permission to delete appointments.', 'latepoint' ),
+					)
+				);
+				return;
+			}
+
+			$raw_ids = $this->params['ids'] ?? array();
+			if ( ! is_array( $raw_ids ) ) {
+				$raw_ids = explode( ',', (string) $raw_ids );
+			}
+
+			$ids = array();
+			foreach ( $raw_ids as $raw_id ) {
+				$id = absint( $raw_id );
+				if ( $id ) {
+					$ids[ $id ] = $id;
+				}
+			}
+
+			if ( empty( $ids ) ) {
+				$this->send_json(
+					array(
+						'status'  => LATEPOINT_STATUS_ERROR,
+						'message' => __( 'No appointments selected.', 'latepoint' ),
+					)
+				);
+				return;
+			}
+
+			if ( count( $ids ) > self::BULK_DESTROY_MAX_IDS ) {
+				$this->send_json(
+					array(
+						'status'  => LATEPOINT_STATUS_ERROR,
+						'message' => sprintf(
+							/* translators: %d: maximum number of appointments allowed in a single bulk action */
+							__( 'Too many appointments selected. Please delete in batches of %d or fewer.', 'latepoint' ),
+							self::BULK_DESTROY_MAX_IDS
+						),
+					)
+				);
+				return;
+			}
+
+			ignore_user_abort( true );
+			if ( function_exists( 'set_time_limit' ) ) {
+				// phpcs:ignore WordPress.PHP.NoSilencedErrors.Discouraged
+				@set_time_limit( 0 );
+			}
+
+			$deleted_ids = array();
+			$failed_ids  = array();
+
+			foreach ( $ids as $id ) {
+				$booking = new OsBookingModel( $id );
+				if ( $booking->is_new_record() ) {
+					$failed_ids[] = $id;
+					continue;
+				}
+				if ( ! OsRolesHelper::can_user_make_action_on_model_record( $booking, 'delete' ) ) {
+					$failed_ids[] = $id;
+					continue;
+				}
+
+				/**
+				 * Fires right before a booking is about to be deleted via bulk delete.
+				 *
+				 * @param {integer} $booking_id ID of the booking that will be deleted.
+				 * @since 5.2.0
+				 * @hook latepoint_booking_will_be_deleted
+				 */
+				do_action( 'latepoint_booking_will_be_deleted', $id );
+
+				if ( $booking->delete() ) {
+					/**
+					 * Fires right after a booking has been deleted via bulk delete.
+					 *
+					 * @param {integer} $booking_id ID of the booking that was deleted.
+					 * @since 5.2.0
+					 * @hook latepoint_booking_deleted
+					 */
+					do_action( 'latepoint_booking_deleted', $id );
+					OsActivitiesHelper::log_booking_deleted( $booking );
+					$deleted_ids[] = $id;
+				} else {
+					$failed_ids[] = $id;
+				}
+			}
+
+			$deleted_count = count( $deleted_ids );
+			$failed_count  = count( $failed_ids );
+
+			if ( $deleted_count && ! $failed_count ) {
+				$status  = LATEPOINT_STATUS_SUCCESS;
+				$message = sprintf(
+					/* translators: %d: number of appointments deleted */
+					_n( '%d appointment deleted successfully.', '%d appointments deleted successfully.', $deleted_count, 'latepoint' ),
+					$deleted_count
+				);
+			} elseif ( $deleted_count && $failed_count ) {
+				$status  = LATEPOINT_STATUS_SUCCESS;
+				$message = sprintf(
+					/* translators: 1: number of appointments deleted, 2: number of appointments that could not be deleted */
+					__( '%1$d appointment(s) deleted. %2$d could not be deleted.', 'latepoint' ),
+					$deleted_count,
+					$failed_count
+				);
+			} else {
+				$status  = LATEPOINT_STATUS_ERROR;
+				$message = sprintf(
+					/* translators: %d: number of appointments that could not be deleted */
+					_n( '%d appointment could not be deleted.', '%d appointments could not be deleted.', $failed_count, 'latepoint' ),
+					$failed_count
+				);
+			}
+
+			$this->send_json(
+				array(
+					'status'        => $status,
+					'message'       => $message,
+					'deleted_ids'   => $deleted_ids,
+					'failed_ids'    => $failed_ids,
+					'deleted_count' => $deleted_count,
+					'failed_count'  => $failed_count,
+				)
+			);
+		}
+
+
 		function change_status() {
 
 			if ( filter_var( $this->params['id'], FILTER_VALIDATE_INT ) ) {

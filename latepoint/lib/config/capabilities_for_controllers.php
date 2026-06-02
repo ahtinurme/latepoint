@@ -31,6 +31,7 @@ return [
 			'update'           => [ 'booking__edit' ],
 			'create'           => [ 'booking__create' ],
 			'destroy'          => [ 'booking__delete' ],
+			'bulk_destroy'     => [ 'booking__delete' ],
 		],
 	],
 	'OsOrdersController'            => [

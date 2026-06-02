@@ -230,11 +230,7 @@ if ( ! class_exists( 'OsInvoicesController' ) ) :
 				return;
 			}
 
-			// Condition for pro compatibility. Remove later.
-			if ( isset( $this->params['_wpnonce'] ) ) {
-				// Verify nonce.
-				$this->check_nonce( 'change_invoice_status_' . $this->params['invoice_id'] );
-			}
+			$this->check_nonce( 'change_invoice_status_' . $this->params['invoice_id'] );
 
 			if ( ! in_array( $this->params['status'], array_keys( OsInvoicesHelper::list_of_statuses_for_select() ) ) ) {
 				echo 'Invalid Status';

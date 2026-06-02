@@ -6,7 +6,9 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit; // Exit if accessed directly
 }
 
+/** FIXME: CUSTOM CODE */
 $customer_table_custom_fields = class_exists('OsFeatureCustomFieldsHelper') ? OsFeatureCustomFieldsHelper::get_customer_custom_fields_for_table() : [];
+/** FIXME: CUSTOM CODE END */
 
 if($customers){
     if(!empty($customers_violating_auth_rules['values'])){
@@ -58,7 +60,9 @@ if($customers){
               <th><?php esc_html_e('Next App', 'latepoint'); ?></th>
               <th><?php esc_html_e('Time to Next', 'latepoint'); ?></th>
               <?php if(OsAuthHelper::can_wp_users_login_as_customers()) echo '<th>' . esc_html__('WP User ID', 'latepoint') . '</th>'; ?>
-              <?php foreach($customer_table_custom_fields as $custom_field) echo '<th>' . esc_html($custom_field['label']) . '</th>'; ?>
+                <?php /** FIXME: CUSTOM CODE */ ?>
+                <?php foreach($customer_table_custom_fields as $custom_field) echo '<th>' . esc_html($custom_field['label']) . '</th>'; ?>
+                <?php /** FIXME: CUSTOM CODE END */ ?>
               <th><?php esc_html_e('Registered On', 'latepoint'); ?></th>
             </tr>
             <tr>
@@ -71,7 +75,9 @@ if($customers){
               <th></th>
               <?php if(OsSettingsHelper::is_using_social_login()) echo '<th></th>'; ?>
               <?php if(OsAuthHelper::can_wp_users_login_as_customers()) echo '<th></th>'; ?>
-              <?php foreach($customer_table_custom_fields as $custom_field) echo '<th></th>'; ?>
+                <?php /** FIXME: CUSTOM CODE */ ?>
+                <?php foreach($customer_table_custom_fields as $custom_field) echo '<th></th>'; ?>
+                <?php /** FIXME: CUSTOM CODE END */ ?>
               <th>
                 <div class="os-form-group">
                   <div class="os-date-range-picker os-table-filter-datepicker" data-can-be-cleared="yes" data-no-value-label="<?php esc_attr_e('Filter By Date', 'latepoint'); ?>" data-clear-btn-label="<?php esc_attr_e('Reset Date Filtering', 'latepoint'); ?>">
@@ -98,7 +104,9 @@ if($customers){
               <th><?php esc_html_e('Next App', 'latepoint'); ?></th>
               <th><?php esc_html_e('Time to Next', 'latepoint'); ?></th>
               <?php if(OsAuthHelper::can_wp_users_login_as_customers()) echo '<th>' . esc_html__('WP User ID', 'latepoint') . '</th>'; ?>
-              <?php foreach($customer_table_custom_fields as $custom_field) echo '<th>' . esc_html($custom_field['label']) . '</th>'; ?>
+                <?php /** FIXME: CUSTOM CODE */ ?>
+                <?php foreach($customer_table_custom_fields as $custom_field) echo '<th>' . esc_html($custom_field['label']) . '</th>'; ?>
+                <?php /** FIXME: CUSTOM CODE END */ ?>
               <th><?php esc_html_e('Registered On', 'latepoint'); ?></th>
             </tr>
           </tfoot>

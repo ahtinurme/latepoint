@@ -377,20 +377,15 @@ class ProcessEvent {
 					],
 					[ 'class' => 'process-condition-operators-w' ]
 				) .
-				\OsFormHelper::multi_select_field(
-					'process[event][trigger_conditions][' . $trigger_condition['id'] . '][value]',
-					false,
-					\OsProcessesHelper::values_for_trigger_condition_property( $trigger_condition['property'] ),
-					$trigger_condition['value'] ? explode( ',', $trigger_condition['value'] ) : [],
-					[],
-					[
-						'class' => 'process-condition-values-w',
-						'style' => in_array( $trigger_condition['operator'], [ 'changed', 'not_changed' ] ) ? 'display: none;' : '',
-					]
+				self::value_field_html_for_trigger_condition(
+					$trigger_condition['property'],
+					$trigger_condition['value'] ?: '',
+					$trigger_condition['id'],
+					$trigger_condition['operator'] ?? ''
 				) .
-				'<div data-os-action="' . \OsRouterHelper::build_route_name( 'processes', 'new_trigger_condition' ) . '" 
-                      data-os-pass-response="yes" 
-                      data-os-pass-this="yes" 
+				'<div data-os-action="' . \OsRouterHelper::build_route_name( 'processes', 'new_trigger_condition' ) . '"
+                      data-os-pass-response="yes"
+                      data-os-pass-this="yes"
                       data-os-before-after="none"
                       data-os-params="' . \OsUtilHelper::build_os_params( [ 'event_type' => $this->type ] ) . '"
                       data-os-after-call="latepoint_add_process_condition"><button class="latepoint-btn-outline latepoint-btn"><i class="latepoint-icon latepoint-icon-plus2"></i><span>' . __( 'AND', 'latepoint' ) . '</span></button></div>' .
@@ -398,10 +393,87 @@ class ProcessEvent {
 		return $html;
 	}
 
+	/**
+	 * Renders the value-input HTML for a single trigger condition. Numeric
+	 * properties get a bordered number input; other properties get the
+	 * existing multi-select dropdown populated from
+	 * OsProcessesHelper::values_for_trigger_condition_property().
+	 *
+	 * Used inline by generate_trigger_condition_form_html() and from the
+	 * processes__available_values_for_trigger_condition_property AJAX endpoint.
+	 */
+	public static function value_field_html_for_trigger_condition( string $property, string $value, string $trigger_condition_id, string $operator = '' ): string {
+		$name = 'process[event][trigger_conditions][' . $trigger_condition_id . '][value]';
+
+		if ( self::is_numeric_trigger_condition_property( $property ) ) {
+			return \OsFormHelper::number_field(
+				$name,
+				'',
+				$value,
+				0,
+				null,
+				[
+					'step'        => '1',
+					'theme'       => 'bordered',
+					'placeholder' => __( 'Count', 'latepoint' ),
+				],
+				[
+					'class' => 'process-condition-values-w',
+				]
+			);
+		}
+
+		return \OsFormHelper::multi_select_field(
+			$name,
+			'',
+			\OsProcessesHelper::values_for_trigger_condition_property( $property ),
+			$value ? explode( ',', $value ) : [],
+			[],
+			[
+				'class' => 'process-condition-values-w',
+				'style' => in_array( $operator, [ 'changed', 'not_changed' ] ) ? 'display: none;' : '',
+			]
+		);
+	}
+
+	/**
+	 * Returns true when the given condition property holds a numeric value
+	 * (free-form integer input, comparable with greater/less-than operators)
+	 * rather than a fixed set of options (status keys, agent IDs, etc.).
+	 *
+	 * Used by trigger_condition_operators_for_property() to expose numeric
+	 * operators and by value_field_html_for_trigger_condition() to render a
+	 * <input type="number"> instead of the default multi-select dropdown.
+	 */
+	public static function is_numeric_trigger_condition_property( string $property ): bool {
+		if ( ! $property ) {
+			return false;
+		}
+		$numeric_properties = [
+			'booking__order_item_counts',
+			'order__order_item_counts',
+		];
+
+		/**
+		 * Filter the list of trigger condition properties that should be treated as numeric.
+		 *
+		 * @since 5.x
+		 * @hook latepoint_process_event_numeric_trigger_condition_properties
+		 *
+		 * @param {string[]} $numeric_properties Array of property codes in object__attribute format
+		 *
+		 * @returns {string[]} Filtered list of numeric property codes
+		 */
+		$numeric_properties = apply_filters( 'latepoint_process_event_numeric_trigger_condition_properties', $numeric_properties );
+
+		return in_array( $property, $numeric_properties, true );
+	}
+
 	public static function trigger_condition_operators_for_property( string $property = '' ) {
 		$property_object    = $property ? explode( '__', $property )[0] : 'booking';
 		$property_attribute = $property ? explode( '__', $property )[1] : '';
 		$operators          = [];
+
 		switch ( $property_object ) {
 			case 'old_order':
 			case 'old_booking':
@@ -419,8 +491,15 @@ class ProcessEvent {
 			case 'agent':
 			case 'service':
 			case 'transaction':
-				// TODO time range operators instead of removing these opearators completely
-				if ( $property_attribute != 'start_datetime_utc' ) {
+				if ( self::is_numeric_trigger_condition_property( $property ) ) {
+					$operators['equal']            = __( 'is equal to', 'latepoint' );
+					$operators['not_equal']        = __( 'is not equal to', 'latepoint' );
+					$operators['greater_than']     = __( 'is greater than', 'latepoint' );
+					$operators['less_than']        = __( 'is less than', 'latepoint' );
+					$operators['greater_or_equal'] = __( 'is greater than or equal to', 'latepoint' );
+					$operators['less_or_equal']    = __( 'is less than or equal to', 'latepoint' );
+				} elseif ( $property_attribute != 'start_datetime_utc' ) {
+					// TODO time range operators instead of removing these opearators completely
 					$operators['equal']     = __( 'is equal to', 'latepoint' );
 					$operators['not_equal'] = __( 'is not equal to', 'latepoint' );
 				}
@@ -466,9 +545,10 @@ class ProcessEvent {
 				break;
 			case 'booking_created':
 				$properties = [
-					'booking__status'     => __( 'Booking Status', 'latepoint' ),
-					'booking__service_id' => __( 'Service', 'latepoint' ),
-					'booking__agent_id'   => __( 'Agent', 'latepoint' ),
+					'booking__status'            => __( 'Booking Status', 'latepoint' ),
+					'booking__service_id'        => __( 'Service', 'latepoint' ),
+					'booking__agent_id'          => __( 'Agent', 'latepoint' ),
+					'booking__order_item_counts' => __( 'Order Item Counts', 'latepoint' ),
 				];
 				break;
 			case 'booking_updated':
@@ -504,7 +584,7 @@ class ProcessEvent {
 			'transaction_created',
 			'payment_request_created',
 		];
-		
+
 		/**
 		 * Returns an array of event types that trigger automation process
 		 *
@@ -543,7 +623,7 @@ class ProcessEvent {
 		 * @returns {array} Filtered array of event types/names
 		 */
 		$names = apply_filters( 'latepoint_process_event_names', $names );
-		
+
 		return $names[ $type ] ?? $type;
 	}
 

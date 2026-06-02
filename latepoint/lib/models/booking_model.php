@@ -153,6 +153,7 @@ class OsBookingModel extends OsModel {
 			'agent_id'           => __( 'Agent', 'latepoint' ),
 			'status'             => __( 'Status', 'latepoint' ),
 			'start_datetime_utc' => __( 'Start Time', 'latepoint' ),
+			'order_item_counts'  => __( 'Order Item Counts', 'latepoint' ),
 		];
 	}
 

@@ -123,6 +123,19 @@
         </div>
       </div>
 
+        <?php /** FIXME: CUSTOM CODE */ ?>
+        <?php if($fields_for == 'customer'){ ?>
+            <div class="sub-section-row">
+                <div class="sub-section-label">
+                    <h3><?php _e('Show in Customers Table', 'latepoint-pro-features') ?></h3>
+                </div>
+                <div class="sub-section-content">
+                    <?php echo OsFormHelper::toggler_field('custom_fields['.$custom_field['id'].'][show_in_customers_table]', __('Display this field as a column in the admin Customers table', 'latepoint-pro-features'), (isset($custom_field['show_in_customers_table']) && $custom_field['show_in_customers_table'] == 'on')); ?>
+                </div>
+            </div>
+        <?php } ?>
+        <?php /** FIXME: CUSTOM CODE END */ ?>
+
       <div class="os-form-block-buttons">
 				<a href="#" class="latepoint-btn latepoint-btn-danger pull-left os-remove-custom-field" data-os-prompt="<?php _e('Are you sure you want to delete this field?', 'latepoint-pro-features'); ?>"  data-os-after-call="latepoint_custom_field_removed" data-os-pass-this="yes" data-os-action="<?php echo OsRouterHelper::build_route_name('custom_fields', 'destroy'); ?>" data-os-params="<?php echo OsUtilHelper::build_os_params(['id' => $custom_field['id'], 'fields_for' => $fields_for], 'latepoint_destroy_custom_field_' . $custom_field['id']) ?>"><?php _e('Delete', 'latepoint-pro-features'); ?></a>
 			  <button type="submit" class="os-form-block-save-btn latepoint-btn latepoint-btn-primary"><span><?php _e('Save Field', 'latepoint-pro-features'); ?></span></button>

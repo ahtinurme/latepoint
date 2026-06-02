@@ -2,8 +2,8 @@
 Contributors: latepoint
 Tags: appointments, booking, scheduling, events, calendar
 Requires at least: 6.5
-Tested up to: 6.9
-Stable tag: 5.6.0
+Tested up to: 7.0
+Stable tag: 5.6.1
 Requires PHP: 7.4
 License: GPLv3
 License URI: https://www.gnu.org/licenses/gpl-3.0.html
@@ -202,6 +202,19 @@ If you want a modern, effortless way to let your customers book online, give Lat
 3. Make sure to disable caching on your customer cabinet page
 
 == Changelog ==
+
+= 5.6.1 - May 29, 2026 =
+  - New
+    - Added a new workflow condition "Order Item Counts" for the Booking Created and Order Created triggers. This allows a workflow to fire (or be skipped) based on number of bookings created in the same order.
+    - Added bulk delete option to the Appointments list along with a confirmation prompt to prevent accidental deletions.
+    - Added translations for Portuguese (Brazil), Polish, Dutch, Chinese (Simplified), Turkish, Indonesian, Japanese, Arabic, Swedish, Vietnamese, Hebrew, Thai, Greek, and Czech
+
+  - Improvements
+    - Updated the existing translations with corrections and added new translations for the new strings.
+
+  - Fix:
+    - Missing text domains on some strings that prevented them from being translatable.
+    - Strengthened the nonce validation. Props to Wordfence.
 
 = 5.6.0 - May 18, 2026 =
   - New: Introduces the RazorPay payment gateway integration.

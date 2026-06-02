@@ -395,6 +395,7 @@ class OsOrderModel extends OsModel {
 			'status'             => __( 'Order Status', 'latepoint' ),
 			'fulfillment_status' => __( 'Fulfillment Status', 'latepoint' ),
 			'payment_status'     => __( 'Payment Status', 'latepoint' ),
+			'order_item_counts'  => __( 'Order Item Counts', 'latepoint' ),
 		];
 	}
 

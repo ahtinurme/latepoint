@@ -19,7 +19,7 @@ class OsTransactionHelper {
 		echo '<div class="transaction-refund-settings">';
 		echo '<div class="refund-settings-heading"><div>' . esc_html__( 'Refund Amount', 'latepoint' ) . '</div><div class="refund-settings-close"><i class="latepoint-icon latepoint-icon-x"></i></div></div>';
 		echo '<div class="refund-settings-fields">';
-		$full_amount_label = sprintf( __( 'Full [%s]' ), OsMoneyHelper::format_price( ( $transaction->amount - $transaction->get_total_refunded_amount() ), true, false ) );
+		$full_amount_label = sprintf( __( 'Full [%s]', 'latepoint' ), OsMoneyHelper::format_price( ( $transaction->amount - $transaction->get_total_refunded_amount() ), true, false ) );
 		echo OsFormHelper::select_field(
 			'transaction_refund[portion]',
 			false,

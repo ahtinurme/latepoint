@@ -10,7 +10,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 ?>
 <div class="latepoint-lightbox-heading">
-	<h2><?php esc_html_e(OsSupportTopicsHelper::get_title_for_topic($topic)); ?></h2>
+	<h2><?php echo esc_html( OsSupportTopicsHelper::get_title_for_topic( $topic ) ); ?></h2>
 </div>
 <div class="latepoint-lightbox-content">
 	<?php include('partials/'.sanitize_file_name($topic.'.php')); ?>

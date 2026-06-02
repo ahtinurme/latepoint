@@ -631,7 +631,7 @@ if ( ! defined( 'ABSPATH' ) ) {
                             ); ?>"
                         >
                             <i class="latepoint-icon latepoint-icon-external-link"></i>
-                            <span><?php esc_html_e('Export Data'); ?></span>
+                            <span><?php esc_html_e('Export Data', 'latepoint'); ?></span>
                         </a>
                         <a data-os-lightbox-classes="width-700" data-os-action="<?php echo esc_attr(OsRouterHelper::build_route_name('settings', 'import_modal')); ?>" href="#" data-os-output-target="lightbox" class="latepoint-btn latepoint-btn-grey latepoint-btn-outline"><i class="latepoint-icon latepoint-icon-download"></i><span><?php esc_html_e('Import Data', 'latepoint'); ?></span></a>
                     </div>

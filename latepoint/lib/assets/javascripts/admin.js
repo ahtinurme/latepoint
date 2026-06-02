@@ -42,6 +42,7 @@ jQuery(document).ready(function( $ ) {
   latepoint_init_side_menu();
   latepoint_init_color_picker();
   latepoint_init_clickable_cells();
+  latepoint_init_bookings_bulk();
   latepoint_init_input_masks();
   latepoint_init_process_forms();
   latepoint_init_sticky_side_menu();
