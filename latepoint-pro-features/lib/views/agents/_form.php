@@ -344,19 +344,19 @@
 			<?php if ( OsRolesHelper::can_user( 'agent__edit' ) ) { ?>
                 <div class="side-nav-actions">
 					<?php echo $extra_actions_html; ?>
-                    <button type="submit" class="latepoint-btn latepoint-btn-block"><i class="latepoint-icon latepoint-icon-check"></i><span><?php _e( 'Save Changes', 'latepoint' ); ?></span></button>
+                    <button type="submit" class="latepoint-btn latepoint-btn-block"><i class="latepoint-icon latepoint-icon-check"></i><span><?php _e( 'Save Changes', 'latepoint-pro-features' ); ?></span></button>
                 </div>
 			<?php } ?>
             <div class="side-nav-body">
-                <div><a href="#stickySectionGeneral" class="is-active"><?php esc_html_e( 'General', 'latepoint' ); ?></a></div>
-                <div><a href="#stickySectionContacts"><?php esc_html_e( 'Additional Contacts', 'latepoint' ); ?></a></div>
-                <div><a href="#stickySectionExtra"><?php esc_html_e( 'Extra Info', 'latepoint' ); ?></a></div>
-                <div><a href="#stickySectionServices"><?php esc_html_e( 'Services', 'latepoint' ); ?></a></div>
-                <div><a href="#stickySectionSchedule"><?php esc_html_e( 'Schedule', 'latepoint' ); ?></a></div>
+                <div><a href="#stickySectionGeneral" class="is-active"><?php esc_html_e( 'General', 'latepoint-pro-features' ); ?></a></div>
+                <div><a href="#stickySectionContacts"><?php esc_html_e( 'Additional Contacts', 'latepoint-pro-features' ); ?></a></div>
+                <div><a href="#stickySectionExtra"><?php esc_html_e( 'Extra Info', 'latepoint-pro-features' ); ?></a></div>
+                <div><a href="#stickySectionServices"><?php esc_html_e( 'Services', 'latepoint-pro-features' ); ?></a></div>
+                <div><a href="#stickySectionSchedule"><?php esc_html_e( 'Schedule', 'latepoint-pro-features' ); ?></a></div>
 
 				<?php if ( ! $agent->is_new_record() ) { ?>
-                    <div><a href="#stickySectionCustomSchedule"><?php esc_html_e( 'Custom Days', 'latepoint' ); ?></a></div>
-                    <div><a href="#stickySectionHolidays"><?php esc_html_e( 'Holidays & Days off', 'latepoint' ); ?></a></div>
+                    <div><a href="#stickySectionCustomSchedule"><?php esc_html_e( 'Custom Days', 'latepoint-pro-features' ); ?></a></div>
+                    <div><a href="#stickySectionHolidays"><?php esc_html_e( 'Holidays & Days off', 'latepoint-pro-features' ); ?></a></div>
 				<?php } ?>
 				<?php
 

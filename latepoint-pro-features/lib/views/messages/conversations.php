@@ -19,5 +19,5 @@ if($conversations){
     <?php
   }
 }else{
-	echo '<div class="no-conversations-found">'.__('No conversations found.').'</div>';
+	echo '<div class="no-conversations-found">'.__('No conversations found.', 'latepoint-pro-features').'</div>';
 }

@@ -51,7 +51,7 @@
 									if($user->backend_user_type == LATEPOINT_USER_TYPE_AGENT) {
 										echo '<div class="ru-meta-info">';
 											echo '<span class="ru-meta-connected-user">';
-												echo ($user->agent) ? '<i class="latepoint-icon latepoint-icon-checkmark"></i> ' . __('Connected to:', 'latepoint-pro-features') . ' <strong>' . $user->agent->full_name . '</strong>' : '<i class="latepoint-icon latepoint-icon-slash"></i> ' . __('Not connected').' <a href="#">'.__('Connect to an agent', 'latepoint-pro-features').'</a>';
+												echo ($user->agent) ? '<i class="latepoint-icon latepoint-icon-checkmark"></i> ' . __('Connected to:', 'latepoint-pro-features') . ' <strong>' . $user->agent->full_name . '</strong>' : '<i class="latepoint-icon latepoint-icon-slash"></i> ' . __('Not connected', 'latepoint-pro-features').' <a href="#">'.__('Connect to an agent', 'latepoint-pro-features').'</a>';
 											echo '</span>';
 										echo '</div>';
 									}

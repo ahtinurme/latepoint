@@ -55,6 +55,62 @@ class LatepointCouponsAddon {
         latepoint_init_input_masks($coupon_form_wrapper);
         $coupon_form_wrapper.find('.os-late-select').lateSelect();
 
+        $coupon_form_wrapper.find('.latepoint-coupon-customers-w').each(function() {
+            let $wrap   = jQuery(this);
+            let $select = $wrap.find('select.os-late-select');
+            let $list   = $wrap.find('.lateselect-w .ls-all-items-w');
+            let $items  = $list.find('.ls-item');
+            if ($items.length <= 5) return;
+
+            let placeholder = $wrap.data('search-placeholder') || 'Start typing to search...';
+            let cancel_label = $wrap.data('search-cancel-label') || 'cancel';
+
+            let $search = jQuery(
+                '<div class="customers-selector-search-w latepoint-coupon-customer-search-w">' +
+                    '<i class="latepoint-icon latepoint-icon-search"></i>' +
+                    '<input type="search" class="customers-selector-search-input" autocomplete="off" />' +
+                    '<span class="customers-selector-cancel">' +
+                        '<i class="latepoint-icon latepoint-icon-x"></i>' +
+                        '<span></span>' +
+                    '</span>' +
+                '</div>'
+            );
+            $search.find('.customers-selector-search-input').attr('placeholder', placeholder);
+            $search.find('.customers-selector-cancel > span').text(cancel_label);
+            $list.prepend($search);
+
+            let $input = $search.find('.customers-selector-search-input');
+
+            $input.on('click', function(event) { event.stopPropagation(); });
+
+            $input.on('keydown', function(event) {
+                if (event.key === 'Enter') { event.preventDefault(); }
+            });
+
+            $input.on('input', function() {
+                let raw_query = jQuery.trim($input.val()).toLowerCase();
+                let tokens    = raw_query.length ? raw_query.split(/\s+/) : [];
+
+                $items.each(function() {
+                    let $item    = jQuery(this);
+                    let value    = $item.data('value');
+                    let $option  = $select.find('option[value="' + value + '"]');
+                    let haystack = ($option.attr('data-search-text') || $option.text() || '').toLowerCase();
+
+                    let matches = true;
+                    for (let i = 0; i < tokens.length; i++) {
+                        if (haystack.indexOf(tokens[i]) === -1) { matches = false; break; }
+                    }
+                    $item.toggle(matches);
+                });
+            });
+
+            $search.find('.customers-selector-cancel').on('click', function(event) {
+                event.preventDefault();
+                event.stopPropagation();
+                $input.val('').trigger('input').focus();
+            });
+        });
 
         $coupon_form_wrapper.find('.coupon-quick-edit-form').on('submit', (event) => {
             if (jQuery(event.target).find('button[type="submit"]').hasClass('os-loading')) return false;

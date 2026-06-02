@@ -87,7 +87,41 @@
                 <div class="os-col-12">
                     <?php echo OsFormHelper::multi_select_field('coupon[rules][service_ids]', __('Services', 'latepoint-pro-features'),OsFormHelper::model_options_for_multi_select('service'), explode(',', $coupon->get_rule('service_ids', ''))); ?>
                     <?php echo OsFormHelper::multi_select_field('coupon[rules][agent_ids]', __('Agents', 'latepoint-pro-features'),OsFormHelper::model_options_for_multi_select('agent'), explode(',', $coupon->get_rule('agent_ids', ''))); ?>
-                    <?php echo OsFormHelper::multi_select_field('coupon[rules][customer_ids]', __('Customers', 'latepoint-pro-features'),OsFormHelper::model_options_for_multi_select('customer'), explode(',', $coupon->get_rule('customer_ids', ''))); ?>
+                    <?php
+                    $coupon_customers_for_search = ( new OsCustomerModel() )
+                        ->order_by( 'first_name asc, last_name asc' )
+                        ->get_results_as_models();
+                    $coupon_selected_customer_ids = array_values( array_filter(
+                        array_map( 'absint', explode( ',', (string) $coupon->get_rule( 'customer_ids', '' ) ) )
+                    ) );
+                    ?>
+                    <div class="latepoint-coupon-customers-w os-form-group os-form-select-group os-form-group-transparent"
+                         data-search-placeholder="<?php esc_attr_e( 'Start typing to search...', 'latepoint-pro-features' ); ?>"
+                         data-search-cancel-label="<?php esc_attr_e( 'cancel', 'latepoint-pro-features' ); ?>">
+                        <label for="coupon-rules-customer-ids"><?php esc_html_e( 'Customers', 'latepoint-pro-features' ); ?></label>
+                        <select id="coupon-rules-customer-ids"
+                                class="os-late-select"
+                                data-placeholder="<?php esc_attr_e( 'Click to select...', 'latepoint-pro-features' ); ?>"
+                                multiple>
+                            <?php
+                            if ( is_array( $coupon_customers_for_search ) ) {
+                                foreach ( $coupon_customers_for_search as $coupon_customer_for_search ) {
+                                    $coupon_customer_id          = absint( $coupon_customer_for_search->id );
+                                    $coupon_customer_search_text = strtolower( trim( $coupon_customer_for_search->full_name . ' ' . $coupon_customer_for_search->email ) );
+                                    $coupon_customer_is_selected = in_array( $coupon_customer_id, $coupon_selected_customer_ids, true );
+                                    ?>
+                                    <option value="<?php echo esc_attr( $coupon_customer_id ); ?>"
+                                            data-search-text="<?php echo esc_attr( $coupon_customer_search_text ); ?>"
+                                            <?php selected( $coupon_customer_is_selected, true ); ?>>
+                                        <?php echo esc_html( $coupon_customer_for_search->full_name ); ?>
+                                    </option>
+                                    <?php
+                                }
+                            }
+                            ?>
+                        </select>
+                        <?php echo OsFormHelper::hidden_field( 'coupon[rules][customer_ids]', implode( ',', $coupon_selected_customer_ids ), [ 'skip_id' => true ] ); ?>
+                    </div>
                     <?php echo OsFormHelper::multi_select_field('coupon[rules][bundle_ids]', __('Bundles', 'latepoint-pro-features'),OsFormHelper::model_options_for_multi_select('bundle'), explode(',', $coupon->get_rule('bundle_ids', ''))); ?>
                 </div>
             </div>

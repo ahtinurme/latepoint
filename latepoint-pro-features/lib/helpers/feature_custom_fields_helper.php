@@ -10,6 +10,10 @@ class OsFeatureCustomFieldsHelper {
 	public static function filter_customer_custom_fields_on_steps( array $customer_params, array $params ): array {
 		$custom_fields_for_customer = OsCustomFieldsHelper::get_custom_fields_arr( 'customer', 'all' );
 		foreach ( $custom_fields_for_customer as $custom_field ) {
+			// Skip fields not present in submitted params, otherwise downstream save would overwrite an existing
+			if ( ! isset( $params['custom_fields'][ $custom_field['id'] ] ) ) {
+				continue;
+			}
 			$value = '';
 			switch ( $custom_field['type'] ) {
 				case 'text':
@@ -238,22 +242,6 @@ class OsFeatureCustomFieldsHelper {
 		}
 
 		return $data;
-	}
-
-	/**
-	 * Customer custom fields that are flagged to be shown as columns in the admin Customers table.
-	 *
-	 * @return array<string, array>
-	 */
-	public static function get_customer_custom_fields_for_table(): array {
-		$custom_fields_for_customer = OsCustomFieldsHelper::get_custom_fields_arr( 'customer', 'all' );
-
-		return array_filter(
-			$custom_fields_for_customer,
-			function ( $custom_field ) {
-				return ! empty( $custom_field['show_in_customers_table'] ) && $custom_field['show_in_customers_table'] == LATEPOINT_VALUE_ON;
-			}
-		);
 	}
 
 	public static function add_custom_fields_to_bookings_table_columns( $columns ) {

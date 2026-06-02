@@ -44,7 +44,7 @@
 				if($can_set_custom_records){
 					echo '<div class="custom-user-records-w">';
 					foreach(OsRolesHelper::get_model_types_for_allowed_records() as $model_type){
-			      echo OsFormHelper::select_field('allowed_records['.$model_type.']', OsRolesHelper::name_for_action($model_type), ['all' => __('All Connected'), 'custom' => __('Custom Selection', 'latepoint-pro-features')], ($user->are_all_records_allowed($model_type, true) ? 'all' : 'custom'), ['class' => 'allowed_models_selector']);
+			      echo OsFormHelper::select_field('allowed_records['.$model_type.']', OsRolesHelper::name_for_action($model_type), ['all' => __('All Connected', 'latepoint-pro-features'), 'custom' => __('Custom Selection', 'latepoint-pro-features')], ($user->are_all_records_allowed($model_type, true) ? 'all' : 'custom'), ['class' => 'allowed_models_selector']);
 						echo '<div style="'.($user->are_all_records_allowed($model_type, true) ? 'display: none;' : '').'">';
 						echo OsFormHelper::multi_select_field('allowed_records[custom]['.$model_type.']', false, OsFormHelper::model_options_for_multi_select($model_type), (($user->get_allowed_records($model_type, true) == LATEPOINT_ALL) ? [] : $user->get_allowed_records($model_type, true)));
 						echo '</div>';

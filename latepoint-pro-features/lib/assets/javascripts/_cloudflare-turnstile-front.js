@@ -106,9 +106,11 @@ class LatepointCloudflareTurnstileManager {
     reset($booking_form_element) {
         $booking_form_element.find('.turnstile-widget-wrapper').show().addClass('os-loading');
         let element = $booking_form_element.find('.turnstile-widget')[0];
-        element.removeAttribute('data-turnstile-token');
-        element.classList.remove('turnstile-completed');
-        turnstile.reset(element);
+        if (element) {
+            element.removeAttribute('data-turnstile-token');
+            element.classList.remove('turnstile-completed');
+            turnstile.reset(element);
+        }
     }
 }
 
