@@ -7,7 +7,7 @@
  * Plugin Name: LatePoint Addon - Pro Features
  * Plugin URI:  https://latepoint.com/
  * Description: LatePoint Addon that adds a set of Pro features to a base plugin
- * Version:     1.5.0
+ * Version:     1.5.1
  * Author:      LatePoint
  * Author URI:  https://latepoint.com/
  * Text Domain: latepoint-pro-features
@@ -32,7 +32,7 @@ if ( ! class_exists( 'LatePointAddonProFeatures' ) ) :
 		 * Addon version.
 		 *
 		 */
-		public $version    = '1.5.0';
+		public $version    = '1.5.1';
 		public $db_version = '1.1.3';
 		public $addon_name = 'latepoint-pro-features';
 
