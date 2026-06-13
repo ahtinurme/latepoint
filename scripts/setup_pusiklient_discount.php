@@ -15,7 +15,7 @@
 if (PHP_SAPI !== 'cli') { exit("CLI only\n"); }
 $opts = getopt('', ['percent:', 'code:', 'name:', 'dry-run']);
 $percent = isset($opts['percent']) ? (float) $opts['percent'] : 15;
-$code    = strtoupper(trim($opts['code'] ?? 'PUSIKLIENT'));
+$codeArg = isset($opts['code']) ? strtoupper(trim($opts['code'])) : null; // explicit override only
 $name    = $opts['name'] ?? 'Püsikliendi soodustus';
 $dryRun  = isset($opts['dry-run']);
 
@@ -27,12 +27,29 @@ require $wpLoad;
 if (!class_exists('OsCouponModel')) { fwrite(STDERR, "LatePoint Pro (coupons) not loaded\n"); exit(1); }
 
 echo "=========== Püsiklient discount coupon ===========\n";
-echo "DB: " . DB_NAME . " | " . ($dryRun ? 'DRY-RUN' : 'LIVE') . " | code={$code} percent={$percent}%\n";
+echo "DB: " . DB_NAME . " | " . ($dryRun ? 'DRY-RUN' : 'LIVE') . " | percent={$percent}%" . ($codeArg ? " code={$codeArg}" : "") . "\n";
 echo "==================================================\n";
 
-$existing = (new OsCouponModel())->where(['code' => $code])->set_limit(1)->get_results_as_models();
-$coupon = ($existing && $existing->id) ? $existing : new OsCouponModel();
-$isNew = empty($coupon->id);
+// Locate the existing coupon: by stored id, then stored code, then --code.
+$coupon = null;
+$storedId = (int) get_option('yumefit_pusiklient_coupon_id', 0);
+if ($storedId) { $c = new OsCouponModel($storedId); if ($c && $c->id) $coupon = $c; }
+if (!$coupon) {
+    $byCode = $codeArg ?: (string) get_option('yumefit_pusiklient_coupon_code', '');
+    if ($byCode) { $f = (new OsCouponModel())->where(['code' => $byCode])->set_limit(1)->get_results_as_models(); if ($f && $f->id) $coupon = $f; }
+}
+$isNew = !$coupon;
+if ($isNew) { $coupon = new OsCouponModel(); }
+
+// Resolve code: explicit --code wins; keep an existing code; else generate an
+// UNGUESSABLE random one so the coupon can never be added manually by accident.
+if ($codeArg) {
+    $code = $codeArg;
+} elseif (!$isNew && !empty($coupon->code)) {
+    $code = $coupon->code;
+} else {
+    $code = 'PK-' . strtoupper(substr(preg_replace('/[^A-Z0-9]/i', '', wp_generate_password(24, false)), 0, 14));
+}
 
 echo ($isNew ? "CREATE" : "UPDATE #{$coupon->id}") . " coupon '{$code}' = {$percent}% off all services\n";
 
@@ -48,7 +65,8 @@ if (!$dryRun) {
         exit(1);
     }
     update_option('yumefit_pusiklient_coupon_code', $code, false);
-    echo "Saved coupon #{$coupon->id}; option yumefit_pusiklient_coupon_code = {$code}\n";
+    update_option('yumefit_pusiklient_coupon_id', (int) $coupon->id, false);
+    echo "Saved coupon #{$coupon->id}; auto-applied only (random code, not meant to be typed)\n";
 }
 
 echo ($dryRun ? "DRY-RUN — no changes written.\n" : "Done. (Edit the % anytime in LatePoint → Coupons, or re-run with --percent.)\n");
