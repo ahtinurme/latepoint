@@ -1,10 +1,12 @@
 <?php
 /**
  * Plugin Name: LatePoint Yumefit Rules
- * Description: Site-specific LatePoint customizations for Yumefit. Enforces a shared
- *              redemption pool for "shared pool" bundles (N sessions usable across all
- *              included services combined, instead of LatePoint's default N-per-service).
- * Version:     1.0.0
+ * Description: Site-specific LatePoint customizations for Yumefit. (1) Shared redemption
+ *              pool for "shared pool" bundles (N sessions usable across all included
+ *              services combined, vs LatePoint's default N-per-service). (2) Package
+ *              validity window — bundle sessions can only be booked within N months of
+ *              purchase (default 2).
+ * Version:     1.1.0
  * Author:      Yumefit
  * Text Domain: latepoint
  */
@@ -14,21 +16,24 @@ if (!defined('ABSPATH')) {
 }
 
 /**
- * Hard-cap total redemptions for shared-pool bundles.
+ * Enforce package (bundle) rules when a bundle session is being booked/scheduled.
  *
- * LatePoint counts bundle usage per (order_item, service); this makes the cap
- * shared across ALL services of the bundle. Bundles are flagged in the
- * `yumefit_shared_pool_bundles` option ([bundle_id => total]) by the setup script.
+ * Runs on `latepoint_check_steps_for_errors`, where OsStepsHelper::$booking_object
+ * holds the booking being placed (with its bundle order_item_id). Adds errors to
+ * block the booking when a rule is violated. Fail-open: only ever blocks when it
+ * positively identifies a bundle redemption that breaks a rule.
  *
- * A non-cancelled booking counts as used. Cancellation timing is governed by the
- * global LatePoint cancellation setting, so late cancels and no-shows keep counting.
+ * Rule 1 — Validity window: a bundle's sessions can only be booked within
+ *   `valid_for_months` (bundle meta) or the global `yumefit_bundle_validity_months`
+ *   option (default 2) months of the purchase (order created_at).
  *
- * Fail-open: only ever ADDS an error when it positively identifies a full shared
- * pool — it never blocks ordinary bookings.
+ * Rule 2 — Shared pool: for bundles flagged in `yumefit_shared_pool_bundles`
+ *   ([bundle_id => total]), the total is shared across ALL the bundle's services
+ *   (a non-cancelled booking counts as used).
  */
-add_filter('latepoint_check_steps_for_errors', 'yumefit_enforce_shared_pool_cap', 20, 3);
+add_filter('latepoint_check_steps_for_errors', 'yumefit_enforce_bundle_rules', 20, 3);
 
-function yumefit_enforce_shared_pool_cap(array $errors, array $steps, array $steps_rules): array {
+function yumefit_enforce_bundle_rules(array $errors, array $steps, array $steps_rules): array {
     if (!class_exists('OsStepsHelper') || !class_exists('OsOrderItemModel')) {
         return $errors;
     }
@@ -38,38 +43,72 @@ function yumefit_enforce_shared_pool_cap(array $errors, array $steps, array $ste
         return $errors; // no real (saved) bundle order item in context
     }
 
-    $shared = get_option('yumefit_shared_pool_bundles', []);
-    if (empty($shared) || !is_array($shared)) {
-        return $errors;
-    }
-
     $order_item = new OsOrderItemModel((int) $booking->order_item_id);
     if (!method_exists($order_item, 'is_bundle') || !$order_item->is_bundle()) {
         return $errors;
     }
 
-    $bundle = $order_item->build_original_object_from_item_data();
+    $bundle    = $order_item->build_original_object_from_item_data();
     $bundle_id = (int) ($bundle->id ?? 0);
-    if (!$bundle_id || empty($shared[$bundle_id])) {
-        return $errors; // not a shared-pool bundle
+
+    // --- Rule 1: validity window (applies to ALL bundles) ---
+    $months = 0;
+    if ($bundle_id && method_exists($bundle, 'get_meta_by_key')) {
+        $meta_months = $bundle->get_meta_by_key('valid_for_months');
+        if (is_numeric($meta_months)) {
+            $months = (int) $meta_months;
+        }
+    }
+    if ($months <= 0) {
+        $months = (int) get_option('yumefit_bundle_validity_months', 2);
     }
 
-    $cap = (int) $shared[$bundle_id];
+    if ($months > 0 && !empty($booking->start_date)) {
+        $purchased_at = '';
+        if (!empty($order_item->order_id) && class_exists('OsOrderModel')) {
+            $order = new OsOrderModel((int) $order_item->order_id);
+            $purchased_at = $order->created_at ?? '';
+        }
+        if (empty($purchased_at)) {
+            $purchased_at = $order_item->created_at ?? '';
+        }
+        if (!empty($purchased_at)) {
+            try {
+                $expiry = (new DateTime(substr($purchased_at, 0, 10)))->modify('+' . $months . ' months');
+                $start  = new DateTime(substr((string) $booking->start_date, 0, 10));
+                if ($start > $expiry) {
+                    $errors['yumefit_bundle_expired'] = sprintf(
+                        /* translators: %s is a date */
+                        __('This package can only be used until %s.', 'latepoint'),
+                        $expiry->format('d.m.Y')
+                    );
+                }
+            } catch (\Throwable $e) {
+                // fail-open
+            }
+        }
+    }
 
-    global $wpdb;
-    $used = (int) $wpdb->get_var($wpdb->prepare(
-        "SELECT COUNT(*) FROM {$wpdb->prefix}latepoint_bookings WHERE order_item_id = %d AND status <> %s",
-        (int) $booking->order_item_id,
-        LATEPOINT_BOOKING_STATUS_CANCELLED
-    ));
+    // --- Rule 2: shared redemption pool (only for flagged bundles) ---
+    $shared = get_option('yumefit_shared_pool_bundles', []);
+    if ($bundle_id && is_array($shared) && !empty($shared[$bundle_id])) {
+        $cap = (int) $shared[$bundle_id];
 
-    if ($used >= $cap) {
-        $errors['yumefit_shared_pool'] = sprintf(
-            /* translators: 1: used count, 2: cap */
-            __('This package is fully used — %1$d of %2$d sessions are already booked.', 'latepoint'),
-            $used,
-            $cap
-        );
+        global $wpdb;
+        $used = (int) $wpdb->get_var($wpdb->prepare(
+            "SELECT COUNT(*) FROM {$wpdb->prefix}latepoint_bookings WHERE order_item_id = %d AND status <> %s",
+            (int) $booking->order_item_id,
+            LATEPOINT_BOOKING_STATUS_CANCELLED
+        ));
+
+        if ($used >= $cap) {
+            $errors['yumefit_shared_pool'] = sprintf(
+                /* translators: 1: used count, 2: cap */
+                __('This package is fully used — %1$d of %2$d sessions are already booked.', 'latepoint'),
+                $used,
+                $cap
+            );
+        }
     }
 
     return $errors;
