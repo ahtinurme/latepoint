@@ -6,8 +6,9 @@
  *              services combined, vs LatePoint's default N-per-service). (2) Package
  *              validity window — bundle sessions can only be booked within N months of
  *              purchase (default 2). (3) Auto-applies a percentage discount coupon
- *              for "püsiklient" (loyal) customers.
- * Version:     1.2.0
+ *              for "püsiklient" (loyal) customers, driven by the "Püsiklient?" customer
+ *              custom field as the single source of truth.
+ * Version:     1.3.0
  * Author:      Yumefit
  * Text Domain: latepoint
  */
@@ -119,12 +120,33 @@ function yumefit_enforce_bundle_rules(array $errors, array $steps, array $steps_
 /* -------------------------------------------------------------------------
  * Püsiklient (loyal customer) automatic discount.
  *
- * Auto-applies a percentage coupon to the cart for customers flagged
- * is_pusiklient=yes, so the discount shows as a normal coupon line without the
- * customer entering a code. The percentage itself is configured on the coupon
- * (Coupons admin); the coupon CODE is stored in option yumefit_pusiklient_coupon_code.
- * Also strips the code if a non-püsiklient customer somehow enters it.
+ * Auto-applies a percentage coupon to the cart for püsiklient customers, so the
+ * discount shows as a normal coupon line without the customer entering a code.
+ * The percentage is configured on the coupon (Coupons admin); the coupon CODE is
+ * stored in option yumefit_pusiklient_coupon_code. Also strips the code if a
+ * non-püsiklient customer somehow enters it.
+ *
+ * SINGLE SOURCE OF TRUTH: eligibility is read from the "Püsiklient?" customer
+ * custom field (a checkbox; LatePoint stores its value as 'on' in customer_meta
+ * under the field's internal id). The field id is stored in option
+ * yumefit_pusiklient_field_id (set by scripts/setup_pusiklient_field.php). Toggling
+ * the checkbox in the customer admin therefore directly controls the discount.
+ * Falls back to the legacy is_pusiklient meta only while the field id is unset.
  * ---------------------------------------------------------------------- */
+function yumefit_is_pusiklient($customer_id): bool {
+    if (!$customer_id || !class_exists('OsMetaHelper')) {
+        return false;
+    }
+
+    $field_id = trim((string) get_option('yumefit_pusiklient_field_id', ''));
+    if ($field_id !== '') {
+        return OsMetaHelper::get_customer_meta_by_key($field_id, $customer_id, '') === 'on';
+    }
+
+    // Fallback until the custom field is wired up by the setup script.
+    return OsMetaHelper::get_customer_meta_by_key('is_pusiklient', $customer_id, '') === 'yes';
+}
+
 add_filter('latepoint_cart_get_coupon_code', 'yumefit_pusiklient_auto_coupon', 10, 2);
 function yumefit_pusiklient_auto_coupon($code, $cart) {
     $ourCode = strtoupper(trim((string) get_option('yumefit_pusiklient_coupon_code', '')));
@@ -139,9 +161,7 @@ function yumefit_pusiklient_auto_coupon($code, $cart) {
         $customer_id = (int) OsAuthHelper::get_logged_in_customer_id();
     }
 
-    $is_pusiklient = $customer_id
-        && class_exists('OsMetaHelper')
-        && OsMetaHelper::get_customer_meta_by_key('is_pusiklient', $customer_id, '') === 'yes';
+    $is_pusiklient = yumefit_is_pusiklient($customer_id);
 
     if ($is_pusiklient && empty($code)) {
         return $ourCode; // auto-apply for loyal customers (only if no other coupon already entered)
