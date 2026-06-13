@@ -5,8 +5,9 @@
  *              pool for "shared pool" bundles (N sessions usable across all included
  *              services combined, vs LatePoint's default N-per-service). (2) Package
  *              validity window — bundle sessions can only be booked within N months of
- *              purchase (default 2).
- * Version:     1.1.0
+ *              purchase (default 2). (3) Auto-applies a percentage discount coupon
+ *              for "püsiklient" (loyal) customers.
+ * Version:     1.2.0
  * Author:      Yumefit
  * Text Domain: latepoint
  */
@@ -112,4 +113,41 @@ function yumefit_enforce_bundle_rules(array $errors, array $steps, array $steps_
     }
 
     return $errors;
+}
+
+
+/* -------------------------------------------------------------------------
+ * Püsiklient (loyal customer) automatic discount.
+ *
+ * Auto-applies a percentage coupon to the cart for customers flagged
+ * is_pusiklient=yes, so the discount shows as a normal coupon line without the
+ * customer entering a code. The percentage itself is configured on the coupon
+ * (Coupons admin); the coupon CODE is stored in option yumefit_pusiklient_coupon_code.
+ * Also strips the code if a non-püsiklient customer somehow enters it.
+ * ---------------------------------------------------------------------- */
+add_filter('latepoint_cart_get_coupon_code', 'yumefit_pusiklient_auto_coupon', 10, 2);
+function yumefit_pusiklient_auto_coupon($code, $cart) {
+    $ourCode = strtoupper(trim((string) get_option('yumefit_pusiklient_coupon_code', '')));
+    if ($ourCode === '') {
+        return $code;
+    }
+
+    $customer_id = 0;
+    if (!empty($cart->order_forced_customer_id)) {
+        $customer_id = (int) $cart->order_forced_customer_id;
+    } elseif (class_exists('OsAuthHelper')) {
+        $customer_id = (int) OsAuthHelper::get_logged_in_customer_id();
+    }
+
+    $is_pusiklient = $customer_id
+        && class_exists('OsMetaHelper')
+        && OsMetaHelper::get_customer_meta_by_key('is_pusiklient', $customer_id, '') === 'yes';
+
+    if ($is_pusiklient && empty($code)) {
+        return $ourCode; // auto-apply for loyal customers (only if no other coupon already entered)
+    }
+    if (!$is_pusiklient && strtoupper(trim((string) $code)) === $ourCode) {
+        return ''; // a non-püsiklient must not benefit from the loyal-customer code
+    }
+    return $code;
 }
