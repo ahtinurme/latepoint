@@ -24,11 +24,13 @@
  *          [--since=YYYY-MM-DD] [--customer=ID]
  */
 if (PHP_SAPI !== 'cli') { exit("CLI only\n"); }
-$opts = getopt('', ['dry-run', 'all', 'since:', 'customer:']);
+$opts = getopt('', ['dry-run', 'all', 'since:', 'customer:', 'no-link', 'partial-keep']);
 $dryRun = isset($opts['dry-run']);
 $all    = isset($opts['all']);
 $since  = $opts['since'] ?? (new DateTime('now'))->modify('-2 months')->format('Y-m-d');
 $onlyCustomer = isset($opts['customer']) ? (int) $opts['customer'] : 0;
+$noLink = isset($opts['no-link']);          // skip Phase A (history already linked by marker pass)
+$partialKeep = isset($opts['partial-keep']); // partial bundles: set total=paid (no new revenue) instead of topping up
 
 $wpLoad = realpath(__DIR__ . '/../../../wp-load.php');
 if (!$wpLoad) { fwrite(STDERR, "wp-load.php not found\n"); exit(1); }
@@ -67,7 +69,7 @@ foreach ($bundles as $b) {
     )) : [];
 
     // ---- Phase A: link eligible sessions up to quantity ----
-    foreach ($services as $svc) {
+    foreach (($noLink ? [] : $services) as $svc) {
         $serviceId = (int) $svc->service_id;
         $qty = (int) $svc->quantity;
         $used = (int) $wpdb->get_var($wpdb->prepare(
@@ -108,11 +110,22 @@ foreach ($bundles as $b) {
         }
     }
 
-    // ---- Phase B: record prepaid package payment so balance = €0 ----
+    // ---- Phase B: settle the package order so balance = €0 ----
     $paid = (float) $wpdb->get_var($wpdb->prepare(
         "SELECT COALESCE(SUM(amount),0) FROM {$P}latepoint_transactions WHERE order_id = %d", $b->order_id
     ));
     $shortfall = round((float) $b->total - $paid, 2);
+
+    // --partial-keep: a bundle that already has SOME payment (per-session) keeps its
+    // received revenue — shrink total to what was paid (balance 0) instead of topping
+    // up the nominal price, which would double-count. €0-paid bundles still record the
+    // full (genuinely-missing lump-sum) price below.
+    if ($partialKeep && $paid > 0.005 && $shortfall > 0.005) {
+        echo sprintf("  keep bundle order #%d: total %.2f -> %.2f (paid, no new revenue)\n", $b->order_id, $b->total, $paid);
+        if (!$dryRun) { $wpdb->update("{$P}latepoint_orders", ['total' => $paid, 'subtotal' => $paid], ['id' => $b->order_id]); }
+        $shortfall = 0;
+    }
+
     if ($shortfall > 0.005) {
         echo sprintf("  pay bundle order #%d: +%.2f (total %.2f, paid %.2f)\n", $b->order_id, $shortfall, $b->total, $paid);
         $st['paid_orders']++;
