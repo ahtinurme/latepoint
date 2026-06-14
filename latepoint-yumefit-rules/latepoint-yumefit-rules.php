@@ -8,7 +8,7 @@
  *              purchase (default 2). (3) Auto-applies a percentage discount coupon
  *              for "püsiklient" (loyal) customers, driven by the "Püsiklient?" customer
  *              custom field as the single source of truth.
- * Version:     1.3.2
+ * Version:     1.4.0
  * Author:      Yumefit
  * Text Domain: latepoint
  */
@@ -33,6 +33,87 @@ if (!defined('ABSPATH')) {
  *   ([bundle_id => total]), the total is shared across ALL the bundle's services
  *   (a non-cancelled booking counts as used).
  */
+/* ===== CUSTOM CODE START (yumefit: package expiry helpers + display) =====
+ * Shared by the validity-enforcement rule AND the admin/customer "valid until"
+ * display, so what's shown always matches what's enforced. Validity precedence:
+ * per-order meta `valid_for_months` (a specific card) -> bundle meta
+ * `valid_for_months` (card type, e.g. 10x = 4) -> global option (default 2). */
+function yumefit_bundle_validity_months($order, $bundle = null): int {
+    if ($order && !empty($order->id) && class_exists('OsMetaHelper')) {
+        $m = OsMetaHelper::get_order_meta_by_key('valid_for_months', $order->id, '');
+        if (is_numeric($m) && (int) $m > 0) {
+            return (int) $m;
+        }
+    }
+    if ($bundle && method_exists($bundle, 'get_meta_by_key')) {
+        $m = $bundle->get_meta_by_key('valid_for_months');
+        if (is_numeric($m) && (int) $m > 0) {
+            return (int) $m;
+        }
+    }
+    return (int) get_option('yumefit_bundle_validity_months', 2);
+}
+
+function yumefit_bundle_expiry_date($order, $bundle = null): ?DateTime {
+    $months = yumefit_bundle_validity_months($order, $bundle);
+    $purchased = ($order && !empty($order->created_at)) ? (string) $order->created_at : '';
+    if ($months <= 0 || $purchased === '') {
+        return null;
+    }
+    try {
+        return (new DateTime(substr($purchased, 0, 10)))->modify('+' . $months . ' months');
+    } catch (\Throwable $e) {
+        return null;
+    }
+}
+
+/** Resolve the bundle object for an order (its first bundle order-item), or null. */
+function yumefit_order_bundle($order) {
+    if (!$order || empty($order->id) || !class_exists('OsOrderItemModel')) {
+        return null;
+    }
+    global $wpdb;
+    $oiId = (int) $wpdb->get_var($wpdb->prepare(
+        "SELECT id FROM {$wpdb->prefix}latepoint_order_items WHERE order_id = %d AND variant = 'bundle' LIMIT 1",
+        (int) $order->id
+    ));
+    if (!$oiId) {
+        return null;
+    }
+    $order_item = new OsOrderItemModel($oiId);
+    return method_exists($order_item, 'build_original_object_from_item_data') ? $order_item->build_original_object_from_item_data() : null;
+}
+
+/** "Pakett kehtib kuni DD.MM.YYYY" line for a package order (empty if not a package). */
+function yumefit_package_expiry_html($order, $bundle = null): string {
+    if (!$order) {
+        return '';
+    }
+    if (!$bundle) {
+        $bundle = yumefit_order_bundle($order);
+    }
+    if (!$bundle) {
+        return '';
+    }
+    $expiry = yumefit_bundle_expiry_date($order, $bundle);
+    if (!$expiry) {
+        return '';
+    }
+    return '<div class="yumefit-package-expiry" style="display:flex;justify-content:space-between;padding:8px 0;border-top:1px solid #eee;font-weight:600;">'
+        . '<span>' . esc_html__('Package valid until', 'latepoint') . '</span>'
+        . '<span>' . esc_html($expiry->format('d.m.Y')) . '</span>'
+        . '</div>';
+}
+
+// Admin order edit panel (under the price breakdown) + the order summary shown to
+// both admin and customer (order summary lightbox includes _full_summary.php).
+add_action('latepoint_order_quick_form_price_after_total', 'yumefit_show_package_expiry');
+add_action('latepoint_order_full_summary_head_info_after', 'yumefit_show_package_expiry');
+function yumefit_show_package_expiry($order): void {
+    echo yumefit_package_expiry_html($order);
+}
+/* ===== CUSTOM CODE END (yumefit: package expiry helpers + display) ===== */
+
 add_filter('latepoint_check_steps_for_errors', 'yumefit_enforce_bundle_rules', 20, 3);
 
 function yumefit_enforce_bundle_rules(array $errors, array $steps, array $steps_rules): array {
@@ -54,30 +135,14 @@ function yumefit_enforce_bundle_rules(array $errors, array $steps, array $steps_
     $bundle_id = (int) ($bundle->id ?? 0);
 
     // --- Rule 1: validity window (applies to ALL bundles) ---
-    $months = 0;
-    if ($bundle_id && method_exists($bundle, 'get_meta_by_key')) {
-        $meta_months = $bundle->get_meta_by_key('valid_for_months');
-        if (is_numeric($meta_months)) {
-            $months = (int) $meta_months;
-        }
-    }
-    if ($months <= 0) {
-        $months = (int) get_option('yumefit_bundle_validity_months', 2);
-    }
-
-    if ($months > 0 && !empty($booking->start_date)) {
-        $purchased_at = '';
-        if (!empty($order_item->order_id) && class_exists('OsOrderModel')) {
-            $order = new OsOrderModel((int) $order_item->order_id);
-            $purchased_at = $order->created_at ?? '';
-        }
-        if (empty($purchased_at)) {
-            $purchased_at = $order_item->created_at ?? '';
-        }
-        if (!empty($purchased_at)) {
+    // CUSTOM: validity now comes from the shared helper (order meta -> bundle meta
+    // -> global), so enforcement matches the displayed "valid until" date.
+    if (!empty($booking->start_date) && !empty($order_item->order_id) && class_exists('OsOrderModel')) {
+        $order  = new OsOrderModel((int) $order_item->order_id);
+        $expiry = yumefit_bundle_expiry_date($order, $bundle);
+        if ($expiry) {
             try {
-                $expiry = (new DateTime(substr($purchased_at, 0, 10)))->modify('+' . $months . ' months');
-                $start  = new DateTime(substr((string) $booking->start_date, 0, 10));
+                $start = new DateTime(substr((string) $booking->start_date, 0, 10));
                 if ($start > $expiry) {
                     $errors['yumefit_bundle_expired'] = sprintf(
                         /* translators: %s is a date */

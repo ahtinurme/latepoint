@@ -14,6 +14,11 @@ if ( ! defined( 'ABSPATH' ) ) {
 			<div class="bundle-main-info">
 				<h6 class="bundle-name"><?php echo esc_html($bundle->name); ?></h6>
 				<div class="bundle-order-info"><?php echo esc_html__('Order', 'latepoint').' <a href="#" '.OsCustomerHelper::generate_order_summary_btn($order->id).'>#'.esc_html($order->confirmation_code).'</a>'; ?></div>
+				<?php /* ===== CUSTOM CODE START (yumefit: package valid-until) ===== */ ?>
+				<?php if (function_exists('yumefit_bundle_expiry_date')) { $yf_expiry = yumefit_bundle_expiry_date($order, $bundle); if ($yf_expiry) { ?>
+					<div class="bundle-valid-until" style="margin-top:4px;font-size:13px;color:#6b6b6b;"><?php echo esc_html__('Valid until', 'latepoint').': '.esc_html($yf_expiry->format('d.m.Y')); ?></div>
+				<?php } } ?>
+				<?php /* ===== CUSTOM CODE END (yumefit: package valid-until) ===== */ ?>
 			</div>
 			<div class="bundle-icon">
 				<i class="latepoint-icon latepoint-icon-layers"></i>
