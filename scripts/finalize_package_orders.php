@@ -24,13 +24,14 @@
  *          [--since=YYYY-MM-DD] [--customer=ID]
  */
 if (PHP_SAPI !== 'cli') { exit("CLI only\n"); }
-$opts = getopt('', ['dry-run', 'all', 'since:', 'customer:', 'no-link', 'partial-keep']);
+$opts = getopt('', ['dry-run', 'all', 'since:', 'customer:', 'no-link', 'partial-keep', 'absorb-unpaid']);
 $dryRun = isset($opts['dry-run']);
 $all    = isset($opts['all']);
 $since  = $opts['since'] ?? (new DateTime('now'))->modify('-2 months')->format('Y-m-d');
 $onlyCustomer = isset($opts['customer']) ? (int) $opts['customer'] : 0;
 $noLink = isset($opts['no-link']);          // skip Phase A (history already linked by marker pass)
 $partialKeep = isset($opts['partial-keep']); // partial bundles: set total=paid (no new revenue) instead of topping up
+$absorbUnpaid = isset($opts['absorb-unpaid']); // also link unpaid PRICED sessions (not just €0) up to package qty
 
 $wpLoad = realpath(__DIR__ . '/../../../wp-load.php');
 if (!$wpLoad) { fwrite(STDERR, "wp-load.php not found\n"); exit(1); }
@@ -86,7 +87,7 @@ foreach ($bundles as $b) {
              JOIN {$P}latepoint_orders co ON co.id = coi.order_id
              WHERE bk.customer_id = %d AND bk.service_id = %d AND bk.status <> %s
                AND bk.order_item_id <> %d
-               AND co.total = 0
+               " . ($absorbUnpaid ? '' : 'AND co.total = 0') . "
                AND NOT EXISTS (SELECT 1 FROM {$P}latepoint_transactions t WHERE t.order_id = co.id)
              ORDER BY bk.start_date ASC, bk.start_time ASC
              LIMIT %d",
