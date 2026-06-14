@@ -8,7 +8,7 @@
  *              purchase (default 2). (3) Auto-applies a percentage discount coupon
  *              for "püsiklient" (loyal) customers, driven by the "Püsiklient?" customer
  *              custom field as the single source of truth.
- * Version:     1.3.0
+ * Version:     1.3.1
  * Author:      Yumefit
  * Text Domain: latepoint
  */
@@ -151,6 +151,14 @@ add_filter('latepoint_cart_get_coupon_code', 'yumefit_pusiklient_auto_coupon', 1
 function yumefit_pusiklient_auto_coupon($code, $cart) {
     $ourCode = strtoupper(trim((string) get_option('yumefit_pusiklient_coupon_code', '')));
     if ($ourCode === '') {
+        return $code;
+    }
+
+    // Only auto-apply in the customer-facing booking flow. In the backend (an admin
+    // or agent viewing/editing an order) we must NOT inject the coupon, otherwise
+    // every püsiklient's order shows a phantom discount even with the code toggle off.
+    if (class_exists('OsAuthHelper')
+        && (OsAuthHelper::is_admin_logged_in() || OsAuthHelper::is_agent_logged_in())) {
         return $code;
     }
 

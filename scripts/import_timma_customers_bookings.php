@@ -114,7 +114,15 @@ function tm_import_slot(array $slot, int $customerId, array $staff, string $nowU
     $order->customer_id = $customerId;
     $order->status = $isCancelled ? K('LATEPOINT_ORDER_STATUS_CANCELLED', 'cancelled') : K('LATEPOINT_ORDER_STATUS_COMPLETED', 'completed');
     $order->fulfillment_status = $isCancelled ? K('LATEPOINT_ORDER_FULFILLMENT_STATUS_NOT', 'not_fulfilled') : K('LATEPOINT_ORDER_FULFILLMENT_STATUS_FULFILLED', 'fulfilled');
-    $order->payment_status = ($paidC > 0 || $totalC == 0) ? K('LATEPOINT_ORDER_PAYMENT_STATUS_FULLY', 'fully') : K('LATEPOINT_ORDER_PAYMENT_STATUS_NOT', 'not_paid');
+    if ($isCancelled) {
+        $order->payment_status = K('LATEPOINT_ORDER_PAYMENT_STATUS_NOT_PAID', 'not_paid');
+    } elseif ($totalC <= 0 || $paidC >= $totalC) {
+        $order->payment_status = K('LATEPOINT_ORDER_PAYMENT_STATUS_FULLY_PAID', 'fully_paid');
+    } elseif ($paidC > 0) {
+        $order->payment_status = K('LATEPOINT_ORDER_PAYMENT_STATUS_PARTIALLY_PAID', 'partially_paid');
+    } else {
+        $order->payment_status = K('LATEPOINT_ORDER_PAYMENT_STATUS_NOT_PAID', 'not_paid');
+    }
     $order->subtotal = $total; $order->total = $total;
     if ($note !== '') $order->customer_comment = $note;
     if (!$order->save()) { echo "    !! order save failed slot {$slotId}\n"; $st['bk_fail']++; return; }

@@ -157,7 +157,7 @@ foreach (scandir($slotsDir) as $file) {
                 $order->customer_id = $custId;
                 $order->status = K('LATEPOINT_ORDER_STATUS_COMPLETED', 'completed');
                 $order->fulfillment_status = K('LATEPOINT_ORDER_FULFILLMENT_STATUS_FULFILLED', 'fulfilled');
-                $order->payment_status = K('LATEPOINT_ORDER_PAYMENT_STATUS_FULLY', 'fully');
+                $order->payment_status = K('LATEPOINT_ORDER_PAYMENT_STATUS_FULLY_PAID', 'fully_paid');
                 $order->subtotal = $price; $order->total = $price;
                 if (!$order->save()) { $prev = $m; continue; }
                 $oi = new OsOrderItemModel();
