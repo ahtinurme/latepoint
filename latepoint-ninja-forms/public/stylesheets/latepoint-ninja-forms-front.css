@@ -1,0 +1,51 @@
+.latepoint-ninja-form-cta {
+  margin: 20px 0;
+  padding: 20px;
+  border: 1px solid #e2e2e2;
+  border-radius: 8px;
+  text-align: center;
+}
+
+.latepoint-ninja-form-cta p {
+  margin: 0 0 12px;
+}
+
+.latepoint-ninja-forms-dashboard-section {
+  margin: 20px 0;
+}
+
+.latepoint-ninja-form-submission {
+  margin-bottom: 16px;
+  padding: 16px;
+  border: 1px solid #e2e2e2;
+  border-radius: 8px;
+}
+
+.latepoint-ninja-form-submission-head {
+  margin-bottom: 10px;
+}
+
+.latepoint-ninja-form-submission-date {
+  color: #888;
+  font-size: 12px;
+  margin-left: 8px;
+}
+
+.latepoint-ninja-form-submission-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.latepoint-ninja-form-submission-table th,
+.latepoint-ninja-form-submission-table td {
+  text-align: left;
+  vertical-align: top;
+  padding: 6px 10px;
+  border-bottom: 1px solid #f0f0f0;
+}
+
+.latepoint-ninja-form-submission-table th {
+  width: 35%;
+  color: #555;
+  font-weight: 600;
+}
