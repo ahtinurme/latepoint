@@ -127,14 +127,14 @@ class LatePointNinjaForms {
       'icon'  => 'latepoint-icon latepoint-icon-clipboard',
       'link'  => OsRouterHelper::build_link( [ 'ninja_forms', 'settings' ] ),
     ];
-    // Show as a tab under "Integrations" rather than a standalone top-level item.
+    // Show as a tab under "Settings" rather than a standalone top-level item.
     foreach ( $menus as $i => $menu ) {
-      if ( isset( $menu['id'] ) && $menu['id'] === 'integrations' ) {
+      if ( isset( $menu['id'] ) && $menu['id'] === 'settings' ) {
         $menus[ $i ]['children'][] = $item;
         return $menus;
       }
     }
-    // Fallback (integrations menu not present): keep it top-level.
+    // Fallback (settings menu not present): keep it top-level.
     $menus[] = $item;
     return $menus;
   }
