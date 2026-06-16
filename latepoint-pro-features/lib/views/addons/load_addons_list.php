@@ -30,7 +30,7 @@ if($messages){
 }
 if($addons){ ?>
 	<div class="addons-boxes-w" data-addons-nonce="<?php echo esc_attr(wp_create_nonce('latepoint_manage_addons')); ?>">
-		<?php foreach($addons as $addon){ 
+		<?php foreach($addons as $addon){
 			$is_activated = is_plugin_active($addon->wp_plugin_path);
 			$is_installed = OsAddonsHelper::is_addon_installed($addon->wp_plugin_path);
 			$addon_css_class = '';
@@ -67,7 +67,7 @@ if($addons){ ?>
 				<div class="addon-body">
 					<div class="addon-desc"><?php echo empty($addon->short_description) ? esc_html($addon->description) : esc_html($addon->short_description); ?></div>
 					<div class="addon-meta">
-						<?php 
+						<?php
 						if($is_installed){
 								if(version_compare($addon->version, $installed_version) > 0){
 									echo '<div>'.esc_html__('Latest:', 'latepoint-pro-features').' '.esc_html($addon->version).'</div>';
@@ -81,9 +81,9 @@ if($addons){ ?>
 					</div>
 				</div>
 				<div class="addon-footer">
-						<?php 
+						<?php
 							if(version_compare($addon->required_version, LATEPOINT_VERSION) > 0){
-								echo '<a class="os-update-plugin-link" href="'. esc_url(OsRouterHelper::build_link(['updates', 'status'])).'"><span><i class="latepoint-icon latepoint-icon-refresh-cw"></i></span><span>'.esc_html__('Requires LatePoint', 'latepoint-pro-features').' v'.esc_html($addon->required_version).'</span></a>';
+								echo '<a class="os-update-plugin-link" href="' . esc_url( OsRouterHelper::build_link( [ 'updates', 'status' ] ) ) . '"><span><i class="latepoint-icon latepoint-icon-refresh-cw"></i></span><span>' . esc_html__( 'Requires Core Version', 'latepoint-pro-features' ) . ' v' . esc_html( $addon->required_version ) . '</span></a>';
 							}else{
 								if($is_activated){
 									// is activated
@@ -118,7 +118,7 @@ if($addons){ ?>
 												echo '</a>';
 											}
 										}else{
-											// not installed 
+											// not installed
 											if($addon->price > 0){
 												if($addon->purchased){
 													echo '<a href="#" class="os-install-addon-btn os-addon-action-btn" data-route-name="'.esc_attr(OsRouterHelper::build_route_name('addons', 'install_addon')).'" '.$addon_data_html.'>';

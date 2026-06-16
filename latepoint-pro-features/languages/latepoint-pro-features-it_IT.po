@@ -21,23 +21,23 @@ msgstr ""
 "X-Poedit-SearchPathExcluded-0: *.min.js\n"
 "X-Poedit-SearchPathExcluded-1: vendor\n"
 
-#: latepoint-pro-features.php:790
+#: latepoint-pro-features.php:816
 msgid "Allow customers reschedule their bookings"
 msgstr "Permetti ai clienti di riprogrammare le loro prenotazioni"
 
-#: latepoint-pro-features.php:790
+#: latepoint-pro-features.php:816
 msgid "If enable, shows a button on customer cabinet to reschedule an appointment"
 msgstr "Se abilitato, mostra un pulsante nel pannello clienti per riprogrammare un appuntamento"
 
-#: latepoint-pro-features.php:793
+#: latepoint-pro-features.php:819
 msgid "Set restriction on when customer can reschedule"
 msgstr "Imposta restrizioni su quando il cliente può riprogrammare"
 
-#: latepoint-pro-features.php:797
+#: latepoint-pro-features.php:823
 msgid "Can reschedule when it is at least"
 msgstr "Può riprogrammare quando è almeno"
 
-#: latepoint-pro-features.php:798
+#: latepoint-pro-features.php:824
 #: lib/helpers/feature_recurring_bookings_helper.php:69
 #: lib/helpers/feature_service_extras_helper.php:498
 #: lib/helpers/feature_service_extras_helper.php:508
@@ -46,179 +46,179 @@ msgstr "Può riprogrammare quando è almeno"
 msgid "Value"
 msgstr "Valore"
 
-#: latepoint-pro-features.php:803
+#: latepoint-pro-features.php:829
 #: lib/helpers/feature_reminders_helper.php:15
 msgid "minutes"
 msgstr "minuti"
 
-#: latepoint-pro-features.php:804
+#: latepoint-pro-features.php:830
 #: lib/helpers/feature_reminders_helper.php:16
 msgid "hours"
 msgstr "ore"
 
-#: latepoint-pro-features.php:805
+#: latepoint-pro-features.php:831
 #: lib/helpers/feature_reminders_helper.php:17
 msgid "days"
 msgstr "giorni"
 
-#: latepoint-pro-features.php:809
+#: latepoint-pro-features.php:835
 msgid "before appointment start time"
 msgstr "prima dell'orario di inizio dell'appuntamento"
 
-#: latepoint-pro-features.php:812
+#: latepoint-pro-features.php:838
 msgid "Change booking status when customer reschedules"
 msgstr "Cambia lo stato della prenotazione quando il cliente riprogramma"
 
-#: latepoint-pro-features.php:816
+#: latepoint-pro-features.php:842
 msgid "Change status to:"
 msgstr "Cambia stato in:"
 
-#: latepoint-pro-features.php:836
+#: latepoint-pro-features.php:862
 msgid "All Day"
 msgstr "Tutto il giorno"
 
-#: latepoint-pro-features.php:837
+#: latepoint-pro-features.php:863
 msgid "Specific Time"
 msgstr "Orario specifico"
 
-#: latepoint-pro-features.php:843
+#: latepoint-pro-features.php:869
 msgid "Reason for blocking (optional)"
 msgstr "Motivo del blocco (opzionale)"
 
-#: latepoint-pro-features.php:846
+#: latepoint-pro-features.php:872
 msgid "Enter a reason..."
 msgstr "Inserisci un motivo..."
 
-#: latepoint-pro-features.php:866
+#: latepoint-pro-features.php:892
 #, php-format
 msgid "Select resources you want to be unavailable during this time on %s"
 msgstr "Seleziona le risorse che vuoi rendere non disponibili durante questo tempo su %s"
 
-#: latepoint-pro-features.php:867
+#: latepoint-pro-features.php:893
 #, php-format
 msgid "Select resources you want to be unavailable on %s"
 msgstr "Seleziona le risorse che vuoi rendere non disponibili su %s"
 
-#: latepoint-pro-features.php:876
+#: latepoint-pro-features.php:902
 msgid "All Agents"
 msgstr "Tutti gli agenti"
 
-#: latepoint-pro-features.php:891
+#: latepoint-pro-features.php:917
 msgid "All Services"
 msgstr "Tutti i servizi"
 
-#: latepoint-pro-features.php:906
+#: latepoint-pro-features.php:932
 msgid "All Locations"
 msgstr "Tutte le sedi"
 
-#: latepoint-pro-features.php:922
+#: latepoint-pro-features.php:948
 #: lib/views/webhooks/_webhook_form.php:45
 msgid "Save"
 msgstr "Salva"
 
-#: latepoint-pro-features.php:928
+#: latepoint-pro-features.php:954
 msgid "Are you sure you want to delete this blocked time period?"
 msgstr "Sei sicuro di voler eliminare questo periodo bloccato?"
 
-#: latepoint-pro-features.php:930
+#: latepoint-pro-features.php:956
 msgid "Delete Blocked Period"
 msgstr "Elimina periodo bloccato"
 
-#: latepoint-pro-features.php:987
+#: latepoint-pro-features.php:1013
 msgid "Blocked Period"
 msgstr "Periodo bloccato"
 
-#: latepoint-pro-features.php:1056
+#: latepoint-pro-features.php:1082
 msgid "Enable this feature by installing an appropriate addon."
 msgstr "Abilita questa funzione installando un addon appropriato."
 
-#: latepoint-pro-features.php:1067
+#: latepoint-pro-features.php:1093
 msgid "Not applied to invoice"
 msgstr "Non applicato alla fattura"
 
-#: latepoint-pro-features.php:1073
+#: latepoint-pro-features.php:1099
 #, php-format
 msgid "#%s"
 msgstr "#%s"
 
-#: latepoint-pro-features.php:1076
+#: latepoint-pro-features.php:1102
 msgid "Apply to Invoice"
 msgstr "Applica alla fattura"
 
-#: latepoint-pro-features.php:1081
+#: latepoint-pro-features.php:1107
 msgid "View Receipt"
 msgstr "Visualizza ricevuta"
 
-#: latepoint-pro-features.php:1083
+#: latepoint-pro-features.php:1109
 msgid "View Invoice"
 msgstr "Visualizza fattura"
 
-#: latepoint-pro-features.php:1100
+#: latepoint-pro-features.php:1126
 #: lib/controllers/addons_controller.php:18
 msgid "Add-ons"
 msgstr "Componenti aggiuntivi"
 
-#: latepoint-pro-features.php:1112
+#: latepoint-pro-features.php:1138
 msgid "Premium Features"
 msgstr "Funzionalità premium"
 
-#: latepoint-pro-features.php:1194
+#: latepoint-pro-features.php:1229
 msgid "Form Fields"
 msgstr "Campi del modulo"
 
-#: latepoint-pro-features.php:1199
+#: latepoint-pro-features.php:1234
 msgid "Customer Fields"
 msgstr "Campi cliente"
 
-#: latepoint-pro-features.php:1204
+#: latepoint-pro-features.php:1239
 msgid "Booking Fields"
 msgstr "Campi di prenotazione"
 
-#: latepoint-pro-features.php:1217
-#: latepoint-pro-features.php:1222
+#: latepoint-pro-features.php:1252
+#: latepoint-pro-features.php:1257
 #: lib/controllers/locations_controller.php:21
 #: lib/helpers/feature_locations_helper.php:70
 msgid "Locations"
 msgstr "Sedi"
 
-#: latepoint-pro-features.php:1227
+#: latepoint-pro-features.php:1262
 msgid "Categories"
 msgstr "Categorie"
 
-#: latepoint-pro-features.php:1271
+#: latepoint-pro-features.php:1306
 msgid "Cart Settings"
 msgstr "Impostazioni del carrello"
 
-#: latepoint-pro-features.php:1274
+#: latepoint-pro-features.php:1309
 msgid "Disable Shopping Cart Functionality"
 msgstr "Disabilita la funzionalità del carrello"
 
-#: latepoint-pro-features.php:1274
+#: latepoint-pro-features.php:1309
 msgid "This will disable ability to book multiple services in one order"
 msgstr "Questo disabiliterà la possibilità di prenotare più servizi in un unico ordine"
 
-#: latepoint-pro-features.php:1275
+#: latepoint-pro-features.php:1310
 msgid "Reset Presets When Adding New Item"
 msgstr "Reimposta preset quando si aggiunge un nuovo elemento"
 
-#: latepoint-pro-features.php:1275
+#: latepoint-pro-features.php:1310
 msgid "This will reset presets settings when adding new item"
 msgstr "Questo reimposterà le impostazioni dei preset quando si aggiunge un nuovo elemento"
 
-#: latepoint-pro-features.php:1490
-#: latepoint-pro-features.php:1503
+#: latepoint-pro-features.php:1527
+#: latepoint-pro-features.php:1540
 msgid "Are you sure you want to remove this file?"
 msgstr "Sei sicuro di voler rimuovere questo file?"
 
-#: latepoint-pro-features.php:1609
+#: latepoint-pro-features.php:1657
 msgid "Activate LatePoint"
 msgstr "Attiva LatePoint"
 
-#: latepoint-pro-features.php:1613
+#: latepoint-pro-features.php:1661
 msgid "Install LatePoint"
 msgstr "Installa LatePoint"
 
-#: latepoint-pro-features.php:1617
+#: latepoint-pro-features.php:1665
 #, php-format
 msgid "%1$sPRO Features for LatePoint%2$s plugin requires %1$sLatePoint%2$s core plugin installed & activated."
 msgstr "%1$sLe funzionalità PRO per il plugin LatePoint%2$s richiedono che il plugin core %1$sLatePoint%2$s sia installato e attivato."
@@ -652,7 +652,7 @@ msgstr "ID categoria di servizio non valido"
 msgid "Service Durations"
 msgstr "Durate dei servizi"
 
-#: latepoint-pro-features.php:775
+#: latepoint-pro-features.php:801
 #: lib/controllers/service_extras_controller.php:25
 #: lib/helpers/feature_service_extras_helper.php:7
 #: lib/helpers/feature_service_extras_helper.php:143
@@ -960,6 +960,8 @@ msgid "Service"
 msgstr "Servizio"
 
 #: lib/helpers/custom_fields_helper.php:484
+#: lib/helpers/feature_white_label_helper.php:71
+#: lib/helpers/feature_white_label_helper.php:88
 #: lib/views/messages/messages_with_info_for_booking.php:74
 msgid "Agent"
 msgstr "Agente"
@@ -1129,8 +1131,8 @@ msgstr "Campi personalizzati per la prenotazione"
 #: lib/helpers/feature_group_bookings_helper.php:69
 #: lib/helpers/feature_group_bookings_helper.php:226
 #: lib/helpers/feature_group_bookings_helper.php:264
-#: lib/helpers/feature_group_bookings_helper.php:352
-#: lib/helpers/feature_group_bookings_helper.php:366
+#: lib/helpers/feature_group_bookings_helper.php:365
+#: lib/helpers/feature_group_bookings_helper.php:379
 msgid "Total Attendees"
 msgstr "Totale partecipanti"
 
@@ -1162,7 +1164,7 @@ msgstr[1] "%s persone"
 msgid "Max Capacity:"
 msgstr "Capacità massima:"
 
-#: latepoint-pro-features.php:771
+#: latepoint-pro-features.php:797
 #: lib/helpers/feature_group_bookings_helper.php:278
 msgid "Group Bookings"
 msgstr "Prenotazioni di gruppo"
@@ -1193,15 +1195,15 @@ msgstr "Non moltiplicare l'importo addebitato per il numero di partecipanti"
 msgid "Do not multiply deposit amount by the number of attendees"
 msgstr "Non moltiplicare l'importo del deposito per il numero di partecipanti"
 
-#: lib/helpers/feature_group_bookings_helper.php:308
+#: lib/helpers/feature_group_bookings_helper.php:321
 msgid "Other"
 msgstr "Altro"
 
-#: lib/helpers/feature_group_bookings_helper.php:311
+#: lib/helpers/feature_group_bookings_helper.php:324
 msgid "Do not ask customers to select number of attendees"
 msgstr "Non chiedere ai clienti di selezionare il numero di partecipanti"
 
-#: lib/helpers/feature_group_bookings_helper.php:312
+#: lib/helpers/feature_group_bookings_helper.php:325
 msgid "Block timeslot if minimum capacity is reached"
 msgstr "Blocca la fascia oraria se viene raggiunta la capacità minima"
 
@@ -1310,7 +1312,7 @@ msgstr "Rendere l'appuntamento ricorrente?"
 msgid "You will set the frequency in the next step."
 msgstr "Imposterai la frequenza nel passaggio successivo."
 
-#: latepoint-pro-features.php:767
+#: latepoint-pro-features.php:793
 #: lib/helpers/feature_recurring_bookings_helper.php:61
 msgid "Recurring Appointments"
 msgstr "Appuntamenti Ricorrenti"
@@ -1704,10 +1706,6 @@ msgstr "Ultimo:"
 msgid "Installed:"
 msgstr "Installato:"
 
-#: lib/views/addons/load_addons_list.php:86
-msgid "Requires LatePoint"
-msgstr "Richiede LatePoint"
-
 #: latepoint-pro-features.php:98
 #: lib/helpers/addons_helper.php:126
 #: lib/views/addons/load_addons_list.php:93
@@ -1724,7 +1722,7 @@ msgstr "Disattiva"
 #: lib/views/agents/_form.php:318
 #: lib/views/custom_fields/_custom_field_form.php:127
 #: lib/views/locations/_form.php:189
-#: lib/views/roles/_form.php:123
+#: lib/views/roles/_form.php:122
 #: lib/views/taxes/_tax_form.php:49
 msgid "Delete"
 msgstr "Elimina"
@@ -1943,8 +1941,9 @@ msgstr "Aggiungi Agente"
 #: lib/views/locations/_form.php:202
 #: lib/views/locations/_form.php:216
 #: lib/views/roles/edit_wp_user.php:82
-#: lib/views/roles/_form.php:126
+#: lib/views/roles/_form.php:125
 #: lib/views/service_extras/_form.php:99
+#: lib/views/white_label/settings.php:166
 msgid "Save Changes"
 msgstr "Salva Modifiche"
 
@@ -2401,14 +2400,6 @@ msgstr "Chatta con i Clienti"
 msgid "System Info"
 msgstr "Informazioni di Sistema"
 
-#: lib/views/debug/status.php:23
-msgid "LatePoint Plugin Version:"
-msgstr "Versione Plugin LatePoint:"
-
-#: lib/views/debug/status.php:27
-msgid "LatePoint Database Version:"
-msgstr "Versione Database LatePoint:"
-
 #: lib/views/debug/status.php:31
 #: lib/views/debug/status.php:72
 msgid "reset"
@@ -2660,6 +2651,8 @@ msgstr "Modifica"
 msgid "Date/Time"
 msgstr "Data/Ora"
 
+#: lib/helpers/feature_white_label_helper.php:73
+#: lib/helpers/feature_white_label_helper.php:91
 #: lib/views/messages/messages_with_info_for_booking.php:72
 msgid "Customer"
 msgstr "Cliente"
@@ -2718,32 +2711,27 @@ msgstr "Non hai assegnato alcun utente WordPress a questo ruolo. Crea un nuovo u
 msgid "Allowed Records"
 msgstr "Record Consentiti"
 
-#: lib/views/roles/_form.php:77
+#: lib/views/roles/_form.php:76
 #, php-format
 msgid "Users with \"%s\" role are allowed to perform all available actions on any agent, location and service records."
 msgstr "Gli utenti con il ruolo \"%s\" sono autorizzati a eseguire tutte le azioni disponibili su qualsiasi agente, sede e record di servizio."
 
-#: lib/views/roles/_form.php:80
-#, php-format
-msgid "Users with \"%s\" role can execute permitted actions only on records that belong to a LatePoint agent they are connected to."
-msgstr "Gli utenti con il ruolo \"%s\" possono eseguire azioni consentite solo sui record che appartengono a un agente LatePoint a cui sono connessi."
-
-#: lib/views/roles/_form.php:83
+#: lib/views/roles/_form.php:82
 msgid "Once you assign users to this role, they will appear in \"Users\" section above, click on each user to set restrictions on which records each of them can access."
 msgstr "Una volta assegnati gli utenti a questo ruolo, appariranno nella sezione \"Utenti\" sopra, clicca su ciascun utente per impostare restrizioni su quali record ciascuno di loro può accedere."
 
 #: lib/views/roles/edit_wp_user.php:57
-#: lib/views/roles/_form.php:91
+#: lib/views/roles/_form.php:90
 msgid "Permitted Actions"
 msgstr "Azioni Consentite"
 
-#: lib/views/roles/_form.php:97
+#: lib/views/roles/_form.php:96
 #, php-format
 msgid "Users with \"%s\" role are permitted to execute all available actions in the system."
 msgstr "Gli utenti con il ruolo \"%s\" sono autorizzati a eseguire tutte le azioni disponibili nel sistema."
 
-#: lib/views/roles/_form.php:119
-#: lib/views/roles/_form.php:133
+#: lib/views/roles/_form.php:118
+#: lib/views/roles/_form.php:132
 msgid "Are you sure you want to delete this role?"
 msgstr "Sei sicuro di voler eliminare questo ruolo?"
 
@@ -2766,10 +2754,6 @@ msgstr "Connesso all'agente"
 #: lib/views/roles/edit_wp_user.php:40
 msgid "This user has \"Administrator\" role and can access all records"
 msgstr "Questo utente ha il ruolo di \"Amministratore\" e può accedere a tutti i record"
-
-#: lib/views/roles/edit_wp_user.php:42
-msgid "This user has \"Agent\" role and can execute permitted actions only on records that belong to a LatePoint agent they are connected to."
-msgstr "Questo utente ha il ruolo di \"Agente\" e può eseguire azioni consentite solo sui record che appartengono a un agente LatePoint a cui sono connessi."
 
 #: lib/views/roles/edit_wp_user.php:47
 msgid "Custom Selection"
@@ -2952,10 +2936,6 @@ msgstr "Aggiungi Tassa"
 msgid "License Key Registration"
 msgstr "Registrazione Chiave di Licenza"
 
-#: lib/views/updates/_license_form.php:17
-msgid "Please enter your LatePoint license key to receive free plugin updates and install addons."
-msgstr "Inserisci la tua chiave di licenza LatePoint per ricevere aggiornamenti gratuiti del plugin e installare addon."
-
 #: lib/views/updates/_license_form.php:21
 msgid "Your Name"
 msgstr "Il Tuo Nome"
@@ -3084,31 +3064,31 @@ msgstr "LatePoint"
 msgid "You are using an older version of the %1$sLatePoint%2$s plugin (v%4$s). Please update the %1$sLatePoint%2$s plugin to version %1$s%3$s or later%2$s."
 msgstr "Stai utilizzando una versione precedente del plugin %1$sLatePoint%2$s (v%4$s). Aggiorna il plugin %1$sLatePoint%2$s alla versione %1$s%3$s o successiva%2$s."
 
-#: latepoint-pro-features.php:779
+#: latepoint-pro-features.php:805
 msgid "Restrictions for Extras"
 msgstr "Restrizioni per gli extra"
 
-#: latepoint-pro-features.php:783
-#: latepoint-pro-features.php:1239
+#: latepoint-pro-features.php:809
+#: latepoint-pro-features.php:1274
 #: lib/controllers/assets_controller.php:20
 #: lib/helpers/feature_assets_helper.php:50
 msgid "Assets"
 msgstr "Risorse"
 
-#: latepoint-pro-features.php:1286
+#: latepoint-pro-features.php:1321
 msgid "Assets Settings"
 msgstr "Impostazioni risorse"
 
-#: latepoint-pro-features.php:1289
+#: latepoint-pro-features.php:1324
 msgid "Enable Assets Functionality"
 msgstr "Abilita funzionalità risorse"
 
-#: latepoint-pro-features.php:1289
+#: latepoint-pro-features.php:1324
 msgid "Enable to use assets for managing booking availability. When disabled, assets will not affect booking availability"
 msgstr "Abilita l'uso delle risorse per gestire la disponibilità delle prenotazioni. Quando disabilitate, le risorse non influenzeranno la disponibilità delle prenotazioni"
 
-#: latepoint-pro-features.php:1491
-#: latepoint-pro-features.php:1504
+#: latepoint-pro-features.php:1528
+#: latepoint-pro-features.php:1541
 msgid "This file is required and cannot be removed, but you can replace it with a different file. Do you want to replace it?"
 msgstr "Questo file è obbligatorio e non può essere rimosso, ma puoi sostituirlo con un file diverso. Vuoi sostituirlo?"
 
@@ -3236,19 +3216,19 @@ msgstr "Non hai ancora creato alcuna risorsa."
 msgid "Cloudflare Turnstile will not work as required keys are empty. Please provide both Site Key and Secret Key."
 msgstr "Cloudflare Turnstile non funzionerà perché le chiavi richieste sono vuote. Fornisci sia la Site Key che la Secret Key."
 
-#: lib/helpers/feature_group_bookings_helper.php:318
+#: lib/helpers/feature_group_bookings_helper.php:331
 msgid "Meeting Link"
 msgstr "Link riunione"
 
-#: lib/helpers/feature_group_bookings_helper.php:326
+#: lib/helpers/feature_group_bookings_helper.php:339
 msgid "Meeting Link Mode for Group Bookings"
 msgstr "Modalità link riunione per le prenotazioni di gruppo"
 
-#: lib/helpers/feature_group_bookings_helper.php:330
+#: lib/helpers/feature_group_bookings_helper.php:343
 msgid "Separate - Each booking gets its own meeting link"
 msgstr "Separato - Ogni prenotazione riceve il proprio link riunione"
 
-#: lib/helpers/feature_group_bookings_helper.php:334
+#: lib/helpers/feature_group_bookings_helper.php:347
 msgid "Shared - All attendees in the same time slot get the same meeting link"
 msgstr "Condiviso - Tutti i partecipanti nella stessa fascia oraria ricevono lo stesso link riunione"
 
@@ -3515,3 +3495,183 @@ msgstr "Tutti connessi"
 #: lib/views/roles/_form.php:54
 msgid "Not connected"
 msgstr "Non connesso"
+
+#: lib/controllers/white_label_controller.php:20
+#: lib/views/white_label/settings.php:14
+msgid "White Label"
+msgstr "White Label"
+
+#: lib/controllers/white_label_controller.php:57
+msgid "White Label settings reset to defaults."
+msgstr "Le impostazioni di White Label sono state ripristinate ai valori predefiniti."
+
+#. translators: %s: formatted base fee amount
+#: lib/helpers/feature_base_fee_helper.php:29
+#, php-format
+msgid "+ %s base fee"
+msgstr "+ %s tariffa base"
+
+#: lib/helpers/feature_base_fee_helper.php:44
+#: lib/helpers/feature_group_bookings_helper.php:308
+msgid "Base Fee"
+msgstr "Tariffa base"
+
+#: lib/helpers/feature_group_bookings_helper.php:311
+msgid "A one-time fee added to the booking total once per booking, regardless of the number of attendees. Leave at 0 to disable."
+msgstr "Una tariffa una tantum aggiunta al totale della prenotazione una sola volta per prenotazione, indipendentemente dal numero di partecipanti. Lasciare a 0 per disattivare."
+
+#: lib/helpers/feature_service_display_mode_helper.php:144
+#: lib/assets/javascripts/service-display-mode-block-editor.js:41
+msgid "Service Display"
+msgstr "Visualizzazione servizio"
+
+#: lib/helpers/feature_service_display_mode_helper.php:152
+#: lib/assets/javascripts/service-display-mode-block-editor.js:45
+msgid "Service Display Mode"
+msgstr "Modalità di visualizzazione del servizio"
+
+#: lib/helpers/feature_service_display_mode_helper.php:156
+#: lib/assets/javascripts/service-display-mode-block-editor.js:16
+msgid "Show All Services"
+msgstr "Mostra tutti i servizi"
+
+#: lib/helpers/feature_service_display_mode_helper.php:157
+#: lib/assets/javascripts/service-display-mode-block-editor.js:17
+msgid "Show Only Individual Services"
+msgstr "Mostra solo i servizi individuali"
+
+#: lib/helpers/feature_service_display_mode_helper.php:158
+#: lib/assets/javascripts/service-display-mode-block-editor.js:18
+msgid "Show Only Bundled Services"
+msgstr "Mostra solo i servizi in pacchetto"
+
+#: lib/views/addons/load_addons_list.php:86
+msgid "Requires Core Version"
+msgstr "Richiede la versione Core"
+
+#: lib/views/debug/status.php:23
+msgid "Plugin Version:"
+msgstr "Versione del plugin:"
+
+#: lib/views/debug/status.php:27
+msgid "Database Version:"
+msgstr "Versione del database:"
+
+#: lib/views/roles/edit_wp_user.php:42
+msgid "This user has \"Agent\" role and can execute permitted actions only on records that belong to an agent they are connected to."
+msgstr "Questo utente ha il ruolo \"Agent\" e può eseguire solo le azioni consentite sui record che appartengono a un agente a cui è collegato."
+
+#. translators: %1$s: role label
+#: lib/views/roles/_form.php:79
+#, php-format
+msgid "Users with \"%1$s\" role can execute permitted actions only on records that belong to an agent they are connected to."
+msgstr "Gli utenti con il ruolo \"%1$s\" possono eseguire solo le azioni consentite sui record che appartengono a un agente a cui sono collegati."
+
+#: lib/views/updates/_license_form.php:17
+msgid "Please enter your license key to receive free plugin updates and install addons."
+msgstr "Inserisci la tua chiave di licenza per ricevere aggiornamenti gratuiti del plugin e installare componenti aggiuntivi."
+
+#: lib/views/white_label/settings.php:19
+msgid "Enable White Label"
+msgstr "Abilita White Label"
+
+#: lib/views/white_label/settings.php:27
+msgid "Enable white labeling"
+msgstr "Abilita il white labeling"
+
+#: lib/views/white_label/settings.php:31
+msgid "When enabled, your custom brand settings below replace all LatePoint references in the admin interface."
+msgstr "Quando abilitato, le impostazioni personalizzate del brand qui sotto sostituiscono tutti i riferimenti a LatePoint nell'interfaccia di amministrazione."
+
+#: lib/views/white_label/settings.php:44
+#: lib/views/white_label/settings.php:170
+msgid "Brand Identity"
+msgstr "Identità del brand"
+
+#: lib/views/white_label/settings.php:51
+#: lib/views/white_label/settings.php:56
+msgid "Brand Name"
+msgstr "Nome del brand"
+
+#: lib/views/white_label/settings.php:51
+msgid "Replaces \"LatePoint\" in the WP admin menu, admin bar, and plugin list."
+msgstr "Sostituisce \"LatePoint\" nel menu di amministrazione di WP, nella barra di amministrazione e nell'elenco dei plugin."
+
+#: lib/views/white_label/settings.php:65
+msgid "Brand Logo"
+msgstr "Logo del brand"
+
+#: lib/views/white_label/settings.php:65
+msgid "Used for the LatePoint admin sidebar logo and the WordPress top-level admin menu icon. Recommended size: 40×40 px."
+msgstr "Usato per il logo della barra laterale di amministrazione di LatePoint e per l'icona del menu di amministrazione di primo livello di WordPress. Dimensione consigliata: 40×40 px."
+
+#: lib/views/white_label/settings.php:72
+msgid "Set Logo"
+msgstr "Imposta logo"
+
+#: lib/views/white_label/settings.php:73
+msgid "Remove Logo"
+msgstr "Rimuovi logo"
+
+#: lib/views/white_label/settings.php:86
+#: lib/views/white_label/settings.php:91
+#: lib/views/white_label/settings.php:171
+msgid "Plugin Details"
+msgstr "Dettagli del plugin"
+
+#: lib/views/white_label/settings.php:91
+msgid "Override the plugin name, URL, description, author, and author URL shown in wp-admin → Plugins."
+msgstr "Sostituisci il nome del plugin, l'URL, la descrizione, l'autore e l'URL dell'autore mostrati in wp-admin → Plugin."
+
+#: lib/views/white_label/settings.php:96
+msgid "Plugin Name"
+msgstr "Nome del plugin"
+
+#: lib/views/white_label/settings.php:99
+msgid "Plugin URL"
+msgstr "URL del plugin"
+
+#: lib/views/white_label/settings.php:104
+msgid "Plugin Description"
+msgstr "Descrizione del plugin"
+
+#: lib/views/white_label/settings.php:109
+msgid "Author"
+msgstr "Autore"
+
+#: lib/views/white_label/settings.php:112
+msgid "Author URL"
+msgstr "URL dell'autore"
+
+#: lib/views/white_label/settings.php:123
+#: lib/views/white_label/settings.php:172
+msgid "Menu Visibility"
+msgstr "Visibilità del menu"
+
+#: lib/views/white_label/settings.php:128
+msgid "Hide White Label Menu"
+msgstr "Nascondi il menu White Label"
+
+#: lib/views/white_label/settings.php:136
+msgid "Hide the White Label settings menu"
+msgstr "Nascondi il menu delle impostazioni di White Label"
+
+#: lib/views/white_label/settings.php:140
+msgid "When enabled, the White Label menu item is removed from the admin sidebar. To restore it, deactivate and reactivate the LatePoint Pro Features plugin."
+msgstr "Quando abilitato, la voce di menu White Label viene rimossa dalla barra laterale di amministrazione. Per ripristinarla, disattiva e riattiva il plugin LatePoint Pro Features."
+
+#: lib/views/white_label/settings.php:151
+msgid "Save Settings"
+msgstr "Salva impostazioni"
+
+#: lib/views/white_label/settings.php:156
+msgid "This will clear all white label settings and restore LatePoint defaults. Continue?"
+msgstr "Questo cancellerà tutte le impostazioni di white label e ripristinerà i valori predefiniti di LatePoint. Continuare?"
+
+#: lib/views/white_label/settings.php:159
+msgid "Reset to Defaults"
+msgstr "Ripristina ai valori predefiniti"
+
+#: lib/views/white_label/settings.php:169
+msgid "Enable"
+msgstr "Abilita"

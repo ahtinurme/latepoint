@@ -47,17 +47,17 @@ msgstr "Bạn đang sử dụng phiên bản cũ hơn của plugin %1$sLatePoint
 msgid "Update Now"
 msgstr "Cập nhật ngay"
 
-#: latepoint-pro-features.php:767
+#: latepoint-pro-features.php:793
 #: lib/helpers/feature_recurring_bookings_helper.php:61
 msgid "Recurring Appointments"
 msgstr "Lịch hẹn định kỳ"
 
-#: latepoint-pro-features.php:771
+#: latepoint-pro-features.php:797
 #: lib/helpers/feature_group_bookings_helper.php:278
 msgid "Group Bookings"
 msgstr "Đặt chỗ theo nhóm"
 
-#: latepoint-pro-features.php:775
+#: latepoint-pro-features.php:801
 #: lib/controllers/service_extras_controller.php:25
 #: lib/helpers/feature_service_extras_helper.php:7
 #: lib/helpers/feature_service_extras_helper.php:143
@@ -66,34 +66,34 @@ msgstr "Đặt chỗ theo nhóm"
 msgid "Service Extras"
 msgstr "Dịch vụ bổ sung"
 
-#: latepoint-pro-features.php:779
+#: latepoint-pro-features.php:805
 msgid "Restrictions for Extras"
 msgstr "Giới hạn cho dịch vụ bổ sung"
 
-#: latepoint-pro-features.php:783
-#: latepoint-pro-features.php:1239
+#: latepoint-pro-features.php:809
+#: latepoint-pro-features.php:1274
 #: lib/controllers/assets_controller.php:20
 #: lib/helpers/feature_assets_helper.php:50
 msgid "Assets"
 msgstr "Tài nguyên"
 
-#: latepoint-pro-features.php:790
+#: latepoint-pro-features.php:816
 msgid "Allow customers reschedule their bookings"
 msgstr "Cho phép khách hàng đổi lịch đặt chỗ của họ"
 
-#: latepoint-pro-features.php:790
+#: latepoint-pro-features.php:816
 msgid "If enable, shows a button on customer cabinet to reschedule an appointment"
 msgstr "Nếu bật, sẽ hiển thị nút trong trang khách hàng để đổi lịch hẹn"
 
-#: latepoint-pro-features.php:793
+#: latepoint-pro-features.php:819
 msgid "Set restriction on when customer can reschedule"
 msgstr "Đặt giới hạn thời điểm khách hàng có thể đổi lịch"
 
-#: latepoint-pro-features.php:797
+#: latepoint-pro-features.php:823
 msgid "Can reschedule when it is at least"
 msgstr "Có thể đổi lịch khi còn ít nhất"
 
-#: latepoint-pro-features.php:798
+#: latepoint-pro-features.php:824
 #: lib/helpers/feature_recurring_bookings_helper.php:69
 #: lib/helpers/feature_service_extras_helper.php:498
 #: lib/helpers/feature_service_extras_helper.php:508
@@ -102,196 +102,196 @@ msgstr "Có thể đổi lịch khi còn ít nhất"
 msgid "Value"
 msgstr "Giá trị"
 
-#: latepoint-pro-features.php:803
+#: latepoint-pro-features.php:829
 #: lib/helpers/feature_reminders_helper.php:15
 msgid "minutes"
 msgstr "phút"
 
-#: latepoint-pro-features.php:804
+#: latepoint-pro-features.php:830
 #: lib/helpers/feature_reminders_helper.php:16
 msgid "hours"
 msgstr "giờ"
 
-#: latepoint-pro-features.php:805
+#: latepoint-pro-features.php:831
 #: lib/helpers/feature_reminders_helper.php:17
 msgid "days"
 msgstr "ngày"
 
-#: latepoint-pro-features.php:809
+#: latepoint-pro-features.php:835
 msgid "before appointment start time"
 msgstr "trước thời gian bắt đầu cuộc hẹn"
 
-#: latepoint-pro-features.php:812
+#: latepoint-pro-features.php:838
 msgid "Change booking status when customer reschedules"
 msgstr "Thay đổi trạng thái đặt chỗ khi khách hàng đổi lịch"
 
-#: latepoint-pro-features.php:816
+#: latepoint-pro-features.php:842
 msgid "Change status to:"
 msgstr "Đổi trạng thái thành:"
 
-#: latepoint-pro-features.php:836
+#: latepoint-pro-features.php:862
 msgid "All Day"
 msgstr "Cả ngày"
 
-#: latepoint-pro-features.php:837
+#: latepoint-pro-features.php:863
 msgid "Specific Time"
 msgstr "Thời gian cụ thể"
 
-#: latepoint-pro-features.php:843
+#: latepoint-pro-features.php:869
 msgid "Reason for blocking (optional)"
 msgstr "Lý do chặn (không bắt buộc)"
 
-#: latepoint-pro-features.php:846
+#: latepoint-pro-features.php:872
 msgid "Enter a reason..."
 msgstr "Nhập lý do..."
 
-#: latepoint-pro-features.php:866
+#: latepoint-pro-features.php:892
 #, php-format
 msgid "Select resources you want to be unavailable during this time on %s"
 msgstr "Chọn các tài nguyên bạn muốn không khả dụng trong thời gian này trên %s"
 
-#: latepoint-pro-features.php:867
+#: latepoint-pro-features.php:893
 #, php-format
 msgid "Select resources you want to be unavailable on %s"
 msgstr "Chọn các tài nguyên bạn muốn không khả dụng trên %s"
 
-#: latepoint-pro-features.php:876
+#: latepoint-pro-features.php:902
 msgid "All Agents"
 msgstr "Tất cả nhân viên"
 
-#: latepoint-pro-features.php:891
+#: latepoint-pro-features.php:917
 msgid "All Services"
 msgstr "Tất cả dịch vụ"
 
-#: latepoint-pro-features.php:906
+#: latepoint-pro-features.php:932
 msgid "All Locations"
 msgstr "Tất cả địa điểm"
 
-#: latepoint-pro-features.php:922
+#: latepoint-pro-features.php:948
 #: lib/views/webhooks/_webhook_form.php:45
 msgid "Save"
 msgstr "Lưu"
 
-#: latepoint-pro-features.php:928
+#: latepoint-pro-features.php:954
 msgid "Are you sure you want to delete this blocked time period?"
 msgstr "Bạn có chắc chắn muốn xóa khoảng thời gian bị chặn này không?"
 
-#: latepoint-pro-features.php:930
+#: latepoint-pro-features.php:956
 msgid "Delete Blocked Period"
 msgstr "Xóa khoảng thời gian bị chặn"
 
-#: latepoint-pro-features.php:987
+#: latepoint-pro-features.php:1013
 msgid "Blocked Period"
 msgstr "Khoảng thời gian bị chặn"
 
-#: latepoint-pro-features.php:1056
+#: latepoint-pro-features.php:1082
 msgid "Enable this feature by installing an appropriate addon."
 msgstr "Bật tính năng này bằng cách cài đặt một addon phù hợp."
 
-#: latepoint-pro-features.php:1067
+#: latepoint-pro-features.php:1093
 msgid "Not applied to invoice"
 msgstr "Chưa áp dụng cho hóa đơn"
 
-#: latepoint-pro-features.php:1073
+#: latepoint-pro-features.php:1099
 #, php-format
 msgid "#%s"
 msgstr "#%s"
 
-#: latepoint-pro-features.php:1076
+#: latepoint-pro-features.php:1102
 msgid "Apply to Invoice"
 msgstr "Áp dụng cho hóa đơn"
 
-#: latepoint-pro-features.php:1081
+#: latepoint-pro-features.php:1107
 msgid "View Receipt"
 msgstr "Xem biên lai"
 
-#: latepoint-pro-features.php:1083
+#: latepoint-pro-features.php:1109
 msgid "View Invoice"
 msgstr "Xem hóa đơn"
 
-#: latepoint-pro-features.php:1100
+#: latepoint-pro-features.php:1126
 #: lib/controllers/addons_controller.php:18
 msgid "Add-ons"
 msgstr "Tiện ích bổ sung"
 
-#: latepoint-pro-features.php:1112
+#: latepoint-pro-features.php:1138
 msgid "Premium Features"
 msgstr "Tính năng cao cấp"
 
-#: latepoint-pro-features.php:1194
+#: latepoint-pro-features.php:1229
 msgid "Form Fields"
 msgstr "Các trường biểu mẫu"
 
-#: latepoint-pro-features.php:1199
+#: latepoint-pro-features.php:1234
 msgid "Customer Fields"
 msgstr "Trường khách hàng"
 
-#: latepoint-pro-features.php:1204
+#: latepoint-pro-features.php:1239
 msgid "Booking Fields"
 msgstr "Trường đặt chỗ"
 
-#: latepoint-pro-features.php:1217
-#: latepoint-pro-features.php:1222
+#: latepoint-pro-features.php:1252
+#: latepoint-pro-features.php:1257
 #: lib/controllers/locations_controller.php:21
 #: lib/helpers/feature_locations_helper.php:70
 msgid "Locations"
 msgstr "Địa điểm"
 
-#: latepoint-pro-features.php:1227
+#: latepoint-pro-features.php:1262
 msgid "Categories"
 msgstr "Danh mục"
 
-#: latepoint-pro-features.php:1271
+#: latepoint-pro-features.php:1306
 msgid "Cart Settings"
 msgstr "Cài đặt giỏ hàng"
 
-#: latepoint-pro-features.php:1274
+#: latepoint-pro-features.php:1309
 msgid "Disable Shopping Cart Functionality"
 msgstr "Tắt chức năng giỏ hàng"
 
-#: latepoint-pro-features.php:1274
+#: latepoint-pro-features.php:1309
 msgid "This will disable ability to book multiple services in one order"
 msgstr "Điều này sẽ tắt khả năng đặt nhiều dịch vụ trong một đơn hàng"
 
-#: latepoint-pro-features.php:1275
+#: latepoint-pro-features.php:1310
 msgid "Reset Presets When Adding New Item"
 msgstr "Đặt lại các thiết lập sẵn khi thêm mục mới"
 
-#: latepoint-pro-features.php:1275
+#: latepoint-pro-features.php:1310
 msgid "This will reset presets settings when adding new item"
 msgstr "Điều này sẽ đặt lại các thiết lập sẵn khi thêm mục mới"
 
-#: latepoint-pro-features.php:1286
+#: latepoint-pro-features.php:1321
 msgid "Assets Settings"
 msgstr "Cài đặt tài nguyên"
 
-#: latepoint-pro-features.php:1289
+#: latepoint-pro-features.php:1324
 msgid "Enable Assets Functionality"
 msgstr "Bật chức năng tài nguyên"
 
-#: latepoint-pro-features.php:1289
+#: latepoint-pro-features.php:1324
 msgid "Enable to use assets for managing booking availability. When disabled, assets will not affect booking availability"
 msgstr "Bật để sử dụng tài nguyên trong việc quản lý khả năng đặt chỗ. Khi tắt, tài nguyên sẽ không ảnh hưởng đến khả năng đặt chỗ"
 
-#: latepoint-pro-features.php:1490
-#: latepoint-pro-features.php:1503
+#: latepoint-pro-features.php:1527
+#: latepoint-pro-features.php:1540
 msgid "Are you sure you want to remove this file?"
 msgstr "Bạn có chắc chắn muốn xóa tệp này không?"
 
-#: latepoint-pro-features.php:1491
-#: latepoint-pro-features.php:1504
+#: latepoint-pro-features.php:1528
+#: latepoint-pro-features.php:1541
 msgid "This file is required and cannot be removed, but you can replace it with a different file. Do you want to replace it?"
 msgstr "Tệp này là bắt buộc và không thể xóa, nhưng bạn có thể thay thế nó bằng một tệp khác. Bạn có muốn thay thế nó không?"
 
-#: latepoint-pro-features.php:1609
+#: latepoint-pro-features.php:1657
 msgid "Activate LatePoint"
 msgstr "Kích hoạt LatePoint"
 
-#: latepoint-pro-features.php:1613
+#: latepoint-pro-features.php:1661
 msgid "Install LatePoint"
 msgstr "Cài đặt LatePoint"
 
-#: latepoint-pro-features.php:1617
+#: latepoint-pro-features.php:1665
 #, php-format
 msgid "%1$sPRO Features for LatePoint%2$s plugin requires %1$sLatePoint%2$s core plugin installed & activated."
 msgstr "Plugin %1$sTính năng PRO cho LatePoint%2$s yêu cầu plugin lõi %1$sLatePoint%2$s được cài đặt và kích hoạt."
@@ -1141,6 +1141,8 @@ msgid "Service"
 msgstr "Dịch vụ"
 
 #: lib/helpers/custom_fields_helper.php:484
+#: lib/helpers/feature_white_label_helper.php:71
+#: lib/helpers/feature_white_label_helper.php:88
 #: lib/views/messages/messages_with_info_for_booking.php:74
 msgid "Agent"
 msgstr "Nhân viên"
@@ -1334,8 +1336,8 @@ msgstr "Trường tùy chỉnh cho đặt chỗ"
 #: lib/helpers/feature_group_bookings_helper.php:69
 #: lib/helpers/feature_group_bookings_helper.php:226
 #: lib/helpers/feature_group_bookings_helper.php:264
-#: lib/helpers/feature_group_bookings_helper.php:352
-#: lib/helpers/feature_group_bookings_helper.php:366
+#: lib/helpers/feature_group_bookings_helper.php:365
+#: lib/helpers/feature_group_bookings_helper.php:379
 msgid "Total Attendees"
 msgstr "Tổng số người tham dự"
 
@@ -1392,31 +1394,31 @@ msgstr "Không nhân số tiền phí theo số lượng người tham dự"
 msgid "Do not multiply deposit amount by the number of attendees"
 msgstr "Không nhân số tiền đặt cọc theo số lượng người tham dự"
 
-#: lib/helpers/feature_group_bookings_helper.php:308
+#: lib/helpers/feature_group_bookings_helper.php:321
 msgid "Other"
 msgstr "Khác"
 
-#: lib/helpers/feature_group_bookings_helper.php:311
+#: lib/helpers/feature_group_bookings_helper.php:324
 msgid "Do not ask customers to select number of attendees"
 msgstr "Không yêu cầu khách hàng chọn số lượng người tham dự"
 
-#: lib/helpers/feature_group_bookings_helper.php:312
+#: lib/helpers/feature_group_bookings_helper.php:325
 msgid "Block timeslot if minimum capacity is reached"
 msgstr "Chặn khung giờ nếu đạt sức chứa tối thiểu"
 
-#: lib/helpers/feature_group_bookings_helper.php:318
+#: lib/helpers/feature_group_bookings_helper.php:331
 msgid "Meeting Link"
 msgstr "Liên kết cuộc họp"
 
-#: lib/helpers/feature_group_bookings_helper.php:326
+#: lib/helpers/feature_group_bookings_helper.php:339
 msgid "Meeting Link Mode for Group Bookings"
 msgstr "Chế độ liên kết cuộc họp cho đặt chỗ nhóm"
 
-#: lib/helpers/feature_group_bookings_helper.php:330
+#: lib/helpers/feature_group_bookings_helper.php:343
 msgid "Separate - Each booking gets its own meeting link"
 msgstr "Riêng biệt - Mỗi đặt chỗ có liên kết cuộc họp riêng"
 
-#: lib/helpers/feature_group_bookings_helper.php:334
+#: lib/helpers/feature_group_bookings_helper.php:347
 msgid "Shared - All attendees in the same time slot get the same meeting link"
 msgstr "Chia sẻ - Tất cả người tham dự trong cùng một khung giờ sẽ nhận cùng một liên kết cuộc họp"
 
@@ -1999,10 +2001,6 @@ msgstr "Mới nhất:"
 msgid "Installed:"
 msgstr "Đã cài đặt:"
 
-#: lib/views/addons/load_addons_list.php:86
-msgid "Requires LatePoint"
-msgstr "Yêu cầu LatePoint"
-
 #: lib/views/addons/load_addons_list.php:98
 msgid "Deactivate"
 msgstr "Vô hiệu hóa"
@@ -2011,7 +2009,7 @@ msgstr "Vô hiệu hóa"
 #: lib/views/agents/_form.php:318
 #: lib/views/custom_fields/_custom_field_form.php:127
 #: lib/views/locations/_form.php:189
-#: lib/views/roles/_form.php:123
+#: lib/views/roles/_form.php:122
 #: lib/views/taxes/_tax_form.php:49
 msgid "Delete"
 msgstr "Xóa"
@@ -2267,8 +2265,9 @@ msgstr "Thêm nhân viên"
 #: lib/views/locations/_form.php:202
 #: lib/views/locations/_form.php:216
 #: lib/views/roles/edit_wp_user.php:82
-#: lib/views/roles/_form.php:126
+#: lib/views/roles/_form.php:125
 #: lib/views/service_extras/_form.php:99
+#: lib/views/white_label/settings.php:166
 msgid "Save Changes"
 msgstr "Lưu thay đổi"
 
@@ -2814,14 +2813,6 @@ msgstr "Trò chuyện với khách hàng"
 msgid "System Info"
 msgstr "Thông tin hệ thống"
 
-#: lib/views/debug/status.php:23
-msgid "LatePoint Plugin Version:"
-msgstr "Phiên bản plugin LatePoint:"
-
-#: lib/views/debug/status.php:27
-msgid "LatePoint Database Version:"
-msgstr "Phiên bản cơ sở dữ liệu LatePoint:"
-
 #: lib/views/debug/status.php:31
 #: lib/views/debug/status.php:72
 msgid "reset"
@@ -3096,6 +3087,8 @@ msgstr "Chỉnh sửa"
 msgid "Date/Time"
 msgstr "Ngày/Giờ"
 
+#: lib/helpers/feature_white_label_helper.php:73
+#: lib/helpers/feature_white_label_helper.php:91
 #: lib/views/messages/messages_with_info_for_booking.php:72
 msgid "Customer"
 msgstr "Khách hàng"
@@ -3146,16 +3139,12 @@ msgstr "Bản ghi được phép"
 msgid "This user has \"Administrator\" role and can access all records"
 msgstr "Người dùng này có vai trò \"Administrator\" và có thể truy cập tất cả các bản ghi"
 
-#: lib/views/roles/edit_wp_user.php:42
-msgid "This user has \"Agent\" role and can execute permitted actions only on records that belong to a LatePoint agent they are connected to."
-msgstr "Người dùng này có vai trò \"Agent\" và chỉ có thể thực hiện các hành động được phép trên các bản ghi thuộc về một nhân viên LatePoint mà họ được kết nối."
-
 #: lib/views/roles/edit_wp_user.php:47
 msgid "Custom Selection"
 msgstr "Lựa chọn tùy chỉnh"
 
 #: lib/views/roles/edit_wp_user.php:57
-#: lib/views/roles/_form.php:91
+#: lib/views/roles/_form.php:90
 msgid "Permitted Actions"
 msgstr "Các hành động được phép"
 
@@ -3206,27 +3195,22 @@ msgstr "Kết nối với một nhân viên"
 msgid "You have not assigned any WordPress users to this role. Create a new WP user or edit existing user and assign them a role called: %s"
 msgstr "Bạn chưa gán người dùng WordPress nào cho vai trò này. Hãy tạo người dùng WP mới hoặc chỉnh sửa người dùng hiện có và gán cho họ vai trò có tên: %s"
 
-#: lib/views/roles/_form.php:77
+#: lib/views/roles/_form.php:76
 #, php-format
 msgid "Users with \"%s\" role are allowed to perform all available actions on any agent, location and service records."
 msgstr "Người dùng có vai trò \"%s\" được phép thực hiện tất cả các hành động có sẵn trên mọi bản ghi nhân viên, địa điểm và dịch vụ."
 
-#: lib/views/roles/_form.php:80
-#, php-format
-msgid "Users with \"%s\" role can execute permitted actions only on records that belong to a LatePoint agent they are connected to."
-msgstr "Người dùng có vai trò \"%s\" chỉ có thể thực hiện các hành động được phép trên các bản ghi thuộc về một nhân viên LatePoint mà họ được kết nối."
-
-#: lib/views/roles/_form.php:83
+#: lib/views/roles/_form.php:82
 msgid "Once you assign users to this role, they will appear in \"Users\" section above, click on each user to set restrictions on which records each of them can access."
 msgstr "Sau khi bạn gán người dùng cho vai trò này, họ sẽ xuất hiện trong phần \"Người dùng\" ở trên, hãy nhấp vào từng người dùng để đặt các giới hạn về những bản ghi mà mỗi người có thể truy cập."
 
-#: lib/views/roles/_form.php:97
+#: lib/views/roles/_form.php:96
 #, php-format
 msgid "Users with \"%s\" role are permitted to execute all available actions in the system."
 msgstr "Người dùng có vai trò \"%s\" được phép thực hiện tất cả các hành động có sẵn trong hệ thống."
 
-#: lib/views/roles/_form.php:119
-#: lib/views/roles/_form.php:133
+#: lib/views/roles/_form.php:118
+#: lib/views/roles/_form.php:132
 msgid "Are you sure you want to delete this role?"
 msgstr "Bạn có chắc chắn muốn xóa vai trò này không?"
 
@@ -3418,10 +3402,6 @@ msgstr "Bắt đầu sử dụng phiên bản 5"
 msgid "License Key Registration"
 msgstr "Đăng ký khóa giấy phép"
 
-#: lib/views/updates/_license_form.php:17
-msgid "Please enter your LatePoint license key to receive free plugin updates and install addons."
-msgstr "Vui lòng nhập khóa giấy phép LatePoint của bạn để nhận các bản cập nhật plugin miễn phí và cài đặt các tiện ích bổ sung."
-
 #: lib/views/updates/_license_form.php:21
 msgid "Your Name"
 msgstr "Tên của bạn"
@@ -3497,3 +3477,183 @@ msgstr "Tất cả đã kết nối"
 #: lib/views/roles/_form.php:54
 msgid "Not connected"
 msgstr "Chưa kết nối"
+
+#: lib/controllers/white_label_controller.php:20
+#: lib/views/white_label/settings.php:14
+msgid "White Label"
+msgstr "Nhãn trắng"
+
+#: lib/controllers/white_label_controller.php:57
+msgid "White Label settings reset to defaults."
+msgstr "Cài đặt Nhãn trắng đã được đặt lại về mặc định."
+
+#. translators: %s: formatted base fee amount
+#: lib/helpers/feature_base_fee_helper.php:29
+#, php-format
+msgid "+ %s base fee"
+msgstr "+ %s phí cơ bản"
+
+#: lib/helpers/feature_base_fee_helper.php:44
+#: lib/helpers/feature_group_bookings_helper.php:308
+msgid "Base Fee"
+msgstr "Phí cơ bản"
+
+#: lib/helpers/feature_group_bookings_helper.php:311
+msgid "A one-time fee added to the booking total once per booking, regardless of the number of attendees. Leave at 0 to disable."
+msgstr "Một khoản phí một lần được cộng vào tổng số tiền đặt chỗ một lần cho mỗi lượt đặt chỗ, bất kể số lượng người tham dự. Để 0 để tắt."
+
+#: lib/helpers/feature_service_display_mode_helper.php:144
+#: lib/assets/javascripts/service-display-mode-block-editor.js:41
+msgid "Service Display"
+msgstr "Hiển thị dịch vụ"
+
+#: lib/helpers/feature_service_display_mode_helper.php:152
+#: lib/assets/javascripts/service-display-mode-block-editor.js:45
+msgid "Service Display Mode"
+msgstr "Chế độ hiển thị dịch vụ"
+
+#: lib/helpers/feature_service_display_mode_helper.php:156
+#: lib/assets/javascripts/service-display-mode-block-editor.js:16
+msgid "Show All Services"
+msgstr "Hiển thị tất cả dịch vụ"
+
+#: lib/helpers/feature_service_display_mode_helper.php:157
+#: lib/assets/javascripts/service-display-mode-block-editor.js:17
+msgid "Show Only Individual Services"
+msgstr "Chỉ hiển thị dịch vụ riêng lẻ"
+
+#: lib/helpers/feature_service_display_mode_helper.php:158
+#: lib/assets/javascripts/service-display-mode-block-editor.js:18
+msgid "Show Only Bundled Services"
+msgstr "Chỉ hiển thị dịch vụ gói"
+
+#: lib/views/addons/load_addons_list.php:86
+msgid "Requires Core Version"
+msgstr "Yêu cầu phiên bản lõi"
+
+#: lib/views/debug/status.php:23
+msgid "Plugin Version:"
+msgstr "Phiên bản plugin:"
+
+#: lib/views/debug/status.php:27
+msgid "Database Version:"
+msgstr "Phiên bản cơ sở dữ liệu:"
+
+#: lib/views/roles/edit_wp_user.php:42
+msgid "This user has \"Agent\" role and can execute permitted actions only on records that belong to an agent they are connected to."
+msgstr "Người dùng này có vai trò \"Agent\" và chỉ có thể thực hiện các hành động được phép trên các bản ghi thuộc về một agent mà họ được kết nối."
+
+#. translators: %1$s: role label
+#: lib/views/roles/_form.php:79
+#, php-format
+msgid "Users with \"%1$s\" role can execute permitted actions only on records that belong to an agent they are connected to."
+msgstr "Người dùng có vai trò \"%1$s\" chỉ có thể thực hiện các hành động được phép trên các bản ghi thuộc về một agent mà họ được kết nối."
+
+#: lib/views/updates/_license_form.php:17
+msgid "Please enter your license key to receive free plugin updates and install addons."
+msgstr "Vui lòng nhập khóa bản quyền của bạn để nhận các bản cập nhật plugin miễn phí và cài đặt các tiện ích bổ sung."
+
+#: lib/views/white_label/settings.php:19
+msgid "Enable White Label"
+msgstr "Bật Nhãn trắng"
+
+#: lib/views/white_label/settings.php:27
+msgid "Enable white labeling"
+msgstr "Bật gắn nhãn trắng"
+
+#: lib/views/white_label/settings.php:31
+msgid "When enabled, your custom brand settings below replace all LatePoint references in the admin interface."
+msgstr "Khi được bật, các cài đặt thương hiệu tùy chỉnh bên dưới sẽ thay thế mọi tham chiếu đến LatePoint trong giao diện quản trị."
+
+#: lib/views/white_label/settings.php:44
+#: lib/views/white_label/settings.php:170
+msgid "Brand Identity"
+msgstr "Nhận diện thương hiệu"
+
+#: lib/views/white_label/settings.php:51
+#: lib/views/white_label/settings.php:56
+msgid "Brand Name"
+msgstr "Tên thương hiệu"
+
+#: lib/views/white_label/settings.php:51
+msgid "Replaces \"LatePoint\" in the WP admin menu, admin bar, and plugin list."
+msgstr "Thay thế \"LatePoint\" trong menu quản trị WP, thanh quản trị và danh sách plugin."
+
+#: lib/views/white_label/settings.php:65
+msgid "Brand Logo"
+msgstr "Logo thương hiệu"
+
+#: lib/views/white_label/settings.php:65
+msgid "Used for the LatePoint admin sidebar logo and the WordPress top-level admin menu icon. Recommended size: 40×40 px."
+msgstr "Được dùng cho logo thanh bên quản trị LatePoint và biểu tượng menu quản trị cấp cao nhất của WordPress. Kích thước khuyến nghị: 40×40 px."
+
+#: lib/views/white_label/settings.php:72
+msgid "Set Logo"
+msgstr "Đặt logo"
+
+#: lib/views/white_label/settings.php:73
+msgid "Remove Logo"
+msgstr "Xóa logo"
+
+#: lib/views/white_label/settings.php:86
+#: lib/views/white_label/settings.php:91
+#: lib/views/white_label/settings.php:171
+msgid "Plugin Details"
+msgstr "Chi tiết plugin"
+
+#: lib/views/white_label/settings.php:91
+msgid "Override the plugin name, URL, description, author, and author URL shown in wp-admin → Plugins."
+msgstr "Ghi đè tên plugin, URL, mô tả, tác giả và URL tác giả hiển thị trong wp-admin → Plugins."
+
+#: lib/views/white_label/settings.php:96
+msgid "Plugin Name"
+msgstr "Tên plugin"
+
+#: lib/views/white_label/settings.php:99
+msgid "Plugin URL"
+msgstr "URL plugin"
+
+#: lib/views/white_label/settings.php:104
+msgid "Plugin Description"
+msgstr "Mô tả plugin"
+
+#: lib/views/white_label/settings.php:109
+msgid "Author"
+msgstr "Tác giả"
+
+#: lib/views/white_label/settings.php:112
+msgid "Author URL"
+msgstr "URL tác giả"
+
+#: lib/views/white_label/settings.php:123
+#: lib/views/white_label/settings.php:172
+msgid "Menu Visibility"
+msgstr "Hiển thị menu"
+
+#: lib/views/white_label/settings.php:128
+msgid "Hide White Label Menu"
+msgstr "Ẩn menu Nhãn trắng"
+
+#: lib/views/white_label/settings.php:136
+msgid "Hide the White Label settings menu"
+msgstr "Ẩn menu cài đặt Nhãn trắng"
+
+#: lib/views/white_label/settings.php:140
+msgid "When enabled, the White Label menu item is removed from the admin sidebar. To restore it, deactivate and reactivate the LatePoint Pro Features plugin."
+msgstr "Khi được bật, mục menu Nhãn trắng sẽ bị xóa khỏi thanh bên quản trị. Để khôi phục, hãy hủy kích hoạt rồi kích hoạt lại plugin LatePoint Pro Features."
+
+#: lib/views/white_label/settings.php:151
+msgid "Save Settings"
+msgstr "Lưu cài đặt"
+
+#: lib/views/white_label/settings.php:156
+msgid "This will clear all white label settings and restore LatePoint defaults. Continue?"
+msgstr "Thao tác này sẽ xóa tất cả cài đặt nhãn trắng và khôi phục mặc định của LatePoint. Tiếp tục?"
+
+#: lib/views/white_label/settings.php:159
+msgid "Reset to Defaults"
+msgstr "Đặt lại về mặc định"
+
+#: lib/views/white_label/settings.php:169
+msgid "Enable"
+msgstr "Bật"

@@ -7,7 +7,7 @@
  * Plugin Name: LatePoint Addon - Pro Features
  * Plugin URI:  https://latepoint.com/
  * Description: LatePoint Addon that adds a set of Pro features to a base plugin
- * Version:     1.5.1
+ * Version:     1.6.0
  * Author:      LatePoint
  * Author URI:  https://latepoint.com/
  * Text Domain: latepoint-pro-features
@@ -32,7 +32,7 @@ if ( ! class_exists( 'LatePointAddonProFeatures' ) ) :
 		 * Addon version.
 		 *
 		 */
-		public $version    = '1.5.1';
+		public $version    = '1.6.0';
 		public $db_version = '1.1.3';
 		public $addon_name = 'latepoint-pro-features';
 
@@ -248,6 +248,7 @@ if ( ! class_exists( 'LatePointAddonProFeatures' ) ) :
 			include_once dirname( __FILE__ ) . '/lib/controllers/updates_controller.php';
 			include_once dirname( __FILE__ ) . '/lib/controllers/whatsapp_controller.php';
 			include_once dirname( __FILE__ ) . '/lib/controllers/assets_controller.php';
+			include_once dirname( __FILE__ ) . '/lib/controllers/white_label_controller.php';
 
 			// HELPERS
 			include_once dirname( __FILE__ ) . '/lib/helpers/addons_helper.php';
@@ -282,6 +283,9 @@ if ( ! class_exists( 'LatePointAddonProFeatures' ) ) :
 			include_once dirname( __FILE__ ) . '/lib/helpers/agent_assets_connector_helper.php';
 			include_once dirname( __FILE__ ) . '/lib/helpers/feature_assets_helper.php';
 			include_once dirname( __FILE__ ) . '/lib/helpers/feature_no_show_restrictions_helper.php';
+			include_once dirname( __FILE__ ) . '/lib/helpers/feature_base_fee_helper.php';
+			include_once dirname( __FILE__ ) . '/lib/helpers/feature_service_display_mode_helper.php';
+			include_once dirname( __FILE__ ) . '/lib/helpers/feature_white_label_helper.php';
 
 
 			// MODELS
@@ -438,12 +442,7 @@ if ( ! class_exists( 'LatePointAddonProFeatures' ) ) :
 					return '';
 				}
 			);
-			add_filter(
-				'latepoint_show_upgrade_link_on_plugins_page',
-				function ( $show ) {
-					return false;
-				}
-			);
+			add_filter( 'latepoint_show_upgrade_link_on_plugins_page', '__return_false' );
 
 			/* ************************ */
 			/* No-Show Restrictions */
@@ -528,6 +527,28 @@ if ( ! class_exists( 'LatePointAddonProFeatures' ) ) :
 			add_filter( 'latepoint_webhook_variables_for_new_booking', 'OsFeatureGroupBookingsHelper::add_data_to_webhook', 10, 2 );
 			add_filter( 'latepoint_bookings_table_columns', 'OsFeatureGroupBookingsHelper::add_columns_to_bookings_table' );
 			add_action( 'latepoint_remove_preset_steps', 'OsFeatureGroupBookingsHelper::remove_group_bookings_step_if_preselected', 10, 4 );
+
+			/* ************************ */
+			/* Signup Fee */
+			/* ************************ */
+			add_action( 'latepoint_service_saved', 'OsFeatureBaseFeeHelper::save_service_info', 15, 3 );
+			add_filter( 'latepoint_full_amount_for_service', 'OsFeatureBaseFeeHelper::adjust_full_amount_for_service', 11, 2 );
+			add_filter( 'latepoint_price_breakdown_service_row_for_booking', 'OsFeatureBaseFeeHelper::add_base_fee_to_service_row_item', 11, 2 );
+
+			/* ************************ */
+			/* Service Display Mode */
+			/* ************************ */
+			add_filter( 'latepoint_default_booking_atts', 'OsFeatureServiceDisplayModeHelper::add_default_booking_att' );
+			add_filter( 'latepoint_get_default_restrictions', 'OsFeatureServiceDisplayModeHelper::add_default_restriction' );
+			add_filter( 'latepoint_set_restrictions', 'OsFeatureServiceDisplayModeHelper::set_restriction', 10, 2 );
+			add_filter( 'latepoint_step_services', 'OsFeatureServiceDisplayModeHelper::filter_step_services', 10, 3 );
+			add_filter( 'latepoint_step_bundles', 'OsFeatureServiceDisplayModeHelper::filter_step_bundles', 10, 3 );
+			add_filter( 'latepoint_bundles_folder_skip_wrapper', 'OsFeatureServiceDisplayModeHelper::skip_bundles_folder_wrapper', 10, 2 );
+			add_filter( 'latepoint_book_widget_allowed_params', 'OsFeatureServiceDisplayModeHelper::add_widget_allowed_param', 10, 2 );
+			add_action( 'latepoint_booking_form_params', 'OsFeatureServiceDisplayModeHelper::output_form_param', 10, 2 );
+			add_action( 'elementor/element/latepoint_book_button/content_section_booking_form_settings/after_section_end', 'OsFeatureServiceDisplayModeHelper::add_elementor_control', 10, 2 );
+			add_action( 'elementor/element/latepoint_book_form/content_section_booking_form_settings/after_section_end', 'OsFeatureServiceDisplayModeHelper::add_elementor_control', 10, 2 );
+			add_action( 'enqueue_block_editor_assets', [ $this, 'enqueue_block_editor_service_display_mode' ] );
 
 			/* ************************ */
 			/* Service Durations */
@@ -706,6 +727,11 @@ if ( ! class_exists( 'LatePointAddonProFeatures' ) ) :
 				add_filter( 'latepoint_capabilities_for_controllers', 'OsFeatureAssetsHelper::add_capabilities_for_controller' );
 				add_filter( 'latepoint_roles_get_all_available_actions_list', 'OsFeatureAssetsHelper::add_asset_capabilities' );
 			}
+
+			/* ************************ */
+			/* White Label */
+			/* ************************ */
+			OsFeatureWhiteLabelHelper::init();
 
 			/* Side menu */
 			add_filter( 'latepoint_side_menu', [ $this, 'add_menu_links' ] );
@@ -1184,6 +1210,15 @@ if ( ! class_exists( 'LatePointAddonProFeatures' ) ) :
 										]
 									);
 								}
+								// White Label
+								if ( isset( $menus[ $i ]['children'][ $j ]['id'] ) && $menus[ $i ]['children'][ $j ]['id'] == 'white_label' ) {
+									$menus[ $i ]['children'][ $j ]['link'] = OsRouterHelper::build_link(
+										[
+											'white_label',
+											'settings',
+										]
+									);
+								}
 							}
 						}
 
@@ -1299,6 +1334,7 @@ if ( ! class_exists( 'LatePointAddonProFeatures' ) ) :
 
 		public function on_deactivate() {
 			wp_clear_scheduled_hook( 'latepoint_process_scheduled_jobs' );
+			OsSettingsHelper::remove_setting_by_name( 'white_label_hide_menu' );
 			do_action( 'latepoint_on_addon_deactivate', $this->addon_name, $this->version );
 		}
 
@@ -1330,6 +1366,7 @@ if ( ! class_exists( 'LatePointAddonProFeatures' ) ) :
 				}
 			}
 
+			OsSettingsHelper::remove_setting_by_name( 'white_label_hide_menu' );
 			do_action( 'latepoint_on_addon_activate', $this->addon_name, $this->version );
 
 			if ( ! wp_next_scheduled( 'latepoint_process_scheduled_jobs' ) ) {
@@ -1585,6 +1622,17 @@ if ( ! class_exists( 'LatePointAddonProFeatures' ) ) :
 					]
 				);
 			}
+		}
+
+		public function enqueue_block_editor_service_display_mode(): void {
+			wp_enqueue_script(
+				'latepoint-pro-service-display-mode-block-editor',
+				plugin_dir_url( __FILE__ ) . 'lib/assets/javascripts/service-display-mode-block-editor.js',
+				[ 'wp-hooks', 'wp-element', 'wp-components', 'wp-block-editor', 'wp-i18n' ],
+				$this->version,
+				true
+			);
+			wp_set_script_translations( 'latepoint-pro-service-display-mode-block-editor', 'latepoint-pro-features' );
 		}
 	}
 

@@ -305,6 +305,19 @@ class OsFeatureGroupBookingsHelper {
 				</div>
 				<div class="sub-section-row">
 					<div class="sub-section-label">
+						<h3><?php esc_html_e( 'Base Fee', 'latepoint-pro-features' ); ?></h3>
+					</div>
+					<div class="sub-section-content">
+						<p class="os-note"><?php esc_html_e( 'A one-time fee added to the booking total once per booking, regardless of the number of attendees. Leave at 0 to disable.', 'latepoint-pro-features' ); ?></p>
+						<div class="os-row">
+							<div class="os-col-lg-3">
+								<?php OsFeatureBaseFeeHelper::render_base_fee_field( $service ); ?>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="sub-section-row">
+					<div class="sub-section-label">
 						<h3><?php _e( 'Other', 'latepoint-pro-features' ) ?></h3>
 					</div>
 					<div class="sub-section-content">
