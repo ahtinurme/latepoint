@@ -121,12 +121,21 @@ class LatePointNinjaForms {
     if ( ! OsAuthHelper::is_admin_logged_in() ) {
       return $menus;
     }
-    $menus[] = [
+    $item = [
       'id'    => 'ninja_forms',
       'label' => __( 'Ninja Forms', 'latepoint-ninja-forms' ),
       'icon'  => 'latepoint-icon latepoint-icon-clipboard',
       'link'  => OsRouterHelper::build_link( [ 'ninja_forms', 'settings' ] ),
     ];
+    // Show as a tab under "Integrations" rather than a standalone top-level item.
+    foreach ( $menus as $i => $menu ) {
+      if ( isset( $menu['id'] ) && $menu['id'] === 'integrations' ) {
+        $menus[ $i ]['children'][] = $item;
+        return $menus;
+      }
+    }
+    // Fallback (integrations menu not present): keep it top-level.
+    $menus[] = $item;
     return $menus;
   }
 
