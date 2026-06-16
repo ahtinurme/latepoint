@@ -47,17 +47,17 @@ msgstr "Anda menggunakan plugin %1$sLatePoint%2$s versi lama (v%4$s). Harap perb
 msgid "Update Now"
 msgstr "Perbarui Sekarang"
 
-#: latepoint-pro-features.php:767
+#: latepoint-pro-features.php:793
 #: lib/helpers/feature_recurring_bookings_helper.php:61
 msgid "Recurring Appointments"
 msgstr "Janji Temu Berulang"
 
-#: latepoint-pro-features.php:771
+#: latepoint-pro-features.php:797
 #: lib/helpers/feature_group_bookings_helper.php:278
 msgid "Group Bookings"
 msgstr "Pemesanan Grup"
 
-#: latepoint-pro-features.php:775
+#: latepoint-pro-features.php:801
 #: lib/controllers/service_extras_controller.php:25
 #: lib/helpers/feature_service_extras_helper.php:7
 #: lib/helpers/feature_service_extras_helper.php:143
@@ -66,34 +66,34 @@ msgstr "Pemesanan Grup"
 msgid "Service Extras"
 msgstr "Tambahan Layanan"
 
-#: latepoint-pro-features.php:779
+#: latepoint-pro-features.php:805
 msgid "Restrictions for Extras"
 msgstr "Pembatasan untuk Tambahan"
 
-#: latepoint-pro-features.php:783
-#: latepoint-pro-features.php:1239
+#: latepoint-pro-features.php:809
+#: latepoint-pro-features.php:1274
 #: lib/controllers/assets_controller.php:20
 #: lib/helpers/feature_assets_helper.php:50
 msgid "Assets"
 msgstr "Aset"
 
-#: latepoint-pro-features.php:790
+#: latepoint-pro-features.php:816
 msgid "Allow customers reschedule their bookings"
 msgstr "Izinkan pelanggan menjadwalkan ulang pemesanan mereka"
 
-#: latepoint-pro-features.php:790
+#: latepoint-pro-features.php:816
 msgid "If enable, shows a button on customer cabinet to reschedule an appointment"
 msgstr "Jika diaktifkan, menampilkan tombol di kabinet pelanggan untuk menjadwalkan ulang janji temu"
 
-#: latepoint-pro-features.php:793
+#: latepoint-pro-features.php:819
 msgid "Set restriction on when customer can reschedule"
 msgstr "Tetapkan pembatasan kapan pelanggan dapat menjadwalkan ulang"
 
-#: latepoint-pro-features.php:797
+#: latepoint-pro-features.php:823
 msgid "Can reschedule when it is at least"
 msgstr "Dapat dijadwalkan ulang ketika setidaknya"
 
-#: latepoint-pro-features.php:798
+#: latepoint-pro-features.php:824
 #: lib/helpers/feature_recurring_bookings_helper.php:69
 #: lib/helpers/feature_service_extras_helper.php:498
 #: lib/helpers/feature_service_extras_helper.php:508
@@ -102,196 +102,196 @@ msgstr "Dapat dijadwalkan ulang ketika setidaknya"
 msgid "Value"
 msgstr "Nilai"
 
-#: latepoint-pro-features.php:803
+#: latepoint-pro-features.php:829
 #: lib/helpers/feature_reminders_helper.php:15
 msgid "minutes"
 msgstr "menit"
 
-#: latepoint-pro-features.php:804
+#: latepoint-pro-features.php:830
 #: lib/helpers/feature_reminders_helper.php:16
 msgid "hours"
 msgstr "jam"
 
-#: latepoint-pro-features.php:805
+#: latepoint-pro-features.php:831
 #: lib/helpers/feature_reminders_helper.php:17
 msgid "days"
 msgstr "hari"
 
-#: latepoint-pro-features.php:809
+#: latepoint-pro-features.php:835
 msgid "before appointment start time"
 msgstr "sebelum waktu mulai janji temu"
 
-#: latepoint-pro-features.php:812
+#: latepoint-pro-features.php:838
 msgid "Change booking status when customer reschedules"
 msgstr "Ubah status pemesanan saat pelanggan menjadwalkan ulang"
 
-#: latepoint-pro-features.php:816
+#: latepoint-pro-features.php:842
 msgid "Change status to:"
 msgstr "Ubah status menjadi:"
 
-#: latepoint-pro-features.php:836
+#: latepoint-pro-features.php:862
 msgid "All Day"
 msgstr "Sepanjang Hari"
 
-#: latepoint-pro-features.php:837
+#: latepoint-pro-features.php:863
 msgid "Specific Time"
 msgstr "Waktu Tertentu"
 
-#: latepoint-pro-features.php:843
+#: latepoint-pro-features.php:869
 msgid "Reason for blocking (optional)"
 msgstr "Alasan pemblokiran (opsional)"
 
-#: latepoint-pro-features.php:846
+#: latepoint-pro-features.php:872
 msgid "Enter a reason..."
 msgstr "Masukkan alasan..."
 
-#: latepoint-pro-features.php:866
+#: latepoint-pro-features.php:892
 #, php-format
 msgid "Select resources you want to be unavailable during this time on %s"
 msgstr "Pilih sumber daya yang ingin Anda buat tidak tersedia selama waktu ini di %s"
 
-#: latepoint-pro-features.php:867
+#: latepoint-pro-features.php:893
 #, php-format
 msgid "Select resources you want to be unavailable on %s"
 msgstr "Pilih sumber daya yang ingin Anda buat tidak tersedia di %s"
 
-#: latepoint-pro-features.php:876
+#: latepoint-pro-features.php:902
 msgid "All Agents"
 msgstr "Semua Agen"
 
-#: latepoint-pro-features.php:891
+#: latepoint-pro-features.php:917
 msgid "All Services"
 msgstr "Semua Layanan"
 
-#: latepoint-pro-features.php:906
+#: latepoint-pro-features.php:932
 msgid "All Locations"
 msgstr "Semua Lokasi"
 
-#: latepoint-pro-features.php:922
+#: latepoint-pro-features.php:948
 #: lib/views/webhooks/_webhook_form.php:45
 msgid "Save"
 msgstr "Simpan"
 
-#: latepoint-pro-features.php:928
+#: latepoint-pro-features.php:954
 msgid "Are you sure you want to delete this blocked time period?"
 msgstr "Apakah Anda yakin ingin menghapus periode waktu yang diblokir ini?"
 
-#: latepoint-pro-features.php:930
+#: latepoint-pro-features.php:956
 msgid "Delete Blocked Period"
 msgstr "Hapus Periode yang Diblokir"
 
-#: latepoint-pro-features.php:987
+#: latepoint-pro-features.php:1013
 msgid "Blocked Period"
 msgstr "Periode yang Diblokir"
 
-#: latepoint-pro-features.php:1056
+#: latepoint-pro-features.php:1082
 msgid "Enable this feature by installing an appropriate addon."
 msgstr "Aktifkan fitur ini dengan memasang addon yang sesuai."
 
-#: latepoint-pro-features.php:1067
+#: latepoint-pro-features.php:1093
 msgid "Not applied to invoice"
 msgstr "Tidak diterapkan ke faktur"
 
-#: latepoint-pro-features.php:1073
+#: latepoint-pro-features.php:1099
 #, php-format
 msgid "#%s"
 msgstr "#%s"
 
-#: latepoint-pro-features.php:1076
+#: latepoint-pro-features.php:1102
 msgid "Apply to Invoice"
 msgstr "Terapkan ke Faktur"
 
-#: latepoint-pro-features.php:1081
+#: latepoint-pro-features.php:1107
 msgid "View Receipt"
 msgstr "Lihat Tanda Terima"
 
-#: latepoint-pro-features.php:1083
+#: latepoint-pro-features.php:1109
 msgid "View Invoice"
 msgstr "Lihat Faktur"
 
-#: latepoint-pro-features.php:1100
+#: latepoint-pro-features.php:1126
 #: lib/controllers/addons_controller.php:18
 msgid "Add-ons"
 msgstr "Add-on"
 
-#: latepoint-pro-features.php:1112
+#: latepoint-pro-features.php:1138
 msgid "Premium Features"
 msgstr "Fitur Premium"
 
-#: latepoint-pro-features.php:1194
+#: latepoint-pro-features.php:1229
 msgid "Form Fields"
 msgstr "Bidang Formulir"
 
-#: latepoint-pro-features.php:1199
+#: latepoint-pro-features.php:1234
 msgid "Customer Fields"
 msgstr "Bidang Pelanggan"
 
-#: latepoint-pro-features.php:1204
+#: latepoint-pro-features.php:1239
 msgid "Booking Fields"
 msgstr "Bidang Pemesanan"
 
-#: latepoint-pro-features.php:1217
-#: latepoint-pro-features.php:1222
+#: latepoint-pro-features.php:1252
+#: latepoint-pro-features.php:1257
 #: lib/controllers/locations_controller.php:21
 #: lib/helpers/feature_locations_helper.php:70
 msgid "Locations"
 msgstr "Lokasi"
 
-#: latepoint-pro-features.php:1227
+#: latepoint-pro-features.php:1262
 msgid "Categories"
 msgstr "Kategori"
 
-#: latepoint-pro-features.php:1271
+#: latepoint-pro-features.php:1306
 msgid "Cart Settings"
 msgstr "Pengaturan Keranjang"
 
-#: latepoint-pro-features.php:1274
+#: latepoint-pro-features.php:1309
 msgid "Disable Shopping Cart Functionality"
 msgstr "Nonaktifkan Fungsionalitas Keranjang Belanja"
 
-#: latepoint-pro-features.php:1274
+#: latepoint-pro-features.php:1309
 msgid "This will disable ability to book multiple services in one order"
 msgstr "Ini akan menonaktifkan kemampuan untuk memesan beberapa layanan dalam satu pesanan"
 
-#: latepoint-pro-features.php:1275
+#: latepoint-pro-features.php:1310
 msgid "Reset Presets When Adding New Item"
 msgstr "Atur Ulang Preset Saat Menambahkan Item Baru"
 
-#: latepoint-pro-features.php:1275
+#: latepoint-pro-features.php:1310
 msgid "This will reset presets settings when adding new item"
 msgstr "Ini akan mengatur ulang pengaturan preset saat menambahkan item baru"
 
-#: latepoint-pro-features.php:1286
+#: latepoint-pro-features.php:1321
 msgid "Assets Settings"
 msgstr "Pengaturan Aset"
 
-#: latepoint-pro-features.php:1289
+#: latepoint-pro-features.php:1324
 msgid "Enable Assets Functionality"
 msgstr "Aktifkan Fungsionalitas Aset"
 
-#: latepoint-pro-features.php:1289
+#: latepoint-pro-features.php:1324
 msgid "Enable to use assets for managing booking availability. When disabled, assets will not affect booking availability"
 msgstr "Aktifkan untuk menggunakan aset dalam mengelola ketersediaan pemesanan. Saat dinonaktifkan, aset tidak akan memengaruhi ketersediaan pemesanan"
 
-#: latepoint-pro-features.php:1490
-#: latepoint-pro-features.php:1503
+#: latepoint-pro-features.php:1527
+#: latepoint-pro-features.php:1540
 msgid "Are you sure you want to remove this file?"
 msgstr "Apakah Anda yakin ingin menghapus file ini?"
 
-#: latepoint-pro-features.php:1491
-#: latepoint-pro-features.php:1504
+#: latepoint-pro-features.php:1528
+#: latepoint-pro-features.php:1541
 msgid "This file is required and cannot be removed, but you can replace it with a different file. Do you want to replace it?"
 msgstr "File ini diperlukan dan tidak dapat dihapus, tetapi Anda dapat menggantinya dengan file lain. Apakah Anda ingin menggantinya?"
 
-#: latepoint-pro-features.php:1609
+#: latepoint-pro-features.php:1657
 msgid "Activate LatePoint"
 msgstr "Aktifkan LatePoint"
 
-#: latepoint-pro-features.php:1613
+#: latepoint-pro-features.php:1661
 msgid "Install LatePoint"
 msgstr "Instal LatePoint"
 
-#: latepoint-pro-features.php:1617
+#: latepoint-pro-features.php:1665
 #, php-format
 msgid "%1$sPRO Features for LatePoint%2$s plugin requires %1$sLatePoint%2$s core plugin installed & activated."
 msgstr "%1$sFitur PRO untuk plugin LatePoint%2$s memerlukan plugin inti %1$sLatePoint%2$s terpasang &amp; diaktifkan."
@@ -1141,6 +1141,8 @@ msgid "Service"
 msgstr "Layanan"
 
 #: lib/helpers/custom_fields_helper.php:484
+#: lib/helpers/feature_white_label_helper.php:71
+#: lib/helpers/feature_white_label_helper.php:88
 #: lib/views/messages/messages_with_info_for_booking.php:74
 msgid "Agent"
 msgstr "Agen"
@@ -1334,8 +1336,8 @@ msgstr "Bidang Kustom untuk Pemesanan"
 #: lib/helpers/feature_group_bookings_helper.php:69
 #: lib/helpers/feature_group_bookings_helper.php:226
 #: lib/helpers/feature_group_bookings_helper.php:264
-#: lib/helpers/feature_group_bookings_helper.php:352
-#: lib/helpers/feature_group_bookings_helper.php:366
+#: lib/helpers/feature_group_bookings_helper.php:365
+#: lib/helpers/feature_group_bookings_helper.php:379
 msgid "Total Attendees"
 msgstr "Total Peserta"
 
@@ -1392,31 +1394,31 @@ msgstr "Jangan kalikan jumlah biaya dengan jumlah peserta"
 msgid "Do not multiply deposit amount by the number of attendees"
 msgstr "Jangan kalikan jumlah deposit dengan jumlah peserta"
 
-#: lib/helpers/feature_group_bookings_helper.php:308
+#: lib/helpers/feature_group_bookings_helper.php:321
 msgid "Other"
 msgstr "Lainnya"
 
-#: lib/helpers/feature_group_bookings_helper.php:311
+#: lib/helpers/feature_group_bookings_helper.php:324
 msgid "Do not ask customers to select number of attendees"
 msgstr "Jangan minta pelanggan memilih jumlah peserta"
 
-#: lib/helpers/feature_group_bookings_helper.php:312
+#: lib/helpers/feature_group_bookings_helper.php:325
 msgid "Block timeslot if minimum capacity is reached"
 msgstr "Blokir slot waktu jika kapasitas minimum tercapai"
 
-#: lib/helpers/feature_group_bookings_helper.php:318
+#: lib/helpers/feature_group_bookings_helper.php:331
 msgid "Meeting Link"
 msgstr "Tautan Pertemuan"
 
-#: lib/helpers/feature_group_bookings_helper.php:326
+#: lib/helpers/feature_group_bookings_helper.php:339
 msgid "Meeting Link Mode for Group Bookings"
 msgstr "Mode Tautan Pertemuan untuk Pemesanan Grup"
 
-#: lib/helpers/feature_group_bookings_helper.php:330
+#: lib/helpers/feature_group_bookings_helper.php:343
 msgid "Separate - Each booking gets its own meeting link"
 msgstr "Terpisah - Setiap pemesanan mendapatkan tautan pertemuannya sendiri"
 
-#: lib/helpers/feature_group_bookings_helper.php:334
+#: lib/helpers/feature_group_bookings_helper.php:347
 msgid "Shared - All attendees in the same time slot get the same meeting link"
 msgstr "Bersama - Semua peserta dalam slot waktu yang sama mendapatkan tautan pertemuan yang sama"
 
@@ -1999,10 +2001,6 @@ msgstr "Terbaru:"
 msgid "Installed:"
 msgstr "Terpasang:"
 
-#: lib/views/addons/load_addons_list.php:86
-msgid "Requires LatePoint"
-msgstr "Memerlukan LatePoint"
-
 #: lib/views/addons/load_addons_list.php:98
 msgid "Deactivate"
 msgstr "Nonaktifkan"
@@ -2011,7 +2009,7 @@ msgstr "Nonaktifkan"
 #: lib/views/agents/_form.php:318
 #: lib/views/custom_fields/_custom_field_form.php:127
 #: lib/views/locations/_form.php:189
-#: lib/views/roles/_form.php:123
+#: lib/views/roles/_form.php:122
 #: lib/views/taxes/_tax_form.php:49
 msgid "Delete"
 msgstr "Hapus"
@@ -2267,8 +2265,9 @@ msgstr "Tambah Agen"
 #: lib/views/locations/_form.php:202
 #: lib/views/locations/_form.php:216
 #: lib/views/roles/edit_wp_user.php:82
-#: lib/views/roles/_form.php:126
+#: lib/views/roles/_form.php:125
 #: lib/views/service_extras/_form.php:99
+#: lib/views/white_label/settings.php:166
 msgid "Save Changes"
 msgstr "Simpan Perubahan"
 
@@ -2814,14 +2813,6 @@ msgstr "Chat dengan Pelanggan"
 msgid "System Info"
 msgstr "Info Sistem"
 
-#: lib/views/debug/status.php:23
-msgid "LatePoint Plugin Version:"
-msgstr "Versi Plugin LatePoint:"
-
-#: lib/views/debug/status.php:27
-msgid "LatePoint Database Version:"
-msgstr "Versi Database LatePoint:"
-
 #: lib/views/debug/status.php:31
 #: lib/views/debug/status.php:72
 msgid "reset"
@@ -3096,6 +3087,8 @@ msgstr "Edit"
 msgid "Date/Time"
 msgstr "Tanggal/Waktu"
 
+#: lib/helpers/feature_white_label_helper.php:73
+#: lib/helpers/feature_white_label_helper.php:91
 #: lib/views/messages/messages_with_info_for_booking.php:72
 msgid "Customer"
 msgstr "Pelanggan"
@@ -3146,16 +3139,12 @@ msgstr "Catatan yang Diizinkan"
 msgid "This user has \"Administrator\" role and can access all records"
 msgstr "Pengguna ini memiliki peran \"Administrator\" dan dapat mengakses semua catatan"
 
-#: lib/views/roles/edit_wp_user.php:42
-msgid "This user has \"Agent\" role and can execute permitted actions only on records that belong to a LatePoint agent they are connected to."
-msgstr "Pengguna ini memiliki peran \"Agent\" dan hanya dapat menjalankan tindakan yang diizinkan pada catatan yang dimiliki oleh agen LatePoint yang terhubung dengannya."
-
 #: lib/views/roles/edit_wp_user.php:47
 msgid "Custom Selection"
 msgstr "Pilihan Kustom"
 
 #: lib/views/roles/edit_wp_user.php:57
-#: lib/views/roles/_form.php:91
+#: lib/views/roles/_form.php:90
 msgid "Permitted Actions"
 msgstr "Tindakan yang Diizinkan"
 
@@ -3206,27 +3195,22 @@ msgstr "Hubungkan ke agen"
 msgid "You have not assigned any WordPress users to this role. Create a new WP user or edit existing user and assign them a role called: %s"
 msgstr "Anda belum menetapkan pengguna WordPress apa pun ke peran ini. Buat pengguna WP baru atau edit pengguna yang sudah ada dan tetapkan mereka peran bernama: %s"
 
-#: lib/views/roles/_form.php:77
+#: lib/views/roles/_form.php:76
 #, php-format
 msgid "Users with \"%s\" role are allowed to perform all available actions on any agent, location and service records."
 msgstr "Pengguna dengan peran \"%s\" diizinkan untuk melakukan semua tindakan yang tersedia pada catatan agen, lokasi, dan layanan apa pun."
 
-#: lib/views/roles/_form.php:80
-#, php-format
-msgid "Users with \"%s\" role can execute permitted actions only on records that belong to a LatePoint agent they are connected to."
-msgstr "Pengguna dengan peran \"%s\" hanya dapat menjalankan tindakan yang diizinkan pada catatan yang dimiliki oleh agen LatePoint yang terhubung dengannya."
-
-#: lib/views/roles/_form.php:83
+#: lib/views/roles/_form.php:82
 msgid "Once you assign users to this role, they will appear in \"Users\" section above, click on each user to set restrictions on which records each of them can access."
 msgstr "Setelah Anda menetapkan pengguna ke peran ini, mereka akan muncul di bagian \"Pengguna\" di atas, klik setiap pengguna untuk mengatur pembatasan pada catatan mana yang dapat diakses oleh masing-masing."
 
-#: lib/views/roles/_form.php:97
+#: lib/views/roles/_form.php:96
 #, php-format
 msgid "Users with \"%s\" role are permitted to execute all available actions in the system."
 msgstr "Pengguna dengan peran \"%s\" diizinkan untuk menjalankan semua tindakan yang tersedia di sistem."
 
-#: lib/views/roles/_form.php:119
-#: lib/views/roles/_form.php:133
+#: lib/views/roles/_form.php:118
+#: lib/views/roles/_form.php:132
 msgid "Are you sure you want to delete this role?"
 msgstr "Apakah Anda yakin ingin menghapus peran ini?"
 
@@ -3418,10 +3402,6 @@ msgstr "Mulai Menggunakan Versi 5"
 msgid "License Key Registration"
 msgstr "Pendaftaran Kunci Lisensi"
 
-#: lib/views/updates/_license_form.php:17
-msgid "Please enter your LatePoint license key to receive free plugin updates and install addons."
-msgstr "Silakan masukkan kunci lisensi LatePoint Anda untuk menerima pembaruan plugin gratis dan memasang addon."
-
 #: lib/views/updates/_license_form.php:21
 msgid "Your Name"
 msgstr "Nama Anda"
@@ -3497,3 +3477,183 @@ msgstr "Semua Terhubung"
 #: lib/views/roles/_form.php:54
 msgid "Not connected"
 msgstr "Tidak terhubung"
+
+#: lib/controllers/white_label_controller.php:20
+#: lib/views/white_label/settings.php:14
+msgid "White Label"
+msgstr "Label Putih"
+
+#: lib/controllers/white_label_controller.php:57
+msgid "White Label settings reset to defaults."
+msgstr "Pengaturan Label Putih telah diatur ulang ke default."
+
+#. translators: %s: formatted base fee amount
+#: lib/helpers/feature_base_fee_helper.php:29
+#, php-format
+msgid "+ %s base fee"
+msgstr "+ %s biaya dasar"
+
+#: lib/helpers/feature_base_fee_helper.php:44
+#: lib/helpers/feature_group_bookings_helper.php:308
+msgid "Base Fee"
+msgstr "Biaya Dasar"
+
+#: lib/helpers/feature_group_bookings_helper.php:311
+msgid "A one-time fee added to the booking total once per booking, regardless of the number of attendees. Leave at 0 to disable."
+msgstr "Biaya satu kali yang ditambahkan ke total pemesanan sekali per pemesanan, terlepas dari jumlah peserta. Biarkan 0 untuk menonaktifkan."
+
+#: lib/helpers/feature_service_display_mode_helper.php:144
+#: lib/assets/javascripts/service-display-mode-block-editor.js:41
+msgid "Service Display"
+msgstr "Tampilan Layanan"
+
+#: lib/helpers/feature_service_display_mode_helper.php:152
+#: lib/assets/javascripts/service-display-mode-block-editor.js:45
+msgid "Service Display Mode"
+msgstr "Mode Tampilan Layanan"
+
+#: lib/helpers/feature_service_display_mode_helper.php:156
+#: lib/assets/javascripts/service-display-mode-block-editor.js:16
+msgid "Show All Services"
+msgstr "Tampilkan Semua Layanan"
+
+#: lib/helpers/feature_service_display_mode_helper.php:157
+#: lib/assets/javascripts/service-display-mode-block-editor.js:17
+msgid "Show Only Individual Services"
+msgstr "Tampilkan Hanya Layanan Individual"
+
+#: lib/helpers/feature_service_display_mode_helper.php:158
+#: lib/assets/javascripts/service-display-mode-block-editor.js:18
+msgid "Show Only Bundled Services"
+msgstr "Tampilkan Hanya Layanan Paket"
+
+#: lib/views/addons/load_addons_list.php:86
+msgid "Requires Core Version"
+msgstr "Memerlukan Versi Inti"
+
+#: lib/views/debug/status.php:23
+msgid "Plugin Version:"
+msgstr "Versi Plugin:"
+
+#: lib/views/debug/status.php:27
+msgid "Database Version:"
+msgstr "Versi Basis Data:"
+
+#: lib/views/roles/edit_wp_user.php:42
+msgid "This user has \"Agent\" role and can execute permitted actions only on records that belong to an agent they are connected to."
+msgstr "Pengguna ini memiliki peran \"Agent\" dan hanya dapat menjalankan tindakan yang diizinkan pada catatan yang dimiliki oleh agen yang terhubung dengannya."
+
+#. translators: %1$s: role label
+#: lib/views/roles/_form.php:79
+#, php-format
+msgid "Users with \"%1$s\" role can execute permitted actions only on records that belong to an agent they are connected to."
+msgstr "Pengguna dengan peran \"%1$s\" hanya dapat menjalankan tindakan yang diizinkan pada catatan yang dimiliki oleh agen yang terhubung dengannya."
+
+#: lib/views/updates/_license_form.php:17
+msgid "Please enter your license key to receive free plugin updates and install addons."
+msgstr "Silakan masukkan kunci lisensi Anda untuk menerima pembaruan plugin gratis dan memasang addon."
+
+#: lib/views/white_label/settings.php:19
+msgid "Enable White Label"
+msgstr "Aktifkan White Label"
+
+#: lib/views/white_label/settings.php:27
+msgid "Enable white labeling"
+msgstr "Aktifkan white labeling"
+
+#: lib/views/white_label/settings.php:31
+msgid "When enabled, your custom brand settings below replace all LatePoint references in the admin interface."
+msgstr "Saat diaktifkan, pengaturan merek kustom Anda di bawah akan menggantikan semua referensi LatePoint di antarmuka admin."
+
+#: lib/views/white_label/settings.php:44
+#: lib/views/white_label/settings.php:170
+msgid "Brand Identity"
+msgstr "Identitas Merek"
+
+#: lib/views/white_label/settings.php:51
+#: lib/views/white_label/settings.php:56
+msgid "Brand Name"
+msgstr "Nama Merek"
+
+#: lib/views/white_label/settings.php:51
+msgid "Replaces \"LatePoint\" in the WP admin menu, admin bar, and plugin list."
+msgstr "Mengganti \"LatePoint\" di menu admin WP, bilah admin, dan daftar plugin."
+
+#: lib/views/white_label/settings.php:65
+msgid "Brand Logo"
+msgstr "Logo Merek"
+
+#: lib/views/white_label/settings.php:65
+msgid "Used for the LatePoint admin sidebar logo and the WordPress top-level admin menu icon. Recommended size: 40×40 px."
+msgstr "Digunakan untuk logo bilah sisi admin LatePoint dan ikon menu admin tingkat atas WordPress. Ukuran yang disarankan: 40×40 px."
+
+#: lib/views/white_label/settings.php:72
+msgid "Set Logo"
+msgstr "Atur Logo"
+
+#: lib/views/white_label/settings.php:73
+msgid "Remove Logo"
+msgstr "Hapus Logo"
+
+#: lib/views/white_label/settings.php:86
+#: lib/views/white_label/settings.php:91
+#: lib/views/white_label/settings.php:171
+msgid "Plugin Details"
+msgstr "Detail Plugin"
+
+#: lib/views/white_label/settings.php:91
+msgid "Override the plugin name, URL, description, author, and author URL shown in wp-admin → Plugins."
+msgstr "Timpa nama plugin, URL, deskripsi, penulis, dan URL penulis yang ditampilkan di wp-admin → Plugins."
+
+#: lib/views/white_label/settings.php:96
+msgid "Plugin Name"
+msgstr "Nama Plugin"
+
+#: lib/views/white_label/settings.php:99
+msgid "Plugin URL"
+msgstr "URL Plugin"
+
+#: lib/views/white_label/settings.php:104
+msgid "Plugin Description"
+msgstr "Deskripsi Plugin"
+
+#: lib/views/white_label/settings.php:109
+msgid "Author"
+msgstr "Penulis"
+
+#: lib/views/white_label/settings.php:112
+msgid "Author URL"
+msgstr "URL Penulis"
+
+#: lib/views/white_label/settings.php:123
+#: lib/views/white_label/settings.php:172
+msgid "Menu Visibility"
+msgstr "Visibilitas Menu"
+
+#: lib/views/white_label/settings.php:128
+msgid "Hide White Label Menu"
+msgstr "Sembunyikan Menu White Label"
+
+#: lib/views/white_label/settings.php:136
+msgid "Hide the White Label settings menu"
+msgstr "Sembunyikan menu pengaturan White Label"
+
+#: lib/views/white_label/settings.php:140
+msgid "When enabled, the White Label menu item is removed from the admin sidebar. To restore it, deactivate and reactivate the LatePoint Pro Features plugin."
+msgstr "Saat diaktifkan, item menu White Label dihapus dari bilah sisi admin. Untuk memulihkannya, nonaktifkan lalu aktifkan kembali plugin LatePoint Pro Features."
+
+#: lib/views/white_label/settings.php:151
+msgid "Save Settings"
+msgstr "Simpan Pengaturan"
+
+#: lib/views/white_label/settings.php:156
+msgid "This will clear all white label settings and restore LatePoint defaults. Continue?"
+msgstr "Ini akan menghapus semua pengaturan white label dan memulihkan default LatePoint. Lanjutkan?"
+
+#: lib/views/white_label/settings.php:159
+msgid "Reset to Defaults"
+msgstr "Atur Ulang ke Default"
+
+#: lib/views/white_label/settings.php:169
+msgid "Enable"
+msgstr "Aktifkan"

@@ -7,7 +7,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 	<div class="os-intro-full-screen-i">
 		<a href="<?php echo esc_url(OsRouterHelper::build_link(OsRouterHelper::build_route_name('dashboard', 'index'))); ?>" class="os-intro-full-screen-close-trigger"><span><?php esc_html_e('Dismiss', 'latepoint-pro-features'); ?></span><i class="latepoint-icon latepoint-icon-x"></i></a>
 		<div class="os-intro-logo">
-			<img src="<?php echo esc_attr(LATEPOINT_IMAGES_URL . 'logo.svg'); ?>" width="60" height="60" alt="LatePoint Dashboard">
+			<img src="<?php echo esc_attr(LATEPOINT_IMAGES_URL . 'logo.svg'); ?>" width="60" height="60" alt="<?php echo esc_attr__( 'Dashboard' ); ?>">
 		</div>
 		<div class="os-intro-heading">
 			Version 5

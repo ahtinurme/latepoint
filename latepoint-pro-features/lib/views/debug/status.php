@@ -20,11 +20,11 @@ if ( ! defined( 'ABSPATH' ) ) {
 			<ul>
 				<li>
 					<?php
-					esc_html_e('LatePoint Plugin Version:', 'latepoint-pro-features'); ?> <strong><?php echo esc_html(LATEPOINT_VERSION); ?></strong>
+					echo esc_html__( 'Plugin Version:', 'latepoint-pro-features' ); ?> <strong><?php echo esc_html(LATEPOINT_VERSION); ?></strong>
 				</li>
 				<li>
 					<?php
-					esc_html_e('LatePoint Database Version:', 'latepoint-pro-features'); ?>
+					echo esc_html__( 'Database Version:', 'latepoint-pro-features' ); ?>
 					<strong><?php echo esc_html(OsSettingsHelper::get_db_version()); ?></strong>
 					<?php echo '<a href="#" class="reset-db-version-link" data-os-action="' . esc_attr(OsRouterHelper::build_route_name('debug', 'reset_plugin_db_version')) . '"
 					                      data-os-params="' . esc_attr(OsUtilHelper::build_os_params([], 'latepoint_reset_plugin_db_version')) . '"
@@ -67,8 +67,8 @@ if ( ! defined( 'ABSPATH' ) ) {
 					echo '<div class="os-iab-version-info">' . $update_available_html . '
 								<span>' . esc_html__('Core:', 'latepoint-pro-features') . '</span><strong>' . esc_html($installed_version) . '</strong>
 								<span>' . esc_html__('Database:', 'latepoint-pro-features') . '</span><strong>' . esc_html($current_addon_db_version) . '</strong>
-								<a class="reset-db-version-link" href="#" data-os-action="' . esc_attr(OsRouterHelper::build_route_name('debug', 'reset_addon_db_version')) . '" 
-						                      data-os-params="' . esc_attr(OsUtilHelper::build_os_params(['plugin_name' => $addon->wp_plugin_name], 'latepoint_reset_addon_db_version')) . '" 
+								<a class="reset-db-version-link" href="#" data-os-action="' . esc_attr(OsRouterHelper::build_route_name('debug', 'reset_addon_db_version')) . '"
+						                      data-os-params="' . esc_attr(OsUtilHelper::build_os_params(['plugin_name' => $addon->wp_plugin_name], 'latepoint_reset_addon_db_version')) . '"
 						                      data-os-success-action="reload"><i class="latepoint-icon latepoint-icon-refresh-cw"></i><span>' . esc_html__('reset', 'latepoint-pro-features') . '</span></a>
 							</div>';
 					echo '</div>';

@@ -37,9 +37,9 @@
 						echo '<div class="role-users-wrapper">';
 		        foreach ($role_users as $user) {
 							/* @var $user \LatePoint\Misc\User */
-							$data_html = 'data-os-output-target="side-panel" 
+							$data_html = 'data-os-output-target="side-panel"
 							data-os-after-call="latepointRoleManagerAddonAdmin.init_edit_wp_user_form"
-							data-os-action="'.OsRouterHelper::build_route_name('roles', 'edit_wp_user').'" 
+							data-os-action="'.OsRouterHelper::build_route_name('roles', 'edit_wp_user').'"
 							data-os-params="'.OsUtilHelper::build_os_params(['id' => $user->wp_user->ID], 'latepoint_edit_wp_user').'"';
 			        echo '<div class="role-user-wrapper" '.$data_html.'>';
 								echo '<div class="ru-main-info">';
@@ -70,20 +70,19 @@
         <h3><?php _e('Allowed Records', 'latepoint-pro-features') ?></h3>
       </div>
       <div class="sub-section-content">
-
 	        <?php
 	        switch($role->user_type){
 						case LATEPOINT_USER_TYPE_ADMIN:
 							echo '<div class="latepoint-message latepoint-message-subtle">'.sprintf(__('Users with "%s" role are allowed to perform all available actions on any agent, location and service records.', 'latepoint-pro-features'), $user->get_user_type_label()).'</div>';
 							break;
 						case LATEPOINT_USER_TYPE_AGENT:
-							echo '<div class="latepoint-message latepoint-message-subtle">'.sprintf(__('Users with "%s" role can execute permitted actions only on records that belong to a LatePoint agent they are connected to.', 'latepoint-pro-features'), $user->get_user_type_label()).'</div>';
+							echo '<div class="latepoint-message latepoint-message-subtle">' . esc_html( sprintf( /* translators: %1$s: role label */ __( 'Users with "%1$s" role can execute permitted actions only on records that belong to an agent they are connected to.', 'latepoint-pro-features' ), $user->get_user_type_label() ) ) . '</div>';
 							break;
 		        case LATEPOINT_USER_TYPE_CUSTOM:
 							echo '<div class="latepoint-message latepoint-message-subtle">'.__('Once you assign users to this role, they will appear in "Users" section above, click on each user to set restrictions on which records each of them can access.', 'latepoint-pro-features').'</div>';
 							break;
 	        }
-					?>
+			?>
       </div>
     </div>
     <div class="sub-section-row">

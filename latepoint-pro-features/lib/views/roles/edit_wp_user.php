@@ -39,7 +39,7 @@
 				if($user->backend_user_type == LATEPOINT_USER_TYPE_ADMIN){
 					echo '<div class="latepoint-message latepoint-message-subtle">'.__('This user has "Administrator" role and can access all records', 'latepoint-pro-features').'</div>';
 				}elseif($user->backend_user_type == LATEPOINT_USER_TYPE_AGENT){
-					echo '<div class="latepoint-message latepoint-message-subtle">'.__('This user has "Agent" role and can execute permitted actions only on records that belong to a LatePoint agent they are connected to.', 'latepoint-pro-features').'</div>';
+					echo '<div class="latepoint-message latepoint-message-subtle">' . esc_html__( 'This user has "Agent" role and can execute permitted actions only on records that belong to an agent they are connected to.', 'latepoint-pro-features' ) . '</div>';
 				}
 				if($can_set_custom_records){
 					echo '<div class="custom-user-records-w">';

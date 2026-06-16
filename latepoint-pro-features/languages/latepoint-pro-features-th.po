@@ -47,17 +47,17 @@ msgstr "คุณกำลังใช้ปลั๊กอิน %1$sLatePoint%
 msgid "Update Now"
 msgstr "อัปเดตทันที"
 
-#: latepoint-pro-features.php:767
+#: latepoint-pro-features.php:793
 #: lib/helpers/feature_recurring_bookings_helper.php:61
 msgid "Recurring Appointments"
 msgstr "การนัดหมายแบบเกิดซ้ำ"
 
-#: latepoint-pro-features.php:771
+#: latepoint-pro-features.php:797
 #: lib/helpers/feature_group_bookings_helper.php:278
 msgid "Group Bookings"
 msgstr "การจองแบบกลุ่ม"
 
-#: latepoint-pro-features.php:775
+#: latepoint-pro-features.php:801
 #: lib/controllers/service_extras_controller.php:25
 #: lib/helpers/feature_service_extras_helper.php:7
 #: lib/helpers/feature_service_extras_helper.php:143
@@ -66,34 +66,34 @@ msgstr "การจองแบบกลุ่ม"
 msgid "Service Extras"
 msgstr "บริการเสริม"
 
-#: latepoint-pro-features.php:779
+#: latepoint-pro-features.php:805
 msgid "Restrictions for Extras"
 msgstr "ข้อจำกัดสำหรับบริการเสริม"
 
-#: latepoint-pro-features.php:783
-#: latepoint-pro-features.php:1239
+#: latepoint-pro-features.php:809
+#: latepoint-pro-features.php:1274
 #: lib/controllers/assets_controller.php:20
 #: lib/helpers/feature_assets_helper.php:50
 msgid "Assets"
 msgstr "ทรัพยากร"
 
-#: latepoint-pro-features.php:790
+#: latepoint-pro-features.php:816
 msgid "Allow customers reschedule their bookings"
 msgstr "อนุญาตให้ลูกค้าเลื่อนการจองของตนได้"
 
-#: latepoint-pro-features.php:790
+#: latepoint-pro-features.php:816
 msgid "If enable, shows a button on customer cabinet to reschedule an appointment"
 msgstr "หากเปิดใช้งาน จะแสดงปุ่มในหน้าบัญชีลูกค้าเพื่อเลื่อนการนัดหมาย"
 
-#: latepoint-pro-features.php:793
+#: latepoint-pro-features.php:819
 msgid "Set restriction on when customer can reschedule"
 msgstr "กำหนดข้อจำกัดว่าเมื่อใดที่ลูกค้าสามารถเลื่อนได้"
 
-#: latepoint-pro-features.php:797
+#: latepoint-pro-features.php:823
 msgid "Can reschedule when it is at least"
 msgstr "สามารถเลื่อนได้เมื่ออย่างน้อย"
 
-#: latepoint-pro-features.php:798
+#: latepoint-pro-features.php:824
 #: lib/helpers/feature_recurring_bookings_helper.php:69
 #: lib/helpers/feature_service_extras_helper.php:498
 #: lib/helpers/feature_service_extras_helper.php:508
@@ -102,196 +102,196 @@ msgstr "สามารถเลื่อนได้เมื่ออย่า
 msgid "Value"
 msgstr "ค่า"
 
-#: latepoint-pro-features.php:803
+#: latepoint-pro-features.php:829
 #: lib/helpers/feature_reminders_helper.php:15
 msgid "minutes"
 msgstr "นาที"
 
-#: latepoint-pro-features.php:804
+#: latepoint-pro-features.php:830
 #: lib/helpers/feature_reminders_helper.php:16
 msgid "hours"
 msgstr "ชั่วโมง"
 
-#: latepoint-pro-features.php:805
+#: latepoint-pro-features.php:831
 #: lib/helpers/feature_reminders_helper.php:17
 msgid "days"
 msgstr "วัน"
 
-#: latepoint-pro-features.php:809
+#: latepoint-pro-features.php:835
 msgid "before appointment start time"
 msgstr "ก่อนเวลาเริ่มนัดหมาย"
 
-#: latepoint-pro-features.php:812
+#: latepoint-pro-features.php:838
 msgid "Change booking status when customer reschedules"
 msgstr "เปลี่ยนสถานะการจองเมื่อลูกค้าเลื่อนนัด"
 
-#: latepoint-pro-features.php:816
+#: latepoint-pro-features.php:842
 msgid "Change status to:"
 msgstr "เปลี่ยนสถานะเป็น:"
 
-#: latepoint-pro-features.php:836
+#: latepoint-pro-features.php:862
 msgid "All Day"
 msgstr "ทั้งวัน"
 
-#: latepoint-pro-features.php:837
+#: latepoint-pro-features.php:863
 msgid "Specific Time"
 msgstr "เวลาที่ระบุ"
 
-#: latepoint-pro-features.php:843
+#: latepoint-pro-features.php:869
 msgid "Reason for blocking (optional)"
 msgstr "เหตุผลในการบล็อก (ไม่บังคับ)"
 
-#: latepoint-pro-features.php:846
+#: latepoint-pro-features.php:872
 msgid "Enter a reason..."
 msgstr "ป้อนเหตุผล..."
 
-#: latepoint-pro-features.php:866
+#: latepoint-pro-features.php:892
 #, php-format
 msgid "Select resources you want to be unavailable during this time on %s"
 msgstr "เลือกทรัพยากรที่คุณต้องการให้ไม่พร้อมใช้งานในช่วงเวลานี้บน %s"
 
-#: latepoint-pro-features.php:867
+#: latepoint-pro-features.php:893
 #, php-format
 msgid "Select resources you want to be unavailable on %s"
 msgstr "เลือกทรัพยากรที่คุณต้องการให้ไม่พร้อมใช้งานบน %s"
 
-#: latepoint-pro-features.php:876
+#: latepoint-pro-features.php:902
 msgid "All Agents"
 msgstr "เอเจนต์ทั้งหมด"
 
-#: latepoint-pro-features.php:891
+#: latepoint-pro-features.php:917
 msgid "All Services"
 msgstr "บริการทั้งหมด"
 
-#: latepoint-pro-features.php:906
+#: latepoint-pro-features.php:932
 msgid "All Locations"
 msgstr "ทุกสถานที่"
 
-#: latepoint-pro-features.php:922
+#: latepoint-pro-features.php:948
 #: lib/views/webhooks/_webhook_form.php:45
 msgid "Save"
 msgstr "บันทึก"
 
-#: latepoint-pro-features.php:928
+#: latepoint-pro-features.php:954
 msgid "Are you sure you want to delete this blocked time period?"
 msgstr "คุณแน่ใจหรือไม่ว่าต้องการลบช่วงเวลาที่ถูกบล็อกนี้?"
 
-#: latepoint-pro-features.php:930
+#: latepoint-pro-features.php:956
 msgid "Delete Blocked Period"
 msgstr "ลบช่วงเวลาที่ถูกบล็อก"
 
-#: latepoint-pro-features.php:987
+#: latepoint-pro-features.php:1013
 msgid "Blocked Period"
 msgstr "ช่วงเวลาที่ถูกบล็อก"
 
-#: latepoint-pro-features.php:1056
+#: latepoint-pro-features.php:1082
 msgid "Enable this feature by installing an appropriate addon."
 msgstr "เปิดใช้งานฟีเจอร์นี้โดยติดตั้งส่วนเสริมที่เหมาะสม"
 
-#: latepoint-pro-features.php:1067
+#: latepoint-pro-features.php:1093
 msgid "Not applied to invoice"
 msgstr "ยังไม่ได้ใช้กับใบแจ้งหนี้"
 
-#: latepoint-pro-features.php:1073
+#: latepoint-pro-features.php:1099
 #, php-format
 msgid "#%s"
 msgstr "#%s"
 
-#: latepoint-pro-features.php:1076
+#: latepoint-pro-features.php:1102
 msgid "Apply to Invoice"
 msgstr "ใช้กับใบแจ้งหนี้"
 
-#: latepoint-pro-features.php:1081
+#: latepoint-pro-features.php:1107
 msgid "View Receipt"
 msgstr "ดูใบเสร็จ"
 
-#: latepoint-pro-features.php:1083
+#: latepoint-pro-features.php:1109
 msgid "View Invoice"
 msgstr "ดูใบแจ้งหนี้"
 
-#: latepoint-pro-features.php:1100
+#: latepoint-pro-features.php:1126
 #: lib/controllers/addons_controller.php:18
 msgid "Add-ons"
 msgstr "ส่วนเสริม"
 
-#: latepoint-pro-features.php:1112
+#: latepoint-pro-features.php:1138
 msgid "Premium Features"
 msgstr "ฟีเจอร์พรีเมียม"
 
-#: latepoint-pro-features.php:1194
+#: latepoint-pro-features.php:1229
 msgid "Form Fields"
 msgstr "ฟิลด์แบบฟอร์ม"
 
-#: latepoint-pro-features.php:1199
+#: latepoint-pro-features.php:1234
 msgid "Customer Fields"
 msgstr "ฟิลด์ลูกค้า"
 
-#: latepoint-pro-features.php:1204
+#: latepoint-pro-features.php:1239
 msgid "Booking Fields"
 msgstr "ฟิลด์การจอง"
 
-#: latepoint-pro-features.php:1217
-#: latepoint-pro-features.php:1222
+#: latepoint-pro-features.php:1252
+#: latepoint-pro-features.php:1257
 #: lib/controllers/locations_controller.php:21
 #: lib/helpers/feature_locations_helper.php:70
 msgid "Locations"
 msgstr "สถานที่"
 
-#: latepoint-pro-features.php:1227
+#: latepoint-pro-features.php:1262
 msgid "Categories"
 msgstr "หมวดหมู่"
 
-#: latepoint-pro-features.php:1271
+#: latepoint-pro-features.php:1306
 msgid "Cart Settings"
 msgstr "การตั้งค่ารถเข็น"
 
-#: latepoint-pro-features.php:1274
+#: latepoint-pro-features.php:1309
 msgid "Disable Shopping Cart Functionality"
 msgstr "ปิดใช้งานฟังก์ชันรถเข็นสินค้า"
 
-#: latepoint-pro-features.php:1274
+#: latepoint-pro-features.php:1309
 msgid "This will disable ability to book multiple services in one order"
 msgstr "การดำเนินการนี้จะปิดความสามารถในการจองหลายบริการในคำสั่งซื้อเดียว"
 
-#: latepoint-pro-features.php:1275
+#: latepoint-pro-features.php:1310
 msgid "Reset Presets When Adding New Item"
 msgstr "รีเซ็ตค่าที่ตั้งไว้ล่วงหน้าเมื่อเพิ่มรายการใหม่"
 
-#: latepoint-pro-features.php:1275
+#: latepoint-pro-features.php:1310
 msgid "This will reset presets settings when adding new item"
 msgstr "การดำเนินการนี้จะรีเซ็ตการตั้งค่าค่าที่ตั้งไว้ล่วงหน้าเมื่อเพิ่มรายการใหม่"
 
-#: latepoint-pro-features.php:1286
+#: latepoint-pro-features.php:1321
 msgid "Assets Settings"
 msgstr "การตั้งค่าทรัพยากร"
 
-#: latepoint-pro-features.php:1289
+#: latepoint-pro-features.php:1324
 msgid "Enable Assets Functionality"
 msgstr "เปิดใช้งานฟังก์ชันทรัพยากร"
 
-#: latepoint-pro-features.php:1289
+#: latepoint-pro-features.php:1324
 msgid "Enable to use assets for managing booking availability. When disabled, assets will not affect booking availability"
 msgstr "เปิดใช้งานเพื่อใช้ทรัพยากรในการจัดการความพร้อมให้บริการของการจอง เมื่อปิดใช้งาน ทรัพยากรจะไม่ส่งผลต่อความพร้อมให้บริการของการจอง"
 
-#: latepoint-pro-features.php:1490
-#: latepoint-pro-features.php:1503
+#: latepoint-pro-features.php:1527
+#: latepoint-pro-features.php:1540
 msgid "Are you sure you want to remove this file?"
 msgstr "คุณแน่ใจหรือไม่ว่าต้องการลบไฟล์นี้?"
 
-#: latepoint-pro-features.php:1491
-#: latepoint-pro-features.php:1504
+#: latepoint-pro-features.php:1528
+#: latepoint-pro-features.php:1541
 msgid "This file is required and cannot be removed, but you can replace it with a different file. Do you want to replace it?"
 msgstr "ไฟล์นี้จำเป็นและไม่สามารถลบได้ แต่คุณสามารถแทนที่ด้วยไฟล์อื่นได้ คุณต้องการแทนที่หรือไม่?"
 
-#: latepoint-pro-features.php:1609
+#: latepoint-pro-features.php:1657
 msgid "Activate LatePoint"
 msgstr "เปิดใช้งาน LatePoint"
 
-#: latepoint-pro-features.php:1613
+#: latepoint-pro-features.php:1661
 msgid "Install LatePoint"
 msgstr "ติดตั้ง LatePoint"
 
-#: latepoint-pro-features.php:1617
+#: latepoint-pro-features.php:1665
 #, php-format
 msgid "%1$sPRO Features for LatePoint%2$s plugin requires %1$sLatePoint%2$s core plugin installed & activated."
 msgstr "ปลั๊กอิน %1$sPRO Features for LatePoint%2$s ต้องมีปลั๊กอินหลัก %1$sLatePoint%2$s ติดตั้งและเปิดใช้งานอยู่"
@@ -1141,6 +1141,8 @@ msgid "Service"
 msgstr "บริการ"
 
 #: lib/helpers/custom_fields_helper.php:484
+#: lib/helpers/feature_white_label_helper.php:71
+#: lib/helpers/feature_white_label_helper.php:88
 #: lib/views/messages/messages_with_info_for_booking.php:74
 msgid "Agent"
 msgstr "เจ้าหน้าที่"
@@ -1334,8 +1336,8 @@ msgstr "ฟิลด์กำหนดเองสำหรับการจอ
 #: lib/helpers/feature_group_bookings_helper.php:69
 #: lib/helpers/feature_group_bookings_helper.php:226
 #: lib/helpers/feature_group_bookings_helper.php:264
-#: lib/helpers/feature_group_bookings_helper.php:352
-#: lib/helpers/feature_group_bookings_helper.php:366
+#: lib/helpers/feature_group_bookings_helper.php:365
+#: lib/helpers/feature_group_bookings_helper.php:379
 msgid "Total Attendees"
 msgstr "จำนวนผู้เข้าร่วมทั้งหมด"
 
@@ -1392,31 +1394,31 @@ msgstr "ไม่ต้องคูณจำนวนเงินที่เร
 msgid "Do not multiply deposit amount by the number of attendees"
 msgstr "ไม่ต้องคูณจำนวนเงินมัดจำตามจำนวนผู้เข้าร่วม"
 
-#: lib/helpers/feature_group_bookings_helper.php:308
+#: lib/helpers/feature_group_bookings_helper.php:321
 msgid "Other"
 msgstr "อื่นๆ"
 
-#: lib/helpers/feature_group_bookings_helper.php:311
+#: lib/helpers/feature_group_bookings_helper.php:324
 msgid "Do not ask customers to select number of attendees"
 msgstr "ไม่ต้องให้ลูกค้าเลือกจำนวนผู้เข้าร่วม"
 
-#: lib/helpers/feature_group_bookings_helper.php:312
+#: lib/helpers/feature_group_bookings_helper.php:325
 msgid "Block timeslot if minimum capacity is reached"
 msgstr "บล็อกช่วงเวลา หากถึงความจุขั้นต่ำแล้ว"
 
-#: lib/helpers/feature_group_bookings_helper.php:318
+#: lib/helpers/feature_group_bookings_helper.php:331
 msgid "Meeting Link"
 msgstr "ลิงก์การประชุม"
 
-#: lib/helpers/feature_group_bookings_helper.php:326
+#: lib/helpers/feature_group_bookings_helper.php:339
 msgid "Meeting Link Mode for Group Bookings"
 msgstr "โหมดลิงก์การประชุมสำหรับการจองแบบกลุ่ม"
 
-#: lib/helpers/feature_group_bookings_helper.php:330
+#: lib/helpers/feature_group_bookings_helper.php:343
 msgid "Separate - Each booking gets its own meeting link"
 msgstr "แยกกัน - การจองแต่ละรายการจะได้รับลิงก์การประชุมของตนเอง"
 
-#: lib/helpers/feature_group_bookings_helper.php:334
+#: lib/helpers/feature_group_bookings_helper.php:347
 msgid "Shared - All attendees in the same time slot get the same meeting link"
 msgstr "ใช้ร่วมกัน - ผู้เข้าร่วมทั้งหมดในช่วงเวลาเดียวกันจะได้รับลิงก์การประชุมเดียวกัน"
 
@@ -1999,10 +2001,6 @@ msgstr "ล่าสุด:"
 msgid "Installed:"
 msgstr "ติดตั้งแล้ว:"
 
-#: lib/views/addons/load_addons_list.php:86
-msgid "Requires LatePoint"
-msgstr "ต้องใช้ LatePoint"
-
 #: lib/views/addons/load_addons_list.php:98
 msgid "Deactivate"
 msgstr "ปิดใช้งาน"
@@ -2011,7 +2009,7 @@ msgstr "ปิดใช้งาน"
 #: lib/views/agents/_form.php:318
 #: lib/views/custom_fields/_custom_field_form.php:127
 #: lib/views/locations/_form.php:189
-#: lib/views/roles/_form.php:123
+#: lib/views/roles/_form.php:122
 #: lib/views/taxes/_tax_form.php:49
 msgid "Delete"
 msgstr "ลบ"
@@ -2267,8 +2265,9 @@ msgstr "เพิ่มตัวแทน"
 #: lib/views/locations/_form.php:202
 #: lib/views/locations/_form.php:216
 #: lib/views/roles/edit_wp_user.php:82
-#: lib/views/roles/_form.php:126
+#: lib/views/roles/_form.php:125
 #: lib/views/service_extras/_form.php:99
+#: lib/views/white_label/settings.php:166
 msgid "Save Changes"
 msgstr "บันทึกการเปลี่ยนแปลง"
 
@@ -2814,14 +2813,6 @@ msgstr "แชทกับลูกค้า"
 msgid "System Info"
 msgstr "ข้อมูลระบบ"
 
-#: lib/views/debug/status.php:23
-msgid "LatePoint Plugin Version:"
-msgstr "เวอร์ชันปลั๊กอิน LatePoint:"
-
-#: lib/views/debug/status.php:27
-msgid "LatePoint Database Version:"
-msgstr "เวอร์ชันฐานข้อมูล LatePoint:"
-
 #: lib/views/debug/status.php:31
 #: lib/views/debug/status.php:72
 msgid "reset"
@@ -3096,6 +3087,8 @@ msgstr "แก้ไข"
 msgid "Date/Time"
 msgstr "วันที่/เวลา"
 
+#: lib/helpers/feature_white_label_helper.php:73
+#: lib/helpers/feature_white_label_helper.php:91
 #: lib/views/messages/messages_with_info_for_booking.php:72
 msgid "Customer"
 msgstr "ลูกค้า"
@@ -3146,16 +3139,12 @@ msgstr "ระเบียนที่อนุญาต"
 msgid "This user has \"Administrator\" role and can access all records"
 msgstr "ผู้ใช้นี้มีบทบาท \"Administrator\" และสามารถเข้าถึงระเบียนทั้งหมดได้"
 
-#: lib/views/roles/edit_wp_user.php:42
-msgid "This user has \"Agent\" role and can execute permitted actions only on records that belong to a LatePoint agent they are connected to."
-msgstr "ผู้ใช้นี้มีบทบาท \"Agent\" และสามารถดำเนินการที่อนุญาตได้เฉพาะกับระเบียนที่เป็นของเอเจนต์ LatePoint ที่เชื่อมต่ออยู่เท่านั้น"
-
 #: lib/views/roles/edit_wp_user.php:47
 msgid "Custom Selection"
 msgstr "การเลือกแบบกำหนดเอง"
 
 #: lib/views/roles/edit_wp_user.php:57
-#: lib/views/roles/_form.php:91
+#: lib/views/roles/_form.php:90
 msgid "Permitted Actions"
 msgstr "การดำเนินการที่อนุญาต"
 
@@ -3206,27 +3195,22 @@ msgstr "เชื่อมต่อกับเอเจนต์"
 msgid "You have not assigned any WordPress users to this role. Create a new WP user or edit existing user and assign them a role called: %s"
 msgstr "คุณยังไม่ได้กำหนดผู้ใช้ WordPress ใดๆ ให้กับบทบาทนี้ สร้างผู้ใช้ WP ใหม่หรือแก้ไขผู้ใช้ที่มีอยู่และกำหนดบทบาทชื่อ: %s"
 
-#: lib/views/roles/_form.php:77
+#: lib/views/roles/_form.php:76
 #, php-format
 msgid "Users with \"%s\" role are allowed to perform all available actions on any agent, location and service records."
 msgstr "ผู้ใช้ที่มีบทบาท \"%s\" สามารถดำเนินการที่มีอยู่ทั้งหมดกับระเบียนของเอเจนต์ สถานที่ และบริการใดๆ ได้"
 
-#: lib/views/roles/_form.php:80
-#, php-format
-msgid "Users with \"%s\" role can execute permitted actions only on records that belong to a LatePoint agent they are connected to."
-msgstr "ผู้ใช้ที่มีบทบาท \"%s\" สามารถดำเนินการที่อนุญาตได้เฉพาะกับระเบียนที่เป็นของเอเจนต์ LatePoint ที่เชื่อมต่ออยู่เท่านั้น"
-
-#: lib/views/roles/_form.php:83
+#: lib/views/roles/_form.php:82
 msgid "Once you assign users to this role, they will appear in \"Users\" section above, click on each user to set restrictions on which records each of them can access."
 msgstr "เมื่อคุณกำหนดผู้ใช้ให้กับบทบาทนี้แล้ว พวกเขาจะปรากฏในส่วน \"Users\" ด้านบน ให้คลิกที่ผู้ใช้แต่ละคนเพื่อตั้งค่าข้อจำกัดเกี่ยวกับระเบียนที่แต่ละคนสามารถเข้าถึงได้"
 
-#: lib/views/roles/_form.php:97
+#: lib/views/roles/_form.php:96
 #, php-format
 msgid "Users with \"%s\" role are permitted to execute all available actions in the system."
 msgstr "ผู้ใช้ที่มีบทบาท \"%s\" ได้รับอนุญาตให้ดำเนินการที่มีอยู่ทั้งหมดในระบบ"
 
-#: lib/views/roles/_form.php:119
-#: lib/views/roles/_form.php:133
+#: lib/views/roles/_form.php:118
+#: lib/views/roles/_form.php:132
 msgid "Are you sure you want to delete this role?"
 msgstr "คุณแน่ใจหรือไม่ว่าต้องการลบบทบาทนี้?"
 
@@ -3418,10 +3402,6 @@ msgstr "เริ่มใช้งานเวอร์ชัน 5"
 msgid "License Key Registration"
 msgstr "การลงทะเบียนคีย์ลิขสิทธิ์"
 
-#: lib/views/updates/_license_form.php:17
-msgid "Please enter your LatePoint license key to receive free plugin updates and install addons."
-msgstr "โปรดป้อนคีย์ลิขสิทธิ์ LatePoint ของคุณเพื่อรับการอัปเดตปลั๊กอินฟรีและติดตั้งส่วนเสริม"
-
 #: lib/views/updates/_license_form.php:21
 msgid "Your Name"
 msgstr "ชื่อของคุณ"
@@ -3497,3 +3477,183 @@ msgstr "เชื่อมต่อทั้งหมดแล้ว"
 #: lib/views/roles/_form.php:54
 msgid "Not connected"
 msgstr "ไม่ได้เชื่อมต่อ"
+
+#: lib/controllers/white_label_controller.php:20
+#: lib/views/white_label/settings.php:14
+msgid "White Label"
+msgstr "ไวท์เลเบล"
+
+#: lib/controllers/white_label_controller.php:57
+msgid "White Label settings reset to defaults."
+msgstr "การตั้งค่าไวท์เลเบลถูกรีเซ็ตเป็นค่าเริ่มต้นแล้ว"
+
+#. translators: %s: formatted base fee amount
+#: lib/helpers/feature_base_fee_helper.php:29
+#, php-format
+msgid "+ %s base fee"
+msgstr "+ %s ค่าธรรมเนียมพื้นฐาน"
+
+#: lib/helpers/feature_base_fee_helper.php:44
+#: lib/helpers/feature_group_bookings_helper.php:308
+msgid "Base Fee"
+msgstr "ค่าธรรมเนียมพื้นฐาน"
+
+#: lib/helpers/feature_group_bookings_helper.php:311
+msgid "A one-time fee added to the booking total once per booking, regardless of the number of attendees. Leave at 0 to disable."
+msgstr "ค่าธรรมเนียมแบบครั้งเดียวที่เพิ่มเข้าไปในยอดรวมการจองหนึ่งครั้งต่อการจอง โดยไม่คำนึงถึงจำนวนผู้เข้าร่วม ปล่อยไว้ที่ 0 เพื่อปิดใช้งาน"
+
+#: lib/helpers/feature_service_display_mode_helper.php:144
+#: lib/assets/javascripts/service-display-mode-block-editor.js:41
+msgid "Service Display"
+msgstr "การแสดงบริการ"
+
+#: lib/helpers/feature_service_display_mode_helper.php:152
+#: lib/assets/javascripts/service-display-mode-block-editor.js:45
+msgid "Service Display Mode"
+msgstr "โหมดการแสดงบริการ"
+
+#: lib/helpers/feature_service_display_mode_helper.php:156
+#: lib/assets/javascripts/service-display-mode-block-editor.js:16
+msgid "Show All Services"
+msgstr "แสดงบริการทั้งหมด"
+
+#: lib/helpers/feature_service_display_mode_helper.php:157
+#: lib/assets/javascripts/service-display-mode-block-editor.js:17
+msgid "Show Only Individual Services"
+msgstr "แสดงเฉพาะบริการเดี่ยว"
+
+#: lib/helpers/feature_service_display_mode_helper.php:158
+#: lib/assets/javascripts/service-display-mode-block-editor.js:18
+msgid "Show Only Bundled Services"
+msgstr "แสดงเฉพาะบริการแบบแพ็กเกจ"
+
+#: lib/views/addons/load_addons_list.php:86
+msgid "Requires Core Version"
+msgstr "ต้องใช้เวอร์ชันหลัก"
+
+#: lib/views/debug/status.php:23
+msgid "Plugin Version:"
+msgstr "เวอร์ชันปลั๊กอิน:"
+
+#: lib/views/debug/status.php:27
+msgid "Database Version:"
+msgstr "เวอร์ชันฐานข้อมูล:"
+
+#: lib/views/roles/edit_wp_user.php:42
+msgid "This user has \"Agent\" role and can execute permitted actions only on records that belong to an agent they are connected to."
+msgstr "ผู้ใช้นี้มีบทบาท \"Agent\" และสามารถดำเนินการที่อนุญาตได้เฉพาะกับรายการที่เป็นของเอเจนต์ที่เชื่อมต่ออยู่เท่านั้น"
+
+#. translators: %1$s: role label
+#: lib/views/roles/_form.php:79
+#, php-format
+msgid "Users with \"%1$s\" role can execute permitted actions only on records that belong to an agent they are connected to."
+msgstr "ผู้ใช้ที่มีบทบาท \"%1$s\" สามารถดำเนินการที่อนุญาตได้เฉพาะกับรายการที่เป็นของเอเจนต์ที่เชื่อมต่ออยู่เท่านั้น"
+
+#: lib/views/updates/_license_form.php:17
+msgid "Please enter your license key to receive free plugin updates and install addons."
+msgstr "โปรดป้อนคีย์ลิขสิทธิ์ของคุณเพื่อรับการอัปเดตปลั๊กอินฟรีและติดตั้งส่วนเสริม"
+
+#: lib/views/white_label/settings.php:19
+msgid "Enable White Label"
+msgstr "เปิดใช้งาน White Label"
+
+#: lib/views/white_label/settings.php:27
+msgid "Enable white labeling"
+msgstr "เปิดใช้งานการทำไวท์เลเบล"
+
+#: lib/views/white_label/settings.php:31
+msgid "When enabled, your custom brand settings below replace all LatePoint references in the admin interface."
+msgstr "เมื่อเปิดใช้งาน การตั้งค่าแบรนด์แบบกำหนดเองด้านล่างจะเข้ามาแทนที่การอ้างอิง LatePoint ทั้งหมดในส่วนติดต่อผู้ดูแลระบบ"
+
+#: lib/views/white_label/settings.php:44
+#: lib/views/white_label/settings.php:170
+msgid "Brand Identity"
+msgstr "ข้อมูลแบรนด์"
+
+#: lib/views/white_label/settings.php:51
+#: lib/views/white_label/settings.php:56
+msgid "Brand Name"
+msgstr "ชื่อแบรนด์"
+
+#: lib/views/white_label/settings.php:51
+msgid "Replaces \"LatePoint\" in the WP admin menu, admin bar, and plugin list."
+msgstr "แทนที่ \"LatePoint\" ในเมนูผู้ดูแลระบบของ WP, แถบผู้ดูแลระบบ และรายการปลั๊กอิน"
+
+#: lib/views/white_label/settings.php:65
+msgid "Brand Logo"
+msgstr "โลโก้แบรนด์"
+
+#: lib/views/white_label/settings.php:65
+msgid "Used for the LatePoint admin sidebar logo and the WordPress top-level admin menu icon. Recommended size: 40×40 px."
+msgstr "ใช้สำหรับโลโก้แถบด้านข้างผู้ดูแลระบบของ LatePoint และไอคอนเมนูผู้ดูแลระบบระดับบนสุดของ WordPress ขนาดที่แนะนำ: 40×40 px"
+
+#: lib/views/white_label/settings.php:72
+msgid "Set Logo"
+msgstr "ตั้งค่าโลโก้"
+
+#: lib/views/white_label/settings.php:73
+msgid "Remove Logo"
+msgstr "ลบโลโก้"
+
+#: lib/views/white_label/settings.php:86
+#: lib/views/white_label/settings.php:91
+#: lib/views/white_label/settings.php:171
+msgid "Plugin Details"
+msgstr "รายละเอียดปลั๊กอิน"
+
+#: lib/views/white_label/settings.php:91
+msgid "Override the plugin name, URL, description, author, and author URL shown in wp-admin → Plugins."
+msgstr "แทนที่ชื่อปลั๊กอิน, URL, คำอธิบาย, ผู้เขียน และ URL ของผู้เขียนที่แสดงใน wp-admin → ปลั๊กอิน"
+
+#: lib/views/white_label/settings.php:96
+msgid "Plugin Name"
+msgstr "ชื่อปลั๊กอิน"
+
+#: lib/views/white_label/settings.php:99
+msgid "Plugin URL"
+msgstr "URL ของปลั๊กอิน"
+
+#: lib/views/white_label/settings.php:104
+msgid "Plugin Description"
+msgstr "คำอธิบายปลั๊กอิน"
+
+#: lib/views/white_label/settings.php:109
+msgid "Author"
+msgstr "ผู้เขียน"
+
+#: lib/views/white_label/settings.php:112
+msgid "Author URL"
+msgstr "URL ของผู้เขียน"
+
+#: lib/views/white_label/settings.php:123
+#: lib/views/white_label/settings.php:172
+msgid "Menu Visibility"
+msgstr "การมองเห็นเมนู"
+
+#: lib/views/white_label/settings.php:128
+msgid "Hide White Label Menu"
+msgstr "ซ่อนเมนู White Label"
+
+#: lib/views/white_label/settings.php:136
+msgid "Hide the White Label settings menu"
+msgstr "ซ่อนเมนูการตั้งค่า White Label"
+
+#: lib/views/white_label/settings.php:140
+msgid "When enabled, the White Label menu item is removed from the admin sidebar. To restore it, deactivate and reactivate the LatePoint Pro Features plugin."
+msgstr "เมื่อเปิดใช้งาน รายการเมนู White Label จะถูกนำออกจากแถบด้านข้างผู้ดูแลระบบ หากต้องการเรียกคืน ให้ปิดใช้งานแล้วเปิดใช้งานปลั๊กอิน LatePoint Pro Features อีกครั้ง"
+
+#: lib/views/white_label/settings.php:151
+msgid "Save Settings"
+msgstr "บันทึกการตั้งค่า"
+
+#: lib/views/white_label/settings.php:156
+msgid "This will clear all white label settings and restore LatePoint defaults. Continue?"
+msgstr "การดำเนินการนี้จะล้างการตั้งค่าไวท์เลเบลทั้งหมดและคืนค่าเริ่มต้นของ LatePoint ต่อไปหรือไม่?"
+
+#: lib/views/white_label/settings.php:159
+msgid "Reset to Defaults"
+msgstr "รีเซ็ตเป็นค่าเริ่มต้น"
+
+#: lib/views/white_label/settings.php:169
+msgid "Enable"
+msgstr "เปิดใช้งาน"

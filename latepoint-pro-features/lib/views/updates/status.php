@@ -9,7 +9,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 			<div class="version-check-icon"></div>
 			<h3>License Status: <strong>Active</strong></h3>
 			<div>
-				<span>Thank you for using LatePoint</span>
+				<span>Thank you for registering your license. Premium features are now available.</span>
 			</div>
 			<div class="license-info-buttons-w">
 				<a href="#" class="latepoint-show-license-details">

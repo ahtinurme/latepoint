@@ -14,7 +14,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 				<div class="os-form-message-w status-error"><ul><li><?php echo esc_html($license['status_message']); ?></li></ul></div>
 			<?php } ?>
 		<?php }else{
-			echo '<div class="os-form-message-w"><ul><li>'.esc_html__('Please enter your LatePoint license key to receive free plugin updates and install addons.', 'latepoint-pro-features').'</li></ul></div>';
+			echo '<div class="os-form-message-w"><ul><li>' . esc_html__( 'Please enter your license key to receive free plugin updates and install addons.', 'latepoint-pro-features' ) . '</li></ul></div>';
 		} ?>
   	<div class="os-row">
   		<div class="os-col-lg-3">
