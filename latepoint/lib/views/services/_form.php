@@ -313,10 +313,10 @@ if ( ! defined( 'ABSPATH' ) ) {
 					if ( OsRolesHelper::can_user( 'service__delete' ) || OsRolesHelper::can_user( 'service__edit' ) ) {
 						$extra_actions_html.= '<div class="os-trigger-dots"><div class="os-trigger-dots-context">';
 						if ( OsRolesHelper::can_user( 'service__delete' ) ) {
-							$extra_actions_html .= '<div class="os-context-item os-danger"  data-os-prompt="' . esc_attr__( 'Are you sure you want to remove this service? It will remove all appointments associated with it. You can also change status to disabled if you want to temprorary disable it instead.', 'latepoint' ) . '" 
-                            data-os-redirect-to="' . esc_url( OsRouterHelper::build_link( OsRouterHelper::build_route_name( 'services', 'index' ) ) ) . '" 
-                            data-os-params="' . esc_attr( OsUtilHelper::build_os_params( [ 'id' => $service->id ], 'destroy_service_' . $service->id ) ) . '" 
-                            data-os-success-action="redirect" 
+							$extra_actions_html .= '<div class="os-context-item os-danger os-delete-confirm"  data-os-confirm-title="' . esc_attr__( 'Delete Service', 'latepoint' ) . '"  data-os-prompt="' . esc_attr__( 'Are you sure you want to remove this service? It will remove all appointments associated with it. You can also change status to disabled if you want to temprorary disable it instead.', 'latepoint' ) . '"
+                            data-os-redirect-to="' . esc_url( OsRouterHelper::build_link( OsRouterHelper::build_route_name( 'services', 'index' ) ) ) . '"
+                            data-os-params="' . esc_attr( OsUtilHelper::build_os_params( [ 'id' => $service->id ], 'destroy_service_' . $service->id ) ) . '"
+                            data-os-success-action="redirect"
                             data-os-action="' . esc_attr( OsRouterHelper::build_route_name( 'services', 'destroy' ) ) . '"><i class="latepoint-icon latepoint-icon-trash-2"></i><span>' . esc_html__( 'Delete', 'latepoint' ) . '</span></div>';
 						}
 						if ( OsRolesHelper::can_user( 'service__edit' ) ) {

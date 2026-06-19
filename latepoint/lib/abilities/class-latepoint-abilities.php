@@ -61,7 +61,7 @@ class LatePointAbilities {
 		wp_register_ability_category(
 			'latepoint',
 			[
-				'label'       => __( 'LatePoint', 'latepoint' ),
+				'label'       => OsSettingsHelper::get_brand_name(),
 				'description' => __( 'Appointment scheduling — bookings, customers, services, and staff.', 'latepoint' ),
 			]
 		);

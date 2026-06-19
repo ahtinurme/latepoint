@@ -54,6 +54,10 @@ class OsSettingsHelper {
 		'currency_symbol_before' => '$',
 	];
 
+	public static function get_brand_name(): string {
+		return apply_filters( 'latepoint_brand_name', LATEPOINT_BRAND_NAME );
+	}
+
 	public static function get_business_logo_url() {
 		$default_logo_url = LATEPOINT_IMAGES_URL . 'logo.png';
 
@@ -883,7 +887,7 @@ class OsSettingsHelper {
 									'os-col-12' => __( 'Full Width', 'latepoint' ),
 									'os-col-6'  => __( 'Half Width', 'latepoint' ),
 								),
-								$default_field['width'] 
+								$default_field['width']
 							); ?>
 						</div>
 					</div>

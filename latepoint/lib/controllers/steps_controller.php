@@ -79,6 +79,7 @@ if ( ! class_exists( 'OsStepsController' ) ) :
 
 			$calendar_settings['earliest_possible_booking'] = OsSettingsHelper::get_earliest_possible_booking_restriction( OsStepsHelper::$booking_object->service_id ?? false );
 			$calendar_settings['latest_possible_booking']   = OsSettingsHelper::get_latest_possible_booking_restriction( OsStepsHelper::$booking_object->service_id ?? false );
+			$calendar_settings['consider_cart_items']       = true;
 
 			$this->format_render(
 				'partials/_monthly_calendar_days',

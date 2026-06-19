@@ -259,6 +259,8 @@ if ( ! class_exists( 'OsBookingsController' ) ) :
 			$this->vars['records_ordered_by_key']       = $order_by['key'];
 			$this->vars['records_ordered_by_direction'] = $order_by['direction'];
 
+			$this->vars['can_bulk_delete'] = OsRolesHelper::can_user_perform_model_action( 'OsBookingModel', 'delete' );
+
 			// OUTPUT CSV IF REQUESTED
 			if ( isset( $this->params['download'] ) && $this->params['download'] == 'csv' ) {
 				$csv_filename = 'all_bookings_' . OsUtilHelper::random_text() . '.csv';

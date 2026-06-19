@@ -10,6 +10,7 @@
 // @codekit-prepend "bin/shared.js";
 // @codekit-prepend "bin/admin/updates.js";
 // @codekit-prepend "bin/admin/main.js";
+// @codekit-prepend "bin/admin/_delete-confirm.js";
 // @codekit-prepend "bin/admin/_agents.js";
 // @codekit-prepend "bin/admin/_customers.js";
 // @codekit-prepend "bin/admin/_customers_import.js";
@@ -43,6 +44,7 @@ jQuery(document).ready(function( $ ) {
   latepoint_init_color_picker();
   latepoint_init_clickable_cells();
   latepoint_init_bookings_bulk();
+  latepoint_init_delete_confirm();
   latepoint_init_input_masks();
   latepoint_init_process_forms();
   latepoint_init_sticky_side_menu();

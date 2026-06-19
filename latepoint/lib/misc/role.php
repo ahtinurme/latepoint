@@ -24,7 +24,7 @@ class Role {
 					$this->wp_role = LATEPOINT_WP_ADMIN_ROLE;
 					break;
 				case LATEPOINT_USER_TYPE_AGENT:
-					$this->name    = __( 'LatePoint Agent', 'latepoint' );
+					$this->name    = apply_filters( 'latepoint_role_display_name', __( 'LatePoint Agent', 'latepoint' ), LATEPOINT_USER_TYPE_AGENT );
 					$this->wp_role = LATEPOINT_WP_AGENT_ROLE;
 					break;
 				case LATEPOINT_USER_TYPE_CUSTOM:
@@ -117,7 +117,7 @@ class Role {
 				$display_name = __( 'Administrator', 'latepoint' );
 				break;
 			case LATEPOINT_USER_TYPE_AGENT:
-				$display_name = __( 'LatePoint Agent', 'latepoint' );
+				$display_name = apply_filters( 'latepoint_role_display_name', __( 'LatePoint Agent', 'latepoint' ), LATEPOINT_USER_TYPE_AGENT );
 				break;
 			case LATEPOINT_USER_TYPE_CUSTOM:
 				$display_name = $this->name;

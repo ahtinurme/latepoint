@@ -270,7 +270,7 @@ class OsRolesHelper {
 
 	public static function register_customer_role() {
 		// Register Customer Role
-		add_role( LATEPOINT_WP_CUSTOMER_ROLE, __( 'LatePoint Customer', 'latepoint' ), array( 'read' => true ) );
+		add_role( LATEPOINT_WP_CUSTOMER_ROLE, apply_filters( 'latepoint_role_display_name', __( 'LatePoint Customer', 'latepoint' ), LATEPOINT_USER_TYPE_CUSTOMER ), array( 'read' => true ) );
 	}
 
 	public static function register_roles_in_wp() {

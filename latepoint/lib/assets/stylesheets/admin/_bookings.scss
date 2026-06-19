@@ -493,19 +493,16 @@
   }
 }
 
-// Custom confirm modal rendered inside the plugin's lightbox.
+// The single "type delete to confirm" modal, rendered inside the plugin's lightbox and used for both
+// single-record and bulk deletes across the plugin
 // Uses LatePoint typography + form variables so it inherits the same look as the rest of the admin.
-.os-bulk-confirm-lightbox {
-  .latepoint-lightbox-content { padding: 0; }
-}
-
-.os-bulk-confirm-modal {
+.os-delete-confirm-modal {
   padding: 28px 28px 24px;
   text-align: center;
   font-family: $body-font-family;
   background-color: $body-bg;
 
-  .os-bulk-confirm-icon {
+  .os-delete-confirm-icon {
     width: 56px;
     height: 56px;
     margin: 0 auto 14px;
@@ -519,21 +516,21 @@
     i { font-size: 26px; line-height: 1; }
   }
 
-  .os-bulk-confirm-title {
+  .os-delete-confirm-title {
     margin: 0 0 8px;
     font-family: $headings-font-family;
     font-size: $headings-font-size-l;
     color: $headings-color;
   }
 
-  .os-bulk-confirm-body {
+  .os-delete-confirm-body {
     margin: 0 0 22px;
     color: $body-color;
     font-size: $font-size-base;
     line-height: 1.5;
   }
 
-  .os-bulk-confirm-prompt {
+  .os-delete-confirm-prompt {
     margin: 0 0 10px;
     color: $body-color;
     font-size: $headings-font-size-xs;
@@ -548,7 +545,7 @@
     }
   }
 
-  .os-bulk-confirm-input {
+  .os-delete-confirm-input {
     display: block;
     width: 100%;
     height: 40px;
@@ -570,12 +567,12 @@
     }
   }
 
-  .os-bulk-confirm-actions {
+  .os-delete-confirm-actions {
     display: flex;
     justify-content: center;
     gap: 10px;
 
-    .os-bulk-confirm-go.is-disabled {
+    .os-delete-confirm-go.is-disabled {
       opacity: .45;
       pointer-events: none;
       cursor: not-allowed;

@@ -134,6 +134,7 @@ class OsInvoicesHelper {
 
 	public static function invoice_document_html( OsInvoiceModel $invoice, bool $show_controls, ?OsTransactionModel $transaction = null ) {
 		$invoice_data = json_decode( $invoice->data, true );
+		$amount_due   = empty( $transaction ) ? $invoice->get_amount_due() : 0;
 		?>
 		<div class="invoice-document status-<?php echo esc_attr( $invoice->status ); ?>" data-invoice-id="<?php echo esc_attr( $invoice->id ); ?>" data-route="<?php echo OsRouterHelper::build_route_name( 'invoices', 'change_status' ); ?>">
 			<?php if ( $show_controls ) { ?>
@@ -175,18 +176,16 @@ class OsInvoicesHelper {
 			<?php } ?>
 			<div class="invoice-document-i">
 				<?php
-				if ( empty( $transaction ) ) {
-					switch ( $invoice->status ) {
-						case LATEPOINT_INVOICE_STATUS_PAID:
-							echo '<div class="invoice-status-paid-label">' . esc_html( self::readable_status( $invoice->status ) ) . '</div>';
-							break;
-						case LATEPOINT_INVOICE_STATUS_DRAFT:
-							echo '<div class="invoice-status-draft-label">' . esc_html( self::readable_status( $invoice->status ) ) . '</div>';
-							break;
-						case LATEPOINT_INVOICE_STATUS_VOID:
-							echo '<div class="invoice-status-voided-label">' . esc_html( self::readable_status( $invoice->status ) ) . '</div>';
-							break;
-					}
+				switch ( $invoice->status ) {
+					case LATEPOINT_INVOICE_STATUS_PAID:
+						echo '<div class="invoice-status-paid-label">' . esc_html( self::readable_status( $invoice->status ) ) . '</div>';
+						break;
+					case LATEPOINT_INVOICE_STATUS_DRAFT:
+						echo '<div class="invoice-status-draft-label">' . esc_html( self::readable_status( $invoice->status ) ) . '</div>';
+						break;
+					case LATEPOINT_INVOICE_STATUS_VOID:
+						echo '<div class="invoice-status-voided-label">' . esc_html( self::readable_status( $invoice->status ) ) . '</div>';
+						break;
 				}
 				?>
 				<div class="invoice-heading">
@@ -250,7 +249,7 @@ class OsInvoicesHelper {
 				<?php if ( empty( $transaction ) ) { ?>
 					<div class="invoice-due-info">
 						<div class="invoice-due-amount">
-							<?php echo esc_html( sprintf( __( '%s due %s', 'latepoint' ), OsMoneyHelper::format_price( $invoice->charge_amount, true, false ), OsTimeHelper::get_readable_date_from_string( $invoice->due_at ) ) ); ?>
+							<?php echo esc_html( sprintf( __( '%s due %s', 'latepoint' ), OsMoneyHelper::format_price( $amount_due, true, false ), OsTimeHelper::get_readable_date_from_string( $invoice->due_at ) ) ); ?>
 						</div>
 						<?php if ( $invoice->status == LATEPOINT_INVOICE_STATUS_OPEN ) { ?>
 							<div class="invoice-due-pay-link-w">
@@ -297,7 +296,7 @@ class OsInvoicesHelper {
 						<?php } ?>
 						<div class="it-row it-row-bold">
 							<div class="it-column"><?php esc_html_e( 'Amount Due', 'latepoint' ); ?></div>
-							<div class="it-column"><?php echo esc_html( OsMoneyHelper::format_price( $invoice->charge_amount, true, false ) ); ?></div>
+							<div class="it-column"><?php echo esc_html( OsMoneyHelper::format_price( $amount_due, true, false ) ); ?></div>
 						</div>
 					<?php } else { ?>
 						<div class="it-row it-row-bold">

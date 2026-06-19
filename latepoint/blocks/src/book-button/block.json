@@ -124,6 +124,9 @@
     },
     "show_locations": {
       "type": "string"
+    },
+    "service_display_mode": {
+      "type": "string"
     }
   },
   "supports": {

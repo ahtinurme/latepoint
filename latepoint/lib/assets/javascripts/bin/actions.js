@@ -101,7 +101,15 @@ jQuery(function( $ ) {
   */
   $('.latepoint').on('click', 'button[data-os-action], a[data-os-action], div[data-os-action], span[data-os-action], tr[data-os-action]', function(e){
     var $this = jQuery(this);
-    if($this.data('os-prompt') && !confirm($this.data('os-prompt'))) return false;
+    if($this.hasClass('os-delete-confirm') && typeof latepoint_delete_confirm_show === 'function'){
+      if(!$this.data('os-delete-approved')){
+        latepoint_delete_confirm_show($this);
+        return false;
+      }
+    }else{
+      if($this.data('os-prompt') && !confirm($this.data('os-prompt'))) return false;
+    }
+    $this.removeData('os-delete-approved');
     var params = $this.data('os-params');
     if($this.data('os-source-of-params')){
       var form_data = latepoint_create_form_data_from_non_form_element($($this.data('os-source-of-params')));

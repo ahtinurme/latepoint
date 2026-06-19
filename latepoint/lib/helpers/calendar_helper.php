@@ -15,6 +15,9 @@ class OsCalendarHelper {
 				<?php if ( $auto_search ) { ?>
 					<div class="os-calendar-searching-info"><?php echo sprintf( esc_html__( 'Searching %s for available dates', 'latepoint' ), '<span></span>' ); ?></div>
 				<?php } ?>
+				<?php $no_availability_message = apply_filters( 'latepoint_no_availability_message', __( 'No appointments are currently available. Please check back later or contact us for assistance.', 'latepoint' ) );
+				?>
+				<div class="os-no-availability-message latepoint-message latepoint-message-info" style="display: none;"><?php echo esc_html( $no_availability_message ); ?></div>
 				<div class="os-calendar-while-searching-wrapper">
 					<?php OsCalendarHelper::generate_calendar_for_datepicker_step( \LatePoint\Misc\BookingRequest::create_from_booking_model( $booking ), $target_date, $calendar_settings ); ?>
 				</div>

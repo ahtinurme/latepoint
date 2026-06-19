@@ -214,7 +214,10 @@ class OsCartModel extends OsModel {
 		foreach ( $this->get_items() as $cart_item ) {
 			$cart_item->delete();
 		}
-		unset( $this->items ); // important to unset, to avoid db queries
+		// Reset the in-memory cache to an empty array instead of unsetting it. If we unset, the next add_item() triggers
+		// get_items() to re-query the DB (which now contains the row just saved by add_item), and the caller then
+		// appends the same item again in memory, producing N+1 items.
+		$this->items = [];
 	}
 
 	/** ?

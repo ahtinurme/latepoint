@@ -3,7 +3,7 @@ Contributors: latepoint
 Tags: appointments, booking, scheduling, events, calendar
 Requires at least: 6.5
 Tested up to: 7.0
-Stable tag: 5.6.1
+Stable tag: 5.6.2
 Requires PHP: 7.4
 License: GPLv3
 License URI: https://www.gnu.org/licenses/gpl-3.0.html
@@ -202,6 +202,24 @@ If you want a modern, effortless way to let your customers book online, give Lat
 3. Make sure to disable caching on your customer cabinet page
 
 == Changelog ==
+
+= 5.6.2 - June 15, 2026 =
+  - New
+    - Added a clear "No Availability" message when a selected service or agent has no bookable dates, making it easier to understand why no dates are available.
+    - Added new options to control which services are displayed during the booking process. You can now choose to show all services, only individual services, or only bundles in booking forms and widgets.
+    - Added White Label support for upcoming premium release, allowing you to replace LatePoint branding throughout the admin area with your own brand identity.
+
+  - Improvements
+    - Added an extra confirmation step when deleting services to help prevent accidental deletions. This is especially important because deleting a service also removes its associated appointments.
+
+  - Fixes
+    - Fixed inconsistent invoice payment information. Invoice pages now show the correct remaining balance as Amount Due, and fully paid invoices are clearly marked as Paid.
+    - Fixed an issue where cancelled Mollie or PayPal payments could cause duplicate items to appear in the booking cart when resuming a booking.
+    - Fixed an issue where time slots already reserved in the cart could still appear available when booking across different calendar months, preventing accidental duplicate bookings.
+    - Fixed an issue where bulk actions could disappear from the Appointments list after filtering, sorting, or navigating between pages. Bulk actions now remain available consistently.
+
+  - Security
+    - Security: Addressed security bugs. Props to WordFence for reporting it.
 
 = 5.6.1 - May 29, 2026 =
   - New

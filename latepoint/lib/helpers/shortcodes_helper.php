@@ -427,25 +427,29 @@ class OsShortcodesHelper {
 	 * @return false[]
 	 */
 	private static function get_default_booking_atts(): array {
-		return [
-			'show_locations'            => false,
-			'show_agents'               => false,
-			'show_services'             => false,
-			'show_service_categories'   => false,
-			'selected_location'         => false,
-			'selected_agent'            => false,
-			'selected_service'          => false,
-			'selected_duration'         => false,
-			'selected_total_attendees'  => false,
-			'selected_service_category' => false,
-			'selected_bundle'           => false,
-			'calendar_start_date'       => false,
-			'selected_start_date'       => false,
-			'selected_start_time'       => false,
-			'hide_side_panel'           => false,
-			'hide_summary'              => false,
-			'source_id'                 => false,
-		];
+		return apply_filters(
+			'latepoint_default_booking_atts',
+			[
+				'show_locations'            => false,
+				'show_agents'               => false,
+				'show_services'             => false,
+				'show_service_categories'   => false,
+				'selected_location'         => false,
+				'selected_agent'            => false,
+				'selected_service'          => false,
+				'selected_duration'         => false,
+				'selected_total_attendees'  => false,
+				'selected_service_category' => false,
+				'selected_bundle'           => false,
+				'calendar_start_date'       => false,
+				'selected_start_date'       => false,
+				'selected_start_time'       => false,
+				'hide_side_panel'           => false,
+				'hide_summary'              => false,
+				'source_id'                 => false,
+				'service_display_mode'      => false,
+			]
+		);
 	}
 
 	private static function generate_data_atts_string_from_atts( array $atts ): string {

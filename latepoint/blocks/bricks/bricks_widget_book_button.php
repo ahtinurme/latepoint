@@ -373,28 +373,32 @@ class Latepoint_Bricks_Widget_Book_Button extends \Bricks\Element {
 	// Render element HTML
 	public function render() {
 
-		$allowed_params = [
-			'caption',
-			'hide_summary',
-			'hide_side_panel',
-			'selected_agent',
-			'selected_service',
-			'selected_bundle',
-			'selected_service_category',
-			'selected_location',
-			'selected_start_date',
-			'selected_start_time',
-			'selected_duration',
-			'selected_total_attendees',
-			'source_id',
-			'calendar_start_date',
-			'show_services',
-			'show_service_categories',
-			'show_agents',
-			'show_locations',
-			'btn_wrapper_classes',
-			'btn_classes'
-		];
+		$allowed_params = apply_filters(
+			'latepoint_book_widget_allowed_params',
+			[
+				'caption',
+				'hide_summary',
+				'hide_side_panel',
+				'selected_agent',
+				'selected_service',
+				'selected_bundle',
+				'selected_service_category',
+				'selected_location',
+				'selected_start_date',
+				'selected_start_time',
+				'selected_duration',
+				'selected_total_attendees',
+				'source_id',
+				'calendar_start_date',
+				'show_services',
+				'show_service_categories',
+				'show_agents',
+				'show_locations',
+				'btn_wrapper_classes',
+				'btn_classes',
+			],
+			'bricks_book_button'
+		);
 		$this->settings['btn_wrapper_classes'] = 'bricks-button-wrapper';
 		$this->settings['btn_classes'] = 'bricks-button bricks-background-primary';
 

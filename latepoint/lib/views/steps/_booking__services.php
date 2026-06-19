@@ -32,11 +32,13 @@ $preselected_bundle = (!empty($presets['selected_bundle'])) ? new OsBundleModel(
 		    'preselected_category'        => $preselected_category,
 		    'preselected_duration'        => $preselected_duration,
 		    'preselected_total_attendees' => $preselected_total_attendees,
+		    'bundles'                     => $bundles,
+		    'service_display_mode'        => $restrictions['service_display_mode'] ?? 'all',
 	    ] );
     }else{
         echo '<div class="os-item-categories-holder os-item-categories-main-parent os-animated-parent">';
         OsBookingHelper::generate_services_list($services);
-        OsBookingHelper::generate_bundles_folder();
+        OsBookingHelper::generate_bundles_folder($bundles, $restrictions);
         echo '</div>';
     }
 

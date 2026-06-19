@@ -658,64 +658,83 @@ class OsBookingHelper {
 	}
 
 
-	public static function generate_bundles_folder(): void {
-		$bundles_model = new OsBundleModel();
-		$bundles       = $bundles_model->should_be_active()->should_not_be_hidden()->get_results_as_models();
+	public static function generate_bundles_folder( ?array $bundles = null, array $restrictions = [] ): void {
+		if ( null === $bundles ) {
+			$bundles_model = new OsBundleModel();
+			$bundles       = $bundles_model->should_be_active()->should_not_be_hidden()->get_results_as_models();
+		}
 
 		if ( $bundles ) {
-			?>
-			<div class="os-item-category-w os-items os-as-rows os-animated-child">
-				<div class="os-item-category-info-w os-item os-animated-self with-plus">
-					<div class="os-item-category-info os-item-i" tabindex="0">
-						<div class="os-item-img-w"><i class="latepoint-icon latepoint-icon-shopping-bag"></i></div>
-						<div class="os-item-name-w">
-							<div class="os-item-name"><?php echo esc_html__( 'Bundle & Save', 'latepoint' ); ?></div>
-						</div>
-						<?php if ( OsSettingsHelper::is_on( 'show_service_categories_count' ) && count( $bundles ) ) { ?>
-							<div class="os-item-child-count">
-								<span><?php echo count( $bundles ); ?></span> <?php esc_html_e( 'Bundles', 'latepoint' ); ?>
-							</div>
-						<?php } ?>
-					</div>
-				</div>
-				<div class="os-bundles os-animated-parent os-items os-as-rows os-selectable-items">
-					<?php
-					foreach ( $bundles as $bundle ) { ?>
-						<div class="os-animated-child os-item os-selectable-item <?php echo ( $bundle->charge_amount ) ? 'os-priced-item' : ''; ?> <?php if ( $bundle->short_description ) {
-							echo 'with-description'; } ?>"
-								tabindex="0"
-								data-item-price="<?php echo esc_attr( $bundle->charge_amount ); ?>"
-								data-priced-item-type="bundle"
-								data-summary-field-name="bundle"
-								data-summary-value="<?php echo esc_attr( $bundle->name ); ?>"
-								data-item-id="<?php echo esc_attr( $bundle->id ); ?>"
-								data-cart-item-item-data-key="bundle_id"
-								data-os-call-func="latepoint_bundle_selected">
-							<div class="os-service-selector os-item-i os-animated-self"
-								 data-bundle-id="<?php echo esc_attr( $bundle->id ); ?>">
-								<span class="os-item-img-w"><i class="latepoint-icon latepoint-icon-shopping-bag"></i></span>
-								<span class="os-item-name-w">
-						<span class="os-item-name"><?php echo esc_html( $bundle->name ); ?></span>
-						<?php if ( $bundle->short_description ) { ?>
-							<span class="os-item-desc"><?php echo wp_kses_post( $bundle->short_description ); ?></span>
-						<?php } ?>
-					  </span>
+			/**
+			 * Whether to skip the "Bundle & Save" folder header and render bundle
+			 * tiles directly (without a collapsible category wrapper).
+			 *
+			 * @param bool  $skip         Whether to skip the folder wrapper. Default false.
+			 * @param array $restrictions Active booking-form restrictions.
+			 *
+			 * @hook latepoint_bundles_folder_skip_wrapper
+			 */
+			$skip_folder_wrapper = (bool) apply_filters( 'latepoint_bundles_folder_skip_wrapper', false, $restrictions );
 
-							<?php if ( $bundle->charge_amount > 0 ) { ?>
-								<span class="os-item-price-w">
+			if ( ! $skip_folder_wrapper ) {
+				?>
+				<div class="os-item-category-w os-items os-as-rows os-animated-child">
+					<div class="os-item-category-info-w os-item os-animated-self with-plus">
+						<div class="os-item-category-info os-item-i" tabindex="0">
+							<div class="os-item-img-w"><i class="latepoint-icon latepoint-icon-shopping-bag"></i></div>
+							<div class="os-item-name-w">
+								<div class="os-item-name"><?php echo esc_html__( 'Bundle & Save', 'latepoint' ); ?></div>
+							</div>
+							<?php if ( OsSettingsHelper::is_on( 'show_service_categories_count' ) && count( $bundles ) ) { ?>
+								<div class="os-item-child-count">
+									<span><?php echo count( $bundles ); ?></span> <?php esc_html_e( 'Bundles', 'latepoint' ); ?>
+								</div>
+							<?php } ?>
+						</div>
+					</div>
+				<?php
+			}
+			?>
+			<div class="os-bundles os-animated-parent os-items os-as-rows os-selectable-items">
+				<?php
+				foreach ( $bundles as $bundle ) { ?>
+					<div class="os-animated-child os-item os-selectable-item <?php echo ( $bundle->charge_amount ) ? 'os-priced-item' : ''; ?> <?php if ( $bundle->short_description ) {
+						echo 'with-description'; } ?>"
+							tabindex="0"
+							data-item-price="<?php echo esc_attr( $bundle->charge_amount ); ?>"
+							data-priced-item-type="bundle"
+							data-summary-field-name="bundle"
+							data-summary-value="<?php echo esc_attr( $bundle->name ); ?>"
+							data-item-id="<?php echo esc_attr( $bundle->id ); ?>"
+							data-cart-item-item-data-key="bundle_id"
+							data-os-call-func="latepoint_bundle_selected">
+						<div class="os-service-selector os-item-i os-animated-self"
+							 data-bundle-id="<?php echo esc_attr( $bundle->id ); ?>">
+							<span class="os-item-img-w"><i class="latepoint-icon latepoint-icon-shopping-bag"></i></span>
+							<span class="os-item-name-w">
+					<span class="os-item-name"><?php echo esc_html( $bundle->name ); ?></span>
+					<?php if ( $bundle->short_description ) { ?>
+						<span class="os-item-desc"><?php echo wp_kses_post( $bundle->short_description ); ?></span>
+					<?php } ?>
+				  </span>
+
+						<?php if ( $bundle->charge_amount > 0 ) { ?>
+							<span class="os-item-price-w">
 				  <span class="os-item-price">
-								<?php echo esc_html( OsMoneyHelper::format_price( $bundle->charge_amount ) ); ?>
+							<?php echo esc_html( OsMoneyHelper::format_price( $bundle->charge_amount ) ); ?>
 				  </span>
 				</span>
-							<?php } ?>
-							</div>
+						<?php } ?>
 						</div>
-						<?php
-					}
-					?>
-				</div>
+					</div>
+					<?php
+				}
+				?>
 			</div>
 			<?php
+			if ( ! $skip_folder_wrapper ) {
+				echo '</div>';
+			}
 		}
 	}
 
@@ -787,6 +806,8 @@ class OsBookingHelper {
 			'show_services_arr'           => false,
 			'preselected_service'         => false,
 			'preselected_category'        => false,
+			'bundles'                     => null,
+			'service_display_mode'        => 'all',
 		];
 		$settings         = array_merge( $default_settings, $settings );
 
@@ -840,6 +861,8 @@ class OsBookingHelper {
 				$services_without_category->where_in( 'id', $settings['show_services_arr'] );
 			}
 			$services_without_category = $services_without_category->where( [ 'category_id' => 0 ] )->should_be_active()->should_not_be_hidden()->get_results_as_models();
+			/** This filter is documented in lib/helpers/steps_helper.php */
+			$services_without_category = apply_filters( 'latepoint_step_services', $services_without_category, $settings['bundles'], [ 'service_display_mode' => $settings['service_display_mode'] ] );
 			if ( $services_without_category ) {
 				OsBookingHelper::generate_services_list( $services_without_category, false );
 			}
@@ -862,6 +885,8 @@ class OsBookingHelper {
 						$services = $category_services;
 					}
 				}
+				/** This filter is documented in lib/helpers/steps_helper.php */
+				$services               = apply_filters( 'latepoint_step_services', $services, $settings['bundles'], [ 'service_display_mode' => $settings['service_display_mode'] ] );
 				$child_categories       = new OsServiceCategoryModel();
 				$count_child_categories = $child_categories->where( [ 'parent_id' => $service_category->id ] )->count();
 				// show only if it has either at least one child category or service
@@ -898,7 +923,14 @@ class OsBookingHelper {
 			}
 		}
 		if ( ! $settings['preselected_category'] && ! $parent_id ) {
-			OsBookingHelper::generate_bundles_folder();
+			$category_bundles = $settings['bundles'];
+			if ( null === $category_bundles ) {
+				$bundles_model    = new OsBundleModel();
+				$category_bundles = $bundles_model->should_be_active()->should_not_be_hidden()->get_results_as_models();
+				/** This filter is documented in lib/helpers/steps_helper.php */
+				$category_bundles = apply_filters( 'latepoint_step_bundles', $category_bundles, [], [ 'service_display_mode' => $settings['service_display_mode'] ] );
+			}
+			OsBookingHelper::generate_bundles_folder( $category_bundles, [ 'service_display_mode' => $settings['service_display_mode'] ] );
 		}
 		if ( ! $settings['preselected_category'] ) {
 			echo '</div>';

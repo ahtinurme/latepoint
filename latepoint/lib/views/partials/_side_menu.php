@@ -6,7 +6,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 <div class="latepoint-side-menu-w side-menu-<?php echo OsSettingsHelper::get_menu_layout_style(); ?>">
 	<div class="side-menu-top-part-w">
 		<a href="<?php echo esc_url(OsRouterHelper::build_link(['dashboard', 'index'])); ?>" class="logo-w">
-			<img src="<?php echo esc_attr(LATEPOINT_IMAGES_URL . 'logo.svg'); ?>" width="20" height="20" alt="LatePoint Dashboard">
+			<img src="<?php echo esc_url( apply_filters( 'latepoint_admin_side_menu_logo_url', LATEPOINT_IMAGES_URL . 'logo.svg' ) ); ?>" width="20" height="20" alt="<?php echo esc_attr( __( 'Dashboard', 'latepoint' ) ); ?>">
 		</a>
         <a href="#" data-route="<?php echo esc_attr(OsRouterHelper::build_route_name('settings', 'set_menu_layout_style')); ?>" data-params="<?php echo esc_attr(OsUtilHelper::build_os_params([], 'set_menu_layout_style')); ?>" class="side-menu-fold-trigger menu-toggler"><i class="latepoint-icon latepoint-icon-menu"></i></a>
         <a href="#" title="<?php esc_attr_e('Menu', 'latepoint'); ?>" class="latepoint-mobile-top-menu-trigger">
@@ -24,7 +24,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 					echo '<li class="menu-spacer"></li>';
 				}
 				continue;
-			} 
+			}
 			$sub_menu_html = '';
 			$is_active = OsRouterHelper::link_has_route($route_name, $menu_item['link']);
 

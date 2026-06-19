@@ -2,7 +2,7 @@
 /**
  * Plugin Name: LatePoint
  * Description: Appointment Scheduling Software for WordPress
- * Version: 5.6.1
+ * Version: 5.6.2
  * Author: LatePoint
  * Author URI: https://latepoint.com
  * Plugin URI: https://latepoint.com
@@ -29,7 +29,7 @@ if ( ! class_exists( 'LatePoint' ) ) :
 		 * LatePoint version.
 		 *
 		 */
-		public $version    = '5.6.1';
+		public $version    = '5.6.2';
 		public $db_version = '2.3.0';
 
 
@@ -113,6 +113,9 @@ if ( ! class_exists( 'LatePoint' ) ) :
 
 			if ( ! defined( 'LATEPOINT_VERSION' ) ) {
 				define( 'LATEPOINT_VERSION', $this->version );
+			}
+			if ( ! defined( 'LATEPOINT_BRAND_NAME' ) ) {
+				define( 'LATEPOINT_BRAND_NAME', 'LatePoint' );
 			}
 			if ( ! defined( 'LATEPOINT_MIN_REQUIRED_PRO_VERSION' ) ) {
 				define( 'LATEPOINT_MIN_REQUIRED_PRO_VERSION', '1.2.5' );
@@ -1362,12 +1365,12 @@ if ( ! class_exists( 'LatePoint' ) ) :
 		function init_menus() {
 			// link for admins
 			add_menu_page(
-				__( 'LatePoint', 'latepoint' ),
-				__( 'LatePoint', 'latepoint' ),
+				OsSettingsHelper::get_brand_name(),
+				OsSettingsHelper::get_brand_name(),
 				OsAuthHelper::get_current_user()->wp_capability,
 				'latepoint',
 				[ $this, 'route_call' ],
-				'none'
+				apply_filters( 'latepoint_admin_menu_icon', 'none' )
 			);
 		}
 
@@ -1375,9 +1378,10 @@ if ( ! class_exists( 'LatePoint' ) ) :
 		function add_latepoint_link_to_admin_bar( $wp_admin_bar ) {
 			if ( OsAuthHelper::get_current_user()->has_backend_access() ) {
 				// build link depending on who is logged in
-				$args = [
+				$admin_bar_label = OsSettingsHelper::get_brand_name();
+				$args            = [
 					'id'    => 'latepoint_top_link',
-					'title' => '<span class="latepoint-icon latepoint-icon-lp-logo" style="margin-right: 7px;"></span><span style="">' . __( 'LatePoint', 'latepoint' ) . '</span>',
+					'title' => '<span class="latepoint-icon latepoint-icon-lp-logo" style="margin-right: 7px;"></span><span style="">' . esc_html( $admin_bar_label ) . '</span>',
 					'href'  => OsRouterHelper::build_link( [ 'dashboard', 'index' ] ),
 					'meta'  => array( 'class' => '' ),
 				];
@@ -1646,9 +1650,11 @@ if ( ! class_exists( 'LatePoint' ) ) :
 
 			wp_localize_script( 'latepoint-main-admin', 'latepoint_helper', $localized_vars );
 
+			// Single shared localize for the delete-confirm modal — used by BOTH the appointments bulk
+			// delete and every single-record delete (services now, others later). Single deletes show the
 			wp_localize_script(
 				'latepoint-main-admin',
-				'latepoint_bookings_bulk_i18n',
+				'latepoint_delete_confirm_i18n',
 				array(
 					'modal_title'             => __( 'Are you sure you want to delete these appointments?', 'latepoint' ),
 					'modal_body_one'          => __( 'You are about to delete 1 appointment. This action cannot be undone.', 'latepoint' ),
@@ -1663,7 +1669,6 @@ if ( ! class_exists( 'LatePoint' ) ) :
 					'error_generic'           => __( 'Something went wrong. Please try again.', 'latepoint' ),
 				)
 			);
-
 
 			$latepoint_css_variables = OsStylesHelper::generate_css_variables();
 			wp_add_inline_style( 'latepoint-main-admin', $latepoint_css_variables );

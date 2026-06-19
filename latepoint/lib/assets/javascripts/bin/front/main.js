@@ -722,7 +722,9 @@ function latepoint_init_monthly_calendar_navigation($booking_form_element = fals
     if (!$booking_form_element) return;
     $booking_form_element.find('.os-month-next-btn').on('click', async function () {
         let $booking_form_element = jQuery(this).closest('.latepoint-booking-form-element');
-        return latepoint_monthly_calendar_load_next_month($booking_form_element);
+        let result = await latepoint_monthly_calendar_load_next_month($booking_form_element);
+        latepoint_datepicker_toggle_no_availability_message($booking_form_element);
+        return result;
     });
     $booking_form_element.find('.os-month-prev-btn').on('click', function () {
         var $booking_form_element = jQuery(this).closest('.latepoint-booking-form-element');
@@ -731,6 +733,7 @@ function latepoint_init_monthly_calendar_navigation($booking_form_element = fals
             latepoint_calendar_set_month_label($booking_form_element);
         }
         latepoint_calendar_show_or_hide_prev_next_buttons($booking_form_element);
+        latepoint_datepicker_toggle_no_availability_message($booking_form_element);
         return false;
     });
 }
@@ -834,6 +837,12 @@ function latepoint_monthly_calendar_day_clicked(event) {
     return false;
 }
 
+// shows the "no availability" message when no loaded month has a day available for booking, hides it otherwise
+function latepoint_datepicker_toggle_no_availability_message($booking_form_element) {
+    let has_available = $booking_form_element.find('.os-day.os-month-current').not('.os-not-available').length > 0;
+    $booking_form_element.find('.os-no-availability-message').toggle(!has_available);
+}
+
 async function latepoint_init_step_datepicker($booking_form_element = false) {
     if (!$booking_form_element) return true;
     latepoint_init_timeslots($booking_form_element);
@@ -863,6 +872,7 @@ async function latepoint_init_step_datepicker($booking_form_element = false) {
                 }
             }
         }
+        latepoint_datepicker_toggle_no_availability_message($booking_form_element);
     }
     $booking_form_element.find('.os-dates-and-times-w').removeClass('is-searching');
     return true;
@@ -2217,6 +2227,7 @@ function latepoint_init_booking_form_by_trigger($trigger) {
     if ($trigger.data('show-services')) restrictions.show_services = $trigger.data('show-services');
     if ($trigger.data('show-agents')) restrictions.show_agents = $trigger.data('show-agents');
     if ($trigger.data('calendar-start-date')) restrictions.calendar_start_date = $trigger.data('calendar-start-date');
+    if ($trigger.data('service-display-mode')) restrictions.service_display_mode = $trigger.data('service-display-mode');
 
     if ($trigger.data('selected-location')) presets.selected_location = $trigger.data('selected-location');
     if ($trigger.data('selected-agent')) presets.selected_agent = $trigger.data('selected-agent');

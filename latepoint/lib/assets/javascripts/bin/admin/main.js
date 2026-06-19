@@ -1174,8 +1174,8 @@ function latepoint_bookings_bulk_sync($table_w){
   var $bar = $table_w.find('.os-bulk-actions-bar');
   $bar.find('.os-bulk-selected-count').text(selected);
   $bar.find('.os-bulk-selected-label').text(selected === 1
-    ? latepoint_bookings_bulk_i18n.selected_label_one
-    : latepoint_bookings_bulk_i18n.selected_label_many);
+    ? latepoint_delete_confirm_i18n.selected_label_one
+    : latepoint_delete_confirm_i18n.selected_label_many);
   $bar.toggleClass('is-active', selected > 0);
 }
 
@@ -1184,51 +1184,6 @@ function latepoint_bookings_bulk_reset($table_w){
   $table_w.find('tbody .os-bulk-row-check').prop('checked', false);
   $table_w.find('.os-bulk-select-all').prop('checked', false).prop('indeterminate', false);
   latepoint_bookings_bulk_sync($table_w);
-}
-
-function latepoint_bookings_bulk_show_confirm($table_w){
-  var ids = latepoint_bookings_bulk_selected_ids($table_w);
-  if(!ids.length) return;
-
-  var i18n = latepoint_bookings_bulk_i18n;
-  var body = (ids.length === 1) ? i18n.modal_body_one : i18n.modal_body_many.replace('%d', ids.length);
-
-  // Build the modal via jQuery DOM methods so every user-supplied string (i18n
-  // values that translators control) is assigned via .text() or .attr(), which
-  // jQuery escapes properly — no risk of attribute break-out or HTML injection.
-  var $modal = jQuery('<div class="os-bulk-confirm-modal" />')
-    .attr('data-confirm-word', i18n.modal_confirm_word);
-
-  $modal.append('<div class="os-bulk-confirm-icon"><i class="latepoint-icon latepoint-icon-trash-2"></i></div>');
-  $modal.append(jQuery('<h3 class="os-bulk-confirm-title" />').text(i18n.modal_title));
-  $modal.append(jQuery('<p class="os-bulk-confirm-body" />').text(body));
-
-  var promptParts = String(i18n.modal_confirm_prompt).split('%s');
-  var $prompt = jQuery('<p class="os-bulk-confirm-prompt" />');
-  $prompt.append(document.createTextNode(promptParts[0] || ''));
-  $prompt.append(jQuery('<strong />').text(i18n.modal_confirm_word));
-  $prompt.append(document.createTextNode(promptParts[1] || ''));
-  $modal.append($prompt);
-
-  $modal.append(
-    jQuery('<input type="text" class="os-bulk-confirm-input" autocomplete="off" spellcheck="false" />')
-      .attr('placeholder', i18n.modal_input_placeholder)
-  );
-
-  var $actions = jQuery('<div class="os-bulk-confirm-actions" />');
-  $actions.append(
-    jQuery('<a href="#" class="latepoint-btn latepoint-btn-grey latepoint-btn-outline os-bulk-confirm-cancel" />')
-      .append(jQuery('<span />').text(i18n.modal_cancel))
-  );
-  $actions.append(
-    jQuery('<a href="#" class="latepoint-btn latepoint-btn-danger os-bulk-confirm-go is-disabled" />')
-      .attr('aria-disabled', 'true')
-      .append(jQuery('<span />').text(i18n.modal_confirm))
-  );
-  $modal.append($actions);
-
-  latepoint_show_data_in_lightbox($modal[0].outerHTML, 'width-500 os-bulk-confirm-lightbox', true);
-  setTimeout(function(){ jQuery('.os-bulk-confirm-lightbox .os-bulk-confirm-input').trigger('focus'); }, 50);
 }
 
 function latepoint_bookings_bulk_run_delete($table_w){
@@ -1242,7 +1197,6 @@ function latepoint_bookings_bulk_run_delete($table_w){
 
   $bar.addClass('os-loading');
   $deleteBtn.addClass('os-loading');
-  jQuery('.os-bulk-confirm-go').addClass('os-loading');
 
   jQuery.ajax({
     type: 'post',
@@ -1257,7 +1211,6 @@ function latepoint_bookings_bulk_run_delete($table_w){
     success: function(response){
       $bar.removeClass('os-loading');
       $deleteBtn.removeClass('os-loading');
-      latepoint_lightbox_close();
       if(!response) return;
       var type = (response.status === latepoint_helper.response_status.success) ? 'success' : 'error';
       latepoint_add_notification(response.message, type);
@@ -1272,8 +1225,7 @@ function latepoint_bookings_bulk_run_delete($table_w){
     error: function(){
       $bar.removeClass('os-loading');
       $deleteBtn.removeClass('os-loading');
-      jQuery('.os-bulk-confirm-go').removeClass('os-loading');
-      latepoint_add_notification(latepoint_bookings_bulk_i18n.error_generic, 'error');
+      latepoint_add_notification(latepoint_delete_confirm_i18n.error_generic, 'error');
     }
   });
 }
@@ -1296,44 +1248,21 @@ function latepoint_init_bookings_bulk(){
   $body.on('click', '.os-bulk-action-delete', function(e){
     e.preventDefault();
     var $table_w = latepoint_bookings_bulk_get_wrapper(jQuery(this));
-    if(!latepoint_bookings_bulk_selected_ids($table_w).length) return;
-    latepoint_bookings_bulk_show_confirm($table_w);
+    var ids = latepoint_bookings_bulk_selected_ids($table_w);
+    if(!ids.length) return;
+    // Open the one shared delete-confirm modal with a dynamic count body; run the bulk delete on confirm.
+    var i18n = latepoint_delete_confirm_i18n;
+    var body = (ids.length === 1) ? i18n.modal_body_one : i18n.modal_body_many.replace('%d', ids.length);
+    latepoint_delete_confirm_show({
+      title: i18n.modal_title,
+      body: body,
+      onConfirm: function(){ latepoint_bookings_bulk_run_delete($table_w); }
+    });
   });
 
   $body.on('click', '.os-bulk-actions-clear', function(e){
     e.preventDefault();
     latepoint_bookings_bulk_reset(latepoint_bookings_bulk_get_wrapper(jQuery(this)));
-  });
-
-  $body.on('click', '.os-bulk-confirm-cancel', function(e){
-    e.preventDefault();
-    latepoint_lightbox_close();
-  });
-
-  $body.on('input keyup paste', '.os-bulk-confirm-input', function(){
-    var $modal = jQuery(this).closest('.os-bulk-confirm-modal');
-    var required = String($modal.data('confirm-word') || 'delete').toLowerCase();
-    var typed = String(jQuery(this).val() || '').trim().toLowerCase();
-    var $go = $modal.find('.os-bulk-confirm-go');
-    if(typed === required){
-      $go.removeClass('is-disabled').attr('aria-disabled', 'false');
-    } else {
-      $go.addClass('is-disabled').attr('aria-disabled', 'true');
-    }
-  });
-
-  $body.on('keydown', '.os-bulk-confirm-input', function(e){
-    if(e.which !== 13) return;
-    e.preventDefault();
-    var $go = jQuery(this).closest('.os-bulk-confirm-modal').find('.os-bulk-confirm-go');
-    if(!$go.hasClass('is-disabled')) $go.trigger('click');
-  });
-
-  $body.on('click', '.os-bulk-confirm-go', function(e){
-    e.preventDefault();
-    var $this = jQuery(this);
-    if($this.hasClass('is-disabled') || $this.hasClass('os-loading')) return;
-    latepoint_bookings_bulk_run_delete(latepoint_bookings_bulk_get_wrapper());
   });
 
   jQuery('.table-with-pagination-w').has('.os-bulk-actions-bar').each(function(){

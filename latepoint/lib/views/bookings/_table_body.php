@@ -5,6 +5,7 @@
 /* @var $agents_list array */
 /* @var $selected_columns array */
 /* @var $ordered_columns array */
+/* @var $can_bulk_delete bool */
 
 if ( ! defined( 'ABSPATH' ) ) {
 	exit; // Exit if accessed directly

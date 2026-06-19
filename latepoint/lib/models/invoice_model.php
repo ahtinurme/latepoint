@@ -93,10 +93,23 @@ class OsInvoiceModel extends OsModel {
 			[
 				'status'     => LATEPOINT_TRANSACTION_STATUS_SUCCEEDED,
 				'invoice_id' => $this->id,
-			] 
+			]
 		)->get_results_as_models();
 
 		return $transactions;
+	}
+
+	public function get_amount_paid(): float {
+		$total = 0;
+		foreach ( $this->get_successful_payments() as $transaction ) {
+			$total += (float) $transaction->amount;
+		}
+
+		return $total;
+	}
+
+	public function get_amount_due(): float {
+		return (float) $this->charge_amount - $this->get_amount_paid();
 	}
 
 

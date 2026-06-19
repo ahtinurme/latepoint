@@ -52,10 +52,13 @@ if ( ! class_exists( 'OsOrdersController' ) ) :
 
 				$order_intent->convert_to_order();
 
-				if ( $order_intent ) {
-					nocache_headers();
-					wp_redirect( $order_intent->get_page_url_with_intent(), 302 );
-				}
+				nocache_headers();
+				// Redirect with the intent key in either outcome, front.js resumes the booking flow at the confirmation
+				// step when convert_to_order succeeded, or at the payment step when it didn't (e.g. cancelled Mollie/PayPal
+				// payment). The "double payment information" issue is fixed at the cart-model layer (see
+				// OsCartModel::clear) without that fix, the resume lightbox showed every cart item twice.
+				wp_redirect( $order_intent->get_page_url_with_intent(), 302 );
+				exit;
 			}
 		}
 
@@ -169,7 +172,7 @@ if ( ! class_exists( 'OsOrdersController' ) ) :
 					array(
 						'status'  => LATEPOINT_STATUS_ERROR,
 						'message' => sprintf( __( 'Error: %s', 'latepoint' ), implode( ', ', $validation_errors ) ),
-					) 
+					)
 				);
 			}
 
@@ -412,7 +415,7 @@ if ( ! class_exists( 'OsOrdersController' ) ) :
 					array(
 						'status'  => $status,
 						'message' => $response_html,
-					) 
+					)
 				);
 			}
 		}
@@ -488,7 +491,7 @@ if ( ! class_exists( 'OsOrdersController' ) ) :
 					array(
 						'status'  => LATEPOINT_STATUS_SUCCESS,
 						'message' => $response_html,
-					) 
+					)
 				);
 			}
 		}
@@ -514,7 +517,7 @@ if ( ! class_exists( 'OsOrdersController' ) ) :
 					array(
 						'status'  => LATEPOINT_STATUS_SUCCESS,
 						'message' => $response_html,
-					) 
+					)
 				);
 			}
 		}
@@ -536,7 +539,7 @@ if ( ! class_exists( 'OsOrdersController' ) ) :
 				array(
 					'status'  => LATEPOINT_STATUS_SUCCESS,
 					'message' => $response_html,
-				) 
+				)
 			);
 		}
 
@@ -567,7 +570,7 @@ if ( ! class_exists( 'OsOrdersController' ) ) :
 				array(
 					'status'  => LATEPOINT_STATUS_SUCCESS,
 					'message' => $response_html,
-				) 
+				)
 			);
 		}
 
@@ -692,7 +695,7 @@ if ( ! class_exists( 'OsOrdersController' ) ) :
 					array(
 						'status'  => $status,
 						'message' => $response_html,
-					) 
+					)
 				);
 			}
 		}
@@ -793,7 +796,7 @@ if ( ! class_exists( 'OsOrdersController' ) ) :
 						];
 						$values_row    = apply_filters( 'latepoint_order_row_for_csv_export', $values_row, $order, $this->params );
 						$orders_data[] = $values_row;
-					}				
+					}
 				}
 
 				$orders_data = apply_filters( 'latepoint_orders_data_for_csv_export', $orders_data, $this->params );
@@ -838,7 +841,7 @@ if ( ! class_exists( 'OsOrdersController' ) ) :
 					'showing_from'  => $this->vars['showing_from'],
 					'showing_to'    => $this->vars['showing_to'],
 					'total_records' => $total_orders,
-				] 
+				]
 			);
 		}
 	}

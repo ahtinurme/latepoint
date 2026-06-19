@@ -140,7 +140,7 @@ class OsBlockHelper {
 				// Adding a new category.
 				$categories[] = [
 					'slug'  => 'latepoint',
-					'title' => 'LatePoint',
+					'title' => OsSettingsHelper::get_brand_name(),
 				];
 				return $categories;
 			}

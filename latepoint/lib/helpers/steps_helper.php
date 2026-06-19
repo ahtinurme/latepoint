@@ -1136,7 +1136,8 @@ class OsStepsHelper {
 		 * @hook latepoint_set_restrictions
 		 *
 		 */
-		return apply_filters( 'latepoint_set_restrictions', self::$restrictions, $restrictions );
+		self::$restrictions = apply_filters( 'latepoint_set_restrictions', self::$restrictions, $restrictions );
+		return self::$restrictions;
 	}
 
 	/**
@@ -1735,6 +1736,30 @@ class OsStepsHelper {
 
 		$services = $services_model->should_be_active()->should_not_be_hidden()->order_by( 'order_number asc' )->get_results_as_models();
 
+		/**
+		 * Filter the list of services shown in the services selection step.
+		 *
+		 * @param OsServiceModel[] $services    The services to display.
+		 * @param OsBundleModel[]  $bundles     The bundles to display (unfiltered at this point).
+		 * @param array            $restrictions The active booking-form restrictions.
+		 *
+		 * @since 5.1.0
+		 * @hook latepoint_step_services
+		 */
+		$services = apply_filters( 'latepoint_step_services', $services, $bundles, self::$restrictions );
+
+		/**
+		 * Filter the list of bundles shown in the services selection step.
+		 *
+		 * @param OsBundleModel[]  $bundles     The bundles to display.
+		 * @param OsServiceModel[] $services    The services to display (already filtered).
+		 * @param array            $restrictions The active booking-form restrictions.
+		 *
+		 * @since 5.1.0
+		 * @hook latepoint_step_bundles
+		 */
+		$bundles = apply_filters( 'latepoint_step_bundles', $bundles, $services, self::$restrictions );
+
 		self::$vars_for_view['show_services_arr']           = $show_services_arr;
 		self::$vars_for_view['show_service_categories_arr'] = $show_service_categories_arr;
 		self::$vars_for_view['preselected_category']        = $preselected_category;
@@ -1961,13 +1986,16 @@ class OsStepsHelper {
 			if ( $customer ) {
 				$is_new_customer   = false;
 				$old_customer_data = $customer->get_data_vars();
-				// When merging by phone and the existing customer has a linked WP user,
-				// do not allow an unauthenticated request to overwrite their identity fields.
-				// Protects email (account takeover via password reset) and name fields (record integrity).
-				if ( 'phone' === $contact_merge && ! empty( $customer->wordpress_user_id ) && ! is_user_logged_in() ) {
-					unset( $sanitized_customer_params['email'] );
+				// In the auth-disabled (guest) flow anyone who knows a
+				// customer's merge contact value can submit the booking form and would
+				// otherwise overwrite that customer's PII. Strip identity fields so the
+				// booking still attaches to the existing record without mutating it.
+				if ( ! is_user_logged_in() ) {
 					unset( $sanitized_customer_params['first_name'] );
 					unset( $sanitized_customer_params['last_name'] );
+					unset( $sanitized_customer_params['email'] );
+					unset( $sanitized_customer_params['phone'] );
+					unset( $sanitized_customer_params['notes'] );
 				}
 			} else {
 				$is_new_customer   = true;

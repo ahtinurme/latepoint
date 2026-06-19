@@ -273,24 +273,28 @@ class Latepoint_Elementor_Widget_Book_Form extends \Elementor\Widget_Base {
 	protected function render(): void {
 		$settings = $this->get_settings_for_display();
 
-		$allowed_params = [
-			'hide_summary',
-			'hide_side_panel',
-			'selected_agent',
-			'selected_service',
-			'selected_service_category',
-			'selected_location',
-			'selected_start_date',
-			'selected_start_time',
-			'selected_duration',
-			'selected_total_attendees',
-			'source_id',
-			'calendar_start_date',
-			'show_services',
-			'show_service_categories',
-			'show_agents',
-			'show_locations',
-		];
+		$allowed_params = apply_filters(
+			'latepoint_book_widget_allowed_params',
+			[
+				'hide_summary',
+				'hide_side_panel',
+				'selected_agent',
+				'selected_service',
+				'selected_service_category',
+				'selected_location',
+				'selected_start_date',
+				'selected_start_time',
+				'selected_duration',
+				'selected_total_attendees',
+				'source_id',
+				'calendar_start_date',
+				'show_services',
+				'show_service_categories',
+				'show_agents',
+				'show_locations',
+			],
+			'elementor_book_form'
+		);
 
 		$params = OsBlockHelper::attributes_to_data_params($settings, $allowed_params);
 		echo do_shortcode('[latepoint_book_form ' . $params . ']');
