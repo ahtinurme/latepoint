@@ -1,0 +1,55 @@
+.latepoint-settings-w {
+	.sub-section-label h3 .wl-section-tooltip {
+		display: inline-flex;
+		align-items: center;
+		justify-content: center;
+		margin-left: 6px;
+		width: 16px;
+		height: 16px;
+		color: #9aa0a6;
+		cursor: help;
+		position: relative;
+		vertical-align: middle;
+
+		i {
+			font-size: 14px;
+			line-height: 1;
+		}
+
+		&:hover {
+			color: #4f46e5;
+
+			&::after {
+				content: attr(data-tooltip);
+				position: absolute;
+				bottom: calc(100% + 8px);
+				left: 50%;
+				transform: translateX(-50%);
+				background: #1f2328;
+				color: #fff;
+				font-size: 12px;
+				font-weight: 400;
+				line-height: 1.4;
+				padding: 8px 10px;
+				border-radius: 6px;
+				width: 240px;
+				white-space: normal;
+				text-align: left;
+				z-index: 10;
+				box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+				pointer-events: none;
+			}
+
+			&::before {
+				content: '';
+				position: absolute;
+				bottom: calc(100% + 2px);
+				left: 50%;
+				transform: translateX(-50%);
+				border: 5px solid transparent;
+				border-top-color: #1f2328;
+				pointer-events: none;
+			}
+		}
+	}
+}
