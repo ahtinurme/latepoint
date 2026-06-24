@@ -23,13 +23,48 @@ add_filter( 'latepoint_installed_addons', function ( $addons ) {
 	return $addons;
 } );
 
-// Render the "Pay with your package" panel only on the payment-method/processor selection
+/** Whether the "pay with package" option is enabled (admin toggle, default on). */
+function latepoint_prepayment_is_enabled(): bool {
+	return ! class_exists( 'OsSettingsHelper' )
+		|| OsSettingsHelper::get_settings_value( 'enable_prepayment_packages', 'on' ) === 'on';
+}
+
+// Admin toggle under LatePoint -> Settings -> General.
+add_action( 'latepoint_settings_general_other_after', function () {
+	if ( ! class_exists( 'OsFormHelper' ) ) {
+		return;
+	}
+	echo OsFormHelper::toggler_field(
+		'settings[enable_prepayment_packages]',
+		__( 'Enable "pay with package"', 'latepoint-prepayment' ),
+		latepoint_prepayment_is_enabled(),
+		false,
+		false,
+		[ 'sub_label' => __( 'Let customers pay for a booking with one of their purchased packages.', 'latepoint-prepayment' ) ]
+	);
+} );
+
+// JS/CSS that move the package option into the payment-method grid (next to the processors).
+add_action( 'wp_enqueue_scripts', 'latepoint_prepayment_enqueue_assets' );
+add_action( 'admin_enqueue_scripts', 'latepoint_prepayment_enqueue_assets' );
+function latepoint_prepayment_enqueue_assets(): void {
+	if ( ! latepoint_prepayment_is_enabled() ) {
+		return;
+	}
+	wp_enqueue_script( 'latepoint-prepayment-front', plugins_url( 'public/javascripts/prepayment-front.js', __FILE__ ), [ 'jquery' ], '1.0.0', true );
+	wp_enqueue_style( 'latepoint-prepayment-front', plugins_url( 'public/stylesheets/prepayment-front.css', __FILE__ ), [], '1.0.0' );
+}
+
+// Render the "Pay with your package" option only on the payment-method/processor selection
 // steps (where you choose how to pay) - not on a processor's own pay screen, so it doesn't
-// linger after Stebby/EveryPay is already selected.
+// linger after Stebby/EveryPay is already selected. The JS then moves it into the grid.
 add_action( 'latepoint_before_step_content', 'latepoint_prepayment_render_on_selection_step' );
 
 // $current_step_code is passed by latepoint_before_step_content; pull the cart from steps.
 function latepoint_prepayment_render_on_selection_step( $current_step_code ): void {
+	if ( ! latepoint_prepayment_is_enabled() ) {
+		return;
+	}
 	if ( ! in_array( $current_step_code, [ 'payment__methods', 'payment__processors' ], true ) || ! class_exists( 'OsStepsHelper' ) ) {
 		return;
 	}
@@ -87,8 +122,11 @@ function latepoint_prepayment_render_panel( $cart ): void {
 		$base_attrs['data-selected-start-time'] = (int) $booking->start_time;
 	}
 
-	echo '<div class="lp-prepayment-panel" style="border:1px solid #e3e6ec;border-radius:10px;padding:16px;margin-bottom:16px;">';
-	echo '<div style="font-weight:600;margin-bottom:10px;">' . esc_html__( 'Pay with your package', 'latepoint-prepayment' ) . '</div>';
+	// Render each package as a LatePoint option tile. The container is hidden; the
+	// front-end script moves the tiles into the payment-method grid so they sit next
+	// to EveryPay/Stebby. data-stebby-context-free os_trigger_booking starts the
+	// native bundle-scheduling flow on click (no charge).
+	echo '<div class="lp-prepayment-tiles" style="display:none;">';
 
 	foreach ( $packages as $package ) {
 		$attrs = $base_attrs + [ 'data-order-item-id' => $package['order_item_id'] ];
@@ -96,12 +134,10 @@ function latepoint_prepayment_render_panel( $cart ): void {
 		foreach ( $attrs as $key => $value ) {
 			$attr_html .= ' ' . $key . '="' . esc_attr( $value ) . '"';
 		}
-		// translators: %1$d remaining sessions, %2$d total sessions
-		$remaining_label = sprintf( esc_html__( '%1$d of %2$d sessions left', 'latepoint-prepayment' ), $package['remaining'], $package['total'] );
-		echo '<div class="os_trigger_booking lp-prepayment-option" role="button" tabindex="0"' . $attr_html
-			. ' style="display:flex;justify-content:space-between;align-items:center;gap:12px;padding:12px 14px;border:1px solid #e3e6ec;border-radius:8px;margin-bottom:8px;cursor:pointer;">';
-		echo '<span style="font-weight:600;">' . esc_html( $package['name'] ) . '</span>';
-		echo '<span style="color:#5a6068;white-space:nowrap;">' . $remaining_label . '</span>';
+		$label = $package['name'] . ' · ' . sprintf( '%d/%d', $package['remaining'], $package['total'] );
+		echo '<div tabindex="0" class="lp-option os_trigger_booking lp-prepayment-tile"' . $attr_html . '>';
+		echo '<div class="lp-option-image-w"><div class="lp-option-image"></div></div>';
+		echo '<div class="lp-option-label">' . esc_html( $label ) . '</div>';
 		echo '</div>';
 	}
 

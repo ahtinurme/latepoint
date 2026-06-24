@@ -138,12 +138,18 @@ if ( ! class_exists( 'OsStebbyHelper' ) ) :
     }
 
     /**
+     * Persists payment-data keys on the intent. Uses the model's own setter so the
+     * cached payment_data_arr stays in sync - update_attributes() alone would leave
+     * a stale cache, so a token stored here would not be seen on a later read in the
+     * same request (e.g. during convert_to_order).
+     *
      * @param OsOrderIntentModel|OsTransactionIntentModel $intent
-     * @param array<string, mixed>                        $data
+     * @param array<string, string>                       $data
      */
     private static function store_payment_data( $intent, array $data ): void {
-      $payment_data = json_decode( $intent->payment_data, true ) ?: [];
-      $intent->update_attributes( [ 'payment_data' => wp_json_encode( array_merge( $payment_data, $data ) ) ] );
+      foreach ( $data as $key => $value ) {
+        $intent->set_payment_data_value( $key, (string) $value );
+      }
     }
 
     /**
