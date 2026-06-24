@@ -314,8 +314,15 @@ if ( ! class_exists( 'OsStebbyHelper' ) ) :
      * @return array<int, array<string, mixed>>
      */
     public static function get_client_tickets( string $token ): array {
+      $client = [ 'context' => OsStebbyApiHelper::get_client_context(), 'value' => $token ];
+
+      // Document exactly which identification (context + value/ID code) we send to
+      // Stebby - the value is the token from the redirect identification flow.
+      OsDebugHelper::log( 'Stebby ticket lookup identification', 'stebby_voucher', [ 'client' => $client ] );
+
       $response = OsStebbyApiHelper::get_tickets( [
-        'client' => [ 'context' => OsStebbyApiHelper::get_client_context(), 'value' => $token ],
+        'client'     => $client,
+        'pagination' => [ 'limit' => 50, 'page' => 1 ],
       ] );
 
       if ( ! $response || empty( $response['tickets'] ) ) {

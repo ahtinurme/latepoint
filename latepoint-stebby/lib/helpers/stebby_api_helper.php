@@ -67,6 +67,12 @@ if ( ! class_exists( 'OsStebbyApiHelper' ) ) :
       $response = wp_remote_request( self::get_base_url() . $path, $args );
 
       if ( is_wp_error( $response ) ) {
+        OsDebugHelper::log( 'Stebby API call (transport error)', 'stebby_api', [
+          'method'   => $method,
+          'path'     => $path,
+          'request'  => $body,
+          'wp_error' => $response->get_error_message(),
+        ] );
         OsDebugHelper::log( 'Stebby API request failed: ' . $response->get_error_message(), 'stebby_api_error', [
           'method' => $method,
           'path'   => $path,
@@ -76,14 +82,25 @@ if ( ! class_exists( 'OsStebbyApiHelper' ) ) :
       }
 
       $status_code  = wp_remote_retrieve_response_code( $response );
-      $decoded_body = json_decode( wp_remote_retrieve_body( $response ), true );
+      $raw_body     = wp_remote_retrieve_body( $response );
+      $decoded_body = json_decode( $raw_body, true );
+      $logged_body  = $decoded_body !== null ? $decoded_body : $raw_body;
+
+      // Full trace of every Stebby request/response, for debugging.
+      OsDebugHelper::log( 'Stebby API call', 'stebby_api', [
+        'method'   => $method,
+        'path'     => $path,
+        'request'  => $body,
+        'status'   => $status_code,
+        'response' => $logged_body,
+      ] );
 
       if ( $status_code < 200 || $status_code >= 300 ) {
         OsDebugHelper::log( 'Stebby API returned an error response', 'stebby_api_error', [
           'method' => $method,
           'path'   => $path,
           'status' => $status_code,
-          'body'   => $decoded_body,
+          'body'   => $logged_body,
         ] );
 
         return false;
