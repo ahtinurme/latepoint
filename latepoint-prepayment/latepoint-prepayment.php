@@ -23,9 +23,20 @@ add_filter( 'latepoint_installed_addons', function ( $addons ) {
 	return $addons;
 } );
 
-// Render the "Pay with your package" panel at the top of the booking payment step.
-// Priority 5 so it appears above the online payment processors.
+// Render the "Pay with your package" panel on the booking payment step. We render it on
+// the payment-method selection step (where the customer/admin picks how to pay) and also
+// on the final pay step as a fallback for when the method step is auto-skipped (single
+// processor). Priority 5 so it appears above the online payment processors.
 add_action( 'latepoint_step_payment__pay_content', 'latepoint_prepayment_render_panel', 5 );
+add_action( 'latepoint_before_step_content', 'latepoint_prepayment_render_on_selection_step' );
+
+// $current_step_code is passed by latepoint_before_step_content; pull the cart from steps.
+function latepoint_prepayment_render_on_selection_step( $current_step_code ): void {
+	if ( $current_step_code !== 'payment__methods' || ! class_exists( 'OsStepsHelper' ) ) {
+		return;
+	}
+	latepoint_prepayment_render_panel( OsStepsHelper::$cart_object ?? null );
+}
 
 function latepoint_prepayment_render_panel( $cart ): void {
 	if ( ! class_exists( 'OsAuthHelper' ) || ! ( $cart instanceof OsCartModel ) ) {
@@ -37,21 +48,27 @@ function latepoint_prepayment_render_panel( $cart ): void {
 		return;
 	}
 
-	// Not logged in: packages belong to a customer account, so prompt to log in.
-	if ( ! OsAuthHelper::is_customer_logged_in() ) {
-		$login_url = class_exists( 'OsSettingsHelper' ) ? OsSettingsHelper::get_customer_login_url() : '';
-		if ( empty( $login_url ) ) {
-			return;
+	// Resolve the customer this order is for. This is the logged-in customer on the public
+	// form, or the customer selected on the order in the admin/backend flow.
+	$customer_id = class_exists( 'OsStepsHelper' ) ? (int) OsStepsHelper::get_customer_object_id() : 0;
+	if ( ! $customer_id ) {
+		// No identified customer yet. On the public form a guest can log in to use a package;
+		// in the backend there's no one to prompt, so render nothing.
+		if ( ! OsAuthHelper::get_current_user()->has_backend_access() && ! OsAuthHelper::is_customer_logged_in() ) {
+			$login_url = class_exists( 'OsSettingsHelper' ) ? OsSettingsHelper::get_customer_login_url() : '';
+			if ( empty( $login_url ) ) {
+				return;
+			}
+			echo '<div class="lp-prepayment-panel" style="border:1px solid #e3e6ec;border-radius:10px;padding:16px;margin-bottom:16px;">';
+			echo '<div style="font-weight:600;margin-bottom:6px;">' . esc_html__( 'Have a package?', 'latepoint-prepayment' ) . '</div>';
+			echo '<p style="margin:0 0 12px;color:#5a6068;">' . esc_html__( 'Log in to pay with one of your purchased packages.', 'latepoint-prepayment' ) . '</p>';
+			echo '<a href="' . esc_url( $login_url ) . '" class="latepoint-btn latepoint-btn-primary">' . esc_html__( 'Log in', 'latepoint-prepayment' ) . '</a>';
+			echo '</div>';
 		}
-		echo '<div class="lp-prepayment-panel" style="border:1px solid #e3e6ec;border-radius:10px;padding:16px;margin-bottom:16px;">';
-		echo '<div style="font-weight:600;margin-bottom:6px;">' . esc_html__( 'Have a package?', 'latepoint-prepayment' ) . '</div>';
-		echo '<p style="margin:0 0 12px;color:#5a6068;">' . esc_html__( 'Log in to pay with one of your purchased packages.', 'latepoint-prepayment' ) . '</p>';
-		echo '<a href="' . esc_url( $login_url ) . '" class="latepoint-btn latepoint-btn-primary">' . esc_html__( 'Log in', 'latepoint-prepayment' ) . '</a>';
-		echo '</div>';
 		return;
 	}
 
-	$packages = latepoint_prepayment_available_packages( (int) OsAuthHelper::get_logged_in_customer_id(), (int) $booking->service_id );
+	$packages = latepoint_prepayment_available_packages( $customer_id, (int) $booking->service_id );
 	if ( ! $packages ) {
 		return;
 	}
