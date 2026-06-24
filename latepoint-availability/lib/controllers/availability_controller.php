@@ -42,7 +42,7 @@ if (!class_exists('OsAvailabilityController')) :
         public function save() {
             $this->check_nonce('save_availability');
 
-            $submitted   = (isset($this->params['availability']) && is_array($this->params['availability'])) ? $this->params['availability'] : [];
+            $submitted      = (isset($this->params['availability']) && is_array($this->params['availability'])) ? $this->params['availability'] : [];
             $default_weekly = $this->weekly_by_day(0);
 
             foreach ($submitted as $agent_id => $dates) {
@@ -51,14 +51,18 @@ if (!class_exists('OsAvailabilityController')) :
                     continue;
                 }
                 $specific_weekly = $this->weekly_by_day($agent_id);
-                foreach ($dates as $date => $times) {
+                foreach ($dates as $date => $data) {
+                    if (empty($data['present'])) {
+                        continue;
+                    }
                     $day = DateTime::createFromFormat('Y-m-d', $date);
                     if (!$day || $day->format('Y-m-d') !== $date) {
                         continue;
                     }
-                    $week_day = (int) $day->format('N');
-                    $baseline = $this->baseline_minutes($specific_weekly, $default_weekly, $week_day);
-                    $this->save_date($agent_id, $date, $week_day, $times['start'] ?? '', $times['end'] ?? '', $baseline);
+                    $week_day      = (int) $day->format('N');
+                    $baseline_set  = $this->periods_to_set($this->baseline_periods($specific_weekly, $default_weekly, $week_day));
+                    $submitted_set = $this->submitted_to_set($data['periods'] ?? []);
+                    $this->save_date($agent_id, $date, $week_day, $submitted_set, $baseline_set);
                 }
             }
 
@@ -70,11 +74,15 @@ if (!class_exists('OsAvailabilityController')) :
         }
 
         /**
-         * Persist an agent's availability for one specific date. We only store a dated
-         * override when it differs from the agent's recurring weekly schedule; matching
-         * the weekly hours removes any override so the date keeps following the schedule.
+         * Persist an agent's availability for one specific date. We store a dated override
+         * only when it differs from the recurring weekly schedule; matching the weekly hours
+         * removes any override so the date keeps following the schedule. An empty override
+         * (no periods) is stored as a single 0/0 row, i.e. an explicit day off for that date.
+         *
+         * @param array<int, array{0:int, 1:int}> $submitted_set sorted active periods
+         * @param array<int, array{0:int, 1:int}> $baseline_set  sorted active weekly periods
          */
-        private function save_date(int $agent_id, string $date, int $week_day, string $start, string $end, ?array $baseline): void {
+        private function save_date(int $agent_id, string $date, int $week_day, array $submitted_set, array $baseline_set): void {
             $existing = (new OsWorkPeriodModel())->where([
                 'agent_id'    => $agent_id,
                 'service_id'  => 0,
@@ -85,12 +93,21 @@ if (!class_exists('OsAvailabilityController')) :
                 $row->delete();
             }
 
-            $submitted = $this->period_minutes($start, $end);
-
-            if ($submitted === $baseline) {
+            if ($this->set_key($submitted_set) === $this->set_key($baseline_set)) {
                 return;
             }
 
+            if (empty($submitted_set)) {
+                $this->insert_period($agent_id, $date, $week_day, 0, 0);
+                return;
+            }
+
+            foreach ($submitted_set as [$start, $end]) {
+                $this->insert_period($agent_id, $date, $week_day, $start, $end);
+            }
+        }
+
+        private function insert_period(int $agent_id, string $date, int $week_day, int $start, int $end): void {
             $period = new OsWorkPeriodModel();
             $period->set_data([
                 'agent_id'    => $agent_id,
@@ -98,15 +115,15 @@ if (!class_exists('OsAvailabilityController')) :
                 'location_id' => 0,
                 'week_day'    => $week_day,
                 'custom_date' => $date,
-                'start_time'  => $submitted ? $submitted[0] : 0,
-                'end_time'    => $submitted ? $submitted[1] : 0,
+                'start_time'  => $start,
+                'end_time'    => $end,
             ]);
             $period->save();
         }
 
         /**
          * @param OsAgentModel[]    $agents
-         * @param array<int, array> $dates  list of ['date' => 'Y-m-d', 'week_day' => int, ...]
+         * @param array<int, array> $dates
          */
         private function build_grid(array $agents, array $dates): array {
             $default_weekly = $this->weekly_by_day(0);
@@ -114,42 +131,16 @@ if (!class_exists('OsAvailabilityController')) :
             foreach ($agents as $agent) {
                 $specific_weekly = $this->weekly_by_day($agent->id);
                 foreach ($dates as $d) {
-                    $custom   = $this->periods_for_date($agent->id, $d['date']);
-                    $baseline = $this->baseline_periods($specific_weekly, $default_weekly, $d['week_day']);
-                    $grid[$agent->id][$d['date']] = $this->build_cell($custom, $baseline);
+                    $custom    = $this->periods_for_date($agent->id, $d['date']);
+                    $inherited = empty($custom);
+                    $source    = $inherited ? $this->baseline_periods($specific_weekly, $default_weekly, $d['week_day']) : $custom;
+                    $grid[$agent->id][$d['date']] = [
+                        'inherited' => $inherited,
+                        'periods'   => $this->periods_to_strings($source),
+                    ];
                 }
             }
             return $grid;
-        }
-
-        /**
-         * @param OsWorkPeriodModel[] $custom    dated periods for this exact date
-         * @param OsWorkPeriodModel[] $baseline  recurring weekly periods for this weekday
-         * @return array{state:string, start:string, end:string, inherited:bool, periods:string[]}
-         */
-        private function build_cell(array $custom, array $baseline): array {
-            $inherited = empty($custom);
-            $source    = $inherited ? $baseline : $custom;
-            $active    = array_values(array_filter($source, fn($p) => $p->start_time != $p->end_time));
-
-            if (count($active) > 1) {
-                return [
-                    'state'     => 'locked',
-                    'start'     => '',
-                    'end'       => '',
-                    'inherited' => $inherited,
-                    'periods'   => array_map(fn($p) => $this->m2hm($p->start_time) . '–' . $this->m2hm($p->end_time), $active),
-                ];
-            }
-
-            $row = $active[0] ?? null;
-            return [
-                'state'     => 'editable',
-                'start'     => $row ? $this->m2hm($row->start_time) : '',
-                'end'       => $row ? $this->m2hm($row->end_time) : '',
-                'inherited' => $inherited,
-                'periods'   => [],
-            ];
         }
 
         /**
@@ -165,16 +156,6 @@ if (!class_exists('OsAvailabilityController')) :
                 return $specific_weekly[$week_day];
             }
             return $default_weekly[$week_day] ?? [];
-        }
-
-        /** @return ?array{0:int, 1:int} weekly start/end minutes, or null for a day off */
-        private function baseline_minutes(array $specific_weekly, array $default_weekly, int $week_day): ?array {
-            $periods = $this->baseline_periods($specific_weekly, $default_weekly, $week_day);
-            $active  = array_values(array_filter($periods, fn($p) => $p->start_time != $p->end_time));
-            if (count($active) !== 1) {
-                return null;
-            }
-            return [(int) $active[0]->start_time, (int) $active[0]->end_time];
         }
 
         /** @return array<int, OsWorkPeriodModel[]> recurring weekly periods grouped by week_day */
@@ -204,6 +185,66 @@ if (!class_exists('OsAvailabilityController')) :
             return is_array($rows) ? $rows : [];
         }
 
+        /**
+         * @param OsWorkPeriodModel[] $periods
+         * @return array<int, array{start:string, end:string}> active periods as HH:MM strings, sorted
+         */
+        private function periods_to_strings(array $periods): array {
+            $out = [];
+            foreach ($this->periods_to_set($periods) as [$start, $end]) {
+                $out[] = ['start' => $this->m2hm($start), 'end' => $this->m2hm($end)];
+            }
+            return $out;
+        }
+
+        /**
+         * @param OsWorkPeriodModel[] $periods
+         * @return array<int, array{0:int, 1:int}> active periods as [start,end] minutes, sorted
+         */
+        private function periods_to_set(array $periods): array {
+            $set = [];
+            foreach ($periods as $p) {
+                if ($p->start_time != $p->end_time) {
+                    $set[] = [(int) $p->start_time, (int) $p->end_time];
+                }
+            }
+            return $this->sort_set($set);
+        }
+
+        /**
+         * @param array $submitted raw [i => ['start' => 'HH:MM', 'end' => 'HH:MM']]
+         * @return array<int, array{0:int, 1:int}> valid periods as [start,end] minutes, sorted, deduped
+         */
+        private function submitted_to_set($submitted): array {
+            if (!is_array($submitted)) {
+                return [];
+            }
+            $set = [];
+            foreach ($submitted as $row) {
+                $start = $this->hm_to_minutes($row['start'] ?? '');
+                $end   = $this->hm_to_minutes($row['end'] ?? '');
+                if ($start === null || $end === null || $start >= $end) {
+                    continue;
+                }
+                $set["{$start}-{$end}"] = [$start, $end];
+            }
+            return $this->sort_set(array_values($set));
+        }
+
+        /**
+         * @param array<int, array{0:int, 1:int}> $set
+         * @return array<int, array{0:int, 1:int}>
+         */
+        private function sort_set(array $set): array {
+            usort($set, fn($a, $b) => $a[0] <=> $b[0] ?: $a[1] <=> $b[1]);
+            return $set;
+        }
+
+        /** @param array<int, array{0:int, 1:int}> $set */
+        private function set_key(array $set): string {
+            return implode(',', array_map(fn($p) => "{$p[0]}-{$p[1]}", $set));
+        }
+
         private function week_monday(string $week_start): DateTime {
             if ($week_start && DateTime::createFromFormat('Y-m-d', $week_start)) {
                 $date = DateTime::createFromFormat('Y-m-d', $week_start);
@@ -231,16 +272,6 @@ if (!class_exists('OsAvailabilityController')) :
 
         private function m2hm(int $minutes): string {
             return sprintf('%02d:%02d', intdiv($minutes, 60), $minutes % 60);
-        }
-
-        /** @return ?array{0:int, 1:int} start/end minutes, or null for a day off / invalid */
-        private function period_minutes(string $start, string $end): ?array {
-            $s = $this->hm_to_minutes($start);
-            $e = $this->hm_to_minutes($end);
-            if ($s === null || $e === null || $s >= $e) {
-                return null;
-            }
-            return [$s, $e];
         }
 
         private function hm_to_minutes(string $value): ?int {

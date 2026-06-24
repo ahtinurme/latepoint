@@ -3,10 +3,9 @@
  * Plugin Name: LatePoint Addon - Availability Overview
  * Description: One week-at-a-glance grid to view and edit every agent's working hours for
  *              specific calendar dates (like Timma's worktimes page), with week navigation.
- *              Adds an "Availability" item to the LatePoint side menu. Editing a date stores
- *              a date-specific override; matching the recurring weekly schedule clears it.
- *              Split-shift days (more than one period) stay read-only and are managed on the
- *              agent's own page.
+ *              Adds an "Availability" item to the LatePoint side menu. Each date can hold
+ *              several periods (split shifts); editing a date stores a date-specific
+ *              override, while matching the recurring weekly schedule clears it.
  * Version:     1.0.0
  * Author:      Yumefit
  * Text Domain: latepoint-availability
