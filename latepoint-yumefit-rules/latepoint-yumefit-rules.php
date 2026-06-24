@@ -8,7 +8,7 @@
  *              purchase (default 2). (3) Auto-applies a percentage discount coupon
  *              for "püsiklient" (loyal) customers, driven by the "Püsiklient?" customer
  *              custom field as the single source of truth.
- * Version:     1.4.0
+ * Version:     1.5.0
  * Author:      Yumefit
  * Text Domain: latepoint
  */
@@ -111,6 +111,50 @@ add_action('latepoint_order_quick_form_price_after_total', 'yumefit_show_package
 add_action('latepoint_order_full_summary_head_info_after', 'yumefit_show_package_expiry');
 function yumefit_show_package_expiry($order): void {
     echo yumefit_package_expiry_html($order);
+}
+
+// Show the customer's packages on the admin customer edit form (LatePoint core has
+// no per-customer package view). Lists each bundle order: name, used/total, valid
+// until, paid status.
+add_action('latepoint_customer_edit_form_after', 'yumefit_show_customer_packages');
+function yumefit_show_customer_packages($customer): void {
+    if (empty($customer->id) || !class_exists('OsOrderModel')) {
+        return;
+    }
+    global $wpdb; $P = $wpdb->prefix;
+    $cancelled = defined('LATEPOINT_BOOKING_STATUS_CANCELLED') ? LATEPOINT_BOOKING_STATUS_CANCELLED : 'cancelled';
+    $rows = $wpdb->get_results($wpdb->prepare(
+        "SELECT o.id order_id, oi.id oi_id, oi.item_data, o.payment_status,
+                (SELECT COUNT(*) FROM {$P}latepoint_bookings b WHERE b.order_item_id = oi.id AND b.status <> %s) used
+         FROM {$P}latepoint_orders o
+         JOIN {$P}latepoint_order_items oi ON oi.order_id = o.id AND oi.variant = 'bundle'
+         WHERE o.customer_id = %d ORDER BY o.created_at DESC",
+        $cancelled, (int) $customer->id
+    ));
+    if (!$rows) {
+        return;
+    }
+    $shared = get_option('yumefit_shared_pool_bundles', []);
+    echo '<div class="white-box"><div class="white-box-header"><div class="os-form-sub-header"><h3>' . esc_html__('Packages', 'latepoint') . '</h3></div></div><div class="white-box-section"><table style="width:100%;border-collapse:collapse;">';
+    foreach ($rows as $r) {
+        $item = json_decode($r->item_data, true);
+        $bundleId = (int) ($item['bundle_id'] ?? 0);
+        $bundle = $bundleId ? new OsBundleModel($bundleId) : null;
+        $name = ($bundle && !empty($bundle->name)) ? $bundle->name : ('Bundle #' . $bundleId);
+        $qty = (is_array($shared) && !empty($shared[$bundleId]))
+            ? (int) $shared[$bundleId]
+            : (int) $wpdb->get_var($wpdb->prepare("SELECT MAX(quantity) FROM {$P}latepoint_bundles_services WHERE bundle_id = %d", $bundleId));
+        $order = new OsOrderModel((int) $r->order_id);
+        $expiry = function_exists('yumefit_bundle_expiry_date') ? yumefit_bundle_expiry_date($order, $bundle) : null;
+        $paid = ($r->payment_status === (defined('LATEPOINT_ORDER_PAYMENT_STATUS_FULLY_PAID') ? LATEPOINT_ORDER_PAYMENT_STATUS_FULLY_PAID : 'fully_paid'));
+        echo '<tr style="border-bottom:1px solid #eee;">'
+            . '<td style="padding:6px 8px 6px 0;">' . esc_html($name) . '</td>'
+            . '<td style="padding:6px 8px;white-space:nowrap;">' . (int) $r->used . ' / ' . $qty . '</td>'
+            . '<td style="padding:6px 8px;white-space:nowrap;color:#6b6b6b;">' . ($expiry ? esc_html__('until', 'latepoint') . ' ' . esc_html($expiry->format('d.m.Y')) : '') . '</td>'
+            . '<td style="padding:6px 0 6px 8px;text-align:right;">' . ($paid ? '✓ ' . esc_html__('paid', 'latepoint') : esc_html(OsOrdersHelper::get_nice_order_payment_status_name($r->payment_status))) . '</td>'
+            . '</tr>';
+    }
+    echo '</table></div></div>';
 }
 /* ===== CUSTOM CODE END (yumefit: package expiry helpers + display) ===== */
 
