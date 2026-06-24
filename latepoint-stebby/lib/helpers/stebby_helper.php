@@ -11,17 +11,16 @@ if ( ! class_exists( 'OsStebbyHelper' ) ) :
    * Registers Stebby as a LatePoint payment processor for both the booking
    * checkout (order intent) and the invoice payment (transaction intent) flows.
    *
-   * Stebby is a redirect processor: the customer identifies themselves through
-   * the Stebby Identification flow, then we list their redeemable tickets and
-   * redeem one. The redeemed ticket's value is deducted from the total; any
-   * remainder is left as a balance due on the order.
+   * Uses the Stebby v3 API: the customer enters their personal ID code on the
+   * payment step, we look up their redeemable tickets (getTickets) and redeem one
+   * (useTicket). The redeemed ticket covers the booked session; any remainder is
+   * left as a balance due on the order.
    */
   class OsStebbyHelper {
 
     public static $processor_code = 'stebby';
 
-    const PAYMENT_DATA_VALUE     = 'stebby_value';
-    const PAYMENT_DATA_REFERENCE = 'stebby_reference';
+    const PAYMENT_DATA_ID_CODE = 'stebby_id_code';
 
     const CONTEXT_BOOKING     = 'booking';
     const CONTEXT_TRANSACTION = 'transaction';
@@ -86,118 +85,6 @@ if ( ! class_exists( 'OsStebbyHelper' ) ) :
 
     /*
      * --------------------------------------------------------------------
-     * Identification (redirect auth)
-     * --------------------------------------------------------------------
-     */
-
-    /**
-     * Starts the Identification flow: asks Stebby for an authorization URL,
-     * stores the polling reference on the intent and returns the URL the
-     * customer is redirected to.
-     *
-     * @param OsOrderIntentModel|OsTransactionIntentModel $intent
-     */
-    public static function start_identification( $intent, string $intent_type ): string {
-      $key_param        = $intent_type === 'transaction_intent' ? 'transaction_intent_key' : 'order_intent_key';
-      $success_redirect = OsRouterHelper::build_admin_post_link( [ 'stebby', 'token_return' ], [ $key_param => $intent->intent_key ] );
-      $cancel_redirect  = add_query_arg( 'stebby_payment_error', '1', self::intent_form_url( $intent, $intent_type ) );
-
-      $response = OsStebbyApiHelper::request_token( $success_redirect, $cancel_redirect );
-      if ( ! $response || empty( $response['redirectUrl'] ) || empty( $response['reference'] ) ) {
-        throw new Exception( OsStebbyApiHelper::get_error_message_from_response( $response ) );
-      }
-
-      self::store_payment_data( $intent, [
-        self::PAYMENT_DATA_VALUE     => '',
-        self::PAYMENT_DATA_REFERENCE => (string) $response['reference'],
-      ] );
-
-      return (string) $response['redirectUrl'];
-    }
-
-    /**
-     * Exchanges the stored request-token reference for the customer's authorized
-     * token and persists it as the client value. Returns '' if not yet usable.
-     *
-     * @param OsOrderIntentModel|OsTransactionIntentModel $intent
-     */
-    public static function exchange_reference_for_token( $intent ): string {
-      $reference = (string) $intent->get_payment_data_value( self::PAYMENT_DATA_REFERENCE );
-      if ( empty( $reference ) ) {
-        return '';
-      }
-
-      $response = OsStebbyApiHelper::get_token( $reference );
-      $token    = is_array( $response ) ? (string) ( $response['token'] ?? '' ) : '';
-
-      if ( ! empty( $token ) ) {
-        self::store_payment_data( $intent, [ self::PAYMENT_DATA_VALUE => $token ] );
-      }
-
-      return $token;
-    }
-
-    /**
-     * Persists payment-data keys on the intent. Uses the model's own setter so the
-     * cached payment_data_arr stays in sync - update_attributes() alone would leave
-     * a stale cache, so a token stored here would not be seen on a later read in the
-     * same request (e.g. during convert_to_order).
-     *
-     * @param OsOrderIntentModel|OsTransactionIntentModel $intent
-     * @param array<string, string>                       $data
-     */
-    private static function store_payment_data( $intent, array $data ): void {
-      foreach ( $data as $key => $value ) {
-        $intent->set_payment_data_value( $key, (string) $value );
-      }
-    }
-
-    /**
-     * @param OsOrderIntentModel|OsTransactionIntentModel $intent
-     */
-    private static function intent_form_url( $intent, string $intent_type ): string {
-      $url = $intent_type === 'transaction_intent' ? ( $intent->order_form_page_url ?? '' ) : ( $intent->booking_form_page_url ?? '' );
-
-      return ! empty( $url ) ? $url : home_url();
-    }
-
-    /**
-     * Interim page shown after returning from Stebby that bounces the customer
-     * back into the booking - either to continue the booking or to the form with
-     * an error flag.
-     */
-    public static function render_redirect_page( string $url, bool $success ): void {
-      nocache_headers();
-      header( 'Content-Type: text/html; charset=utf-8' );
-
-      $title       = $success ? __( 'Stebby confirmed', 'latepoint-addon-stebby' ) : __( 'Stebby was not completed', 'latepoint-addon-stebby' );
-      $description = $success ? __( 'Returning to your booking...', 'latepoint-addon-stebby' ) : __( 'Returning to the booking form...', 'latepoint-addon-stebby' );
-
-      $lang     = substr( get_locale(), 0, 2 );
-      $url_attr = esc_url( $url );
-      $url_json = wp_json_encode( $url );
-      ?>
-<!DOCTYPE html>
-<html lang="<?php echo esc_attr( $lang ); ?>">
-<head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<meta http-equiv="refresh" content="3;url=<?php echo $url_attr; ?>">
-<title><?php echo esc_html( $title ); ?></title>
-</head>
-<body style="font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif;text-align:center;padding:48px 24px;color:#1c1f23;">
-<h1 style="font-size:20px;margin:0 0 8px;"><?php echo esc_html( $title ); ?></h1>
-<p style="color:#5a6068;font-size:14px;"><?php echo esc_html( $description ); ?></p>
-<a href="<?php echo $url_attr; ?>"><?php esc_html_e( 'Click here if you are not redirected automatically.', 'latepoint-addon-stebby' ); ?></a>
-<script>setTimeout(function(){ window.location.replace(<?php echo $url_json; ?>); }, 1500);</script>
-</body>
-</html>
-      <?php
-    }
-
-
-    /*
-     * --------------------------------------------------------------------
      * Charging (ticket redemption)
      * --------------------------------------------------------------------
      */
@@ -218,8 +105,8 @@ if ( ! class_exists( 'OsStebbyHelper' ) ) :
     }
 
     /**
-     * Redeems a Stebby ticket when a transaction intent (invoice payment) is
-     * being converted to a transaction.
+     * Redeems a Stebby ticket when a transaction intent (invoice payment) is being
+     * converted to a transaction.
      *
      * @param array<string, mixed> $result
      *
@@ -234,9 +121,9 @@ if ( ! class_exists( 'OsStebbyHelper' ) ) :
     }
 
     /**
-     * Shared redemption logic for both order intents and transaction intents.
-     * Both model types expose get_payment_data_value(), charge_amount and
-     * add_error() with the same signatures.
+     * Shared redemption logic for both order intents and transaction intents. Both
+     * model types expose get_payment_data_value(), charge_amount and add_error()
+     * with the same signatures.
      *
      * @param array<string, mixed>                        $result
      * @param OsOrderIntentModel|OsTransactionIntentModel $intent
@@ -247,7 +134,7 @@ if ( ! class_exists( 'OsStebbyHelper' ) ) :
       $max_amount = (float) $intent->charge_amount;
 
       try {
-        $charge = self::charge_voucher( $intent->get_payment_data_value( self::PAYMENT_DATA_VALUE ), $max_amount );
+        $charge = self::charge_voucher( $intent, $max_amount );
       } catch ( Exception $e ) {
         $intent->add_error( 'send_to_step', $e->getMessage(), 'payment' );
 
@@ -257,14 +144,12 @@ if ( ! class_exists( 'OsStebbyHelper' ) ) :
         return $result;
       }
 
-      // Ticket covered nothing - let the booking proceed with the full balance
-      // due. No LatePoint transaction is recorded for a zero charge.
       if ( $charge['covered'] <= 0 ) {
         return $result;
       }
 
-      // Record only what the ticket actually covered. The total stays untouched,
-      // so any remainder shows as an outstanding balance.
+      // Record only what the ticket covered. The total stays untouched, so any
+      // remainder shows as an outstanding balance.
       $intent->charge_amount = $charge['covered'];
 
       $result['status']    = LATEPOINT_STATUS_SUCCESS;
@@ -277,21 +162,24 @@ if ( ! class_exists( 'OsStebbyHelper' ) ) :
     }
 
     /**
-     * Redeems the client's first still-redeemable Stebby ticket - it is not tied
-     * to a particular booked service.
+     * Looks up the customer's redeemable tickets by ID code and redeems the first
+     * one. The ticket is not tied to a particular booked service.
+     *
+     * @param OsOrderIntentModel|OsTransactionIntentModel $intent
      *
      * @return array{covered: float, charge_id: string}
      */
-    private static function charge_voucher( string $token, float $max_amount ): array {
-      if ( empty( $token ) ) {
-        throw new Exception( esc_html__( 'Your Stebby identification could not be verified.', 'latepoint-addon-stebby' ) );
+    private static function charge_voucher( $intent, float $max_amount ): array {
+      $id_code = preg_replace( '/\D/', '', (string) $intent->get_payment_data_value( self::PAYMENT_DATA_ID_CODE ) );
+      if ( empty( $id_code ) ) {
+        throw new Exception( esc_html__( 'Please enter your ID code to pay with a Stebby ticket.', 'latepoint-addon-stebby' ) );
       }
 
-      $tickets     = self::get_client_tickets( $token );
+      $tickets     = self::get_client_tickets( $id_code );
       $ticket      = $tickets[0] ?? [];
-      $ticket_code = (string) ( $ticket['code'] ?? '' );
+      $ticket_code = (string) ( $ticket['ticket']['code'] ?? '' );
       if ( empty( $ticket_code ) ) {
-        throw new Exception( esc_html__( 'No redeemable Stebby ticket was found on your account.', 'latepoint-addon-stebby' ) );
+        throw new Exception( esc_html__( 'No redeemable Stebby ticket was found for this ID code.', 'latepoint-addon-stebby' ) );
       }
 
       $use_response = OsStebbyApiHelper::use_ticket( $ticket_code );
@@ -299,39 +187,30 @@ if ( ! class_exists( 'OsStebbyHelper' ) ) :
         throw new Exception( esc_html__( 'The Stebby ticket could not be redeemed. It may already be used or expired.', 'latepoint-addon-stebby' ) );
       }
 
-      $ticket_value = round( (float) ( $ticket['purchasable']['price'] ?? 0 ), 2 );
-
+      // v3 getTickets does not return a ticket price; a ticket pays for the booked
+      // session, so it covers the amount due on this booking.
       return [
-        'covered'   => round( min( $ticket_value, $max_amount ), 2 ),
+        'covered'   => round( $max_amount, 2 ),
         'charge_id' => 'stebby_ticket_' . $ticket_code,
       ];
     }
 
     /**
-     * Lists the identified client's usable (non-expired, unclaimed) Stebby
-     * tickets, using the token obtained from the Identification flow.
+     * Lists the customer's usable (non-expired, unclaimed) Stebby tickets by their
+     * ID code. Returns the `data` array of ticket objects.
      *
      * @return array<int, array<string, mixed>>
      */
-    public static function get_client_tickets( string $token ): array {
-      $client = [ 'context' => OsStebbyApiHelper::get_client_context(), 'value' => $token ];
+    public static function get_client_tickets( string $id_code ): array {
+      $response = OsStebbyApiHelper::get_tickets( [ 'idcode' => $id_code, 'limit' => 50, 'page' => 1 ] );
 
-      // Document exactly which identification (context + value/ID code) we send to
-      // Stebby - the value is the token from the redirect identification flow.
-      OsDebugHelper::log( 'Stebby ticket lookup identification', 'stebby_voucher', [ 'client' => $client ] );
-
-      $response = OsStebbyApiHelper::get_tickets( [
-        'client'     => $client,
-        'pagination' => [ 'limit' => 50, 'page' => 1 ],
-      ] );
-
-      if ( ! $response || empty( $response['tickets'] ) ) {
-        OsDebugHelper::log( 'Stebby returned no usable tickets for the identified client', 'stebby_voucher', [ 'response' => $response ] );
+      if ( ! $response || empty( $response['data'] ) ) {
+        OsDebugHelper::log( 'Stebby returned no usable tickets for the ID code', 'stebby_voucher', [ 'response' => $response ] );
 
         return [];
       }
 
-      return $response['tickets'];
+      return $response['data'];
     }
 
 
@@ -361,10 +240,10 @@ if ( ! class_exists( 'OsStebbyHelper' ) ) :
       ?>
       <div class="lp-payment-method-content lp-stebby-method-content" data-payment-method="<?php echo esc_attr( self::$processor_code ); ?>" data-stebby-context="<?php echo esc_attr( $context ); ?>" style="display: none;">
         <div class="lp-payment-method-content-i">
-          <div class="lp-stebby-redirect-notice">
-            <span class="lp-stebby-redirect-notice-text"><?php esc_html_e( "You'll be redirected to Stebby to log in and confirm.", 'latepoint-addon-stebby' ); ?></span>
+          <div class="lp-stebby-idcode-w os-form-group">
+            <label for="lp-stebby-idcode-<?php echo esc_attr( $context ); ?>"><?php esc_html_e( 'Enter your ID code to pay with a Stebby ticket', 'latepoint-addon-stebby' ); ?></label>
+            <input type="text" id="lp-stebby-idcode-<?php echo esc_attr( $context ); ?>" class="lp-stebby-idcode-input" name="params[stebby_idcode]" inputmode="numeric" autocomplete="off" placeholder="<?php esc_attr_e( 'Personal ID code', 'latepoint-addon-stebby' ); ?>">
           </div>
-          <a href="#" class="lp-stebby-manual-redirect" rel="nofollow" style="display:none;"><?php esc_html_e( 'If you are not redirected automatically, click here to continue to Stebby.', 'latepoint-addon-stebby' ); ?></a>
         </div>
       </div>
       <?php

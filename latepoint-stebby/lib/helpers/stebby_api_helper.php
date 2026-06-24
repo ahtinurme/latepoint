@@ -8,10 +8,12 @@ if ( ! class_exists( 'OsStebbyApiHelper' ) ) :
 
 
   /**
-   * Thin client for the Stebby Cashier API (v4).
+   * Thin client for the Stebby Cashier API v3.
    *
-   * Docs: https://api.stebby.eu/docs
-   * Authentication is done with an `Api-Key` header against the live API.
+   * Docs: https://app.stebby.eu/api
+   * Requests are authenticated with an `Api-Key` header and `Api-Version: 3`
+   * against the live API. v3 identifies the customer directly by their ID code
+   * (no redirect/token flow), which is what ticket redemption needs.
    */
   class OsStebbyApiHelper {
 
@@ -26,16 +28,7 @@ if ( ! class_exists( 'OsStebbyApiHelper' ) ) :
     }
 
     /**
-     * The client identification context. A default Stebby API key is restricted
-     * to the TOKEN context, obtained through the redirect-based Identification
-     * flow (request-token -> customer authorizes -> token).
-     */
-    public static function get_client_context(): string {
-      return 'TOKEN';
-    }
-
-    /**
-     * Performs an authenticated request against the Stebby API.
+     * Performs an authenticated request against the Stebby v3 API.
      *
      * @param array<string, mixed> $body
      *
@@ -55,6 +48,7 @@ if ( ! class_exists( 'OsStebbyApiHelper' ) ) :
         'sslverify' => true,
         'headers'   => [
           'Api-Key'      => $api_key,
+          'Api-Version'  => '3',
           'Content-Type' => 'application/json',
           'Accept'       => 'application/json',
         ],
@@ -113,48 +107,27 @@ if ( ! class_exists( 'OsStebbyApiHelper' ) ) :
      * Extracts a human readable error message out of a Stebby error response.
      */
     public static function get_error_message_from_response( $response ): string {
-      if ( is_array( $response ) && ! empty( $response['errors'][0]['message'] ) ) {
-        return (string) $response['errors'][0]['message'];
+      if ( is_array( $response ) ) {
+        if ( ! empty( $response['errors'][0]['message'] ) ) {
+          return (string) $response['errors'][0]['message'];
+        }
+        if ( ! empty( $response['message'] ) ) {
+          return (string) $response['message'];
+        }
       }
 
       return __( 'Stebby request could not be completed.', 'latepoint-addon-stebby' );
     }
 
     /**
-     * Starts the Identification flow: asks Stebby for a one-time authorization
-     * URL the customer is redirected to. After they authorize, Stebby sends them
-     * to $success_redirect; we then exchange the returned reference for a token.
+     * Lists a client's usable (non-expired, unclaimed) tickets by their ID code.
      *
-     * @return array<string, mixed>|false
-     */
-    public static function request_token( string $success_redirect, string $cancel_redirect ) {
-      return self::request( 'POST', '/api/v4/identify/request-token', [
-        'successRedirect' => $success_redirect,
-        'cancelRedirect'  => $cancel_redirect,
-      ] );
-    }
-
-    /**
-     * Exchanges a request-token reference for the customer's usable token, once
-     * they have authorized it in Stebby. The token is used as client.value with
-     * context TOKEN in ticket lookups.
-     *
-     * @return array<string, mixed>|false
-     */
-    public static function get_token( string $reference ) {
-      return self::request( 'POST', '/api/v4/identify/token/' . rawurlencode( $reference ) );
-    }
-
-    /**
-     * Looks up usable (non-expired, non-claimed) tickets, optionally filtered by
-     * ticket code, client and purchasable code.
-     *
-     * @param array<string, mixed> $filters
+     * @param array<string, mixed> $filters e.g. ['idcode' => '39014022745']
      *
      * @return array<string, mixed>|false
      */
     public static function get_tickets( array $filters ) {
-      return self::request( 'POST', '/api/v4/tickets', $filters );
+      return self::request( 'POST', '/api/getTickets', $filters );
     }
 
     /**
@@ -163,7 +136,7 @@ if ( ! class_exists( 'OsStebbyApiHelper' ) ) :
      * @return array<string, mixed>|false
      */
     public static function use_ticket( string $ticket_code ) {
-      return self::request( 'POST', '/api/v4/tickets/use/' . rawurlencode( $ticket_code ) );
+      return self::request( 'POST', '/api/useTicket', [ 'ticket_code' => $ticket_code ] );
     }
 
   }
