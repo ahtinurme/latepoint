@@ -74,7 +74,7 @@ function packageSize(?string $note): int {
 }
 function findCustomerIdByMeta(string $t): ?int { global $wpdb,$P; $id=$wpdb->get_var($wpdb->prepare("SELECT object_id FROM {$P}latepoint_customer_meta WHERE meta_key='timma_client_id' AND meta_value=%s LIMIT 1",$t)); return $id?(int)$id:null; }
 function findCustomerIdByEmail(string $e): ?int { global $wpdb,$P; if($e==='')return null; $id=$wpdb->get_var($wpdb->prepare("SELECT id FROM {$P}latepoint_customers WHERE LOWER(email)=%s LIMIT 1",strtolower($e))); return $id?(int)$id:null; }
-function findCustomerIdByPhone(string $p): ?int { global $wpdb,$P; $np=normPhone($p); if(strlen($np)<7)return null; $id=$wpdb->get_var($wpdb->prepare("SELECT id FROM {$P}latepoint_customers WHERE REPLACE(REPLACE(REPLACE(phone,' ',''),'+',''),'-','') LIKE %s LIMIT 1",'%'.$wpdb->esc_like(substr($np,-7)))); return $id?(int)$id:null; }
+function findCustomerIdByPhone(string $p): ?int { global $wpdb,$P; $np=normPhone($p); if(strlen($np)<7)return null; if(count(array_unique(str_split($np)))<3)return null; /* junk/placeholder e.g. 00000000, 55555555 */ $id=$wpdb->get_var($wpdb->prepare("SELECT id FROM {$P}latepoint_customers WHERE REPLACE(REPLACE(REPLACE(phone,' ',''),'+',''),'-','') LIKE %s LIMIT 1",'%'.$wpdb->esc_like(substr($np,-7)))); return $id?(int)$id:null; }
 function K(string $name, string $fallback): string { return defined($name) ? constant($name) : $fallback; }
 
 /** Create order -> order_item -> booking (+ invoice/transaction when paid) for one Timma slot. */
