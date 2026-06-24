@@ -1,0 +1,192 @@
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: LatePoint Addon - Stebby\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2026-06-13 10:17+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: \n"
+"Language: \n"
+"Plural-Forms: nplurals=INTEGER; plural=EXPRESSION;\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Loco https://localise.biz/\n"
+"X-Loco-Version: 2.8.5; wp-7.0; php-8.3.31\n"
+"X-Domain: latepoint-addon-stebby"
+
+#. Description of the plugin
+msgid ""
+"Accept LatePoint booking payments through Stebby - customers pay with their "
+"Stebby account using a personal ID code, or redeem a Stebby voucher for a "
+"service they already bought."
+msgstr ""
+
+#: latepoint-addon-stebby.php:134
+msgid "Amount due"
+msgstr ""
+
+#: lib/helpers/stebby_helper.php:669
+msgid "API Keys"
+msgstr ""
+
+#: lib/helpers/stebby_helper.php:639
+msgid "Check Stebby balance"
+msgstr ""
+
+#: lib/helpers/stebby_helper.php:646
+msgid "Check voucher"
+msgstr ""
+
+#. URI of the plugin
+#. Author URI of the plugin
+msgid "https://latepoint.com/"
+msgstr ""
+
+#: lib/helpers/stebby_helper.php:630
+msgid "I already bought this on Stebby (I have a voucher code)"
+msgstr ""
+
+#: lib/controllers/stebby_controller.php:149
+#: lib/controllers/stebby_controller.php:154
+msgid "Invoice not found."
+msgstr ""
+
+#. Author of the plugin
+msgid "LatePoint"
+msgstr ""
+
+#. Name of the plugin
+msgid "LatePoint Addon - Stebby"
+msgstr ""
+
+#: lib/helpers/stebby_helper.php:675
+msgid "Live API Key"
+msgstr ""
+
+#: lib/helpers/stebby_helper.php:147
+msgid ""
+"Map this service to a Stebby purchasable so it can be paid for with Stebby. "
+"Enter the reference code configured for the matching service in your Stebby "
+"Point of Sale."
+msgstr ""
+
+#: lib/controllers/stebby_controller.php:183
+#: lib/controllers/stebby_controller.php:207 lib/helpers/stebby_helper.php:425
+msgid "None of the booked services are available on Stebby."
+msgstr ""
+
+#: lib/helpers/stebby_helper.php:626
+msgid "Pay with my Stebby account"
+msgstr ""
+
+#: lib/helpers/stebby_helper.php:637
+msgid "Personal ID code"
+msgstr ""
+
+#: lib/helpers/stebby_helper.php:466
+msgid "Please enter and verify your Stebby voucher code."
+msgstr ""
+
+#: lib/controllers/stebby_controller.php:179
+msgid "Please enter your personal ID code."
+msgstr ""
+
+#: lib/controllers/stebby_controller.php:203
+msgid "Please enter your voucher code."
+msgstr ""
+
+#: lib/helpers/stebby_helper.php:421
+msgid "Please verify your Stebby account before continuing."
+msgstr ""
+
+#: lib/helpers/stebby_helper.php:712
+msgid "Price"
+msgstr ""
+
+#: lib/helpers/stebby_helper.php:710
+msgid "Reference Code"
+msgstr ""
+
+#: lib/helpers/stebby_helper.php:704
+msgid ""
+"Reference codes available on your Stebby Point of Sale. Enter the matching "
+"code on each LatePoint service."
+msgstr ""
+
+#: lib/helpers/stebby_helper.php:678
+msgid "Sandbox API Key"
+msgstr ""
+
+#: lib/helpers/stebby_helper.php:711
+msgid "Service"
+msgstr ""
+
+#: lib/helpers/stebby_helper.php:80 lib/helpers/stebby_helper.php:81
+#: lib/helpers/stebby_helper.php:91 lib/helpers/stebby_helper.php:92
+#: lib/helpers/stebby_helper.php:146 lib/helpers/stebby_helper.php:165
+msgid "Stebby"
+msgstr ""
+
+#: latepoint-addon-stebby.php:132
+msgid "Stebby account"
+msgstr ""
+
+#: latepoint-addon-stebby.php:135
+msgid "Stebby covers"
+msgstr ""
+
+#: latepoint-addon-stebby.php:137
+msgid ""
+"Stebby covers part of your booking. The remaining amount is due separately."
+msgstr ""
+
+#: lib/helpers/stebby_helper.php:151
+msgid "Stebby Reference Code"
+msgstr ""
+
+#: lib/helpers/stebby_api_helper.php:106
+msgid "Stebby request could not be completed."
+msgstr ""
+
+#: lib/helpers/stebby_helper.php:703
+msgid "Stebby Services"
+msgstr ""
+
+#: lib/helpers/stebby_helper.php:670
+msgid ""
+"The sandbox key is used while LatePoint payments are in test mode, the live "
+"key otherwise."
+msgstr ""
+
+#: lib/helpers/stebby_helper.php:476
+msgid ""
+"The Stebby voucher could not be redeemed. It may already be used or expired."
+msgstr ""
+
+#: lib/helpers/stebby_helper.php:471
+msgid "This Stebby voucher is not valid for the booked services."
+msgstr ""
+
+#: lib/controllers/stebby_controller.php:212
+msgid ""
+"This voucher code is not valid for the booked services, or it has already "
+"been used."
+msgstr ""
+
+#: lib/helpers/stebby_helper.php:644
+msgid "Voucher code"
+msgstr ""
+
+#: latepoint-addon-stebby.php:133
+msgid "Voucher service"
+msgstr ""
+
+#: latepoint-addon-stebby.php:136
+msgid "You pay separately"
+msgstr ""
+
+#: latepoint-addon-stebby.php:138
+msgid "Your booking is fully covered by Stebby."
+msgstr ""

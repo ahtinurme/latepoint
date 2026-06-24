@@ -1,0 +1,59 @@
+/*
+ * EveryPay front-end styles.
+ *
+ * Styles the redirect notice shown on the payment step before the customer is
+ * sent to the EveryPay hosted payment page, plus the manual fallback button
+ * that is revealed if the automatic redirect is blocked.
+ */
+
+.lp-everypay-redirect-notice {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 16px 18px;
+    border: 1px solid #e0e6eb;
+    border-radius: 6px;
+    background-color: #f7f9fc;
+    color: #4a5568;
+    font-size: 14px;
+    line-height: 1.5;
+}
+
+/* Spinner is only shown while the redirect is actually in progress, never as a
+   permanent decoration that makes the idle step look like it is loading. */
+.lp-everypay-redirect-notice.is-redirecting::before {
+    content: "";
+    flex: 0 0 auto;
+    width: 20px;
+    height: 20px;
+    border: 2px solid #c9d3e0;
+    border-top-color: #1d7bff;
+    border-radius: 50%;
+    animation: lp-everypay-spin 0.8s linear infinite;
+}
+
+.lp-everypay-manual-redirect {
+    display: inline-block;
+    margin-top: 14px;
+    padding: 12px 22px;
+    border-radius: 6px;
+    background-color: #1d7bff;
+    color: #fff;
+    font-size: 14px;
+    font-weight: 600;
+    line-height: 1.4;
+    text-align: center;
+    text-decoration: none;
+}
+
+.lp-everypay-manual-redirect:hover,
+.lp-everypay-manual-redirect:focus {
+    background-color: #1769db;
+    color: #fff;
+}
+
+@keyframes lp-everypay-spin {
+    to {
+        transform: rotate(360deg);
+    }
+}

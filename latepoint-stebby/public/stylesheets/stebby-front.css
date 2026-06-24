@@ -1,0 +1,60 @@
+.lp-stebby-method-content .lp-payment-method-content-i {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.lp-stebby-flow-selector {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.lp-stebby-flow-option {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    cursor: pointer;
+    font-size: 14px;
+}
+
+.lp-stebby-flow-option input {
+    margin: 0;
+}
+
+.lp-stebby-redirect-notice {
+    font-size: 14px;
+    color: #5a6068;
+}
+
+.lp-stebby-manual-redirect {
+    align-self: flex-start;
+    font-size: 13px;
+    text-decoration: underline;
+}
+
+.lp-stebby-services-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 13px;
+}
+
+.lp-stebby-services-table th,
+.lp-stebby-services-table td {
+    text-align: left;
+    padding: 6px 10px;
+    border-bottom: 1px solid #eceff2;
+}
+
+.lp-stebby-service-mapping .os-form-sub-header {
+    display: block;
+}
+
+.lp-stebby-service-mapping .os-form-sub-header h3 {
+    margin: 0 0 6px;
+}
+
+.lp-stebby-service-mapping .os-form-sub-description {
+    margin: 0;
+    line-height: 1.5;
+}
