@@ -11,22 +11,18 @@ if ( ! class_exists( 'OsStebbyApiHelper' ) ) :
    * Thin client for the Stebby Cashier API (v4).
    *
    * Docs: https://api.stebby.eu/docs
-   * Authentication is done with an `Api-Key` header. The sandbox and live
-   * environments use different base URLs and different API keys.
+   * Authentication is done with an `Api-Key` header against the live API.
    */
   class OsStebbyApiHelper {
 
     const LIVE_BASE_URL = 'https://api.stebby.eu';
-    const TEST_BASE_URL = 'https://api-sandbox.stebby.eu';
 
     public static function get_base_url(): string {
-      return OsSettingsHelper::is_env_payments_dev() ? self::TEST_BASE_URL : self::LIVE_BASE_URL;
+      return self::LIVE_BASE_URL;
     }
 
     public static function get_api_key(): string {
-      $key = OsSettingsHelper::is_env_payments_dev() ? 'stebby_test_api_key' : 'stebby_api_key';
-
-      return (string) OsSettingsHelper::get_settings_value( $key, '' );
+      return (string) OsSettingsHelper::get_settings_value( 'stebby_api_key', '' );
     }
 
     /**
@@ -124,58 +120,12 @@ if ( ! class_exists( 'OsStebbyApiHelper' ) ) :
     /**
      * Exchanges a request-token reference for the customer's usable token, once
      * they have authorized it in Stebby. The token is used as client.value with
-     * context TOKEN in calculate, purchase and ticket lookups.
+     * context TOKEN in ticket lookups.
      *
      * @return array<string, mixed>|false
      */
     public static function get_token( string $reference ) {
       return self::request( 'POST', '/api/v4/identify/token/' . rawurlencode( $reference ) );
-    }
-
-    /**
-     * Returns API key scopes and the list of services configured for the Point
-     * of Sale. Used on the settings page to help the admin map LatePoint
-     * services to their Stebby reference codes.
-     *
-     * @return array<string, mixed>|false
-     */
-    public static function get_info() {
-      return self::request( 'POST', '/api/v4/info' );
-    }
-
-    /**
-     * Calculates how much of a set of purchasables the client can cover with
-     * their Stebby balance.
-     *
-     * @param array{context: string, value: string} $client
-     * @param array<int, array<string, mixed>>      $purchasables
-     *
-     * @return array<string, mixed>|false
-     */
-    public static function calculate( array $client, array $purchasables ) {
-      return self::request( 'POST', '/api/v4/purchase/calculate', [
-        'client'       => $client,
-        'purchasables' => array_values( $purchasables ),
-      ] );
-    }
-
-    /**
-     * Executes a calculated purchase. Deducts the available Stebby balance from
-     * the client immediately.
-     *
-     * @return array<string, mixed>|false
-     */
-    public static function purchase( int $purchase_reference_id ) {
-      return self::request( 'POST', '/api/v4/purchase/' . $purchase_reference_id );
-    }
-
-    /**
-     * Reverts a finalized purchase (used when a follow-up payment fails).
-     *
-     * @return array<string, mixed>|false
-     */
-    public static function revert_purchase( int $purchase_log_id ) {
-      return self::request( 'POST', '/api/v4/purchase/revert/' . $purchase_log_id );
     }
 
     /**

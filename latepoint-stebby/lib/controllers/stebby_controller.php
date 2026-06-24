@@ -41,8 +41,6 @@ if ( ! class_exists( 'OsStebbyController' ) ) :
         OsStepsHelper::set_required_objects( $this->params );
         $cart = OsStepsHelper::$cart_object;
 
-        $flow = $this->sanitize_flow( $this->params['lp_stebby_flow'] ?? '' );
-
         $booking_form_page_url = $this->params['booking_form_page_url'] ?? OsUtilHelper::get_referrer();
         $order_intent          = OsOrderIntentHelper::create_or_update_order_intent( $cart, OsStepsHelper::$restrictions, OsStepsHelper::$presets, $booking_form_page_url, OsStepsHelper::get_customer_object_id() );
 
@@ -50,8 +48,7 @@ if ( ! class_exists( 'OsStebbyController' ) ) :
           throw new Exception( empty( $order_intent->get_error_messages() ) ? __( 'Booking slot is not available anymore.', 'latepoint-addon-stebby' ) : implode( ', ', $order_intent->get_error_messages() ) );
         }
 
-        $purchasables = OsStebbyHelper::build_purchasables_from_cart( $cart );
-        $redirect_url = OsStebbyHelper::start_identification( $order_intent, 'order_intent', $flow, $purchasables );
+        $redirect_url = OsStebbyHelper::start_identification( $order_intent, 'order_intent' );
 
         $this->send_json( [ 'status' => LATEPOINT_STATUS_SUCCESS, 'redirect_url' => $redirect_url ] );
       } catch ( Exception $e ) {
@@ -62,10 +59,7 @@ if ( ! class_exists( 'OsStebbyController' ) ) :
     public function request_token_for_transaction() {
       try {
         $transaction_intent = $this->load_transaction_intent();
-        $purchasables       = $this->purchasables_for_transaction_intent( $transaction_intent );
-
-        $flow         = $this->sanitize_flow( $this->params['lp_stebby_flow'] ?? '' );
-        $redirect_url = OsStebbyHelper::start_identification( $transaction_intent, 'transaction_intent', $flow, $purchasables );
+        $redirect_url       = OsStebbyHelper::start_identification( $transaction_intent, 'transaction_intent' );
 
         $this->send_json( [ 'status' => LATEPOINT_STATUS_SUCCESS, 'redirect_url' => $redirect_url ] );
       } catch ( Exception $e ) {
@@ -123,20 +117,6 @@ if ( ! class_exists( 'OsStebbyController' ) ) :
      * --------------------------------------------------------------------
      */
 
-    private function sanitize_flow( string $flow ): string {
-      $flow = sanitize_text_field( $flow );
-
-      if ( $flow === OsStebbyHelper::FLOW_ACCOUNT ) {
-        if ( ! OsStebbyHelper::is_account_flow_enabled() ) {
-          throw new Exception( esc_html__( 'Paying from a Stebby balance is currently unavailable. Please redeem a ticket instead.', 'latepoint-addon-stebby' ) );
-        }
-
-        return OsStebbyHelper::FLOW_ACCOUNT;
-      }
-
-      return OsStebbyHelper::FLOW_VOUCHER;
-    }
-
     private function load_transaction_intent(): OsTransactionIntentModel {
       $invoice_access_key = sanitize_text_field( $this->params['key'] ?? '' );
       if ( empty( $invoice_access_key ) ) {
@@ -149,18 +129,6 @@ if ( ! class_exists( 'OsStebbyController' ) ) :
       }
 
       return OsTransactionIntentHelper::create_or_update_transaction_intent( $invoice, $this->params );
-    }
-
-    /**
-     * @return array<int, array<string, mixed>>
-     */
-    private function purchasables_for_transaction_intent( OsTransactionIntentModel $transaction_intent ): array {
-      $order = new OsOrderModel( $transaction_intent->order_id );
-      if ( $order->is_new_record() ) {
-        return [];
-      }
-
-      return OsStebbyHelper::build_purchasables_from_order( $order );
     }
 
   }

@@ -23,16 +23,14 @@ add_filter( 'latepoint_installed_addons', function ( $addons ) {
 	return $addons;
 } );
 
-// Render the "Pay with your package" panel on the booking payment step. We render it on
-// the payment-method selection step (where the customer/admin picks how to pay) and also
-// on the final pay step as a fallback for when the method step is auto-skipped (single
-// processor). Priority 5 so it appears above the online payment processors.
-add_action( 'latepoint_step_payment__pay_content', 'latepoint_prepayment_render_panel', 5 );
+// Render the "Pay with your package" panel only on the payment-method/processor selection
+// steps (where you choose how to pay) - not on a processor's own pay screen, so it doesn't
+// linger after Stebby/EveryPay is already selected.
 add_action( 'latepoint_before_step_content', 'latepoint_prepayment_render_on_selection_step' );
 
 // $current_step_code is passed by latepoint_before_step_content; pull the cart from steps.
 function latepoint_prepayment_render_on_selection_step( $current_step_code ): void {
-	if ( $current_step_code !== 'payment__methods' || ! class_exists( 'OsStepsHelper' ) ) {
+	if ( ! in_array( $current_step_code, [ 'payment__methods', 'payment__processors' ], true ) || ! class_exists( 'OsStepsHelper' ) ) {
 		return;
 	}
 	latepoint_prepayment_render_panel( OsStepsHelper::$cart_object ?? null );
