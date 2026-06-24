@@ -1,19 +1,28 @@
 <?php
 /**
  * @var OsAgentModel[] $agents
- * @var int[]          $weekdays
+ * @var array          $dates       list of ['date','week_day','day_name','day_number']
+ * @var string         $week_start
+ * @var string         $prev_week
+ * @var string         $next_week
  * @var array          $grid
  * @var bool           $saved
  */
 if (!defined('ABSPATH')) {
     exit;
 }
+$prev_link = OsRouterHelper::build_link(['availability', 'index'], ['week_start' => $prev_week]);
+$next_link = OsRouterHelper::build_link(['availability', 'index'], ['week_start' => $next_week]);
 ?>
 <style>
     .av-wrap { padding: 20px; }
+    .av-toolbar { display: flex; align-items: center; gap: 12px; margin-bottom: 16px; }
+    .av-toolbar .av-range { font-weight: 600; font-size: 15px; }
     .av-table { border-collapse: collapse; width: 100%; background: #fff; }
     .av-table th, .av-table td { border: 1px solid #e6e9f0; padding: 8px 10px; text-align: center; vertical-align: middle; }
     .av-table thead th { background: #f7f8fc; font-weight: 600; }
+    .av-table thead th small { display: block; font-weight: 400; color: #6b7280; }
+    .av-table thead th.av-today { background: #eef3ff; }
     .av-table td.av-agent, .av-table th.av-agent { text-align: left; white-space: nowrap; font-weight: 600; position: sticky; left: 0; background: #fff; z-index: 1; }
     .av-cell { display: flex; align-items: center; justify-content: center; gap: 4px; }
     .av-cell input[type="time"] { width: 92px; border: 1px solid #d5d9e3; border-radius: 6px; padding: 4px 6px; }
@@ -31,16 +40,25 @@ if (!defined('ABSPATH')) {
         <div class="av-notice"><?php esc_html_e('Availability saved.', 'latepoint'); ?></div>
     <?php } ?>
 
+    <div class="av-toolbar">
+        <a href="<?php echo esc_url($prev_link); ?>" class="latepoint-btn latepoint-btn-outline latepoint-btn-grey"><i class="latepoint-icon latepoint-icon-chevron-left"></i></a>
+        <span class="av-range"><?php echo esc_html($dates[0]['day_number'] . ' – ' . $dates[6]['day_number']); ?></span>
+        <a href="<?php echo esc_url($next_link); ?>" class="latepoint-btn latepoint-btn-outline latepoint-btn-grey"><i class="latepoint-icon latepoint-icon-chevron-right"></i></a>
+    </div>
+
     <p class="av-hint">
-        <?php esc_html_e('Set each agent\'s weekly working hours. Leave a day empty for a day off. Dashed values are inherited from the default schedule and become the agent\'s own once saved.', 'latepoint'); ?>
+        <?php esc_html_e('Set each agent\'s working hours for these specific dates. Leave a day empty for a day off. Dashed values follow the recurring weekly schedule; edit them to create a date-specific override.', 'latepoint'); ?>
     </p>
 
-    <?php if (empty($agents)) { ?>
+    <?php
+    $today = OsTimeHelper::today_date();
+    if (empty($agents)) { ?>
         <p><?php esc_html_e('No active agents found.', 'latepoint'); ?></p>
     <?php } else { ?>
         <form method="post" action="<?php echo esc_url(admin_url('admin-post.php')); ?>">
             <input type="hidden" name="action" value="latepoint_route_call">
             <input type="hidden" name="route_name" value="<?php echo esc_attr(OsRouterHelper::build_route_name('availability', 'save')); ?>">
+            <input type="hidden" name="week_start" value="<?php echo esc_attr($week_start); ?>">
             <?php wp_nonce_field('save_availability'); ?>
 
             <div style="overflow-x:auto;">
@@ -48,8 +66,11 @@ if (!defined('ABSPATH')) {
                     <thead>
                         <tr>
                             <th class="av-agent"><?php esc_html_e('Agent', 'latepoint'); ?></th>
-                            <?php foreach ($weekdays as $day) { ?>
-                                <th><?php echo esc_html(OsBookingHelper::get_weekday_name_by_number($day, true)); ?></th>
+                            <?php foreach ($dates as $d) { ?>
+                                <th class="<?php echo $d['date'] === $today ? 'av-today' : ''; ?>">
+                                    <?php echo esc_html($d['day_name']); ?>
+                                    <small><?php echo esc_html($d['day_number']); ?></small>
+                                </th>
                             <?php } ?>
                         </tr>
                     </thead>
@@ -57,21 +78,21 @@ if (!defined('ABSPATH')) {
                         <?php foreach ($agents as $agent) { ?>
                             <tr>
                                 <td class="av-agent"><?php echo esc_html($agent->full_name); ?></td>
-                                <?php foreach ($weekdays as $day) {
-                                    $cell = $grid[$agent->id][$day]; ?>
+                                <?php foreach ($dates as $d) {
+                                    $cell = $grid[$agent->id][$d['date']]; ?>
                                     <td>
                                         <?php if ($cell['state'] === 'locked') { ?>
                                             <div class="av-locked">
                                                 <?php foreach ($cell['periods'] as $p) {
                                                     echo esc_html($p) . '<br>';
                                                 } ?>
-                                                <a href="<?php echo esc_url(OsRouterHelper::build_link(['agents', 'edit'], ['id' => $agent->id])); ?>"><?php esc_html_e('edit on agent page', 'latepoint'); ?></a>
+                                                <a href="<?php echo esc_url(OsRouterHelper::build_link(['agents', 'edit_form'], ['id' => $agent->id])); ?>"><?php esc_html_e('edit on agent page', 'latepoint'); ?></a>
                                             </div>
                                         <?php } else { ?>
                                             <div class="av-cell <?php echo $cell['inherited'] ? 'av-inherited' : ''; ?>">
-                                                <input type="time" name="availability[<?php echo (int) $agent->id; ?>][<?php echo (int) $day; ?>][start]" value="<?php echo esc_attr($cell['start']); ?>">
+                                                <input type="time" name="availability[<?php echo (int) $agent->id; ?>][<?php echo esc_attr($d['date']); ?>][start]" value="<?php echo esc_attr($cell['start']); ?>">
                                                 <span class="av-dash">–</span>
-                                                <input type="time" name="availability[<?php echo (int) $agent->id; ?>][<?php echo (int) $day; ?>][end]" value="<?php echo esc_attr($cell['end']); ?>">
+                                                <input type="time" name="availability[<?php echo (int) $agent->id; ?>][<?php echo esc_attr($d['date']); ?>][end]" value="<?php echo esc_attr($cell['end']); ?>">
                                             </div>
                                         <?php } ?>
                                     </td>
