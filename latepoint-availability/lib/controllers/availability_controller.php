@@ -63,7 +63,7 @@ if (!class_exists('OsAvailabilityController')) :
             }
 
             wp_safe_redirect(OsRouterHelper::build_link(['availability', 'index'], [
-                'week_start' => OsRouterHelper::get_request_param('week_start', ''),
+                'week_start' => $this->params['week_start'] ?? '',
                 'saved'      => 1,
             ]));
             exit;

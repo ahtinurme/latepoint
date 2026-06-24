@@ -58,8 +58,8 @@ $next_link = OsRouterHelper::build_link(['availability', 'index'], ['week_start'
         <form method="post" action="<?php echo esc_url(admin_url('admin-post.php')); ?>">
             <input type="hidden" name="action" value="latepoint_route_call">
             <input type="hidden" name="route_name" value="<?php echo esc_attr(OsRouterHelper::build_route_name('availability', 'save')); ?>">
-            <input type="hidden" name="week_start" value="<?php echo esc_attr($week_start); ?>">
-            <?php wp_nonce_field('save_availability'); ?>
+            <input type="hidden" name="params[week_start]" value="<?php echo esc_attr($week_start); ?>">
+            <input type="hidden" name="params[_wpnonce]" value="<?php echo esc_attr(wp_create_nonce('save_availability')); ?>">
 
             <div style="overflow-x:auto;">
                 <table class="av-table">
@@ -90,9 +90,9 @@ $next_link = OsRouterHelper::build_link(['availability', 'index'], ['week_start'
                                             </div>
                                         <?php } else { ?>
                                             <div class="av-cell <?php echo $cell['inherited'] ? 'av-inherited' : ''; ?>">
-                                                <input type="time" name="availability[<?php echo (int) $agent->id; ?>][<?php echo esc_attr($d['date']); ?>][start]" value="<?php echo esc_attr($cell['start']); ?>">
+                                                <input type="time" name="params[availability][<?php echo (int) $agent->id; ?>][<?php echo esc_attr($d['date']); ?>][start]" value="<?php echo esc_attr($cell['start']); ?>">
                                                 <span class="av-dash">–</span>
-                                                <input type="time" name="availability[<?php echo (int) $agent->id; ?>][<?php echo esc_attr($d['date']); ?>][end]" value="<?php echo esc_attr($cell['end']); ?>">
+                                                <input type="time" name="params[availability][<?php echo (int) $agent->id; ?>][<?php echo esc_attr($d['date']); ?>][end]" value="<?php echo esc_attr($cell['end']); ?>">
                                             </div>
                                         <?php } ?>
                                     </td>
@@ -109,3 +109,15 @@ $next_link = OsRouterHelper::build_link(['availability', 'index'], ['week_start'
         </form>
     <?php } ?>
 </div>
+
+<script>
+    // ponytail: seed an empty time field to the current hour at :00 so the picker
+    // starts on a whole hour; any minute (e.g. 14:36) is still selectable after.
+    document.querySelectorAll('.av-cell input[type="time"]').forEach(function (input) {
+        input.addEventListener('focus', function () {
+            if (!input.value) {
+                input.value = String(new Date().getHours()).padStart(2, '0') + ':00';
+            }
+        });
+    });
+</script>
