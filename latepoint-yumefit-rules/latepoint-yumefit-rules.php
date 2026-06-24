@@ -8,7 +8,7 @@
  *              purchase (default 2). (3) Auto-applies a percentage discount coupon
  *              for "püsiklient" (loyal) customers, driven by the "Püsiklient?" customer
  *              custom field as the single source of truth.
- * Version:     1.5.0
+ * Version:     1.6.0
  * Author:      Yumefit
  * Text Domain: latepoint
  */
@@ -115,7 +115,9 @@ function yumefit_show_package_expiry($order): void {
 
 // Show the customer's packages on the admin customer edit form (LatePoint core has
 // no per-customer package view). Lists each bundle order: name, used/total, valid
-// until, paid status.
+// until, paid status. The "Add package" button opens LatePoint's native new-order
+// side panel pre-filled with this customer, where any admin/agent picks the bundle
+// and marks it paid — so we reuse core order creation instead of replicating it.
 add_action('latepoint_customer_edit_form_after', 'yumefit_show_customer_packages');
 function yumefit_show_customer_packages($customer): void {
     if (empty($customer->id) || !class_exists('OsOrderModel')) {
@@ -131,11 +133,20 @@ function yumefit_show_customer_packages($customer): void {
          WHERE o.customer_id = %d ORDER BY o.created_at DESC",
         $cancelled, (int) $customer->id
     ));
+
+    $add_btn = class_exists('OsOrdersHelper')
+        ? '<a href="#" ' . OsOrdersHelper::quick_order_btn_html(false, ['customer_id' => (int) $customer->id]) . ' class="latepoint-btn latepoint-btn-primary"><i class="latepoint-icon latepoint-icon-plus"></i><span>' . esc_html__('Add package', 'latepoint') . '</span></a>'
+        : '';
+
+    echo '<div class="white-box"><div class="white-box-header"><div class="os-form-sub-header"><h3>' . esc_html__('Packages', 'latepoint') . '</h3></div>' . $add_btn . '</div>';
+
     if (!$rows) {
+        echo '<div class="white-box-section"><p style="margin:0;color:#6b6b6b;">' . esc_html__('No packages yet.', 'latepoint') . '</p></div></div>';
         return;
     }
+
     $shared = get_option('yumefit_shared_pool_bundles', []);
-    echo '<div class="white-box"><div class="white-box-header"><div class="os-form-sub-header"><h3>' . esc_html__('Packages', 'latepoint') . '</h3></div></div><div class="white-box-section"><table style="width:100%;border-collapse:collapse;">';
+    echo '<div class="white-box-section"><table style="width:100%;border-collapse:collapse;">';
     foreach ($rows as $r) {
         $item = json_decode($r->item_data, true);
         $bundleId = (int) ($item['bundle_id'] ?? 0);
