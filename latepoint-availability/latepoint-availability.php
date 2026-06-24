@@ -1,6 +1,6 @@
 <?php
 /**
- * Plugin Name: LatePoint Availability Overview
+ * Plugin Name: LatePoint Addon - Availability Overview
  * Description: One week-at-a-glance grid to view and edit every agent's working hours for
  *              specific calendar dates (like Timma's worktimes page), with week navigation.
  *              Adds an "Availability" item to the LatePoint side menu. Editing a date stores
@@ -9,7 +9,7 @@
  *              agent's own page.
  * Version:     1.0.0
  * Author:      Yumefit
- * Text Domain: latepoint
+ * Text Domain: latepoint-availability
  * Requires Plugins: latepoint
  */
 
@@ -27,7 +27,7 @@ add_filter('latepoint_side_menu', function ($menus) {
     }
     $menus[] = [
         'id'    => 'availability',
-        'label' => __('Availability', 'latepoint'),
+        'label' => __('Availability', 'latepoint-availability'),
         'icon'  => 'latepoint-icon latepoint-icon-clock',
         'link'  => OsRouterHelper::build_link(['availability', 'index']),
     ];

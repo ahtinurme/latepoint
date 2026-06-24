@@ -37,7 +37,7 @@ $next_link = OsRouterHelper::build_link(['availability', 'index'], ['week_start'
 
 <div class="av-wrap">
     <?php if ($saved) { ?>
-        <div class="av-notice"><?php esc_html_e('Availability saved.', 'latepoint'); ?></div>
+        <div class="av-notice"><?php esc_html_e('Availability saved.', 'latepoint-availability'); ?></div>
     <?php } ?>
 
     <div class="av-toolbar">
@@ -47,13 +47,13 @@ $next_link = OsRouterHelper::build_link(['availability', 'index'], ['week_start'
     </div>
 
     <p class="av-hint">
-        <?php esc_html_e('Set each agent\'s working hours for these specific dates. Leave a day empty for a day off. Dashed values follow the recurring weekly schedule; edit them to create a date-specific override.', 'latepoint'); ?>
+        <?php esc_html_e('Set each agent\'s working hours for these specific dates. Leave a day empty for a day off. Dashed values follow the recurring weekly schedule; edit them to create a date-specific override.', 'latepoint-availability'); ?>
     </p>
 
     <?php
     $today = OsTimeHelper::today_date();
     if (empty($agents)) { ?>
-        <p><?php esc_html_e('No active agents found.', 'latepoint'); ?></p>
+        <p><?php esc_html_e('No active agents found.', 'latepoint-availability'); ?></p>
     <?php } else { ?>
         <form method="post" action="<?php echo esc_url(admin_url('admin-post.php')); ?>">
             <input type="hidden" name="action" value="latepoint_route_call">
@@ -65,7 +65,7 @@ $next_link = OsRouterHelper::build_link(['availability', 'index'], ['week_start'
                 <table class="av-table">
                     <thead>
                         <tr>
-                            <th class="av-agent"><?php esc_html_e('Agent', 'latepoint'); ?></th>
+                            <th class="av-agent"><?php esc_html_e('Agent', 'latepoint-availability'); ?></th>
                             <?php foreach ($dates as $d) { ?>
                                 <th class="<?php echo $d['date'] === $today ? 'av-today' : ''; ?>">
                                     <?php echo esc_html($d['day_name']); ?>
@@ -86,7 +86,7 @@ $next_link = OsRouterHelper::build_link(['availability', 'index'], ['week_start'
                                                 <?php foreach ($cell['periods'] as $p) {
                                                     echo esc_html($p) . '<br>';
                                                 } ?>
-                                                <a href="<?php echo esc_url(OsRouterHelper::build_link(['agents', 'edit_form'], ['id' => $agent->id])); ?>"><?php esc_html_e('edit on agent page', 'latepoint'); ?></a>
+                                                <a href="<?php echo esc_url(OsRouterHelper::build_link(['agents', 'edit_form'], ['id' => $agent->id])); ?>"><?php esc_html_e('edit on agent page', 'latepoint-availability'); ?></a>
                                             </div>
                                         <?php } else { ?>
                                             <div class="av-cell <?php echo $cell['inherited'] ? 'av-inherited' : ''; ?>">
@@ -104,7 +104,7 @@ $next_link = OsRouterHelper::build_link(['availability', 'index'], ['week_start'
             </div>
 
             <div class="av-actions">
-                <button type="submit" class="latepoint-btn latepoint-btn-primary"><?php esc_html_e('Save Availability', 'latepoint'); ?></button>
+                <button type="submit" class="latepoint-btn latepoint-btn-primary"><?php esc_html_e('Save Availability', 'latepoint-availability'); ?></button>
             </div>
         </form>
     <?php } ?>

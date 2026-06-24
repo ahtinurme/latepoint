@@ -11,9 +11,9 @@ if (!class_exists('OsAvailabilityController')) :
         public function __construct() {
             parent::__construct();
             $this->views_folder          = plugin_dir_path(__FILE__) . '../views/availability/';
-            $this->vars['page_header']   = __('Agent Availability', 'latepoint');
+            $this->vars['page_header']   = __('Agent Availability', 'latepoint-availability');
             $this->vars['breadcrumbs'][] = [
-                'label' => __('Availability', 'latepoint'),
+                'label' => __('Availability', 'latepoint-availability'),
                 'link'  => false,
             ];
         }

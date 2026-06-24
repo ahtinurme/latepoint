@@ -10,7 +10,7 @@
  *              from the booking form instead of the cabinet.
  * Version:     1.0.0
  * Author:      Yumefit
- * Text Domain: latepoint
+ * Text Domain: latepoint-prepayment
  */
 
 if ( ! defined( 'ABSPATH' ) ) {
@@ -44,9 +44,9 @@ function latepoint_prepayment_render_panel( $cart ): void {
 			return;
 		}
 		echo '<div class="lp-prepayment-panel" style="border:1px solid #e3e6ec;border-radius:10px;padding:16px;margin-bottom:16px;">';
-		echo '<div style="font-weight:600;margin-bottom:6px;">' . esc_html__( 'Have a package?', 'latepoint' ) . '</div>';
-		echo '<p style="margin:0 0 12px;color:#5a6068;">' . esc_html__( 'Log in to pay with one of your purchased packages.', 'latepoint' ) . '</p>';
-		echo '<a href="' . esc_url( $login_url ) . '" class="latepoint-btn latepoint-btn-primary">' . esc_html__( 'Log in', 'latepoint' ) . '</a>';
+		echo '<div style="font-weight:600;margin-bottom:6px;">' . esc_html__( 'Have a package?', 'latepoint-prepayment' ) . '</div>';
+		echo '<p style="margin:0 0 12px;color:#5a6068;">' . esc_html__( 'Log in to pay with one of your purchased packages.', 'latepoint-prepayment' ) . '</p>';
+		echo '<a href="' . esc_url( $login_url ) . '" class="latepoint-btn latepoint-btn-primary">' . esc_html__( 'Log in', 'latepoint-prepayment' ) . '</a>';
 		echo '</div>';
 		return;
 	}
@@ -73,7 +73,7 @@ function latepoint_prepayment_render_panel( $cart ): void {
 	}
 
 	echo '<div class="lp-prepayment-panel" style="border:1px solid #e3e6ec;border-radius:10px;padding:16px;margin-bottom:16px;">';
-	echo '<div style="font-weight:600;margin-bottom:10px;">' . esc_html__( 'Pay with your package', 'latepoint' ) . '</div>';
+	echo '<div style="font-weight:600;margin-bottom:10px;">' . esc_html__( 'Pay with your package', 'latepoint-prepayment' ) . '</div>';
 
 	foreach ( $packages as $package ) {
 		$attrs = $base_attrs + [ 'data-order-item-id' => $package['order_item_id'] ];
@@ -82,7 +82,7 @@ function latepoint_prepayment_render_panel( $cart ): void {
 			$attr_html .= ' ' . $key . '="' . esc_attr( $value ) . '"';
 		}
 		// translators: %1$d remaining sessions, %2$d total sessions
-		$remaining_label = sprintf( esc_html__( '%1$d of %2$d sessions left', 'latepoint' ), $package['remaining'], $package['total'] );
+		$remaining_label = sprintf( esc_html__( '%1$d of %2$d sessions left', 'latepoint-prepayment' ), $package['remaining'], $package['total'] );
 		echo '<div class="os_trigger_booking lp-prepayment-option" role="button" tabindex="0"' . $attr_html
 			. ' style="display:flex;justify-content:space-between;align-items:center;gap:12px;padding:12px 14px;border:1px solid #e3e6ec;border-radius:8px;margin-bottom:8px;cursor:pointer;">';
 		echo '<span style="font-weight:600;">' . esc_html( $package['name'] ) . '</span>';

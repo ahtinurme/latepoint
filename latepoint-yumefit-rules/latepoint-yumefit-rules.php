@@ -10,7 +10,7 @@
  *              custom field as the single source of truth.
  * Version:     1.6.0
  * Author:      Yumefit
- * Text Domain: latepoint
+ * Text Domain: latepoint-yumefit-rules
  */
 
 if (!defined('ABSPATH')) {
@@ -100,7 +100,7 @@ function yumefit_package_expiry_html($order, $bundle = null): string {
         return '';
     }
     return '<div class="yumefit-package-expiry" style="display:flex;justify-content:space-between;padding:8px 0;border-top:1px solid #eee;font-weight:600;">'
-        . '<span>' . esc_html__('Package valid until', 'latepoint') . '</span>'
+        . '<span>' . esc_html__('Package valid until', 'latepoint-yumefit-rules') . '</span>'
         . '<span>' . esc_html($expiry->format('d.m.Y')) . '</span>'
         . '</div>';
 }
@@ -135,13 +135,13 @@ function yumefit_show_customer_packages($customer): void {
     ));
 
     $add_btn = class_exists('OsOrdersHelper')
-        ? '<a href="#" ' . OsOrdersHelper::quick_order_btn_html(false, ['customer_id' => (int) $customer->id]) . ' class="latepoint-btn latepoint-btn-primary"><i class="latepoint-icon latepoint-icon-plus"></i><span>' . esc_html__('Add package', 'latepoint') . '</span></a>'
+        ? '<a href="#" ' . OsOrdersHelper::quick_order_btn_html(false, ['customer_id' => (int) $customer->id]) . ' class="latepoint-btn latepoint-btn-primary"><i class="latepoint-icon latepoint-icon-plus"></i><span>' . esc_html__('Add package', 'latepoint-yumefit-rules') . '</span></a>'
         : '';
 
-    echo '<div class="white-box"><div class="white-box-header"><div class="os-form-sub-header"><h3>' . esc_html__('Packages', 'latepoint') . '</h3></div>' . $add_btn . '</div>';
+    echo '<div class="white-box"><div class="white-box-header"><div class="os-form-sub-header"><h3>' . esc_html__('Packages', 'latepoint-yumefit-rules') . '</h3></div>' . $add_btn . '</div>';
 
     if (!$rows) {
-        echo '<div class="white-box-section"><p style="margin:0;color:#6b6b6b;">' . esc_html__('No packages yet.', 'latepoint') . '</p></div></div>';
+        echo '<div class="white-box-section"><p style="margin:0;color:#6b6b6b;">' . esc_html__('No packages yet.', 'latepoint-yumefit-rules') . '</p></div></div>';
         return;
     }
 
@@ -161,8 +161,8 @@ function yumefit_show_customer_packages($customer): void {
         echo '<tr style="border-bottom:1px solid #eee;">'
             . '<td style="padding:6px 8px 6px 0;">' . esc_html($name) . '</td>'
             . '<td style="padding:6px 8px;white-space:nowrap;">' . (int) $r->used . ' / ' . $qty . '</td>'
-            . '<td style="padding:6px 8px;white-space:nowrap;color:#6b6b6b;">' . ($expiry ? esc_html__('until', 'latepoint') . ' ' . esc_html($expiry->format('d.m.Y')) : '') . '</td>'
-            . '<td style="padding:6px 0 6px 8px;text-align:right;">' . ($paid ? '✓ ' . esc_html__('paid', 'latepoint') : esc_html(OsOrdersHelper::get_nice_order_payment_status_name($r->payment_status))) . '</td>'
+            . '<td style="padding:6px 8px;white-space:nowrap;color:#6b6b6b;">' . ($expiry ? esc_html__('until', 'latepoint-yumefit-rules') . ' ' . esc_html($expiry->format('d.m.Y')) : '') . '</td>'
+            . '<td style="padding:6px 0 6px 8px;text-align:right;">' . ($paid ? '✓ ' . esc_html__('paid', 'latepoint-yumefit-rules') : esc_html(OsOrdersHelper::get_nice_order_payment_status_name($r->payment_status))) . '</td>'
             . '</tr>';
     }
     echo '</table></div></div>';
@@ -201,7 +201,7 @@ function yumefit_enforce_bundle_rules(array $errors, array $steps, array $steps_
                 if ($start > $expiry) {
                     $errors['yumefit_bundle_expired'] = sprintf(
                         /* translators: %s is a date */
-                        __('This package can only be used until %s.', 'latepoint'),
+                        __('This package can only be used until %s.', 'latepoint-yumefit-rules'),
                         $expiry->format('d.m.Y')
                     );
                 }
@@ -226,7 +226,7 @@ function yumefit_enforce_bundle_rules(array $errors, array $steps, array $steps_
         if ($used >= $cap) {
             $errors['yumefit_shared_pool'] = sprintf(
                 /* translators: 1: used count, 2: cap */
-                __('This package is fully used — %1$d of %2$d sessions are already booked.', 'latepoint'),
+                __('This package is fully used — %1$d of %2$d sessions are already booked.', 'latepoint-yumefit-rules'),
                 $used,
                 $cap
             );
