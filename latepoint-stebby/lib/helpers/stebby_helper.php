@@ -170,7 +170,13 @@ if ( ! class_exists( 'OsStebbyHelper' ) ) :
      * @return array{covered: float, charge_id: string}
      */
     private static function charge_voucher( $intent, float $max_amount ): array {
-      $id_code = preg_replace( '/\D/', '', (string) $intent->get_payment_data_value( self::PAYMENT_DATA_ID_CODE ) );
+      // The ID code is submitted with the booking form; fall back to any value
+      // already stored on the intent.
+      $id_code = (string) $intent->get_payment_data_value( self::PAYMENT_DATA_ID_CODE );
+      if ( $id_code === '' && class_exists( 'OsParamsHelper' ) ) {
+        $id_code = (string) OsParamsHelper::get_param( 'stebby_idcode' );
+      }
+      $id_code = preg_replace( '/\D/', '', $id_code );
       if ( empty( $id_code ) ) {
         throw new Exception( esc_html__( 'Please enter your ID code to pay with a Stebby ticket.', 'latepoint-addon-stebby' ) );
       }
