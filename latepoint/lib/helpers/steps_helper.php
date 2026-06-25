@@ -1046,9 +1046,13 @@ class OsStepsHelper {
 			self::$presets['selected_agent'] = $presets['selected_agent'];
 		}
 
-		// preselected service
+		// preselected service — reject hidden services so they can never be preset-selected
 		if ( isset( $presets['selected_service'] ) && is_numeric( $presets['selected_service'] ) ) {
 			self::$presets['selected_service'] = $presets['selected_service'];
+			// $preset_service = new OsServiceModel( $presets['selected_service'] );
+			// if ( $preset_service->id && $preset_service->is_active() && ! $preset_service->is_hidden() ) {
+			// 	self::$presets['selected_service'] = $presets['selected_service'];
+			// }
 		}
 
 		// preselected bundle
@@ -1092,7 +1096,8 @@ class OsStepsHelper {
 		 * @hook latepoint_set_presets
 		 *
 		 */
-		return apply_filters( 'latepoint_set_presets', self::$presets, $presets );
+		self::$presets = apply_filters( 'latepoint_set_presets', self::$presets, $presets );
+		return self::$presets;
 	}
 
 
@@ -1184,6 +1189,21 @@ class OsStepsHelper {
 				self::$customer_object = OsAuthHelper::get_logged_in_customer();
 			}
 		}
+
+		/**
+		 * Filters the customer object after it has been set from submitted params or session.
+		 * Addons may use this hook to pre-populate empty fields (e.g. from URL parameters)
+		 * without overriding values already present on the object.
+		 *
+		 * @param {OsCustomerModel} $customer_object The customer object.
+		 * @param {array}           $customer_params The raw customer params used to build the object.
+		 *
+		 * @returns {OsCustomerModel} Filtered customer object.
+		 * @since 5.2.0
+		 * @hook latepoint_set_customer_object
+		 *
+		 */
+		self::$customer_object = apply_filters( 'latepoint_set_customer_object', self::$customer_object, $customer_params );
 		return self::$customer_object;
 	}
 
@@ -1679,6 +1699,21 @@ class OsStepsHelper {
 
 	public static function process_step_booking() {
 
+		// A hidden service must never advance through any booking step.
+		// This runs before every booking__* sub-step (services, locations, agents, datepicker).
+		if ( ! empty( self::$booking_object->service_id ) ) {
+			$service = ( self::$booking_object->service instanceof OsServiceModel && self::$booking_object->service->id )
+				? self::$booking_object->service
+				: new OsServiceModel( self::$booking_object->service_id );
+			if ( $service->id && $service->is_hidden() ) {
+				return new WP_Error(
+					'service_not_available',
+					__( 'Selected service is not available.', 'latepoint' ),
+					[ 'send_to_step' => 'booking__services' ]
+				);
+			}
+		}
+
 		if ( ! self::is_bundle_scheduling() ) {
 			// check if we are processing the last step of a booking sequence
 			$booking_steps = [];
@@ -1708,6 +1743,7 @@ class OsStepsHelper {
 	// SERVICES
 
 	public static function process_step_booking__services() {
+		// Hidden-service guard runs in the parent process_step_booking() before every booking__* sub-step.
 	}
 
 	public static function prepare_step_booking__services() {

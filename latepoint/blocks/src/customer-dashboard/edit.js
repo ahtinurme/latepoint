@@ -102,12 +102,12 @@ export default function Edit({attributes, setAttributes}) {
         <InspectorControls>
           <Panel>
             <PanelBody title="Dashboard Settings">
-              <TextControl
+              <TextControl __nextHasNoMarginBottom __next40pxDefaultSize
                   label="Caption"
                   value={attributes.caption || ''}
                   onChange={(value) => setAttributes({caption: value})}
               />
-                <ToggleControl
+                <ToggleControl __nextHasNoMarginBottom
                     label="Hide new appointment button and tab"
                     checked={attributes.hide_new_appointment_ui}
                     onChange={(value) => setAttributes({hide_new_appointment_ui: value})}

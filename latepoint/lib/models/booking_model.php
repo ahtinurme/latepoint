@@ -274,7 +274,7 @@ class OsBookingModel extends OsModel {
 				[
 					'start_datetime_utc' => $this->start_datetime_utc,
 					'end_datetime_utc'   => $this->end_datetime_utc,
-				] 
+				]
 			);
 		}
 	}
@@ -292,7 +292,7 @@ class OsBookingModel extends OsModel {
 			[
 				'object_id'         => $id,
 				'object_model_type' => 'booking',
-			] 
+			]
 		);
 
 
@@ -370,13 +370,13 @@ class OsBookingModel extends OsModel {
 				'manage_booking_by_key',
 				'ical_download',
 			],
-			[ 'key' => $key ] 
+			[ 'key' => $key ]
 		) : OsRouterHelper::build_admin_post_link(
 			[
 				'customer_cabinet',
 				'ical_download',
 			],
-			[ 'latepoint_booking_id' => $this->id ] 
+			[ 'latepoint_booking_id' => $this->id ]
 		);
 	}
 
@@ -511,6 +511,18 @@ class OsBookingModel extends OsModel {
 			$customer_requirement_satisfied = ( $this->customer_id && $customer && $customer->id && ( $this->customer_id == $customer->id ) );
 		}
 
+		// A hidden service is never bookable through the public booking flow, regardless of how
+		// the booking object was populated. Admins/agents book hidden services via the backend panel.
+		if ( $this->service_id ) {
+			$service = ( $this->service instanceof OsServiceModel && $this->service->id )
+				? $this->service
+				: new OsServiceModel( $this->service_id );
+			if ( $service->is_hidden() ) {
+				$this->add_error( 'send_to_step', __( 'Selected service is not available.', 'latepoint' ), 'booking__service' );
+				return false;
+			}
+		}
+
 		// agent, service and customer should be set
 		if ( $this->service_id && $this->agent_id && $customer_requirement_satisfied ) {
 
@@ -523,7 +535,7 @@ class OsBookingModel extends OsModel {
 														'service_id'                          => $this->service_id,
 														LATEPOINT_TABLE_AGENTS . '.status'    => LATEPOINT_AGENT_STATUS_ACTIVE,
 														LATEPOINT_TABLE_LOCATIONS . '.status' => LATEPOINT_LOCATION_STATUS_ACTIVE,
-													] 
+													]
 												)
 												 ->join( LATEPOINT_TABLE_AGENTS, [ 'id' => LATEPOINT_TABLE_AGENTS_SERVICES . '.agent_id' ] )
 												 ->join( LATEPOINT_TABLE_LOCATIONS, [ 'id' => LATEPOINT_TABLE_AGENTS_SERVICES . '.location_id' ] )
@@ -547,7 +559,7 @@ class OsBookingModel extends OsModel {
 
 						return false;
 					}
-				}			
+				}
 			} elseif ( $this->agent_id == LATEPOINT_ANY_AGENT ) {
 				$this->agent_id = OsBookingHelper::get_any_agent_for_booking_by_rule( $this );
 				if ( ! $this->agent_id ) {
@@ -621,7 +633,7 @@ class OsBookingModel extends OsModel {
 				'limit'       => false,
 				'offset'      => false,
 			),
-			$args 
+			$args
 		);
 
 		$bookings   = new OsBookingModel();
@@ -671,7 +683,7 @@ class OsBookingModel extends OsModel {
 						'start_time >' => OsTimeHelper::get_current_minutes(),
 					],
 				],
-			] 
+			]
 		);
 	}
 
@@ -836,7 +848,7 @@ class OsBookingModel extends OsModel {
 			[
 				'recurrence_id' => $this->recurrence_id,
 				'id !='         => $this->id,
-			] 
+			]
 		)->order_by( 'start_datetime_utc asc' )->get_results_as_models();
 	}
 
@@ -1221,7 +1233,7 @@ class OsBookingModel extends OsModel {
 				$this->start_time = OsTimeHelper::convert_datetime_to_minutes( $start_datetime );
 
 			} catch ( Exception $e ) {
-			}		
+			}
 		}
 	}
 

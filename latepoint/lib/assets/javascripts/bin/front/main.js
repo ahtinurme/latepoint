@@ -2241,6 +2241,13 @@ function latepoint_init_booking_form_by_trigger($trigger) {
     if ($trigger.data('order-item-id')) presets.order_item_id = $trigger.data('order-item-id');
     if ($trigger.data('source-id')) presets.source_id = $trigger.data('source-id');
 
+    // Pass raw URL query parameters as a generic transport for addons (e.g. contact field pre-fill).
+    if (window.location.search) {
+        let url_params = {};
+        new URLSearchParams(window.location.search).forEach(function(value, key) { url_params[key] = value; });
+        if (Object.keys(url_params).length) presets.url_params = url_params;
+    }
+
     if ($trigger.data('hide-summary') == 'yes') booking_element_styles.hide_summary = true;
     if ($trigger.data('hide-side-panel') == 'yes') booking_element_styles.hide_side_panel = true;
 

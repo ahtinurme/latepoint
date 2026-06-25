@@ -437,7 +437,7 @@ class OsStripeConnectHelper {
 										data-os-pass-this="yes"
 		                data-os-before-after="none"
 		                data-os-after-call="latepointStripeConnectAdmin.reload_connect_status_wrapper"
-		                data-os-params="' . OsUtilHelper::build_os_params( [ 'env' => $env ] ) . '"
+		                data-os-params="' . esc_attr( OsUtilHelper::build_os_params( [ 'env' => $env ], 'stripe_disconnect_account' ) ) . '"
 										data-os-action="' . OsRouterHelper::build_route_name( 'stripe_connect', 'disconnect_connect_account' ) . '"
 										><i class="latepoint-icon latepoint-icon-x"></i><span>' . __( 'disconnect', 'latepoint' ) . '</span></a>';
 			if ( $charges_enabled ) {

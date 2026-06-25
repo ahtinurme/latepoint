@@ -336,7 +336,7 @@ class OsBookingHelper {
 							'end_time'   => ( $day->format( 'Y-m-d' ) < $block_end_datetime->format( 'Y-m-d' ) ) ? 24 * 60 : OsTimeHelper::convert_datetime_to_minutes( $block_end_datetime ),
 							'start_date' => $day->format( 'Y-m-d' ),
 							'end_date'   => $day->format( 'Y-m-d' ),
-						] 
+						]
 					);
 				}
 			}
@@ -359,12 +359,12 @@ class OsBookingHelper {
 									'end_time'   => 24 * 60,
 									'start_date' => $day->format( 'Y-m-d' ),
 									'end_date'   => $day->format( 'Y-m-d' ),
-								] 
+								]
 							);
 						}
 					}
 				}
-			}		
+			}
 		}
 
 		$grouped_blocked_periods = apply_filters( 'latepoint_blocked_periods_for_range', $grouped_blocked_periods, $filter );
@@ -448,7 +448,7 @@ class OsBookingHelper {
 					[
 						'start_date >=' => $filter->date_from,
 						'start_date <=' => $filter->date_to,
-					] 
+					]
 				);
 			} else {
 				# only start_date provided - means it's a specific date requested
@@ -510,7 +510,7 @@ class OsBookingHelper {
 				'dtend'       => $booking->format_end_date_and_time_for_google(),
 				'summary'     => $booking_description,
 				'url'         => get_site_url(),
-			) 
+			)
 		);
 
 		return $ics->to_string();
@@ -664,6 +664,18 @@ class OsBookingHelper {
 			$bundles       = $bundles_model->should_be_active()->should_not_be_hidden()->get_results_as_models();
 		}
 
+		/**
+		 * Filters the list of bundles shown on the services step of the booking form.
+		 *
+		 * @since 5.6.3
+		 * @hook latepoint_booking_generate_bundles_folder
+		 *
+		 * @param {OsBundleModel[]} $bundles List of active, non-hidden bundles to be displayed
+		 *
+		 * @returns {OsBundleModel[]} Filtered list of bundles to display
+		 */
+		$bundles = apply_filters( 'latepoint_booking_generate_bundles_folder', $bundles );
+
 		if ( $bundles ) {
 			/**
 			 * Whether to skip the "Bundle & Save" folder header and render bundle
@@ -718,12 +730,34 @@ class OsBookingHelper {
 					<?php } ?>
 				  </span>
 
-						<?php if ( $bundle->charge_amount > 0 ) { ?>
+						<?php if ( $bundle->price_min > 0 ) { ?>
 							<span class="os-item-price-w">
-				  <span class="os-item-price">
-							<?php echo esc_html( OsMoneyHelper::format_price( $bundle->charge_amount ) ); ?>
-				  </span>
-				</span>
+								<span class="os-item-price">
+								<?php
+								/**
+								 * Filters the display price value shown on the bundle tile on a booking form
+								 *
+								 * @since 5.1.94
+								 * @hook latepoint_booking_form_display_bundle_price
+								 *
+								 * @param {string} $price displayed price that will be outputted
+								 * @param {OsBundleModel} $bundle Bundle that the price is displayed for
+								 *
+								 * @returns {string} Filtered displayed price
+								 */
+								$display_price = apply_filters( 'latepoint_booking_form_display_bundle_price', $bundle->price_min_formatted, $bundle );
+								echo esc_html( $display_price ); ?>
+								</span>
+								<?php if ( $bundle->price_min != $bundle->price_max ) { ?>
+									<span class="os-item-price-label"><?php esc_html_e( 'Starts From', 'latepoint' ); ?></span>
+								<?php } ?>
+							</span>
+						<?php } elseif ( $bundle->charge_amount > 0 ) { ?>
+							<span class="os-item-price-w">
+								<span class="os-item-price">
+									<?php echo esc_html( OsMoneyHelper::format_price( $bundle->charge_amount ) ); ?>
+								</span>
+							</span>
 						<?php } ?>
 						</div>
 					</div>
@@ -835,7 +869,7 @@ class OsBookingHelper {
 									' NOT IN' => $settings['show_service_categories_arr'],
 								],
 							],
-						] 
+						]
 					);
 				}
 			}
@@ -938,8 +972,8 @@ class OsBookingHelper {
 	}
 
 	public static function group_booking_btn_html( $booking_id = false ) {
-		$html = 'data-os-params="' . esc_attr( http_build_query( [ 'booking_id' => $booking_id ] ) ) . '" 
-                  data-os-action="' . esc_attr( OsRouterHelper::build_route_name( 'bookings', 'grouped_bookings_quick_view' ) ) . '" 
+		$html = 'data-os-params="' . esc_attr( http_build_query( [ 'booking_id' => $booking_id ] ) ) . '"
+                  data-os-action="' . esc_attr( OsRouterHelper::build_route_name( 'bookings', 'grouped_bookings_quick_view' ) ) . '"
                   data-os-output-target="lightbox"
                   data-os-lightbox-classes="width-500"
                   data-os-after-call="latepoint_init_grouped_bookings_form"';
@@ -955,8 +989,8 @@ class OsBookingHelper {
 		$route = OsRouterHelper::build_route_name( 'orders', 'quick_edit' );
 
 		$params_str = http_build_query( $params );
-		$html       = 'data-os-params="' . esc_attr( $params_str ) . '" 
-    data-os-action="' . esc_attr( $route ) . '" 
+		$html       = 'data-os-params="' . esc_attr( $params_str ) . '"
+    data-os-action="' . esc_attr( $route ) . '"
     data-os-output-target="side-panel"
     data-os-after-call="latepoint_init_quick_order_form"';
 
@@ -1520,7 +1554,7 @@ class OsBookingHelper {
 			[
 				'created_at >=' => $date_from->format( 'Y-m-d' ),
 				'created_at <=' => $date_to->format( 'Y-m-d' ),
-			] 
+			]
 		)->count();
 	}
 
@@ -1553,7 +1587,7 @@ class OsBookingHelper {
 			[
 				'start_date >='  => $date_from,
 				'start_date <= ' => $date_to,
-			] 
+			]
 		);
 
 		if ( $filter->service_id ) {
@@ -1587,7 +1621,7 @@ class OsBookingHelper {
 					[
 						'start_date >=' => $date_from,
 						'start_date <=' => $date_to,
-					] 
+					]
 				)
 				 ->where( [ 'status NOT IN' => OsCalendarHelper::get_booking_statuses_hidden_from_calendar() ] );
 		if ( $filter->service_id ) {
@@ -1952,7 +1986,7 @@ class OsBookingHelper {
 						'theme'       => 'bordered',
 						'style'       => 'width: 60px;',
 						'class'       => 'os-table-filter',
-					] 
+					]
 				) . '</th>';
 
 			case 'service':
@@ -1964,7 +1998,7 @@ class OsBookingHelper {
 					[
 						'placeholder' => __( 'All Services', 'latepoint' ),
 						'class'       => 'os-table-filter',
-					] 
+					]
 				) . '</th>';
 
 			case 'datetime':
@@ -1996,7 +2030,7 @@ class OsBookingHelper {
 					[
 						'placeholder' => __( 'Show All', 'latepoint' ),
 						'class'       => 'os-table-filter',
-					] 
+					]
 				) . '</th>';
 
 			case 'agent':
@@ -2008,7 +2042,7 @@ class OsBookingHelper {
 					[
 						'placeholder' => __( 'All Agents', 'latepoint' ),
 						'class'       => 'os-table-filter',
-					] 
+					]
 				) . '</th>';
 
 			case 'location':
@@ -2020,7 +2054,7 @@ class OsBookingHelper {
 					[
 						'placeholder' => __( 'All Locations', 'latepoint' ),
 						'class'       => 'os-table-filter',
-					] 
+					]
 				) . '</th>';
 
 			case 'customer':
@@ -2032,7 +2066,7 @@ class OsBookingHelper {
 						'class'       => 'os-table-filter',
 						'theme'       => 'bordered',
 						'placeholder' => __( 'Search by Customer', 'latepoint' ),
-					] 
+					]
 				) . '</th>';
 
 			case 'status':
@@ -2044,7 +2078,7 @@ class OsBookingHelper {
 					[
 						'placeholder' => __( 'Show All', 'latepoint' ),
 						'class'       => 'os-table-filter',
-					] 
+					]
 				) . '</th>';
 
 			case 'payment_status':
@@ -2056,7 +2090,7 @@ class OsBookingHelper {
 					[
 						'placeholder' => __( 'Show All', 'latepoint' ),
 						'class'       => 'os-table-filter',
-					] 
+					]
 				) . '</th>';
 
 			case 'created_on':
@@ -2096,7 +2130,7 @@ class OsBookingHelper {
 						'class'       => 'os-table-filter',
 						'theme'       => 'bordered',
 						'placeholder' => $extra_label,
-					] 
+					]
 				) . '</th>';
 		}
 	}
@@ -2154,8 +2188,8 @@ class OsBookingHelper {
 							[
 								'agent_id'   => $booking->agent_id,
 								'booking_id' => $booking->id,
-							] 
-						) 
+							]
+						)
 					) . '">' .
 					'<i class="latepoint-icon latepoint-icon-more-horizontal"></i>' .
 					'</div>' .
@@ -2177,8 +2211,8 @@ class OsBookingHelper {
 							[
 								'customer_id' => $booking->customer_id,
 								'booking_id'  => $booking->id,
-							] 
-						) 
+							]
+						)
 					) . '">' .
 					'<i class="latepoint-icon latepoint-icon-more-horizontal"></i>' .
 					'</div>' .

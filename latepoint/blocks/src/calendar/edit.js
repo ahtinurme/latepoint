@@ -111,37 +111,37 @@ export default function Edit({attributes, setAttributes}) {
             <InspectorControls>
                 <Panel>
                     <PanelBody title="Latepoint Calendar Settings">
-                        <TextControl
+                        <TextControl __nextHasNoMarginBottom __next40pxDefaultSize
                             label="Caption"
                             value={attributes.caption || ''}
                             onChange={(value) => setAttributes({caption: value})}
                         />
-                        <TextControl
+                        <TextControl __nextHasNoMarginBottom __next40pxDefaultSize
                             label={__('Date', 'latepoint')}
                             value={attributes.date || ''}
                             placeholder="YYYY-MM-DD"
                             onChange={(value) => setAttributes({date: value})}
                         />
-                        <TextControl
+                        <TextControl __nextHasNoMarginBottom __next40pxDefaultSize
                             label="Show Agents"
                             placeholder="Comma separated agent IDs"
                             value={attributes.show_agents || ''}
                             onChange={(value) => setAttributes({show_agents: value})}
                         />
-                        <TextControl
+                        <TextControl __nextHasNoMarginBottom __next40pxDefaultSize
                             label="Show Services"
                             placeholder="Comma separated service IDs"
                             value={attributes.show_services || ''}
                             onChange={(value) => setAttributes({show_services: value})}
                         />
-                        <TextControl
+                        <TextControl __nextHasNoMarginBottom __next40pxDefaultSize
                             label="Show Locations"
                             placeholder="Comma separated location IDs"
                             value={attributes.show_locations || ''}
                             onChange={(value) => setAttributes({show_locations: value})}
                         />
 
-                        <SelectControl
+                        <SelectControl __nextHasNoMarginBottom __next40pxDefaultSize
                             label={__('View', 'latepoint')}
                             value={attributes.view || 'month'}
                             onChange={(value) => setAttributes({view: value})}

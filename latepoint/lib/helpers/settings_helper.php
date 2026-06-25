@@ -865,6 +865,7 @@ class OsSettingsHelper {
 		?>
 		<div class="os-default-fields" data-route="<?php echo esc_attr( OsRouterHelper::build_route_name( 'form_fields', 'update_default_fields' ) ); ?>">
 			<form>
+				<?php wp_nonce_field( 'update_default_fields' ); ?>
 				<?php foreach ( $default_fields as $name => $default_field ) {
 					$atts = [];
 					?>

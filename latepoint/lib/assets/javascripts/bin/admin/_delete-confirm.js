@@ -48,13 +48,6 @@ function latepoint_delete_confirm_show(arg){
   if(title) $modal.append(jQuery('<h3 class="os-delete-confirm-title" />').text(title));
   if(body) $modal.append(jQuery('<p class="os-delete-confirm-body" />').text(body));
 
-  var promptParts = String(i18n.modal_confirm_prompt || '').split('%s');
-  var $prompt = jQuery('<p class="os-delete-confirm-prompt" />');
-  $prompt.append(document.createTextNode(promptParts[0] || ''));
-  $prompt.append(jQuery('<strong />').text(confirm_word));
-  $prompt.append(document.createTextNode(promptParts[1] || ''));
-  $modal.append($prompt);
-
   $modal.append(
     jQuery('<input type="text" class="os-delete-confirm-input" autocomplete="off" spellcheck="false" />')
       .attr('placeholder', i18n.modal_input_placeholder || '')

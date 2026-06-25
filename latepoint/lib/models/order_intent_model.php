@@ -139,7 +139,8 @@ class OsOrderIntentModel extends OsModel {
 				case LATEPOINT_ITEM_VARIANT_BOOKING:
 					$booking = $cart_item->build_original_object_from_item_data();
 					if ( ! $booking->is_bookable( $settings ) ) {
-						$this->add_error( 'send_to_step', $booking->get_error_messages(), 'booking__datepicker' );
+						$redirect_step = $booking->get_error_data( 'send_to_step' ) ?: 'booking__datepicker';
+						$this->add_error( 'send_to_step', $booking->get_error_messages(), $redirect_step );
 
 						return false;
 					}

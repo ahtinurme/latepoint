@@ -11,6 +11,8 @@ class OsBundleModel extends OsModel {
 		$short_description,
 		$charge_amount,
 		$deposit_amount,
+		$price_min,
+		$price_max,
 		$status,
 		$visibility,
 		$order_number,
@@ -293,6 +295,8 @@ class OsBundleModel extends OsModel {
 		return [
 			'charge_amount'  => 'money',
 			'deposit_amount' => 'money',
+			'price_min'      => 'money',
+			'price_max'      => 'money',
 		];
 	}
 
@@ -303,6 +307,8 @@ class OsBundleModel extends OsModel {
 			'short_description',
 			'charge_amount',
 			'deposit_amount',
+			'price_min',
+			'price_max',
 			'status',
 			'visibility',
 			'order_number',
@@ -320,6 +326,8 @@ class OsBundleModel extends OsModel {
 			'short_description',
 			'charge_amount',
 			'deposit_amount',
+			'price_min',
+			'price_max',
 			'status',
 			'visibility',
 			'order_number',
@@ -327,5 +335,13 @@ class OsBundleModel extends OsModel {
 			'created_at',
 		);
 		return $params_to_save;
+	}
+
+	protected function get_price_min_formatted() {
+		if ( $this->price_min > 0 ) {
+			return OsMoneyHelper::format_price( $this->price_min );
+		} else {
+			return OsMoneyHelper::format_price( 0 );
+		}
 	}
 }

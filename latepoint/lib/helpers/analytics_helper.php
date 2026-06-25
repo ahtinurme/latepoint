@@ -26,8 +26,8 @@ class OsAnalyticsHelper {
 			require_once LATEPOINT_ABSPATH . 'lib/kit/bsf-analytics/class-bsf-analytics-loader.php';
 		}
 
-		if ( ! class_exists( 'Astra_Notices' ) ) {
-			require_once LATEPOINT_ABSPATH . 'lib/kit/astra-notices/class-astra-notices.php';
+		if ( ! class_exists( 'BSF_Admin_Notices' ) ) {
+			require_once LATEPOINT_ABSPATH . 'lib/kit/astra-notices/class-bsf-admin-notices.php';
 		}
 
 		$bsf_analytics = \BSF_Analytics_Loader::get_instance();

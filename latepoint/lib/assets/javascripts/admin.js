@@ -428,6 +428,8 @@ jQuery(document).ready(function( $ ) {
       params+= '&'+ jQuery('.os-wizard-personal-info-form input').serialize();
     }
 
+    params+= '&_wpnonce='+encodeURIComponent(jQuery('.os-wizard-footer input[name="_wpnonce"]').val());
+
     var data = {
       action: latepoint_helper.route_action,
       route_name: jQuery(this).data('route-name'),
@@ -473,6 +475,7 @@ jQuery(document).ready(function( $ ) {
     $prev_btn.addClass('os-loading');
     var current_step_code = jQuery('#wizard_current_step_code').val();
     var params = 'current_step_code='+current_step_code;
+    params+= '&_wpnonce='+encodeURIComponent(jQuery('.os-wizard-footer input[name="_wpnonce"]').val());
     var data = { action: latepoint_helper.route_action, route_name: jQuery(this).data('route-name'), params: params, layout: 'none', return_format: 'json'};
     jQuery.ajax({
       type : "post",
@@ -512,6 +515,7 @@ jQuery(document).ready(function( $ ) {
     e.preventDefault();
     var current_step_code = jQuery('#wizard_current_step_code').val();
     var params = 'current_step_code=' + current_step_code;
+    params += '&_wpnonce=' + encodeURIComponent(jQuery('.os-wizard-footer input[name="_wpnonce"]').val());
     var data = {
       action: latepoint_helper.route_action,
       route_name: jQuery(this).data('route-name'),

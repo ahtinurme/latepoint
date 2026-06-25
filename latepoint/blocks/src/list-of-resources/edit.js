@@ -340,12 +340,12 @@ export default function Edit({attributes, setAttributes}) {
                                 <>
                                     <Panel>
                                         <PanelBody title="Button" initialOpen={true}>
-                                            <TextControl
+                                            <TextControl __nextHasNoMarginBottom __next40pxDefaultSize
                                                 label="Button Caption"
                                                 value={attributes.button_caption || ''}
                                                 onChange={(value) => setAttributes({button_caption: value})}
                                             />
-                                            <ToggleControl
+                                            <ToggleControl __nextHasNoMarginBottom
                                                 label="Inherit From Theme"
                                                 checked={attributes.is_inherit}
                                                 onChange={(value) => setAttributes({is_inherit: value})}
@@ -354,7 +354,7 @@ export default function Edit({attributes, setAttributes}) {
                                     </Panel>
                                     <Panel>
                                         <PanelBody title="Settings" initialOpen={false}>
-                                            <SelectControl
+                                            <SelectControl __nextHasNoMarginBottom __next40pxDefaultSize
                                                 label={__('Resource Type', 'latepoint')}
                                                 onChange={(value) => setAttributes({items: value})}
                                                 value={attributes.items}
@@ -364,7 +364,7 @@ export default function Edit({attributes, setAttributes}) {
                                                     {value: 'locations', label: __('Locations', 'latepoint')},
                                                     {value: 'bundles', label: __('Bundles', 'latepoint')}]}
                                             />
-                                            <SelectControl
+                                            <SelectControl __nextHasNoMarginBottom __next40pxDefaultSize
                                                 label={__('Number of columns', 'latepoint')}
                                                 onChange={(value) => setAttributes({columns: value})}
                                                 value={attributes.columns ?? '4'}
@@ -379,18 +379,18 @@ export default function Edit({attributes, setAttributes}) {
                                             {['services', 'bundles'].includes(attributes.items) && (
                                                 <>
                                                     {attributes.items === 'services' && (
-                                                        <ToggleControl
+                                                        <ToggleControl __nextHasNoMarginBottom
                                                             label="Hide Image"
                                                             checked={attributes.hide_image}
                                                             onChange={(value) => setAttributes({hide_image: value})}
                                                         />
                                                     )}
-                                                    <ToggleControl
+                                                    <ToggleControl __nextHasNoMarginBottom
                                                         label="Hide Price"
                                                         checked={attributes.hide_price}
                                                         onChange={(value) => setAttributes({hide_price: value})}
                                                     />
-                                                    <ToggleControl
+                                                    <ToggleControl __nextHasNoMarginBottom
                                                         label="Hide Description"
                                                         checked={attributes.hide_description}
                                                         onChange={(value) => setAttributes({hide_description: value})}
@@ -401,12 +401,12 @@ export default function Edit({attributes, setAttributes}) {
                                     </Panel>
                                     <Panel>
                                         <PanelBody title="Booking Form Settings" initialOpen={false}>
-                                            <ToggleControl
+                                            <ToggleControl __nextHasNoMarginBottom
                                                 label="Hide Summary Panel"
                                                 checked={attributes.hide_summary}
                                                 onChange={(value) => setAttributes({hide_summary: value})}
                                             />
-                                            <ToggleControl
+                                            <ToggleControl __nextHasNoMarginBottom
                                                 label="Hide Side Panel"
                                                 checked={attributes.hide_side_panel}
                                                 onChange={(value) => setAttributes({hide_side_panel: value})}
@@ -416,7 +416,7 @@ export default function Edit({attributes, setAttributes}) {
                                     <Panel>
                                         <PanelBody title="Step Settings" initialOpen={false}>
                                             { attributes.items != 'agents' &&
-                                                <SelectControl
+                                                <SelectControl __nextHasNoMarginBottom __next40pxDefaultSize
                                                     value={attributes.selected_agent}
                                                     label={__('Preselected Agent', 'latepoint')}
                                                     onChange={(value) => setAttributes({selected_agent: value})}
@@ -424,7 +424,7 @@ export default function Edit({attributes, setAttributes}) {
                                                 />
                                             }
                                             { !['services', 'bundles'].includes(attributes.items) &&
-                                                <SelectControl
+                                                <SelectControl __nextHasNoMarginBottom __next40pxDefaultSize
                                                     value={attributes.selected_service}
                                                     label={__('Preselected Service', 'latepoint')}
                                                     onChange={(value) => setAttributes({selected_service: value})}
@@ -432,7 +432,7 @@ export default function Edit({attributes, setAttributes}) {
                                                 />
                                             }
                                             { !['services', 'bundles'].includes(attributes.items) &&
-                                                <SelectControl
+                                                <SelectControl __nextHasNoMarginBottom __next40pxDefaultSize
                                                     value={attributes.selected_service_category}
                                                     label={__('Preselected Service Category', 'latepoint')}
                                                     onChange={(value) => setAttributes({selected_service_category: value})}
@@ -440,7 +440,7 @@ export default function Edit({attributes, setAttributes}) {
                                                 />
                                             }
                                             { !['services', 'bundles'].includes(attributes.items) &&
-                                                <SelectControl
+                                                <SelectControl __nextHasNoMarginBottom __next40pxDefaultSize
                                                     value={attributes.selected_bundle}
                                                     label={__('Preselected Bundle', 'latepoint')}
                                                     onChange={(value) => setAttributes({selected_bundle: value})}
@@ -448,7 +448,7 @@ export default function Edit({attributes, setAttributes}) {
                                                 />
                                             }
                                             {attributes.items != 'locations' &&
-                                                <SelectControl
+                                                <SelectControl __nextHasNoMarginBottom __next40pxDefaultSize
                                                     value={attributes.selected_location}
                                                     label={__('Preselected Location', 'latepoint')}
                                                     onChange={(value) => setAttributes({selected_location: value})}
@@ -456,28 +456,28 @@ export default function Edit({attributes, setAttributes}) {
                                                 />
                                             }
 
-                                            <TextControl
+                                            <TextControl __nextHasNoMarginBottom __next40pxDefaultSize
                                                 label={__('Preselected Booking Start Date', 'latepoint')}
                                                 value={attributes.selected_start_date || ''}
                                                 placeholder="YYYY-MM-DD"
                                                 onChange={(value) => setAttributes({selected_start_date: value})}
                                             />
 
-                                            <TextControl
+                                            <TextControl __nextHasNoMarginBottom __next40pxDefaultSize
                                                 label={__('Preselected Booking Start Time', 'latepoint')}
                                                 value={attributes.selected_start_time || ''}
                                                 placeholder="Minutes"
                                                 onChange={(value) => setAttributes({selected_start_time: value})}
                                             />
 
-                                            <TextControl
+                                            <TextControl __nextHasNoMarginBottom __next40pxDefaultSize
                                                 label={__('Preselected Duration', 'latepoint')}
                                                 value={attributes.selected_duration || ''}
                                                 placeholder="Minutes"
                                                 onChange={(value) => setAttributes({selected_duration: value})}
                                             />
 
-                                            <TextControl
+                                            <TextControl __nextHasNoMarginBottom __next40pxDefaultSize
                                                 label={__('Preselected Total Attendees', 'latepoint')}
                                                 value={attributes.selected_total_attendees || ''}
                                                 placeholder="Number"
@@ -487,12 +487,12 @@ export default function Edit({attributes, setAttributes}) {
                                     </Panel>
                                     <Panel>
                                         <PanelBody title="Items Settings" initialOpen={false}>
-                                            <TextControl
+                                            <TextControl __nextHasNoMarginBottom __next40pxDefaultSize
                                                 label="Max Number of Items Shown"
                                                 value={attributes.limit || ''}
                                                 onChange={(value) => setAttributes({limit: value})}
                                             />
-                                            <TextControl
+                                            <TextControl __nextHasNoMarginBottom __next40pxDefaultSize
                                                 label="Show Selected Items"
                                                 placeholder="Comma separated item IDs"
                                                 value={attributes.item_ids || ''}
@@ -500,7 +500,7 @@ export default function Edit({attributes, setAttributes}) {
                                             />
 
                                             {attributes.items != 'bundles' &&
-                                                <TextControl
+                                                <TextControl __nextHasNoMarginBottom __next40pxDefaultSize
                                                     label="Show Selected Categories"
                                                     placeholder="Comma separated category IDs"
                                                     value={attributes.group_ids || ''}
@@ -511,19 +511,19 @@ export default function Edit({attributes, setAttributes}) {
                                     </Panel>
                                     <Panel>
                                         <PanelBody title="Other Settings" initialOpen={false}>
-                                            <TextControl
+                                            <TextControl __nextHasNoMarginBottom __next40pxDefaultSize
                                                 label="Source ID"
                                                 value={attributes.source_id || ''}
                                                 onChange={(value) => setAttributes({source_id: value})}
                                             />
-                                            <TextControl
+                                            <TextControl __nextHasNoMarginBottom __next40pxDefaultSize
                                                 label="Calendar Start Date"
                                                 value={attributes.calendar_start_date || ''}
                                                 placeholder="YYYY-MM-DD"
                                                 onChange={(value) => setAttributes({calendar_start_date: value})}
                                             />
                                             {!['services', 'bundles'].includes(attributes.items) &&
-                                                <TextControl
+                                                <TextControl __nextHasNoMarginBottom __next40pxDefaultSize
                                                     label="Show Services"
                                                     placeholder="Comma separated service IDs"
                                                     value={attributes.show_services || ''}
@@ -531,7 +531,7 @@ export default function Edit({attributes, setAttributes}) {
                                                 />
                                             }
                                             {!['services', 'bundles'].includes(attributes.items) &&
-                                                <TextControl
+                                                <TextControl __nextHasNoMarginBottom __next40pxDefaultSize
                                                     label="Show Service Categories"
                                                     placeholder="Comma separated category IDs"
                                                     value={attributes.show_service_categories || ''}
@@ -539,7 +539,7 @@ export default function Edit({attributes, setAttributes}) {
                                                 />
                                             }
                                             {attributes.items != 'agents' &&
-                                                <TextControl
+                                                <TextControl __nextHasNoMarginBottom __next40pxDefaultSize
                                                     label="Show Agents"
                                                     placeholder="Comma separated agent IDs"
                                                     value={attributes.show_agents || ''}
@@ -547,7 +547,7 @@ export default function Edit({attributes, setAttributes}) {
                                                 />
                                             }
                                             {attributes.items != 'locations' &&
-                                                <TextControl
+                                                <TextControl __nextHasNoMarginBottom __next40pxDefaultSize
                                                     label="Show Locations"
                                                     placeholder="Comma separated location IDs"
                                                     value={attributes.show_locations || ''}
@@ -779,7 +779,7 @@ export default function Edit({attributes, setAttributes}) {
                                                 value={attributes.card_border_radius}
                                             />
 
-                                            <SelectControl
+                                            <SelectControl __nextHasNoMarginBottom __next40pxDefaultSize
                                                 label={__('Style', 'latepoint')}
                                                 value={attributes.card_border_style}
                                                 className="latepoint-control-two-columns"

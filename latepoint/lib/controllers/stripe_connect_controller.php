@@ -144,6 +144,7 @@ if ( ! class_exists( 'OsStripeConnectController' ) ) :
 		}
 
 		public function disconnect_connect_account() {
+			$this->check_nonce( 'stripe_disconnect_account' );
 			$env = $this->get_env_from_params();
 			try {
 				$path     = 'server-tokens/' . OsStripeConnectHelper::get_server_token( $env ) . '/disconnect/';

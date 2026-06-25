@@ -3,7 +3,7 @@ Contributors: latepoint
 Tags: appointments, booking, scheduling, events, calendar
 Requires at least: 6.5
 Tested up to: 7.0
-Stable tag: 5.6.2
+Stable tag: 5.6.3
 Requires PHP: 7.4
 License: GPLv3
 License URI: https://www.gnu.org/licenses/gpl-3.0.html
@@ -202,6 +202,19 @@ If you want a modern, effortless way to let your customers book online, give Lat
 3. Make sure to disable caching on your customer cabinet page
 
 == Changelog ==
+
+= 5.6.3 - June 24, 2026 =
+  - New
+    - Added URL pre-fill support for an upcoming premium release, allowing users to pre-fill customer fields using URL query parameters before the contact step is rendered.
+    - Added display price support for bundles in an upcoming premium release, allowing merchants to display prices to customers on the bundle selection step while keeping the Charge Amount as the actual billed amount.
+
+  - Fixes
+    - Fixed deprecation warnings for all LatePoint Gutenberg blocks (Booking Button, Booking Form, Calendar, Customer Dashboard, Customer Login, and List of Resources).
+
+  - Security
+    - Strengthened nonce validation. Props to Meher Sudhakar Abbireddi for reporting it.
+    - Strengthened the visibility filter that only ran on the display layer. Props to WordFence for reporting it.
+
 
 = 5.6.2 - June 15, 2026 =
   - New

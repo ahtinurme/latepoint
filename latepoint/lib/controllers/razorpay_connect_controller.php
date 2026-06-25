@@ -233,6 +233,7 @@ if ( ! class_exists( 'OsRazorpayConnectController' ) ) :
 		}
 
 		public function disconnect_connect_account() {
+			$this->check_nonce( 'razorpay_disconnect_account' );
 			$env = $this->get_env_from_params();
 			try {
 				$account_id = OsRazorpayConnectHelper::get_connect_account_id( $env );

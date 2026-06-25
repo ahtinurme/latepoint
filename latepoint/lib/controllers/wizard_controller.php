@@ -131,6 +131,7 @@ if ( ! class_exists( 'OsWizardController' ) ) :
 		}
 
 		function next_step() {
+			$this->check_nonce( 'wizard_step' );
 			$this->show_prev_btn = true;
 			$this->show_next_btn = true;
 
@@ -176,6 +177,7 @@ if ( ! class_exists( 'OsWizardController' ) ) :
 		}
 
 		function prev_step() {
+			$this->check_nonce( 'wizard_step' );
 
 			// For every back step there is next step.
 			$this->show_next_btn = true;
@@ -396,6 +398,7 @@ if ( ! class_exists( 'OsWizardController' ) ) :
 		}
 
 		function skip_setup() {
+			$this->check_nonce( 'wizard_step' );
 			$current_step = isset( $this->params['current_step_code'] ) ? sanitize_text_field( $this->params['current_step_code'] ) : 'unknown';
 
 			$analytics                 = get_option( 'latepoint_onboarding_analytics', [] );

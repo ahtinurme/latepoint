@@ -96,7 +96,7 @@ export default function Edit({attributes, setAttributes}) {
         <InspectorControls>
           <Panel>
             <PanelBody title="Login Form Settings">
-              <TextControl
+              <TextControl __nextHasNoMarginBottom __next40pxDefaultSize
                   label="Caption"
                   value={attributes.caption || ''}
                   onChange={(value) => setAttributes({caption: value})}

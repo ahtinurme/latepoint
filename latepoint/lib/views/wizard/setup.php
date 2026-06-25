@@ -12,6 +12,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 			</div>
 	    <div class="os-wizard-footer">
 	    	<?php echo OsFormHelper::hidden_field('current_step_code', $current_step_code, ['id' => 'wizard_current_step_code']); ?>
+	    	<?php wp_nonce_field( 'wizard_step', '_wpnonce', false ); ?>
 	      <a href="#" data-route-name="<?php echo esc_attr(OsRouterHelper::build_route_name('wizard', 'prev_step')); ?>" class="latepoint-btn latepoint-btn-lg latepoint-btn-white os-wizard-prev-btn os-wizard-trigger-prev-btn" style="display: none;"><i class="latepoint-icon latepoint-icon-arrow-left"></i> <span><?php esc_html_e('Back', 'latepoint'); ?></span></a>
 	      <a href="#" data-route-name="<?php echo esc_attr(OsRouterHelper::build_route_name('wizard', 'next_step')); ?>" class="latepoint-btn latepoint-btn-lg os-wizard-next-btn  os-wizard-trigger-next-btn"><span><?php esc_html_e('Next', 'latepoint'); ?></span> <i class="latepoint-icon latepoint-icon-arrow-right"></i></a>
 	    </div>

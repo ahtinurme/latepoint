@@ -33,6 +33,7 @@ if ( ! class_exists( 'OsFormFieldsController' ) ) :
 		}
 
 		public function update_default_fields() {
+			$this->check_nonce( 'update_default_fields' );
 			$updated_fields = $this->params['default_fields'];
 			$default_fields = OsSettingsHelper::get_default_fields_for_customer();
 			$fields_to_save = [];

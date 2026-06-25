@@ -5,6 +5,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 ?>
 <div class="os-form-w">
 	<form action="" data-os-output-target=".os-wizard-step-content-i" data-os-pass-response="yes" data-os-after-call="latepoint_wizard_item_editing_cancelled" data-os-action="<?php echo esc_attr(OsRouterHelper::build_route_name('wizard', 'save_agent')); ?>">
+		<?php wp_nonce_field( 'save_agent' ); ?>
 		<div class="os-row">
 			<div class="os-col-6">
 		    <?php echo OsFormHelper::text_field('agent[first_name]', __('First Name', 'latepoint'), $agent->first_name); ?>
