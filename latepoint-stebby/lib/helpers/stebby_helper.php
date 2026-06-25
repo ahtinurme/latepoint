@@ -248,8 +248,10 @@ if ( ! class_exists( 'OsStebbyHelper' ) ) :
         <div class="lp-payment-method-content-i">
           <div class="lp-stebby-idcode-w os-form-group">
             <label for="lp-stebby-idcode-<?php echo esc_attr( $context ); ?>"><?php esc_html_e( 'Enter your ID code to pay with a Stebby ticket', 'latepoint-addon-stebby' ); ?></label>
-            <input type="text" id="lp-stebby-idcode-<?php echo esc_attr( $context ); ?>" class="lp-stebby-idcode-input" name="params[stebby_idcode]" inputmode="numeric" autocomplete="off" placeholder="<?php esc_attr_e( 'Personal ID code', 'latepoint-addon-stebby' ); ?>">
+            <input type="text" id="lp-stebby-idcode-<?php echo esc_attr( $context ); ?>" class="lp-stebby-idcode-input" name="stebby_idcode" inputmode="numeric" autocomplete="off" placeholder="<?php esc_attr_e( 'Personal ID code', 'latepoint-addon-stebby' ); ?>">
           </div>
+          <div class="lp-stebby-error" style="display:none; color:#c0394b; margin-bottom:10px;"></div>
+          <a href="#" class="latepoint-btn latepoint-btn-primary lp-stebby-pay-btn"><?php esc_html_e( 'Pay with Stebby ticket', 'latepoint-addon-stebby' ); ?></a>
         </div>
       </div>
       <?php

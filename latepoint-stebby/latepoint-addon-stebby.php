@@ -29,7 +29,7 @@ class LatePointAddonStebby {
    * Addon version.
    *
    */
-  public $version = '1.3.0';
+  public $version = '1.5.0';
   public $db_version = '1.0.0';
   public $addon_name = 'latepoint-addon-stebby';
 
@@ -128,6 +128,7 @@ class LatePointAddonStebby {
     $localized_vars['stebby_route_request_token_for_transaction'] = OsRouterHelper::build_route_name('stebby', 'request_token_for_transaction');
 
     $localized_vars['stebby_msg_redirect_error'] = __( 'Unable to start the Stebby payment.', 'latepoint-addon-stebby' );
+    $localized_vars['stebby_msg_enter_id_code']  = __( 'Please enter your ID code to pay with a Stebby ticket.', 'latepoint-addon-stebby' );
 
     return $localized_vars;
   }

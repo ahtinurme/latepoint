@@ -1,21 +1,72 @@
 /*
- * Stebby (v3) front-end helper for LatePoint.
+ * Stebby (v3) front-end handler for LatePoint.
  *
- * The customer enters their ID code in the Stebby payment method content and
- * confirms the booking normally - the ID code is submitted with the form and a
- * Stebby ticket is redeemed server-side during conversion. There is no redirect
- * and no auto-submit; LatePoint reveals the booking content on its own. For the
- * invoice (transaction) payment form we just make the content visible.
+ * The customer enters their ID code in the Stebby payment content and clicks
+ * "Pay with Stebby ticket". We POST the form (with the ID code) to the redeem
+ * route; the server redeems a Stebby ticket during conversion and returns the
+ * URL to continue to the confirmation. No redirect to Stebby, no auto-submit.
  */
 (function () {
     'use strict';
 
-    jQuery(document).ready(function () {
-        jQuery('body').on('latepoint:initOrderPaymentMethod', '.latepoint-transaction-payment-form', function (e, data) {
-            if (data.payment_processor !== 'stebby' || data.payment_method !== 'stebby') {
+    function stebby_id_code($content) {
+        return ($content.find('.lp-stebby-idcode-input').val() || '').replace(/\D/g, '');
+    }
+
+    async function stebby_pay($content, $form, route_name) {
+        var $btn = $content.find('.lp-stebby-pay-btn');
+        var $error = $content.find('.lp-stebby-error');
+
+        if (!stebby_id_code($content)) {
+            $error.text(latepoint_helper.stebby_msg_enter_id_code || 'Please enter your ID code.').show();
+            return;
+        }
+        $error.hide();
+        $btn.addClass('os-loading').attr('disabled', true);
+
+        try {
+            var response = await jQuery.ajax({
+                type: 'post',
+                dataType: 'json',
+                processData: false,
+                contentType: false,
+                url: latepoint_timestamped_ajaxurl(),
+                data: latepoint_create_form_data($form, route_name, {booking_form_page_url: window.location.href})
+            });
+
+            if (response.status === 'success' && response.redirect_url) {
+                window.location.href = response.redirect_url;
                 return;
             }
-            jQuery(e.currentTarget).find('.lp-stebby-method-content[data-stebby-context="transaction"]').show();
+            $error.text(response.message || 'Unable to complete the Stebby payment.').show();
+        } catch (e) {
+            $error.text('Unable to complete the Stebby payment.').show();
+        }
+
+        $btn.removeClass('os-loading').attr('disabled', false);
+    }
+
+    jQuery(document).ready(function () {
+        // Booking checkout pay step.
+        jQuery('body').on('click', '.lp-stebby-method-content[data-stebby-context="booking"] .lp-stebby-pay-btn', function (e) {
+            e.preventDefault();
+            var $content = jQuery(this).closest('.lp-stebby-method-content');
+            var $form = jQuery(this).closest('.latepoint-booking-form-element').find('.latepoint-form');
+            stebby_pay($content, $form, latepoint_helper.stebby_route_request_token);
+        });
+
+        // Invoice / order payment form.
+        jQuery('body').on('latepoint:initOrderPaymentMethod', '.latepoint-transaction-payment-form', function (e, data) {
+            if (data.payment_processor === 'stebby' && data.payment_method === 'stebby') {
+                jQuery(e.currentTarget).find('.lp-stebby-method-content[data-stebby-context="transaction"]').show();
+            }
+        });
+
+        jQuery('body').on('click', '.lp-stebby-method-content[data-stebby-context="transaction"] .lp-stebby-pay-btn', function (e) {
+            e.preventDefault();
+            var $content = jQuery(this).closest('.lp-stebby-method-content');
+            var $form = jQuery(this).closest('.latepoint-transaction-payment-form');
+            stebby_pay($content, $form, latepoint_helper.stebby_route_request_token_for_transaction);
         });
     });
 })();
