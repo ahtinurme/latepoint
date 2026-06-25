@@ -181,12 +181,12 @@
 					if ( OsRolesHelper::can_user( 'location__delete' ) || OsRolesHelper::can_user( 'location__edit' ) ) {
 						$extra_actions_html .= '<div class="os-trigger-dots"><div class="os-trigger-dots-context">';
 						if ( OsRolesHelper::can_user( 'location__delete' ) ) {
-							$extra_actions_html .= '<div class="os-context-item os-danger" 
-							data-os-prompt="' . __( 'Are you sure you want to remove this location? It will remove all appointments associated with it. If you only want to temprorary disable it - it is better to just change status to disabled.', 'latepoint-pro-features' ) . '" 
-                data-os-redirect-to="' . OsRouterHelper::build_link( OsRouterHelper::build_route_name( 'locations', 'index' ) ) . '" 
-                data-os-params="' . OsUtilHelper::build_os_params( [ 'id' => $location->id ], 'destroy_location_' . $location->id ) . '" 
-                data-os-success-action="redirect" 
-                data-os-action="' . OsRouterHelper::build_route_name( 'locations', 'destroy' ) . '"><i class="latepoint-icon latepoint-icon-trash-2"></i><span>' . __( 'Delete', 'latepoint-pro-features' ) . '</span></div>';
+							$extra_actions_html .= '<div class="os-context-item os-danger os-delete-confirm" data-os-confirm-title="' . esc_attr__( 'Delete Location', 'latepoint-pro-features' ) . '"
+							data-os-prompt="' . esc_attr__( 'Are you sure you want to remove this location? It will remove all appointments associated with it. If you only want to temprorary disable it - it is better to just change status to disabled.', 'latepoint-pro-features' ) . '"
+                data-os-redirect-to="' . esc_url( OsRouterHelper::build_link( OsRouterHelper::build_route_name( 'locations', 'index' ) ) ) . '"
+                data-os-params="' . esc_attr( OsUtilHelper::build_os_params( [ 'id' => $location->id ], 'destroy_location_' . $location->id ) ) . '"
+                data-os-success-action="redirect"
+                data-os-action="' . esc_attr( OsRouterHelper::build_route_name( 'locations', 'destroy' ) ) . '"><i class="latepoint-icon latepoint-icon-trash-2"></i><span>' . esc_html__( 'Delete', 'latepoint-pro-features' ) . '</span></div>';
 						}
 						if ( OsRolesHelper::can_user( 'location__edit' ) ) {
 							$extra_actions_html .= '<div class="os-context-item"

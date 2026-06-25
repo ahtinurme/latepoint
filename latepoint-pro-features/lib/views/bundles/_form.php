@@ -57,6 +57,23 @@
 
 		<div class="white-box">
 			<div class="white-box-header">
+				<div class="os-form-sub-header"><h3><?php esc_html_e( 'Display Price', 'latepoint-pro-features' ); ?></h3></div>
+			</div>
+			<div class="white-box-content">
+				<div class="latepoint-message latepoint-message-subtle"><?php esc_html_e( 'This price is for display purposes only, it is not the price that the customer will be charged. The Charge Amount field above controls the amount that customer will be charged for. Setting both minimum and maximum price, will show a price range on the bundle selection step.', 'latepoint-pro-features' ); ?></div>
+				<div class="os-row">
+					<div class="os-col-lg-3">
+						<?php echo OsFormHelper::money_field( 'bundle[price_min]', __( 'Minimum Price', 'latepoint-pro-features' ), $bundle->price_min, array( 'theme' => 'simple' ) ); ?>
+					</div>
+					<div class="os-col-lg-3">
+						<?php echo OsFormHelper::money_field( 'bundle[price_max]', __( 'Maximum Price', 'latepoint-pro-features' ), $bundle->price_max, array( 'theme' => 'simple' ) ); ?>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<div class="white-box">
+			<div class="white-box-header">
 				<div class="os-form-sub-header"><h3><?php _e('Included Services', 'latepoint-pro-features'); ?></h3></div>
 			</div>
 			<div class="white-box-content">

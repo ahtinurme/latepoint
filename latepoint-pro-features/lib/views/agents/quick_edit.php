@@ -217,12 +217,13 @@
 					echo OsFormHelper::button( 'submit', __( 'Save Changes', 'latepoint-pro-features' ), 'submit', [ 'class' => 'latepoint-btn latepoint-btn-block latepoint-btn-lg' ] );
 				}
 				if ( OsRolesHelper::can_user( 'agent__delete' ) ) {
-					echo '<a href="#" class="latepoint-btn latepoint-btn-secondary latepoint-btn-lg latepoint-btn-just-icon remove-agent-btn" style="margin-left: auto;" 
-				        data-os-prompt="' . __( 'Are you sure you want to remove this agent?', 'latepoint-pro-features' ) . '" 
-				        data-os-redirect-to="' . OsRouterHelper::build_link( OsRouterHelper::build_route_name( 'agents', 'index' ) ) . '" 
-				        data-os-params="' . OsUtilHelper::build_os_params( [ 'id' => $agent->id ], 'destroy_agent_' . $agent->id ) . '" 
-				        data-os-success-action="redirect" 
-				        data-os-action="' . OsRouterHelper::build_route_name( 'agents', 'destroy' ) . '"><i class="latepoint-icon latepoint-icon-trash1"></i></a>';
+					echo '<a href="#" class="latepoint-btn latepoint-btn-secondary latepoint-btn-lg latepoint-btn-just-icon remove-agent-btn os-delete-confirm" style="margin-left: auto;"
+				        data-os-confirm-title="' . esc_attr__( 'Delete Agent', 'latepoint-pro-features' ) . '"
+				        data-os-prompt="' . esc_attr__( 'Are you sure you want to remove this agent?', 'latepoint-pro-features' ) . '"
+				        data-os-redirect-to="' . esc_url( OsRouterHelper::build_link( OsRouterHelper::build_route_name( 'agents', 'index' ) ) ) . '"
+				        data-os-params="' . esc_attr( OsUtilHelper::build_os_params( [ 'id' => $agent->id ], 'destroy_agent_' . $agent->id ) ) . '"
+				        data-os-success-action="redirect"
+				        data-os-action="' . esc_attr( OsRouterHelper::build_route_name( 'agents', 'destroy' ) ) . '"><i class="latepoint-icon latepoint-icon-trash1"></i></a>';
 				}
 
 			}

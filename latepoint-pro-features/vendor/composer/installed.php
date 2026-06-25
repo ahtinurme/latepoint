@@ -3,7 +3,7 @@
         'name' => 'latepoint/latepoint-pro-features',
         'pretty_version' => 'dev-master',
         'version' => 'dev-master',
-        'reference' => '9f6e28ea66a924dbca5839750c6d14e13b87d1a9',
+        'reference' => 'c8b5bcd6d7dcd6b356f6a7050c91845d22a4e7d1',
         'type' => 'wordpress-plugin',
         'install_path' => __DIR__ . '/../../',
         'aliases' => array(),
@@ -31,7 +31,7 @@
         'latepoint/latepoint-pro-features' => array(
             'pretty_version' => 'dev-master',
             'version' => 'dev-master',
-            'reference' => '9f6e28ea66a924dbca5839750c6d14e13b87d1a9',
+            'reference' => 'c8b5bcd6d7dcd6b356f6a7050c91845d22a4e7d1',
             'type' => 'wordpress-plugin',
             'install_path' => __DIR__ . '/../../',
             'aliases' => array(),

@@ -7,7 +7,7 @@
  * Plugin Name: LatePoint Addon - Pro Features
  * Plugin URI:  https://latepoint.com/
  * Description: LatePoint Addon that adds a set of Pro features to a base plugin
- * Version:     1.6.0
+ * Version:     1.6.1
  * Author:      LatePoint
  * Author URI:  https://latepoint.com/
  * Text Domain: latepoint-pro-features
@@ -32,7 +32,7 @@ if ( ! class_exists( 'LatePointAddonProFeatures' ) ) :
 		 * Addon version.
 		 *
 		 */
-		public $version    = '1.6.0';
+		public $version    = '1.6.1';
 		public $db_version = '1.1.3';
 		public $addon_name = 'latepoint-pro-features';
 
@@ -124,7 +124,7 @@ if ( ! class_exists( 'LatePointAddonProFeatures' ) ) :
 				define( 'LATEPOINT_ADDON_PRO_VERSION', $this->version );
 			}
 			if ( ! defined( 'LATEPOINT_ADDON_PRO_MIN_REQUIRED_FREE_VERSION' ) ) {
-				define( 'LATEPOINT_ADDON_PRO_MIN_REQUIRED_FREE_VERSION', '5.5.0' );
+				define( 'LATEPOINT_ADDON_PRO_MIN_REQUIRED_FREE_VERSION', '5.6.3' );
 			}
 
 			/* Locations */
@@ -286,6 +286,7 @@ if ( ! class_exists( 'LatePointAddonProFeatures' ) ) :
 			include_once dirname( __FILE__ ) . '/lib/helpers/feature_base_fee_helper.php';
 			include_once dirname( __FILE__ ) . '/lib/helpers/feature_service_display_mode_helper.php';
 			include_once dirname( __FILE__ ) . '/lib/helpers/feature_white_label_helper.php';
+			include_once dirname( __FILE__ ) . '/lib/helpers/feature_url_prefill_helper.php';
 
 
 			// MODELS
@@ -395,6 +396,18 @@ if ( ! class_exists( 'LatePointAddonProFeatures' ) ) :
 			add_filter( 'latepoint_customer_login_show_other_options', 'OsSocialHelper::should_show_customer_login_social_options' );
 			add_action( 'latepoint_settings_general_customer_after', 'OsSocialHelper::output_customer_settings' );
 			add_action( 'latepoint_after_customer_login_form', 'OsSocialHelper::output_customer_login_social_options' );
+
+
+			/* ************************ */
+			/* URL Pre-fill */
+			/* ************************ */
+			add_action( 'latepoint_settings_general_customer_after', 'OsFeatureUrlPrefillHelper::output_settings' );
+			if ( OsFeatureUrlPrefillHelper::is_enabled() ) {
+				add_filter( 'latepoint_get_default_presets', 'OsFeatureUrlPrefillHelper::register_default_presets' );
+				add_filter( 'latepoint_set_presets', 'OsFeatureUrlPrefillHelper::set_prefill_presets', 10, 2 );
+				add_action( 'latepoint_booking_form_params_presets_after', 'OsFeatureUrlPrefillHelper::carry_preset_fields', 10, 5 );
+				add_filter( 'latepoint_set_customer_object', 'OsFeatureUrlPrefillHelper::prefill_customer_object', 10, 2 );
+			}
 
 
 			/* ************************ */
