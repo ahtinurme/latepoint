@@ -110,18 +110,6 @@ if ( ! class_exists( 'OsEverypayApiHelper' ) ) :
       return self::request( 'GET', $path );
     }
 
-    public static function refund_payment( string $payment_reference, $amount ) {
-      $body = [
-        'api_username'      => self::get_api_username(),
-        'payment_reference' => $payment_reference,
-        'amount'            => number_format( (float) $amount, 2, '.', '' ),
-        'nonce'             => self::generate_nonce(),
-        'timestamp'         => gmdate( 'c' ),
-      ];
-
-      return self::request( 'POST', '/payments/refund', $body );
-    }
-
     private static function generate_nonce(): string {
       try {
         $random = bin2hex( random_bytes( 32 ) );

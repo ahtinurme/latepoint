@@ -2,7 +2,7 @@
 /**
  * Plugin Name: LatePoint Addon - EveryPay
  * Plugin URI:  https://latepoint.com/
- * Description: Accept LatePoint booking and invoice payments through the EveryPay hosted payment page, with server-side payment verification and refunds from the LatePoint admin.
+ * Description: Accept LatePoint booking and invoice payments through the EveryPay hosted payment page, with server-side payment verification. Refunds are handled manually in EveryPay, not from the LatePoint admin.
  * Version:     1.0.1
  * Author:      LatePoint
  * Author URI:  https://latepoint.com/

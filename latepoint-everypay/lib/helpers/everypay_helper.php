@@ -18,8 +18,6 @@ if ( ! class_exists( 'OsEverypayHelper' ) ) :
       add_filter( 'latepoint_encrypted_settings', [ __CLASS__, 'encrypted_settings' ] );
       add_filter( 'latepoint_process_payment_for_order_intent', [ __CLASS__, 'process_payment' ], 10, 2 );
       add_filter( 'latepoint_process_payment_for_transaction_intent', [ __CLASS__, 'process_payment_for_transaction_intent' ], 10, 2 );
-      add_filter( 'latepoint_transaction_is_refund_available', [ __CLASS__, 'transaction_is_refund_available' ], 10, 2 );
-      add_filter( 'latepoint_process_refund', [ __CLASS__, 'process_refund' ], 10, 3 );
 
       add_action( 'latepoint_payment_processor_settings', [ __CLASS__, 'add_settings_fields' ], 10 );
       add_action( 'latepoint_step_payment__pay_content', [ __CLASS__, 'output_payment_step_contents' ], 10 );
@@ -181,51 +179,6 @@ if ( ! class_exists( 'OsEverypayHelper' ) ) :
       ];
     }
 
-    public static function transaction_is_refund_available( $result, OsTransactionModel $transaction ): bool {
-      if ( OsPaymentsHelper::is_payment_processor_enabled( self::$processor_code ) && $transaction->processor == self::$processor_code ) {
-        $result = true;
-      }
-
-      return $result;
-    }
-
-    public static function process_refund( $transaction_refund, OsTransactionModel $transaction, $custom_amount = null ) {
-      if ( $transaction->processor != self::$processor_code ) {
-        return $transaction_refund;
-      }
-
-      if ( ! $transaction->can_refund() ) {
-        throw new \Exception( esc_html__( 'Invalid Transaction', 'latepoint-addon-everypay' ) );
-      }
-
-      $refund_amount = $custom_amount ?: $transaction->amount;
-
-      $response = OsEverypayApiHelper::refund_payment( (string) $transaction->token, $refund_amount );
-
-      if ( empty( $response ) || empty( $response['payment_reference'] ) ) {
-        throw new \Exception( esc_html__( 'Error Refunding', 'latepoint-addon-everypay' ) );
-      }
-
-      $transaction_refund                 = new OsTransactionRefundModel();
-      $transaction_refund->transaction_id = $transaction->id;
-      $transaction_refund->amount         = $refund_amount;
-      $transaction_refund->token          = $response['payment_reference'];
-
-      if ( ! $transaction_refund->save() ) {
-        throw new \Exception( implode( ', ', $transaction_refund->get_error_messages() ) );
-      }
-
-      /**
-       * Transaction refund was issued
-       *
-       * @param {OsTransactionRefundModel} $transaction_refund instance of transaction refund model that was issued
-       *
-       * @hook latepoint_transaction_refund_created
-       */
-      do_action( 'latepoint_transaction_refund_created', $transaction_refund );
-
-      return $transaction_refund;
-    }
 
     public static function add_settings_fields( $processor_code ) {
       if ( $processor_code != self::$processor_code ) {
