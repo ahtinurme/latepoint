@@ -127,7 +127,7 @@ class OsDatabaseHelper {
 				$action                         = [];
 				$action['type']                 = 'send_email';
 				$action['settings']['to_email'] = '{{' . $user_type . '_full_name}} <{{' . $user_type . '_email}}>';
-				$action['settings']['subject']  = ( $user_type == 'agent' ) ? 'New Appointment Received' : 'Appointment Confirmation';
+				$action['settings']['subject']  = ( $user_type == 'agent' ) ? 'Uus broneering' : 'Broneeringu kinnitus';
 				$action['settings']['content']  = OsEmailHelper::get_email_layout( $wp_filesystem->get_contents( LATEPOINT_VIEWS_ABSPATH . 'mailers/' . $user_type . '/booking_created.html' ) );
 				$actions[ \LatePoint\Misc\ProcessAction::generate_id() ] = $action;
 			}

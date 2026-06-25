@@ -135,7 +135,7 @@ class OsNotificationsHelper {
 					'to_user_type' => 'agent',
 					'name'         => 'New Appointment',
 					'to_email'     => '{{agent_full_name}} <{{agent_email}}>',
-					'subject'      => 'New Appointment Received',
+					'subject'      => 'Uus broneering',
 					'content'      => OsEmailHelper::get_email_layout( $wp_filesystem->get_contents( LATEPOINT_VIEWS_ABSPATH . 'mailers/agent/booking_created.html' ) ),
 				];
 				$templates[] = [
@@ -143,7 +143,7 @@ class OsNotificationsHelper {
 					'to_user_type' => 'customer',
 					'name'         => 'New Appointment',
 					'to_email'     => '{{customer_full_name}} <{{customer_email}}>',
-					'subject'      => 'Appointment Confirmation',
+					'subject'      => 'Broneeringu kinnitus',
 					'content'      => OsEmailHelper::get_email_layout( $wp_filesystem->get_contents( LATEPOINT_VIEWS_ABSPATH . 'mailers/customer/booking_created.html' ) ),
 				];
 				$templates[] = [
@@ -151,7 +151,7 @@ class OsNotificationsHelper {
 					'to_user_type' => 'customer',
 					'name'         => 'Appointment Updated',
 					'to_email'     => '{{customer_full_name}} <{{customer_email}}>',
-					'subject'      => 'Appointment Updated',
+					'subject'      => 'Broneering uuendatud',
 					'content'      => OsEmailHelper::get_email_layout( $wp_filesystem->get_contents( LATEPOINT_VIEWS_ABSPATH . 'mailers/customer/booking_updated.html' ) ),
 				];
 				$templates[] = [
@@ -159,7 +159,7 @@ class OsNotificationsHelper {
 					'to_user_type' => 'agent',
 					'name'         => 'Appointment Updated',
 					'to_email'     => '{{agent_full_name}} <{{agent_email}}>',
-					'subject'      => 'Appointment Updated',
+					'subject'      => 'Broneering uuendatud',
 					'content'      => OsEmailHelper::get_email_layout( $wp_filesystem->get_contents( LATEPOINT_VIEWS_ABSPATH . 'mailers/agent/booking_updated.html' ) ),
 				];
 				$templates[] = [
@@ -167,7 +167,7 @@ class OsNotificationsHelper {
 					'to_user_type' => 'customer',
 					'name'         => 'Customer Created',
 					'to_email'     => '{{customer_full_name}} <{{customer_email}}>',
-					'subject'      => 'Your New Account',
+					'subject'      => 'Sinu uus konto',
 					'content'      => OsEmailHelper::get_email_layout( $wp_filesystem->get_contents( LATEPOINT_VIEWS_ABSPATH . 'mailers/customer/customer_created.html' ) ),
 				];
 				$templates[] = [
@@ -175,7 +175,7 @@ class OsNotificationsHelper {
 					'to_user_type' => 'customer',
 					'name'         => 'Appointment Reminder',
 					'to_email'     => '{{customer_full_name}} <{{customer_email}}>',
-					'subject'      => 'Appointment Reminder',
+					'subject'      => 'Broneeringu meeldetuletus',
 					'content'      => OsEmailHelper::get_email_layout( $wp_filesystem->get_contents( LATEPOINT_VIEWS_ABSPATH . 'mailers/customer/booking_start.html' ) ),
 				];
 				$templates[] = [
@@ -183,7 +183,7 @@ class OsNotificationsHelper {
 					'to_user_type' => 'agent',
 					'name'         => 'Appointment Reminder',
 					'to_email'     => '{{agent_full_name}} <{{agent_email}}>',
-					'subject'      => 'Appointment Reminder',
+					'subject'      => 'Broneeringu meeldetuletus',
 					'content'      => OsEmailHelper::get_email_layout( $wp_filesystem->get_contents( LATEPOINT_VIEWS_ABSPATH . 'mailers/agent/booking_start.html' ) ),
 				];
 				$templates[] = [
@@ -191,7 +191,7 @@ class OsNotificationsHelper {
 					'to_user_type' => 'customer',
 					'name'         => 'After Appointment Feedback',
 					'to_email'     => '{{customer_full_name}} <{{customer_email}}>',
-					'subject'      => 'Appointment Feedback',
+					'subject'      => 'Tagasiside broneeringule',
 					'content'      => OsEmailHelper::get_email_layout( $wp_filesystem->get_contents( LATEPOINT_VIEWS_ABSPATH . 'mailers/customer/booking_end.html' ) ),
 				];
 				$templates[] = [
@@ -199,7 +199,7 @@ class OsNotificationsHelper {
 					'to_user_type' => 'agent',
 					'name'         => 'After Appointment Feedback',
 					'to_email'     => '{{agent_full_name}} <{{agent_email}}>',
-					'subject'      => 'Appointment Feedback',
+					'subject'      => 'Tagasiside broneeringule',
 					'content'      => OsEmailHelper::get_email_layout( $wp_filesystem->get_contents( LATEPOINT_VIEWS_ABSPATH . 'mailers/agent/booking_end.html' ) ),
 				];
 				$templates[] = [
@@ -207,7 +207,7 @@ class OsNotificationsHelper {
 					'to_user_type' => 'agent',
 					'name'         => 'New Order',
 					'to_email'     => '{{order_agents_emails}}',
-					'subject'      => 'New Order Received',
+					'subject'      => 'Uus tellimus',
 					'content'      => OsEmailHelper::get_email_layout( $wp_filesystem->get_contents( LATEPOINT_VIEWS_ABSPATH . 'mailers/agent/order_created.html' ) ),
 				];
 				$templates[] = [
@@ -215,7 +215,7 @@ class OsNotificationsHelper {
 					'to_user_type' => 'customer',
 					'name'         => 'New Order',
 					'to_email'     => '{{customer_full_name}} <{{customer_email}}>',
-					'subject'      => 'Order Confirmation',
+					'subject'      => 'Tellimuse kinnitus',
 					'content'      => OsEmailHelper::get_email_layout( $wp_filesystem->get_contents( LATEPOINT_VIEWS_ABSPATH . 'mailers/customer/order_created.html' ) ),
 				];
 				$templates[] = [
@@ -223,7 +223,7 @@ class OsNotificationsHelper {
 					'to_user_type' => 'customer',
 					'name'         => 'New Payment Request',
 					'to_email'     => '{{customer_full_name}} <{{customer_email}}>',
-					'subject'      => 'Payment Request for Order {{order_confirmation_code}}',
+					'subject'      => 'Maksenõue tellimusele {{order_confirmation_code}}',
 					'content'      => OsEmailHelper::get_email_layout( $wp_filesystem->get_contents( LATEPOINT_VIEWS_ABSPATH . 'mailers/customer/payment_request_created.html' ) ),
 				];
 				if ( OsSettingsHelper::is_env_dev() ) {
