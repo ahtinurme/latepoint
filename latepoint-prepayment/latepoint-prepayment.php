@@ -2,13 +2,13 @@
 /**
  * Plugin Name: LatePoint Addon - Prepayment (Pay with Package)
  * Plugin URI:  https://yumefit.ee/
- * Description: Lets a logged-in customer pay for an in-progress booking with one of
- *              their already-purchased packages (bundles). At the payment step it lists
- *              the customer's available packages that cover the selected service; picking
- *              one re-drives the booking through LatePoint's native bundle-scheduling flow
- *              (no charge), exactly like scheduling from the customer cabinet - but started
- *              from the booking form instead of the cabinet.
- * Version:     1.0.0
+ * Description: Adds a "Pay with package" payment method. A logged-in customer who owns a
+ *              package (bundle) covering the booked service can pick it at the payment step
+ *              and redeem one session - re-driving the booking through LatePoint's native
+ *              bundle-scheduling flow (no charge). Registered as a real payment processor, so
+ *              it is enabled/disabled under Settings -> Payments and only appears when the
+ *              customer actually has a usable package for the service.
+ * Version:     2.0.0
  * Author:      Yumefit
  * Text Domain: latepoint-prepayment
  */
@@ -17,98 +17,132 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit; // Exit if accessed directly.
 }
 
+define( 'LATEPOINT_PREPAYMENT_PROCESSOR', 'prepayment' );
+
 // Register as an installed LatePoint addon so it shows in the addons list.
 add_filter( 'latepoint_installed_addons', function ( $addons ) {
-	$addons[] = [ 'name' => 'latepoint-addon-prepayment', 'db_version' => '1.0.0', 'version' => '1.0.0' ];
+	$addons[] = [ 'name' => 'latepoint-addon-prepayment', 'db_version' => '2.0.0', 'version' => '2.0.0' ];
 	return $addons;
 } );
 
-/** Whether the "pay with package" option is enabled (admin toggle, default on). */
-function latepoint_prepayment_is_enabled(): bool {
-	return ! class_exists( 'OsSettingsHelper' )
-		|| OsSettingsHelper::get_settings_value( 'enable_prepayment_packages', 'on' ) === 'on';
-}
+/*
+ * --------------------------------------------------------------------
+ * Register "Pay with package" as a payment processor
+ * --------------------------------------------------------------------
+ */
 
-// Admin toggle under LatePoint -> Settings -> General.
-add_action( 'latepoint_settings_general_other_after', function () {
-	if ( ! class_exists( 'OsFormHelper' ) ) {
-		return;
-	}
-	echo OsFormHelper::toggler_field(
-		'settings[enable_prepayment_packages]',
-		__( 'Enable "pay with package"', 'latepoint-prepayment' ),
-		latepoint_prepayment_is_enabled(),
-		false,
-		false,
-		[ 'sub_label' => __( 'Let customers pay for a booking with one of their purchased packages.', 'latepoint-prepayment' ) ]
-	);
+// Appears under Settings -> Payments with its own enable/disable toggle.
+add_filter( 'latepoint_payment_processors', function ( $processors ) {
+	$processors[ LATEPOINT_PREPAYMENT_PROCESSOR ] = [
+		'code'       => LATEPOINT_PREPAYMENT_PROCESSOR,
+		'name'       => __( 'Pay with package', 'latepoint-prepayment' ),
+		'front_name' => __( 'Pay with package', 'latepoint-prepayment' ),
+		'image_url'  => plugins_url( 'public/images/prepayment.svg', __FILE__ ),
+	];
+	return $processors;
 } );
 
-// JS/CSS that move the package option into the payment-method grid (next to the processors).
-add_action( 'wp_enqueue_scripts', 'latepoint_prepayment_enqueue_assets' );
-add_action( 'admin_enqueue_scripts', 'latepoint_prepayment_enqueue_assets' );
-function latepoint_prepayment_enqueue_assets(): void {
-	if ( ! latepoint_prepayment_is_enabled() ) {
-		return;
-	}
-	wp_enqueue_script( 'latepoint-prepayment-front', plugins_url( 'public/javascripts/prepayment-front.js', __FILE__ ), [ 'jquery' ], '1.0.0', true );
-	wp_enqueue_style( 'latepoint-prepayment-front', plugins_url( 'public/stylesheets/prepayment-front.css', __FILE__ ), [], '1.0.0' );
+function latepoint_prepayment_method_info(): array {
+	return [
+		'name'      => __( 'Pay with package', 'latepoint-prepayment' ),
+		'label'     => __( 'Pay with package', 'latepoint-prepayment' ),
+		'image_url' => plugins_url( 'public/images/prepayment.svg', __FILE__ ),
+	];
 }
 
-// Render the "Pay with your package" option only on the payment-method/processor selection
-// steps (where you choose how to pay) - not on a processor's own pay screen, so it doesn't
-// linger after Stebby/EveryPay is already selected. The JS then moves it into the grid.
-add_action( 'latepoint_before_step_content', 'latepoint_prepayment_render_on_selection_step' );
+// Make it a "pay now" method+processor. Listed unconditionally for settings/config...
+add_filter( 'latepoint_get_all_payment_times', function ( $payment_times ) {
+	$payment_times[ LATEPOINT_PAYMENT_TIME_NOW ][ LATEPOINT_PREPAYMENT_PROCESSOR ][ LATEPOINT_PREPAYMENT_PROCESSOR ] = latepoint_prepayment_method_info();
+	return $payment_times;
+} );
 
-// $current_step_code is passed by latepoint_before_step_content; pull the cart from steps.
-function latepoint_prepayment_render_on_selection_step( $current_step_code ): void {
-	if ( ! latepoint_prepayment_is_enabled() ) {
+// ...but only offered in the booking flow when enabled AND the customer actually has a
+// usable package for the booked service (so the tile is hidden otherwise).
+add_filter( 'latepoint_get_enabled_payment_times', function ( $payment_times ) {
+	if ( ! class_exists( 'OsPaymentsHelper' ) || ! OsPaymentsHelper::is_payment_processor_enabled( LATEPOINT_PREPAYMENT_PROCESSOR ) ) {
+		return $payment_times;
+	}
+	if ( ! latepoint_prepayment_cart_has_available_package() ) {
+		return $payment_times;
+	}
+	$payment_times[ LATEPOINT_PAYMENT_TIME_NOW ][ LATEPOINT_PREPAYMENT_PROCESSOR ][ LATEPOINT_PREPAYMENT_PROCESSOR ] = latepoint_prepayment_method_info();
+	return $payment_times;
+} );
+
+// Render the package choices on the pay step when "Pay with package" is the selected method.
+add_action( 'latepoint_step_payment__pay_content', 'latepoint_prepayment_render_pay_content', 10 );
+function latepoint_prepayment_render_pay_content( $cart ): void {
+	if ( ! ( $cart instanceof OsCartModel ) || ! class_exists( 'OsPaymentsHelper' ) ) {
 		return;
 	}
-	if ( ! in_array( $current_step_code, [ 'payment__methods', 'payment__processors' ], true ) || ! class_exists( 'OsStepsHelper' ) ) {
+	if ( ! OsPaymentsHelper::should_processor_handle_payment_for_cart( LATEPOINT_PREPAYMENT_PROCESSOR, $cart ) ) {
 		return;
 	}
-	latepoint_prepayment_render_panel( OsStepsHelper::$cart_object ?? null );
+	echo '<div class="lp-payment-method-content lp-prepayment-content" data-payment-method="' . esc_attr( LATEPOINT_PREPAYMENT_PROCESSOR ) . '" style="display:none;">';
+	echo '<div class="lp-payment-method-content-i">';
+	latepoint_prepayment_render_tiles( $cart );
+	echo '</div></div>';
 }
 
-function latepoint_prepayment_render_panel( $cart ): void {
-	if ( ! class_exists( 'OsAuthHelper' ) || ! ( $cart instanceof OsCartModel ) ) {
-		return;
+// Safety net: redeeming happens client-side (clicking a package re-drives the booking). If a
+// "pay with package" order is ever submitted without a package being chosen, block it rather
+// than create an unpaid order.
+add_filter( 'latepoint_process_payment_for_order_intent', function ( $result, $order_intent ) {
+	if ( ! class_exists( 'OsPaymentsHelper' ) || ! OsPaymentsHelper::should_processor_handle_payment_for_order_intent( LATEPOINT_PREPAYMENT_PROCESSOR, $order_intent ) ) {
+		return $result;
 	}
+	$message = __( 'Please choose a package to redeem.', 'latepoint-prepayment' );
+	$order_intent->add_error( 'send_to_step', $message, 'payment' );
+	$result['status']  = LATEPOINT_STATUS_ERROR;
+	$result['message'] = $message;
+	return $result;
+}, 10, 2 );
 
+// Wallet icon for the package option tiles.
+add_action( 'wp_enqueue_scripts', function () {
+	wp_enqueue_style( 'latepoint-prepayment-front', plugins_url( 'public/stylesheets/prepayment-front.css', __FILE__ ), [], '2.0.0' );
+} );
+
+/*
+ * --------------------------------------------------------------------
+ * Package lookup + tiles
+ * --------------------------------------------------------------------
+ */
+
+/** Whether the current booking's customer has a usable package for the booked service. */
+function latepoint_prepayment_cart_has_available_package(): bool {
+	if ( ! class_exists( 'OsStepsHelper' ) || ! isset( OsStepsHelper::$cart_object ) ) {
+		return false;
+	}
+	$cart = OsStepsHelper::$cart_object;
+	if ( ! ( $cart instanceof OsCartModel ) ) {
+		return false;
+	}
+	$booking = latepoint_prepayment_active_booking( $cart );
+	if ( ! $booking || empty( $booking->service_id ) ) {
+		return false;
+	}
+	$customer_id = (int) OsStepsHelper::get_customer_object_id();
+	if ( ! $customer_id ) {
+		return false;
+	}
+	return ! empty( latepoint_prepayment_available_packages( $customer_id, (int) $booking->service_id ) );
+}
+
+/** Renders the customer's package tiles; clicking one re-drives the booking as a bundle redemption. */
+function latepoint_prepayment_render_tiles( OsCartModel $cart ): void {
 	$booking = latepoint_prepayment_active_booking( $cart );
 	if ( ! $booking || empty( $booking->service_id ) ) {
 		return;
 	}
-
-	// Resolve the customer this order is for. This is the logged-in customer on the public
-	// form, or the customer selected on the order in the admin/backend flow.
 	$customer_id = class_exists( 'OsStepsHelper' ) ? (int) OsStepsHelper::get_customer_object_id() : 0;
-	if ( ! $customer_id ) {
-		// No identified customer yet. On the public form a guest can log in to use a package;
-		// in the backend there's no one to prompt, so render nothing.
-		if ( ! OsAuthHelper::get_current_user()->has_backend_access() && ! OsAuthHelper::is_customer_logged_in() ) {
-			$login_url = class_exists( 'OsSettingsHelper' ) ? OsSettingsHelper::get_customer_login_url() : '';
-			if ( empty( $login_url ) ) {
-				return;
-			}
-			echo '<div class="lp-prepayment-panel" style="border:1px solid #e3e6ec;border-radius:10px;padding:16px;margin-bottom:16px;">';
-			echo '<div style="font-weight:600;margin-bottom:6px;">' . esc_html__( 'Have a package?', 'latepoint-prepayment' ) . '</div>';
-			echo '<p style="margin:0 0 12px;color:#5a6068;">' . esc_html__( 'Log in to pay with one of your purchased packages.', 'latepoint-prepayment' ) . '</p>';
-			echo '<a href="' . esc_url( $login_url ) . '" class="latepoint-btn latepoint-btn-primary">' . esc_html__( 'Log in', 'latepoint-prepayment' ) . '</a>';
-			echo '</div>';
-		}
-		return;
-	}
-
-	$packages = latepoint_prepayment_available_packages( $customer_id, (int) $booking->service_id );
+	$packages    = $customer_id ? latepoint_prepayment_available_packages( $customer_id, (int) $booking->service_id ) : [];
 	if ( ! $packages ) {
+		echo '<p style="color:#5a6068;">' . esc_html__( 'You have no usable package for this service.', 'latepoint-prepayment' ) . '</p>';
 		return;
 	}
 
-	$base_attrs = [
-		'data-selected-service' => (int) $booking->service_id,
-	];
+	$base_attrs = [ 'data-selected-service' => (int) $booking->service_id ];
 	if ( ! empty( $booking->agent_id ) && is_numeric( $booking->agent_id ) ) {
 		$base_attrs['data-selected-agent'] = (int) $booking->agent_id;
 	}
@@ -122,14 +156,9 @@ function latepoint_prepayment_render_panel( $cart ): void {
 		$base_attrs['data-selected-start-time'] = (int) $booking->start_time;
 	}
 
-	// Render each package as a LatePoint option tile. The container is hidden; the
-	// front-end script moves the tiles into the payment-method grid so they sit next
-	// to EveryPay/Stebby. data-stebby-context-free os_trigger_booking starts the
-	// native bundle-scheduling flow on click (no charge).
-	echo '<div class="lp-prepayment-tiles" style="display:none;">';
-
+	echo '<div class="lp-options lp-options-grid lp-options-grid-three lp-prepayment-tiles">';
 	foreach ( $packages as $package ) {
-		$attrs = $base_attrs + [ 'data-order-item-id' => $package['order_item_id'] ];
+		$attrs     = $base_attrs + [ 'data-order-item-id' => $package['order_item_id'] ];
 		$attr_html = '';
 		foreach ( $attrs as $key => $value ) {
 			$attr_html .= ' ' . $key . '="' . esc_attr( $value ) . '"';
@@ -140,7 +169,6 @@ function latepoint_prepayment_render_panel( $cart ): void {
 		echo '<div class="lp-option-label">' . esc_html( $label ) . '</div>';
 		echo '</div>';
 	}
-
 	echo '</div>';
 }
 
