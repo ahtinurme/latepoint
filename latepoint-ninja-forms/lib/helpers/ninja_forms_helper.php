@@ -300,10 +300,24 @@ class OsNinjaFormsHelper {
     foreach ( ( $submission['fields'] ?? [] ) as $field ) {
       $label = isset( $field['label'] ) ? $field['label'] : '';
       $value = isset( $field['value'] ) ? $field['value'] : '';
-      $html .= '<tr><th>' . esc_html( $label ) . '</th><td>' . nl2br( esc_html( $value ) ) . '</td></tr>';
+      $html .= '<tr><th>' . esc_html( $label ) . '</th><td>' . self::render_value( (string) $value ) . '</td></tr>';
     }
     $html .= '</table></div>';
     return $html;
+  }
+
+  /** Render image URLs (e.g. an attached scan) as thumbnails, everything else as escaped text. */
+  protected static function render_value( string $value ): string {
+    $out = [];
+    foreach ( preg_split( '/\r\n|\r|\n/', $value ) as $line ) {
+      $trimmed = trim( $line );
+      if ( $trimmed !== '' && preg_match( '#^https?://\S+\.(jpe?g|png|gif|webp)$#i', $trimmed ) ) {
+        $out[] = '<a href="' . esc_url( $trimmed ) . '" target="_blank" rel="noopener"><img src="' . esc_url( $trimmed ) . '" alt="" style="max-width:220px;height:auto;margin:4px 0;border:1px solid #ddd;" /></a>';
+      } else {
+        $out[] = nl2br( esc_html( $line ) );
+      }
+    }
+    return implode( '<br>', $out );
   }
 
   /* ===========================================================================

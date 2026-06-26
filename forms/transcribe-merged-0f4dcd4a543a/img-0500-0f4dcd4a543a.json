@@ -1,0 +1,16 @@
+{
+    "id": "vP4XYqje9O",
+    "file_name": "IMG_0500.jpeg",
+    "action": "transcribe",
+    "page_count": 1,
+    "status": "processed",
+    "results": [
+        {
+            "page_number": 1,
+            "transcript": "### Kliendi teavitamine ja n\u00f5usolek  \nYumefit Stuudio | EMS treening/rasvap\u00f5letus/lihastoonus\n\nKliendi ees- ja perekonnanimi: LAURA KORJUS\n\nS\u00fcnniaeg: 03.09.1995\n\nVastun\u00e4idustused, mille olemasolul ei tohi teenust kasutada (mitte l\u00f5plik nimekiri):  \ns\u00fcdamestimulaatori kasutamine ja s\u00fcdame r\u00fctmih\u00e4ired, rasked vereringeh\u00e4ired, kubeme- v\u00f5i k\u00f5husong, tuberkuloos, kasvajad, kaugele arenenud ateroskleroos, tromboos, nahap\u00f5letik, psoriaas, epilepsia, sclerosis multiplex\n\nKas oled varem EMS treeningul osalenud?  \n- [x] Ei  \n- [ ] Jah  \nMillal viimati? ..........\n\nOlen teadlik, et EMS treeningute vahe peab olema miinimum 48 tundi.  \n- [x] Jah  \n- [ ] Ei\n\nKui f\u00fc\u00fcsiliselt aktiivne \u00fcldiselt oled?  \n- [x] K\u00e4in regulaarselt trennis (k\u00f5rge aktiivsus)  \n- [ ] Trennis regulaarselt ei k\u00e4i, kuid liigun piisavalt (keskmine aktiivsus)  \n- [ ] V\u00f5rdlemisi v\u00e4he (madal aktiivsus)\n\nKas Sul on s\u00fcdamega probleeme?  \n- [x] Ei  \n- [ ] Jah  \nMilliseid? ..........\n\nKuidas hindad enda \u00fcldist tervislikku seisundit ja enesetunnet praegu?  \n- [x] Hea  \n- [ ] Keskmine  \n- [ ] Halb\n\nKas Sul on olnud vigastusi, p\u00fcsivat valu v\u00f5i muid kaebusi nendes piirkondades?  \n- [ ] Kael  \n- [ ] \u00d5lad  \n- [ ] Selg  \n- [ ] Puusad  \n- [ ] P\u00f5lved  \n- [ ] K\u00e4ed  \nT\u00e4psustus: .........."
+        }
+    ],
+    "automatically_deleted_at": "2026-07-03T18:49:29.000000Z",
+    "created_at": "2026-06-26T18:49:29.000000Z",
+    "updated_at": "2026-06-26T18:51:43.000000Z"
+}
