@@ -9,7 +9,8 @@
  *              for "püsiklient" (loyal) customers, driven by the "Püsiklient?" customer
  *              custom field as the single source of truth. (4) Gift cards — buy a
  *              package as a gift in the native booking flow; a one-time voucher code is
- *              auto-issued to the recipient and the buyer's own copy is locked.
+ *              shown to the buyer and emailed to them to hand over, and the buyer's own
+ *              copy is locked.
  * Version:     1.7.0
  * Author:      Yumefit
  * Text Domain: latepoint-yumefit-rules
@@ -301,14 +302,15 @@ function yumefit_pusiklient_auto_coupon($code, $cart) {
  * A package (bundle) purchase already skips agent/location/datepicker in core
  * (OsStepsHelper::should_step_be_skipped → is_bundle), so the booking widget
  * sells a package with no time slot. We bolt a gift layer onto that:
- *  - a "See on kingitus" toggle + recipient fields on the customer step (shown
- *    only when the cart is a package purchase);
- *  - the fields ride along in the order intent's payment_data JSON so they
- *    survive the async EveryPay callback into the order's initial_payment_data;
+ *  - a "See on kingitus" toggle on the customer step (shown only when the cart
+ *    is a package purchase);
+ *  - the flag rides along in the order intent's payment_data JSON so it
+ *    survives the async EveryPay callback into the order's initial_payment_data;
  *  - on a paid gift order we mint a single-use 100%-off coupon scoped to that
- *    bundle (the voucher), email it to the recipient, flag the order as a gift,
- *    and the validity rule then BLOCKS the buyer from redeeming their own copy
- *    (only the recipient can, via the code → their own €0 bundle order).
+ *    bundle (the voucher), show it on the confirmation screen + email it to the
+ *    BUYER, flag the order as a gift, and the validity rule then BLOCKS the buyer
+ *    from redeeming their own copy — they hand the code to whoever they gift it
+ *    to, who redeems it (→ their own €0 bundle order).
  *
  * Voucher = the native coupon primitive; payment = native EveryPay; no new
  * page, table, or dependency. See [[giftcard-plugin]] (the retired standalone).
@@ -340,40 +342,13 @@ function yumefit_gift_fields($step_code): void {
     ?>
     <div class="yumefit-gift-w" style="margin-top:18px;border-top:1px solid #eee;padding-top:14px">
         <label style="display:flex;gap:8px;align-items:flex-start;font-weight:600;cursor:pointer">
-            <input type="checkbox" name="gift_enabled" value="1" class="yumefit-gift-toggle">
-            <span><?php esc_html_e('See on kingitus', 'latepoint-yumefit-rules'); ?></span>
+            <input type="checkbox" name="gift_enabled" value="1">
+            <span><?php esc_html_e('See on kingitus — soovin koodi, mille saan kinkida', 'latepoint-yumefit-rules'); ?></span>
         </label>
-        <div class="yumefit-gift-fields" style="display:none;margin-top:12px">
-            <p style="color:#6b6b6b;font-size:13px;margin:0 0 10px">
-                <?php esc_html_e('Saaja saab e-postiga ühekordse koodi, millega broneerida valitud paketi.', 'latepoint-yumefit-rules'); ?>
-            </p>
-            <div style="margin:0 0 10px">
-                <label style="display:block;font-weight:600;margin:0 0 4px"><?php esc_html_e('Kingisaaja nimi', 'latepoint-yumefit-rules'); ?></label>
-                <input type="text" name="gift_recipient_name" maxlength="180" style="width:100%;padding:10px;border:1px solid #ccc;border-radius:8px;box-sizing:border-box">
-            </div>
-            <div style="margin:0 0 10px">
-                <label style="display:block;font-weight:600;margin:0 0 4px"><?php esc_html_e('Kingisaaja e-post', 'latepoint-yumefit-rules'); ?></label>
-                <input type="email" name="gift_recipient_email" maxlength="180" style="width:100%;padding:10px;border:1px solid #ccc;border-radius:8px;box-sizing:border-box">
-            </div>
-            <div style="margin:0 0 10px">
-                <label style="display:block;font-weight:600;margin:0 0 4px"><?php esc_html_e('Tervitus (valikuline)', 'latepoint-yumefit-rules'); ?></label>
-                <textarea name="gift_message" rows="2" maxlength="500" style="width:100%;padding:10px;border:1px solid #ccc;border-radius:8px;box-sizing:border-box"></textarea>
-            </div>
-            <label style="display:flex;gap:8px;align-items:flex-start;cursor:pointer">
-                <input type="checkbox" name="gift_deliver" value="1">
-                <span><?php esc_html_e('Saada kood otse kingisaaja e-postile', 'latepoint-yumefit-rules'); ?></span>
-            </label>
-        </div>
+        <p style="color:#6b6b6b;font-size:13px;margin:8px 0 0">
+            <?php esc_html_e('Ühekordne kood kuvatakse pärast makset ja saadetakse sulle e-postiga.', 'latepoint-yumefit-rules'); ?>
+        </p>
     </div>
-    <script>
-    (function(){
-        var t = document.querySelector('.yumefit-gift-toggle');
-        if (!t) return;
-        t.addEventListener('change', function(){
-            document.querySelector('.yumefit-gift-fields').style.display = t.checked ? 'block' : 'none';
-        });
-    })();
-    </script>
     <?php
 }
 
@@ -385,12 +360,8 @@ function yumefit_gift_stash_on_intent($order_intent) {
         return $order_intent;
     }
     $data = json_decode((string) ($order_intent->payment_data ?? ''), true) ?: [];
-    $data['gift_enabled']         = '1';
-    $data['gift_recipient_name']  = sanitize_text_field(wp_unslash($_POST['gift_recipient_name'] ?? ''));
-    $data['gift_recipient_email'] = sanitize_email(wp_unslash($_POST['gift_recipient_email'] ?? ''));
-    $data['gift_message']         = sanitize_textarea_field(wp_unslash($_POST['gift_message'] ?? ''));
-    $data['gift_deliver']         = !empty($_POST['gift_deliver']) ? '1' : '';
-    $order_intent->payment_data   = wp_json_encode($data);
+    $data['gift_enabled']       = '1';
+    $order_intent->payment_data = wp_json_encode($data);
     return $order_intent;
 }
 
@@ -424,13 +395,31 @@ function yumefit_gift_on_order_created($order): void {
 
     OsMetaHelper::save_order_meta_by_key('gift_is_gift', '1', $order->id);
     OsMetaHelper::save_order_meta_by_key('gift_voucher_code', $code, $order->id);
-    OsMetaHelper::save_order_meta_by_key('gift_recipient_email', $pd['gift_recipient_email'] ?? '', $order->id);
 
-    yumefit_gift_send_emails($order, (string) $bundle->name, $code, $pd);
+    yumefit_gift_send_email($order, (string) $bundle->name, $code);
+}
+
+// Show the voucher code on the confirmation screen (gift orders only).
+add_action('latepoint_step_confirmation_head_info_after', 'yumefit_gift_show_on_confirmation', 10, 1);
+function yumefit_gift_show_on_confirmation($order): void {
+    if (empty($order->id) || !class_exists('OsMetaHelper')) {
+        return;
+    }
+    $code = OsMetaHelper::get_order_meta_by_key('gift_voucher_code', (int) $order->id, '');
+    if (!$code) {
+        return;
+    }
+    $valid_until = date_i18n(get_option('date_format'), strtotime('+' . YUMEFIT_GIFT_VALID_MONTHS . ' months'));
+    echo '<div class="yumefit-gift-code" style="margin:16px 0;padding:16px;border:2px dashed #1c1f23;border-radius:10px;text-align:center">'
+        . '<div style="font-weight:600;margin-bottom:6px">' . esc_html__('Sinu kinkekaardi kood', 'latepoint-yumefit-rules') . '</div>'
+        . '<div style="font-size:22px;font-weight:700;letter-spacing:1px">' . esc_html($code) . '</div>'
+        . '<div style="color:#6b6b6b;font-size:13px;margin-top:6px">'
+        . esc_html(sprintf(__('Kehtib kuni %s. Saatsime koodi ka sinu e-postile.', 'latepoint-yumefit-rules'), $valid_until))
+        . '</div></div>';
 }
 
 // 4) Lock the BUYER's own copy: a gift-flagged bundle order can't be scheduled by
-//    the purchaser (only the recipient, via the voucher → their own free order).
+//    the purchaser — only whoever receives the gift code can, via their own order.
 add_filter('latepoint_check_steps_for_errors', 'yumefit_gift_block_buyer_redemption', 30, 3);
 function yumefit_gift_block_buyer_redemption(array $errors, array $steps, array $steps_rules): array {
     if (!class_exists('OsStepsHelper') || !class_exists('OsOrderItemModel') || !class_exists('OsMetaHelper')) {
@@ -445,7 +434,7 @@ function yumefit_gift_block_buyer_redemption(array $errors, array $steps, array 
         return $errors;
     }
     if (OsMetaHelper::get_order_meta_by_key('gift_is_gift', (int) $order_item->order_id, '') === '1') {
-        $errors['yumefit_gift_locked'] = __('This package was purchased as a gift — the voucher code emailed to the recipient must be used to book it.', 'latepoint-yumefit-rules');
+        $errors['yumefit_gift_locked'] = __('This package was purchased as a gift — the voucher code must be used to book it.', 'latepoint-yumefit-rules');
     }
     return $errors;
 }
@@ -475,46 +464,25 @@ function yumefit_gift_unique_code(): string {
     return $code;
 }
 
-// Email the voucher to the recipient (if the buyer chose direct delivery) and always
-// a copy to the buyer. Estonian, names the gifted package + validity.
-function yumefit_gift_send_emails($order, string $bundle_name, string $code, array $pd): void {
+// Email the voucher code to the BUYER (the purchaser hands it over themselves).
+// Estonian, names the gifted package + validity.
+function yumefit_gift_send_email($order, string $bundle_name, string $code): void {
+    if (empty($order->customer_id) || !class_exists('OsCustomerModel')) {
+        return;
+    }
+    $customer    = new OsCustomerModel((int) $order->customer_id);
+    $buyer_email = (string) ($customer->email ?? '');
+    if (!is_email($buyer_email)) {
+        return;
+    }
+
     $valid_until = date_i18n(get_option('date_format'), strtotime('+' . YUMEFIT_GIFT_VALID_MONTHS . ' months'));
     $site        = get_bloginfo('name');
+    $body = __('Aitäh ostu eest! Kinkekaardi kood on valmis.', 'latepoint-yumefit-rules') . "\n\n"
+        . sprintf(__('Kinkekaart: %s', 'latepoint-yumefit-rules'), $bundle_name) . "\n"
+        . sprintf(__('Kood: %s', 'latepoint-yumefit-rules'), $code) . "\n"
+        . sprintf(__('Kehtib kuni: %s', 'latepoint-yumefit-rules'), $valid_until) . "\n\n"
+        . __('Anna kood kingisaajale. Broneerimisel valitakse sama pakett ja sisestatakse kood — paketi hind kaetakse täies ulatuses.', 'latepoint-yumefit-rules');
 
-    $buyer_name  = '';
-    $buyer_email = '';
-    if (!empty($order->customer_id) && class_exists('OsCustomerModel')) {
-        $customer    = new OsCustomerModel((int) $order->customer_id);
-        $buyer_name  = trim((string) ($customer->full_name ?? ''));
-        $buyer_email = (string) ($customer->email ?? '');
-    }
-
-    $lines = [
-        sprintf(__('Kinkekaart: %s', 'latepoint-yumefit-rules'), $bundle_name),
-        sprintf(__('Kood: %s', 'latepoint-yumefit-rules'), $code),
-        sprintf(__('Kehtib kuni: %s', 'latepoint-yumefit-rules'), $valid_until),
-        '',
-        __('Broneerimisel vali sama pakett ja sisesta kood — paketi hind kaetakse täies ulatuses.', 'latepoint-yumefit-rules'),
-    ];
-
-    $recipient_email = sanitize_email((string) ($pd['gift_recipient_email'] ?? ''));
-    if (!empty($pd['gift_deliver']) && is_email($recipient_email)) {
-        $body = '';
-        if ($buyer_name) {
-            $body .= sprintf(__('%s on saatnud sulle kinkekaardi!', 'latepoint-yumefit-rules'), $buyer_name) . "\n\n";
-        }
-        if (!empty($pd['gift_message'])) {
-            $body .= '"' . $pd['gift_message'] . "\"\n\n";
-        }
-        $body .= implode("\n", $lines);
-        wp_mail($recipient_email, sprintf(__('Sinu kinkekaart — %s', 'latepoint-yumefit-rules'), $site), $body);
-    }
-
-    if (is_email($buyer_email)) {
-        $body  = __('Aitäh ostu eest! Kinkekaardi kood on valmis.', 'latepoint-yumefit-rules') . "\n\n" . implode("\n", $lines);
-        if (!empty($pd['gift_deliver']) && $recipient_email) {
-            $body .= "\n\n" . sprintf(__('Kood saadeti ka kingisaajale: %s', 'latepoint-yumefit-rules'), $recipient_email);
-        }
-        wp_mail($buyer_email, sprintf(__('Kinkekaardi kood — %s', 'latepoint-yumefit-rules'), $site), $body);
-    }
+    wp_mail($buyer_email, sprintf(__('Kinkekaardi kood — %s', 'latepoint-yumefit-rules'), $site), $body);
 }

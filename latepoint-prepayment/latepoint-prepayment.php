@@ -8,7 +8,7 @@
  *              bundle-scheduling flow (no charge). Registered as a real payment processor, so
  *              it is enabled/disabled under Settings -> Payments and only appears when the
  *              customer actually has a usable package for the service.
- * Version:     2.0.0
+ * Version:     2.0.1
  * Author:      Yumefit
  * Text Domain: latepoint-prepayment
  */
@@ -117,6 +117,13 @@ function latepoint_prepayment_cart_has_available_package(): bool {
 	$cart = OsStepsHelper::$cart_object;
 	if ( ! ( $cart instanceof OsCartModel ) ) {
 		return false;
+	}
+	// You can't pay for a package (or gift card) purchase WITH a package — if the cart
+	// is buying a bundle, never offer "Pay with package".
+	foreach ( $cart->get_items() as $item ) {
+		if ( method_exists( $item, 'is_bundle' ) && $item->is_bundle() ) {
+			return false;
+		}
 	}
 	$booking = latepoint_prepayment_active_booking( $cart );
 	if ( ! $booking || empty( $booking->service_id ) ) {
