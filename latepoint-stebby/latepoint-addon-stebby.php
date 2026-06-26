@@ -29,7 +29,7 @@ class LatePointAddonStebby {
    * Addon version.
    *
    */
-  public $version = '1.5.0';
+  public $version = '1.6.0';
   public $db_version = '1.0.0';
   public $addon_name = 'latepoint-addon-stebby';
 
@@ -38,14 +38,7 @@ class LatePointAddonStebby {
    * LatePoint Constructor.
    */
   public function __construct() {
-    $this->define_constants();
     $this->init_hooks();
-  }
-
-  /**
-   * Define LatePoint Constants.
-   */
-  public function define_constants() {
   }
 
 
@@ -62,16 +55,6 @@ class LatePointAddonStebby {
   }
 
   /**
-   * Define constant if not already set.
-   *
-   */
-  public function define( $name, $value ) {
-    if ( ! defined( $name ) ) {
-      define( $name, $value );
-    }
-  }
-
-  /**
    * Include required core files used in admin and on the frontend.
    */
   public function includes() {
@@ -81,7 +64,6 @@ class LatePointAddonStebby {
 
     // HELPERS
     include_once( dirname( __FILE__ ) . '/lib/helpers/stebby_helper.php' );
-    include_once( dirname( __FILE__ ) . '/lib/helpers/stebby_api_helper.php' );
 
     // Register payment processor, settings and checkout hooks
     OsStebbyHelper::init_hooks();
@@ -98,9 +80,6 @@ class LatePointAddonStebby {
 
     // Modify a list of installed add-ons
     add_filter('latepoint_installed_addons', [$this, 'register_addon']);
-
-    // Include JS and CSS for the admin panel
-    add_action('latepoint_admin_enqueue_scripts', [$this, 'load_admin_scripts_and_styles']);
 
     // Include JS and CSS for the frontend site
     add_action('latepoint_wp_enqueue_scripts', [$this, 'load_front_scripts_and_styles']);
@@ -127,15 +106,9 @@ class LatePointAddonStebby {
     $localized_vars['stebby_route_request_token']                 = OsRouterHelper::build_route_name('stebby', 'request_token');
     $localized_vars['stebby_route_request_token_for_transaction'] = OsRouterHelper::build_route_name('stebby', 'request_token_for_transaction');
 
-    $localized_vars['stebby_msg_redirect_error']    = __( 'Unable to start the Stebby payment.', 'latepoint-addon-stebby' );
     $localized_vars['stebby_msg_enter_voucher_code'] = __( 'Please enter your Stebby voucher code.', 'latepoint-addon-stebby' );
 
     return $localized_vars;
-  }
-
-  // Loads addon specific javascript and stylesheets for backend (wp-admin)
-  public function load_admin_scripts_and_styles($localized_vars){
-    wp_enqueue_style( 'latepoint-addon-stebby-admin', $this->public_stylesheets() . 'stebby-front.css', false, $this->version );
   }
 
   /**

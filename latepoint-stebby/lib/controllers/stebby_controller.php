@@ -21,12 +21,12 @@ if ( ! class_exists( 'OsStebbyController' ) ) :
 
     /*
      * --------------------------------------------------------------------
-     * v3 voucher-code redemption (no redirect)
+     * Voucher-code submission (no redirect)
      *
      * On "Confirm booking" the customer's voucher code is submitted with the form.
-     * We create the order intent, store the code, and convert it - the charge
-     * (useTicket) runs server-side during conversion. The front-end then continues
-     * to the booking confirmation.
+     * We create the order intent, store the code, and convert it - the code is
+     * format-checked during conversion and recorded on the booking. The front-end
+     * then continues to the booking confirmation.
      * --------------------------------------------------------------------
      */
 
@@ -47,7 +47,7 @@ if ( ! class_exists( 'OsStebbyController' ) ) :
         $order_intent->set_payment_data_value( OsStebbyHelper::PAYMENT_DATA_VOUCHER_CODE, $voucher_code );
 
         if ( ! $order_intent->convert_to_order() ) {
-          throw new Exception( empty( $order_intent->get_error_messages() ) ? __( 'The Stebby ticket could not be redeemed.', 'latepoint-addon-stebby' ) : implode( ', ', $order_intent->get_error_messages() ) );
+          throw new Exception( empty( $order_intent->get_error_messages() ) ? __( 'The Stebby voucher could not be applied.', 'latepoint-addon-stebby' ) : implode( ', ', $order_intent->get_error_messages() ) );
         }
 
         $this->send_json( [ 'status' => LATEPOINT_STATUS_SUCCESS, 'redirect_url' => OsOrderIntentHelper::generate_continue_intent_url( $order_intent->intent_key ) ] );
@@ -64,7 +64,7 @@ if ( ! class_exists( 'OsStebbyController' ) ) :
         $transaction_intent->set_payment_data_value( OsStebbyHelper::PAYMENT_DATA_VOUCHER_CODE, $voucher_code );
 
         if ( ! $transaction_intent->convert_to_transaction() ) {
-          throw new Exception( empty( $transaction_intent->get_error_messages() ) ? __( 'The Stebby ticket could not be redeemed.', 'latepoint-addon-stebby' ) : implode( ', ', $transaction_intent->get_error_messages() ) );
+          throw new Exception( empty( $transaction_intent->get_error_messages() ) ? __( 'The Stebby voucher could not be applied.', 'latepoint-addon-stebby' ) : implode( ', ', $transaction_intent->get_error_messages() ) );
         }
 
         $this->send_json( [ 'status' => LATEPOINT_STATUS_SUCCESS, 'redirect_url' => OsTransactionIntentHelper::generate_continue_intent_url( $transaction_intent->intent_key ) ] );

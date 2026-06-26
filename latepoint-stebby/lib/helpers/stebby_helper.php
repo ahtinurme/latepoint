@@ -11,9 +11,10 @@ if ( ! class_exists( 'OsStebbyHelper' ) ) :
    * Registers Stebby as a LatePoint payment processor for both the booking
    * checkout (order intent) and the invoice payment (transaction intent) flows.
    *
-   * Uses the Stebby v3 API: the customer enters their Stebby voucher code on the
-   * payment step and we redeem it directly (useTicket). The redeemed voucher
-   * covers the booked session; any remainder is left as a balance due.
+   * The customer enters their Stebby voucher code on the payment step. The code is
+   * format-checked, the voucher covers the booked session, and the code is saved to
+   * the booking comments for staff to redeem manually in Stebby. Any remainder is
+   * left as a balance due.
    */
   class OsStebbyHelper {
 
@@ -22,8 +23,8 @@ if ( ! class_exists( 'OsStebbyHelper' ) ) :
     const PAYMENT_DATA_VOUCHER_CODE = 'stebby_voucher_code';
 
     // ponytail: matches observed Stebby codes (SB/VV prefix + 10 alphanumerics).
-    // The useTicket API is the real authority; this just rejects obvious garbage
-    // before the call. Add a prefix here if Stebby ever issues a new one.
+    // Staff verify the code in Stebby when redeeming; this just rejects obvious
+    // garbage. Add a prefix here if Stebby ever issues a new one.
     const VOUCHER_CODE_PATTERN = '/^(SB|VV)[A-Z0-9]{10}$/';
 
     const CONTEXT_BOOKING     = 'booking';
@@ -41,14 +42,12 @@ if ( ! class_exists( 'OsStebbyHelper' ) ) :
       add_filter( 'latepoint_payment_processors', [ __CLASS__, 'register_payment_processor' ] );
       add_filter( 'latepoint_get_all_payment_times', [ __CLASS__, 'add_all_payment_methods_to_payment_times' ] );
       add_filter( 'latepoint_get_enabled_payment_times', [ __CLASS__, 'add_enabled_payment_methods_to_payment_times' ] );
-      add_filter( 'latepoint_encrypted_settings', [ __CLASS__, 'encrypted_settings' ] );
 
       add_filter( 'latepoint_process_payment_for_order_intent', [ __CLASS__, 'process_payment' ], 10, 2 );
       add_filter( 'latepoint_process_payment_for_transaction_intent', [ __CLASS__, 'process_payment_for_transaction_intent' ], 10, 2 );
 
       add_action( 'latepoint_order_created', [ __CLASS__, 'save_voucher_code_to_comments' ], 10 );
 
-      add_action( 'latepoint_payment_processor_settings', [ __CLASS__, 'add_settings_fields' ], 10 );
       add_action( 'latepoint_step_payment__pay_content', [ __CLASS__, 'output_payment_step_contents' ], 10 );
       add_action( 'latepoint_order_payment__pay_content_after', [ __CLASS__, 'output_order_payment_pay_contents' ], 10 );
     }
@@ -90,21 +89,15 @@ if ( ! class_exists( 'OsStebbyHelper' ) ) :
       return $payment_times;
     }
 
-    public static function encrypted_settings( array $encrypted_settings ): array {
-      $encrypted_settings[] = 'stebby_api_key';
-
-      return $encrypted_settings;
-    }
-
 
     /*
      * --------------------------------------------------------------------
-     * Charging (ticket redemption)
+     * Charging
      * --------------------------------------------------------------------
      */
 
     /**
-     * Redeems a Stebby ticket when an order intent is being converted to an order.
+     * Accepts the Stebby voucher when an order intent is being converted to an order.
      *
      * @param array<string, mixed> $result
      *
@@ -119,8 +112,8 @@ if ( ! class_exists( 'OsStebbyHelper' ) ) :
     }
 
     /**
-     * Redeems a Stebby ticket when a transaction intent (invoice payment) is being
-     * converted to a transaction.
+     * Accepts the Stebby voucher when a transaction intent (invoice payment) is
+     * being converted to a transaction.
      *
      * @param array<string, mixed> $result
      *
@@ -162,7 +155,7 @@ if ( ! class_exists( 'OsStebbyHelper' ) ) :
         return $result;
       }
 
-      // Record only what the ticket covered. The total stays untouched, so any
+      // Record only what the voucher covered. The total stays untouched, so any
       // remainder shows as an outstanding balance.
       $intent->charge_amount = $charge['covered'];
 
@@ -176,8 +169,9 @@ if ( ! class_exists( 'OsStebbyHelper' ) ) :
     }
 
     /**
-     * Redeems the Stebby voucher code the customer entered. A voucher pays for the
-     * booked session, so it covers the amount due on this booking.
+     * Accepts the Stebby voucher code the customer entered. The code is only
+     * format-checked and recorded; staff redeem it manually in Stebby. A voucher
+     * pays for the booked session, so it covers the amount due on this booking.
      *
      * @param OsOrderIntentModel|OsTransactionIntentModel $intent
      *
@@ -192,11 +186,6 @@ if ( ! class_exists( 'OsStebbyHelper' ) ) :
       }
       if ( ! self::is_valid_voucher_code( $code ) ) {
         throw new Exception( esc_html__( 'Please enter a valid Stebby voucher code.', 'latepoint-addon-stebby' ) );
-      }
-
-      $use_response = OsStebbyApiHelper::use_ticket( $code );
-      if ( $use_response === false ) {
-        throw new Exception( esc_html__( 'The Stebby voucher could not be redeemed. It may already be used or expired.', 'latepoint-addon-stebby' ) );
       }
 
       return [
@@ -261,33 +250,6 @@ if ( ! class_exists( 'OsStebbyHelper' ) ) :
           </div>
           <div class="lp-stebby-error" style="display:none; color:#c0394b; margin-bottom:10px;"></div>
           <a href="#" class="latepoint-btn latepoint-btn-primary lp-stebby-pay-btn"><?php esc_html_e( 'Pay with Stebby voucher', 'latepoint-addon-stebby' ); ?></a>
-        </div>
-      </div>
-      <?php
-    }
-
-
-    /*
-     * --------------------------------------------------------------------
-     * Admin settings
-     * --------------------------------------------------------------------
-     */
-
-    public static function add_settings_fields( $processor_code ) {
-      if ( $processor_code != self::$processor_code ) {
-        return false;
-      }
-      ?>
-      <div class="sub-section-row">
-        <div class="sub-section-label">
-          <h3><?php esc_html_e( 'API Key', 'latepoint-addon-stebby' ); ?></h3>
-        </div>
-        <div class="sub-section-content">
-          <div class="os-row os-mb-2">
-            <div class="os-col-6">
-              <?php echo OsFormHelper::password_field( 'settings[stebby_api_key]', __( 'API Key', 'latepoint-addon-stebby' ), OsSettingsHelper::get_settings_value( 'stebby_api_key', '' ) ); ?>
-            </div>
-          </div>
         </div>
       </div>
       <?php
