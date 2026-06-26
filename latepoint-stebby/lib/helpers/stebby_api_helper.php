@@ -12,8 +12,8 @@ if ( ! class_exists( 'OsStebbyApiHelper' ) ) :
    *
    * Docs: https://app.stebby.eu/api
    * Requests are authenticated with an `Api-Key` header and `Api-Version: 3`
-   * against the live API. v3 identifies the customer directly by their ID code
-   * (no redirect/token flow), which is what ticket redemption needs.
+   * against the live API. The customer's voucher code is redeemed directly via
+   * useTicket (no redirect/token flow).
    */
   class OsStebbyApiHelper {
 
@@ -101,33 +101,6 @@ if ( ! class_exists( 'OsStebbyApiHelper' ) ) :
       }
 
       return is_array( $decoded_body ) ? $decoded_body : [];
-    }
-
-    /**
-     * Extracts a human readable error message out of a Stebby error response.
-     */
-    public static function get_error_message_from_response( $response ): string {
-      if ( is_array( $response ) ) {
-        if ( ! empty( $response['errors'][0]['message'] ) ) {
-          return (string) $response['errors'][0]['message'];
-        }
-        if ( ! empty( $response['message'] ) ) {
-          return (string) $response['message'];
-        }
-      }
-
-      return __( 'Stebby request could not be completed.', 'latepoint-addon-stebby' );
-    }
-
-    /**
-     * Lists a client's usable (non-expired, unclaimed) tickets by their ID code.
-     *
-     * @param array<string, mixed> $filters e.g. ['idcode' => '39014022745']
-     *
-     * @return array<string, mixed>|false
-     */
-    public static function get_tickets( array $filters ) {
-      return self::request( 'POST', '/api/getTickets', $filters );
     }
 
     /**

@@ -1,24 +1,24 @@
 /*
  * Stebby (v3) front-end handler for LatePoint.
  *
- * The customer enters their ID code in the Stebby payment content and clicks
- * "Pay with Stebby ticket". We POST the form (with the ID code) to the redeem
- * route; the server redeems a Stebby ticket during conversion and returns the
+ * The customer enters their voucher code in the Stebby payment content and clicks
+ * "Pay with Stebby voucher". We POST the form (with the code) to the redeem
+ * route; the server redeems the Stebby voucher during conversion and returns the
  * URL to continue to the confirmation. No redirect to Stebby, no auto-submit.
  */
 (function () {
     'use strict';
 
-    function stebby_id_code($content) {
-        return ($content.find('.lp-stebby-idcode-input').val() || '').replace(/\D/g, '');
+    function stebby_voucher_code($content) {
+        return ($content.find('.lp-stebby-voucher-input').val() || '').replace(/[^A-Za-z0-9]/g, '').toUpperCase();
     }
 
     async function stebby_pay($content, $form, route_name) {
         var $btn = $content.find('.lp-stebby-pay-btn');
         var $error = $content.find('.lp-stebby-error');
 
-        if (!stebby_id_code($content)) {
-            $error.text(latepoint_helper.stebby_msg_enter_id_code || 'Please enter your ID code.').show();
+        if (!stebby_voucher_code($content)) {
+            $error.text(latepoint_helper.stebby_msg_enter_voucher_code || 'Please enter your Stebby voucher code.').show();
             return;
         }
         $error.hide();

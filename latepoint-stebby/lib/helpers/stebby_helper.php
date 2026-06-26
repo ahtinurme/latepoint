@@ -11,19 +11,31 @@ if ( ! class_exists( 'OsStebbyHelper' ) ) :
    * Registers Stebby as a LatePoint payment processor for both the booking
    * checkout (order intent) and the invoice payment (transaction intent) flows.
    *
-   * Uses the Stebby v3 API: the customer enters their personal ID code on the
-   * payment step, we look up their redeemable tickets (getTickets) and redeem one
-   * (useTicket). The redeemed ticket covers the booked session; any remainder is
-   * left as a balance due on the order.
+   * Uses the Stebby v3 API: the customer enters their Stebby voucher code on the
+   * payment step and we redeem it directly (useTicket). The redeemed voucher
+   * covers the booked session; any remainder is left as a balance due.
    */
   class OsStebbyHelper {
 
     public static $processor_code = 'stebby';
 
-    const PAYMENT_DATA_ID_CODE = 'stebby_id_code';
+    const PAYMENT_DATA_VOUCHER_CODE = 'stebby_voucher_code';
+
+    // ponytail: matches observed Stebby codes (SB/VV prefix + 10 alphanumerics).
+    // The useTicket API is the real authority; this just rejects obvious garbage
+    // before the call. Add a prefix here if Stebby ever issues a new one.
+    const VOUCHER_CODE_PATTERN = '/^(SB|VV)[A-Z0-9]{10}$/';
 
     const CONTEXT_BOOKING     = 'booking';
     const CONTEXT_TRANSACTION = 'transaction';
+
+    public static function normalize_voucher_code( string $code ): string {
+      return strtoupper( preg_replace( '/[^A-Za-z0-9]/', '', $code ) );
+    }
+
+    public static function is_valid_voucher_code( string $code ): bool {
+      return (bool) preg_match( self::VOUCHER_CODE_PATTERN, $code );
+    }
 
     public static function init_hooks(): void {
       add_filter( 'latepoint_payment_processors', [ __CLASS__, 'register_payment_processor' ] );
@@ -33,6 +45,8 @@ if ( ! class_exists( 'OsStebbyHelper' ) ) :
 
       add_filter( 'latepoint_process_payment_for_order_intent', [ __CLASS__, 'process_payment' ], 10, 2 );
       add_filter( 'latepoint_process_payment_for_transaction_intent', [ __CLASS__, 'process_payment_for_transaction_intent' ], 10, 2 );
+
+      add_action( 'latepoint_order_created', [ __CLASS__, 'save_voucher_code_to_comments' ], 10 );
 
       add_action( 'latepoint_payment_processor_settings', [ __CLASS__, 'add_settings_fields' ], 10 );
       add_action( 'latepoint_step_payment__pay_content', [ __CLASS__, 'output_payment_step_contents' ], 10 );
@@ -162,61 +176,56 @@ if ( ! class_exists( 'OsStebbyHelper' ) ) :
     }
 
     /**
-     * Looks up the customer's redeemable tickets by ID code and redeems the first
-     * one. The ticket is not tied to a particular booked service.
+     * Redeems the Stebby voucher code the customer entered. A voucher pays for the
+     * booked session, so it covers the amount due on this booking.
      *
      * @param OsOrderIntentModel|OsTransactionIntentModel $intent
      *
      * @return array{covered: float, charge_id: string}
      */
     private static function charge_voucher( $intent, float $max_amount ): array {
-      // The ID code is submitted with the booking form; fall back to any value
+      // The voucher code is submitted with the booking form; fall back to any value
       // already stored on the intent.
-      $id_code = (string) $intent->get_payment_data_value( self::PAYMENT_DATA_ID_CODE );
-      if ( $id_code === '' && class_exists( 'OsParamsHelper' ) ) {
-        $id_code = (string) OsParamsHelper::get_param( 'stebby_idcode' );
+      $code = self::normalize_voucher_code( (string) $intent->get_payment_data_value( self::PAYMENT_DATA_VOUCHER_CODE ) );
+      if ( $code === '' && class_exists( 'OsParamsHelper' ) ) {
+        $code = self::normalize_voucher_code( (string) OsParamsHelper::get_param( 'stebby_voucher_code' ) );
       }
-      $id_code = preg_replace( '/\D/', '', $id_code );
-      if ( empty( $id_code ) ) {
-        throw new Exception( esc_html__( 'Please enter your ID code to pay with a Stebby ticket.', 'latepoint-addon-stebby' ) );
-      }
-
-      $tickets     = self::get_client_tickets( $id_code );
-      $ticket      = $tickets[0] ?? [];
-      $ticket_code = (string) ( $ticket['ticket']['code'] ?? '' );
-      if ( empty( $ticket_code ) ) {
-        throw new Exception( esc_html__( 'No redeemable Stebby ticket was found for this ID code.', 'latepoint-addon-stebby' ) );
+      if ( ! self::is_valid_voucher_code( $code ) ) {
+        throw new Exception( esc_html__( 'Please enter a valid Stebby voucher code.', 'latepoint-addon-stebby' ) );
       }
 
-      $use_response = OsStebbyApiHelper::use_ticket( $ticket_code );
+      $use_response = OsStebbyApiHelper::use_ticket( $code );
       if ( $use_response === false ) {
-        throw new Exception( esc_html__( 'The Stebby ticket could not be redeemed. It may already be used or expired.', 'latepoint-addon-stebby' ) );
+        throw new Exception( esc_html__( 'The Stebby voucher could not be redeemed. It may already be used or expired.', 'latepoint-addon-stebby' ) );
       }
 
-      // v3 getTickets does not return a ticket price; a ticket pays for the booked
-      // session, so it covers the amount due on this booking.
       return [
         'covered'   => round( $max_amount, 2 ),
-        'charge_id' => 'stebby_ticket_' . $ticket_code,
+        'charge_id' => 'stebby_ticket_' . $code,
       ];
     }
 
     /**
-     * Lists the customer's usable (non-expired, unclaimed) Stebby tickets by their
-     * ID code. Returns the `data` array of ticket objects.
-     *
-     * @return array<int, array<string, mixed>>
+     * Records the redeemed voucher code on the order and its bookings so it shows
+     * up in the booking comments. The code was stored on the order intent's payment
+     * data, which is copied to the order's initial_payment_data on conversion.
      */
-    public static function get_client_tickets( string $id_code ): array {
-      $response = OsStebbyApiHelper::get_tickets( [ 'idcode' => $id_code, 'limit' => 50, 'page' => 1 ] );
-
-      if ( ! $response || empty( $response['data'] ) ) {
-        OsDebugHelper::log( 'Stebby returned no usable tickets for the ID code', 'stebby_voucher', [ 'response' => $response ] );
-
-        return [];
+    public static function save_voucher_code_to_comments( OsOrderModel $order ): void {
+      $payment_data = json_decode( (string) $order->initial_payment_data, true );
+      $code         = is_array( $payment_data ) ? (string) ( $payment_data[ self::PAYMENT_DATA_VOUCHER_CODE ] ?? '' ) : '';
+      if ( $code === '' ) {
+        return;
       }
 
-      return $response['data'];
+      $note = sprintf( __( 'Stebby voucher: %s', 'latepoint-addon-stebby' ), $code );
+
+      $order->customer_comment = trim( $order->customer_comment . "\n" . $note );
+      $order->save();
+
+      foreach ( $order->get_bookings_from_order_items( true ) as $booking ) {
+        $booking->customer_comment = trim( $booking->customer_comment . "\n" . $note );
+        $booking->save();
+      }
     }
 
 
@@ -246,12 +255,12 @@ if ( ! class_exists( 'OsStebbyHelper' ) ) :
       ?>
       <div class="lp-payment-method-content lp-stebby-method-content" data-payment-method="<?php echo esc_attr( self::$processor_code ); ?>" data-stebby-context="<?php echo esc_attr( $context ); ?>" style="display: none;">
         <div class="lp-payment-method-content-i">
-          <div class="lp-stebby-idcode-w os-form-group">
-            <label for="lp-stebby-idcode-<?php echo esc_attr( $context ); ?>"><?php esc_html_e( 'Enter your ID code to pay with a Stebby ticket', 'latepoint-addon-stebby' ); ?></label>
-            <input type="text" id="lp-stebby-idcode-<?php echo esc_attr( $context ); ?>" class="lp-stebby-idcode-input" name="stebby_idcode" inputmode="numeric" autocomplete="off" placeholder="<?php esc_attr_e( 'Personal ID code', 'latepoint-addon-stebby' ); ?>">
+          <div class="lp-stebby-voucher-w os-form-group">
+            <label for="lp-stebby-voucher-<?php echo esc_attr( $context ); ?>"><?php esc_html_e( 'Enter your Stebby voucher code', 'latepoint-addon-stebby' ); ?></label>
+            <input type="text" id="lp-stebby-voucher-<?php echo esc_attr( $context ); ?>" class="lp-stebby-voucher-input" name="stebby_voucher_code" autocomplete="off" autocapitalize="characters" placeholder="<?php esc_attr_e( 'Stebby voucher code', 'latepoint-addon-stebby' ); ?>">
           </div>
           <div class="lp-stebby-error" style="display:none; color:#c0394b; margin-bottom:10px;"></div>
-          <a href="#" class="latepoint-btn latepoint-btn-primary lp-stebby-pay-btn"><?php esc_html_e( 'Pay with Stebby ticket', 'latepoint-addon-stebby' ); ?></a>
+          <a href="#" class="latepoint-btn latepoint-btn-primary lp-stebby-pay-btn"><?php esc_html_e( 'Pay with Stebby voucher', 'latepoint-addon-stebby' ); ?></a>
         </div>
       </div>
       <?php

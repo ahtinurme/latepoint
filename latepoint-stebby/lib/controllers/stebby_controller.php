@@ -21,12 +21,12 @@ if ( ! class_exists( 'OsStebbyController' ) ) :
 
     /*
      * --------------------------------------------------------------------
-     * v3 ID-code ticket redemption (no redirect)
+     * v3 voucher-code redemption (no redirect)
      *
-     * On "Confirm booking" the customer's ID code is submitted with the form.
-     * We create the order intent, store the ID code, and convert it - the charge
-     * (getTickets + useTicket) runs server-side during conversion. The front-end
-     * then continues to the booking confirmation.
+     * On "Confirm booking" the customer's voucher code is submitted with the form.
+     * We create the order intent, store the code, and convert it - the charge
+     * (useTicket) runs server-side during conversion. The front-end then continues
+     * to the booking confirmation.
      * --------------------------------------------------------------------
      */
 
@@ -35,7 +35,7 @@ if ( ! class_exists( 'OsStebbyController' ) ) :
         OsStepsHelper::set_required_objects( $this->params );
         $cart = OsStepsHelper::$cart_object;
 
-        $id_code = $this->sanitize_id_code();
+        $voucher_code = $this->sanitize_voucher_code();
 
         $booking_form_page_url = $this->params['booking_form_page_url'] ?? OsUtilHelper::get_referrer();
         $order_intent          = OsOrderIntentHelper::create_or_update_order_intent( $cart, OsStepsHelper::$restrictions, OsStepsHelper::$presets, $booking_form_page_url, OsStepsHelper::get_customer_object_id() );
@@ -44,7 +44,7 @@ if ( ! class_exists( 'OsStebbyController' ) ) :
           throw new Exception( empty( $order_intent->get_error_messages() ) ? __( 'Booking slot is not available anymore.', 'latepoint-addon-stebby' ) : implode( ', ', $order_intent->get_error_messages() ) );
         }
 
-        $order_intent->set_payment_data_value( OsStebbyHelper::PAYMENT_DATA_ID_CODE, $id_code );
+        $order_intent->set_payment_data_value( OsStebbyHelper::PAYMENT_DATA_VOUCHER_CODE, $voucher_code );
 
         if ( ! $order_intent->convert_to_order() ) {
           throw new Exception( empty( $order_intent->get_error_messages() ) ? __( 'The Stebby ticket could not be redeemed.', 'latepoint-addon-stebby' ) : implode( ', ', $order_intent->get_error_messages() ) );
@@ -59,9 +59,9 @@ if ( ! class_exists( 'OsStebbyController' ) ) :
     public function request_token_for_transaction() {
       try {
         $transaction_intent = $this->load_transaction_intent();
-        $id_code            = $this->sanitize_id_code();
+        $voucher_code       = $this->sanitize_voucher_code();
 
-        $transaction_intent->set_payment_data_value( OsStebbyHelper::PAYMENT_DATA_ID_CODE, $id_code );
+        $transaction_intent->set_payment_data_value( OsStebbyHelper::PAYMENT_DATA_VOUCHER_CODE, $voucher_code );
 
         if ( ! $transaction_intent->convert_to_transaction() ) {
           throw new Exception( empty( $transaction_intent->get_error_messages() ) ? __( 'The Stebby ticket could not be redeemed.', 'latepoint-addon-stebby' ) : implode( ', ', $transaction_intent->get_error_messages() ) );
@@ -80,13 +80,13 @@ if ( ! class_exists( 'OsStebbyController' ) ) :
      * --------------------------------------------------------------------
      */
 
-    private function sanitize_id_code(): string {
-      $id_code = preg_replace( '/\D/', '', (string) ( $this->params['stebby_idcode'] ?? '' ) );
-      if ( $id_code === '' ) {
-        throw new Exception( esc_html__( 'Please enter your ID code to pay with a Stebby ticket.', 'latepoint-addon-stebby' ) );
+    private function sanitize_voucher_code(): string {
+      $code = OsStebbyHelper::normalize_voucher_code( (string) ( $this->params['stebby_voucher_code'] ?? '' ) );
+      if ( ! OsStebbyHelper::is_valid_voucher_code( $code ) ) {
+        throw new Exception( esc_html__( 'Please enter a valid Stebby voucher code.', 'latepoint-addon-stebby' ) );
       }
 
-      return $id_code;
+      return $code;
     }
 
     private function load_transaction_intent(): OsTransactionIntentModel {

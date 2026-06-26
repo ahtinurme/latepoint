@@ -2,7 +2,7 @@
 /**
  * Plugin Name: LatePoint Addon - Stebby
  * Plugin URI:  https://latepoint.com/
- * Description: Accept LatePoint booking payments through Stebby - customers identify themselves through Stebby and either pay from their Stebby balance or redeem a service they already bought on Stebby.
+ * Description: Accept LatePoint booking payments through Stebby - the customer enters a Stebby voucher code and it is redeemed against the booking.
  * Version:     1.3.0
  * Author:      LatePoint
  * Author URI:  https://latepoint.com/
@@ -127,8 +127,8 @@ class LatePointAddonStebby {
     $localized_vars['stebby_route_request_token']                 = OsRouterHelper::build_route_name('stebby', 'request_token');
     $localized_vars['stebby_route_request_token_for_transaction'] = OsRouterHelper::build_route_name('stebby', 'request_token_for_transaction');
 
-    $localized_vars['stebby_msg_redirect_error'] = __( 'Unable to start the Stebby payment.', 'latepoint-addon-stebby' );
-    $localized_vars['stebby_msg_enter_id_code']  = __( 'Please enter your ID code to pay with a Stebby ticket.', 'latepoint-addon-stebby' );
+    $localized_vars['stebby_msg_redirect_error']    = __( 'Unable to start the Stebby payment.', 'latepoint-addon-stebby' );
+    $localized_vars['stebby_msg_enter_voucher_code'] = __( 'Please enter your Stebby voucher code.', 'latepoint-addon-stebby' );
 
     return $localized_vars;
   }
