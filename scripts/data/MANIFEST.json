@@ -1,0 +1,260 @@
+[
+    {
+        "file": "users.json",
+        "url": "https://pro.timma.ee/api/users/customer/673e4475236e6416d9c1fa32",
+        "status": 200,
+        "count": 16
+    },
+    {
+        "file": "services.json",
+        "url": "https://pro.timma.ee/api/customerservices/customer/673e4475236e6416d9c1fa32",
+        "status": 200,
+        "count": 42
+    },
+    {
+        "file": "products.json",
+        "url": "https://pro.timma.ee/api/products/stock/customer/673e4475236e6416d9c1fa32",
+        "status": 200,
+        "count": 48
+    },
+    {
+        "file": "clients.json",
+        "url": "https://pro.timma.ee/api/clients/customer/673e4475236e6416d9c1fa32?page=N&limit=100",
+        "status": 200,
+        "count": 575
+    },
+    {
+        "file": "serviceslots/<clientId>.json",
+        "url": "https://pro.timma.ee/api/serviceslots/client/<id>?includeCancelled=true",
+        "status": 200,
+        "count": 2409
+    },
+    {
+        "file": "worktimes/2024-01.json",
+        "url": "https://pro.timma.ee/api/worktimes/customer/673e4475236e6416d9c1fa32?start=2024-01-01&end=2024-01-31",
+        "status": 200,
+        "count": 16
+    },
+    {
+        "file": "worktimes/2024-02.json",
+        "url": "https://pro.timma.ee/api/worktimes/customer/673e4475236e6416d9c1fa32?start=2024-02-01&end=2024-02-29",
+        "status": 200,
+        "count": 16
+    },
+    {
+        "file": "worktimes/2024-03.json",
+        "url": "https://pro.timma.ee/api/worktimes/customer/673e4475236e6416d9c1fa32?start=2024-03-01&end=2024-03-31",
+        "status": 200,
+        "count": 16
+    },
+    {
+        "file": "worktimes/2024-04.json",
+        "url": "https://pro.timma.ee/api/worktimes/customer/673e4475236e6416d9c1fa32?start=2024-04-01&end=2024-04-30",
+        "status": 200,
+        "count": 16
+    },
+    {
+        "file": "worktimes/2024-05.json",
+        "url": "https://pro.timma.ee/api/worktimes/customer/673e4475236e6416d9c1fa32?start=2024-05-01&end=2024-05-31",
+        "status": 200,
+        "count": 16
+    },
+    {
+        "file": "worktimes/2024-06.json",
+        "url": "https://pro.timma.ee/api/worktimes/customer/673e4475236e6416d9c1fa32?start=2024-06-01&end=2024-06-30",
+        "status": 200,
+        "count": 16
+    },
+    {
+        "file": "worktimes/2024-07.json",
+        "url": "https://pro.timma.ee/api/worktimes/customer/673e4475236e6416d9c1fa32?start=2024-07-01&end=2024-07-31",
+        "status": 200,
+        "count": 16
+    },
+    {
+        "file": "worktimes/2024-08.json",
+        "url": "https://pro.timma.ee/api/worktimes/customer/673e4475236e6416d9c1fa32?start=2024-08-01&end=2024-08-31",
+        "status": 200,
+        "count": 16
+    },
+    {
+        "file": "worktimes/2024-09.json",
+        "url": "https://pro.timma.ee/api/worktimes/customer/673e4475236e6416d9c1fa32?start=2024-09-01&end=2024-09-30",
+        "status": 200,
+        "count": 16
+    },
+    {
+        "file": "worktimes/2024-10.json",
+        "url": "https://pro.timma.ee/api/worktimes/customer/673e4475236e6416d9c1fa32?start=2024-10-01&end=2024-10-31",
+        "status": 200,
+        "count": 16
+    },
+    {
+        "file": "worktimes/2024-11.json",
+        "url": "https://pro.timma.ee/api/worktimes/customer/673e4475236e6416d9c1fa32?start=2024-11-01&end=2024-11-30",
+        "status": 200,
+        "count": 16
+    },
+    {
+        "file": "worktimes/2024-12.json",
+        "url": "https://pro.timma.ee/api/worktimes/customer/673e4475236e6416d9c1fa32?start=2024-12-01&end=2024-12-31",
+        "status": 200,
+        "count": 16
+    },
+    {
+        "file": "worktimes/2025-01.json",
+        "url": "https://pro.timma.ee/api/worktimes/customer/673e4475236e6416d9c1fa32?start=2025-01-01&end=2025-01-31",
+        "status": 200,
+        "count": 16
+    },
+    {
+        "file": "worktimes/2025-02.json",
+        "url": "https://pro.timma.ee/api/worktimes/customer/673e4475236e6416d9c1fa32?start=2025-02-01&end=2025-02-28",
+        "status": 200,
+        "count": 16
+    },
+    {
+        "file": "worktimes/2025-03.json",
+        "url": "https://pro.timma.ee/api/worktimes/customer/673e4475236e6416d9c1fa32?start=2025-03-01&end=2025-03-31",
+        "status": 200,
+        "count": 16
+    },
+    {
+        "file": "worktimes/2025-04.json",
+        "url": "https://pro.timma.ee/api/worktimes/customer/673e4475236e6416d9c1fa32?start=2025-04-01&end=2025-04-30",
+        "status": 200,
+        "count": 16
+    },
+    {
+        "file": "worktimes/2025-05.json",
+        "url": "https://pro.timma.ee/api/worktimes/customer/673e4475236e6416d9c1fa32?start=2025-05-01&end=2025-05-31",
+        "status": 200,
+        "count": 16
+    },
+    {
+        "file": "worktimes/2025-06.json",
+        "url": "https://pro.timma.ee/api/worktimes/customer/673e4475236e6416d9c1fa32?start=2025-06-01&end=2025-06-30",
+        "status": 200,
+        "count": 16
+    },
+    {
+        "file": "worktimes/2025-07.json",
+        "url": "https://pro.timma.ee/api/worktimes/customer/673e4475236e6416d9c1fa32?start=2025-07-01&end=2025-07-31",
+        "status": 200,
+        "count": 16
+    },
+    {
+        "file": "worktimes/2025-08.json",
+        "url": "https://pro.timma.ee/api/worktimes/customer/673e4475236e6416d9c1fa32?start=2025-08-01&end=2025-08-31",
+        "status": 200,
+        "count": 16
+    },
+    {
+        "file": "worktimes/2025-09.json",
+        "url": "https://pro.timma.ee/api/worktimes/customer/673e4475236e6416d9c1fa32?start=2025-09-01&end=2025-09-30",
+        "status": 200,
+        "count": 16
+    },
+    {
+        "file": "worktimes/2025-10.json",
+        "url": "https://pro.timma.ee/api/worktimes/customer/673e4475236e6416d9c1fa32?start=2025-10-01&end=2025-10-31",
+        "status": 200,
+        "count": 16
+    },
+    {
+        "file": "worktimes/2025-11.json",
+        "url": "https://pro.timma.ee/api/worktimes/customer/673e4475236e6416d9c1fa32?start=2025-11-01&end=2025-11-30",
+        "status": 200,
+        "count": 16
+    },
+    {
+        "file": "worktimes/2025-12.json",
+        "url": "https://pro.timma.ee/api/worktimes/customer/673e4475236e6416d9c1fa32?start=2025-12-01&end=2025-12-31",
+        "status": 200,
+        "count": 16
+    },
+    {
+        "file": "worktimes/2026-01.json",
+        "url": "https://pro.timma.ee/api/worktimes/customer/673e4475236e6416d9c1fa32?start=2026-01-01&end=2026-01-31",
+        "status": 200,
+        "count": 16
+    },
+    {
+        "file": "worktimes/2026-02.json",
+        "url": "https://pro.timma.ee/api/worktimes/customer/673e4475236e6416d9c1fa32?start=2026-02-01&end=2026-02-28",
+        "status": 200,
+        "count": 16
+    },
+    {
+        "file": "worktimes/2026-03.json",
+        "url": "https://pro.timma.ee/api/worktimes/customer/673e4475236e6416d9c1fa32?start=2026-03-01&end=2026-03-31",
+        "status": 200,
+        "count": 16
+    },
+    {
+        "file": "worktimes/2026-04.json",
+        "url": "https://pro.timma.ee/api/worktimes/customer/673e4475236e6416d9c1fa32?start=2026-04-01&end=2026-04-30",
+        "status": 200,
+        "count": 16
+    },
+    {
+        "file": "worktimes/2026-05.json",
+        "url": "https://pro.timma.ee/api/worktimes/customer/673e4475236e6416d9c1fa32?start=2026-05-01&end=2026-05-31",
+        "status": 200,
+        "count": 16
+    },
+    {
+        "file": "worktimes/2026-06.json",
+        "url": "https://pro.timma.ee/api/worktimes/customer/673e4475236e6416d9c1fa32?start=2026-06-01&end=2026-06-30",
+        "status": 200,
+        "count": 16
+    },
+    {
+        "file": "worktimes/2026-07.json",
+        "url": "https://pro.timma.ee/api/worktimes/customer/673e4475236e6416d9c1fa32?start=2026-07-01&end=2026-07-31",
+        "status": 200,
+        "count": 16
+    },
+    {
+        "file": "worktimes/2026-08.json",
+        "url": "https://pro.timma.ee/api/worktimes/customer/673e4475236e6416d9c1fa32?start=2026-08-01&end=2026-08-31",
+        "status": 200,
+        "count": 16
+    },
+    {
+        "file": "worktimes/2026-09.json",
+        "url": "https://pro.timma.ee/api/worktimes/customer/673e4475236e6416d9c1fa32?start=2026-09-01&end=2026-09-30",
+        "status": 200,
+        "count": 16
+    },
+    {
+        "file": "worktimes/2026-10.json",
+        "url": "https://pro.timma.ee/api/worktimes/customer/673e4475236e6416d9c1fa32?start=2026-10-01&end=2026-10-31",
+        "status": 200,
+        "count": 16
+    },
+    {
+        "file": "worktimes/2026-11.json",
+        "url": "https://pro.timma.ee/api/worktimes/customer/673e4475236e6416d9c1fa32?start=2026-11-01&end=2026-11-30",
+        "status": 200,
+        "count": 16
+    },
+    {
+        "file": "worktimes/2026-12.json",
+        "url": "https://pro.timma.ee/api/worktimes/customer/673e4475236e6416d9c1fa32?start=2026-12-01&end=2026-12-31",
+        "status": 200,
+        "count": 16
+    },
+    {
+        "file": "business.json",
+        "url": "https://pro.timma.ee/api/customers/673e4475236e6416d9c1fa32",
+        "status": 200,
+        "count": 150
+    },
+    {
+        "file": "resources.json",
+        "url": "https://pro.timma.ee/api/resources/customer/673e4475236e6416d9c1fa32",
+        "status": 200,
+        "count": 8
+    }
+]

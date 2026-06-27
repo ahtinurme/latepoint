@@ -1,0 +1,306 @@
+[
+    {
+        "url": "https://pro.timma.ee/api/customers/673e4475236e6416d9c1fa32",
+        "status": 200,
+        "json": true,
+        "count": 150,
+        "saved": true,
+        "sample": "{\"id\":\"673e4475236e6416d9c1fa32\",\"name\":\"Yumefit Stuudio\",\"businessId\":\"17411380\",\"email\":\"info@yumefit.ee\",\"phone\":\"+37"
+    },
+    {
+        "url": "https://pro.timma.ee/api/customer/673e4475236e6416d9c1fa32",
+        "status": 404,
+        "json": false,
+        "count": null,
+        "saved": false,
+        "sample": "<!DOCTYPE html>\n<html lang=\"en\">\n<head>\n<meta charset=\"utf-8\">\n<title>Error</title>\n</head>\n<body>\n<pre>Cannot GET /api/"
+    },
+    {
+        "url": "https://pro.timma.ee/api/businesses/673e4475236e6416d9c1fa32",
+        "status": 404,
+        "json": false,
+        "count": null,
+        "saved": false,
+        "sample": "<!DOCTYPE html>\n<html lang=\"en\">\n<head>\n<meta charset=\"utf-8\">\n<title>Error</title>\n</head>\n<body>\n<pre>Cannot GET /api/"
+    },
+    {
+        "url": "https://pro.timma.ee/api/business/673e4475236e6416d9c1fa32",
+        "status": 404,
+        "json": false,
+        "count": null,
+        "saved": false,
+        "sample": "<!DOCTYPE html>\n<html lang=\"en\">\n<head>\n<meta charset=\"utf-8\">\n<title>Error</title>\n</head>\n<body>\n<pre>Cannot GET /api/"
+    },
+    {
+        "url": "https://pro.timma.ee/api/settings/customer/673e4475236e6416d9c1fa32",
+        "status": 404,
+        "json": false,
+        "count": null,
+        "saved": false,
+        "sample": "<!DOCTYPE html>\n<html lang=\"en\">\n<head>\n<meta charset=\"utf-8\">\n<title>Error</title>\n</head>\n<body>\n<pre>Cannot GET /api/"
+    },
+    {
+        "url": "https://pro.timma.ee/api/account/customer/673e4475236e6416d9c1fa32",
+        "status": 404,
+        "json": false,
+        "count": null,
+        "saved": false,
+        "sample": "<!DOCTYPE html>\n<html lang=\"en\">\n<head>\n<meta charset=\"utf-8\">\n<title>Error</title>\n</head>\n<body>\n<pre>Cannot GET /api/"
+    },
+    {
+        "url": "https://pro.timma.ee/api/servicegroups/customer/673e4475236e6416d9c1fa32",
+        "status": 404,
+        "json": false,
+        "count": null,
+        "saved": false,
+        "sample": "<!DOCTYPE html>\n<html lang=\"en\">\n<head>\n<meta charset=\"utf-8\">\n<title>Error</title>\n</head>\n<body>\n<pre>Cannot GET /api/"
+    },
+    {
+        "url": "https://pro.timma.ee/api/servicecategories/customer/673e4475236e6416d9c1fa32",
+        "status": 404,
+        "json": false,
+        "count": null,
+        "saved": false,
+        "sample": "<!DOCTYPE html>\n<html lang=\"en\">\n<head>\n<meta charset=\"utf-8\">\n<title>Error</title>\n</head>\n<body>\n<pre>Cannot GET /api/"
+    },
+    {
+        "url": "https://pro.timma.ee/api/categories/customer/673e4475236e6416d9c1fa32",
+        "status": 404,
+        "json": false,
+        "count": null,
+        "saved": false,
+        "sample": "<!DOCTYPE html>\n<html lang=\"en\">\n<head>\n<meta charset=\"utf-8\">\n<title>Error</title>\n</head>\n<body>\n<pre>Cannot GET /api/"
+    },
+    {
+        "url": "https://pro.timma.ee/api/resources/customer/673e4475236e6416d9c1fa32",
+        "status": 200,
+        "json": true,
+        "count": 8,
+        "saved": true,
+        "sample": "[{\"id\":\"68656652b5fcac12b006045d\",\"customerId\":\"673e4475236e6416d9c1fa32\",\"name\":\"1 Jooga\",\"type\":null,\"createdAt\":\"2025"
+    },
+    {
+        "url": "https://pro.timma.ee/api/locations/customer/673e4475236e6416d9c1fa32",
+        "status": 404,
+        "json": false,
+        "count": null,
+        "saved": false,
+        "sample": "<!DOCTYPE html>\n<html lang=\"en\">\n<head>\n<meta charset=\"utf-8\">\n<title>Error</title>\n</head>\n<body>\n<pre>Cannot GET /api/"
+    },
+    {
+        "url": "https://pro.timma.ee/api/rooms/customer/673e4475236e6416d9c1fa32",
+        "status": 404,
+        "json": false,
+        "count": null,
+        "saved": false,
+        "sample": "<!DOCTYPE html>\n<html lang=\"en\">\n<head>\n<meta charset=\"utf-8\">\n<title>Error</title>\n</head>\n<body>\n<pre>Cannot GET /api/"
+    },
+    {
+        "url": "https://pro.timma.ee/api/receipts/customer/673e4475236e6416d9c1fa32",
+        "status": 400,
+        "json": false,
+        "count": null,
+        "saved": false,
+        "sample": "Invalid query."
+    },
+    {
+        "url": "https://pro.timma.ee/api/sales/customer/673e4475236e6416d9c1fa32",
+        "status": 404,
+        "json": false,
+        "count": null,
+        "saved": false,
+        "sample": "<!DOCTYPE html>\n<html lang=\"en\">\n<head>\n<meta charset=\"utf-8\">\n<title>Error</title>\n</head>\n<body>\n<pre>Cannot GET /api/"
+    },
+    {
+        "url": "https://pro.timma.ee/api/productsales/customer/673e4475236e6416d9c1fa32",
+        "status": 404,
+        "json": false,
+        "count": null,
+        "saved": false,
+        "sample": "<!DOCTYPE html>\n<html lang=\"en\">\n<head>\n<meta charset=\"utf-8\">\n<title>Error</title>\n</head>\n<body>\n<pre>Cannot GET /api/"
+    },
+    {
+        "url": "https://pro.timma.ee/api/invoices/customer/673e4475236e6416d9c1fa32",
+        "status": 404,
+        "json": false,
+        "count": null,
+        "saved": false,
+        "sample": "<!DOCTYPE html>\n<html lang=\"en\">\n<head>\n<meta charset=\"utf-8\">\n<title>Error</title>\n</head>\n<body>\n<pre>Cannot GET /api/"
+    },
+    {
+        "url": "https://pro.timma.ee/api/transactions/customer/673e4475236e6416d9c1fa32",
+        "status": 404,
+        "json": false,
+        "count": null,
+        "saved": false,
+        "sample": "<!DOCTYPE html>\n<html lang=\"en\">\n<head>\n<meta charset=\"utf-8\">\n<title>Error</title>\n</head>\n<body>\n<pre>Cannot GET /api/"
+    },
+    {
+        "url": "https://pro.timma.ee/api/payments/customer/673e4475236e6416d9c1fa32",
+        "status": 404,
+        "json": false,
+        "count": null,
+        "saved": false,
+        "sample": "<!DOCTYPE html>\n<html lang=\"en\">\n<head>\n<meta charset=\"utf-8\">\n<title>Error</title>\n</head>\n<body>\n<pre>Cannot GET /api/"
+    },
+    {
+        "url": "https://pro.timma.ee/api/giftcards/customer/673e4475236e6416d9c1fa32",
+        "status": 404,
+        "json": false,
+        "count": null,
+        "saved": false,
+        "sample": "<!DOCTYPE html>\n<html lang=\"en\">\n<head>\n<meta charset=\"utf-8\">\n<title>Error</title>\n</head>\n<body>\n<pre>Cannot GET /api/"
+    },
+    {
+        "url": "https://pro.timma.ee/api/vouchers/customer/673e4475236e6416d9c1fa32",
+        "status": 404,
+        "json": false,
+        "count": null,
+        "saved": false,
+        "sample": "<!DOCTYPE html>\n<html lang=\"en\">\n<head>\n<meta charset=\"utf-8\">\n<title>Error</title>\n</head>\n<body>\n<pre>Cannot GET /api/"
+    },
+    {
+        "url": "https://pro.timma.ee/api/reports/customer/673e4475236e6416d9c1fa32",
+        "status": 404,
+        "json": false,
+        "count": null,
+        "saved": false,
+        "sample": "<!DOCTYPE html>\n<html lang=\"en\">\n<head>\n<meta charset=\"utf-8\">\n<title>Error</title>\n</head>\n<body>\n<pre>Cannot GET /api/"
+    },
+    {
+        "url": "https://pro.timma.ee/api/reviews/customer/673e4475236e6416d9c1fa32",
+        "status": 404,
+        "json": false,
+        "count": null,
+        "saved": false,
+        "sample": "<!DOCTYPE html>\n<html lang=\"en\">\n<head>\n<meta charset=\"utf-8\">\n<title>Error</title>\n</head>\n<body>\n<pre>Cannot GET /api/"
+    },
+    {
+        "url": "https://pro.timma.ee/api/feedback/customer/673e4475236e6416d9c1fa32",
+        "status": 404,
+        "json": false,
+        "count": null,
+        "saved": false,
+        "sample": "<!DOCTYPE html>\n<html lang=\"en\">\n<head>\n<meta charset=\"utf-8\">\n<title>Error</title>\n</head>\n<body>\n<pre>Cannot GET /api/"
+    },
+    {
+        "url": "https://pro.timma.ee/api/messages/customer/673e4475236e6416d9c1fa32",
+        "status": 404,
+        "json": false,
+        "count": null,
+        "saved": false,
+        "sample": "<!DOCTYPE html>\n<html lang=\"en\">\n<head>\n<meta charset=\"utf-8\">\n<title>Error</title>\n</head>\n<body>\n<pre>Cannot GET /api/"
+    },
+    {
+        "url": "https://pro.timma.ee/api/sms/customer/673e4475236e6416d9c1fa32",
+        "status": 404,
+        "json": false,
+        "count": null,
+        "saved": false,
+        "sample": "<!DOCTYPE html>\n<html lang=\"en\">\n<head>\n<meta charset=\"utf-8\">\n<title>Error</title>\n</head>\n<body>\n<pre>Cannot GET /api/"
+    },
+    {
+        "url": "https://pro.timma.ee/api/notifications/customer/673e4475236e6416d9c1fa32",
+        "status": 404,
+        "json": false,
+        "count": null,
+        "saved": false,
+        "sample": "<!DOCTYPE html>\n<html lang=\"en\">\n<head>\n<meta charset=\"utf-8\">\n<title>Error</title>\n</head>\n<body>\n<pre>Cannot GET /api/"
+    },
+    {
+        "url": "https://pro.timma.ee/api/campaigns/customer/673e4475236e6416d9c1fa32",
+        "status": 404,
+        "json": false,
+        "count": null,
+        "saved": false,
+        "sample": "<!DOCTYPE html>\n<html lang=\"en\">\n<head>\n<meta charset=\"utf-8\">\n<title>Error</title>\n</head>\n<body>\n<pre>Cannot GET /api/"
+    },
+    {
+        "url": "https://pro.timma.ee/api/serviceslots/customer/673e4475236e6416d9c1fa32?start=2024-01-01&end=2026-12-31",
+        "status": 404,
+        "json": false,
+        "count": null,
+        "saved": false,
+        "sample": "<!DOCTYPE html>\n<html lang=\"en\">\n<head>\n<meta charset=\"utf-8\">\n<title>Error</title>\n</head>\n<body>\n<pre>Cannot GET /api/"
+    },
+    {
+        "url": "https://pro.timma.ee/api/reservations/customer/673e4475236e6416d9c1fa32",
+        "status": 404,
+        "json": false,
+        "count": null,
+        "saved": false,
+        "sample": "<!DOCTYPE html>\n<html lang=\"en\">\n<head>\n<meta charset=\"utf-8\">\n<title>Error</title>\n</head>\n<body>\n<pre>Cannot GET /api/"
+    },
+    {
+        "url": "https://pro.timma.ee/api/bookings/customer/673e4475236e6416d9c1fa32",
+        "status": 404,
+        "json": false,
+        "count": null,
+        "saved": false,
+        "sample": "<!DOCTYPE html>\n<html lang=\"en\">\n<head>\n<meta charset=\"utf-8\">\n<title>Error</title>\n</head>\n<body>\n<pre>Cannot GET /api/"
+    },
+    {
+        "url": "https://pro.timma.ee/api/clientnotes/674da89e4d973e330c42dbc5",
+        "status": 404,
+        "json": true,
+        "count": 1,
+        "saved": false,
+        "sample": "{\"message\":\"Client note does not exist\"}"
+    },
+    {
+        "url": "https://pro.timma.ee/api/clientnotes/67405787ebe928231d380a1e",
+        "status": 404,
+        "json": true,
+        "count": 1,
+        "saved": false,
+        "sample": "{\"message\":\"Client note does not exist\"}"
+    },
+    {
+        "url": "https://pro.timma.ee/api/notes/client/674da89e4d973e330c42dbc5",
+        "status": 404,
+        "json": false,
+        "count": null,
+        "saved": false,
+        "sample": "<!DOCTYPE html>\n<html lang=\"en\">\n<head>\n<meta charset=\"utf-8\">\n<title>Error</title>\n</head>\n<body>\n<pre>Cannot GET /api/"
+    },
+    {
+        "url": "https://pro.timma.ee/api/notes/client/67405787ebe928231d380a1e",
+        "status": 404,
+        "json": false,
+        "count": null,
+        "saved": false,
+        "sample": "<!DOCTYPE html>\n<html lang=\"en\">\n<head>\n<meta charset=\"utf-8\">\n<title>Error</title>\n</head>\n<body>\n<pre>Cannot GET /api/"
+    },
+    {
+        "url": "https://pro.timma.ee/api/receipts/client/674da89e4d973e330c42dbc5",
+        "status": 404,
+        "json": false,
+        "count": null,
+        "saved": false,
+        "sample": "<!DOCTYPE html>\n<html lang=\"en\">\n<head>\n<meta charset=\"utf-8\">\n<title>Error</title>\n</head>\n<body>\n<pre>Cannot GET /api/"
+    },
+    {
+        "url": "https://pro.timma.ee/api/receipts/client/67405787ebe928231d380a1e",
+        "status": 404,
+        "json": false,
+        "count": null,
+        "saved": false,
+        "sample": "<!DOCTYPE html>\n<html lang=\"en\">\n<head>\n<meta charset=\"utf-8\">\n<title>Error</title>\n</head>\n<body>\n<pre>Cannot GET /api/"
+    },
+    {
+        "url": "https://pro.timma.ee/api/products/client/674da89e4d973e330c42dbc5",
+        "status": 404,
+        "json": false,
+        "count": null,
+        "saved": false,
+        "sample": "<!DOCTYPE html>\n<html lang=\"en\">\n<head>\n<meta charset=\"utf-8\">\n<title>Error</title>\n</head>\n<body>\n<pre>Cannot GET /api/"
+    },
+    {
+        "url": "https://pro.timma.ee/api/products/client/67405787ebe928231d380a1e",
+        "status": 404,
+        "json": false,
+        "count": null,
+        "saved": false,
+        "sample": "<!DOCTYPE html>\n<html lang=\"en\">\n<head>\n<meta charset=\"utf-8\">\n<title>Error</title>\n</head>\n<body>\n<pre>Cannot GET /api/"
+    }
+]
