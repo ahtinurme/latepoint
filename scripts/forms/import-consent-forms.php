@@ -38,9 +38,36 @@ if ( ! class_exists( 'OsCustomerModel' ) ) {
 }
 require_once ABSPATH . 'wp-admin/includes/image.php';
 
-const FORM_TITLE   = 'Kliendi teavitamine ja nõusolek';
+// Four form types, one per scan grouping handed over (folders 1+2, 3+6, 4, 5).
+// Each gets a stable form_id + distinct title so the latepoint-ninja-forms
+// dashboard / admin order view list them as four separate forms.
+// ponytail: templates 1-2 == 3-6 (2-page, no contact) and 4 == 5 (1-page, with
+// contact). Kept as 4 per request — collapse to 2 ids/titles if you'd rather.
+const FORM_TYPES = [
+  '1-2' => [ 'id' => 1, 'title' => 'Kliendi teavitamine ja nõusolek (2-lk, I)' ],
+  '3-6' => [ 'id' => 2, 'title' => 'Kliendi teavitamine ja nõusolek (2-lk, II)' ],
+  '4'   => [ 'id' => 3, 'title' => 'Kliendi teavitamine ja nõusolek (1-lk, I)' ],
+  '5'   => [ 'id' => 4, 'title' => 'Kliendi teavitamine ja nõusolek (1-lk, II)' ],
+];
 const SUB_MARKER   = '_yumefit_consent_src';   // attachment meta: source basename
 const META_KEY     = 'ninja_form_submissions'; // OsNinjaFormsHelper::CUSTOMER_META_KEY
+
+// Manual overrides for scans whose transcribed name/email didn't auto-match a
+// customer (transcription typos / contact under a different address). Keyed by
+// the page-1 scan basename, confirmed by hand against unmatched-proposals.md.
+const OVERRIDES = [
+  'IMG_0498' => 227, // Jekaterina Barofova  -> Barotova
+  'IMG_0533' => 231, // Jelena Kremnjova     -> Kremnjeva
+  'IMG_0512' => 647, // Viktoria Romasova    -> Rozanova
+  'IMG_0502' => 272, // Kaido-Mart Kangro    -> Kaivo-Mart
+  'IMG_0622' => 90,  // Brigith Laureen Hanik-> Harik
+  'IMG_0614' => 226, // Janne Saarnits       -> Säärits
+  'IMG_0583' => 458, // Marita Mattisen      -> Mariita Mattiisen
+  'IMG_0535' => 535, // Olga Aleusandrova    -> Aleksandrova
+  'IMG_0598' => 52,  // Anneli Talih         -> Talik
+  'IMG_0565' => 83,  // Ave Kaljuste         -> Avo Kaljuste
+  'IMG_0587' => 58,  // Anne-Ly Nips         -> Anne-Ly Vips
+];
 
 /* ---------- name normalisation for matching ---------- */
 function normalize_name( string $s ): string {
@@ -73,6 +100,7 @@ function build_entries( string $base ): array {
     '6'  => '6/transcribe-merged-c0b8fc05189e.json',
   ];
   $img_dir = [ '1'=>'1', '2'=>'2', '3'=>'3', '4a'=>'4', '4b'=>'4', '5'=>'5', '6'=>'6' ];
+  $group   = [ '1'=>'1-2', '3'=>'3-6', '4a'=>'4', '4b'=>'4', '5'=>'5' ];
 
   $load = function( string $folder ) use ( $base, $sources ): array {
     $data = json_decode( file_get_contents( "$base/{$sources[$folder]}" ), true );
@@ -101,7 +129,7 @@ function build_entries( string $base ): array {
   $PHONE = '/Telefon[:*\s]*([^\n]+)/ui';
 
   $make = function( string $folder, string $file_name, string $text, ?array $page2 )
-      use ( $img_dir, $field, $NAME, $DOB, $EMAIL, $PHONE ): array {
+      use ( $img_dir, $group, $field, $NAME, $DOB, $EMAIL, $PHONE ): array {
     $images = [ "{$img_dir[$folder]}/$file_name" ];
     $full   = $text;
     if ( $page2 ) {
@@ -109,8 +137,11 @@ function build_entries( string $base ): array {
       $images[] = ( $folder === '1' ? '2' : '6' ) . "/$p2_name";
       $full     = $text . "\n\n---- lk 2 ----\n\n" . $p2_text;
     }
+    $type = FORM_TYPES[ $group[ $folder ] ];
     return [
       'source'     => $folder,
+      'form_id'    => $type['id'],
+      'form_title' => $type['title'],
       'name'       => $field( $NAME, $text ),
       'dob'        => $field( $DOB, $text ),
       'email'      => $field( $EMAIL, $text ),
@@ -152,7 +183,9 @@ function build_entries( string $base ): array {
 $customers = ( new OsCustomerModel() )->get_results_as_models();
 $by_email = [];
 $by_name  = [];
+$by_id    = [];
 foreach ( $customers as $c ) {
+  $by_id[ (int) $c->id ] = $c;
   if ( ! empty( $c->email ) ) {
     $by_email[ mb_strtolower( trim( $c->email ), 'UTF-8' ) ] = $c;
   }
@@ -167,6 +200,7 @@ echo $COMMIT ? "MODE: COMMIT (writing)\n\n" : "MODE: DRY RUN (no writes; pass --
 
 /* ---------- match + import ---------- */
 $matched = $ambiguous = $unmatched = $imported = $skipped = 0;
+$by_type = [];
 
 function find_existing_attachment( string $basename ): ?int {
   $q = get_posts( [
@@ -211,10 +245,13 @@ foreach ( $entries as $e ) {
   $name   = $e['name'];
   $sub_id = 'paper_' . preg_replace( '/\.[^.]+$/', '', basename( $e['images'][0] ) );
 
-  // match: email first, then normalized name
+  // match: manual override first, then email, then normalized name
   $customer = null; $how = '';
+  $img_key = preg_replace( '/\.[^.]+$/', '', basename( $e['images'][0] ) );
   $email = $e['email'] ? mb_strtolower( trim( $e['email'] ), 'UTF-8' ) : '';
-  if ( $email && isset( $by_email[ $email ] ) ) {
+  if ( isset( OVERRIDES[ $img_key ] ) && isset( $by_id[ OVERRIDES[ $img_key ] ] ) ) {
+    $customer = $by_id[ OVERRIDES[ $img_key ] ]; $how = 'override #' . OVERRIDES[ $img_key ];
+  } elseif ( $email && isset( $by_email[ $email ] ) ) {
     $customer = $by_email[ $email ]; $how = "email $email";
   } else {
     $cands = $by_name[ normalize_name( $name ) ] ?? [];
@@ -240,7 +277,8 @@ foreach ( $entries as $e ) {
     continue;
   }
 
-  echo sprintf( "  MATCH      %-28s -> #%d %s  [%s]\n", $name, $customer->id, $customer->full_name, $how );
+  $by_type[ $e['form_title'] ] = ( $by_type[ $e['form_title'] ] ?? 0 ) + 1;
+  echo sprintf( "  MATCH      %-28s -> #%d %s  [%s] {%s}\n", $name, $customer->id, $customer->full_name, $how, $e['form_title'] );
 
   if ( ! $COMMIT ) { continue; }
 
@@ -259,8 +297,8 @@ foreach ( $entries as $e ) {
   if ( $urls ) { $fields[] = [ 'label' => 'Originaaldokument', 'value' => implode( "\n", $urls ) ]; }
 
   $entry = [
-    'form_id'      => 0,
-    'form_title'   => FORM_TITLE,
+    'form_id'      => $e['form_id'],
+    'form_title'   => $e['form_title'],
     'sub_id'       => $sub_id,
     'submitted_at' => current_time( 'mysql' ),
     'fields'       => $fields,
@@ -276,6 +314,7 @@ foreach ( $entries as $e ) {
 
 echo "\n==== SUMMARY ====\n";
 echo "matched:   $matched\n";
+foreach ( $by_type as $title => $n ) { echo "  - $title: $n\n"; }
 echo "  imported:$imported  skipped(dup): $skipped\n";
 echo "ambiguous: $ambiguous  (resolve by hand)\n";
 echo "unmatched: $unmatched\n";
