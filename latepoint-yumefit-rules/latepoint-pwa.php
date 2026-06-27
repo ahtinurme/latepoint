@@ -1,7 +1,7 @@
 <?php
 /**
  * Plugin Name: WP-Admin PWA
- * Description: Makes the WordPress admin (/wp-admin) installable as a standalone app, so it can live behind a home-screen / app icon.
+ * Description: Makes the WordPress admin installable as a standalone app (home-screen icon) that opens straight into LatePoint.
  * Version:     1.0
  *
  * Drop this file into wp-content/mu-plugins/ (create the folder if it doesn't exist).
@@ -27,7 +27,7 @@ add_action('init', function () {
         echo wp_json_encode([
             'name' => get_bloginfo('name') . ' Admin',
             'short_name' => 'Yumefit',
-            'start_url' => admin_url(),
+            'start_url' => admin_url('admin.php?page=latepoint'),
             'scope' => parse_url(admin_url(), PHP_URL_PATH),
             'display' => 'standalone',
             'background_color' => '#1d2327', // WP admin dark grey
