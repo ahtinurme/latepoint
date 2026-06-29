@@ -1,18 +1,26 @@
 <?php
 /**
  * Create the 4 consent forms as REAL Ninja Forms definitions, one per scan
- * grouping (folders 1-2, 3-6, 4, 5). Two field templates underlie them:
+ * grouping (folders 1-2, 3-6, 4, 5). Two granular field templates underlie them:
  *   - Template A (2-page, "2-lk"): no contact fields, fuller questionnaire
  *   - Template B (1-page, "1-lk"): includes e-mail + phone
- * Field labels/options are transcribed verbatim from the paper forms.
+ * Field labels/options are transcribed verbatim from the paper forms, so the
+ * importer can map each transcribed answer onto a real form field.
+ *
+ * These are the IMPORT-OF-RECORD forms: the historical scans are imported as
+ * native Ninja Forms submissions against them (import-consent-forms.php), with
+ * every questionnaire field populated. New digital captures get their own forms.
+ * Each form also carries an `originaaldokument` field holding the scan image URL.
  *
  * MUST run on the server — needs the ninja-forms plugin (absent from the local
- * checkout). Uses NF's supported import_form() API, so no raw nf3_* inserts.
+ * checkout). Uses the model API + synchronous save() + manual cache rebuild;
+ * import_form() is unusable from CLI (saves field settings via an async process
+ * that never runs in a one-shot boot, so fields land blank).
  *
- *   php -d memory_limit=512M build-ninja-forms.php           # dry run: lists what it would create
+ *   php -d memory_limit=512M build-ninja-forms.php           # dry run
  *   php -d memory_limit=512M build-ninja-forms.php --commit  # create the forms
  *
- * Idempotent: skips a form whose exact title already exists.
+ * Idempotent: delete-and-recreate by title, so re-runs converge to 4 clean forms.
  */
 
 if ( php_sapi_name() !== 'cli' ) { exit( "CLI only.\n" ); }
@@ -95,6 +103,7 @@ function fields_template_a( $t, $a, $d, $r, $c, $consent, $h, $sub, $contra ): a
     $d( 'kuupaev', 'Kuupäev' ),
     $t( 'allkiri', 'Allkiri' ),
     $t( 'treener', 'Treeneri nimi' ),
+    $a( 'originaaldokument', 'Originaaldokument' ),
     $sub(),
   ];
 }
@@ -120,6 +129,7 @@ function fields_template_b( $t, $a, $d, $e, $p, $r, $c, $consent, $h, $sub, $con
     $consent( 'kinnitus', 'Käesolevaga kinnitan oma allkirjaga, et mind on teavitatud vastunäidustustest.' ),
     $t( 'allkiri', 'Allkiri' ),
     $d( 'kuupaev', 'Kuupäev' ),
+    $a( 'originaaldokument', 'Originaaldokument' ),
     $sub(),
   ];
 }
@@ -132,17 +142,13 @@ $FORMS = [
   [ 'title' => 'Kliendi teavitamine ja nõusolek (1-lk, II)', 'tpl' => 'B' ],
 ];
 
-// NB: import_form() is unusable from CLI — it saves field settings via a WP
-// background process (async admin-ajax) that never runs in a one-shot CLI boot,
-// so fields land blank. We build with the model API and save() synchronously,
-// then rebuild the NF cache (use_cache() is hard-on) so the form renders.
 global $wpdb;
 $titles = array_column( $FORMS, 'title' );
 
 echo $COMMIT ? "MODE: COMMIT\n" : "MODE: DRY RUN (pass --commit to create)\n";
 
-// Delete-and-recreate: removes any prior version of these forms (incl. a broken
-// earlier import) so re-runs converge to exactly four clean forms.
+// Delete-and-recreate: removes any prior version of these forms so re-runs
+// converge to exactly four clean forms.
 if ( $COMMIT ) {
   foreach ( Ninja_Forms()->form()->get_forms() as $f ) {
     if ( in_array( $f->get_setting( 'title' ), $titles, true ) ) {

@@ -36,3 +36,9 @@
 /index.php
 *.csv
 .idea
+
+# local debug artifacts
+.playwright-mcp/
+consent-form*.png
+form-before*.png
+consent-form-snapshot.md

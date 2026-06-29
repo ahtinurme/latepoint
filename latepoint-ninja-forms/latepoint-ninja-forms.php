@@ -85,7 +85,10 @@ class LatePointNinjaForms {
     add_action( 'latepoint_service_saved', [ $this, 'save_service_form_field' ], 10, 3 );
 
     // --- Requirement 4: display stored submissions ---
-    add_action( 'latepoint_customer_dashboard_before_appointments', [ $this, 'output_customer_dashboard_submissions' ] );
+    // Customer cabinet: a dedicated tab (trigger + content panel) rather than dumped before appointments.
+    add_action( 'latepoint_customer_dashboard_after_tabs', [ $this, 'output_customer_cabinet_tab_trigger' ] );
+    add_action( 'latepoint_customer_dashboard_after_tab_contents', [ $this, 'output_customer_cabinet_tab_content' ] );
+    add_action( 'latepoint_customer_edit_form_after', [ $this, 'output_customer_dashboard_submissions' ] );
     add_action( 'latepoint_order_quick_edit_form_content_after', [ $this, 'output_admin_order_submission' ] );
 
     // --- Requirements 2 & 3: capture submissions from Ninja Forms ---
@@ -172,6 +175,14 @@ class LatePointNinjaForms {
 
   public function output_customer_dashboard_submissions( $customer ) {
     echo OsNinjaFormsHelper::customer_submissions_html( $customer );
+  }
+
+  public function output_customer_cabinet_tab_trigger( $customer ) {
+    echo OsNinjaFormsHelper::customer_cabinet_tab_trigger_html( $customer );
+  }
+
+  public function output_customer_cabinet_tab_content( $customer ) {
+    echo OsNinjaFormsHelper::customer_cabinet_tab_content_html( $customer );
   }
 
   public function output_admin_order_submission( $order ) {

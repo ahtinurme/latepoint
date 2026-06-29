@@ -9,15 +9,18 @@ if ( ! class_exists( 'OsNinjaFormsHelper' ) ) :
  * All Ninja Forms <-> LatePoint glue lives here. The main plugin class only wires hooks
  * to these static methods so the logic stays in one place and is unit-testable.
  *
- * Storage model: a submission is saved as JSON on BOTH the order meta (so the admin order
- * view and a single-order lookup are cheap) and appended to the customer meta (so the
- * customer dashboard can list everything without a join across orders).
+ * Storage model: submissions ARE native Ninja Forms submissions (nf_sub). We link each to its
+ * LatePoint order/customer by stamping postmeta FKs on the sub (LP_ORDER_FK / LP_CUSTOMER_FK),
+ * then list them by querying nf_sub on those keys. No denormalised copy — Ninja Forms is the
+ * single source of truth, so the subs are also visible under Ninja Forms → Submissions.
  */
 class OsNinjaFormsHelper {
 
-  const ORDER_META_KEY        = 'ninja_form_submissions';
-  const CUSTOMER_META_KEY     = 'ninja_form_submissions';
   const SERVICE_META_ENABLED  = 'ninja_form_enabled';
+
+  // Postmeta on an nf_sub linking it back to LatePoint.
+  const LP_ORDER_FK    = '_latepoint_order_id';
+  const LP_CUSTOMER_FK = '_latepoint_customer_id';
 
   // Ninja Forms field keys the site admin adds to their form as Hidden fields. We populate
   // them automatically when the form is rendered through our shortcode, and read them back
@@ -241,16 +244,117 @@ class OsNinjaFormsHelper {
 
   /** @return array<int, array<string, mixed>> */
   public static function get_order_submissions( $order_id ): array {
-    $raw = OsMetaHelper::get_order_meta_by_key( self::ORDER_META_KEY, $order_id, '' );
-    $decoded = $raw ? json_decode( $raw, true ) : [];
-    return is_array( $decoded ) ? $decoded : [];
+    return self::submissions_by_fk( self::LP_ORDER_FK, (int) $order_id );
   }
 
   /** @return array<int, array<string, mixed>> */
   public static function get_customer_submissions( $customer_id ): array {
-    $raw = OsMetaHelper::get_customer_meta_by_key( self::CUSTOMER_META_KEY, $customer_id, '' );
-    $decoded = $raw ? json_decode( $raw, true ) : [];
-    return is_array( $decoded ) ? $decoded : [];
+    return self::submissions_by_fk( self::LP_CUSTOMER_FK, (int) $customer_id );
+  }
+
+  /** @return array<int, array<string, mixed>> */
+  protected static function submissions_by_fk( string $meta_key, int $id ): array {
+    if ( ! $id || ! function_exists( 'Ninja_Forms' ) ) {
+      return [];
+    }
+    $sub_ids = get_posts( [
+      'post_type'   => 'nf_sub',
+      'post_status' => 'publish',
+      'numberposts' => -1,
+      'fields'      => 'ids',
+      'orderby'     => 'date',
+      'order'       => 'ASC',
+      'meta_key'    => $meta_key,
+      'meta_value'  => $id,
+    ] );
+
+    $entries = [];
+    foreach ( $sub_ids as $sub_id ) {
+      $entry = self::sub_to_entry( $sub_id );
+      if ( $entry ) {
+        $entries[] = $entry;
+      }
+    }
+    return $entries;
+  }
+
+  /**
+   * Build a render/notify entry from a native nf_sub: its form title, date, and visible
+   * field label/value pairs (read straight from postmeta to avoid double-escaping).
+   *
+   * @return ?array<string, mixed>
+   */
+  protected static function sub_to_entry( $sub_id ): ?array {
+    $sub_id = (int) $sub_id;
+    if ( ! $sub_id || ! function_exists( 'Ninja_Forms' ) ) {
+      return null;
+    }
+    $form_id = (int) get_post_meta( $sub_id, '_form_id', true );
+    if ( ! $form_id ) {
+      return null;
+    }
+
+    $form   = Ninja_Forms()->form( $form_id )->get();
+    $fields = [];
+    foreach ( Ninja_Forms()->form( $form_id )->get_fields() as $field ) {
+      if ( in_array( $field->get_setting( 'type' ), [ 'submit', 'hidden', 'html', 'hr' ], true ) ) {
+        continue;
+      }
+      $raw   = maybe_unserialize( get_post_meta( $sub_id, '_field_' . $field->get_id(), true ) );
+      $value = self::format_field_value( $field, $raw );
+      if ( $value === '' ) {
+        continue;
+      }
+      $fields[] = [ 'label' => (string) $field->get_setting( 'label' ), 'value' => $value ];
+    }
+
+    return [
+      'form_title'   => $form ? (string) $form->get_setting( 'title' ) : '',
+      'submitted_at' => get_post_field( 'post_date', $sub_id ),
+      'fields'       => $fields,
+    ];
+  }
+
+  /**
+   * Stored list values are option *values* (slugs); map them back to their option labels for
+   * display. Everything else renders as-is.
+   *
+   * @param mixed $raw
+   */
+  protected static function format_field_value( $field, $raw ): string {
+    $list_types = [ 'listradio', 'listcheckbox', 'listselect', 'listmultiselect' ];
+    if ( in_array( $field->get_setting( 'type' ), $list_types, true ) ) {
+      $labels = [];
+      foreach ( (array) $field->get_setting( 'options' ) as $o ) {
+        if ( isset( $o['value'], $o['label'] ) ) {
+          $labels[ (string) $o['value'] ] = (string) $o['label'];
+        }
+      }
+      $selected = is_array( $raw ) ? $raw : ( ( $raw === '' || $raw === null ) ? [] : [ $raw ] );
+      $out = array_map( fn( $v ) => $labels[ (string) $v ] ?? (string) $v, $selected );
+      return implode( ', ', $out );
+    }
+
+    if ( $field->get_setting( 'type' ) === 'checkbox' ) {
+      $checked = in_array( (string) $raw, [ '1', 'on', 'checked', 'true' ], true );
+      return $checked ? __( 'Jah', 'latepoint-ninja-forms' ) : '';
+    }
+
+    if ( $field->get_setting( 'type' ) === 'signature' ) {
+      $data = is_string( $raw ) ? json_decode( $raw, true ) : null;
+      if ( ! is_array( $data ) ) {
+        return '';
+      }
+      if ( ( $data['signature_type'] ?? '' ) === 'drawn' ) {
+        return (string) ( $data['signature_data'] ?? '' ); // data: URL, rendered as <img> by render_value()
+      }
+      return (string) ( $data['typed_name'] ?? '' );
+    }
+
+    if ( is_array( $raw ) ) {
+      return implode( ', ', $raw );
+    }
+    return (string) $raw;
   }
 
   public static function customer_submissions_html( $customer ): string {
@@ -267,6 +371,29 @@ class OsNinjaFormsHelper {
     }
     $html .= '</div>';
     return $html;
+  }
+
+  // Customer cabinet tab class, shared by the trigger (latepoint_customer_dashboard_after_tabs)
+  // and the content panel (latepoint_customer_dashboard_after_tab_contents).
+  const CABINET_TAB_CLASS = 'tab-content-customer-consent';
+
+  /** The cabinet tab button — only when the customer has submissions, so the tab never shows empty. */
+  public static function customer_cabinet_tab_trigger_html( $customer ): string {
+    if ( ! $customer || empty( $customer->id ) || ! self::get_customer_submissions( $customer->id ) ) {
+      return '';
+    }
+    $label = apply_filters( 'latepoint_ninja_forms_cabinet_tab_label', 'Nõusolek' ); // Estonian site; override via filter
+    return '<a href="#" data-tab-target=".' . self::CABINET_TAB_CLASS . '" class="latepoint-tab-trigger">'
+      . esc_html( $label ) . '</a>';
+  }
+
+  /** The cabinet tab panel holding the submissions (hidden until its trigger is clicked). */
+  public static function customer_cabinet_tab_content_html( $customer ): string {
+    $inner = self::customer_submissions_html( $customer );
+    if ( ! $inner ) {
+      return '';
+    }
+    return '<div class="latepoint-tab-content ' . self::CABINET_TAB_CLASS . '">' . $inner . '</div>';
   }
 
   public static function admin_order_submission_html( $order ): string {
@@ -306,13 +433,16 @@ class OsNinjaFormsHelper {
     return $html;
   }
 
-  /** Render image URLs (e.g. an attached scan) as thumbnails, everything else as escaped text. */
+  /** Render image URLs (an attached scan) and drawn-signature data URLs as images, everything else as escaped text. */
   protected static function render_value( string $value ): string {
+    $img = 'style="max-width:220px;height:auto;margin:4px 0;border:1px solid #ddd;"';
     $out = [];
     foreach ( preg_split( '/\r\n|\r|\n/', $value ) as $line ) {
       $trimmed = trim( $line );
       if ( $trimmed !== '' && preg_match( '#^https?://\S+\.(jpe?g|png|gif|webp)$#i', $trimmed ) ) {
-        $out[] = '<a href="' . esc_url( $trimmed ) . '" target="_blank" rel="noopener"><img src="' . esc_url( $trimmed ) . '" alt="" style="max-width:220px;height:auto;margin:4px 0;border:1px solid #ddd;" /></a>';
+        $out[] = '<a href="' . esc_url( $trimmed ) . '" target="_blank" rel="noopener"><img src="' . esc_url( $trimmed ) . '" alt="" ' . $img . ' /></a>';
+      } elseif ( preg_match( '#^data:image/(png|jpe?g|gif|webp);base64,[A-Za-z0-9+/=]+$#', $trimmed ) ) {
+        $out[] = '<img src="' . esc_attr( $trimmed ) . '" alt="" ' . $img . ' />'; // esc_url strips data: URLs, so esc_attr
       } else {
         $out[] = nl2br( esc_html( $line ) );
       }
@@ -357,7 +487,70 @@ class OsNinjaFormsHelper {
     self::$current_order_id = null;
     self::$current_token    = null;
 
-    return $output;
+    return self::form_page_styles() . '<div class="latepoint-nf-page">' . $output . '</div>';
+  }
+
+  /**
+   * Scoped styling for the public consent form so it reads as a clean branded card rather than the
+   * raw Ninja Forms default. Brand green #174c2f, theme font inherited. Kept inline + scoped under
+   * `.latepoint-nf-page` so it touches nothing else on the site.
+   */
+  protected static function form_page_styles(): string {
+    static $printed = false;
+    if ( $printed ) {
+      return '';
+    }
+    $printed = true;
+
+    return <<<'CSS'
+<style id="latepoint-nf-styles">
+.latepoint-nf-page{--lpnf-green:#174c2f;--lpnf-green-dark:#0f3a23;--lpnf-line:#dbe3de;
+  max-width:760px;margin:32px auto;background:#fff;border-radius:16px;
+  box-shadow:0 6px 30px rgba(16,40,28,.08);border-top:4px solid var(--lpnf-green);overflow:hidden}
+.latepoint-nf-page .nf-form-cont{padding:8px 38px 34px}
+@media(max-width:600px){.latepoint-nf-page{margin:0;border-radius:0}.latepoint-nf-page .nf-form-cont{padding:8px 18px 26px}}
+.latepoint-nf-page .nf-form-title h3{color:var(--lpnf-green);font-size:1.7rem;font-weight:700;
+  margin:8px 0 4px;line-height:1.25}
+.latepoint-nf-page .nf-field-container{margin-bottom:20px}
+.latepoint-nf-page .nf-field-label label,.latepoint-nf-page .nf-field-label{font-weight:600;
+  color:#21302a;font-size:.95rem;margin-bottom:7px;line-height:1.4}
+.latepoint-nf-page .nf-field-description{color:#6a7872;font-size:.85rem}
+.latepoint-nf-page .nf-error-msg{color:#c0392b}
+.latepoint-nf-page input.ninja-forms-field,
+.latepoint-nf-page textarea.ninja-forms-field,
+.latepoint-nf-page select.ninja-forms-field,
+.latepoint-nf-page .nf-element{font-family:inherit!important;font-size:1rem!important;color:#1c2622!important;
+  background:#fff!important;border:1px solid var(--lpnf-line)!important;border-radius:10px!important;
+  padding:11px 14px!important;box-shadow:none!important;transition:border-color .15s,box-shadow .15s;width:100%}
+.latepoint-nf-page textarea.nf-element{min-height:96px;line-height:1.5}
+.latepoint-nf-page .nf-element:focus{border-color:var(--lpnf-green)!important;
+  box-shadow:0 0 0 3px rgba(23,76,47,.14)!important;outline:none!important}
+.latepoint-nf-page .nf-field-element input[type=radio],
+.latepoint-nf-page .nf-field-element input[type=checkbox]{accent-color:var(--lpnf-green);
+  width:18px;height:18px;margin-right:9px;cursor:pointer}
+.latepoint-nf-page .list-select-wrap .nf-field-element ul li,
+.latepoint-nf-page .checkbox-container,
+.latepoint-nf-page .nf-field-element li{list-style:none;margin:0 0 8px}
+.latepoint-nf-page .list-select-wrap label,
+.latepoint-nf-page .nf-field-element li label{display:flex;align-items:center;font-weight:400!important;
+  color:#2b3a33;cursor:pointer;margin:0}
+.latepoint-nf-page .nf-field-element li{padding:9px 13px;border:1px solid var(--lpnf-line);
+  border-radius:10px;transition:border-color .15s,background .15s}
+.latepoint-nf-page .nf-field-element li:hover{border-color:var(--lpnf-green);background:#f5f9f7}
+.latepoint-nf-page .html-container,.latepoint-nf-page .nf-field .html-content{background:#f4f8f5;
+  border-left:4px solid var(--lpnf-green);border-radius:10px;padding:14px 18px;color:#3c4c44;font-size:.9rem;line-height:1.55}
+.latepoint-nf-page canvas{border:1px solid var(--lpnf-line)!important;border-radius:10px;background:#fff}
+.latepoint-nf-page .nf-element[type=button],
+.latepoint-nf-page input[type=button].ninja-forms-field{background:var(--lpnf-green)!important;color:#fff!important;
+  border:none!important;border-radius:10px!important;padding:14px 34px!important;font-weight:600!important;
+  font-size:1.02rem!important;width:auto!important;cursor:pointer;transition:background .15s,transform .05s;box-shadow:0 2px 10px rgba(23,76,47,.18)!important}
+.latepoint-nf-page .nf-element[type=button]:hover,
+.latepoint-nf-page input[type=button].ninja-forms-field:hover{background:var(--lpnf-green-dark)!important}
+.latepoint-nf-page .nf-element[type=button]:active{transform:translateY(1px)}
+.latepoint-nf-page .nf-after-form-content .extra-html,
+.latepoint-nf-page .nf-response-msg{color:var(--lpnf-green)}
+</style>
+CSS;
   }
 
   /**
@@ -410,75 +603,29 @@ class OsNinjaFormsHelper {
       return;
     }
 
-    // Guard against Ninja Forms firing the action more than once for a submission.
-    $sub_id = (string) ( $form_data['actions']['save']['sub_id'] ?? ( $form_data['id'] ?? '' ) );
-    if ( $sub_id ) {
-      $lock_key = 'lp_nf_processed_' . md5( $order_id . '_' . $sub_id );
-      if ( get_transient( $lock_key ) ) {
-        return;
-      }
-      set_transient( $lock_key, 1, HOUR_IN_SECONDS );
-    }
-
-    $entry = self::build_entry( $form_data, $fields );
-
-    self::append_order_submission( $order_id, $entry );
-    self::append_customer_submission( $order, $entry );
-    self::notify( $order, $entry );
-  }
-
-  /**
-   * @param array<string, mixed> $form_data
-   * @param array<int, array<string, mixed>> $fields
-   * @return array<string, mixed>
-   */
-  protected static function build_entry( array $form_data, array $fields ): array {
-    $visible_fields = [];
-    foreach ( $fields as $field ) {
-      $key  = $field['key'] ?? '';
-      $type = $field['type'] ?? '';
-      if ( in_array( $key, [ self::HIDDEN_ORDER_KEY, self::HIDDEN_TOKEN_KEY ], true ) ) {
-        continue;
-      }
-      if ( in_array( $type, [ 'submit', 'hidden', 'html', 'hr' ], true ) ) {
-        continue;
-      }
-      $value = $field['value'] ?? '';
-      if ( is_array( $value ) ) {
-        $value = implode( ', ', $value );
-      }
-      $visible_fields[] = [
-        'label' => $field['label'] ?? ( $field['key'] ?? '' ),
-        'value' => (string) $value,
-      ];
-    }
-
-    return [
-      'form_id'      => (int) ( $form_data['form_id'] ?? ( $form_data['id'] ?? 0 ) ),
-      'form_title'   => (string) ( $form_data['settings']['title'] ?? '' ),
-      'sub_id'       => (string) ( $form_data['actions']['save']['sub_id'] ?? '' ),
-      'submitted_at' => current_time( 'mysql' ),
-      'fields'       => $visible_fields,
-    ];
-  }
-
-  /** @param array<string, mixed> $entry */
-  protected static function append_order_submission( $order_id, array $entry ): void {
-    $submissions   = self::get_order_submissions( $order_id );
-    $submissions[] = $entry;
-    OsMetaHelper::save_order_meta_by_key( self::ORDER_META_KEY, wp_json_encode( $submissions ), $order_id );
-  }
-
-  /** @param array<string, mixed> $entry */
-  protected static function append_customer_submission( $order, array $entry ): void {
-    $customer = $order->get_customer();
-    if ( ! $customer || empty( $customer->id ) ) {
+    // Ninja Forms has already saved the native sub by the time this fires; we just stamp the
+    // LatePoint FKs onto it so it lists on the order/customer. sub_id also guards against the
+    // action firing more than once.
+    $sub_id = (int) ( $form_data['actions']['save']['sub_id'] ?? ( $form_data['id'] ?? 0 ) );
+    if ( ! $sub_id ) {
       return;
     }
-    $entry['order_id'] = (int) $order->id;
-    $submissions       = self::get_customer_submissions( $customer->id );
-    $submissions[]     = $entry;
-    OsMetaHelper::save_customer_meta_by_key( self::CUSTOMER_META_KEY, wp_json_encode( $submissions ), $customer->id );
+    $lock_key = 'lp_nf_processed_' . md5( $order_id . '_' . $sub_id );
+    if ( get_transient( $lock_key ) ) {
+      return;
+    }
+    set_transient( $lock_key, 1, HOUR_IN_SECONDS );
+
+    update_post_meta( $sub_id, self::LP_ORDER_FK, (int) $order->id );
+    $customer = $order->get_customer();
+    if ( $customer && ! empty( $customer->id ) ) {
+      update_post_meta( $sub_id, self::LP_CUSTOMER_FK, (int) $customer->id );
+    }
+
+    $entry = self::sub_to_entry( $sub_id );
+    if ( $entry ) {
+      self::notify( $order, $entry );
+    }
   }
 
   /* ===========================================================================

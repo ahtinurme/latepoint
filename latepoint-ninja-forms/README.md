@@ -70,8 +70,10 @@ Both resolve to empty when no form id or no form page is set.
 
 ## Where data is stored
 
-- **Order meta** `ninja_form_submissions` — JSON array of submissions for that order (admin view).
-- **Customer meta** `ninja_form_submissions` — JSON array across all the customer's orders (dashboard).
+- **Submissions are native Ninja Forms `nf_sub` posts** — the single source of truth, also visible
+  under Ninja Forms → Submissions. Each is linked to LatePoint by postmeta FKs stamped on the sub:
+  `_latepoint_order_id` and `_latepoint_customer_id`. The admin order view and customer dashboard
+  list them by querying `nf_sub` on those keys — no denormalised copy.
 - **Service meta** `ninja_form_enabled` — per-service `on`/`off` link toggle (defaults to on).
 - **Settings** `ninja_forms_form_id`, `ninja_forms_page_id`, `ninja_forms_admin_email`,
   `ninja_forms_notify_customer`, `ninja_forms_notify_admin`, `ninja_forms_auto_append_email`.
