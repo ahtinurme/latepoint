@@ -486,3 +486,11 @@ function yumefit_gift_send_email($order, string $bundle_name, string $code): voi
 
     wp_mail($buyer_email, sprintf(__('Kinkekaardi kood — %s', 'latepoint-yumefit-rules'), $site), $body);
 }
+
+/* ===== Customer cabinet: one tile per row =====
+ * LatePoint lays the cabinet booking/order/bundle tiles in a 3-column grid
+ * (.customer-bookings-tiles / .customer-orders-tiles). Force a single column so
+ * the cards stack one per row. !important to beat LatePoint's same-specificity rule. */
+add_action('wp_head', function (): void {
+    echo '<style id="yumefit-cabinet-one-per-row">.customer-bookings-tiles,.customer-orders-tiles{grid-template-columns:1fr !important}</style>' . "\n";
+});
