@@ -636,13 +636,15 @@ CSS;
   protected static function notify( $order, array $entry ): void {
     $customer = $order->get_customer();
     $summary  = self::email_summary_html( $entry );
+    // The body is HTML; without this header wp_mail sends text/plain and clients show raw markup.
+    $headers  = [ 'Content-Type: text/html; charset=UTF-8' ];
 
     if ( self::notify_customer_enabled() && $customer && ! empty( $customer->email ) ) {
       $subject = __( 'We received your form submission', 'latepoint-ninja-forms' );
       $content = '<p>' . sprintf( esc_html__( 'Hi %s,', 'latepoint-ninja-forms' ), esc_html( $customer->first_name ) ) . '</p>';
       $content .= '<p>' . esc_html__( 'Thank you, we have received your form submission. A copy is below.', 'latepoint-ninja-forms' ) . '</p>';
       $content .= $summary;
-      OsEmailHelper::send_email( $customer->email, $subject, $content );
+      OsEmailHelper::send_email( $customer->email, $subject, $content, $headers );
     }
 
     if ( self::notify_admin_enabled() ) {
@@ -651,7 +653,7 @@ CSS;
       $subject = sprintf( __( 'New form submission for order #%d', 'latepoint-ninja-forms' ), (int) $order->id );
       $content = '<p>' . sprintf( esc_html__( 'A form was submitted by %1$s for order #%2$d.', 'latepoint-ninja-forms' ), esc_html( $customer_name ), (int) $order->id ) . '</p>';
       $content .= $summary;
-      OsEmailHelper::send_email( $admin_email, $subject, $content );
+      OsEmailHelper::send_email( $admin_email, $subject, $content, $headers );
     }
   }
 
@@ -659,7 +661,13 @@ CSS;
   protected static function email_summary_html( array $entry ): string {
     $html = '<table cellpadding="6" cellspacing="0" border="1" style="border-collapse:collapse;">';
     foreach ( ( $entry['fields'] ?? [] ) as $field ) {
-      $html .= '<tr><th align="left">' . esc_html( $field['label'] ) . '</th><td>' . nl2br( esc_html( $field['value'] ) ) . '</td></tr>';
+      $value = (string) $field['value'];
+      // A drawn signature is a base64 data URL — don't dump it into the email (mail clients block
+      // data: images anyway). Show a marker; the actual signature is on the customer/order in LatePoint.
+      $cell = strpos( $value, 'data:image/' ) === 0
+        ? esc_html__( '(signature provided)', 'latepoint-ninja-forms' )
+        : nl2br( esc_html( $value ) );
+      $html .= '<tr><th align="left">' . esc_html( $field['label'] ) . '</th><td>' . $cell . '</td></tr>';
     }
     $html .= '</table>';
     return $html;
