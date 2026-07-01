@@ -82,7 +82,6 @@ $fields = [
   $email( 'email', 'E-mail', true ),
   $phone( 'telefon', 'Telefon', true ),
   $date( 'synniaeg', 'Sünniaeg', true ),
-  $html( 'vastunaidustused', 'Vastunäidustused, mille olemasolul ei tohi teenust kasutada (mitte lõplik nimekiri)', $CONTRA ),
   $radio( 'varem_ems', 'Kas oled varem EMS treeningul osalenud?', [ 'Ei', 'Jah' ] ),
   $txt( 'varem_ems_millal', 'Millal viimati?' ),
   $radio( 'vahe_48h', 'Olen teadlik, et EMS treeningute vahe peab olema miinimum 48 tundi.', [ 'Jah', 'Ei' ] ),
@@ -97,6 +96,8 @@ $fields = [
   $checks( 'eesmark', 'Mis on Sinu eesmärk treeninguga?', [ 'Kaalulangetus', 'Lihastoonuse tõstmine', 'Üldine füüsilise aktiivsuse tõstmine', 'Muu' ] ),
   $radio( 'plaan_6k', 'Mis on Su järgneva 6 kuu füüsilise aktiivsuse plaan?', [ 'Käin regulaarselt trennis, et saavutada oma eesmärke', 'Olen katsetamas erinevaid trenne ja treenereid, et leida endale sobiv', 'Pole hetkel plaanis pühenduda, olen niisama ringi vaatamas', 'Muu' ] ),
   $radio( 'kuidas_leidsid', 'Kuidas meid leidsid?', [ 'Olen varasem klient', 'Facebooki reklaam', 'Instagrami reklaam', 'Leidsin teenuse Stebby kaudu', 'Kuulsin sõbra/tuttava käest', 'Otsisin internetist', 'Muu' ] ),
+  // Contraindications sit right above the consent checkbox — its "loetletud vastunäidustusi" refers to this list.
+  $html( 'vastunaidustused', 'Vastunäidustused, mille olemasolul ei tohi teenust kasutada (mitte lõplik nimekiri)', $CONTRA ),
   $consent( 'kinnitus', 'Kinnitan, et endale parimate teadmiste kohaselt ei ole mul loetletud vastunäidustusi ega esine muid tingimusi, mis võiksid takistada minu treeningul osalemist.' ),
   $date( 'kuupaev', 'Kuupäev' ),
   $signature( 'allkiri', 'Allkiri' ),

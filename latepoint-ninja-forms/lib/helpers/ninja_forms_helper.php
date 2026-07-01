@@ -178,8 +178,10 @@ class OsNinjaFormsHelper {
     }
     $url        = self::form_url_for_order( $order );
     $guest_url  = self::form_url_for_order( $order, 'guest' );
-    $link       = $url ? '<a href="' . esc_url( $url ) . '">' . esc_html__( 'Open form', 'latepoint-ninja-forms' ) . '</a>' : '';
-    $guest_link = $guest_url ? '<a href="' . esc_url( $guest_url ) . '">' . esc_html__( 'Open form', 'latepoint-ninja-forms' ) . '</a>' : '';
+    // Render the *_link vars as a button matching LatePoint's own email button (manage-booking CTA).
+    $btn = fn( $u ) => '<a href="' . esc_url( $u ) . '" style="display:block;text-decoration:none;padding:10px;border-radius:6px;text-align:center;font-size:18px;color:#fff;background-color:#1e7bff;font-weight:700;">' . esc_html__( 'Open form', 'latepoint-ninja-forms' ) . '</a>';
+    $link       = $url ? $btn( $url ) : '';
+    $guest_link = $guest_url ? $btn( $guest_url ) : '';
     return str_replace(
       [ '{{order_ninja_form_url}}', '{{order_ninja_form_link}}', '{{order_ninja_form_guest_url}}', '{{order_ninja_form_guest_link}}' ],
       [ esc_url( $url ), $link, esc_url( $guest_url ), $guest_link ],
