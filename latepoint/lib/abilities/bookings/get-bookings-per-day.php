@@ -60,6 +60,8 @@ class LatePointAbilityGetBookingsPerDay extends LatePointAbstractBookingAbility 
 		$filter->agent_id    = ! empty( $args['agent_id'] ) ? (int) $args['agent_id'] : 0;
 		$filter->service_id  = ! empty( $args['service_id'] ) ? (int) $args['service_id'] : 0;
 		$filter->location_id = ! empty( $args['location_id'] ) ? (int) $args['location_id'] : 0;
+		// Scope daily counts to the agents/services/locations the current user is allowed to access.
+		$filter = OsRolesHelper::filter_allowed_records_from_arguments_or_filter( $filter );
 
 		$rows = OsBookingHelper::get_total_bookings_per_day_for_period(
 			sanitize_text_field( $args['date_from'] ),

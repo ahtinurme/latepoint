@@ -48,8 +48,8 @@ class LatePointAbilitySearchCustomers extends LatePointAbstractCustomerAbility {
 		$search = sanitize_text_field( $args['query'] );
 		$limit  = min( 50, max( 1, (int) ( $args['limit'] ?? 10 ) ) );
 
-		$s         = '%' . $search . '%';
-		$customers = ( new OsCustomerModel() )
+		$s     = '%' . $search . '%';
+		$query = ( new OsCustomerModel() )
 			->where(
 				[
 					'OR' => [
@@ -59,7 +59,9 @@ class LatePointAbilitySearchCustomers extends LatePointAbstractCustomerAbility {
 						'phone LIKE'      => $s,
 					],
 				]
-			)
+			);
+		$query->filter_allowed_records();
+		$customers = $query
 			->order_by( 'last_name ASC' )
 			->set_limit( $limit )
 			->get_results_as_models();

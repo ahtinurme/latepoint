@@ -53,6 +53,7 @@ abstract class LatePointAbstractBookingAbility extends LatePointAbstractAbility 
 		if ( ! empty( $input['date_to'] ) ) {
 			$query->where( [ 'start_date <=' => sanitize_text_field( $input['date_to'] ) ] );
 		}
+		$query->filter_allowed_records();
 		return $query;
 	}
 

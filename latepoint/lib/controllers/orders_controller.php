@@ -112,9 +112,7 @@ if ( ! class_exists( 'OsOrdersController' ) ) :
 			$order_params    = $this->params['order'];
 			$customer_params = $this->params['customer'];
 
-
 			$order_items_params = $this->params['order_items'] ?? [];
-
 
 			$order = new OsOrderModel( $order_params['id'] );
 
@@ -122,8 +120,8 @@ if ( ! class_exists( 'OsOrdersController' ) ) :
 			$old_order = ( $order->is_new_record() ) ? [] : clone $order;
 			$order->set_data( $order_params );
 
-
 			// first validate & create a customer the customer
+			$old_customer_data = [];
 			if ( $order->customer_id ) {
 				$customer          = new OsCustomerModel( $order->customer_id );
 				$old_customer_data = $customer->get_data_vars();
@@ -132,26 +130,41 @@ if ( ! class_exists( 'OsOrdersController' ) ) :
 				$customer        = new OsCustomerModel();
 				$is_new_customer = true;
 			}
-			// Security fix: Prevent mass assignment of wordpress_user_id by non-admin users.
-			// Use admin scope if user is authenticated as admin, otherwise restrict to public fields.
-			$customer->set_data( $customer_params, OsAuthHelper::is_admin_logged_in() ? LATEPOINT_PARAMS_SCOPE_ADMIN : LATEPOINT_PARAMS_SCOPE_PUBLIC );
-			if ( $customer->save() ) {
-				if ( $is_new_customer ) {
-					do_action( 'latepoint_customer_created', $customer );
-					$this->fields_to_update['order[customer_id]'] = $customer->id;
-				} else {
-					do_action( 'latepoint_customer_updated', $customer, $old_customer_data );
-				}
 
-				$order->customer_id = $customer->id;
+			// The submitted customer[...] fields may overwrite an EXISTING customer record only when
+			// (1) the current user is authorized to edit that customer
+			// (2) the customer is is an allowed customer list.
+			// Attaching any customer to an order is always permitted; new customers proceed normally.
+			if ( $is_new_customer || $customer->is_new_record() ) {
+				$can_modify_customer = true;
 			} else {
-				$this->send_json(
-					[
-						'status'  => LATEPOINT_STATUS_ERROR,
-						// translators: %s is the description of an error
-						'message' => sprintf( __( 'Error: %s', 'latepoint' ), implode( ', ', $customer->get_error_messages() ) ),
-					]
-				);
+				$wp_link_is_safe     = empty( $customer->wordpress_user_id )
+					|| OsCustomerHelper::is_wp_user_safe_for_customer_link( (int) $customer->wordpress_user_id );
+				$can_modify_customer = $wp_link_is_safe
+					&& OsRolesHelper::can_user_make_action_on_model_record( $customer, 'edit' );
+			}
+
+			if ( $can_modify_customer ) {
+				// Set customer data only if is allowed
+				$customer->set_data( $customer_params, OsAuthHelper::is_admin_logged_in() ? LATEPOINT_PARAMS_SCOPE_ADMIN : LATEPOINT_PARAMS_SCOPE_PUBLIC );
+				if ( $customer->save() ) {
+					if ( $is_new_customer ) {
+						do_action( 'latepoint_customer_created', $customer );
+						$this->fields_to_update['order[customer_id]'] = $customer->id;
+					} else {
+						do_action( 'latepoint_customer_updated', $customer, $old_customer_data );
+					}
+
+					$order->customer_id = $customer->id;
+				} else {
+					$this->send_json(
+						[
+							'status'  => LATEPOINT_STATUS_ERROR,
+							// translators: %s is the description of an error
+							'message' => sprintf( __( 'Error: %s', 'latepoint' ), implode( ', ', $customer->get_error_messages() ) ),
+						]
+					);
+				}
 			}
 
 			// validate order items

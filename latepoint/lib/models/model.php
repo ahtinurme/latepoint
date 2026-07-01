@@ -384,6 +384,11 @@ class OsModel {
 							$sub_queries = [];
 							foreach ( $condition_values as $condition_key => $condition_value ) {
 								if ( is_string( $condition_key ) && is_string( $column ) ) {
+									// Only allow whitelisted comparison operators as condition suffix keys.
+									// Arbitrary string keys would be concatenated directly into SQL — reject them.
+									if ( ! in_array( trim( $condition_key ), $this->comparisons, true ) ) {
+										continue;
+									}
 									$temp_key       = $this->with_table_name( $column ) . $condition_key;
 									$sub_conditions = [ $temp_key => $condition_value ];
 								} elseif ( is_string( $condition_key ) ) {

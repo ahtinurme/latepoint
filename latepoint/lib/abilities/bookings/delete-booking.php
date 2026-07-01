@@ -42,6 +42,10 @@ class LatePointAbilityDeleteBooking extends LatePointAbstractBookingAbility {
 		if ( $booking->is_new_record() ) {
 			return new WP_Error( 'not_found', __( 'Booking not found.', 'latepoint' ), [ 'status' => 404 ] );
 		}
+		$auth = $this->authorize_record( $booking, 'delete' );
+		if ( is_wp_error( $auth ) ) {
+			return $auth;
+		}
 
 		$id = (int) $booking->id;
 		if ( ! $booking->delete() ) {

@@ -236,7 +236,7 @@ class OsCalendarHelper {
 		// set service to the first available if not set
 		// IMPORTANT, we have to have service in the booking request, otherwise we can't know duration and intervals
 		$service = new OsServiceModel();
-		$service = $service->where( [ 'id' => $booking_request->service_id ] )->set_limit( 1 )->get_results_as_models();
+		$service = $service->where( [ 'id' => absint( $booking_request->service_id ) ] )->set_limit( 1 )->get_results_as_models();
 		if ( $service ) {
 			if ( ! $booking_request->duration ) {
 				$booking_request->duration = $service->duration;

@@ -45,6 +45,10 @@ class LatePointAbilityUpdateCustomer extends LatePointAbstractCustomerAbility {
 		if ( $customer->is_new_record() ) {
 			return new WP_Error( 'not_found', __( 'Customer not found.', 'latepoint' ), [ 'status' => 404 ] );
 		}
+		$auth = $this->authorize_record( $customer, 'edit' );
+		if ( is_wp_error( $auth ) ) {
+			return $auth;
+		}
 
 		if ( isset( $args['first_name'] ) ) {
 			$customer->first_name = sanitize_text_field( $args['first_name'] );

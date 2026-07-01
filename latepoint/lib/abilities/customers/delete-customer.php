@@ -43,6 +43,10 @@ class LatePointAbilityDeleteCustomer extends LatePointAbstractCustomerAbility {
 		if ( $customer->is_new_record() ) {
 			return new WP_Error( 'not_found', __( 'Customer not found.', 'latepoint' ), [ 'status' => 404 ] );
 		}
+		$auth = $this->authorize_record( $customer, 'delete' );
+		if ( is_wp_error( $auth ) ) {
+			return $auth;
+		}
 
 		$id = (int) $customer->id;
 		if ( ! $customer->delete() ) {

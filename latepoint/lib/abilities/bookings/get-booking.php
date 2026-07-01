@@ -34,6 +34,10 @@ class LatePointAbilityGetBooking extends LatePointAbstractBookingAbility {
 		if ( $booking->is_new_record() ) {
 			return new WP_Error( 'not_found', __( 'Booking not found.', 'latepoint' ), [ 'status' => 404 ] );
 		}
+		$auth = $this->authorize_record( $booking, 'view' );
+		if ( is_wp_error( $auth ) ) {
+			return $auth;
+		}
 		return $this->serialize_booking( $booking );
 	}
 }

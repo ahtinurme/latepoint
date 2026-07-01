@@ -41,6 +41,10 @@ class LatePointAbilityConnectCustomerToWpUser extends LatePointAbstractCustomerA
 		if ( $customer->is_new_record() ) {
 			return new WP_Error( 'not_found', __( 'Customer not found.', 'latepoint' ), [ 'status' => 404 ] );
 		}
+		$auth = $this->authorize_record( $customer, 'edit' );
+		if ( is_wp_error( $auth ) ) {
+			return $auth;
+		}
 
 		$wp_user_id  = (int) $args['wp_user_id'];
 		$target_user = get_userdata( $wp_user_id );

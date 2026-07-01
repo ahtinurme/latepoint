@@ -111,6 +111,25 @@ abstract class LatePointAbstractAbility {
 		return $meta;
 	}
 
+	/**
+	 * Per-record ownership/scope check. Returns WP_Error (403) when the current
+	 * user is not allowed to act on this specific record. Admins always pass.
+	 *
+	 * @param OsModel $model
+	 * @param string  $action  one of 'view' | 'edit' | 'delete'
+	 * @return true|\WP_Error
+	 */
+	protected function authorize_record( OsModel $model, string $action ) {
+		if ( ! OsRolesHelper::can_user_make_action_on_model_record( $model, $action ) ) {
+			return new WP_Error(
+				'forbidden',
+				__( 'You are not allowed to access this record.', 'latepoint' ),
+				[ 'status' => 403 ]
+			);
+		}
+		return true;
+	}
+
 	protected static function pagination(): array {
 		return [
 			'page'     => [

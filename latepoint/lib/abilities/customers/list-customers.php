@@ -70,6 +70,7 @@ class LatePointAbilityListCustomers extends LatePointAbstractCustomerAbility {
 		if ( ! empty( $args['status'] ) ) {
 			$query->where( [ 'status' => sanitize_text_field( $args['status'] ) ] );
 		}
+		$query->filter_allowed_records();
 
 		$customers = ( clone $query )
 			->order_by( 'last_name ASC, first_name ASC' )

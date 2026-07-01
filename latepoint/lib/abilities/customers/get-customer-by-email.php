@@ -37,6 +37,10 @@ class LatePointAbilityGetCustomerByEmail extends LatePointAbstractCustomerAbilit
 		if ( ! $customer ) {
 			return new WP_Error( 'not_found', __( 'Customer not found.', 'latepoint' ), [ 'status' => 404 ] );
 		}
+		$auth = $this->authorize_record( $customer, 'view' );
+		if ( is_wp_error( $auth ) ) {
+			return $auth;
+		}
 		return $this->serialize_customer( $customer );
 	}
 }

@@ -49,12 +49,17 @@ class LatePointAbilityGetCustomerOrders extends LatePointAbstractCustomerAbility
 		if ( $customer->is_new_record() ) {
 			return new WP_Error( 'not_found', __( 'Customer not found.', 'latepoint' ), [ 'status' => 404 ] );
 		}
+		$auth = $this->authorize_record( $customer, 'view' );
+		if ( is_wp_error( $auth ) ) {
+			return $auth;
+		}
 
 		$page     = max( 1, (int) ( $args['page'] ?? 1 ) );
 		$per_page = min( 100, max( 1, (int) ( $args['per_page'] ?? 20 ) ) );
 		$offset   = ( $page - 1 ) * $per_page;
 
-		$query  = ( new OsOrderModel() )->where( [ 'customer_id' => $customer->id ] );
+		$query = ( new OsOrderModel() )->where( [ 'customer_id' => $customer->id ] );
+		$query->filter_allowed_records();
 		$orders = ( clone $query )
 			->order_by( 'created_at DESC' )
 			->set_limit( $per_page )

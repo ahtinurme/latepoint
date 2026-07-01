@@ -28,6 +28,6 @@ class LatePointAbilityGetTotalCustomersCount extends LatePointAbstractCustomerAb
 	}
 
 	public function execute( array $args ) {
-		return [ 'count' => (int) ( new OsCustomerModel() )->count() ];
+		return [ 'count' => (int) ( new OsCustomerModel() )->filter_allowed_records()->count() ];
 	}
 }

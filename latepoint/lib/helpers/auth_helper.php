@@ -245,8 +245,13 @@ class OsAuthHelper {
 	public static function authorize_customer( $customer_id ): bool {
 		$customer = new OsCustomerModel();
 		$customer = $customer->where( [ 'id' => $customer_id ] )->set_limit( 1 )->get_results_as_models();
+
 		if ( empty( $customer ) ) {
-			OsDebugHelper::log( 'Tried to authorize customer with invalid ID', 'customer_authorization', [ 'customer_id' => $customer_id ] );
+			OsDebugHelper::log(
+				'Tried to authorize customer with invalid ID',
+				'customer_authorization',
+				[ 'customer_id' => $customer_id ]
+			);
 
 			return false;
 		}
@@ -264,6 +269,22 @@ class OsAuthHelper {
 			if ( $wordpress_user_id ) {
 				$wp_user = get_user_by( 'id', $wordpress_user_id );
 				if ( $wp_user ) {
+					// Do not log a requester into a privileged WP account via the customer
+					// auth flow (OTP or social login). Mirror the guard used on the password and
+					// account-linking paths to prevent privilege escalation if a customer record's
+					// email has been overwritten to an attacker-controlled address.
+					if ( ! OsCustomerHelper::is_wp_user_safe_for_customer_link( (int) $wp_user->ID ) ) {
+						OsDebugHelper::log(
+							'Blocked customer authorization into a privileged WP user',
+							'customer_authorization',
+							[
+								'customer_id'       => $customer_id,
+								'wordpress_user_id' => $wp_user->ID,
+							]
+						);
+
+						return false;
+					}
 					self::login_wp_user( $wp_user );
 				} else {
 					OsDebugHelper::log(
@@ -278,7 +299,14 @@ class OsAuthHelper {
 					return false;
 				}
 			} else {
-				OsDebugHelper::log( 'WordPress user ID for customer is not found or can not be created.', 'customer_create_error', [ 'customer_id' => $customer_id ] );
+				OsDebugHelper::log(
+					'WordPress user ID for customer is not found or can not be created.',
+					'customer_create_error',
+					[
+						'customer_id'       => $customer_id,
+						'wordpress_user_id' => $wordpress_user_id,
+					]
+				);
 
 				return false;
 			}
@@ -802,7 +830,7 @@ class OsAuthHelper {
 						array(
 							'class'        => 'required',
 							'autocomplete' => 'current-password',
-						) 
+						)
 					); ?>
 					<a href="#" class="latepoint-btn latepoint-btn-primary latepoint-btn-link step-forgot-password-btn"
 					   data-os-action="<?php echo esc_attr( OsRouterHelper::build_route_name( 'customer_cabinet', 'request_password_reset_token' ) ); ?>"
