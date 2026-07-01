@@ -59,6 +59,8 @@ $radio = fn( $key, $label, $labels ) => [ 'type' => 'listradio', 'key' => $key, 
 $checks = fn( $key, $label, $labels ) => [ 'type' => 'listcheckbox', 'key' => $key, 'label' => $label, 'order' => ++$GLOBALS['order'], 'required' => 0, 'options' => $opts( $labels ) ];
 $consent = fn( $key, $label ) => [ 'type' => 'checkbox', 'key' => $key, 'label' => $label, 'order' => ++$GLOBALS['order'], 'required' => 1 ];
 $html  = fn( $key, $label, $content ) => [ 'type' => 'html', 'key' => $key, 'label' => $label, 'order' => ++$GLOBALS['order'], 'default' => $content ];
+$email = fn( $key, $label, $req = false ) => [ 'type' => 'email', 'key' => $key, 'label' => $label, 'order' => ++$GLOBALS['order'], 'required' => $req ? 1 : 0 ];
+$phone = fn( $key, $label, $req = false ) => [ 'type' => 'phone', 'key' => $key, 'label' => $label, 'order' => ++$GLOBALS['order'], 'required' => $req ? 1 : 0 ];
 $hidden = fn( $key ) => [ 'type' => 'hidden', 'key' => $key, 'label' => $key, 'order' => ++$GLOBALS['order'] ];
 $signature = fn( $key, $label ) => [
   'type' => 'signature', 'key' => $key, 'label' => $label, 'order' => ++$GLOBALS['order'], 'required' => 1,
@@ -71,7 +73,13 @@ $CONTRA = 'südamestimulaatori kasutamine ja südame arütmia, rasked vereringeh
   . 'tuberkuloos, kasvajad, kaugele arenenud ateroskleroos, tromboos, nahapõletik, psoriaas, epilepsia, sclerosis multiplex';
 
 $fields = [
-  $txt( 'eesnimi', 'Kliendi ees- ja perekonnanimi', true ),
+  // Identity block — required so the submitter (esp. the 2nd "kahekesi" person) can be
+  // matched to a LatePoint customer by email, or a new account created. Prefilled from the
+  // booker on the primary link; blank on the guest link.
+  $txt( 'eesnimi', 'Eesnimi', true ),
+  $txt( 'perekonnanimi', 'Perekonnanimi', true ),
+  $email( 'email', 'E-mail', true ),
+  $phone( 'telefon', 'Telefon', true ),
   $date( 'synniaeg', 'Sünniaeg', true ),
   $html( 'vastunaidustused', 'Vastunäidustused, mille olemasolul ei tohi teenust kasutada (mitte lõplik nimekiri)', $CONTRA ),
   $radio( 'varem_ems', 'Kas oled varem EMS treeningul osalenud?', [ 'Ei', 'Jah' ] ),
@@ -164,33 +172,42 @@ if ( $COMMIT ) {
 /* ===========================================================================
  * 5) Append the form link to the CUSTOMER email of the Esmakordne EMS automations
  * ========================================================================= */
-$link_block = "\n\nPalun täida enne esimest treeningut nõusoleku vorm: " . LINK_MARKER . "\n";
+// Primary link (booker) goes on both automations. The 2nd-person guest link goes on the kahekesi
+// one only (service #2 / process #3), keyed by GUEST_MARKER so re-runs don't duplicate it.
+const GUEST_MARKER    = '{{order_ninja_form_guest_link}}';
+$primary_block = "\n\nPalun täida enne esimest treeningut nõusoleku vorm: " . LINK_MARKER . "\n";
+$guest_block   = "\n\nTeine osaleja täidab enda nõusoleku vormi siin: " . GUEST_MARKER . "\n";
 
-function inject_link( array $tree, string $block, int &$hits ): array {
+// Append $block to the customer email's content, once (guarded by $marker being absent).
+function inject_block( array $tree, string $block, string $marker, int &$hits ): array {
   foreach ( $tree as $k => $node ) {
     if ( ! is_array( $node ) ) { continue; }
     if ( ( $node['type'] ?? '' ) === 'action' && ( $node['settings']['type'] ?? '' ) === 'send_email'
          && isset( $node['settings']['settings'] ) && is_array( $node['settings']['settings'] ) ) {
       $s = $node['settings']['settings'];
       if ( stripos( (string) ( $s['to_email'] ?? '' ), 'customer' ) !== false
-           && strpos( (string) ( $s['content'] ?? '' ), LINK_MARKER ) === false ) {
+           && strpos( (string) ( $s['content'] ?? '' ), $marker ) === false ) {
         $node['settings']['settings']['content'] = (string) ( $s['content'] ?? '' ) . $block;
         $hits++;
       }
     }
-    $tree[ $k ] = inject_link( $node, $block, $hits ); // recurse into children
+    $tree[ $k ] = inject_block( $node, $block, $marker, $hits ); // recurse into children
   }
   return $tree;
 }
 
+const KAHEKESI_PROCESS = 3; // "Esmakordne EMS kahekesi" (service #2) — the only 2-person one
 foreach ( EMS_PROCESSES as $pid ) {
   $proc = new OsProcessModel( $pid );
   if ( ! $proc->id ) { echo "PROCESS #$pid: not found, skipping\n"; continue; }
   $tree = json_decode( $proc->actions_json, true );
   if ( ! is_array( $tree ) ) { echo "PROCESS #$pid: unreadable actions_json, skipping\n"; continue; }
   $hits = 0;
-  $tree = inject_link( $tree, $link_block, $hits );
-  echo "PROCESS #$pid \"{$proc->name}\": " . ( $hits ? "append link to $hits customer email(s)" : "link already present / no customer email" ) . "\n";
+  $tree = inject_block( $tree, $primary_block, LINK_MARKER, $hits );
+  if ( $pid === KAHEKESI_PROCESS ) {
+    $tree = inject_block( $tree, $guest_block, GUEST_MARKER, $hits ); // 2nd-person link
+  }
+  echo "PROCESS #$pid \"{$proc->name}\": " . ( $hits ? "added $hits link block(s)" : "links already present / no customer email" ) . "\n";
   if ( $COMMIT && $hits ) {
     $proc->actions_json = wp_json_encode( $tree, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES );
     if ( ! $proc->save() ) { echo "  SAVE FAILED: " . implode( '; ', $proc->get_error_messages() ) . "\n"; }

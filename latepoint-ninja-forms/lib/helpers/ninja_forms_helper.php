@@ -28,9 +28,16 @@ class OsNinjaFormsHelper {
   const HIDDEN_ORDER_KEY = 'lp_nf_order';
   const HIDDEN_TOKEN_KEY = 'lp_nf_token';
 
+  // URL/query flag marking the "second person" (guest) link on a 2-person booking. On the guest
+  // link the identity fields are NOT prefilled — the guest types their own, and on submission
+  // they are matched to / created as their own LatePoint customer by email.
+  const ROLE_KEY = 'lp_nf_role';
+
   // Set while our shortcode renders a form, consumed by populate_hidden_fields().
   protected static ?int    $current_order_id = null;
   protected static ?string $current_token    = null;
+  protected static ?string $current_role     = null;
+  protected static $current_customer         = null;
 
   /* ===========================================================================
    * Global settings
@@ -143,7 +150,7 @@ class OsNinjaFormsHelper {
     return self::form_id_for_order( $order ) !== null;
   }
 
-  public static function form_url_for_order( $order ): string {
+  public static function form_url_for_order( $order, string $role = '' ): string {
     if ( ! self::has_form( $order ) ) {
       return '';
     }
@@ -151,13 +158,14 @@ class OsNinjaFormsHelper {
     if ( ! $page_id ) {
       return '';
     }
-    return add_query_arg(
-      [
-        self::HIDDEN_ORDER_KEY => (int) $order->id,
-        self::HIDDEN_TOKEN_KEY => self::token_for_order( $order->id ),
-      ],
-      get_permalink( $page_id )
-    );
+    $args = [
+      self::HIDDEN_ORDER_KEY => (int) $order->id,
+      self::HIDDEN_TOKEN_KEY => self::token_for_order( $order->id ),
+    ];
+    if ( $role !== '' ) {
+      $args[ self::ROLE_KEY ] = $role; // 'guest' → the 2nd person's blank, self-identifying form
+    }
+    return add_query_arg( $args, get_permalink( $page_id ) );
   }
 
   /* ===========================================================================
@@ -168,11 +176,13 @@ class OsNinjaFormsHelper {
     if ( strpos( $text, '{{order_ninja_form_' ) === false ) {
       return $text;
     }
-    $url = self::form_url_for_order( $order );
-    $link = $url ? '<a href="' . esc_url( $url ) . '">' . esc_html__( 'Open form', 'latepoint-ninja-forms' ) . '</a>' : '';
+    $url        = self::form_url_for_order( $order );
+    $guest_url  = self::form_url_for_order( $order, 'guest' );
+    $link       = $url ? '<a href="' . esc_url( $url ) . '">' . esc_html__( 'Open form', 'latepoint-ninja-forms' ) . '</a>' : '';
+    $guest_link = $guest_url ? '<a href="' . esc_url( $guest_url ) . '">' . esc_html__( 'Open form', 'latepoint-ninja-forms' ) . '</a>' : '';
     return str_replace(
-      [ '{{order_ninja_form_url}}', '{{order_ninja_form_link}}' ],
-      [ esc_url( $url ), $link ],
+      [ '{{order_ninja_form_url}}', '{{order_ninja_form_link}}', '{{order_ninja_form_guest_url}}', '{{order_ninja_form_guest_link}}' ],
+      [ esc_url( $url ), $link, esc_url( $guest_url ), $guest_link ],
       $text
     );
   }
@@ -481,11 +491,20 @@ class OsNinjaFormsHelper {
       return '<p>' . esc_html__( 'No form is configured for this booking.', 'latepoint-ninja-forms' ) . '</p>';
     }
 
+    $role = isset( $_GET[ self::ROLE_KEY ] ) ? sanitize_key( wp_unslash( $_GET[ self::ROLE_KEY ] ) ) : '';
+
     self::$current_order_id = $order_id;
     self::$current_token    = $token;
+    self::$current_role     = $role;
+    // Prefill the identity block from the booker on the primary link; the guest link starts blank.
+    self::$current_customer = ( $role === 'guest' ) ? null : $order->get_customer();
+
     $output = do_shortcode( '[ninja_form id=' . (int) $form_id . ']' );
+
     self::$current_order_id = null;
     self::$current_token    = null;
+    self::$current_role     = null;
+    self::$current_customer = null;
 
     return self::form_page_styles() . '<div class="latepoint-nf-page">' . $output . '</div>';
   }
@@ -568,6 +587,19 @@ CSS;
     if ( $key === self::HIDDEN_TOKEN_KEY && self::$current_token ) {
       return self::$current_token;
     }
+    // Prefill the identity block from the booker (primary link only; guest link stays blank).
+    $c = self::$current_customer;
+    if ( $c && ! empty( $c->id ) ) {
+      $prefill = [
+        'eesnimi'       => $c->first_name,
+        'perekonnanimi' => $c->last_name,
+        'email'         => $c->email,
+        'telefon'       => $c->phone,
+      ];
+      if ( isset( $prefill[ $key ] ) && $prefill[ $key ] !== '' && ( $default_value === '' || $default_value === null ) ) {
+        return $prefill[ $key ];
+      }
+    }
     return $default_value;
   }
 
@@ -617,15 +649,56 @@ CSS;
     set_transient( $lock_key, 1, HOUR_IN_SECONDS );
 
     update_post_meta( $sub_id, self::LP_ORDER_FK, (int) $order->id );
-    $customer = $order->get_customer();
+
+    // The submitter may not be the booker (2nd person on a "kahekesi" booking), so resolve who this
+    // consent belongs to by email — find an existing customer or create one from the identity fields.
+    $customer = self::resolve_submission_customer( $fields, $order );
     if ( $customer && ! empty( $customer->id ) ) {
       update_post_meta( $sub_id, self::LP_CUSTOMER_FK, (int) $customer->id );
     }
 
     $entry = self::sub_to_entry( $sub_id );
     if ( $entry ) {
-      self::notify( $order, $entry );
+      self::notify( $order, $entry, $customer );
     }
+  }
+
+  /**
+   * Find (by email) or create the LatePoint customer a submission belongs to, from its identity
+   * fields. Existing customers are never overwritten — only a newly created one gets the details.
+   * Falls back to the order's booker when no usable email was submitted.
+   *
+   * @param array<int, array<string, mixed>> $fields
+   * @return mixed OsCustomerModel or null
+   */
+  protected static function resolve_submission_customer( array $fields, $order ) {
+    $vals = [];
+    foreach ( $fields as $field ) {
+      $key = $field['key'] ?? '';
+      if ( in_array( $key, [ 'email', 'eesnimi', 'perekonnanimi', 'telefon' ], true ) ) {
+        $v = $field['value'] ?? '';
+        $vals[ $key ] = trim( is_array( $v ) ? implode( ' ', $v ) : (string) $v );
+      }
+    }
+
+    $email = sanitize_email( $vals['email'] ?? '' );
+    if ( ! $email || ! is_email( $email ) ) {
+      return $order->get_customer();
+    }
+
+    $existing = ( new OsCustomerModel() )->where( [ 'email' => $email ] )->set_limit( 1 )->get_results_as_models();
+    if ( $existing && ! empty( $existing->id ) ) {
+      return $existing;
+    }
+
+    $customer             = new OsCustomerModel();
+    $customer->first_name = $vals['eesnimi'] ?? '';
+    $customer->last_name  = $vals['perekonnanimi'] ?? '';
+    $customer->email      = $email;
+    $customer->phone      = $vals['telefon'] ?? '';
+    $customer->save();
+
+    return ! empty( $customer->id ) ? $customer : $order->get_customer();
   }
 
   /* ===========================================================================
@@ -633,8 +706,10 @@ CSS;
    * ========================================================================= */
 
   /** @param array<string, mixed> $entry */
-  protected static function notify( $order, array $entry ): void {
-    $customer = $order->get_customer();
+  protected static function notify( $order, array $entry, $customer = null ): void {
+    if ( ! $customer ) {
+      $customer = $order->get_customer();
+    }
     $summary  = self::email_summary_html( $entry );
     // The body is HTML; without this header wp_mail sends text/plain and clients show raw markup.
     $headers  = [ 'Content-Type: text/html; charset=UTF-8' ];
