@@ -62,6 +62,11 @@ $html  = fn( $key, $label, $content ) => [ 'type' => 'html', 'key' => $key, 'lab
 $email = fn( $key, $label, $req = false ) => [ 'type' => 'email', 'key' => $key, 'label' => $label, 'order' => ++$GLOBALS['order'], 'required' => $req ? 1 : 0 ];
 $phone = fn( $key, $label, $req = false ) => [ 'type' => 'phone', 'key' => $key, 'label' => $label, 'order' => ++$GLOBALS['order'], 'required' => $req ? 1 : 0 ];
 $hidden = fn( $key ) => [ 'type' => 'hidden', 'key' => $key, 'label' => $key, 'order' => ++$GLOBALS['order'] ];
+// "Muu, palun täpsusta" free-text — placed right after a radio/checkbox whose last option is "Muu";
+// hidden by default and revealed via CSS :has() when that field's "Muu" option is selected.
+$muu_detail = fn( $key ) => [ 'type' => 'textbox', 'key' => $key, 'label' => 'Muu, palun täpsusta', 'order' => ++$GLOBALS['order'], 'required' => 0, 'container_class' => 'lp-muu-detail' ];
+// Date field defaulting to today (NF "Default To Current Date").
+$date_today = fn( $key, $label ) => [ 'type' => 'date', 'key' => $key, 'label' => $label, 'order' => ++$GLOBALS['order'], 'required' => 0, 'date_mode' => 'date_only', 'date_default' => 1 ];
 $signature = fn( $key, $label ) => [
   'type' => 'signature', 'key' => $key, 'label' => $label, 'order' => ++$GLOBALS['order'], 'required' => 1,
   'signature_method' => 'drawn', 'canvas_width' => 400, 'canvas_height' => 150,
@@ -94,12 +99,15 @@ $fields = [
   $area( 'muu_teave', 'Kas on veel midagi, millest sooviksid meid teavitada (mõni vigastus, kehaline või vaimne seisund, rasedus, viimase 6 kuu jooksul toimunud operatsioon, muu)?' ),
   $radio( 'toitumine', 'Kuidas hindad enda toitumisharjumusi?', [ 'Hea', 'Keskmine', 'Halb' ] ),
   $checks( 'eesmark', 'Mis on Sinu eesmärk treeninguga?', [ 'Kaalulangetus', 'Lihastoonuse tõstmine', 'Üldine füüsilise aktiivsuse tõstmine', 'Muu' ] ),
+  $muu_detail( 'eesmark_muu' ),
   $radio( 'plaan_6k', 'Mis on Su järgneva 6 kuu füüsilise aktiivsuse plaan?', [ 'Käin regulaarselt trennis, et saavutada oma eesmärke', 'Olen katsetamas erinevaid trenne ja treenereid, et leida endale sobiv', 'Pole hetkel plaanis pühenduda, olen niisama ringi vaatamas', 'Muu' ] ),
+  $muu_detail( 'plaan_6k_muu' ),
   $radio( 'kuidas_leidsid', 'Kuidas meid leidsid?', [ 'Olen varasem klient', 'Facebooki reklaam', 'Instagrami reklaam', 'Leidsin teenuse Stebby kaudu', 'Kuulsin sõbra/tuttava käest', 'Otsisin internetist', 'Muu' ] ),
+  $muu_detail( 'kuidas_leidsid_muu' ),
   // Contraindications sit right above the consent checkbox — its "loetletud vastunäidustusi" refers to this list.
   $html( 'vastunaidustused', 'Vastunäidustused, mille olemasolul ei tohi teenust kasutada (mitte lõplik nimekiri)', $CONTRA ),
   $consent( 'kinnitus', 'Kinnitan, et endale parimate teadmiste kohaselt ei ole mul loetletud vastunäidustusi ega esine muid tingimusi, mis võiksid takistada minu treeningul osalemist.' ),
-  $date( 'kuupaev', 'Kuupäev' ),
+  $date_today( 'kuupaev', 'Kuupäev' ),
   $signature( 'allkiri', 'Allkiri' ),
   $hidden( 'lp_nf_order' ),
   $hidden( 'lp_nf_token' ),

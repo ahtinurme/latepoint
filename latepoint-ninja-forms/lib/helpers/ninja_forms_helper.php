@@ -588,6 +588,10 @@ class OsNinjaFormsHelper {
 .latepoint-nf-page .nf-element[type=button]:active{transform:translateY(1px)}
 .latepoint-nf-page .nf-after-form-content .extra-html,
 .latepoint-nf-page .nf-response-msg{color:var(--lpnf-green)}
+/* "Muu, palun täpsusta" text field (container_class lp-muu-detail): hidden until the preceding
+   field's "Muu" option is selected. Pure CSS via :has() — reactive, no JS, survives NF re-renders. */
+.latepoint-nf-page .lp-muu-detail{display:none}
+.latepoint-nf-page nf-field:has(> .nf-field-container input[value="muu"]:checked) + nf-field .lp-muu-detail{display:block}
 </style>
 CSS;
   }
