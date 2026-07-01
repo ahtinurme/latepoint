@@ -69,7 +69,8 @@ $signature = fn( $key, $label ) => [
 ];
 $submit = fn() => [ 'type' => 'submit', 'key' => 'submit', 'label' => 'Esita', 'order' => ++$GLOBALS['order'] ];
 
-$CONTRA = 'südamestimulaatori kasutamine ja südame arütmia, rasked vereringehäired, kubeme- või kõhusong, '
+$CONTRA = '<strong>EMSi vastunäidustused:</strong><br>'
+  . 'südamestimulaatori kasutamine ja südame arütmia, rasked vereringehäired, kubeme- või kõhusong, '
   . 'tuberkuloos, kasvajad, kaugele arenenud ateroskleroos, tromboos, nahapõletik, psoriaas, epilepsia, sclerosis multiplex';
 
 $fields = [
