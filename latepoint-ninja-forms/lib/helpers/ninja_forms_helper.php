@@ -502,6 +502,7 @@ class OsNinjaFormsHelper {
     self::$current_customer = ( $role === 'guest' ) ? null : $order->get_customer();
 
     $output = do_shortcode( '[ninja_form id=' . (int) $form_id . ']' );
+    self::localize_nf_js_strings(); // Estonian for the React signature field's JS strings (not in NF's .pot)
 
     self::$current_order_id = null;
     self::$current_token    = null;
@@ -509,6 +510,23 @@ class OsNinjaFormsHelper {
     self::$current_customer = null;
 
     return self::form_page_styles() . '<div class="latepoint-nf-page">' . $output . '</div>';
+  }
+
+  /**
+   * The Ninja Forms Signature field's "Clear" button + helper text are JS strings (wp.i18n, domain
+   * `ninja-forms`) that aren't in NF's .pot, so Loco can't translate them. Inject Estonian for just
+   * those, attached to wp-i18n so it runs before the React field mounts.
+   */
+  protected static function localize_nf_js_strings(): void {
+    if ( ! wp_script_is( 'wp-i18n', 'enqueued' ) && ! wp_script_is( 'wp-i18n', 'registered' ) ) {
+      return;
+    }
+    $data = [
+      ''                                                  => [ 'domain' => 'ninja-forms', 'lang' => 'et' ],
+      'Clear'                                             => [ 'Tühjenda' ],
+      'Use your mouse, finger, or stylus to sign above.'  => [ 'Allkirjastage ülal hiire, sõrme või pliiatsiga.' ],
+    ];
+    wp_add_inline_script( 'wp-i18n', 'wp.i18n.setLocaleData(' . wp_json_encode( $data ) . ', "ninja-forms");', 'after' );
   }
 
   /**
