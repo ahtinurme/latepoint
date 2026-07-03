@@ -48,6 +48,9 @@ if ( ! class_exists( 'OsStebbyHelper' ) ) :
 
       add_action( 'latepoint_order_created', [ __CLASS__, 'save_voucher_code_to_comments' ], 10 );
 
+      add_action( 'latepoint_payment_processor_settings', [ __CLASS__, 'add_settings_fields' ], 10 );
+      add_action( 'latepoint_transaction_created', [ __CLASS__, 'email_voucher_code' ], 10 );
+
       add_action( 'latepoint_step_payment__pay_content', [ __CLASS__, 'output_payment_step_contents' ], 10 );
       add_action( 'latepoint_order_payment__pay_content_after', [ __CLASS__, 'output_order_payment_pay_contents' ], 10 );
     }
@@ -215,6 +218,60 @@ if ( ! class_exists( 'OsStebbyHelper' ) ) :
         $booking->customer_comment = trim( $booking->customer_comment . "\n" . $note );
         $booking->save();
       }
+    }
+
+
+    /*
+     * --------------------------------------------------------------------
+     * Admin settings & notifications
+     * --------------------------------------------------------------------
+     */
+
+    public static function add_settings_fields( string $processor_code ): void {
+      if ( $processor_code !== self::$processor_code ) {
+        return;
+      }
+      ?>
+      <div class="sub-section-row">
+        <div class="sub-section-label">
+          <h3><?php esc_html_e( 'Notifications', 'latepoint-addon-stebby' ); ?></h3>
+        </div>
+        <div class="sub-section-content">
+          <?php echo OsFormHelper::text_field( 'settings[stebby_notification_email]', __( 'Email voucher codes to (for manual redeeming, empty = off)', 'latepoint-addon-stebby' ), OsSettingsHelper::get_settings_value( 'stebby_notification_email', '' ) ); ?>
+        </div>
+      </div>
+      <?php
+    }
+
+    /**
+     * Emails the accepted voucher code to the configured address so staff can
+     * redeem it manually in Stebby. Fires once per captured payment; a code
+     * reused across pay-later bookings is blocked by LatePoint's duplicate-token
+     * check, so it is emailed only on first use.
+     */
+    public static function email_voucher_code( OsTransactionModel $transaction ): void {
+      if ( $transaction->processor !== self::$processor_code ) {
+        return;
+      }
+
+      $to = OsSettingsHelper::get_settings_value( 'stebby_notification_email', '' );
+      if ( ! is_email( $to ) ) {
+        return;
+      }
+
+      $code     = str_replace( 'stebby_ticket_', '', (string) $transaction->token );
+      $customer = new OsCustomerModel( $transaction->customer_id );
+
+      $subject = sprintf( __( 'Stebby voucher %s needs redeeming', 'latepoint-addon-stebby' ), $code );
+      $body    = sprintf(
+        __( "A booking was paid with a Stebby voucher — redeem it manually in Stebby.\n\nVoucher code: %1\$s\nAmount: %2\$s\nCustomer: %3\$s\nOrder ID: %4\$s", 'latepoint-addon-stebby' ),
+        $code,
+        OsMoneyHelper::format_price( (float) $transaction->amount, true, false ),
+        $customer->full_name,
+        $transaction->order_id
+      );
+
+      wp_mail( $to, $subject, $body );
     }
 
 
