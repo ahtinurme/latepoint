@@ -116,7 +116,22 @@ if ( ! class_exists( 'OsDashboardController' ) ) :
 			}
 
 			$this->vars['total_bookings']      = OsBookingHelper::get_stat_for_period( 'bookings', $date_from->format( 'Y-m-d' ), $date_to->format( 'Y-m-d' ), $filter );
-			$this->vars['total_price']         = OsBookingHelper::get_stat_for_period( 'price', $date_from->format( 'Y-m-d' ), $date_to->format( 'Y-m-d' ), $filter );
+			/* ===== CUSTOM CODE START (yumefit: actual captured revenue, not bundle-inflated session price) =====
+			 * LatePoint's "Müügitulu" sums each booking's order-item total by SESSION date, so every bundle
+			 * session re-counts the whole package price — hugely overstating revenue for a package studio.
+			 * Show real money captured (net of adjustments/refunds) by transaction date instead. Falls back
+			 * to LatePoint's figure when a per-agent/service/location filter is applied (captured payments
+			 * can't be attributed to those). Self-contained + marked so it's trivial to re-apply after a
+			 * LatePoint update. */
+			if ( empty( $filter->agent_id ) && empty( $filter->service_id ) && empty( $filter->location_id ) ) {
+				global $wpdb;
+				$this->vars['total_price'] = (float) $wpdb->get_var( $wpdb->prepare(
+					"SELECT COALESCE(SUM(amount),0) FROM {$wpdb->prefix}latepoint_transactions WHERE status = 'succeeded' AND kind IN ('capture','adjustment') AND DATE(created_at) BETWEEN %s AND %s",
+					$date_from->format( 'Y-m-d' ), $date_to->format( 'Y-m-d' ) ) );
+			} else {
+				$this->vars['total_price']     = OsBookingHelper::get_stat_for_period( 'price', $date_from->format( 'Y-m-d' ), $date_to->format( 'Y-m-d' ), $filter );
+			}
+			/* ===== CUSTOM CODE END (yumefit: actual captured revenue) ===== */
 			$this->vars['total_duration']      = OsBookingHelper::get_stat_for_period( 'duration', $date_from->format( 'Y-m-d' ), $date_to->format( 'Y-m-d' ), $filter );
 			$this->vars['total_new_customers'] = OsBookingHelper::get_new_customer_stat_for_period( $date_from, $date_to, $filter );
 
@@ -129,7 +144,16 @@ if ( ! class_exists( 'OsDashboardController' ) ) :
 			$prev_date_to->modify( '-' . $day_difference . ' days' );
 
 			$this->vars['prev_total_bookings']      = OsBookingHelper::get_stat_for_period( 'bookings', $prev_date_from->format( 'Y-m-d' ), $prev_date_to->format( 'Y-m-d' ), $filter );
-			$this->vars['prev_total_price']         = OsBookingHelper::get_stat_for_period( 'price', $prev_date_from->format( 'Y-m-d' ), $prev_date_to->format( 'Y-m-d' ), $filter );
+			/* ===== CUSTOM CODE START (yumefit: actual captured revenue — previous period, for the % change) ===== */
+			if ( empty( $filter->agent_id ) && empty( $filter->service_id ) && empty( $filter->location_id ) ) {
+				global $wpdb;
+				$this->vars['prev_total_price'] = (float) $wpdb->get_var( $wpdb->prepare(
+					"SELECT COALESCE(SUM(amount),0) FROM {$wpdb->prefix}latepoint_transactions WHERE status = 'succeeded' AND kind IN ('capture','adjustment') AND DATE(created_at) BETWEEN %s AND %s",
+					$prev_date_from->format( 'Y-m-d' ), $prev_date_to->format( 'Y-m-d' ) ) );
+			} else {
+				$this->vars['prev_total_price'] = OsBookingHelper::get_stat_for_period( 'price', $prev_date_from->format( 'Y-m-d' ), $prev_date_to->format( 'Y-m-d' ), $filter );
+			}
+			/* ===== CUSTOM CODE END (yumefit: actual captured revenue — previous period) ===== */
 			$this->vars['prev_total_duration']      = OsBookingHelper::get_stat_for_period( 'duration', $prev_date_from->format( 'Y-m-d' ), $prev_date_to->format( 'Y-m-d' ), $filter );
 			$this->vars['prev_total_new_customers'] = OsBookingHelper::get_new_customer_stat_for_period( $prev_date_from, $prev_date_to, $filter );
 
