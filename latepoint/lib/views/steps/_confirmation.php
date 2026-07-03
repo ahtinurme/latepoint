@@ -71,7 +71,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 		?>
 		<?php
 		// show "create account" prompt where they can set a password for their account
-		if (!empty($customer) && $customer->is_guest && (OsSettingsHelper::is_off('steps_hide_registration_prompt') && OsAuthHelper::is_customer_auth_enabled())) { ?>
+		if (!empty($customer) && $customer->is_guest && (OsSettingsHelper::is_off('steps_hide_registration_prompt') && OsAuthHelper::is_customer_auth_enabled()) && !OsAuthHelper::is_customer_logged_in()) { ?>
 			<div class="step-confirmation-set-password">
 				<div class="set-password-fields">
 					<?php echo OsFormHelper::password_field('customer[password]', __('Set Your Password', 'latepoint'), '', ['autocomplete' => 'new-password']); ?>
@@ -92,6 +92,15 @@ if ( ! defined( 'ABSPATH' ) ) {
 				<?php esc_html_e('Did you know that you can create an account to manage your reservations and schedule new appointments?', 'latepoint'); ?>
 				<div class="info-box-buttons">
 					<a href="#" class="show-set-password-fields"><?php esc_html_e('Create Account', 'latepoint'); ?></a>
+				</div>
+			</div>
+		<?php } elseif (!empty($customer) && OsAuthHelper::is_customer_logged_in()) { ?>
+			<div class="confirmation-cabinet-info">
+				<div
+					class="confirmation-cabinet-text"><?php esc_html_e('You can now manage your appointments in your personal cabinet', 'latepoint'); ?></div>
+				<div class="confirmation-cabinet-link-w">
+					<a href="<?php echo esc_url(OsSettingsHelper::get_customer_dashboard_url()); ?>" class="confirmation-cabinet-link"
+					   target="_blank"><?php esc_html_e('Open My Cabinet', 'latepoint'); ?></a>
 				</div>
 			</div>
 		<?php } ?>

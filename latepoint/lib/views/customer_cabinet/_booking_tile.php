@@ -33,14 +33,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 				</a>
 			<?php } ?>
 			<?php if(OsCustomerHelper::can_cancel_booking($booking)){ ?>
-				<a href="#" class="latepoint-btn latepoint-btn-danger latepoint-btn-link"
-				   data-os-prompt="<?php esc_attr_e('Are you sure you want to cancel this appointment?', 'latepoint'); ?>"
-					   data-os-success-action="reload"
-					   data-os-action="<?php echo esc_attr(OsRouterHelper::build_route_name('customer_cabinet', 'request_cancellation')); ?>"
-					   data-os-params="<?php echo esc_attr(OsUtilHelper::build_os_params(['id' => $booking->id], 'cancel_booking_' . $booking->id)); ?>"
-					<i class="latepoint-icon latepoint-icon-ui-24"></i>
-					<span><?php esc_html_e('Cancel', 'latepoint'); ?></span>
-				</a>
+				<?php echo OsBookingHelper::generate_cancel_booking_button($booking, 'customer_cabinet'); ?>
 			<?php } ?>
 		</div>
 	<?php } ?>

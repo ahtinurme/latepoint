@@ -26,6 +26,17 @@ if ( ! class_exists( 'OsTransactionsController' ) ) :
 			if ( filter_var( $this->params['id'], FILTER_VALIDATE_INT ) ) {
 				// existing
 				$transaction = new OsTransactionModel( $this->params['id'] );
+				if ( ! $transaction->is_new_record() && ! empty( $transaction->order_id ) ) {
+					$allowed_order = ( new OsOrderModel() )->where( [ LATEPOINT_TABLE_ORDERS . '.id' => absint( $transaction->order_id ) ] )->filter_allowed_records()->set_limit( 1 )->get_results_as_models();
+					if ( ! $allowed_order ) {
+						$this->send_json(
+							array(
+								'status'  => LATEPOINT_STATUS_ERROR,
+								'message' => __( 'Not Allowed', 'latepoint' ),
+							) 
+						);
+					}
+				}
 			} else {
 				// new
 				$transaction = new OsTransactionModel();
@@ -73,6 +84,17 @@ if ( ! class_exists( 'OsTransactionsController' ) ) :
 			if ( filter_var( $this->params['id'], FILTER_VALIDATE_INT ) ) {
 				$this->check_nonce( 'destroy_transaction_' . $this->params['id'] );
 				$transaction = new OsTransactionModel( $this->params['id'] );
+				if ( ! $transaction->is_new_record() && ! empty( $transaction->order_id ) ) {
+					$allowed_order = ( new OsOrderModel() )->where( [ LATEPOINT_TABLE_ORDERS . '.id' => absint( $transaction->order_id ) ] )->filter_allowed_records()->set_limit( 1 )->get_results_as_models();
+					if ( ! $allowed_order ) {
+						$this->send_json(
+							array(
+								'status'  => LATEPOINT_STATUS_ERROR,
+								'message' => __( 'Not Allowed', 'latepoint' ),
+							) 
+						);
+					}
+				}
 				if ( $transaction->delete() ) {
 					$status        = LATEPOINT_STATUS_SUCCESS;
 					$response_html = __( 'Transaction Removed', 'latepoint' );
@@ -260,9 +282,20 @@ if ( ! class_exists( 'OsTransactionsController' ) ) :
 			// Verify nonce for refunding transaction.
 			$this->check_nonce( 'refund_transaction_' . $this->params['transaction_refund']['transaction_id'] );
 
-			try {
-				$transaction = new OsTransactionModel( $this->params['transaction_refund']['transaction_id'] );
+			$transaction = new OsTransactionModel( absint( $this->params['transaction_refund']['transaction_id'] ) );
+			if ( ! $transaction->is_new_record() && ! empty( $transaction->order_id ) ) {
+				$allowed_order = ( new OsOrderModel() )->where( [ LATEPOINT_TABLE_ORDERS . '.id' => absint( $transaction->order_id ) ] )->filter_allowed_records()->set_limit( 1 )->get_results_as_models();
+				if ( ! $allowed_order ) {
+					$this->send_json(
+						array(
+							'status'  => LATEPOINT_STATUS_ERROR,
+							'message' => __( 'Not Allowed', 'latepoint' ),
+						) 
+					);
+				}
+			}
 
+			try {
 				if ( empty( $transaction ) || ! $transaction->can_refund() ) {
 					throw new Exception( esc_html__( 'Invalid Transaction', 'latepoint' ) );
 				}

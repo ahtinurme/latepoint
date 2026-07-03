@@ -214,13 +214,14 @@ function latepoint_hide_prev_btn($booking_form_element) {
 function latepoint_remove_cart_item($trigger) {
     let $booking_form_element = $trigger.closest('.latepoint-booking-form-element');
     let cart_item_id = $trigger.data('cart-item-id');
+    let nonce = $trigger.data('nonce');
 
 
     $trigger.addClass('os-loading');
     let data = {
         action: latepoint_helper.route_action,
         route_name: $trigger.data('route'),
-        params: jQuery.param({cart_item_id: cart_item_id}),
+        params: jQuery.param({cart_item_id: cart_item_id, _wpnonce: nonce}),
         layout: 'none',
         return_format: 'json'
     }
@@ -1004,6 +1005,10 @@ function latepoint_init_step_selectable_items($booking_form_element) {
 
     $booking_form_element.off('click', '.os-selectable-items .os-selectable-item .item-quantity-selector-input', latepoint_selectable_item_quantity_keyup);
     $booking_form_element.on('click', '.os-selectable-items .os-selectable-item .item-quantity-selector-input', latepoint_selectable_item_quantity_keyup);
+
+    // commit a manually typed quantity on focusout/blur (desktop) and on virtual keyboard dismiss (mobile)
+    $booking_form_element.off('change', '.os-selectable-items .os-selectable-item .item-quantity-selector-input', latepoint_selectable_item_quantity_keyup);
+    $booking_form_element.on('change', '.os-selectable-items .os-selectable-item .item-quantity-selector-input', latepoint_selectable_item_quantity_keyup);
 
 
     $booking_form_element.off('keydown', '.os-selectable-items .os-selectable-item', latepoint_selectable_item_clicked);

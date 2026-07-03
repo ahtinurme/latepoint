@@ -28,10 +28,15 @@ if ( ! class_exists( 'OsOrdersController' ) ) :
 
 
 		public function view_order_log() {
-			$activities = new OsActivityModel();
-			$activities = $activities->where( [ 'order_id' => absint( $this->params['order_id'] ) ] )->order_by( 'id desc' )->get_results_as_models();
+			$order_id = absint( $this->params['order_id'] );
+			$order    = ( new OsOrderModel() )->where( [ LATEPOINT_TABLE_ORDERS . '.id' => $order_id ] )->filter_allowed_records()->set_limit( 1 )->get_results_as_models();
+			if ( ! $order ) {
+				$this->access_not_allowed();
+				return;
+			}
 
-			$order = new OsOrderModel( $this->params['order_id'] );
+			$activities = new OsActivityModel();
+			$activities = $activities->where( [ 'order_id' => $order_id ] )->order_by( 'id desc' )->get_results_as_models();
 
 			$this->vars['order']      = $order;
 			$this->vars['activities'] = $activities;
@@ -105,6 +110,15 @@ if ( ! class_exists( 'OsOrdersController' ) ) :
 
 			if ( ! empty( $this->params['order']['id'] ) ) {
 				$this->check_nonce( 'edit_order_' . $this->params['order']['id'] );
+				$allowed_order = ( new OsOrderModel() )->where( [ LATEPOINT_TABLE_ORDERS . '.id' => absint( $this->params['order']['id'] ) ] )->filter_allowed_records()->set_limit( 1 )->get_results_as_models();
+				if ( ! $allowed_order ) {
+					$this->send_json(
+						array(
+							'status'  => LATEPOINT_STATUS_ERROR,
+							'message' => __( 'Not Allowed', 'latepoint' ),
+						)
+					);
+				}
 			} else {
 				$this->check_nonce( 'new_order' );
 			}
@@ -145,8 +159,9 @@ if ( ! class_exists( 'OsOrdersController' ) ) :
 			}
 
 			if ( $can_modify_customer ) {
-				// Set customer data only if is allowed
-				$customer->set_data( $customer_params, OsAuthHelper::is_admin_logged_in() ? LATEPOINT_PARAMS_SCOPE_ADMIN : LATEPOINT_PARAMS_SCOPE_PUBLIC );
+				// Set customer data only if is allowed. Prevent mass assignment of wordpress_user_id.
+				// Use admin scope for backend panel users (admin, agent, custom roles), otherwise restrict to public fields
+				$customer->set_data( $customer_params, OsAuthHelper::get_current_user()->has_backend_access() ? LATEPOINT_PARAMS_SCOPE_ADMIN : LATEPOINT_PARAMS_SCOPE_PUBLIC );
 				if ( $customer->save() ) {
 					if ( $is_new_customer ) {
 						do_action( 'latepoint_customer_created', $customer );
@@ -614,11 +629,11 @@ if ( ! class_exists( 'OsOrdersController' ) ) :
 
 			if ( $order_id ) {
 				// EDITING EXISTING ORDER
-				$order = new OsOrderModel( $order_id );
-				// TODO add this check for order
-				//              if(!OsRolesHelper::can_user_make_action_on_model_record($order, 'view')){
-				//                  $this->send_json(array('status' => LATEPOINT_STATUS_ERROR, 'message' => 'Not Allowed'));
-				//              }
+				$order = ( new OsOrderModel() )->where( [ LATEPOINT_TABLE_ORDERS . '.id' => absint( $order_id ) ] )->filter_allowed_records()->set_limit( 1 )->get_results_as_models();
+				if ( ! $order ) {
+					$this->access_not_allowed();
+					return;
+				}
 
 				$transactions = $order->get_transactions();
 
@@ -673,25 +688,50 @@ if ( ! class_exists( 'OsOrdersController' ) ) :
 			$this->format_render( __FUNCTION__ );
 		}
 
-		public function edit_form() {
-			$order = ( empty( $this->params['id'] ) ) ? new OsOrderModel() : new OsOrderModel( $this->params['id'] );
-			// legacy fix for older orders that didn't have portion column, get it from connected order
-			if ( ! $order->is_new_record() && empty( $order->payment_portion ) && ! empty( $order->booking_id ) ) {
-				$booking = new OsBookingModel( $order->booking_id );
-				if ( ! empty( $booking->id ) ) {
-					$order->payment_portion = $booking->payment_portion;
-				}
-			}
-			$this->vars['real_or_rand_id'] = ( $order->is_new_record() ) ? 'new_order_' . OsUtilHelper::random_text( 'alnum', 5 ) : $order->id;
-			$this->vars['order']           = $order;
+		/**
+		 * Legacy method. Not used anymore.
+		 * But kept for backward compatibility with old code that might be using it
+		 */
+		// public function edit_form() {
+		// 	if ( empty( $this->params['id'] ) ) {
+		// 		$order = new OsOrderModel();
+		// 	} else {
+		// 		$order = ( new OsOrderModel() )->where( [ LATEPOINT_TABLE_ORDERS . '.id' => absint( $this->params['id'] ) ] )->filter_allowed_records()->set_limit( 1 )->get_results_as_models();
+		// 		if ( ! $order ) {
+		// 			$this->send_json(
+		// 				array(
+		// 					'status'  => LATEPOINT_STATUS_ERROR,
+		// 					'message' => __( 'Not Allowed', 'latepoint' ),
+		// 				)
+		// 			);
+		// 			return;
+		// 		}
+		// 	}
+		// 	// legacy fix for older orders that didn't have portion column, get it from connected order
+		// 	if ( ! $order->is_new_record() && empty( $order->payment_portion ) && ! empty( $order->booking_id ) ) {
+		// 		$booking = new OsBookingModel( $order->booking_id );
+		// 		if ( ! empty( $booking->id ) ) {
+		// 			$order->payment_portion = $booking->payment_portion;
+		// 		}
+		// 	}
+		// 	$this->vars['real_or_rand_id'] = ( $order->is_new_record() ) ? 'new_order_' . OsUtilHelper::random_text( 'alnum', 5 ) : $order->id;
+		// 	$this->vars['order']           = $order;
 
-			$this->format_render( __FUNCTION__ );
-		}
+		// 	$this->format_render( __FUNCTION__ );
+		// }
 
 		public function destroy() {
 			if ( filter_var( $this->params['id'], FILTER_VALIDATE_INT ) ) {
 				$this->check_nonce( 'destroy_order_' . $this->params['id'] );
-				$order = new OsOrderModel( $this->params['id'] );
+				$order = ( new OsOrderModel() )->where( [ LATEPOINT_TABLE_ORDERS . '.id' => absint( $this->params['id'] ) ] )->filter_allowed_records()->set_limit( 1 )->get_results_as_models();
+				if ( ! $order ) {
+					$this->send_json(
+						array(
+							'status'  => LATEPOINT_STATUS_ERROR,
+							'message' => __( 'Not Allowed', 'latepoint' ),
+						)
+					);
+				}
 				if ( $order->delete() ) {
 					$status        = LATEPOINT_STATUS_SUCCESS;
 					$response_html = __( 'Order Removed', 'latepoint' );

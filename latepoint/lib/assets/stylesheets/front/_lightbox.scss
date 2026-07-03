@@ -64,6 +64,9 @@
     padding: 15px;
     border-top: 1px solid #eee;
   }
+  .os-confirm-modal .os-confirm-body {
+    margin: 0;
+  }
 
   button, input, select, textarea {
     font-family: $body-font-family;

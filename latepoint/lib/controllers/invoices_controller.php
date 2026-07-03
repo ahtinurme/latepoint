@@ -277,6 +277,8 @@ if ( ! class_exists( 'OsInvoicesController' ) ) :
 			$content = OsInvoicesHelper::get_content_for_invoice_email();
 
 			if ( ! empty( $this->params['invoice_email'] ) ) {
+				// Verify nonce before dispatching email.
+				$this->check_nonce( 'email_invoice_' . $this->params['invoice_id'] );
 				// send email
 				$to       = $this->params['invoice_email[to]'] ?? $to;
 				$order    = new OsOrderModel( $invoice->order_id );

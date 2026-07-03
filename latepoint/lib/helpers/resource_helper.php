@@ -55,14 +55,19 @@ class OsResourceHelper {
 			$date_to->modify( '+2 days' );
 		}
 
-		$filter          = new \LatePoint\Misc\Filter(
+		$filter = new \LatePoint\Misc\Filter(
 			[
 				'service_id'  => $booking_request->service_id,
 				'connections' => $connections,
 				'date_from'   => $date_from->format( 'Y-m-d' ),
 				'date_to'     => $date_to->format( 'Y-m-d' ),
-			] 
+			]
 		);
+		// Pass excluded bookings (e.g. the booking being rescheduled) through to blocked-period generation
+		// so daily-booking-limit checks don't count the booking against itself.
+		if ( isset( $settings['exclude_booking_ids'] ) ) {
+			$filter->exclude_booking_ids = $settings['exclude_booking_ids'];
+		}
 		$weekday_periods = OsWorkPeriodsHelper::get_work_periods_grouped_by_weekday( $filter );
 		$daily_resources = [];
 		// loop through the requested days and fill in array with work periods that are applicable to that day

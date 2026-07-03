@@ -21,6 +21,7 @@ if ( ! class_exists( 'OsCartsController' ) ) :
 		}
 
 		public function remove_item_from_cart() {
+			$this->check_nonce( 'remove_item_from_cart' );
 			$cart_item_id = $this->params['cart_item_id'];
 			$cart_item    = new OsCartItemModel( $cart_item_id );
 			$current_cart = OsCartsHelper::get_or_create_cart();

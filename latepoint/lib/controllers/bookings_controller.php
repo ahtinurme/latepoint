@@ -22,10 +22,15 @@ if ( ! class_exists( 'OsBookingsController' ) ) :
 		}
 
 		public function view_booking_log() {
-			$activities = new OsActivityModel();
-			$activities = $activities->where( [ 'booking_id' => absint( $this->params['booking_id'] ) ] )->order_by( 'id desc' )->get_results_as_models();
+			$booking_id = absint( $this->params['booking_id'] );
+			$booking    = new OsBookingModel( $booking_id );
+			if ( ! OsRolesHelper::can_user_make_action_on_model_record( $booking, 'view' ) ) {
+				$this->access_not_allowed();
+				return;
+			}
 
-			$booking = new OsBookingModel( $this->params['booking_id'] );
+			$activities = new OsActivityModel();
+			$activities = $activities->where( [ 'booking_id' => $booking_id ] )->order_by( 'id desc' )->get_results_as_models();
 
 			$this->vars['booking']    = $booking;
 			$this->vars['activities'] = $activities;
@@ -38,7 +43,11 @@ if ( ! class_exists( 'OsBookingsController' ) ) :
 				return false;
 			}
 
-			$booking               = new OsBookingModel( $this->params['booking_id'] );
+			$booking = new OsBookingModel( $this->params['booking_id'] );
+			if ( ! OsRolesHelper::can_user_make_action_on_model_record( $booking, 'view' ) ) {
+				$this->access_not_allowed();
+				return;
+			}
 			$this->vars['booking'] = $booking;
 
 			$group_bookings  = new OsBookingModel();

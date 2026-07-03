@@ -25,7 +25,10 @@ if ( ! class_exists( 'OsCustomersController' ) ) :
 			if ( filter_var( $this->params['id'], FILTER_VALIDATE_INT ) ) {
 				$this->check_nonce( 'destroy_customer_' . $this->params['id'] );
 				$customer = new OsCustomerModel( $this->params['id'] );
-				if ( $customer->delete() ) {
+				if ( ! OsRolesHelper::can_user_make_action_on_model_record( $customer, 'delete' ) ) {
+					$status        = LATEPOINT_STATUS_ERROR;
+					$response_html = __( 'Not Allowed', 'latepoint' );
+				} elseif ( $customer->delete() ) {
 					$status        = LATEPOINT_STATUS_SUCCESS;
 					$response_html = __( 'Customer Removed', 'latepoint' );
 				} else {
@@ -42,7 +45,7 @@ if ( ! class_exists( 'OsCustomersController' ) ) :
 					array(
 						'status'  => $status,
 						'message' => $response_html,
-					) 
+					)
 				);
 			}
 		}
@@ -50,10 +53,14 @@ if ( ! class_exists( 'OsCustomersController' ) ) :
 
 		public function view_customer_log() {
 
+			$customer = new OsCustomerModel( $this->params['customer_id'] );
+			if ( ! OsRolesHelper::can_user_make_action_on_model_record( $customer, 'view' ) ) {
+				$this->access_not_allowed();
+				return;
+			}
+
 			$activities = new OsActivityModel();
 			$activities = $activities->where( [ 'customer_id' => absint( $this->params['customer_id'] ) ] )->order_by( 'id desc' )->get_results_as_models();
-
-			$customer = new OsCustomerModel( $this->params['customer_id'] );
 
 			$this->vars['customer']   = $customer;
 			$this->vars['activities'] = $activities;
@@ -75,6 +82,14 @@ if ( ! class_exists( 'OsCustomersController' ) ) :
 				$this->access_not_allowed();
 			}
 			$customer = new OsCustomerModel( $this->params['customer_id'] );
+			if ( ! OsRolesHelper::can_user_make_action_on_model_record( $customer, 'edit' ) ) {
+				$this->send_json(
+					array(
+						'status'  => LATEPOINT_STATUS_ERROR,
+						'message' => __( 'Not Allowed', 'latepoint' ),
+					)
+				);
+			}
 
 			$this->vars['customer'] = $customer;
 
@@ -98,7 +113,10 @@ if ( ! class_exists( 'OsCustomersController' ) ) :
 
 			if ( filter_var( $this->params['id'], FILTER_VALIDATE_INT ) ) {
 				$customer = new OsCustomerModel( $this->params['id'] );
-				if ( $customer->update_attributes( [ 'is_guest' => true ] ) ) {
+				if ( ! OsRolesHelper::can_user_make_action_on_model_record( $customer, 'edit' ) ) {
+					$status        = LATEPOINT_STATUS_ERROR;
+					$response_html = __( 'Not Allowed', 'latepoint' );
+				} elseif ( $customer->update_attributes( [ 'is_guest' => true ] ) ) {
 					$status        = LATEPOINT_STATUS_SUCCESS;
 					$response_html = __( 'Customer is now allowed to book without password', 'latepoint' );
 				} else {
@@ -115,7 +133,7 @@ if ( ! class_exists( 'OsCustomersController' ) ) :
 					array(
 						'status'  => $status,
 						'message' => $response_html,
-					) 
+					)
 				);
 			}
 		}
@@ -156,7 +174,7 @@ if ( ! class_exists( 'OsCustomersController' ) ) :
 						'email LIKE' => $sql_query,
 						'phone LIKE' => $sql_query,
 					),
-				) 
+				)
 			)->set_limit( 20 )->order_by( 'first_name asc, last_name asc' )->get_results_as_models();
 
 			$this->format_render( __FUNCTION__ );
@@ -171,8 +189,8 @@ if ( ! class_exists( 'OsCustomersController' ) ) :
 			$this->check_nonce( 'new_customer' );
 			$customer = new OsCustomerModel();
 			// Security fix: Prevent mass assignment of wordpress_user_id by non-admin users.
-			// Use admin scope if user is authenticated as admin, otherwise restrict to public fields.
-			$customer->set_data( $this->params['customer'], OsAuthHelper::is_admin_logged_in() ? LATEPOINT_PARAMS_SCOPE_ADMIN : LATEPOINT_PARAMS_SCOPE_PUBLIC );
+			// Use admin scope for backend panel users (admin, agent, custom roles), otherwise restrict to public fields.
+			$customer->set_data( $this->params['customer'], OsAuthHelper::get_current_user()->has_backend_access() ? LATEPOINT_PARAMS_SCOPE_ADMIN : LATEPOINT_PARAMS_SCOPE_PUBLIC );
 			if ( $customer->save() ) {
 				// translators: %s is the html of a customer edit link
 				$response_html = sprintf( __( 'Customer Created ID: %s', 'latepoint' ), '<span class="os-notification-link" ' . OsCustomerHelper::quick_customer_btn_html( $customer->id ) . '>' . $customer->id . '</span>' );
@@ -187,7 +205,7 @@ if ( ! class_exists( 'OsCustomersController' ) ) :
 					array(
 						'status'  => $status,
 						'message' => $response_html,
-					) 
+					)
 				);
 			}
 		}
@@ -207,8 +225,8 @@ if ( ! class_exists( 'OsCustomersController' ) ) :
 				} else {
 					$old_customer_data = $customer->get_data_vars();
 					// Security fix: Prevent mass assignment of wordpress_user_id by non-admin users.
-					// Use admin scope if user is authenticated as admin, otherwise restrict to public fields.
-					$customer->set_data( $this->params['customer'], OsAuthHelper::is_admin_logged_in() ? LATEPOINT_PARAMS_SCOPE_ADMIN : LATEPOINT_PARAMS_SCOPE_PUBLIC );
+					// Use admin scope for backend panel users (admin, agent, custom roles), otherwise restrict to public fields.
+					$customer->set_data( $this->params['customer'], OsAuthHelper::get_current_user()->has_backend_access() ? LATEPOINT_PARAMS_SCOPE_ADMIN : LATEPOINT_PARAMS_SCOPE_PUBLIC );
 					if ( $customer->save() ) {
 						// translators: %s is the html of a customer edit link
 						$response_html = sprintf( __( 'Customer Updated ID: %s', 'latepoint' ), '<span class="os-notification-link" ' . OsCustomerHelper::quick_customer_btn_html( $customer->id ) . '>' . $customer->id . '</span>' );
@@ -228,7 +246,7 @@ if ( ! class_exists( 'OsCustomersController' ) ) :
 					array(
 						'status'  => $status,
 						'message' => $response_html,
-					) 
+					)
 				);
 			}
 		}
@@ -248,7 +266,7 @@ if ( ! class_exists( 'OsCustomersController' ) ) :
 					[
 						'group_by'    => 'status',
 						'customer_id' => $customer->id,
-					] 
+					]
 				);
 				$colors         = [ '#2752E4', '#C066F1', '#26B7DD', '#E8C634', '#19CED6', '#2FEAA3', '#252a3e', '#8d87a5', '#b9b784' ];
 				$status_colors  = [
@@ -284,7 +302,7 @@ if ( ! class_exists( 'OsCustomersController' ) ) :
 					array(
 						'status'  => $status,
 						'message' => $response_html,
-					) 
+					)
 				);
 			}
 		}
@@ -314,7 +332,7 @@ if ( ! class_exists( 'OsCustomersController' ) ) :
 					array(
 						'status'  => LATEPOINT_STATUS_SUCCESS,
 						'message' => __( 'Customers Connected', 'latepoint' ),
-					) 
+					)
 				);
 			}
 		}
@@ -327,6 +345,14 @@ if ( ! class_exists( 'OsCustomersController' ) ) :
 			$customer    = new OsCustomerModel();
 			$customer    = $customer->where( [ 'id' => $customer_id ] )->set_limit( 1 )->get_results_as_models();
 			if ( $customer ) {
+				if ( ! OsRolesHelper::can_user_make_action_on_model_record( $customer, 'edit' ) ) {
+					$this->send_json(
+						array(
+							'status'  => LATEPOINT_STATUS_ERROR,
+							'message' => __( 'Not Allowed', 'latepoint' ),
+						)
+					);
+				}
 				$customer->update_attributes( [ 'wordpress_user_id' => null ] );
 			}
 			if ( $this->get_return_format() == 'json' ) {
@@ -334,7 +360,7 @@ if ( ! class_exists( 'OsCustomersController' ) ) :
 					array(
 						'status'  => LATEPOINT_STATUS_SUCCESS,
 						'message' => __( 'Customer Disconnected', 'latepoint' ),
-					) 
+					)
 				);
 			}
 		}
@@ -346,15 +372,25 @@ if ( ! class_exists( 'OsCustomersController' ) ) :
 			$customer_id = $this->params['customer_id'];
 			$customer    = new OsCustomerModel();
 			$customer    = $customer->where( [ 'id' => $customer_id ] )->set_limit( 1 )->get_results_as_models();
-			if ( $customer && ! $customer->wordpress_user_id ) {
-				$wp_user = OsCustomerHelper::create_wp_user_for_customer( $customer );
+			if ( $customer ) {
+				if ( ! OsRolesHelper::can_user_make_action_on_model_record( $customer, 'edit' ) ) {
+					$this->send_json(
+						array(
+							'status'  => LATEPOINT_STATUS_ERROR,
+							'message' => __( 'Not Allowed', 'latepoint' ),
+						)
+					);
+				}
+				if ( ! $customer->wordpress_user_id ) {
+					$wp_user = OsCustomerHelper::create_wp_user_for_customer( $customer );
+				}
 			}
 			if ( $this->get_return_format() == 'json' ) {
 				$this->send_json(
 					array(
 						'status'  => LATEPOINT_STATUS_SUCCESS,
 						'message' => __( 'Customer Connected', 'latepoint' ),
-					) 
+					)
 				);
 			}
 		}
@@ -474,7 +510,7 @@ if ( ! class_exists( 'OsCustomersController' ) ) :
 					'showing_from'  => $this->vars['showing_from'],
 					'showing_to'    => $this->vars['showing_to'],
 					'total_records' => $total_customers,
-				] 
+				]
 			);
 		}
 
@@ -521,7 +557,7 @@ if ( ! class_exists( 'OsCustomersController' ) ) :
 				array(
 					'status'  => $status,
 					'message' => $response_html,
-				) 
+				)
 			);
 		}
 
@@ -534,7 +570,7 @@ if ( ! class_exists( 'OsCustomersController' ) ) :
 				'none',
 				[
 					'csv_data' => $csv_data,
-				] 
+				]
 			);
 		}
 
@@ -555,7 +591,7 @@ if ( ! class_exists( 'OsCustomersController' ) ) :
 					'conflicts'                => $validation_result['conflicts'],
 					'can_be_imported'          => $validation_result['importable_count'],
 					'latepoint_column_mapping' => $columnMapping,
-				] 
+				]
 			);
 		}
 
@@ -578,7 +614,7 @@ if ( ! class_exists( 'OsCustomersController' ) ) :
 				[
 					'skipped_records' => $importResult['skipped_count'],
 					'updated_records' => $importResult['updated_count'],
-				] 
+				]
 			);
 		}
 	}

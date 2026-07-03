@@ -3,7 +3,7 @@ Contributors: latepoint
 Tags: appointments, booking, scheduling, events, calendar
 Requires at least: 6.5
 Tested up to: 7.0
-Stable tag: 5.6.4
+Stable tag: 5.6.5
 Requires PHP: 7.4
 License: GPLv3
 License URI: https://www.gnu.org/licenses/gpl-3.0.html
@@ -202,6 +202,21 @@ If you want a modern, effortless way to let your customers book online, give Lat
 3. Make sure to disable caching on your customer cabinet page
 
 == Changelog ==
+
+= 5.6.5 - July 1, 2026 =
+  - New
+    - Added maximum bookings per day feature support for an upcoming premium release, allowing you to set limits on the number of bookings a customer can make per day.
+    - Added cancellation and reschedule reason feature feature support for an upcoming premium release, allowing you to require customers to provide a reason when cancelling or rescheduling an appointment.
+
+  - Improvements
+    - Refactored backend code to improve stability and maintainability.
+
+  - Fixes
+    - Fixed revenue statistics and analytics displaying pre-discount amounts when coupons were applied. Dashboard revenue widgets and reports now correctly reflect the discounted total paid by customers.
+    - Fixed the Admin Notes customer field, not being saved when edited by agents or users with custom LatePoint roles.
+    - Fixed service extras quantity inputs not updating the cart total when values were typed manually on desktop or mobile devices.
+    - Fixed the Confirmation step showing a Create Account prompt to customers who were already logged in. Logged-in customers now see an Open My Cabinet link instead.
+    - Fixed a loading spinner issue in the Price Breakdown and Balance & Payments panels when changing the selected service while creating an order in the admin area.
 
 = 5.6.4 - June 30, 2026 =
   - Security

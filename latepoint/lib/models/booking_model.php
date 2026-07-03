@@ -1251,7 +1251,7 @@ class OsBookingModel extends OsModel {
 
 
 	public function prepare_data_before_it_is_set( $data ) {
-		$int_fields = [ 'service_id', 'agent_id', 'location_id', 'customer_id', 'duration', 'total_attendees', 'buffer_before', 'buffer_after', 'form_id', 'cart_item_id', 'order_item_id', 'recurrence_id' ];
+		$int_fields = [ 'service_id', 'agent_id', 'location_id', 'customer_id', 'duration', 'total_attendees', 'buffer_before', 'buffer_after', 'order_item_id', 'recurrence_id' ];
 		if ( is_array( $data ) ) {
 			foreach ( $int_fields as $field ) {
 				if ( isset( $data[ $field ] ) ) {

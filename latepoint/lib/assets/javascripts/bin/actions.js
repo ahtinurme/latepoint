@@ -47,6 +47,38 @@ function latepoint_show_data_in_lightbox(message, extra_classes = '', close_btn 
   jQuery('body').addClass('latepoint-lightbox-active');
 }
 
+// Styled confirmation lightbox — replaces the native confirm() for any data-os-action element that
+// carries the "os-confirm-alert" class. It reuses the standard lightbox heading/content/footer markup so it
+// matches the rest of the UI. Title/button labels come from data attributes (server-translated); the
+// body is the element's existing data-os-prompt. On confirm it re-fires the trigger's own
+// data-os-action flow (mirrors the os-delete-confirm gate, without the type-to-confirm step).
+function latepoint_confirm_show($trigger){
+  var title         = $trigger.data('os-confirm-title') || '';
+  var body          = $trigger.data('os-prompt') || '';
+  var confirm_label = $trigger.data('os-confirm-button') || 'Confirm';
+
+  // Build via jQuery DOM methods so every supplied string is assigned with .text()/.attr() (auto-escaped).
+  var $wrap = jQuery('<div class="os-confirm-modal" />');
+  if(title){
+    $wrap.append(jQuery('<div class="latepoint-lightbox-heading" />').append(jQuery('<h2 />').text(title)));
+  }
+  var $content = jQuery('<div class="latepoint-lightbox-content" />');
+  if(body){
+    $content.append(jQuery('<p class="os-confirm-body" />').text(body));
+  }
+  $wrap.append($content);
+  $wrap.append(
+    jQuery('<div class="latepoint-lightbox-footer" />').append(
+      jQuery('<a href="#" class="latepoint-btn latepoint-btn-danger latepoint-btn-block os-confirm-go" />').append(jQuery('<span />').text(confirm_label))
+    )
+  );
+
+  latepoint_show_data_in_lightbox($wrap[0].outerHTML, 'width-450 os-confirm-lightbox', true);
+  jQuery('.os-confirm-lightbox .os-confirm-modal').data('onConfirm', function(){
+    $trigger.data('os-confirm-alert-approved', true).trigger('click');
+  });
+}
+
 
 
 // DOCUMENT READY
@@ -96,6 +128,15 @@ jQuery(function( $ ) {
     }
   });
 
+  // os-confirm modal: on confirm, close the lightbox and run the trigger's own data-os-action flow.
+  jQuery('body').on('click', '.os-confirm-go', function(e){
+    e.preventDefault();
+    var onConfirm = jQuery(this).closest('.os-confirm-modal').data('onConfirm');
+    jQuery('.latepoint-lightbox-w').remove();
+    jQuery('body').removeClass('latepoint-lightbox-active');
+    if(typeof onConfirm === 'function') onConfirm();
+  });
+
   /*
     Ajax buttons action
   */
@@ -106,10 +147,15 @@ jQuery(function( $ ) {
         latepoint_delete_confirm_show($this);
         return false;
       }
+    }else if($this.hasClass('os-confirm-alert')){
+      if(!$this.data('os-confirm-alert-approved')){
+        latepoint_confirm_show($this);
+        return false;
+      }
     }else{
       if($this.data('os-prompt') && !confirm($this.data('os-prompt'))) return false;
     }
-    $this.removeData('os-delete-approved');
+    $this.removeData('os-delete-approved').removeData('os-confirm-alert-approved');
     var params = $this.data('os-params');
     if($this.data('os-source-of-params')){
       var form_data = latepoint_create_form_data_from_non_form_element($($this.data('os-source-of-params')));

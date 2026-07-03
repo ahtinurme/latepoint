@@ -339,6 +339,7 @@ if ( ! defined( 'ABSPATH' ) ) {
                                     <div class="merged-label"><?php esc_html_e( 'before appointment start time', 'latepoint' ); ?></div>
                                 </div>
                             </div>
+                            <?php do_action( 'latepoint_customer_cancellation_settings' ); ?>
                         </div>
                     </div>
                 </div>

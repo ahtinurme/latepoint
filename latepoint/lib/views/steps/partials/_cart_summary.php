@@ -66,6 +66,7 @@ if ( ! defined( 'ABSPATH' ) ) {
                                          tabindex="0"
                                          data-confirm-text="<?php esc_attr_e( 'Are you sure you want to remove this item from your cart?', 'latepoint' ); ?>"
                                          data-cart-item-id="<?php echo esc_attr($cart_item_id); ?>"
+                                         data-nonce="<?php echo esc_attr( wp_create_nonce( 'remove_item_from_cart' ) ); ?>"
                                          data-route="<?php echo esc_attr(OsRouterHelper::build_route_name( 'carts', 'remove_item_from_cart' )); ?>">
                                         <div class="os-remove-from-cart-icon"></div></div>
 								<?php } ?>

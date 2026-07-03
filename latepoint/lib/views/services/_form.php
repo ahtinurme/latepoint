@@ -214,6 +214,14 @@ if ( ! defined( 'ABSPATH' ) ) {
 								<?php echo OsFormHelper::text_field( 'service[latest_possible_booking]', __( 'Latest Possible Booking', 'latepoint' ), $service->latest_possible_booking, [ 'theme' => 'simple' ] ); ?>
                             </div>
                         </div>
+						<?php if ( defined( 'LATEPOINT_ADDON_PRO_VERSION' ) ) { ?>
+                        <div class="latepoint-message latepoint-message-subtle"><?php esc_html_e( 'Limit the total number of bookings this service can accept per day. Leave blank or set to 0 to fall back to the global limit.', 'latepoint' ); ?></div>
+                        <div class="os-row">
+                            <div class="os-col-lg-6">
+								<?php echo OsFormHelper::text_field( 'service[max_bookings_per_day]', __( 'Maximum Number of Bookings Per Day', 'latepoint' ), $service->get_meta_by_key( 'max_bookings_per_day' ), [ 'theme' => 'simple' ] ); ?>
+                            </div>
+                        </div>
+						<?php } ?>
                     </div>
                 </div>
             </div>

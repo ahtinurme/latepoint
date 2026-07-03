@@ -219,6 +219,10 @@ function latepoint_init_reschedule() {
             timezone_name: $wrapper.find('input[type="hidden"].latepoint_timezone_name').val(),
             _wpnonce: $wrapper.find('input[name="_wpnonce"]').val(),
         }
+        // Let addons contribute extra params to the reschedule request (e.g. a reschedule reason).
+        $wrapper.find('[data-os-request-param]').each(function () {
+            params[jQuery(this).data('os-request-param')] = jQuery(this).val();
+        });
         let data = {
             action: latepoint_helper.route_action,
             route_name: $trigger.data('route-name'),

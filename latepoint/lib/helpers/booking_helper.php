@@ -367,7 +367,7 @@ class OsBookingHelper {
 			}
 		}
 
-		$grouped_blocked_periods = apply_filters( 'latepoint_blocked_periods_for_range', $grouped_blocked_periods, $filter );
+		$grouped_blocked_periods = apply_filters( 'latepoint_blocked_periods_for_range', $grouped_blocked_periods, $filter, $accessed_from_backend );
 
 		return $grouped_blocked_periods;
 	}
@@ -1571,7 +1571,7 @@ class OsBookingHelper {
 				$stat_query = 'SUM(end_time - start_time)';
 				break;
 			case 'price':
-				$stat_query = 'sum(' . LATEPOINT_TABLE_ORDER_ITEMS . '.subtotal)';
+				$stat_query = 'sum(' . LATEPOINT_TABLE_ORDER_ITEMS . '.total)';
 				$bookings->join( LATEPOINT_TABLE_ORDER_ITEMS, [ 'id' => $bookings->table_name . '.order_item_id' ] );
 				$bookings->join( LATEPOINT_TABLE_ORDERS, [ 'id' => LATEPOINT_TABLE_ORDER_ITEMS . '.order_id' ] );
 				break;
@@ -1747,6 +1747,47 @@ class OsBookingHelper {
 		return $url;
 	}
 
+	/**
+	 * Renders the customer-facing "Cancel" button for a booking, behind a filter so addons
+	 * (e.g. the pro cancellation-reason feature) can replace its behavior without editing core.
+	 *
+	 * @param OsBookingModel $booking
+	 * @param string         $route_prefix controller prefix for the cancel route ('customer_cabinet' or 'manage_booking_by_key')
+	 * @param string|null    $key          manage-by-key key (null for the logged-in customer cabinet)
+	 * @param string         $css_classes  button CSS classes
+	 */
+	public static function generate_cancel_booking_button( OsBookingModel $booking, string $route_prefix, ?string $key = null, string $css_classes = 'latepoint-btn latepoint-btn-danger latepoint-btn-link' ): string {
+		$os_params = OsUtilHelper::build_os_params( $key ? [ 'key' => $key ] : [ 'id' => $booking->id ], 'cancel_booking_' . $booking->id );
+		$route     = OsRouterHelper::build_route_name( $route_prefix, 'request_cancellation' );
+		ob_start();
+		?>
+		<a href="#" class="<?php echo esc_attr( $css_classes ); ?> os-confirm-alert"
+		   data-os-confirm-title="<?php esc_attr_e( 'Cancel Appointment?', 'latepoint' ); ?>"
+		   data-os-prompt="<?php esc_attr_e( 'Are you sure you want to cancel this appointment?', 'latepoint' ); ?>"
+		   data-os-confirm-button="<?php esc_attr_e( 'Confirm Cancellation', 'latepoint' ); ?>"
+		   data-os-success-action="reload"
+		   data-os-action="<?php echo esc_attr( $route ); ?>"
+		   data-os-params="<?php echo esc_attr( $os_params ); ?>">
+			<i class="latepoint-icon latepoint-icon-ui-24"></i>
+			<span><?php esc_html_e( 'Cancel', 'latepoint' ); ?></span>
+		</a>
+		<?php
+		$html = ob_get_clean();
+
+		/**
+		 * Filters the customer-facing cancel-booking button HTML.
+		 *
+		 * @param string         $html
+		 * @param OsBookingModel $booking
+		 * @param string         $route_prefix
+		 * @param string|null    $key
+		 *
+		 * @since 5.2.0
+		 * @hook latepoint_customer_cancel_booking_button
+		 */
+		return apply_filters( 'latepoint_customer_cancel_booking_button', $html, $booking, $route_prefix, $key );
+	}
+
 	public static function generate_summary_actions_for_booking( OsBookingModel $booking, ?string $key = null ) {
 		?>
 		<div class="booking-full-summary-actions">
@@ -1764,16 +1805,8 @@ class OsBookingHelper {
 					</a>
 					<?php
 				}
-				if ( OsCustomerHelper::can_cancel_booking( $booking ) ) { ?>
-					<a href="#" class="booking-summary-action-btn cancel-appointment-btn"
-					   data-os-prompt="<?php esc_attr_e( 'Are you sure you want to cancel this appointment?', 'latepoint' ); ?>"
-					   data-os-success-action="reload"
-					   data-os-action="<?php echo esc_attr( OsRouterHelper::build_route_name( 'manage_booking_by_key', 'request_cancellation' ) ); ?>"
-					   data-os-params="<?php echo esc_attr( OsUtilHelper::build_os_params( [ 'key' => $key ?? $booking->get_key_to_manage_for( 'customer' ) ], 'cancel_booking_' . $booking->id ) ); ?>">
-						<i class="latepoint-icon latepoint-icon-ui-24"></i>
-						<span><?php esc_html_e( 'Cancel', 'latepoint' ); ?></span>
-					</a>
-					<?php
+				if ( OsCustomerHelper::can_cancel_booking( $booking ) ) {
+					echo self::generate_cancel_booking_button( $booking, 'manage_booking_by_key', $key ?? $booking->get_key_to_manage_for( 'customer' ), 'booking-summary-action-btn cancel-appointment-btn' );
 				}
 			}
 			do_action( 'latepoint_booking_summary_after_booking_actions', $booking );
@@ -1806,7 +1839,7 @@ class OsBookingHelper {
 		}
 		$summary_html .= '<div class="summary-box-content os-cart-item">';
 		if ( $cart_item_id && OsCartsHelper::can_checkout_multiple_items() ) {
-			$summary_html .= '<div class="os-remove-item-from-cart" role="button" tabindex="0" data-confirm-text="' . __( 'Are you sure you want to remove this item from your cart?', 'latepoint' ) . '" data-cart-item-id="' . $cart_item_id . '" data-route="' . OsRouterHelper::build_route_name( 'carts', 'remove_item_from_cart' ) . '">
+			$summary_html .= '<div class="os-remove-item-from-cart" role="button" tabindex="0" data-confirm-text="' . __( 'Are you sure you want to remove this item from your cart?', 'latepoint' ) . '" data-cart-item-id="' . $cart_item_id . '" data-nonce="' . esc_attr( wp_create_nonce( 'remove_item_from_cart' ) ) . '" data-route="' . OsRouterHelper::build_route_name( 'carts', 'remove_item_from_cart' ) . '">
 															<div class="os-remove-from-cart-icon"></div>
 														</div>';
 		}
