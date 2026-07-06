@@ -152,10 +152,27 @@ if ( ! class_exists( 'OsOrdersController' ) ) :
 			if ( $is_new_customer || $customer->is_new_record() ) {
 				$can_modify_customer = true;
 			} else {
-				$wp_link_is_safe     = empty( $customer->wordpress_user_id )
+				$wp_link_is_safe = empty( $customer->wordpress_user_id )
 					|| OsCustomerHelper::is_wp_user_safe_for_customer_link( (int) $customer->wordpress_user_id );
+
+				/* ===== CUSTOM CODE START (yumefit: agents can edit customer notes on first booking with them) ===== */
+				// A booking in this submission assigned to an allowed agent makes this the agent's customer,
+				// otherwise the very first save for a customer new to this agent would be rejected
+				// (can_user_make_action_on_model_record only sees bookings that are already saved).
+				$submits_own_booking = false;
+				if ( OsRolesHelper::can_user_perform_model_action( 'OsCustomerModel', 'edit' ) ) {
+					foreach ( $order_items_params as $order_item_params ) {
+						foreach ( $order_item_params['bookings'] ?? [] as $booking_params ) {
+							if ( OsAuthHelper::get_current_user()->check_if_allowed_record_id( $booking_params['agent_id'] ?? 0, 'agent' ) ) {
+								$submits_own_booking = true;
+							}
+						}
+					}
+				}
+
 				$can_modify_customer = $wp_link_is_safe
-					&& OsRolesHelper::can_user_make_action_on_model_record( $customer, 'edit' );
+					&& ( $submits_own_booking || OsRolesHelper::can_user_make_action_on_model_record( $customer, 'edit' ) );
+				/* ===== CUSTOM CODE END (yumefit: agents can edit customer notes on first booking with them) ===== */
 			}
 
 			if ( $can_modify_customer ) {
@@ -180,6 +197,21 @@ if ( ! class_exists( 'OsOrdersController' ) ) :
 						]
 					);
 				}
+			} else {
+				/* ===== CUSTOM CODE START (yumefit: error instead of silently dropping customer edits) ===== */
+				// Not allowed to edit this customer: reject only if fields were actually changed,
+				// resubmitted prefilled values should not block saving the order itself
+				foreach ( [ 'first_name', 'last_name', 'email', 'phone', 'notes', 'admin_notes' ] as $field ) {
+					if ( isset( $customer_params[ $field ] ) && trim( (string) $customer_params[ $field ] ) !== trim( (string) $customer->{$field} ) ) {
+						$this->send_json(
+							[
+								'status'  => LATEPOINT_STATUS_ERROR,
+								'message' => __( 'You are not allowed to edit this customer profile', 'latepoint' ),
+							]
+						);
+					}
+				}
+				/* ===== CUSTOM CODE END (yumefit: error instead of silently dropping customer edits) ===== */
 			}
 
 			// validate order items

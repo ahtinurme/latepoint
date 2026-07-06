@@ -11,7 +11,7 @@
  *              package as a gift in the native booking flow; a one-time voucher code is
  *              shown to the buyer and emailed to them to hand over, and the buyer's own
  *              copy is locked.
- * Version:     1.7.0
+ * Version:     1.8.0
  * Author:      Yumefit
  * Text Domain: latepoint-yumefit-rules
  */
@@ -485,6 +485,158 @@ function yumefit_gift_send_email($order, string $bundle_name, string $code): voi
         . __('Anna kood kingisaajale. Broneerimisel valitakse sama pakett ja sisestatakse kood — paketi hind kaetakse täies ulatuses.', 'latepoint-yumefit-rules');
 
     wp_mail($buyer_email, sprintf(__('Kinkekaardi kood — %s', 'latepoint-yumefit-rules'), $site), $body);
+}
+
+/* ===== Jooga rühmatreening: owner-managed class timetable =====
+ * The group class (service 7, taught by Marleen, agent 3) runs only at the
+ * date+times listed in option `yumefit_jooga_slots` — edited by the owner in
+ * WP admin: Settings → "Jooga graafik", one class per line ("07.07.2026 19:00").
+ *
+ * Saving the page rebuilds the (agent, service) work-period chain: weekly
+ * all-off rows + one custom-date row per class (that chain is the most specific,
+ * so classes work even on days Marleen has no general schedule). The slot filter
+ * below is the guard for LatePoint's precedence quirk — an agent-level custom
+ * day OUTRANKS the weekly service off-rows and would re-open the class on any
+ * date a custom day is added — and covers both slot display and submit
+ * validation (both go through get_resources_grouped_by_day).
+ *
+ * Class length comes from the service settings. Other services are NOT blocked
+ * around a class automatically — a booked class blocks the hour natively, and a
+ * hard reservation is done by capping Marleen's day in LatePoint (as done for
+ * the July 2026 Tuesdays). */
+
+const YUMEFIT_JOOGA_SERVICE = 7;
+const YUMEFIT_JOOGA_AGENT = 3;
+
+/**
+ * Parses the class list, one "DD.MM.YYYY HH:MM" (or "YYYY-MM-DD HH:MM") per
+ * line; empty and #-comment lines ignored.
+ *
+ * @return array{
+ *     0: array<string, array<int, int>>,
+ *     1: array<int, string>
+ * } [date => start minutes list, invalid lines]
+ */
+function yumefit_jooga_parse_slots(string $raw): array {
+    $slots = [];
+    $bad = [];
+    foreach (preg_split('/\R+/', trim($raw)) ?: [] as $line) {
+        $line = trim($line);
+        if ($line === '' || $line[0] === '#') {
+            continue;
+        }
+        if (preg_match('/^(\d{1,2})\.(\d{1,2})\.(\d{4})\s+(\d{1,2})[:.](\d{2})$/', $line, $m)) {
+            [$day, $month, $year] = [(int) $m[1], (int) $m[2], (int) $m[3]];
+        } elseif (preg_match('/^(\d{4})-(\d{1,2})-(\d{1,2})\s+(\d{1,2})[:.](\d{2})$/', $line, $m)) {
+            [$year, $month, $day] = [(int) $m[1], (int) $m[2], (int) $m[3]];
+        } else {
+            $bad[] = $line;
+            continue;
+        }
+        if (!checkdate($month, $day, $year) || (int) $m[4] > 23 || (int) $m[5] > 59) {
+            $bad[] = $line;
+            continue;
+        }
+        $slots[sprintf('%04d-%02d-%02d', $year, $month, $day)][] = ((int) $m[4]) * 60 + (int) $m[5];
+    }
+    return [$slots, $bad];
+}
+
+/** Rebuilds the class's work-period chain from a parsed slot list. Idempotent. */
+function yumefit_jooga_rebuild_work_periods(array $slots): void {
+    global $wpdb;
+    $table = $wpdb->prefix . 'latepoint_work_periods';
+    $duration = (int) ($wpdb->get_var($wpdb->prepare("SELECT duration FROM {$wpdb->prefix}latepoint_services WHERE id = %d", YUMEFIT_JOOGA_SERVICE)) ?: 60);
+    $now = current_time('mysql');
+
+    $insert = function (array $row) use ($wpdb, $table, $now): void {
+        $wpdb->insert($table, $row + ['agent_id' => YUMEFIT_JOOGA_AGENT, 'service_id' => YUMEFIT_JOOGA_SERVICE, 'location_id' => 0, 'chain_id' => 'jooga_slots', 'created_at' => $now, 'updated_at' => $now]);
+    };
+
+    $wpdb->query($wpdb->prepare("DELETE FROM {$table} WHERE agent_id = %d AND service_id = %d", YUMEFIT_JOOGA_AGENT, YUMEFIT_JOOGA_SERVICE));
+
+    for ($day = 1; $day <= 7; $day++) {
+        $insert(['week_day' => $day, 'start_time' => 0, 'end_time' => 0]);
+    }
+    foreach ($slots as $date => $starts) {
+        foreach ($starts as $start) {
+            $insert(['week_day' => (int) date('N', strtotime($date)), 'start_time' => $start, 'end_time' => $start + $duration, 'custom_date' => $date]);
+        }
+    }
+
+    // Belt for servers without the slot filter loaded: pin the class OFF on
+    // Marleen's future custom days that have no class (custom day outranks the
+    // weekly off rows). Custom days added later are handled by the filter.
+    $dates = $wpdb->get_col($wpdb->prepare(
+        "SELECT DISTINCT custom_date FROM {$table} WHERE agent_id = %d AND service_id = 0 AND custom_date >= %s",
+        YUMEFIT_JOOGA_AGENT, current_time('Y-m-d')
+    ));
+    foreach (array_diff($dates, array_keys($slots)) as $date) {
+        $insert(['week_day' => (int) date('N', strtotime($date)), 'start_time' => 0, 'end_time' => 0, 'custom_date' => $date]);
+    }
+}
+
+add_filter('latepoint_get_resources_grouped_by_day', 'yumefit_jooga_restrict_slots', 10, 1);
+function yumefit_jooga_restrict_slots(array $daily_resources): array {
+    static $slots = null;
+    if ($slots === null) {
+        [$slots] = yumefit_jooga_parse_slots((string) get_option('yumefit_jooga_slots', ''));
+    }
+    foreach ($daily_resources as $date => $resources) {
+        foreach ($resources as $resource) {
+            if ((int) $resource->service_id !== YUMEFIT_JOOGA_SERVICE) {
+                continue;
+            }
+            $allowed = $slots[$date] ?? [];
+            $resource->slots = array_values(array_filter(
+                $resource->slots,
+                fn($slot) => in_array((int) $slot->start_time, $allowed, true)
+            ));
+        }
+    }
+    return $daily_resources;
+}
+
+add_action('admin_menu', function (): void {
+    add_options_page('Jooga graafik', 'Jooga graafik', 'manage_options', 'yumefit-jooga', 'yumefit_jooga_settings_page');
+});
+
+add_action('admin_init', function (): void {
+    register_setting('yumefit_jooga', 'yumefit_jooga_slots', ['sanitize_callback' => 'yumefit_jooga_save_slots']);
+});
+
+/** Sanitize callback: validates the list and rebuilds the work periods on save. */
+function yumefit_jooga_save_slots($raw): string {
+    $raw = (string) $raw;
+    [$slots, $bad] = yumefit_jooga_parse_slots($raw);
+    if ($bad) {
+        add_settings_error('yumefit_jooga_slots', 'yumefit-jooga-bad-lines', 'Vigased read (õige kuju on nt "07.07.2026 19:00"): ' . esc_html(implode(' | ', $bad)));
+    }
+    yumefit_jooga_rebuild_work_periods($slots);
+    return $raw;
+}
+
+function yumefit_jooga_settings_page(): void {
+    ?>
+    <div class="wrap">
+        <h1>Jooga rühmatreeningu ajad</h1>
+        <p>
+            Üks treening rea kohta, kujul <code>07.07.2026 19:00</code> (kuupäev + algusaeg).
+            Treeningu pikkus tuleb teenuse seadetest. Jooga rühmatreening on broneeritav
+            <strong>ainult</strong> siin loetletud aegadel.
+        </p>
+        <p>
+            Teised teenused sel kellaajal automaatselt ei sulgu — tund on kaitstud alles siis,
+            kui keegi on treeningusse broneerinud, või kui lõpetad Marleeni tööpäeva LatePointis
+            enne treeningu algust.
+        </p>
+        <form method="post" action="options.php">
+            <?php settings_fields('yumefit_jooga'); ?>
+            <textarea name="yumefit_jooga_slots" rows="12" cols="28" class="code"><?php echo esc_textarea((string) get_option('yumefit_jooga_slots', '')); ?></textarea>
+            <?php submit_button('Salvesta'); ?>
+        </form>
+    </div>
+    <?php
 }
 
 /* ===== Customer cabinet: one tile per row =====
