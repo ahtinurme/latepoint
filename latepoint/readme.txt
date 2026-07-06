@@ -3,7 +3,7 @@ Contributors: latepoint
 Tags: appointments, booking, scheduling, events, calendar
 Requires at least: 6.5
 Tested up to: 7.0
-Stable tag: 5.6.5
+Stable tag: 5.6.6
 Requires PHP: 7.4
 License: GPLv3
 License URI: https://www.gnu.org/licenses/gpl-3.0.html
@@ -202,6 +202,10 @@ If you want a modern, effortless way to let your customers book online, give Lat
 3. Make sure to disable caching on your customer cabinet page
 
 == Changelog ==
+
+= 5.6.6 - July 3, 2026 =
+  - Fixes
+    - Fixed an inconsistent slots availability in the dashboard calendar view despite being unavailable in availability and booking interfaces.
 
 = 5.6.5 - July 1, 2026 =
   - New
