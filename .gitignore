@@ -36,6 +36,7 @@
 /index.php
 *.csv
 .idea
+.DS_Store
 
 # local debug artifacts
 .playwright-mcp/
