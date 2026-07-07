@@ -449,9 +449,12 @@ class OsCartModel extends OsModel {
 	}
 
 	public function set_payment_processor() {
-		if ( empty( $this->payment_processor ) && ! empty( $this->payment_time ) && ! empty( $this->payment_method ) ) {
+		if ( ! empty( $this->payment_time ) && ! empty( $this->payment_method ) ) {
 			$enabled_processors = OsPaymentsHelper::get_enabled_payment_processors_for_payment_time_and_method( $this->payment_time, $this->payment_method );
-			if ( count( $enabled_processors ) == 1 ) {
+			if ( ! empty( $this->payment_processor ) && ! isset( $enabled_processors[ $this->payment_processor ] ) ) {
+				$this->payment_processor = ( count( $enabled_processors ) === 1 ) ? array_key_first( $enabled_processors ) : '';
+			}
+			if ( empty( $this->payment_processor ) && count( $enabled_processors ) === 1 ) {
 				$this->payment_processor = array_key_first( $enabled_processors );
 			}
 		}

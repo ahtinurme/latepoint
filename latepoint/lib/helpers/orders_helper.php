@@ -375,7 +375,7 @@ class OsOrdersHelper {
 		$html               = '';
 		$order_item_form_id = $order_item_id ? $order_item_id : OsUtilHelper::generate_form_id();
 		$is_past            = ( ! $booking->is_upcoming() ) ? 'is-past' : '';
-		$html              .= '<div class="order-item-pill order-item-pill-variant-' . LATEPOINT_ITEM_VARIANT_BOOKING . ' ' . $is_past . ' status-' . $booking->status . '" data-order-item-id="' . $order_item_form_id . '">';
+		$html              .= '<div class="order-item-pill order-item-pill-variant-' . LATEPOINT_ITEM_VARIANT_BOOKING . ' ' . $is_past . ' status-' . esc_attr( $booking->status ) . '" data-order-item-id="' . $order_item_form_id . '">';
 		$html              .= '<input name="order_items[' . $order_item_form_id . '][id]" class="order_item_id" value="' . $order_item_form_id . '" type="hidden"/>';
 		$html              .= '<input name="order_items[' . $order_item_form_id . '][variant]" value="' . LATEPOINT_ITEM_VARIANT_BOOKING . '" type="hidden"/>';
 		$html              .= '<div class="order-item-pill-inner">';
@@ -399,7 +399,7 @@ class OsOrdersHelper {
 
 	public static function generate_order_item_pill_for_bundle_booking( OsBookingModel $booking, $order_item_id ): string {
 		$is_past = ( ! $booking->is_upcoming() ) ? 'is-past' : '';
-		$html    = '<div class="bundle-booking-item-pill ' . $is_past . ' status-' . $booking->status . '">';
+		$html    = '<div class="bundle-booking-item-pill ' . $is_past . ' status-' . esc_attr( $booking->status ) . '">';
 		$html   .= '<div class="bundle-booking-item-pill-inner">';
 		$html   .= '<div class="booking-item-status-pill"></div>';
 		$html   .= '<div class="bib-datetime">' . $booking->get_nice_start_datetime() . '</div>';

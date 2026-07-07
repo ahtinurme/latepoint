@@ -107,6 +107,16 @@ class OsPaymentsHelper {
 		return ! empty( $payment_times[ $cart->payment_time ][ $cart->payment_method ][ $cart->payment_processor ] );
 	}
 
+	public static function is_order_intent_payment_enabled( OsOrderIntentModel $order_intent ): bool {
+		$cart                    = new OsCartModel();
+		$cart->payment_processor = $order_intent->get_payment_data_value( 'processor' );
+		$cart->payment_time      = $order_intent->get_payment_data_value( 'time' );
+		$cart->payment_method    = $order_intent->get_payment_data_value( 'method' );
+		$cart->payment_portion   = $order_intent->get_payment_data_value( 'portion' );
+
+		return self::is_cart_payment_enabled( $cart );
+	}
+
 	public static function get_all_payment_methods_for_select(): array {
 		$payment_methods_for_select = [];
 		$payment_times              = self::get_all_payment_times();
@@ -311,6 +321,13 @@ class OsPaymentsHelper {
 
 	public static function process_payment_for_order_intent( OsOrderIntentModel $order_intent ) {
 		if ( ( $order_intent->charge_amount <= 0 ) || OsSettingsHelper::is_env_demo() ) {
+			return false;
+		}
+		if ( ! self::is_order_intent_payment_enabled( $order_intent ) ) {
+			$order_intent->add_error(
+				'invalid_payment_method',
+				__( 'The selected payment method is not available. Please choose a valid payment method and try again.', 'latepoint' )
+			);
 			return false;
 		}
 		$payment_processing_result = [];

@@ -1220,6 +1220,14 @@ class OsStepsHelper {
 	}
 
 	public static function set_booking_object( $booking_object_params = [] ): OsBookingModel {
+		// Reject any status value that is not a recognized booking status key before
+		// passing params to the model. An unauthenticated visitor has no legitimate
+		// reason to force a specific status; the server assigns one via the model default.
+		if ( ! empty( $booking_object_params['status'] )
+			&& ! array_key_exists( $booking_object_params['status'], OsBookingHelper::get_statuses_list() ) ) {
+			unset( $booking_object_params['status'] );
+		}
+
 		self::$booking_object = new OsBookingModel();
 		self::$booking_object->set_data( $booking_object_params );
 
@@ -2307,6 +2315,14 @@ class OsStepsHelper {
 	}
 
 	public static function process_step_payment__pay() {
+		// Break invalid payment gateway
+		if ( ! OsPaymentsHelper::is_cart_payment_enabled( self::$cart_object ) ) {
+			return new WP_Error(
+				'invalid_payment_method',
+				__( 'The selected payment method is not available. Please choose a valid payment method and try again.', 'latepoint' ),
+				[ 'send_to_step' => 'payment__methods' ]
+			);
+		}
 	}
 
 	public static function prepare_step_payment__pay() {
@@ -2397,6 +2413,13 @@ class OsStepsHelper {
 				$order_intent = OsOrderIntentHelper::create_or_update_order_intent( self::$cart_object, self::$restrictions, self::$presets, '', self::get_customer_object_id() );
 				if ( $order_intent->is_processing() ) {
 					return new WP_Error( LATEPOINT_STATUS_ERROR, __( 'Processing...', 'latepoint' ), [ 'send_to_step' => 'resubmit' ] );
+				}
+				if ( $order_intent->charge_amount > 0 && ! OsPaymentsHelper::is_order_intent_payment_enabled( $order_intent ) ) {
+					return new WP_Error(
+						'invalid_payment_method',
+						__( 'The selected payment method is not available. Please choose a valid payment method and try again.', 'latepoint' ),
+						[ 'send_to_step' => 'payment__methods' ]
+					);
 				}
 				if ( $order_intent->convert_to_order() ) {
 					$order = new OsOrderModel( $order_intent->order_id );
