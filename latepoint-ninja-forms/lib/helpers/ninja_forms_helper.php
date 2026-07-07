@@ -312,8 +312,10 @@ class OsNinjaFormsHelper {
       if ( in_array( $field->get_setting( 'type' ), [ 'submit', 'hidden', 'html', 'hr' ], true ) ) {
         continue;
       }
-      $raw   = maybe_unserialize( get_post_meta( $sub_id, '_field_' . $field->get_id(), true ) );
-      $value = self::format_field_value( $field, $raw );
+      // Paper-scan originals are private: render authenticated endpoint URLs, never the stored file names.
+      $value = $field->get_setting( 'key' ) === 'originaaldokument'
+        ? self::scan_urls_for_sub( $sub_id )
+        : self::format_field_value( $field, maybe_unserialize( get_post_meta( $sub_id, '_field_' . $field->get_id(), true ) ) );
       if ( $value === '' ) {
         continue;
       }
@@ -451,7 +453,8 @@ class OsNinjaFormsHelper {
     $out = [];
     foreach ( preg_split( '/\r\n|\r|\n/', $value ) as $line ) {
       $trimmed = trim( $line );
-      if ( $trimmed !== '' && preg_match( '#^https?://\S+\.(jpe?g|png|gif|webp)$#i', $trimmed ) ) {
+      if ( $trimmed !== '' && ( preg_match( '#^https?://\S+\.(jpe?g|png|gif|webp)$#i', $trimmed )
+        || ( strpos( $trimmed, 'action=' . self::SCAN_ACTION ) !== false && preg_match( '#^https?://\S+$#', $trimmed ) ) ) ) {
         $out[] = '<a href="' . esc_url( $trimmed ) . '" target="_blank" rel="noopener"><img src="' . esc_url( $trimmed ) . '" alt="" ' . $img . ' /></a>';
       } elseif ( preg_match( '#^data:image/(png|jpe?g|gif|webp);base64,[A-Za-z0-9+/=]+$#', $trimmed ) ) {
         $out[] = '<img src="' . esc_attr( $trimmed ) . '" alt="" ' . $img . ' />'; // esc_url strips data: URLs, so esc_attr
@@ -460,6 +463,83 @@ class OsNinjaFormsHelper {
       }
     }
     return implode( '<br>', $out );
+  }
+
+  /* ===========================================================================
+   * Protected original-scan serving — the paper consent scans live in a
+   * deny-all uploads/lp-consent dir (see scripts/forms/protect-consent-scans.php)
+   * and are streamed only to the submission's own logged-in LatePoint customer
+   * or a logged-in admin/agent.
+   * ========================================================================= */
+
+  const SCAN_ACTION = 'latepoint_nf_scan';
+
+  public static function scans_dir(): string {
+    return wp_upload_dir()['basedir'] . '/lp-consent';
+  }
+
+  /**
+   * Scan file basenames stored on the sub's `originaaldokument` field, filtered to files
+   * that actually exist in the protected dir (so nothing renders as a broken image).
+   *
+   * @return array<int, string>
+   */
+  protected static function scan_files_for_sub( int $sub_id ): array {
+    global $wpdb;
+    $form_id = (int) get_post_meta( $sub_id, '_form_id', true );
+    if ( ! $form_id ) {
+      return [];
+    }
+    $field_id = (int) $wpdb->get_var( $wpdb->prepare(
+      "SELECT id FROM {$wpdb->prefix}nf3_fields WHERE parent_id = %d AND `key` = 'originaaldokument'", $form_id
+    ) );
+    if ( ! $field_id ) {
+      return [];
+    }
+    $files = [];
+    foreach ( preg_split( '/\R+/', (string) get_post_meta( $sub_id, '_field_' . $field_id, true ) ) as $line ) {
+      $name = basename( trim( $line ) ); // basename() also kills any traversal in a tampered value
+      if ( $name !== '' && is_file( self::scans_dir() . '/' . $name ) ) {
+        $files[] = $name;
+      }
+    }
+    return $files;
+  }
+
+  /** Authenticated scan URLs, one per line — render_value() turns them into <img> tags. */
+  protected static function scan_urls_for_sub( int $sub_id ): string {
+    $urls = [];
+    foreach ( array_keys( self::scan_files_for_sub( $sub_id ) ) as $i ) {
+      $urls[] = admin_url( 'admin-ajax.php?action=' . self::SCAN_ACTION . '&sub_id=' . $sub_id . '&i=' . $i );
+    }
+    return implode( "\n", $urls );
+  }
+
+  /** admin-ajax handler (priv + nopriv): stream one scan after the ownership check. */
+  public static function serve_scan(): void {
+    $sub_id = isset( $_GET['sub_id'] ) ? (int) $_GET['sub_id'] : 0;
+    $index  = isset( $_GET['i'] ) ? (int) $_GET['i'] : 0;
+
+    $is_staff = OsAuthHelper::is_admin_logged_in() || OsAuthHelper::is_agent_logged_in();
+    $owner_id = $sub_id ? (int) get_post_meta( $sub_id, self::LP_CUSTOMER_FK, true ) : 0;
+    $is_owner = $owner_id && $owner_id === (int) OsAuthHelper::get_logged_in_customer_id();
+    if ( ! $sub_id || ( ! $is_staff && ! $is_owner ) ) {
+      status_header( 403 );
+      exit;
+    }
+
+    $files = self::scan_files_for_sub( $sub_id );
+    if ( ! isset( $files[ $index ] ) ) {
+      status_header( 404 );
+      exit;
+    }
+    $path = self::scans_dir() . '/' . $files[ $index ];
+
+    nocache_headers(); // private document — keep it out of shared/page caches
+    header( 'Content-Type: image/jpeg' );
+    header( 'Content-Length: ' . filesize( $path ) );
+    readfile( $path );
+    exit;
   }
 
   /* ===========================================================================

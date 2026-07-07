@@ -90,6 +90,9 @@ class LatePointNinjaForms {
     add_action( 'latepoint_customer_dashboard_after_tab_contents', [ $this, 'output_customer_cabinet_tab_content' ] );
     add_action( 'latepoint_customer_edit_form_after', [ $this, 'output_customer_dashboard_submissions' ] );
     add_action( 'latepoint_order_quick_edit_form_content_after', [ $this, 'output_admin_order_submission' ] );
+    // Original paper scans: streamed with per-submission auth (owner customer or admin/agent only).
+    add_action( 'wp_ajax_latepoint_nf_scan', [ $this, 'serve_scan' ] );
+    add_action( 'wp_ajax_nopriv_latepoint_nf_scan', [ $this, 'serve_scan' ] );
 
     // --- Requirements 2 & 3: capture submissions from Ninja Forms ---
     add_shortcode( 'latepoint_ninja_form', [ $this, 'render_form_shortcode' ] );
@@ -187,6 +190,13 @@ class LatePointNinjaForms {
 
   public function output_admin_order_submission( $order ) {
     echo OsNinjaFormsHelper::admin_order_submission_html( $order );
+  }
+
+  public function serve_scan() {
+    if ( class_exists( 'OsNinjaFormsHelper' ) ) {
+      OsNinjaFormsHelper::serve_scan();
+    }
+    exit;
   }
 
   /* ---------------------------------------------------------------------------
