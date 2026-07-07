@@ -10,8 +10,9 @@
  *              custom field as the single source of truth. (4) Gift cards — buy a
  *              package as a gift in the native booking flow; a one-time voucher code is
  *              shown to the buyer and emailed to them to hand over, and the buyer's own
- *              copy is locked.
- * Version:     1.8.0
+ *              copy is locked. (5) Admin-only payment methods Pangamakse & Sularaha
+ *              for recording bank/cash payments.
+ * Version:     1.9.0
  * Author:      Yumefit
  * Text Domain: latepoint-yumefit-rules
  */
@@ -638,6 +639,16 @@ function yumefit_jooga_settings_page(): void {
     </div>
     <?php
 }
+
+/* ===== Admin-only payment methods: Pangamakse & Sularaha =====
+ * latepoint_all_payment_methods_for_select feeds only the admin selects (the
+ * transaction edit form and the transactions list filter) plus nice-name
+ * display of saved transactions. The customer checkout builds its choices
+ * from latepoint_get_enabled_payment_times, which is untouched — so these
+ * are selectable only when an admin/agent records a payment. */
+add_filter('latepoint_all_payment_methods_for_select', function (array $methods): array {
+    return $methods + ['pangamakse' => 'Pangamakse', 'sularaha' => 'Sularaha'];
+});
 
 /* ===== Customer cabinet: one tile per row =====
  * LatePoint lays the cabinet booking/order/bundle tiles in a 3-column grid
