@@ -73,14 +73,15 @@ class OsNinjaFormsHelper {
   /* ===========================================================================
    * Per-service link toggle — the form is shared, but whether booking a given
    * service delivers the form link (email + confirmation) is configurable per
-   * service. Defaults to enabled when never set.
+   * service. Defaults to DISABLED when never set — only services explicitly
+   * toggled on (the first-time EMS ones) deliver the form link.
    * ========================================================================= */
 
   public static function service_link_enabled( $service_id ): bool {
     if ( empty( $service_id ) ) {
       return false;
     }
-    return OsMetaHelper::get_service_meta_by_key( self::SERVICE_META_ENABLED, $service_id, LATEPOINT_VALUE_ON ) == LATEPOINT_VALUE_ON;
+    return OsMetaHelper::get_service_meta_by_key( self::SERVICE_META_ENABLED, $service_id, 'off' ) == LATEPOINT_VALUE_ON;
   }
 
   public static function save_service_link_enabled( $service_id, $enabled ): void {
@@ -104,7 +105,7 @@ class OsNinjaFormsHelper {
   }
 
   public static function service_form_field_html( $service ): string {
-    $enabled = ! $service || empty( $service->id ) ? true : self::service_link_enabled( $service->id );
+    $enabled = ! $service || empty( $service->id ) ? false : self::service_link_enabled( $service->id );
 
     $html  = '<div class="white-box-section"><div class="white-box-header"><div class="os-form-sub-header"><h3>' . esc_html__( 'Ninja Forms', 'latepoint-ninja-forms' ) . '</h3></div></div>';
     $html .= '<div class="white-box-content">';

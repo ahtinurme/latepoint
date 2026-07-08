@@ -11,8 +11,10 @@
  *              package as a gift in the native booking flow; a one-time voucher code is
  *              shown to the buyer and emailed to them to hand over, and the buyer's own
  *              copy is locked. (5) Admin-only payment method Sularaha for
- *              recording cash payments.
- * Version:     1.9.0
+ *              recording cash payments. (6) Daily Klaviyo sync — pushes every
+ *              customer's booking count + püsiklient flag as profile properties
+ *              (segments live in Klaviyo) and subscribes new customers.
+ * Version:     1.10.0
  * Author:      Yumefit
  * Text Domain: latepoint-yumefit-rules
  */
@@ -287,13 +289,32 @@ function yumefit_pusiklient_auto_coupon($code, $cart) {
 
     $is_pusiklient = yumefit_is_pusiklient($customer_id);
 
-    if ($is_pusiklient && empty($code)) {
-        return $ourCode; // auto-apply for loyal customers (only if no other coupon already entered)
+    if (!$is_pusiklient) {
+        if (strtoupper(trim((string) $code)) === $ourCode) {
+            return ''; // a non-püsiklient must not benefit from the loyal-customer code
+        }
+        return $code;
     }
-    if (!$is_pusiklient && strtoupper(trim((string) $code)) === $ourCode) {
-        return ''; // a non-püsiklient must not benefit from the loyal-customer code
+
+    if (!empty($code)) {
+        return $code; // another coupon already entered — leave it alone
     }
-    return $code;
+
+    // Auto-apply ONCE per cart, marked in cart meta. Without the marker this filter
+    // would re-add the code on every read, making it impossible to remove it or
+    // enter a different one.
+    if (empty($cart->id)) {
+        return $ourCode; // cart not persisted yet, so nothing could have been removed
+    }
+
+    $meta = new OsCartMetaModel();
+    if ($meta->get_by_key('yumefit_pusiklient_auto_applied', $cart->id, '') === 'yes') {
+        return $code; // customer removed it — respect that
+    }
+
+    $cart->set_coupon_code($ourCode);
+    $meta->save_by_key('yumefit_pusiklient_auto_applied', 'yes', $cart->id);
+    return $ourCode;
 }
 
 
@@ -657,3 +678,200 @@ add_filter('latepoint_all_payment_methods_for_select', function (array $methods)
 add_action('wp_head', function (): void {
     echo '<style id="yumefit-cabinet-one-per-row">.customer-bookings-tiles,.customer-orders-tiles{grid-template-columns:1fr !important}</style>' . "\n";
 });
+
+
+/* =========================================================================
+ * KLAVIYO SYNC — LatePoint customers → Klaviyo profiles, once a day.
+ *
+ * Segments are NOT managed here: they are dynamic in Klaviyo, defined once in
+ * its UI over two profile properties this sync keeps fresh on every profile:
+ *   latepoint_bookings — count of approved/completed bookings
+ *   pusiklient         — the "Püsiklient?" checkbox (same source as the discount)
+ *
+ * Daily full re-sync via one bulk-import call (upserts by email) instead of
+ * per-booking event hooks: can't drift, first run doubles as the backfill,
+ * and email segments don't need minute-level freshness.
+ *
+ * Consent: every customer consents to email/SMS/WhatsApp marketing at signup
+ * (owner-confirmed 2026-07), so customers never sent before are subscribed
+ * once (historical_import bypasses double-opt-in mails and "Added to list"
+ * flows; consented_at = customer created_at). Sent ids are recorded in option
+ * yumefit_klaviyo_subscribed_ids so an unsubscribe in Klaviyo is never
+ * overwritten by a re-subscribe.
+ *
+ * Needs a private API key (scopes: profiles + subscriptions full, lists read)
+ * in option yumefit_klaviyo_private_key — see scripts/klaviyo_import.php.
+ * Without it the cron no-ops. The WP Klaviyo plugin only stores a public key.
+ * ====================================================================== */
+add_action('init', function (): void {
+    if (!wp_next_scheduled('yumefit_klaviyo_sync')) {
+        wp_schedule_event(time() + 300, 'daily', 'yumefit_klaviyo_sync');
+    }
+});
+add_action('yumefit_klaviyo_sync', 'yumefit_klaviyo_sync_run');
+
+/** @return array|WP_Error decoded JSON response */
+function yumefit_klaviyo_api(string $path, array $payload) {
+    $key = trim((string) get_option('yumefit_klaviyo_private_key', ''));
+    if ($key === '') {
+        return new WP_Error('yumefit_klaviyo', 'Private API key missing (option yumefit_klaviyo_private_key)');
+    }
+
+    $response = wp_remote_post("https://a.klaviyo.com/api/{$path}", [
+        'timeout' => 30,
+        'headers' => [
+            'Authorization' => "Klaviyo-API-Key {$key}",
+            'revision' => '2026-04-15',
+            'Content-Type' => 'application/vnd.api+json',
+            'Accept' => 'application/vnd.api+json',
+        ],
+        'body' => wp_json_encode($payload),
+    ]);
+    if (is_wp_error($response)) {
+        return $response;
+    }
+
+    $code = (int) wp_remote_retrieve_response_code($response);
+    if ($code >= 300) {
+        return new WP_Error('yumefit_klaviyo', "HTTP {$code} from {$path}: " . wp_remote_retrieve_body($response));
+    }
+
+    return json_decode(wp_remote_retrieve_body($response), true) ?: [];
+}
+
+/** E.164 or '' — Klaviyo rejects anything else. */
+function yumefit_klaviyo_phone(?string $raw): string {
+    $phone = preg_replace('/[^\d+]/', '', (string) $raw);
+    if (preg_match('/^\+\d{7,15}$/', $phone)) {
+        return $phone;
+    }
+    if (preg_match('/^372\d{7,8}$/', $phone)) {
+        return "+{$phone}";
+    }
+    if (preg_match('/^5\d{6,7}$/', $phone)) {
+        return "+372{$phone}"; // ponytail: bare Estonian mobile; other bare formats are dropped
+    }
+    return '';
+}
+
+/** @return array<int, object> customers with ->bookings, ->pusiklient, normalized ->phone */
+function yumefit_klaviyo_customers(): array {
+    global $wpdb;
+
+    $counts = $wpdb->get_results(
+        "SELECT customer_id, COUNT(*) c FROM {$wpdb->prefix}latepoint_bookings
+         WHERE status IN ('approved','completed') GROUP BY customer_id",
+        OBJECT_K
+    );
+    $customers = $wpdb->get_results(
+        "SELECT id, email, first_name, last_name, phone, created_at
+         FROM {$wpdb->prefix}latepoint_customers WHERE email LIKE '%@%'"
+    );
+
+    foreach ($customers as $customer) {
+        $customer->bookings = isset($counts[$customer->id]) ? (int) $counts[$customer->id]->c : 0;
+        $customer->pusiklient = yumefit_is_pusiklient((int) $customer->id);
+        $customer->phone = yumefit_klaviyo_phone($customer->phone);
+    }
+
+    return $customers;
+}
+
+/** @return array{profiles: int, newly_subscribed: int, errors: array<int, string>} */
+function yumefit_klaviyo_sync_run(): array {
+    $summary = ['profiles' => 0, 'newly_subscribed' => 0, 'errors' => []];
+    $customers = yumefit_klaviyo_customers();
+    if (!$customers) {
+        return $summary;
+    }
+
+    foreach (array_chunk($customers, 5000) as $chunk) {
+        $profiles = array_map(fn($c) => [
+            'type' => 'profile',
+            'attributes' => array_filter([
+                'email' => $c->email,
+                'phone_number' => $c->phone,
+                'first_name' => $c->first_name,
+                'last_name' => $c->last_name,
+            ]) + ['properties' => ['latepoint_bookings' => $c->bookings, 'pusiklient' => $c->pusiklient]],
+        ], $chunk);
+
+        $result = yumefit_klaviyo_api('profile-bulk-import-jobs', [
+            'data' => ['type' => 'profile-bulk-import-job', 'attributes' => ['profiles' => ['data' => $profiles]]],
+        ]);
+        if (is_wp_error($result)) {
+            $summary['errors'][] = $result->get_error_message();
+            error_log('[yumefit klaviyo] profile import failed: ' . $result->get_error_message());
+            return $summary;
+        }
+        $summary['profiles'] += count($profiles);
+    }
+
+    $alreadySubscribed = array_map('intval', (array) get_option('yumefit_klaviyo_subscribed_ids', []));
+    $unsent = array_values(array_filter($customers, fn($c) => !in_array((int) $c->id, $alreadySubscribed, true)));
+
+    foreach (array_chunk($unsent, 1000) as $chunk) {
+        $error = yumefit_klaviyo_subscribe($chunk);
+        if ($error) {
+            $summary['errors'][] = $error;
+            error_log("[yumefit klaviyo] subscribe failed: {$error}");
+            break;
+        }
+        $alreadySubscribed = array_merge($alreadySubscribed, array_map(fn($c) => (int) $c->id, $chunk));
+        update_option('yumefit_klaviyo_subscribed_ids', $alreadySubscribed, false);
+        $summary['newly_subscribed'] += count($chunk);
+    }
+
+    return $summary;
+}
+
+/**
+ * Subscribe up to 1000 customers to email (+ SMS + WhatsApp when a phone exists).
+ * SMS/WhatsApp consent is rejected wholesale if that channel isn't set up in the
+ * Klaviyo account, so on failure retry with progressively fewer channels.
+ *
+ * @param array<int, object> $customers
+ * @return string '' on success, error message on failure
+ */
+function yumefit_klaviyo_subscribe(array $customers): string {
+    $listId = trim((string) (((array) get_option('klaviyo_settings', []))['klaviyo_newsletter_list_id'] ?? ''));
+
+    $lastError = 'no customers';
+    foreach ([['sms', 'whatsapp'], ['sms'], []] as $phoneChannels) {
+        $profiles = array_map(function ($c) use ($phoneChannels) {
+            $consent = ['marketing' => [
+                'consent' => 'SUBSCRIBED',
+                'consented_at' => gmdate('c', strtotime((string) $c->created_at) ?: time() - DAY_IN_SECONDS),
+            ]];
+            $subscriptions = ['email' => $consent];
+            if ($c->phone !== '') {
+                $subscriptions += array_fill_keys($phoneChannels, $consent);
+            }
+            return [
+                'type' => 'profile',
+                'attributes' => array_filter(['email' => $c->email, 'phone_number' => $c->phone])
+                    + ['subscriptions' => $subscriptions],
+            ];
+        }, $customers);
+
+        $payload = ['data' => [
+            'type' => 'profile-subscription-bulk-create-job',
+            'attributes' => [
+                'custom_source' => 'LatePoint sync',
+                'historical_import' => true,
+                'profiles' => ['data' => $profiles],
+            ],
+        ]];
+        if ($listId !== '') {
+            $payload['data']['relationships'] = ['list' => ['data' => ['type' => 'list', 'id' => $listId]]];
+        }
+
+        $result = yumefit_klaviyo_api('profile-subscription-bulk-create-jobs', $payload);
+        if (!is_wp_error($result)) {
+            return '';
+        }
+        $lastError = $result->get_error_message();
+    }
+
+    return $lastError;
+}
