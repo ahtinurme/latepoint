@@ -1,0 +1,638 @@
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: LatePoint Addon - Outlook Calendar\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2026-06-13 12:42+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: \n"
+"Language: \n"
+"Plural-Forms: nplurals=INTEGER; plural=EXPRESSION;\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Loco https://localise.biz/\n"
+"X-Loco-Version: 2.8.5; wp-7.0; php-8.3.31\n"
+"X-Domain: latepoint-outlook-calendar"
+
+#: lib/views/outlook_calendar/load_events_for_sync.php:245
+msgid " days"
+msgstr ""
+
+#: lib/views/outlook_calendar/load_events_for_sync.php:219
+msgid " months"
+msgstr ""
+
+#: lib/views/outlook_calendar/list_bookings_for_sync.php:28
+#: lib/views/outlook_calendar/load_events_for_sync.php:342
+msgid " of "
+msgstr ""
+
+#: lib/views/outlook_calendar/load_events_for_sync.php:241
+msgid " weeks"
+msgstr ""
+
+#: lib/views/outlook_calendar/load_events_for_sync.php:215
+msgid " years"
+msgstr ""
+
+#: lib/views/outlook_calendar/load_events_for_sync.php:167
+#: lib/views/outlook_calendar/load_events_for_sync.php:207
+msgid "(No Title)"
+msgstr ""
+
+#: lib/views/settings/integrations_calendars.php:29
+msgid "Access Granted"
+msgstr ""
+
+#: lib/views/outlook_calendar/agent_form.php:31
+msgid "Access granted"
+msgstr ""
+
+#: latepoint-outlook-calendar.php:606
+msgid "Add agent as an organizer in Outlook event"
+msgstr ""
+
+#: latepoint-outlook-calendar.php:605
+msgid "Add customers as attendees in Outlook event"
+msgstr ""
+
+#: lib/models/outlook_calendar_event_model.php:130
+msgid "Agent"
+msgstr ""
+
+#: lib/views/settings/integrations_calendars.php:11
+msgid "Agent Connections"
+msgstr ""
+
+#: lib/controllers/outlook_calendar_controller.php:27
+#: lib/controllers/outlook_calendar_controller.php:29
+msgid "Agents"
+msgstr ""
+
+#: latepoint-outlook-calendar.php:428
+msgid "API Credentials"
+msgstr ""
+
+#: lib/views/outlook_calendar/agent_form.php:33
+msgid ""
+"Are you sure you want to disconnect Outlook Calendar from this agent? All "
+"events imported from Outlook Calendar and all bookings that were added to "
+"Outlook Calendar will be removed."
+msgstr ""
+
+#: lib/views/outlook_calendar/load_events_for_sync.php:335
+msgid "Are you sure you want to disconnect this calendar?"
+msgstr ""
+
+#: lib/views/outlook_calendar/list_bookings_for_sync.php:37
+msgid ""
+"Are you sure you want to remove all synced bookings from Outlook Calendar? "
+"They will remain in LatePoint, but will be removed from Outlook calendar."
+msgstr ""
+
+#: lib/views/outlook_calendar/list_bookings_for_sync.php:10
+msgid ""
+"Are you sure you want to stop syncing bookings to this calendar? Bookings "
+"that were already synced to this calendar will stay there, you can remove "
+"them by clicking on Unsync All Bookings button, prior to disconnecting this "
+"calendar."
+msgstr ""
+
+#: lib/controllers/outlook_calendar_controller.php:512
+msgid "Auto-sync disabled for this calendar"
+msgstr ""
+
+#: lib/controllers/outlook_calendar_controller.php:488
+msgid "Auto-sync enabled for this calendar"
+msgstr ""
+
+#: lib/views/outlook_calendar/load_events_for_sync.php:56
+msgid "Auto-Sync is disabled"
+msgstr ""
+
+#: lib/views/outlook_calendar/load_events_for_sync.php:26
+msgid "Auto-Sync is Enabled"
+msgstr ""
+
+#: latepoint-outlook-calendar.php:602
+msgid ""
+"Automatically create Outlook Microsoft Teams for bookings of this service"
+msgstr ""
+
+#. %s: booking ID
+#: lib/controllers/outlook_calendar_controller.php:334
+#, php-format
+msgid "Booking #%s Removal Failed"
+msgstr ""
+
+#. %s: booking ID
+#: lib/controllers/outlook_calendar_controller.php:330
+#, php-format
+msgid "Booking #%s Removed from Outlook Calendar Successfully"
+msgstr ""
+
+#. %s: booking ID
+#: lib/controllers/outlook_calendar_controller.php:306
+#, php-format
+msgid "Booking #%s Sync Failed"
+msgstr ""
+
+#. %s: booking ID
+#: lib/controllers/outlook_calendar_controller.php:302
+#, php-format
+msgid "Booking #%s Synced to Outlook Calendar Successfully"
+msgstr ""
+
+#: lib/controllers/outlook_calendar_controller.php:145
+#: lib/controllers/outlook_calendar_controller.php:360
+msgid "Bookings"
+msgstr ""
+
+#: lib/views/outlook_calendar/list_bookings_for_sync.php:30
+msgid "Bookings Synced to "
+msgstr ""
+
+#: lib/controllers/outlook_calendar_controller.php:441
+msgid "Calendar connected for importing events"
+msgstr ""
+
+#: lib/controllers/outlook_calendar_controller.php:464
+msgid "Calendar disconnected"
+msgstr ""
+
+#: lib/views/outlook_calendar/agent_form.php:68
+msgid "Calendar to push bookings to was not selected"
+msgstr ""
+
+#: lib/views/outlook_calendar/load_events_for_sync.php:375
+msgid "Calendars available for sync"
+msgstr ""
+
+#: lib/views/outlook_calendar/agent_form.php:96
+msgid "Calendars to pull events from were not selected"
+msgstr ""
+
+#: lib/controllers/outlook_calendar_controller.php:263
+msgid "Connected Calendar Updated"
+msgstr ""
+
+#: latepoint-outlook-calendar.php:540
+msgid "Connected to Outlook Calendar"
+msgstr ""
+
+#: lib/models/outlook_event_recurrence_model.php:93
+msgid "Count"
+msgstr ""
+
+#: lib/views/outlook_calendar/list_bookings_for_sync.php:92
+msgid "Create Appointment"
+msgstr ""
+
+#: lib/views/outlook_calendar/load_events_for_sync.php:220
+msgid "day"
+msgstr ""
+
+#: lib/views/outlook_calendar/load_events_for_sync.php:50
+msgid "Disable Auto-Sync"
+msgstr ""
+
+#: lib/controllers/outlook_calendar_controller.php:285
+msgid "Disconnected calendar for push"
+msgstr ""
+
+#: lib/views/settings/integrations_calendars.php:14
+msgid ""
+"Each agent can link their Outlook Calendar from their agent profile form."
+msgstr ""
+
+#: lib/views/outlook_calendar/agent_form.php:64
+#: lib/views/outlook_calendar/agent_form.php:92
+msgid "Edit"
+msgstr ""
+
+#: lib/views/outlook_calendar/load_events_for_sync.php:66
+msgid "Enable Auto-Sync"
+msgstr ""
+
+#: lib/models/outlook_calendar_event_model.php:127
+msgid "End Date"
+msgstr ""
+
+#: lib/models/outlook_calendar_event_model.php:129
+msgid "End Time"
+msgstr ""
+
+#: lib/controllers/outlook_calendar_controller.php:620
+msgid "Error syncing event: "
+msgstr ""
+
+#: lib/models/outlook_event_recurrence_model.php:90
+msgid "Event"
+msgstr ""
+
+#: latepoint-outlook-calendar.php:751
+#: lib/views/outlook_calendar/load_events_for_sync.php:167
+#: lib/views/outlook_calendar/load_events_for_sync.php:207
+#: lib/views/outlook_calendar/load_events_for_sync.php:319
+msgid "Event from Outlook Calendar"
+msgstr ""
+
+#: lib/controllers/outlook_calendar_controller.php:656
+msgid "Event not found in local database"
+msgstr ""
+
+#: lib/controllers/outlook_calendar_controller.php:616
+msgid "Event not found in Outlook Calendar"
+msgstr ""
+
+#: lib/controllers/outlook_calendar_controller.php:605
+msgid "Event synced successfully"
+msgstr ""
+
+#: lib/views/settings/integrations_calendars.php:57
+msgid "Event Template"
+msgstr ""
+
+#: lib/controllers/outlook_calendar_controller.php:653
+msgid "Event Unsynced Successfully"
+msgstr ""
+
+#: lib/views/outlook_calendar/load_events_for_sync.php:346
+msgid "Events available to sync"
+msgstr ""
+
+#: lib/views/outlook_calendar/load_events_for_sync.php:343
+msgid "Events Synced"
+msgstr ""
+
+#. %d is the number of connected Outlook calendars
+#: lib/views/outlook_calendar/agent_form.php:88
+msgid "Events will be loaded from %d connected Outlook Calendars"
+msgstr ""
+
+#: lib/views/outlook_calendar/load_events_for_sync.php:216
+#: lib/views/outlook_calendar/load_events_for_sync.php:238
+#: lib/views/outlook_calendar/load_events_for_sync.php:242
+#: lib/views/outlook_calendar/load_events_for_sync.php:246
+msgid "Every"
+msgstr ""
+
+#: lib/controllers/outlook_calendar_controller.php:608
+msgid "Failed to save event"
+msgstr ""
+
+#: lib/views/outlook_calendar/load_events_for_sync.php:226
+msgid "first"
+msgstr ""
+
+#: lib/views/settings/integrations_calendars.php:77
+msgid ""
+"For privacy reasons hides titles of events imported from Outlook Calendar"
+msgstr ""
+
+#: lib/views/outlook_calendar/load_events_for_sync.php:235
+msgid "fourth"
+msgstr ""
+
+#: lib/models/outlook_event_recurrence_model.php:91
+msgid "Frequency"
+msgstr ""
+
+#: lib/helpers/outlook_calendar_helper.php:890
+msgid "Friday"
+msgstr ""
+
+#: latepoint-outlook-calendar.php:756
+msgid "Full Day"
+msgstr ""
+
+#: lib/views/settings/integrations_calendars.php:77
+msgid "Hide titles of imported events"
+msgstr ""
+
+#. URI of the plugin
+#. Author URI of the plugin
+msgid "https://latepoint.com/"
+msgstr ""
+
+#: lib/models/outlook_event_recurrence_model.php:92
+msgid "Interval"
+msgstr ""
+
+#: lib/controllers/outlook_calendar_controller.php:612
+msgid "Invalid event date/time"
+msgstr ""
+
+#: latepoint-outlook-calendar.php:453 latepoint-outlook-calendar.php:525
+msgid "Join with Teams"
+msgstr ""
+
+#: lib/views/outlook_calendar/load_events_for_sync.php:223
+msgid "last"
+msgstr ""
+
+#. Author of the plugin
+msgid "LatePoint"
+msgstr ""
+
+#. Name of the plugin
+msgid "LatePoint Addon - Outlook Calendar"
+msgstr ""
+
+#. Description of the plugin
+msgid "LatePoint addon outlook calendar integration"
+msgstr ""
+
+#: lib/views/outlook_calendar/agent_form.php:62
+msgid "LatePoint bookings will be synced to"
+msgstr ""
+
+#: lib/controllers/outlook_calendar_controller.php:374
+msgid "Load Outlook Calendar Events"
+msgstr ""
+
+#: lib/views/outlook_calendar/agent_form.php:41
+msgid "Manage"
+msgstr ""
+
+#: lib/helpers/outlook_calendar_helper.php:886
+msgid "Monday"
+msgstr ""
+
+#: lib/views/outlook_calendar/list_bookings_for_sync.php:16
+msgid "New Bookings will be automatically synced to "
+msgstr ""
+
+#: lib/views/settings/integrations_calendars.php:31
+msgid "Not Connected"
+msgstr ""
+
+#: lib/views/outlook_calendar/load_events_for_sync.php:315
+msgid "Not Found"
+msgstr ""
+
+#: lib/views/outlook_calendar/load_events_for_sync.php:312
+msgid "Not in Outlook Calendar anymore"
+msgstr ""
+
+#: lib/views/outlook_calendar/load_events_for_sync.php:216
+#: lib/views/outlook_calendar/load_events_for_sync.php:238
+#: lib/views/outlook_calendar/load_events_for_sync.php:242
+msgid "on"
+msgstr ""
+
+#: lib/views/outlook_calendar/load_events_for_sync.php:157
+msgid "One-Time Events:"
+msgstr ""
+
+#: lib/views/outlook_calendar/agent_form.php:112
+msgid "Open Connection Manager"
+msgstr ""
+
+#: lib/views/outlook_calendar/agent_form.php:48
+msgid "Open Sync Manager"
+msgstr ""
+
+#: lib/views/settings/integrations_calendars.php:71
+msgid "Other Settings"
+msgstr ""
+
+#: latepoint-outlook-calendar.php:384 latepoint-outlook-calendar.php:565
+#: latepoint-outlook-calendar.php:580
+msgid "Outlook Calendar"
+msgstr ""
+
+#: lib/controllers/outlook_calendar_controller.php:234
+msgid "Outlook Calendar Disconnected"
+msgstr ""
+
+#: lib/models/outlook_calendar_event_model.php:131
+msgid "Outlook Calendar ID"
+msgstr ""
+
+#: lib/views/outlook_calendar/agent_form.php:108
+msgid "Outlook Calendar is not connected, or access grant has expired."
+msgstr ""
+
+#: latepoint-outlook-calendar.php:596
+msgid "Outlook Calendar Settings"
+msgstr ""
+
+#: lib/views/outlook_calendar/agent_form.php:16
+msgid "Outlook Calendar Setup"
+msgstr ""
+
+#: lib/models/outlook_calendar_event_model.php:132
+msgid "Outlook Event ID"
+msgstr ""
+
+#: lib/controllers/outlook_calendar_controller.php:150
+#: lib/controllers/outlook_calendar_controller.php:364
+msgid "Outlook Events"
+msgstr ""
+
+#: latepoint-outlook-calendar.php:412
+msgid "Outlook Microsoft Teams"
+msgstr ""
+
+#: latepoint-outlook-calendar.php:431
+msgid ""
+"Outlook Microsoft Teams uses the same API keys you set in Outlook Calendar. "
+"Enable Teams on service edit form."
+msgstr ""
+
+#: latepoint-outlook-calendar.php:602
+msgid ""
+"Outlook Microsoft Teams video conferencing will be automatically added to "
+"calendar event for bookings of this service"
+msgstr ""
+
+#: latepoint-outlook-calendar.php:500
+msgid "Outlook Teams"
+msgstr ""
+
+#: latepoint-outlook-calendar.php:449
+msgid "Outlook Teams Info"
+msgstr ""
+
+#: latepoint-outlook-calendar.php:503
+msgid "Outlook Teams URL:"
+msgstr ""
+
+#: lib/views/outlook_calendar/list_bookings_for_sync.php:100
+msgid "Pick a calendar that bookings will be synced to:"
+msgstr ""
+
+#: lib/views/outlook_calendar/load_events_for_sync.php:370
+msgid "Pick calendars from the list below to start syncing events from."
+msgstr ""
+
+#: lib/views/settings/integrations_calendars.php:44
+msgid "Pull availability from:"
+msgstr ""
+
+#: lib/views/settings/integrations_calendars.php:41
+msgid "Push bookings to:"
+msgstr ""
+
+#: lib/views/outlook_calendar/load_events_for_sync.php:199
+msgid "Recurring Events:"
+msgstr ""
+
+#: lib/views/outlook_calendar/load_events_for_sync.php:39
+msgid "Refresh Token"
+msgstr ""
+
+#: lib/views/outlook_calendar/list_bookings_for_sync.php:37
+msgid "Remove Bookings from Outlook Calendar"
+msgstr ""
+
+#: lib/views/outlook_calendar/agent_form.php:37
+msgid "Revoke"
+msgstr ""
+
+#: lib/helpers/outlook_calendar_helper.php:891
+msgid "Saturday"
+msgstr ""
+
+#: lib/views/outlook_calendar/load_events_for_sync.php:229
+msgid "second"
+msgstr ""
+
+#: lib/views/outlook_calendar/agent_form.php:70
+#: lib/views/outlook_calendar/agent_form.php:98
+#: lib/views/outlook_calendar/list_bookings_for_sync.php:106
+msgid "Select Calendar"
+msgstr ""
+
+#: lib/models/outlook_calendar_event_model.php:126
+msgid "Start Date"
+msgstr ""
+
+#: lib/models/outlook_calendar_event_model.php:128
+msgid "Start Time"
+msgstr ""
+
+#: lib/views/outlook_calendar/load_events_for_sync.php:246
+msgid "starting"
+msgstr ""
+
+#: lib/views/outlook_calendar/list_bookings_for_sync.php:37
+msgid "Stop Removing"
+msgstr ""
+
+#: lib/views/outlook_calendar/list_bookings_for_sync.php:20
+msgid "Stop Syncing"
+msgstr ""
+
+#: lib/views/outlook_calendar/list_bookings_for_sync.php:33
+#: lib/views/outlook_calendar/load_events_for_sync.php:350
+msgid "Stop Syncing Now"
+msgstr ""
+
+#: lib/controllers/outlook_calendar_controller.php:536
+msgid "Subscription refreshed successfully"
+msgstr ""
+
+#: lib/models/outlook_calendar_event_model.php:125
+msgid "Summary"
+msgstr ""
+
+#: lib/helpers/outlook_calendar_helper.php:892
+msgid "Sunday"
+msgstr ""
+
+#: lib/views/outlook_calendar/list_bookings_for_sync.php:35
+msgid "Sync All Bookings"
+msgstr ""
+
+#: lib/views/outlook_calendar/list_bookings_for_sync.php:33
+msgid "Sync All Bookings to Outlook"
+msgstr ""
+
+#: lib/views/outlook_calendar/load_events_for_sync.php:350
+#: lib/views/outlook_calendar/load_events_for_sync.php:352
+msgid "Sync All Events Now"
+msgstr ""
+
+#: lib/controllers/outlook_calendar_controller.php:142
+#: lib/controllers/outlook_calendar_controller.php:357
+msgid "Sync for"
+msgstr ""
+
+#: lib/controllers/outlook_calendar_controller.php:160
+msgid "Sync upcoming bookings"
+msgstr ""
+
+#: lib/views/outlook_calendar/load_events_for_sync.php:12
+msgid "Synced Calendars"
+msgstr ""
+
+#: lib/views/settings/integrations_calendars.php:64
+msgid "Template For Event Description"
+msgstr ""
+
+#: lib/views/settings/integrations_calendars.php:63
+msgid "Template For Event Title"
+msgstr ""
+
+#: lib/views/outlook_calendar/load_events_for_sync.php:232
+msgid "third"
+msgstr ""
+
+#: lib/views/outlook_calendar/list_bookings_for_sync.php:89
+msgid "This agent does not have any appointments yet"
+msgstr ""
+
+#: lib/views/outlook_calendar/list_bookings_for_sync.php:121
+msgid ""
+"This agent has not authorized access to their Outlook Calendar yet. Go back "
+"to agent profile and authorize Outlook calendar sync."
+msgstr ""
+
+#: lib/views/outlook_calendar/load_events_for_sync.php:389
+msgid ""
+"This agent has not authorized access to their Outlook Calendar yet. Open "
+"agent profile and click sign in with Outlook button."
+msgstr ""
+
+#: lib/views/outlook_calendar/load_events_for_sync.php:386
+msgid "This Outlook account does not have any calendars."
+msgstr ""
+
+#: lib/helpers/outlook_calendar_helper.php:889
+msgid "Thursday"
+msgstr ""
+
+#. %d is the number of days until the token expires
+#: lib/views/outlook_calendar/load_events_for_sync.php:30
+msgid "Token Expires in %d days"
+msgstr ""
+
+#: lib/helpers/outlook_calendar_helper.php:887
+msgid "Tuesday"
+msgstr ""
+
+#: lib/views/outlook_calendar/list_bookings_for_sync.php:39
+msgid "Unsync All Bookings"
+msgstr ""
+
+#: lib/models/outlook_event_recurrence_model.php:94
+msgid "Until"
+msgstr ""
+
+#: lib/helpers/outlook_calendar_helper.php:888
+msgid "Wednesday"
+msgstr ""
+
+#: lib/models/outlook_event_recurrence_model.php:95
+msgid "Weekday"
+msgstr ""
+
+#: lib/views/settings/integrations_calendars.php:60
+msgid ""
+"You can use variables in your event title and description, they will be "
+"replaced with a value for the booking. "
+msgstr ""

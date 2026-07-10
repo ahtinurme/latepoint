@@ -1,0 +1,235 @@
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: LatePoint Addon - Stebby\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2026-06-13 12:46+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: \n"
+"Language: \n"
+"Plural-Forms: nplurals=INTEGER; plural=EXPRESSION;\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Loco https://localise.biz/\n"
+"X-Loco-Version: 2.8.5; wp-7.0; php-8.3.31\n"
+"X-Domain: latepoint-addon-stebby"
+
+#. %s is the package name
+#: lib/controllers/stebby_controller.php:82
+#, php-format
+msgid ""
+"\"%s\" is a Stebby package. Redeeming it replaces the services currently in "
+"your cart with the package - you then schedule each session from your "
+"account."
+msgstr ""
+
+#. Description of the plugin
+msgid ""
+"Accept LatePoint booking payments through Stebby - customers pay with their "
+"Stebby account using a personal ID code, or redeem a Stebby voucher for a "
+"service they already bought."
+msgstr ""
+
+#: latepoint-addon-stebby.php:135
+msgid "Amount due"
+msgstr ""
+
+#: lib/helpers/stebby_helper.php:893
+msgid "API Keys"
+msgstr ""
+
+#: lib/helpers/stebby_helper.php:863
+msgid "Check Stebby balance"
+msgstr ""
+
+#: lib/helpers/stebby_helper.php:870
+msgid "Check voucher"
+msgstr ""
+
+#. URI of the plugin
+#. Author URI of the plugin
+msgid "https://latepoint.com/"
+msgstr ""
+
+#: lib/helpers/stebby_helper.php:854
+msgid "I already bought this on Stebby (I have a voucher code)"
+msgstr ""
+
+#: lib/controllers/stebby_controller.php:220
+#: lib/controllers/stebby_controller.php:225
+msgid "Invoice not found."
+msgstr ""
+
+#. Author of the plugin
+msgid "LatePoint"
+msgstr ""
+
+#. Name of the plugin
+msgid "LatePoint Addon - Stebby"
+msgstr ""
+
+#: lib/helpers/stebby_helper.php:899
+msgid "Live API Key"
+msgstr ""
+
+#: lib/helpers/stebby_helper.php:195
+msgid ""
+"Map this package to a Stebby purchasable so it can be paid for or redeemed "
+"with Stebby. Enter the reference code configured for the matching package in "
+"your Stebby Point of Sale."
+msgstr ""
+
+#: lib/helpers/stebby_helper.php:151
+msgid ""
+"Map this service to a Stebby purchasable so it can be paid for with Stebby. "
+"Enter the reference code configured for the matching service in your Stebby "
+"Point of Sale."
+msgstr ""
+
+#: lib/controllers/stebby_controller.php:254
+#: lib/controllers/stebby_controller.php:278 lib/helpers/stebby_helper.php:588
+msgid "None of the booked services are available on Stebby."
+msgstr ""
+
+#: lib/helpers/stebby_helper.php:850
+msgid "Pay with my Stebby account"
+msgstr ""
+
+#: lib/helpers/stebby_helper.php:861
+msgid "Personal ID code"
+msgstr ""
+
+#: lib/helpers/stebby_helper.php:629
+msgid "Please enter and verify your Stebby voucher code."
+msgstr ""
+
+#: lib/controllers/stebby_controller.php:250
+msgid "Please enter your personal ID code."
+msgstr ""
+
+#: lib/controllers/stebby_controller.php:274
+msgid "Please enter your voucher code."
+msgstr ""
+
+#: lib/helpers/stebby_helper.php:584
+msgid "Please verify your Stebby account before continuing."
+msgstr ""
+
+#: lib/helpers/stebby_helper.php:936
+msgid "Price"
+msgstr ""
+
+#: latepoint-addon-stebby.php:140
+msgid "Redeem package"
+msgstr ""
+
+#: latepoint-addon-stebby.php:141
+msgid "Redeeming your package..."
+msgstr ""
+
+#: lib/helpers/stebby_helper.php:934
+msgid "Reference Code"
+msgstr ""
+
+#: lib/helpers/stebby_helper.php:928
+msgid ""
+"Reference codes available on your Stebby Point of Sale. Enter the matching "
+"code on each LatePoint service."
+msgstr ""
+
+#: lib/helpers/stebby_helper.php:902
+msgid "Sandbox API Key"
+msgstr ""
+
+#: lib/helpers/stebby_helper.php:935
+msgid "Service"
+msgstr ""
+
+#: lib/helpers/stebby_helper.php:84 lib/helpers/stebby_helper.php:85
+#: lib/helpers/stebby_helper.php:95 lib/helpers/stebby_helper.php:96
+#: lib/helpers/stebby_helper.php:150 lib/helpers/stebby_helper.php:169
+#: lib/helpers/stebby_helper.php:194
+msgid "Stebby"
+msgstr ""
+
+#: latepoint-addon-stebby.php:133
+msgid "Stebby account"
+msgstr ""
+
+#: latepoint-addon-stebby.php:136
+msgid "Stebby covers"
+msgstr ""
+
+#: latepoint-addon-stebby.php:138
+msgid ""
+"Stebby covers part of your booking. The remaining amount is due separately."
+msgstr ""
+
+#: lib/helpers/stebby_helper.php:155 lib/helpers/stebby_helper.php:199
+msgid "Stebby Reference Code"
+msgstr ""
+
+#: lib/helpers/stebby_api_helper.php:106
+msgid "Stebby request could not be completed."
+msgstr ""
+
+#: lib/helpers/stebby_helper.php:927
+msgid "Stebby Services"
+msgstr ""
+
+#: lib/helpers/stebby_helper.php:894
+msgid ""
+"The sandbox key is used while LatePoint payments are in test mode, the live "
+"key otherwise."
+msgstr ""
+
+#: lib/controllers/stebby_controller.php:133
+msgid "The Stebby package could not be redeemed. Please contact us."
+msgstr ""
+
+#: lib/helpers/stebby_helper.php:639
+msgid ""
+"The Stebby voucher could not be redeemed. It may already be used or expired."
+msgstr ""
+
+#: lib/helpers/stebby_helper.php:634
+msgid "This Stebby voucher is not valid for the booked services."
+msgstr ""
+
+#: lib/controllers/stebby_controller.php:283
+msgid ""
+"This voucher code is not valid for the booked services, or it has already "
+"been used."
+msgstr ""
+
+#: lib/helpers/stebby_helper.php:868
+msgid "Voucher code"
+msgstr ""
+
+#: latepoint-addon-stebby.php:134
+msgid "Voucher service"
+msgstr ""
+
+#: lib/controllers/stebby_controller.php:293
+msgid ""
+"We could not automatically match this Stebby voucher to your booking. It "
+"will be applied and our team will review it."
+msgstr ""
+
+#: latepoint-addon-stebby.php:137
+msgid "You pay separately"
+msgstr ""
+
+#. %s is the package name
+#: lib/controllers/stebby_controller.php:146
+#, php-format
+msgid ""
+"Your \"%s\" package is now active. The booking you had scheduled was removed "
+"- please schedule each session from your account."
+msgstr ""
+
+#: latepoint-addon-stebby.php:139
+msgid "Your booking is fully covered by Stebby."
+msgstr ""

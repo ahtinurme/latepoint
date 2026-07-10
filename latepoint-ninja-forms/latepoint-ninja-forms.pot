@@ -1,0 +1,216 @@
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: LatePoint Addon - Ninja Forms\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2026-07-01 07:02+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: \n"
+"Language: \n"
+"Plural-Forms: nplurals=INTEGER; plural=EXPRESSION;\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Loco https://localise.biz/\n"
+"X-Loco-Version: 2.8.5; wp-7.0; php-8.3.31\n"
+"X-Domain: latepoint-ninja-forms"
+
+#: lib/helpers/ninja_forms_helper.php:743
+msgid "(signature provided)"
+msgstr ""
+
+#: lib/helpers/ninja_forms_helper.php:729
+#, php-format
+msgid "A form was submitted by %1$s for order #%2$d."
+msgstr ""
+
+#: lib/views/ninja_forms/settings.php:73
+msgid ""
+"Adds the link to the customer booking email automatically when a form is set."
+" Disable if you place {{order_ninja_form_link}} in your template manually."
+msgstr ""
+
+#: lib/views/ninja_forms/settings.php:60
+msgid "Admin notification email"
+msgstr ""
+
+#. Description of the plugin
+msgid ""
+"Attaches a Ninja Form to LatePoint services. After a customer books, the "
+"link to the"
+msgstr ""
+
+#: lib/views/ninja_forms/settings.php:73
+msgid "Auto-append form link to booking emails"
+msgstr ""
+
+#: lib/helpers/ninja_forms_helper.php:486
+msgid "Booking not found."
+msgstr ""
+
+#: lib/views/ninja_forms/settings.php:91
+msgid ""
+"Create a Ninja Form. Add two Hidden fields with the field keys "
+"\"lp_nf_order\" and \"lp_nf_token\" — this addon fills them automatically."
+msgstr ""
+
+#: lib/views/ninja_forms/settings.php:93
+msgid ""
+"Create a WordPress page containing the shortcode [latepoint_ninja_form] and "
+"select it above."
+msgstr ""
+
+#: lib/views/ninja_forms/settings.php:34
+msgid "e.g. 3"
+msgstr ""
+
+#: lib/views/ninja_forms/settings.php:92
+msgid "Enter that form's ID above. The same form is used for all services."
+msgstr ""
+
+#: lib/helpers/ninja_forms_helper.php:427 lib/views/ninja_forms/settings.php:28
+msgid "Form"
+msgstr ""
+
+#: lib/views/ninja_forms/settings.php:41 lib/views/ninja_forms/settings.php:47
+msgid "Form Page"
+msgstr ""
+
+#: lib/helpers/ninja_forms_helper.php:719
+#, php-format
+msgid "Hi %s,"
+msgstr ""
+
+#. URI of the plugin
+msgid "https://latepoint.com/"
+msgstr ""
+
+#: lib/helpers/ninja_forms_helper.php:350
+msgid "Jah"
+msgstr ""
+
+#. Name of the plugin
+msgid "LatePoint Addon - Ninja Forms"
+msgstr ""
+
+#: lib/helpers/ninja_forms_helper.php:728
+msgid "New form submission for order #%d"
+msgstr ""
+
+#: lib/views/ninja_forms/settings.php:34
+msgid "Ninja Form ID"
+msgstr ""
+
+#: lib/helpers/ninja_forms_helper.php:417
+msgid "Ninja Form Submissions"
+msgstr ""
+
+#: latepoint-ninja-forms.php:129 lib/controllers/ninja_forms_controller.php:14
+#: lib/controllers/ninja_forms_controller.php:16
+#: lib/helpers/ninja_forms_helper.php:109
+msgid "Ninja Forms"
+msgstr ""
+
+#: lib/views/ninja_forms/settings.php:23
+msgid "Ninja Forms Integration"
+msgstr ""
+
+#: lib/helpers/ninja_forms_helper.php:474
+msgid "Ninja Forms is not active."
+msgstr ""
+
+#: lib/helpers/ninja_forms_helper.php:491
+msgid "No form is configured for this booking."
+msgstr ""
+
+#: lib/views/ninja_forms/settings.php:54
+msgid "Notifications"
+msgstr ""
+
+#: lib/views/ninja_forms/settings.php:68
+msgid "Notify admin"
+msgstr ""
+
+#: lib/views/ninja_forms/settings.php:65
+msgid "Notify customer"
+msgstr ""
+
+#: lib/helpers/ninja_forms_helper.php:181
+#: lib/helpers/ninja_forms_helper.php:182
+#: lib/helpers/ninja_forms_helper.php:197
+#: lib/helpers/ninja_forms_helper.php:246
+msgid "Open form"
+msgstr ""
+
+#: lib/helpers/ninja_forms_helper.php:196
+#: lib/helpers/ninja_forms_helper.php:245
+msgid "Please complete the form for your booking:"
+msgstr ""
+
+#: lib/views/ninja_forms/settings.php:81
+msgid "Save Settings"
+msgstr ""
+
+#: lib/views/ninja_forms/settings.php:6
+msgid "Select a page..."
+msgstr ""
+
+#: lib/helpers/ninja_forms_helper.php:113
+msgid "Send Ninja Form link for this service"
+msgstr ""
+
+#: lib/controllers/ninja_forms_controller.php:42
+msgid "Settings Updated"
+msgstr ""
+
+#: lib/views/ninja_forms/settings.php:87
+msgid "Setup"
+msgstr ""
+
+#: lib/helpers/ninja_forms_helper.php:720
+msgid "Thank you, we have received your form submission. A copy is below."
+msgstr ""
+
+#: lib/views/ninja_forms/settings.php:94
+msgid ""
+"The link is emailed automatically (Auto-append above). To place it yourself "
+"instead, turn that off and insert {{order_ninja_form_link}} into your "
+"\"Booking Created → Customer\" email template."
+msgstr ""
+
+#: lib/views/ninja_forms/settings.php:29
+msgid "The Ninja Form id used for all services. Leave empty to disable."
+msgstr ""
+
+#: lib/views/ninja_forms/settings.php:42
+msgid ""
+"The page that contains the [latepoint_ninja_form] shortcode. The booking "
+"form link points here."
+msgstr ""
+
+#: lib/helpers/ninja_forms_helper.php:481
+msgid "This form link is invalid or has expired."
+msgstr ""
+
+#: lib/helpers/ninja_forms_helper.php:718
+msgid "We received your form submission"
+msgstr ""
+
+#: lib/helpers/ninja_forms_helper.php:117
+msgid ""
+"When on, booking this service delivers the form link in the confirmation "
+"email and on screen."
+msgstr ""
+
+#: lib/views/ninja_forms/settings.php:55
+msgid "Who gets notified when a customer submits the form."
+msgstr ""
+
+#: lib/helpers/ninja_forms_helper.php:378
+msgid "Your Form Submissions"
+msgstr ""
+
+#. Author of the plugin
+msgid "Yumefit"
+msgstr ""

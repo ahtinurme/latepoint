@@ -1,0 +1,701 @@
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: LatePoint Addon - Apple Calendar\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2026-06-13 12:41+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: \n"
+"Language: \n"
+"Plural-Forms: nplurals=INTEGER; plural=EXPRESSION;\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Loco https://localise.biz/\n"
+"X-Loco-Version: 2.8.5; wp-7.0; php-8.3.31\n"
+"X-Domain: latepoint-apple-calendar"
+
+#: lib/views/apple_calendar/list_bookings_for_sync.php:62
+#: lib/views/apple_calendar/load_events_for_sync.php:350
+msgid " of "
+msgstr ""
+
+#: lib/views/apple_calendar/load_events_for_sync.php:128
+#: lib/views/apple_calendar/load_events_for_sync.php:142
+msgid "(No Title)"
+msgstr ""
+
+#: lib/views/apple_calendar/render_calendar_selection.php:45
+msgid "-- Select Calendar --"
+msgstr ""
+
+#: lib/views/apple_calendar/settings.php:78
+msgid "Access Granted"
+msgstr ""
+
+#: latepoint-apple-calendar.php:775
+msgid "Add agent as organizer in Apple Calendar event"
+msgstr ""
+
+#: latepoint-apple-calendar.php:773
+msgid "Add customers as attendees in Apple Calendar event"
+msgstr ""
+
+#: lib/views/apple_calendar/settings.php:55
+msgid "Agent Connections"
+msgstr ""
+
+#: lib/controllers/apple_calendar_controller.php:548
+#: lib/controllers/apple_calendar_controller.php:586
+#: lib/controllers/apple_calendar_controller.php:656
+#: lib/controllers/apple_calendar_controller.php:686
+#: lib/controllers/apple_calendar_controller.php:750
+msgid "Agent ID and Calendar ID are required"
+msgstr ""
+
+#: lib/controllers/apple_calendar_controller.php:56
+#: lib/controllers/apple_calendar_controller.php:154
+#: lib/controllers/apple_calendar_controller.php:212
+#: lib/controllers/apple_calendar_controller.php:521
+msgid "Agent ID is required"
+msgstr ""
+
+#: lib/controllers/apple_calendar_controller.php:165
+msgid "Agent is not connected to Apple Calendar"
+msgstr ""
+
+#: lib/controllers/apple_calendar_controller.php:115
+msgid "Agent not found"
+msgstr ""
+
+#: lib/controllers/apple_calendar_controller.php:39
+#: lib/controllers/apple_calendar_controller.php:41
+msgid "Agents"
+msgstr ""
+
+#: lib/views/apple_calendar/settings.php:34
+msgid "and sign in with your Apple ID"
+msgstr ""
+
+#: lib/views/apple_calendar/_connection_form.php:164
+msgid "App-Specific Password"
+msgstr ""
+
+#: latepoint-apple-calendar.php:252
+msgid "Apple Calendar"
+msgstr ""
+
+#: lib/controllers/apple_calendar_controller.php:137
+msgid "Apple Calendar disconnected successfully"
+msgstr ""
+
+#: latepoint-apple-calendar.php:767
+msgid "Apple Calendar Settings"
+msgstr ""
+
+#: lib/views/apple_calendar/_connection_form.php:27
+msgid "Apple Calendar Setup"
+msgstr ""
+
+#: lib/views/apple_calendar/settings.php:26
+msgid ""
+"Apple Calendar uses CalDAV protocol for syncing. Each agent needs to "
+"generate an app-specific password from their Apple ID account."
+msgstr ""
+
+#: lib/controllers/apple_calendar_controller.php:337
+#: lib/controllers/apple_calendar_controller.php:453
+msgid "Apple Events"
+msgstr ""
+
+#: lib/views/apple_calendar/_connection_form.php:154
+msgid "Apple ID (Email)"
+msgstr ""
+
+#: lib/controllers/apple_calendar_controller.php:71
+msgid "Apple ID and App-Specific Password are required"
+msgstr ""
+
+#: lib/views/apple_calendar/_connection_form.php:55
+msgid ""
+"Are you sure you want to disconnect Apple Calendar from this agent? All "
+"synced bookings and events will be removed from the local database."
+msgstr ""
+
+#: lib/views/apple_calendar/load_events_for_sync.php:337
+msgid ""
+"Are you sure you want to disconnect this calendar? Events will no longer "
+"block time slots in LatePoint."
+msgstr ""
+
+#: lib/views/apple_calendar/list_bookings_for_sync.php:74
+msgid ""
+"Are you sure you want to remove all synced bookings from Apple Calendar? "
+"They will remain in LatePoint, but will be removed from apple calendar."
+msgstr ""
+
+#: lib/views/apple_calendar/list_bookings_for_sync.php:31
+msgid ""
+"Are you sure you want to stop syncing bookings to this calendar? Bookings "
+"that were already synced to this calendar will stay there, you can remove "
+"them by clicking on Unsync All Bookings button, prior to disconnecting this "
+"calendar."
+msgstr ""
+
+#: lib/views/apple_calendar/load_events_for_sync.php:76
+msgid "Auto-Sync is disabled"
+msgstr ""
+
+#: lib/views/apple_calendar/load_events_for_sync.php:59
+msgid "Auto-Sync is Enabled"
+msgstr ""
+
+#: lib/controllers/apple_calendar_controller.php:701
+msgid "Auto-Sync with Apple Calendar Disabled"
+msgstr ""
+
+#: lib/controllers/apple_calendar_controller.php:671
+msgid "Auto-Sync with Apple Calendar Enabled"
+msgstr ""
+
+#. %d is the booking ID.
+#: lib/controllers/apple_calendar_controller.php:301
+msgid "Booking #%d removed from Apple Calendar successfully"
+msgstr ""
+
+#. %d is the booking ID.
+#: lib/controllers/apple_calendar_controller.php:264
+msgid "Booking #%d synced to Apple Calendar successfully"
+msgstr ""
+
+#: lib/controllers/apple_calendar_controller.php:251
+#: lib/controllers/apple_calendar_controller.php:288
+msgid "Booking ID is required"
+msgstr ""
+
+#: lib/controllers/apple_calendar_controller.php:333
+#: lib/controllers/apple_calendar_controller.php:448
+msgid "Bookings"
+msgstr ""
+
+#: lib/views/apple_calendar/list_bookings_for_sync.php:66
+msgid "Bookings Synced to "
+msgstr ""
+
+#: lib/controllers/apple_calendar_controller.php:607
+msgid "Calendar disconnected from event sync"
+msgstr ""
+
+#: lib/controllers/apple_calendar_controller.php:533
+msgid "Calendar disconnected from push sync"
+msgstr ""
+
+#: lib/controllers/apple_calendar_controller.php:765
+msgid "Calendar enabled for booking sync"
+msgstr ""
+
+#: lib/controllers/apple_calendar_controller.php:571
+msgid "Calendar enabled for event sync"
+msgstr ""
+
+#: lib/controllers/apple_calendar_controller.php:236
+msgid "Calendar selections saved successfully"
+msgstr ""
+
+#: lib/views/apple_calendar/_connection_form.php:98
+msgid "Calendar to push bookings to was not selected"
+msgstr ""
+
+#: lib/views/apple_calendar/load_events_for_sync.php:395
+msgid "Calendars available for sync"
+msgstr ""
+
+#: lib/views/apple_calendar/_connection_form.php:121
+msgid "Calendars to pull events from were not selected"
+msgstr ""
+
+#: lib/views/apple_calendar/render_calendar_selection.php:117
+msgid "Cancel"
+msgstr ""
+
+#: lib/views/apple_calendar/render_calendar_selection.php:26
+msgid ""
+"Choose which calendars to use for syncing bookings between LatePoint and "
+"Apple Calendar."
+msgstr ""
+
+#: lib/views/apple_calendar/settings.php:37
+msgid "Click \"Generate an app-specific password\""
+msgstr ""
+
+#: lib/views/apple_calendar/_connection_form.php:145
+msgid ""
+"Click \"Generate an app-specific password\" and give it a name (e.g., "
+"\"LatePoint\")"
+msgstr ""
+
+#: lib/views/apple_calendar/_connection_form.php:184
+msgid "Connect to Apple Calendar"
+msgstr ""
+
+#: lib/views/apple_calendar/_connection_form.php:135
+msgid "Connect Your Apple Calendar"
+msgstr ""
+
+#: latepoint-apple-calendar.php:422
+#: lib/views/apple_calendar/_connection_form.php:47
+msgid "Connected to Apple Calendar"
+msgstr ""
+
+#: lib/controllers/apple_calendar_controller.php:89
+msgid "Connection successful!"
+msgstr ""
+
+#: lib/views/apple_calendar/_connection_form.php:146
+msgid "Copy the 16-character password and paste it below"
+msgstr ""
+
+#: lib/views/apple_calendar/settings.php:39
+msgid "Copy the 16-character password that is generated"
+msgstr ""
+
+#: lib/views/apple_calendar/list_bookings_for_sync.php:133
+msgid "Create Appointment"
+msgstr ""
+
+#: lib/views/apple_calendar/load_events_for_sync.php:268
+#: lib/views/apple_calendar/load_events_for_sync.php:298
+msgid "day"
+msgstr ""
+
+#: lib/views/apple_calendar/load_events_for_sync.php:298
+msgid "days"
+msgstr ""
+
+#: lib/views/apple_calendar/load_events_for_sync.php:67
+msgid "Disable Auto-Sync"
+msgstr ""
+
+#: lib/views/apple_calendar/_connection_form.php:59
+msgid "Disconnect"
+msgstr ""
+
+#: lib/helpers/apple_calendar_helper.php:399
+msgid "Do not sync"
+msgstr ""
+
+#: lib/views/apple_calendar/settings.php:59
+msgid "Each agent can link their Apple Calendar from their agent profile form."
+msgstr ""
+
+#: lib/views/apple_calendar/_connection_form.php:94
+#: lib/views/apple_calendar/_connection_form.php:117
+msgid "Edit"
+msgstr ""
+
+#: lib/views/apple_calendar/load_events_for_sync.php:84
+msgid "Enable Auto-Sync"
+msgstr ""
+
+#: lib/views/apple_calendar/settings.php:38
+msgid "Enter \"LatePoint\" as the password label"
+msgstr ""
+
+#: lib/views/apple_calendar/_connection_form.php:175
+msgid ""
+"Enter the 16-character app-specific password from Apple (with or without "
+"dashes)"
+msgstr ""
+
+#: latepoint-apple-calendar.php:641
+#: lib/views/apple_calendar/load_events_for_sync.php:172
+#: lib/views/apple_calendar/load_events_for_sync.php:230
+msgid "Event from Apple Calendar"
+msgstr ""
+
+#: lib/controllers/apple_calendar_controller.php:622
+msgid "Event ID and Agent ID are required"
+msgstr ""
+
+#: lib/controllers/apple_calendar_controller.php:716
+msgid "Event ID is required"
+msgstr ""
+
+#: lib/controllers/apple_calendar_controller.php:633
+msgid "Event Sync Failed"
+msgstr ""
+
+#: lib/controllers/apple_calendar_controller.php:630
+msgid "Event Synced Successfully"
+msgstr ""
+
+#: lib/views/apple_calendar/settings.php:111
+msgid "Event Template"
+msgstr ""
+
+#: lib/controllers/apple_calendar_controller.php:727
+msgid "Event Unsync Failed"
+msgstr ""
+
+#: lib/controllers/apple_calendar_controller.php:724
+msgid "Event Unsynced Successfully"
+msgstr ""
+
+#: lib/views/apple_calendar/load_events_for_sync.php:356
+msgid "Events available to sync"
+msgstr ""
+
+#: lib/views/apple_calendar/load_events_for_sync.php:353
+msgid "Events Synced"
+msgstr ""
+
+#. %d: Number of connected calendars
+#: lib/views/apple_calendar/_connection_form.php:113
+msgid "Events will be loaded from %d connected Apple Calendars"
+msgstr ""
+
+#: lib/views/apple_calendar/load_events_for_sync.php:264
+#: lib/views/apple_calendar/load_events_for_sync.php:290
+#: lib/views/apple_calendar/load_events_for_sync.php:294
+#: lib/views/apple_calendar/load_events_for_sync.php:299
+msgid "Every"
+msgstr ""
+
+#: latepoint-apple-calendar.php:268
+msgid "Every 2 Hours"
+msgstr ""
+
+#. %d is the booking ID.
+#: lib/controllers/apple_calendar_controller.php:309
+msgid "Failed to remove Booking #%d from Apple Calendar"
+msgstr ""
+
+#. %d is the booking ID.
+#: lib/controllers/apple_calendar_controller.php:272
+msgid "Failed to sync Booking #%d to Apple Calendar"
+msgstr ""
+
+#: lib/views/apple_calendar/load_events_for_sync.php:277
+msgid "first"
+msgstr ""
+
+#: lib/views/apple_calendar/settings.php:156
+msgid "For privacy reasons hides titles of events imported from Apple Calendar"
+msgstr ""
+
+#: lib/views/apple_calendar/load_events_for_sync.php:286
+msgid "fourth"
+msgstr ""
+
+#: lib/views/apple_calendar/load_events_for_sync.php:253
+msgid "Fri"
+msgstr ""
+
+#: latepoint-apple-calendar.php:646
+#: lib/views/apple_calendar/load_events_for_sync.php:118
+msgid "Full Day"
+msgstr ""
+
+#: lib/views/apple_calendar/settings.php:32
+msgid "Go to"
+msgstr ""
+
+#. %s is a link to appleid.apple.com!
+#: lib/views/apple_calendar/_connection_form.php:141
+#, php-format
+msgid "Go to %s and sign in with your Apple ID"
+msgstr ""
+
+#: lib/views/apple_calendar/settings.php:40
+msgid ""
+"Go to the agent profile and enter the Apple ID and app-specific password"
+msgstr ""
+
+#: lib/views/apple_calendar/settings.php:152
+msgid "Hide titles of imported events"
+msgstr ""
+
+#: lib/views/apple_calendar/settings.php:29
+msgid "How to Generate an App-Specific Password:"
+msgstr ""
+
+#. URI of the plugin
+#. Author URI of the plugin
+msgid "https://latepoint.com/"
+msgstr ""
+
+#: lib/views/apple_calendar/load_events_for_sync.php:274
+msgid "last"
+msgstr ""
+
+#. Author of the plugin
+msgid "LatePoint"
+msgstr ""
+
+#. Name of the plugin
+msgid "LatePoint Addon - Apple Calendar"
+msgstr ""
+
+#. Description of the plugin
+msgid "LatePoint addon for Apple Calendar integration"
+msgstr ""
+
+#: lib/views/apple_calendar/_connection_form.php:92
+msgid "LatePoint bookings will be synced to"
+msgstr ""
+
+#: lib/controllers/apple_calendar_controller.php:347
+msgid "Load Apple Calendar Events"
+msgstr ""
+
+#: lib/views/apple_calendar/_connection_form.php:80
+msgid "Manage Calendar Selection"
+msgstr ""
+
+#: lib/views/apple_calendar/load_events_for_sync.php:249
+msgid "Mon"
+msgstr ""
+
+#: lib/views/apple_calendar/load_events_for_sync.php:267
+msgid "month"
+msgstr ""
+
+#: lib/views/apple_calendar/load_events_for_sync.php:267
+msgid "months"
+msgstr ""
+
+#: lib/views/apple_calendar/_connection_form.php:144
+#: lib/views/apple_calendar/settings.php:36
+msgid "Navigate to Sign-In and Security > App-Specific Passwords"
+msgstr ""
+
+#: lib/views/apple_calendar/list_bookings_for_sync.php:39
+msgid "New Bookings will be automatically synced to "
+msgstr ""
+
+#: lib/views/apple_calendar/render_calendar_selection.php:63
+#: lib/views/apple_calendar/render_calendar_selection.php:104
+msgid "No calendars found. Please check your connection."
+msgstr ""
+
+#: lib/views/apple_calendar/settings.php:80
+msgid "Not Connected"
+msgstr ""
+
+#: lib/views/apple_calendar/load_events_for_sync.php:264
+#: lib/views/apple_calendar/load_events_for_sync.php:290
+#: lib/views/apple_calendar/load_events_for_sync.php:294
+msgid "on"
+msgstr ""
+
+#: lib/views/apple_calendar/load_events_for_sync.php:159
+msgid "One-Time Events:"
+msgstr ""
+
+#: lib/views/apple_calendar/_connection_form.php:66
+msgid "Open Sync Manager"
+msgstr ""
+
+#: lib/views/apple_calendar/settings.php:144
+msgid "Other Settings"
+msgstr ""
+
+#: lib/views/apple_calendar/list_bookings_for_sync.php:140
+msgid "Pick a calendar that bookings will be synced to:"
+msgstr ""
+
+#: lib/views/apple_calendar/load_events_for_sync.php:388
+msgid "Pick calendars from the list below to start syncing events from."
+msgstr ""
+
+#: lib/views/apple_calendar/settings.php:94
+msgid "Pull availability from:"
+msgstr ""
+
+#: lib/views/apple_calendar/render_calendar_selection.php:74
+msgid "Pull Events From (Block Times)"
+msgstr ""
+
+#: lib/views/apple_calendar/settings.php:91
+msgid "Push bookings to:"
+msgstr ""
+
+#: lib/views/apple_calendar/render_calendar_selection.php:35
+msgid "Push LatePoint Bookings To"
+msgstr ""
+
+#: lib/views/apple_calendar/load_events_for_sync.php:219
+msgid "Recurring Events:"
+msgstr ""
+
+#: lib/views/apple_calendar/list_bookings_for_sync.php:74
+msgid "Remove Bookings from Apple Calendar"
+msgstr ""
+
+#: lib/views/apple_calendar/load_events_for_sync.php:254
+msgid "Sat"
+msgstr ""
+
+#: lib/views/apple_calendar/render_calendar_selection.php:114
+msgid "Save Calendar Selection"
+msgstr ""
+
+#: lib/views/apple_calendar/load_events_for_sync.php:280
+msgid "second"
+msgstr ""
+
+#: lib/views/apple_calendar/_connection_form.php:100
+#: lib/views/apple_calendar/_connection_form.php:123
+#: lib/views/apple_calendar/list_bookings_for_sync.php:149
+msgid "Select Calendar"
+msgstr ""
+
+#: lib/views/apple_calendar/render_calendar_selection.php:25
+msgid "Select Calendars for Sync"
+msgstr ""
+
+#: lib/views/apple_calendar/render_calendar_selection.php:38
+msgid ""
+"Select one calendar where LatePoint bookings will be automatically created "
+"as events."
+msgstr ""
+
+#: lib/views/apple_calendar/render_calendar_selection.php:77
+msgid ""
+"Select one or more calendars. Events from these calendars will block "
+"available time slots in LatePoint."
+msgstr ""
+
+#: lib/views/apple_calendar/settings.php:22
+msgid "Setup Instructions"
+msgstr ""
+
+#: lib/views/apple_calendar/load_events_for_sync.php:299
+msgid "starting"
+msgstr ""
+
+#: lib/views/apple_calendar/list_bookings_for_sync.php:74
+msgid "Stop Removing"
+msgstr ""
+
+#: lib/views/apple_calendar/list_bookings_for_sync.php:50
+msgid "Stop Syncing"
+msgstr ""
+
+#: lib/views/apple_calendar/list_bookings_for_sync.php:70
+#: lib/views/apple_calendar/load_events_for_sync.php:363
+msgid "Stop Syncing Now"
+msgstr ""
+
+#: lib/views/apple_calendar/load_events_for_sync.php:255
+msgid "Sun"
+msgstr ""
+
+#: lib/views/apple_calendar/list_bookings_for_sync.php:72
+msgid "Sync All Bookings"
+msgstr ""
+
+#: lib/views/apple_calendar/list_bookings_for_sync.php:70
+msgid "Sync All Bookings to Apple"
+msgstr ""
+
+#: lib/views/apple_calendar/load_events_for_sync.php:362
+#: lib/views/apple_calendar/load_events_for_sync.php:366
+msgid "Sync All Events Now"
+msgstr ""
+
+#: lib/controllers/apple_calendar_controller.php:330
+#: lib/controllers/apple_calendar_controller.php:445
+msgid "Sync for"
+msgstr ""
+
+#: lib/controllers/apple_calendar_controller.php:463
+msgid "Sync upcoming bookings"
+msgstr ""
+
+#: lib/views/apple_calendar/load_events_for_sync.php:37
+msgid "Synced Calendars"
+msgstr ""
+
+#: lib/views/apple_calendar/settings.php:131
+msgid "Template For Event Description"
+msgstr ""
+
+#: lib/views/apple_calendar/settings.php:123
+msgid "Template For Event Title"
+msgstr ""
+
+#: lib/views/apple_calendar/load_events_for_sync.php:283
+msgid "third"
+msgstr ""
+
+#: lib/views/apple_calendar/list_bookings_for_sync.php:132
+msgid "This agent does not have any appointments yet"
+msgstr ""
+
+#: lib/views/apple_calendar/list_bookings_for_sync.php:168
+msgid ""
+"This agent has not authorized access to their Apple Calendar yet. Go back to "
+"agent profile and authorize apple calendar sync."
+msgstr ""
+
+#: lib/views/apple_calendar/load_events_for_sync.php:419
+msgid ""
+"This agent has not authorized access to their Apple Calendar yet. Open agent "
+"profile and connect apple calendar."
+msgstr ""
+
+#: lib/views/apple_calendar/load_events_for_sync.php:412
+msgid "This apple account does not have any calendars."
+msgstr ""
+
+#: lib/views/apple_calendar/load_events_for_sync.php:252
+msgid "Thu"
+msgstr ""
+
+#: lib/views/apple_calendar/_connection_form.php:136
+msgid ""
+"To connect Apple Calendar, you need to create an app-specific password from "
+"your Apple ID account."
+msgstr ""
+
+#: lib/views/apple_calendar/load_events_for_sync.php:250
+msgid "Tue"
+msgstr ""
+
+#: lib/views/apple_calendar/list_bookings_for_sync.php:76
+msgid "Unsync All Bookings"
+msgstr ""
+
+#: lib/views/apple_calendar/load_events_for_sync.php:251
+msgid "Wed"
+msgstr ""
+
+#: lib/views/apple_calendar/load_events_for_sync.php:293
+msgid "week"
+msgstr ""
+
+#: lib/views/apple_calendar/load_events_for_sync.php:293
+msgid "weeks"
+msgstr ""
+
+#: lib/views/apple_calendar/load_events_for_sync.php:263
+msgid "year"
+msgstr ""
+
+#: lib/views/apple_calendar/load_events_for_sync.php:263
+msgid "years"
+msgstr ""
+
+#: lib/views/apple_calendar/settings.php:115
+msgid ""
+"You can use variables in your event title and description, they will be "
+"replaced with a value for the booking."
+msgstr ""
+
+#: lib/views/apple_calendar/settings.php:45
+msgid ""
+"Your main Apple ID password is never stored or transmitted. Only the app-"
+"specific password is saved (encrypted)."
+msgstr ""

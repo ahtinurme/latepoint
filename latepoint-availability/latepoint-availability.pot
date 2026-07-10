@@ -1,0 +1,65 @@
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: LatePoint Addon - Availability Overview\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2026-06-24 11:52+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: \n"
+"Language: \n"
+"Plural-Forms: nplurals=INTEGER; plural=EXPRESSION;\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Loco https://localise.biz/\n"
+"X-Loco-Version: 2.8.5; wp-7.0; php-8.3.31\n"
+"X-Domain: latepoint-availability"
+
+#: lib/views/availability/index.php:68
+msgid "Agent"
+msgstr ""
+
+#: lib/controllers/availability_controller.php:14
+msgid "Agent Availability"
+msgstr ""
+
+#: latepoint-availability.php:30 lib/controllers/availability_controller.php:16
+msgid "Availability"
+msgstr ""
+
+#: lib/views/availability/index.php:40
+msgid "Availability saved."
+msgstr ""
+
+#: lib/views/availability/index.php:89
+msgid "edit on agent page"
+msgstr ""
+
+#. Name of the plugin
+msgid "LatePoint Addon - Availability Overview"
+msgstr ""
+
+#: lib/views/availability/index.php:56
+msgid "No active agents found."
+msgstr ""
+
+#. Description of the plugin
+msgid ""
+"One week-at-a-glance grid to view and edit every agent's working hours for"
+msgstr ""
+
+#: lib/views/availability/index.php:107
+msgid "Save Availability"
+msgstr ""
+
+#: lib/views/availability/index.php:50
+msgid ""
+"Set each agent's working hours for these specific dates. Leave a day empty "
+"for a day off. Dashed values follow the recurring weekly schedule; edit them "
+"to create a date-specific override."
+msgstr ""
+
+#. Author of the plugin
+msgid "Yumefit"
+msgstr ""
