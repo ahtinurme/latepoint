@@ -1269,3 +1269,27 @@ function latepoint_init_bookings_bulk(){
     latepoint_bookings_bulk_sync(jQuery(this));
   });
 }
+
+// MCP "Connect Your AI Client" widget: switch the visible config block when the
+// AI client dropdown changes, and copy code snippets to the clipboard.
+function latepoint_init_mcp_client_connect(){
+  var $connect = jQuery('.latepoint-mcp-connect');
+  if(!$connect.length) return;
+
+  $connect.on('change', '.latepoint-mcp-client-select', function(){
+    var selected = jQuery(this).val();
+    $connect.find('.latepoint-mcp-client-block').hide();
+    $connect.find('.latepoint-mcp-client-block[data-client="' + selected + '"]').show();
+  });
+
+  $connect.on('click', '.latepoint-mcp-copy-btn', function(){
+    var $btn = jQuery(this);
+    var text = $btn.closest('.latepoint-mcp-code-w').find('.latepoint-mcp-code').text();
+    if(text && navigator.clipboard){
+      navigator.clipboard.writeText(text);
+      $btn.addClass('is-copied');
+      setTimeout(function(){ $btn.removeClass('is-copied'); }, 1200);
+    }
+    return false;
+  });
+}

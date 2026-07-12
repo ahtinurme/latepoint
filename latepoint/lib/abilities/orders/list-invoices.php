@@ -55,14 +55,32 @@ class LatePointAbilityListInvoices extends LatePointAbstractOrderAbility {
 		if ( ! empty( $args['status'] ) ) {
 			$query->where( [ 'status' => sanitize_text_field( $args['status'] ) ] );
 		}
+		// The customer filter and the per-agent record scope both narrow the set of allowed
+		// order_ids, so they must be intersected into a single where_in(): calling where_in()
+		// twice on the same column overwrites the earlier constraint, it does not AND them.
+		$order_id_constraint = null;
+
 		if ( ! empty( $args['customer_id'] ) ) {
 			global $wpdb;
-			$customer_id  = (int) $args['customer_id'];
-			$orders_table = LATEPOINT_TABLE_ORDERS;
-			$order_ids    = $wpdb->get_col(
-				$wpdb->prepare( "SELECT id FROM {$orders_table} WHERE customer_id = %d", $customer_id )
+			$orders_table        = LATEPOINT_TABLE_ORDERS;
+			$order_id_constraint = array_map(
+				'intval',
+				$wpdb->get_col(
+					$wpdb->prepare( "SELECT id FROM {$orders_table} WHERE customer_id = %d", (int) $args['customer_id'] )
+				)
 			);
-			if ( empty( $order_ids ) ) {
+		}
+
+		// Invoices have no own record-scope — restrict to orders the current user may access.
+		$allowed_order_ids = $this->allowed_order_ids();
+		if ( ! is_null( $allowed_order_ids ) ) {
+			$order_id_constraint = is_null( $order_id_constraint )
+				? $allowed_order_ids
+				: array_values( array_intersect( $order_id_constraint, $allowed_order_ids ) );
+		}
+
+		if ( ! is_null( $order_id_constraint ) ) {
+			if ( empty( $order_id_constraint ) ) {
 				return [
 					'invoices' => [],
 					'total'    => 0,
@@ -70,15 +88,15 @@ class LatePointAbilityListInvoices extends LatePointAbstractOrderAbility {
 					'per_page' => $per_page,
 				];
 			}
-			$query->where_in( 'order_id', $order_ids );
+			$query->where_in( 'order_id', $order_id_constraint );
 		}
 
-		$total    = ( clone $query )->count();
-		$invoices = $query
+		$invoices = ( clone $query )
 			->order_by( 'created_at DESC' )
 			->set_limit( $per_page )
 			->set_offset( $offset )
 			->get_results_as_models();
+		$total    = $query->count();
 
 		return [
 			'invoices' => array_map( [ $this, 'serialize_invoice' ], $invoices ),

@@ -35,6 +35,10 @@ class LatePointAbilityGetInvoice extends LatePointAbstractOrderAbility {
 		if ( $invoice->is_new_record() ) {
 			return new WP_Error( 'not_found', __( 'Invoice not found.', 'latepoint' ), [ 'status' => 404 ] );
 		}
+		$auth = $this->authorize_order( (int) $invoice->order_id );
+		if ( is_wp_error( $auth ) ) {
+			return $auth;
+		}
 		return $this->serialize_invoice( $invoice );
 	}
 }

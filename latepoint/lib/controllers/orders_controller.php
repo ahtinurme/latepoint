@@ -152,7 +152,7 @@ if ( ! class_exists( 'OsOrdersController' ) ) :
 			if ( $is_new_customer || $customer->is_new_record() ) {
 				$can_modify_customer = true;
 			} else {
-				$wp_link_is_safe = empty( $customer->wordpress_user_id )
+				$wp_link_is_safe     = empty( $customer->wordpress_user_id )
 					|| OsCustomerHelper::is_wp_user_safe_for_customer_link( (int) $customer->wordpress_user_id );
 
 				/* ===== CUSTOM CODE START (yumefit: agents can edit customer notes on first booking with them) ===== */

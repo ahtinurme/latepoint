@@ -40,6 +40,11 @@ class LatePointAbilityCreateInvoice extends LatePointAbstractOrderAbility {
 	}
 
 	public function execute( array $args ) {
+		$auth = $this->authorize_order( (int) $args['order_id'] );
+		if ( is_wp_error( $auth ) ) {
+			return $auth;
+		}
+
 		$invoice           = new OsInvoiceModel();
 		$invoice->order_id = (int) $args['order_id'];
 

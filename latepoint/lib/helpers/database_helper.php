@@ -400,7 +400,7 @@ class OsDatabaseHelper {
 		$sqls[] = 'CREATE TABLE ' . LATEPOINT_TABLE_ORDER_INVOICES . " (
       id BIGINT UNSIGNED NOT NULL AUTO_INCREMENT,
       order_id int(11) NOT NULL,
-      invoice_number varchar(10),
+      invoice_number varchar(50),
       data text,
       status varchar(30) DEFAULT '" . LATEPOINT_INVOICE_STATUS_OPEN . "' NOT NULL,
       charge_amount decimal(20,4),

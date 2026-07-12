@@ -75,28 +75,63 @@ abstract class LatePointAbstractAbility {
 			'description'         => $this->description,
 			'category'            => $this->category,
 			'permission_callback' => [ $this, 'check_permission' ],
-			'input_schema'        => $this->get_input_schema(),
-			'output_schema'       => $this->get_output_schema(),
+			'input_schema'        => self::normalize_schema( $this->get_input_schema() ),
+			'output_schema'       => self::normalize_schema( $this->get_output_schema() ),
 			'execute_callback'    => [ $this, 'execute' ],
 			'meta'                => $this->build_meta(),
 		];
 	}
 
+	/**
+	 * Ensure a JSON Schema serializes to valid JSON.
+	 *
+	 * An empty PHP array encodes as a JSON array ([]), but JSON Schema requires
+	 * `properties` to be an object ({}). A tool advertising `"properties":[]`
+	 * is invalid and causes strict AI clients (e.g. Claude Desktop) to reject the
+	 * whole connector. Recursively coerce empty `properties` to objects.
+	 *
+	 * @param mixed $schema
+	 * @return mixed
+	 */
+	protected static function normalize_schema( $schema ) {
+		if ( ! is_array( $schema ) ) {
+			return $schema;
+		}
+		if ( array_key_exists( 'properties', $schema ) ) {
+			if ( empty( $schema['properties'] ) ) {
+				$schema['properties'] = new \stdClass();
+			} else {
+				foreach ( $schema['properties'] as $key => $value ) {
+					$schema['properties'][ $key ] = self::normalize_schema( $value );
+				}
+			}
+		}
+		if ( isset( $schema['items'] ) ) {
+			$schema['items'] = self::normalize_schema( $schema['items'] );
+		}
+		return $schema;
+	}
+
 	protected function build_meta(): array {
 
-		// Default annotations, normally read-only
+		// Use the WordPress Abilities API annotation keys (readonly/destructive/
+		// idempotent/openWorldHint), matching SureForms, so the MCP Adapter emits
+		// concrete boolean values. Supplying only the *Hint variants leaves these
+		// base keys as null in the tool output, which strict AI clients (e.g. Claude
+		// Desktop) reject — causing the whole connector to show "no tools available".
 		$annotations = [
-			'readOnlyHint'    => $this->read_only,
-			'idempotentHint'  => $this->idempotent,
-			'destructiveHint' => false,
-			'priority'        => $this->read_only ? 1.0 : 2.0,
+			'readonly'      => $this->read_only,
+			'destructive'   => false,
+			'idempotent'    => $this->idempotent,
+			'openWorldHint' => false,
+			'priority'      => $this->read_only ? 1.0 : 2.0 ,
 		];
 
 		// Destructive overrides everything.
 		if ( $this->destructive ) {
-			$annotations['readOnlyHint']    = false;
-			$annotations['destructiveHint'] = true;
-			$annotations['priority']        = 3.0;
+			$annotations['readonly']    = false;
+			$annotations['destructive'] = true;
+			$annotations['priority']    = 3.0;
 		}
 
 		$meta = [

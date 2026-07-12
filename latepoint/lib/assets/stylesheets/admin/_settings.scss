@@ -737,3 +737,139 @@ body.latepoint-admin {
 		}
 	}
 }
+
+// MCP settings — section header description + "Connect Your AI Client" widget.
+
+// The header sits inside .os-form-sub-header (display:flex; align-items:center),
+// so the title and description share one row — add a gap after the "MCP" title.
+.os-sub-header-description {
+	margin-left: 10px;
+	font-size: 13px;
+	font-weight: 400;
+	line-height: 1.5;
+	color: #8c8f94;
+
+	a {
+		color: #4c6fff;
+		text-decoration: underline;
+	}
+}
+
+.latepoint-mcp-connect {
+
+	.latepoint-mcp-connect-heading {
+		margin: 0 0 16px;
+		font-size: 15px;
+		font-weight: 600;
+		color: #2c3038;
+	}
+
+	.latepoint-mcp-client-select-w {
+		max-width: 520px;
+		margin-bottom: 20px;
+	}
+
+	.latepoint-mcp-steps {
+		margin: 0 0 16px;
+		padding-left: 20px;
+		list-style: decimal;
+		font-size: 13px;
+		line-height: 1.6;
+		color: #4f5460;
+
+		> li {
+			margin-bottom: 8px;
+		}
+
+		a {
+			color: #4c6fff;
+			text-decoration: underline;
+		}
+
+		code.latepoint-mcp-config-file {
+			display: inline-block;
+			padding: 2px 6px;
+			border-radius: 4px;
+			background: #eef0f4;
+			font-family: 'SFMono-Regular', Consolas, 'Liberation Mono', Menlo, monospace;
+			font-size: 12px;
+			color: #2c3038;
+			word-break: break-word;
+		}
+	}
+
+	.latepoint-mcp-code-w {
+		position: relative;
+		margin: 8px 0 16px;
+	}
+
+	.latepoint-mcp-code {
+		margin: 0;
+		padding: 16px 48px 16px 16px;
+		border-radius: 8px;
+		background: #f6f7f9;
+		border: 1px solid #e6e8ec;
+		overflow-x: auto;
+		font-family: 'SFMono-Regular', Consolas, 'Liberation Mono', Menlo, monospace;
+		font-size: 13px;
+		line-height: 1.6;
+		color: #4f5460;
+		white-space: pre;
+		tab-size: 2;
+	}
+
+	.latepoint-mcp-copy-btn {
+		position: absolute;
+		top: 8px;
+		right: 8px;
+		display: inline-flex;
+		align-items: center;
+		gap: 4px;
+		padding: 6px 8px;
+		border: 1px solid #e6e8ec;
+		border-radius: 6px;
+		background: #ffffff;
+		color: #6b7280;
+		cursor: pointer;
+		line-height: 1;
+
+		&:hover {
+			color: #2c3038;
+			border-color: #c9cdd6;
+		}
+
+		.latepoint-icon {
+			font-size: 14px;
+		}
+
+		.latepoint-mcp-copied-label {
+			display: none;
+			font-size: 12px;
+		}
+
+		&.is-copied {
+			color: #1a9d5a;
+			border-color: #1a9d5a;
+
+			.latepoint-icon {
+				display: none;
+			}
+
+			.latepoint-mcp-copied-label {
+				display: inline;
+			}
+		}
+	}
+
+	.latepoint-mcp-legend {
+		margin: 0;
+		font-size: 12px;
+		line-height: 1.6;
+		color: #8c8f94;
+
+		a {
+			color: #4c6fff;
+			text-decoration: underline;
+		}
+	}
+}

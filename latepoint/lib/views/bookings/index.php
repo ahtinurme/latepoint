@@ -85,7 +85,7 @@ if ( ! defined( 'ABSPATH' ) ) {
       </div>
     </div>
     <div class="os-pagination-w">
-      <div class="pagination-info"><?php echo esc_html('Showing', 'latepoint'). ' <span class="os-pagination-from">'. esc_html($showing_from) . '</span>-<span class="os-pagination-to">'. esc_html($showing_to) .'</span> '.esc_html__('of', 'latepoint').' <span class="os-pagination-total">'. esc_html($total_records). '</span>'; ?></div>
+      <div class="pagination-info"><?php echo esc_html__('Showing', 'latepoint'). ' <span class="os-pagination-from">'. esc_html($showing_from) . '</span>-<span class="os-pagination-to">'. esc_html($showing_to) .'</span> '.esc_html__('of', 'latepoint').' <span class="os-pagination-total">'. esc_html($total_records). '</span>'; ?></div>
       <div class="pagination-page-select-w">
         <label for="tablePaginationPageSelector"><?php esc_html_e('Page:', 'latepoint'); ?></label>
         <select id="tablePaginationPageSelector" name="page" class="pagination-page-select">

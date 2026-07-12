@@ -259,11 +259,20 @@ class User {
 				break;
 			case LATEPOINT_USER_TYPE_AGENT:
 				if ( $this->agent ) {
-					/* ===== CUSTOM CODE START (yumefit: agents share the studio — see all agents' bookings/clients; upstream scoped to own agent id + connected services/locations) ===== */
-					$this->allowed_records['agent']    = LATEPOINT_ALL;
-					$this->allowed_records['service']  = LATEPOINT_ALL;
-					$this->allowed_records['location'] = LATEPOINT_ALL;
-					/* ===== CUSTOM CODE END (yumefit: agents share the studio) ===== */
+					$this->allowed_records['agent'] = [ $this->agent->id ] ?? [];
+					$connection                     = new \OsConnectorModel();
+					$connections                    = $connection->where( [ 'agent_id' => $this->agent->id ] )->get_results_as_models();
+
+					if ( $connections ) {
+						foreach ( $connections as $connection ) {
+							if ( ! in_array( $connection->service_id, $this->allowed_records['service'] ) ) {
+								$this->allowed_records['service'][] = $connection->service_id;
+							}
+							if ( ! in_array( $connection->location_id, $this->allowed_records['location'] ) ) {
+								$this->allowed_records['location'][] = $connection->location_id;
+							}
+						}
+					}
 				}
 				break;
 			case LATEPOINT_USER_TYPE_CUSTOM:

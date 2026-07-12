@@ -182,6 +182,9 @@ if ( ! class_exists( 'OsCustomerCabinetController' ) ) :
 				return;
 			}
 
+			// Verify CSRF nonce
+			$this->check_nonce( 'reschedule_booking_' . $booking->id );
+
 			if ( ( OsAuthHelper::get_logged_in_customer_id() == $booking->customer_id ) && OsCustomerHelper::can_reschedule_booking( $booking ) ) {
 				$old_booking         = clone $booking;
 				$booking->start_date = $this->params['start_date'];

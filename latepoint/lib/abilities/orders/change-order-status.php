@@ -42,6 +42,10 @@ class LatePointAbilityChangeOrderStatus extends LatePointAbstractOrderAbility {
 		if ( $order->is_new_record() ) {
 			return new WP_Error( 'not_found', __( 'Order not found.', 'latepoint' ), [ 'status' => 404 ] );
 		}
+		$auth = $this->authorize_order( (int) $order->id );
+		if ( is_wp_error( $auth ) ) {
+			return $auth;
+		}
 
 		$order->status = sanitize_text_field( $args['status'] );
 		if ( ! $order->save() ) {

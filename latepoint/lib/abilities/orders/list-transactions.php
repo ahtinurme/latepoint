@@ -55,12 +55,26 @@ class LatePointAbilityListTransactions extends LatePointAbstractOrderAbility {
 			$query->where( [ 'customer_id' => (int) $args['customer_id'] ] );
 		}
 
-		$total        = ( clone $query )->count();
-		$transactions = $query
+		// Transactions have no own record-scope — restrict to orders the current user may access.
+		$allowed_order_ids = $this->allowed_order_ids();
+		if ( ! is_null( $allowed_order_ids ) ) {
+			if ( empty( $allowed_order_ids ) ) {
+				return [
+					'transactions' => [],
+					'total'        => 0,
+					'page'         => $page,
+					'per_page'     => $per_page,
+				];
+			}
+			$query->where_in( 'order_id', $allowed_order_ids );
+		}
+
+		$transactions = ( clone $query )
 			->order_by( 'created_at DESC' )
 			->set_limit( $per_page )
 			->set_offset( $offset )
 			->get_results_as_models();
+		$total        = $query->count();
 
 		return [
 			'transactions' => array_map( [ $this, 'serialize_transaction' ], $transactions ),

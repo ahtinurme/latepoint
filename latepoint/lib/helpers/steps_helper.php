@@ -1220,13 +1220,11 @@ class OsStepsHelper {
 	}
 
 	public static function set_booking_object( $booking_object_params = [] ): OsBookingModel {
-		// Reject any status value that is not a recognized booking status key before
-		// passing params to the model. An unauthenticated visitor has no legitimate
-		// reason to force a specific status; the server assigns one via the model default.
-		if ( ! empty( $booking_object_params['status'] )
-			&& ! array_key_exists( $booking_object_params['status'], OsBookingHelper::get_statuses_list() ) ) {
-			unset( $booking_object_params['status'] );
-		}
+		// Booking status is always assigned server-side. The public booking flow must never
+		// accept it from request params, otherwise an unauthenticated visitor could create a
+		// booking directly in a chosen lifecycle state (e.g. self-approve a pending booking).
+		// The server assigns the status via the model default.
+		unset( $booking_object_params['status'] );
 
 		self::$booking_object = new OsBookingModel();
 		self::$booking_object->set_data( $booking_object_params );
@@ -3063,8 +3061,17 @@ class OsStepsHelper {
 			if ( empty( $cart_item_params['item_data'] ) ) {
 				self::$active_cart_item->item_data = empty( self::$presets['selected_bundle'] ) ? '' : wp_json_encode( [ 'bundle_id' => self::$presets['selected_bundle'] ] );
 			} else {
-				// bundle gets data from params
-				self::$active_cart_item->item_data = is_array( $cart_item_params['item_data'] ) ? wp_json_encode( $cart_item_params['item_data'], true ) : $cart_item_params['item_data'];
+				// bundle gets data from params - normalize to an array so it can be sanitized
+				$bundle_item_data = is_array( $cart_item_params['item_data'] ) ? $cart_item_params['item_data'] : json_decode( $cart_item_params['item_data'], true );
+				if ( is_array( $bundle_item_data ) && ! empty( $bundle_item_data['bookings'] ) && is_array( $bundle_item_data['bookings'] ) ) {
+					// Booking status is assigned server-side; never accept it from public bundle params.
+					foreach ( $bundle_item_data['bookings'] as $bundle_booking_key => $bundle_booking_data ) {
+						if ( is_array( $bundle_booking_data ) ) {
+							unset( $bundle_item_data['bookings'][ $bundle_booking_key ]['status'] );
+						}
+					}
+				}
+				self::$active_cart_item->item_data = is_array( $bundle_item_data ) ? wp_json_encode( $bundle_item_data, true ) : $cart_item_params['item_data'];
 			}
 		} else {
 			// booking gets data from booking object

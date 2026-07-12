@@ -118,7 +118,7 @@ class OsVersionSpecificUpdatesHelper {
 					if ( ! OsProcessesHelper::check_if_process_exists( $process ) ) {
 						$process->save();
 					}
-				}			
+				}
 			}
 
 
@@ -291,7 +291,7 @@ class OsVersionSpecificUpdatesHelper {
 						];
 						$process['actions'][ $action_id ] = $action;
 						$processes[]                      = $process;
-					}				
+					}
 				}
 				if ( $processes ) {
 					foreach ( $processes as $process_data ) {
@@ -404,6 +404,25 @@ class OsVersionSpecificUpdatesHelper {
 
 		}
 
+		if ( version_compare( '2.3.2', $current_db_version ) > 0 ) {
+			global $wpdb;
+
+			// Widen invoice_number column so long prefixes and the default format are not truncated.
+			$sqls   = [];
+			$sqls[] = 'ALTER TABLE ' . LATEPOINT_TABLE_ORDER_INVOICES . ' MODIFY COLUMN invoice_number VARCHAR(50)';
+			OsDatabaseHelper::run_queries( $sqls );
+
+			// Do not change anything for existing. Backfill any legacy invoices whose number was never materialized (empty or NULL).
+			// This freezes the current prefix onto those rows so a future prefix change cannot alter them.
+			// $prefix = OsSettingsHelper::get_settings_value( 'invoices_number_prefix', 'INV-' );
+			// $wpdb->query(
+			// 	$wpdb->prepare(
+			// 		'UPDATE ' . LATEPOINT_TABLE_ORDER_INVOICES . " SET invoice_number = CONCAT(%s, '1', LPAD(id, 6, '0')) WHERE (invoice_number IS NULL OR invoice_number = '')",
+			// 		$prefix
+			// 	)
+			// );
+		}
+
 		/**
 		 * Hook your updates to database that need to be run for specific version of database
 		 *
@@ -476,7 +495,7 @@ class OsVersionSpecificUpdatesHelper {
 					      MODIFY COLUMN created_at datetime,
 					      MODIFY COLUMN updated_at datetime;';
 
-		$sqls[] = 'ALTER TABLE ' . LATEPOINT_TABLE_CUSTOMERS . ' 
+		$sqls[] = 'ALTER TABLE ' . LATEPOINT_TABLE_CUSTOMERS . '
 						    MODIFY COLUMN last_name varchar(255),
 						    MODIFY COLUMN phone varchar(255),
 						    MODIFY COLUMN avatar_image_id int(11),
@@ -490,7 +509,7 @@ class OsVersionSpecificUpdatesHelper {
 						    MODIFY COLUMN created_at datetime,
 						    MODIFY COLUMN updated_at datetime;';
 
-		$sqls[] = 'ALTER TABLE ' . LATEPOINT_TABLE_SERVICE_CATEGORIES . ' 
+		$sqls[] = 'ALTER TABLE ' . LATEPOINT_TABLE_SERVICE_CATEGORIES . '
 					      MODIFY COLUMN short_description text,
 					      MODIFY COLUMN parent_id mediumint(9),
 					      MODIFY COLUMN selection_image_id int(11),
@@ -498,7 +517,7 @@ class OsVersionSpecificUpdatesHelper {
 					      MODIFY COLUMN created_at datetime,
 					      MODIFY COLUMN updated_at datetime';
 
-		$sqls[] = 'ALTER TABLE ' . LATEPOINT_TABLE_CUSTOM_PRICES . ' 
+		$sqls[] = 'ALTER TABLE ' . LATEPOINT_TABLE_CUSTOM_PRICES . '
 					      MODIFY COLUMN is_price_variable boolean,
 					      MODIFY COLUMN price_min decimal(20,4),
 					      MODIFY COLUMN price_max decimal(20,4),
@@ -507,19 +526,19 @@ class OsVersionSpecificUpdatesHelper {
 					      MODIFY COLUMN created_at datetime,
 					      MODIFY COLUMN updated_at datetime';
 
-		$sqls[] = 'ALTER TABLE ' . LATEPOINT_TABLE_WORK_PERIODS . ' 
+		$sqls[] = 'ALTER TABLE ' . LATEPOINT_TABLE_WORK_PERIODS . '
 					      MODIFY COLUMN custom_date date,
 					      MODIFY COLUMN created_at datetime,
 					      MODIFY COLUMN updated_at datetime';
 
-		$sqls[] = 'ALTER TABLE ' . LATEPOINT_TABLE_AGENTS_SERVICES . ' 
+		$sqls[] = 'ALTER TABLE ' . LATEPOINT_TABLE_AGENTS_SERVICES . '
 					      MODIFY COLUMN is_custom_hours BOOLEAN,
 					      MODIFY COLUMN is_custom_price BOOLEAN,
 					      MODIFY COLUMN is_custom_duration BOOLEAN,
 					      MODIFY COLUMN created_at datetime,
 					      MODIFY COLUMN updated_at datetime';
 
-		$sqls[] = 'ALTER TABLE ' . LATEPOINT_TABLE_ACTIVITIES . ' 
+		$sqls[] = 'ALTER TABLE ' . LATEPOINT_TABLE_ACTIVITIES . '
 					      MODIFY COLUMN agent_id int(11),
 					      MODIFY COLUMN booking_id int(11),
 					      MODIFY COLUMN service_id int(11),
@@ -530,7 +549,7 @@ class OsVersionSpecificUpdatesHelper {
 					      MODIFY COLUMN created_at datetime,
 					      MODIFY COLUMN updated_at datetime';
 
-		$sqls[] = 'ALTER TABLE ' . LATEPOINT_TABLE_TRANSACTIONS . ' 
+		$sqls[] = 'ALTER TABLE ' . LATEPOINT_TABLE_TRANSACTIONS . '
 					      MODIFY COLUMN notes text,
 					      MODIFY COLUMN created_at datetime,
 					      MODIFY COLUMN updated_at datetime';

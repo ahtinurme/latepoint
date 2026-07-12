@@ -1040,6 +1040,14 @@ class OsInvoicesHelper {
 								echo OsFormHelper::text_field( 'settings[invoices_number_prefix]', __( 'Number Prefix', 'latepoint' ), OsSettingsHelper::get_settings_value( 'invoices_number_prefix', 'INV-' ), [ 'theme' => 'simple' ] );
 							echo '</div>';
 						echo '</div>';
+						echo '<div class="latepoint-message latepoint-message-subtle">'
+							. esc_html__( 'Changing the number prefix only affects invoices created from now on. Existing invoices keep their original numbers.', 'latepoint' )
+							. ' ' . sprintf(
+								/* translators: %s: the {year} placeholder token */
+								esc_html__( 'Tip: use the %s placeholder to insert the invoice year automatically (e.g. 2025-0001).', 'latepoint' ),
+								'<strong>{year}</strong>'
+							)
+							. '</div>';
 
 						echo '<div class="os-mb-2">';
 							echo OsFormHelper::textarea_field( 'settings[invoices_data_from]', __( 'Bill From', 'latepoint' ), self::get_invoice_data_bill_from(), [ 'theme' => 'simple' ] );

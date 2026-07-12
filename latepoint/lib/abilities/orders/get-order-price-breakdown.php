@@ -44,6 +44,10 @@ class LatePointAbilityGetOrderPriceBreakdown extends LatePointAbstractOrderAbili
 		if ( $order->is_new_record() ) {
 			return new WP_Error( 'not_found', __( 'Order not found.', 'latepoint' ), [ 'status' => 404 ] );
 		}
+		$auth = $this->authorize_order( (int) $order->id );
+		if ( is_wp_error( $auth ) ) {
+			return $auth;
+		}
 
 		return [
 			'order_id'           => (int) $order->id,

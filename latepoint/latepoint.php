@@ -2,7 +2,7 @@
 /**
  * Plugin Name: LatePoint
  * Description: Appointment Scheduling Software for WordPress
- * Version: 5.6.7
+ * Version: 5.6.8
  * Author: LatePoint
  * Author URI: https://latepoint.com
  * Plugin URI: https://latepoint.com
@@ -29,9 +29,8 @@ if ( ! class_exists( 'LatePoint' ) ) :
 		 * LatePoint version.
 		 *
 		 */
-		public $version    = '5.6.7';
-		public $db_version = '2.3.1';
-
+		public $version    = '5.6.8';
+		public $db_version = '2.3.2';
 
 		/**
 		 * LatePoint Constructor.
@@ -175,7 +174,7 @@ if ( ! class_exists( 'LatePoint' ) ) :
 				define( 'LATEPOINT_BLOCKS_BUILD_URL', $this->blocks_build_url() );
 			}
 			if ( ! defined( 'LATEPOINT_ABSPATH' ) ) {
-				define( 'LATEPOINT_ABSPATH', dirname( __FILE__ ) . '/' );
+				define( 'LATEPOINT_ABSPATH', __DIR__ . '/' );
 			}
 			if ( ! defined( 'LATEPOINT_LIB_ABSPATH' ) ) {
 				define( 'LATEPOINT_LIB_ABSPATH', LATEPOINT_ABSPATH . 'lib/' );
@@ -1435,6 +1434,9 @@ if ( ! class_exists( 'LatePoint' ) ) :
 		 * Register scripts and styles - FRONT
 		 */
 		public function load_front_scripts_and_styles() {
+			if ( ! (bool) apply_filters( 'latepoint_should_load_front_scripts', true ) ) {
+				return;
+			}
 			$localized_vars = [
 				'route_action'                          => 'latepoint_route_call',
 				'response_status'                       => [

@@ -35,6 +35,10 @@ class LatePointAbilityGetTransaction extends LatePointAbstractOrderAbility {
 		if ( $transaction->is_new_record() ) {
 			return new WP_Error( 'not_found', __( 'Transaction not found.', 'latepoint' ), [ 'status' => 404 ] );
 		}
+		$auth = $this->authorize_order( (int) $transaction->order_id );
+		if ( is_wp_error( $auth ) ) {
+			return $auth;
+		}
 		return $this->serialize_transaction( $transaction );
 	}
 }

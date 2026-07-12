@@ -41,6 +41,91 @@ class LatePointAbilities {
 
 		add_action( 'wp_abilities_api_categories_init', [ __CLASS__, 'register_category' ] );
 		add_action( 'wp_abilities_api_init', [ __CLASS__, 'register_all' ] );
+
+		// Wire the dedicated MCP server once all plugins are fully loaded. We use a
+		// late plugins_loaded priority (99, matching SureForms) so the MCP Adapter's
+		// classes are reliably available to mcp_adapter_enabled() regardless of plugin
+		// load order — important when another active plugin bundles its own adapter copy.
+		add_action( 'plugins_loaded', [ __CLASS__, 'maybe_register_mcp_server' ], 99999 );
+	}
+
+	/**
+	 * Attach the dedicated MCP server registration when the adapter is active.
+	 */
+	public static function maybe_register_mcp_server(): void {
+		if ( self::mcp_adapter_enabled() ) {
+			add_action( 'mcp_adapter_init', [ __CLASS__, 'register_mcp_server' ] );
+		}
+	}
+
+	/**
+	 * Whether the dedicated LatePoint MCP server should be registered.
+	 *
+	 * Requires the WordPress Abilities API and the MCP Adapter (WP\MCP\Plugin)
+	 * to be available, and the MCP server toggle to be on.
+	 */
+	public static function mcp_adapter_enabled(): bool {
+		return function_exists( 'wp_register_ability' )
+			&& class_exists( 'WP\\MCP\\Plugin' )
+			&& OsSettingsHelper::is_on( 'latepoint_mcp_server' );
+	}
+
+	/**
+	 * Register a dedicated LatePoint MCP server with the MCP Adapter.
+	 *
+	 * Endpoint: {site_url}/wp-json/latepoint/v1/mcp — exposes every registered
+	 * latepoint/* ability as a tool. register_all() only registers abilities the
+	 * Enable Edit / Enable Delete toggles allow, so the published tool set follows
+	 * those toggles automatically (read-only when both are off; create/update and
+	 * delete tools appear as those toggles are enabled).
+	 *
+	 * @param \WP\MCP\Core\McpAdapter $adapter The MCP adapter instance.
+	 */
+	public static function register_mcp_server( $adapter ): void {
+		$tools = [];
+		foreach ( wp_get_abilities() as $ability ) {
+			$name = $ability->get_name();
+			if ( 0 === strpos( $name, 'latepoint/' ) ) {
+				$tools[] = $name;
+			}
+		}
+
+		/**
+		 * Filters the tool ids exposed by the dedicated LatePoint MCP server.
+		 *
+		 * Defaults to every registered latepoint/* ability (already gated by the
+		 * Enable Edit / Enable Delete toggles). Return a subset to publish fewer
+		 * tools to AI clients.
+		 *
+		 * @param string[] $tools Ability ids exposed by the dedicated MCP server.
+		 */
+		$tools = apply_filters( 'latepoint_mcp_server_tool_ids', $tools );
+		if ( empty( $tools ) ) {
+			return;
+		}
+
+		$transport_class = class_exists( '\\WP\\MCP\\Transport\\HttpTransport' )
+			? \WP\MCP\Transport\HttpTransport::class
+			: \WP\MCP\Transport\Http\RestTransport::class;
+
+		$adapter->create_server(
+			'latepoint',
+			'latepoint/v1',
+			'mcp',
+			OsSettingsHelper::get_brand_name() . ' ' . __( 'MCP Server', 'latepoint' ),
+			sprintf(
+				/* translators: %s: brand name. */
+				__( '%s MCP Server for managing bookings, customers, services, agents, locations, and orders.', 'latepoint' ),
+				OsSettingsHelper::get_brand_name()
+			),
+			LATEPOINT_VERSION,
+			[ $transport_class ],
+			\WP\MCP\Infrastructure\ErrorHandling\ErrorLogMcpErrorHandler::class,
+			\WP\MCP\Infrastructure\Observability\NullMcpObservabilityHandler::class,
+			$tools,
+			[],
+			[]
+		);
 	}
 
 	/**

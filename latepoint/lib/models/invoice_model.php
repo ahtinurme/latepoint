@@ -161,6 +161,25 @@ class OsInvoiceModel extends OsModel {
 		}
 	}
 
+	/**
+	 * Compose a new invoice number from the current prefix setting and this invoice's id.
+	 * Should only be called once (at creation time) so the prefix is frozen on the record.
+	 *
+	 * @return string
+	 */
+	protected function generate_invoice_number(): string {
+		$prefix = OsSettingsHelper::get_settings_value( 'invoices_number_prefix', 'INV-' );
+		if ( false !== stripos( $prefix, '{year}' ) ) {
+			// Resolve to the invoice's creation year so the token reflects the year of issue.
+			// Numbers are frozen at creation, so this is normally the current year; using
+			// created_at also makes the legacy-row fallback in get_invoice_number() correct.
+			// Case-insensitive so {year}, {YEAR}, {Year} all resolve.
+			$year   = ! empty( $this->created_at ) ? gmdate( 'Y', strtotime( $this->created_at ) ) : gmdate( 'Y' );
+			$prefix = str_ireplace( '{year}', $year, $prefix );
+		}
+		return $prefix . sprintf( '1%06d', $this->id );
+	}
+
 	public function get_invoice_number(): string {
 		if ( ! empty( $this->invoice_number ) ) {
 			return $this->invoice_number;
@@ -168,9 +187,31 @@ class OsInvoiceModel extends OsModel {
 		if ( empty( $this->id ) ) {
 			return '';
 		}
-		$this->invoice_number = OsSettingsHelper::get_settings_value( 'invoices_number_prefix', 'INV-' ) . sprintf( '1%06d', $this->id );
+		// Fallback for legacy rows that were saved before the number was materialized at creation.
+		// The generated number is persisted immediately so it stays frozen for all future reads.
+		$this->invoice_number = $this->generate_invoice_number();
 		$this->update_attributes( [ 'invoice_number' => $this->invoice_number ] );
 		return $this->invoice_number;
+	}
+
+	/**
+	 * Override save() to freeze the invoice number at creation time.
+	 * The id is only available after the INSERT, so we assign the number immediately
+	 * after the parent insert completes rather than in before_save()/before_create().
+	 *
+	 * @param bool $alternative_validation
+	 * @param bool $skip_validation
+	 *
+	 * @return bool
+	 */
+	public function save( $alternative_validation = false, $skip_validation = false ): bool {
+		$is_new = $this->is_new_record();
+		$saved  = parent::save( $alternative_validation, $skip_validation );
+		if ( $saved && $is_new && empty( $this->invoice_number ) ) {
+			$this->invoice_number = $this->generate_invoice_number();
+			$this->update_attributes( [ 'invoice_number' => $this->invoice_number ] );
+		}
+		return $saved;
 	}
 
 

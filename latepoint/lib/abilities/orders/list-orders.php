@@ -76,12 +76,15 @@ class LatePointAbilityListOrders extends LatePointAbstractOrderAbility {
 			$query->where( [ 'created_at <=' => sanitize_text_field( $args['date_to'] ) ] );
 		}
 
-		$total  = ( clone $query )->count();
-		$orders = $query
-			->order_by( 'created_at DESC' )
+		$query->filter_allowed_records();
+
+		// filter_allowed_records() joins order_items + bookings, so created_at must be table-qualified to avoid an ambiguous-column error.
+		$orders = ( clone $query )
+			->order_by( LATEPOINT_TABLE_ORDERS . '.created_at DESC' )
 			->set_limit( $per_page )
 			->set_offset( $offset )
 			->get_results_as_models();
+		$total  = $query->count();
 
 		return [
 			'orders'   => array_map( [ $this, 'serialize_order' ], $orders ),

@@ -393,9 +393,21 @@ if ( ! defined( 'ABSPATH' ) ) {
                 </div>
             </div>
         </div>
+		<?php
+		/**
+		 * Plug before "Other" section in general settings
+		 *
+		 * @since 5.1.0
+		 * @hook latepoint_settings_general_before_other
+		 *
+		 */
+		do_action( 'latepoint_settings_general_before_other' ); ?>
         <div class="white-box section-anchor" id="stickySectionAbilities">
             <div class="white-box-header">
-                <div class="os-form-sub-header"><h3><?php esc_html_e( 'MCP', 'latepoint' ); ?></h3></div>
+                <div class="os-form-sub-header">
+                    <h3><?php esc_html_e( 'MCP', 'latepoint' ); ?></h3>
+                    <div class="os-sub-header-description"><?php esc_html_e( 'Configure AI client permissions and MCP server settings.', 'latepoint' ); ?> <a href="https://latepoint.com/docs/how-to-set-up-latepoint-mcp" target="_blank" rel="noopener noreferrer"><?php esc_html_e( 'View documentation', 'latepoint' ); ?></a></div>
+                </div>
             </div>
             <div class="white-box-content no-padding">
                 <?php if ( ! function_exists( 'wp_register_ability' ) ) : ?>
@@ -459,18 +471,157 @@ if ( ! defined( 'ABSPATH' ) ) {
                             ?>
                         </div>
                     </div>
+                    <?php if ( function_exists( 'wp_register_ability' ) && ! class_exists( 'WP\\MCP\\Plugin' ) ) : ?>
+                    <div class="sub-section-row">
+                        <div class="sub-section-content">
+                            <div class="latepoint-message latepoint-message-subtle">
+                                <?php esc_html_e( 'The dedicated MCP server requires the WordPress MCP Adapter plugin. Install and activate it to expose the LatePoint MCP endpoint.', 'latepoint' ); ?>
+                            </div>
+                        </div>
+                    </div>
+                    <?php endif; ?>
+                    <div class="sub-section-row">
+                        <div class="sub-section-label">
+                            <h3><?php esc_html_e( 'Enable MCP Server', 'latepoint' ); ?></h3>
+                        </div>
+                        <div class="sub-section-content">
+                            <?php
+                            echo OsFormHelper::toggler_field(
+                                'settings[latepoint_mcp_server]',
+                                __( 'Enable MCP Server', 'latepoint' ),
+                                OsSettingsHelper::is_on( 'latepoint_mcp_server' ),
+                                'mcpConnectClientWrap',
+                                false,
+                                [ 'sub_label' => __( 'Creates a dedicated LatePoint MCP endpoint that AI clients like Claude can connect to. When disabled, the endpoint is removed and external AI clients cannot discover or call any LatePoint abilities.', 'latepoint' ) ]
+                            );
+                            ?>
+                        </div>
+                    </div>
+                <?php
+                // CONNECT YOUR AI CLIENT — per-client MCP setup snippets.
+                $mcp_endpoint          = rest_url( 'latepoint/v1/mcp' );
+                $mcp_username          = wp_get_current_user()->user_login;
+                $mcp_app_passwords_url = admin_url( 'profile.php' ) . '#application-passwords-section';
+
+                $mcp_base_server = [
+                	'command' => 'npx',
+                	'args'    => [ '-y', '@automattic/mcp-wordpress-remote@latest' ],
+                	'env'     => [
+                		'WP_API_URL'      => $mcp_endpoint,
+                		'WP_API_USERNAME' => $mcp_username,
+                		'WP_API_PASSWORD' => 'your-application-password',
+                	],
+                ];
+
+                $mcp_clients = [
+                	'claude-desktop' => [
+                		'label'        => __( 'Claude Desktop', 'latepoint' ),
+                		'config_file'  => __( '~/Library/Application Support/Claude/claude_desktop_config.json (macOS) or %APPDATA%\\Claude\\claude_desktop_config.json (Windows)', 'latepoint' ),
+                		'docs_url'     => 'https://docs.claude.com/en/docs/mcp',
+                		'root_key'     => 'mcpServers',
+                		'array_format' => false,
+                		'cli_command'  => '',
+                	],
+                	'claude-code'    => [
+                		'label'        => __( 'Claude Code', 'latepoint' ),
+                		'config_file'  => __( '.mcp.json (project) or ~/.claude.json (global)', 'latepoint' ),
+                		'docs_url'     => 'https://code.claude.com/docs/en/mcp',
+                		'root_key'     => 'mcpServers',
+                		'array_format' => false,
+                		'cli_command'  => 'claude mcp add latepoint -- npx -y @automattic/mcp-wordpress-remote@latest',
+                	],
+                	'cursor'         => [
+                		'label'        => __( 'Cursor', 'latepoint' ),
+                		'config_file'  => '~/.cursor/mcp.json',
+                		'docs_url'     => 'https://docs.cursor.com/en/context/mcp',
+                		'root_key'     => 'mcpServers',
+                		'array_format' => false,
+                		'cli_command'  => '',
+                	],
+                	'vscode'         => [
+                		'label'        => __( 'VS Code (Copilot)', 'latepoint' ),
+                		'config_file'  => __( '.vscode/mcp.json (project) or settings.json > mcp.servers (global)', 'latepoint' ),
+                		'docs_url'     => 'https://code.visualstudio.com/docs/copilot/customization/mcp-servers',
+                		'root_key'     => 'servers',
+                		'array_format' => false,
+                		'cli_command'  => '',
+                	],
+                	'continue'       => [
+                		'label'        => __( 'Continue', 'latepoint' ),
+                		'config_file'  => __( '~/.continue/config.yaml or config.json', 'latepoint' ),
+                		'docs_url'     => 'https://docs.continue.dev/customize/deep-dives/mcp',
+                		'root_key'     => 'mcpServers',
+                		'array_format' => true,
+                		'cli_command'  => '',
+                	],
+                	'other'          => [
+                		'label'        => __( 'Other', 'latepoint' ),
+                		'config_file'  => __( "Your client's MCP configuration file", 'latepoint' ),
+                		'docs_url'     => 'https://modelcontextprotocol.io/docs/develop/connect-local-servers',
+                		'root_key'     => 'mcpServers',
+                		'array_format' => false,
+                		'cli_command'  => '',
+                	],
+                ];
+
+                $mcp_client_options = [];
+                foreach ( $mcp_clients as $mcp_client_key => $mcp_client ) {
+                	$mcp_client_options[ $mcp_client_key ] = $mcp_client['label'];
+
+                	if ( ! empty( $mcp_client['array_format'] ) ) {
+                		$mcp_config = [ 'mcpServers' => [ array_merge( [ 'name' => 'latepoint' ], $mcp_base_server ) ] ];
+                	} else {
+                		$mcp_config = [ $mcp_client['root_key'] => [ 'latepoint' => $mcp_base_server ] ];
+                	}
+                	$mcp_clients[ $mcp_client_key ]['json'] = wp_json_encode( $mcp_config, JSON_PRETTY_PRINT | JSON_UNESCAPED_SLASHES );
+                }
+                ?>
+                <div class="sub-section-row" id="mcpConnectClientWrap"<?php echo OsSettingsHelper::is_on( 'latepoint_mcp_server' ) ? '' : ' style="display:none;"'; ?>>
+                    <div class="sub-section-label"></div>
+                    <div class="sub-section-content">
+                <div class="latepoint-mcp-connect">
+                    <h3 class="latepoint-mcp-connect-heading"><?php esc_html_e( 'Connect Your AI Client', 'latepoint' ); ?></h3>
+                    <div class="latepoint-mcp-client-select-w">
+                        <?php echo OsFormHelper::select_field( 'latepoint_mcp_client', __( 'AI Client', 'latepoint' ), $mcp_client_options, 'claude-desktop', [ 'class' => 'latepoint-mcp-client-select' ] ); ?>
+                    </div>
+                    <?php foreach ( $mcp_clients as $mcp_client_key => $mcp_client ) : ?>
+                    <div class="latepoint-mcp-client-block" data-client="<?php echo esc_attr( $mcp_client_key ); ?>"<?php echo 'claude-desktop' === $mcp_client_key ? '' : ' style="display:none;"'; ?>>
+                        <ol class="latepoint-mcp-steps">
+                            <li>
+                                <?php esc_html_e( 'Create an Application Password — ', 'latepoint' ); ?>
+                                <a href="<?php echo esc_url( $mcp_app_passwords_url ); ?>" target="_blank" rel="noopener noreferrer"><?php esc_html_e( 'Open Application Passwords', 'latepoint' ); ?></a>
+                            </li>
+                            <?php if ( ! empty( $mcp_client['cli_command'] ) ) : ?>
+                            <li>
+                                <?php esc_html_e( 'Or use this CLI command to add the server quickly (you will still need to set the environment variables):', 'latepoint' ); ?>
+                                <div class="latepoint-mcp-code-w">
+                                    <pre class="latepoint-mcp-code"><?php echo esc_html( $mcp_client['cli_command'] ); ?></pre>
+                                    <button type="button" class="latepoint-mcp-copy-btn" aria-label="<?php esc_attr_e( 'Copy to clipboard', 'latepoint' ); ?>"><i class="latepoint-icon latepoint-icon-copy"></i><span class="latepoint-mcp-copied-label"><?php esc_html_e( 'Copied', 'latepoint' ); ?></span></button>
+                                </div>
+                            </li>
+                            <?php endif; ?>
+                            <li>
+                                <?php esc_html_e( 'Copy the JSON config below into:', 'latepoint' ); ?>
+                                <code class="latepoint-mcp-config-file"><?php echo esc_html( $mcp_client['config_file'] ); ?></code>
+                            </li>
+                            <li><?php esc_html_e( 'Replace "your-application-password" with the password from Step 1.', 'latepoint' ); ?></li>
+                        </ol>
+                        <div class="latepoint-mcp-code-w">
+                            <pre class="latepoint-mcp-code"><?php echo esc_html( $mcp_client['json'] ); ?></pre>
+                            <button type="button" class="latepoint-mcp-copy-btn" aria-label="<?php esc_attr_e( 'Copy to clipboard', 'latepoint' ); ?>"><i class="latepoint-icon latepoint-icon-copy"></i><span class="latepoint-mcp-copied-label"><?php esc_html_e( 'Copied', 'latepoint' ); ?></span></button>
+                        </div>
+                        <p class="latepoint-mcp-legend">
+                            <?php esc_html_e( "WP_API_URL — your site's MCP endpoint. WP_API_USERNAME — your WordPress username. WP_API_PASSWORD — the application password you generated.", 'latepoint' ); ?>
+                            <a href="<?php echo esc_url( $mcp_client['docs_url'] ); ?>" target="_blank" rel="noopener noreferrer"><?php esc_html_e( 'View setup docs', 'latepoint' ); ?></a>
+                        </p>
+                    </div>
+                    <?php endforeach; ?>
+                </div>
+                    </div>
+                </div>
                 </div>
             </div>
         </div>
-		<?php
-		/**
-		 * Plug before "Other" section in general settings
-		 *
-		 * @since 5.1.0
-		 * @hook latepoint_settings_general_before_other
-		 *
-		 */
-		do_action( 'latepoint_settings_general_before_other' ); ?>
         <div class="white-box section-anchor" id="stickySectionOther">
             <div class="white-box-header">
                 <div class="os-form-sub-header"><h3><?php esc_html_e( 'Other', 'latepoint' ); ?></h3></div>
