@@ -14,7 +14,7 @@
  *              recording cash payments. (6) Daily Klaviyo sync — pushes every
  *              customer's booking count + püsiklient flag as profile properties
  *              (segments live in Klaviyo) and subscribes new customers.
- * Version:     1.10.0
+ * Version:     1.11.0
  * Author:      Yumefit
  * Text Domain: latepoint-yumefit-rules
  */
@@ -512,7 +512,7 @@ function yumefit_gift_send_email($order, string $bundle_name, string $code): voi
 /* ===== Jooga rühmatreening: owner-managed class timetable =====
  * The group class (service 7, taught by Marleen, agent 3) runs only at the
  * date+times listed in option `yumefit_jooga_slots` — edited by the owner in
- * WP admin: Settings → "Jooga graafik", one class per line ("07.07.2026 19:00").
+ * LatePoint's side menu → "Jooga graafik", one class per line ("07.07.2026 19:00").
  *
  * Saving the page rebuilds the (agent, service) work-period chain: weekly
  * all-off rows + one custom-date row per class (that chain is the most specific,
@@ -619,47 +619,22 @@ function yumefit_jooga_restrict_slots(array $daily_resources): array {
     return $daily_resources;
 }
 
-add_action('admin_menu', function (): void {
-    add_options_page('Jooga graafik', 'Jooga graafik', 'manage_options', 'yumefit-jooga', 'yumefit_jooga_settings_page');
+add_action('latepoint_includes', function (): void {
+    include_once __DIR__ . '/lib/controllers/jooga_controller.php';
 });
 
-add_action('admin_init', function (): void {
-    register_setting('yumefit_jooga', 'yumefit_jooga_slots', ['sanitize_callback' => 'yumefit_jooga_save_slots']);
-});
-
-/** Sanitize callback: validates the list and rebuilds the work periods on save. */
-function yumefit_jooga_save_slots($raw): string {
-    $raw = (string) $raw;
-    [$slots, $bad] = yumefit_jooga_parse_slots($raw);
-    if ($bad) {
-        add_settings_error('yumefit_jooga_slots', 'yumefit-jooga-bad-lines', 'Vigased read (õige kuju on nt "07.07.2026 19:00"): ' . esc_html(implode(' | ', $bad)));
+add_filter('latepoint_side_menu', function (array $menus): array {
+    if (OsAuthHelper::get_current_user()->backend_user_type !== LATEPOINT_USER_TYPE_ADMIN) {
+        return $menus;
     }
-    yumefit_jooga_rebuild_work_periods($slots);
-    return $raw;
-}
-
-function yumefit_jooga_settings_page(): void {
-    ?>
-    <div class="wrap">
-        <h1>Jooga rühmatreeningu ajad</h1>
-        <p>
-            Üks treening rea kohta, kujul <code>07.07.2026 19:00</code> (kuupäev + algusaeg).
-            Treeningu pikkus tuleb teenuse seadetest. Jooga rühmatreening on broneeritav
-            <strong>ainult</strong> siin loetletud aegadel.
-        </p>
-        <p>
-            Teised teenused sel kellaajal automaatselt ei sulgu — tund on kaitstud alles siis,
-            kui keegi on treeningusse broneerinud, või kui lõpetad Marleeni tööpäeva LatePointis
-            enne treeningu algust.
-        </p>
-        <form method="post" action="options.php">
-            <?php settings_fields('yumefit_jooga'); ?>
-            <textarea name="yumefit_jooga_slots" rows="12" cols="28" class="code"><?php echo esc_textarea((string) get_option('yumefit_jooga_slots', '')); ?></textarea>
-            <?php submit_button('Salvesta'); ?>
-        </form>
-    </div>
-    <?php
-}
+    $menus[] = [
+        'id'    => 'jooga',
+        'label' => 'Jooga graafik',
+        'icon'  => 'latepoint-icon latepoint-icon-calendar2',
+        'link'  => OsRouterHelper::build_link(['jooga', 'index']),
+    ];
+    return $menus;
+});
 
 /* ===== Admin-only payment method: Sularaha =====
  * latepoint_all_payment_methods_for_select feeds only the admin selects (the
