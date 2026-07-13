@@ -151,8 +151,29 @@ class OsNinjaFormsHelper {
     return self::form_id_for_order( $order ) !== null;
   }
 
+  /** The consent is signed once per person — true when this customer already has a submission. */
+  public static function customer_has_submission( $customer_id ): bool {
+    if ( ! $customer_id ) {
+      return false;
+    }
+    $ids = get_posts( [
+      'post_type'   => 'nf_sub',
+      'post_status' => 'publish',
+      'numberposts' => 1,
+      'fields'      => 'ids',
+      'meta_key'    => self::LP_CUSTOMER_FK,
+      'meta_value'  => (int) $customer_id,
+    ] );
+    return ! empty( $ids );
+  }
+
   public static function form_url_for_order( $order, string $role = '' ): string {
     if ( ! self::has_form( $order ) ) {
+      return '';
+    }
+    // Booker already submitted → no primary link. The guest link stays: the 2nd person on a
+    // "kahekesi" booking is someone else, identified only at submit time.
+    if ( $role !== 'guest' && self::customer_has_submission( $order->customer_id ) ) {
       return '';
     }
     $page_id = self::get_form_page_id();
@@ -576,6 +597,14 @@ class OsNinjaFormsHelper {
 
     $role = isset( $_GET[ self::ROLE_KEY ] ) ? sanitize_key( wp_unslash( $_GET[ self::ROLE_KEY ] ) ) : '';
 
+    // Old email links stay valid forever; once the booker has submitted, show a note instead of
+    // the form so a conscientious customer doesn't file it again with every booking email.
+    if ( $role !== 'guest' && self::customer_has_submission( $order->customer_id ) ) {
+      return self::form_page_styles() . '<div class="latepoint-nf-page"><div class="nf-form-cont"><p>'
+        . esc_html__( 'You have already submitted this form — no need to fill it in again. Thank you!', 'latepoint-ninja-forms' )
+        . '</p></div></div>';
+    }
+
     self::$current_order_id = $order_id;
     self::$current_token    = $token;
     self::$current_role     = $role;
@@ -590,7 +619,46 @@ class OsNinjaFormsHelper {
     self::$current_role     = null;
     self::$current_customer = null;
 
-    return self::form_page_styles() . '<div class="latepoint-nf-page">' . $output . '</div>';
+    return self::form_page_styles() . '<div class="latepoint-nf-page">' . $output . '</div>' . self::form_page_script();
+  }
+
+  /**
+   * Client-side multi-submit lock: first click on the submit button puts the page into a
+   * "submitting" state (button inert + spinner) until NF responds or validation errors appear.
+   * The lock lives on the page container because NF re-renders the button, wiping per-button state.
+   */
+  protected static function form_page_script(): string {
+    static $printed = false;
+    if ( $printed ) {
+      return '';
+    }
+    $printed = true;
+
+    return <<<'HTML'
+<script id="latepoint-nf-guard">
+(function(){
+  var timer = null;
+  function release(c){ c.classList.remove('lp-nf-submitting'); clearInterval(timer); timer = null; }
+  document.addEventListener('click', function(e){
+    var c = document.querySelector('.latepoint-nf-page');
+    if (!c || !(e.target instanceof Element) || !c.contains(e.target)) return;
+    if (!e.target.matches('input[type=button].ninja-forms-field, .nf-element[type=button]')) return;
+    if (c.classList.contains('lp-nf-submitting')) { e.preventDefault(); e.stopImmediatePropagation(); return; }
+    c.classList.add('lp-nf-submitting');
+    var started = Date.now();
+    timer = setInterval(function(){
+      if (c.querySelector('.nf-error') || Date.now() - started > 20000) release(c);
+    }, 400);
+  }, true);
+  if (window.jQuery) {
+    jQuery(document).on('nfFormSubmitResponse nfFormError', function(){
+      var c = document.querySelector('.latepoint-nf-page');
+      if (c) release(c);
+    });
+  }
+})();
+</script>
+HTML;
   }
 
   /**
@@ -673,6 +741,15 @@ class OsNinjaFormsHelper {
    field's "Muu" option is selected. Pure CSS via :has() — reactive, no JS, survives NF re-renders. */
 .latepoint-nf-page .lp-muu-detail{display:none}
 .latepoint-nf-page nf-field:has(> .nf-field-container input[value="muu"]:checked) + nf-field .lp-muu-detail{display:block}
+/* Multi-submit lock: while .lp-nf-submitting the button is inert (survives NF re-renders,
+   unlike a disabled attribute) and a spinner shows next to it. */
+.latepoint-nf-page.lp-nf-submitting .nf-element[type=button],
+.latepoint-nf-page.lp-nf-submitting input[type=button].ninja-forms-field{pointer-events:none;opacity:.6}
+.latepoint-nf-page.lp-nf-submitting .submit-container .nf-field-element::after{content:'';
+  display:inline-block;width:20px;height:20px;margin-left:12px;vertical-align:middle;
+  border:3px solid rgba(23,76,47,.25);border-top-color:var(--lpnf-green);border-radius:50%;
+  animation:lpnf-spin .8s linear infinite}
+@keyframes lpnf-spin{to{transform:rotate(360deg)}}
 </style>
 CSS;
   }
@@ -753,11 +830,20 @@ CSS;
     }
     set_transient( $lock_key, 1, HOUR_IN_SECONDS );
 
-    update_post_meta( $sub_id, self::LP_ORDER_FK, (int) $order->id );
-
     // The submitter may not be the booker (2nd person on a "kahekesi" booking), so resolve who this
     // consent belongs to by email — find an existing customer or create one from the identity fields.
     $customer = self::resolve_submission_customer( $fields, $order );
+
+    // Hard once-per-person guard: the link and form page already hide behind
+    // customer_has_submission(), but nothing stops a re-posted form (old tab, stale page).
+    // Drop the duplicate sub entirely — the new one isn't FK-stamped yet, so it doesn't count itself.
+    if ( $customer && ! empty( $customer->id ) && self::customer_has_submission( $customer->id ) ) {
+      wp_delete_post( $sub_id, true );
+      return;
+    }
+
+    update_post_meta( $sub_id, self::LP_ORDER_FK, (int) $order->id );
+
     if ( $customer && ! empty( $customer->id ) ) {
       update_post_meta( $sub_id, self::LP_CUSTOMER_FK, (int) $customer->id );
     }

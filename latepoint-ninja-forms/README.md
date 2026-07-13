@@ -66,7 +66,11 @@ Usable in any LatePoint notification template (email/SMS) and in the confirmatio
 | `{{order_ninja_form_url}}` | Raw form URL for the order |
 | `{{order_ninja_form_link}}` | `<a>` link to the form |
 
-Both resolve to empty when no form id or no form page is set.
+Both resolve to empty when no form id or no form page is set — and once the order's customer
+already has a linked submission (the consent is signed once per person; the link is never
+delivered again and old links render a "already submitted" note instead of the form). The
+`*_guest_*` variants stay live regardless, since the 2nd person on a two-person booking is
+identified only at submit time.
 
 ## Where data is stored
 
@@ -74,7 +78,8 @@ Both resolve to empty when no form id or no form page is set.
   under Ninja Forms → Submissions. Each is linked to LatePoint by postmeta FKs stamped on the sub:
   `_latepoint_order_id` and `_latepoint_customer_id`. The admin order view and customer dashboard
   list them by querying `nf_sub` on those keys — no denormalised copy.
-- **Service meta** `ninja_form_enabled` — per-service `on`/`off` link toggle (defaults to on).
+- **Service meta** `ninja_form_enabled` — per-service `on`/`off` link toggle (defaults to off;
+  only explicitly enabled services deliver the link).
 - **Settings** `ninja_forms_form_id`, `ninja_forms_page_id`, `ninja_forms_admin_email`,
   `ninja_forms_notify_customer`, `ninja_forms_notify_admin`, `ninja_forms_auto_append_email`.
 

@@ -214,3 +214,7 @@ msgstr ""
 #. Author of the plugin
 msgid "Yumefit"
 msgstr ""
+
+#: lib/helpers/ninja_forms_helper.php:605
+msgid "You have already submitted this form — no need to fill it in again. Thank you!"
+msgstr ""
