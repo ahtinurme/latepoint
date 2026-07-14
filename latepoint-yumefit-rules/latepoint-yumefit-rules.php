@@ -14,7 +14,7 @@
  *              recording cash payments. (6) Daily Klaviyo sync — pushes every
  *              customer's booking count + püsiklient flag as profile properties
  *              (segments live in Klaviyo) and subscribes new customers.
- * Version:     1.11.0
+ * Version:     1.11.1
  * Author:      Yumefit
  * Text Domain: latepoint-yumefit-rules
  */
@@ -743,10 +743,18 @@ function yumefit_klaviyo_customers(): array {
          FROM {$wpdb->prefix}latepoint_customers WHERE email LIKE '%@%'"
     );
 
+    $seenPhones = [];
     foreach ($customers as $customer) {
         $customer->bookings = isset($counts[$customer->id]) ? (int) $counts[$customer->id]->c : 0;
         $customer->pusiklient = yumefit_is_pusiklient((int) $customer->id);
         $customer->phone = yumefit_klaviyo_phone($customer->phone);
+
+        // Klaviyo rejects a batch with the same phone on two profiles
+        // (shared/placeholder numbers) — later holders go email-only.
+        if ($customer->phone !== '' && isset($seenPhones[$customer->phone])) {
+            $customer->phone = '';
+        }
+        $seenPhones[$customer->phone] = true;
     }
 
     return $customers;
