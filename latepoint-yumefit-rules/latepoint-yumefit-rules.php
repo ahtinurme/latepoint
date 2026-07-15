@@ -14,7 +14,10 @@
  *              recording cash payments. (6) Daily Klaviyo sync — pushes every
  *              customer's booking count + püsiklient flag as profile properties
  *              (segments live in Klaviyo) and subscribes new customers.
- * Version:     1.11.1
+ *              (7) Admin-only service extras — extras flagged "Admin only" are
+ *              hidden from the customer booking form but stay selectable on the
+ *              admin appointment panel (products sold at the studio).
+ * Version:     1.12.0
  * Author:      Yumefit
  * Text Domain: latepoint-yumefit-rules
  */
@@ -858,3 +861,111 @@ function yumefit_klaviyo_subscribe(array $customers): string {
 
     return $lastError;
 }
+
+/* ===== CUSTOM CODE START (yumefit: admin-only service extras) =====
+ * A service extra flagged "Admin only" (toggle on its edit form, IDs stored in
+ * the `yumefit_admin_only_extras` option) is hidden from the customer booking
+ * form but stays selectable on the admin appointment panel — for products sold
+ * at the studio. LatePoint has no filter on the extras step, so the pro loader
+ * is unhooked and replaced with a filtered copy (re-check after pro updates). */
+
+/** @return array<int, int> */
+function yumefit_admin_only_extra_ids(): array {
+    return array_map('intval', (array) get_option('yumefit_admin_only_extras', []));
+}
+
+/** @return array<int, int> extras connected to the service, minus admin-only ones */
+function yumefit_customer_visible_extra_ids(int $serviceId): array {
+    $connectedIds = array_map('intval', (array) OsServiceExtrasConnectorHelper::get_connected_extras_ids_to_service($serviceId));
+
+    return array_values(array_diff($connectedIds, yumefit_admin_only_extra_ids()));
+}
+
+function yumefit_admin_only_extra_toggle(OsServiceExtraModel $serviceExtra): void {
+    $isAdminOnly = !$serviceExtra->is_new_record() && in_array((int) $serviceExtra->id, yumefit_admin_only_extra_ids(), true);
+    echo OsFormHelper::toggler_field(
+        'service_extra[admin_only]',
+        __('Admin only', 'latepoint-yumefit-rules'),
+        $isAdminOnly,
+        false,
+        false,
+        ['sub_label' => __('Hidden on the customer booking form, can only be added to an appointment by an admin or agent', 'latepoint-yumefit-rules')]
+    );
+}
+
+function yumefit_save_admin_only_extra_flag($model): void {
+    if (!$model instanceof OsServiceExtraModel || empty($model->id)) {
+        return;
+    }
+
+    $params = OsParamsHelper::get_param('service_extra');
+    if (!isset($params['admin_only'])) {
+        return;
+    }
+
+    $ids = array_diff(yumefit_admin_only_extra_ids(), [(int) $model->id]);
+    if ($params['admin_only'] === 'on') {
+        $ids[] = (int) $model->id;
+    }
+    update_option('yumefit_admin_only_extras', array_values($ids), false);
+}
+
+/** Copy of OsFeatureServiceExtrasHelper::load_step_service_extras with admin-only extras excluded. */
+function yumefit_load_step_service_extras($step_code, $format = 'json'): void {
+    if ($step_code != OsFeatureServiceExtrasHelper::$step_code) {
+        return;
+    }
+
+    $serviceExtras = new OsServiceExtraModel();
+    if (OsStepsHelper::$booking_object->service_id) {
+        $serviceExtras->where(['id' => yumefit_customer_visible_extra_ids((int) OsStepsHelper::$booking_object->service_id) ?: [0]]);
+    }
+
+    $controller = new OsServiceExtrasController();
+    $controller->vars['service_extras'] = $serviceExtras->should_be_active()->get_results_as_models();
+    $controller->vars['booking'] = OsStepsHelper::$booking_object;
+    $controller->vars['current_step_code'] = $step_code;
+    $controller->set_layout('none');
+    $controller->set_return_format($format);
+    $controller->format_render('_step_booking__service_extras', [], [
+        'step_code' => $step_code,
+        'show_next_btn' => OsStepsHelper::can_step_show_next_btn($step_code),
+        'show_prev_btn' => OsStepsHelper::can_step_show_prev_btn($step_code),
+        'is_first_step' => OsStepsHelper::is_first_step($step_code),
+        'is_last_step' => OsStepsHelper::is_last_step($step_code),
+        'is_pre_last_step' => OsStepsHelper::is_pre_last_step($step_code),
+    ]);
+}
+
+/** Skip the extras step entirely when a service only has admin-only extras. */
+function yumefit_skip_extras_step_without_visible_extras(bool $skip, string $step_code, $cart, $cart_item, $booking): bool {
+    if ($skip || $step_code != OsFeatureServiceExtrasHelper::$step_code || !$cart_item->is_booking()) {
+        return $skip;
+    }
+
+    $booking = $cart_item->build_original_object_from_item_data();
+    if (empty($booking->service_id)) {
+        return $skip;
+    }
+
+    $visibleIds = yumefit_customer_visible_extra_ids((int) $booking->service_id);
+    if (empty($visibleIds)) {
+        return true;
+    }
+
+    $serviceExtras = new OsServiceExtraModel();
+
+    return $serviceExtras->where(['id' => $visibleIds])->should_be_active()->count() == 0 ? true : $skip;
+}
+
+add_action('latepoint_init_hooks', function (): void {
+    if (!class_exists('OsFeatureServiceExtrasHelper')) {
+        return;
+    }
+    remove_action('latepoint_load_step', 'OsFeatureServiceExtrasHelper::load_step_service_extras', 10);
+    add_action('latepoint_load_step', 'yumefit_load_step_service_extras', 10, 2);
+    add_filter('latepoint_should_step_be_skipped', 'yumefit_skip_extras_step_without_visible_extras', 11, 5);
+    add_action('latepoint_after_service_extra_form', 'yumefit_admin_only_extra_toggle');
+    add_action('latepoint_model_save', 'yumefit_save_admin_only_extra_flag');
+}, 20);
+/* ===== CUSTOM CODE END (yumefit: admin-only service extras) ===== */
