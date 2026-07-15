@@ -169,7 +169,7 @@ msgid "Setup"
 msgstr ""
 
 #: lib/helpers/ninja_forms_helper.php:720
-msgid "Thank you, we have received your form submission. A copy is below."
+msgid "Thank you, we have received your form submission."
 msgstr ""
 
 #: lib/views/ninja_forms/settings.php:94
@@ -217,4 +217,7 @@ msgstr ""
 
 #: lib/helpers/ninja_forms_helper.php:605
 msgid "You have already submitted this form — no need to fill it in again. Thank you!"
+msgstr ""
+
+msgid "You can view it in your customer cabinet."
 msgstr ""
