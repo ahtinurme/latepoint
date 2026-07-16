@@ -78,8 +78,14 @@ function latepoint_process_google_login(response, $booking_form_element = false)
                     location.reload();
                 }
             } else {
-                latepoint_show_message_inside_element(data.message, $booking_form_element.find('.os-step-existing-customer-login-w '));
-                latepoint_step_content_change_end(false, $booking_form_element);
+                /* ===== CUSTOM CODE START (yumefit: upstream crashes here on the login form where $booking_form_element is false, swallowing the error — show it in the login form instead) ===== */
+                if ($booking_form_element) {
+                    latepoint_show_message_inside_element(data.message, $booking_form_element.find('.os-step-existing-customer-login-w '));
+                    latepoint_step_content_change_end(false, $booking_form_element);
+                } else {
+                    latepoint_show_message_inside_element(data.message, jQuery('.latepoint-login-form-w').first());
+                }
+                /* ===== CUSTOM CODE END ===== */
             }
         }
     });
