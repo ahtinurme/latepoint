@@ -174,6 +174,7 @@ $units        = fn(float $v) => rtrim(rtrim(number_format($v, 2, '.', ''), '0'),
                                     <th class="af-num"><?php echo esc_html($label); ?></th>
                                 <?php } ?>
                                 <th class="af-num"><?php esc_html_e('Schedules', 'latepoint-agent-fees'); ?></th>
+                                <th class="af-num"><?php esc_html_e('Bookings', 'latepoint-agent-fees'); ?></th>
                                 <th><?php esc_html_e('Trainings', 'latepoint-agent-fees'); ?></th>
                             </tr>
                         </thead>
@@ -196,6 +197,7 @@ $units        = fn(float $v) => rtrim(rtrim(number_format($v, 2, '.', ''), '0'),
                                             <span class="af-combined"><?php esc_html_e('(combined)', 'latepoint-agent-fees'); ?></span>
                                         <?php } ?>
                                     </td>
+                                    <td class="af-num"><?php echo (int) array_sum(array_column($d['sessions'], 'bookings')); ?></td>
                                     <td>
                                         <?php
                                         $labels = array_map(function ($sess) {
@@ -227,6 +229,7 @@ $units        = fn(float $v) => rtrim(rtrim(number_format($v, 2, '.', ''), '0'),
                                     <td class="af-num af-total"><?php printf(esc_html__('%s schedules', 'latepoint-agent-fees'), esc_html($units($s['shift_units'][$i]))); ?></td>
                                 <?php } ?>
                                 <td class="af-num af-total"><?php echo esc_html($units($s['schedules'])); ?></td>
+                                <td class="af-num af-total"><?php echo (int) ($s['bookings'] + $s['group_participants']); ?></td>
                                 <td class="af-total">
                                     <?php printf(esc_html__('%d trainings', 'latepoint-agent-fees'), (int) $s['trainings']); ?>
                                     <?php if ($s['group_participants']) {
