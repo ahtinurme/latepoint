@@ -203,6 +203,9 @@ $units        = fn(float $v) => rtrim(rtrim(number_format($v, 2, '.', ''), '0'),
                                             if ($sess['bookings'] > 1) {
                                                 $label .= '×' . (int) $sess['bookings'];
                                             }
+                                            if ($sess['service'] !== '') {
+                                                $label .= " {$sess['service']}";
+                                            }
                                             if ($sess['service_id'] === LATEPOINT_AGENT_FEES_GROUP_SERVICE) {
                                                 $label .= ' ' . __('(group)', 'latepoint-agent-fees');
                                             }

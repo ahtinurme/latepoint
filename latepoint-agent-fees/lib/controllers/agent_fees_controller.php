@@ -141,6 +141,7 @@ if (!class_exists('OsAgentFeesController')) :
          * @return array<int, array<string, array<int, array{
          *     time: string,
          *     service_id: int,
+         *     service: string,
          *     bookings: int,
          *     no_show: bool
          * }>>> [agent_id][date] => sessions
@@ -149,9 +150,11 @@ if (!class_exists('OsAgentFeesController')) :
             global $wpdb;
 
             $rows = $wpdb->get_results($wpdb->prepare(
-                'SELECT agent_id, start_date, start_time, service_id, status FROM ' . LATEPOINT_TABLE_BOOKINGS . '
-                 WHERE start_date BETWEEN %s AND %s AND status IN (%s, %s, %s)
-                 ORDER BY start_date ASC, start_time ASC',
+                'SELECT b.agent_id, b.start_date, b.start_time, b.service_id, b.status, s.name AS service_name
+                 FROM ' . LATEPOINT_TABLE_BOOKINGS . ' b
+                 LEFT JOIN ' . LATEPOINT_TABLE_SERVICES . ' s ON s.id = b.service_id
+                 WHERE b.start_date BETWEEN %s AND %s AND b.status IN (%s, %s, %s)
+                 ORDER BY b.start_date ASC, b.start_time ASC',
                 $from,
                 $to,
                 LATEPOINT_BOOKING_STATUS_APPROVED,
@@ -166,6 +169,7 @@ if (!class_exists('OsAgentFeesController')) :
                 $session = [
                     'time'       => $this->m2hm((int) $row->start_time),
                     'service_id' => (int) $row->service_id,
+                    'service'    => (string) ($row->service_name ?? ''),
                     'bookings'   => ($session['bookings'] ?? 0) + 1,
                     'no_show'    => ($session['no_show'] ?? true) && $row->status === LATEPOINT_BOOKING_STATUS_NO_SHOW,
                 ];
