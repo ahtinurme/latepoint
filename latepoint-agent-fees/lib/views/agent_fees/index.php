@@ -19,6 +19,7 @@ $shifts       = LATEPOINT_AGENT_FEES_SHIFTS;
 $m2hm         = fn(int $m) => sprintf('%02d:%02d', intdiv($m, 60), $m % 60);
 $shift_labels = array_map(fn($s) => $m2hm($s[0]) . '–' . $m2hm($s[1]), $shifts);
 $money        = fn(float $v) => number_format($v, 2, '.', ' ') . ' €';
+$units        = fn(float $v) => rtrim(rtrim(number_format($v, 2, '.', ''), '0'), '.') ?: '0';
 ?>
 <style>
     .af-wrap { padding: 20px; }
@@ -55,7 +56,7 @@ $money        = fn(float $v) => number_format($v, 2, '.', ' ') . ' €';
     <p class="af-hint">
         <?php printf(
             /* translators: 1: first shift, 2: second shift */
-            esc_html__('A schedule counts when at least 80%% of a shift (%1$s or %2$s) is covered by working hours; a shorter day totalling at least 4 hours inside 09:00–20:00 counts as one combined schedule. Trainings count happened and no-show bookings; cancelled are excluded. Group bookings at the same time are one training.', 'latepoint-agent-fees'),
+            esc_html__('A shift (%1$s or %2$s) covered at least 80%% by working hours earns the full schedule fee; below 80%% it earns a proportional part of the fee (covered hours ÷ shift hours). A shorter day totalling at least 4 hours inside 09:00–20:00 still earns one full schedule (combined). Trainings count happened and no-show bookings; cancelled are excluded. Group bookings at the same time are one training.', 'latepoint-agent-fees'),
             esc_html($shift_labels[0]),
             esc_html($shift_labels[1])
         ); ?>
@@ -115,9 +116,9 @@ $money        = fn(float $v) => number_format($v, 2, '.', ' ') . ' €';
                     <tr>
                         <td><?php echo esc_html($agent->full_name); ?></td>
                         <?php foreach (array_keys($shifts) as $i) { ?>
-                            <td class="af-num"><?php echo (int) $s['shift_counts'][$i]; ?></td>
+                            <td class="af-num"><?php echo esc_html($units($s['shift_units'][$i])); ?></td>
                         <?php } ?>
-                        <td class="af-num"><?php echo (int) $s['schedules']; ?></td>
+                        <td class="af-num"><?php echo esc_html($units($s['schedules'])); ?></td>
                         <td class="af-num">
                             <?php echo (int) $s['trainings']; ?>
                             <?php if ($s['bookings'] > $s['trainings']) { ?>
@@ -144,7 +145,7 @@ $money        = fn(float $v) => number_format($v, 2, '.', ' ') . ' €';
         <details class="af-agent">
             <summary>
                 <?php echo esc_html($agent->full_name); ?>
-                — <?php printf(esc_html__('%1$d schedules, %2$d trainings', 'latepoint-agent-fees'), (int) $s['schedules'], (int) $s['trainings']); ?>
+                — <?php printf(esc_html__('%1$s schedules, %2$d trainings', 'latepoint-agent-fees'), $units($s['schedules']), (int) $s['trainings']); ?>
             </summary>
             <div>
                 <?php if (empty($s['days'])) { ?>
@@ -176,7 +177,7 @@ $money        = fn(float $v) => number_format($v, 2, '.', ' ') . ' €';
                                         </td>
                                     <?php } ?>
                                     <td class="af-num">
-                                        <?php echo (int) $calc['schedules']; ?>
+                                        <?php echo esc_html($units($calc['schedules'])); ?>
                                         <?php if ($calc['combined']) { ?>
                                             <span class="af-combined"><?php esc_html_e('(combined)', 'latepoint-agent-fees'); ?></span>
                                         <?php } ?>
@@ -203,9 +204,9 @@ $money        = fn(float $v) => number_format($v, 2, '.', ' ') . ' €';
                             <tr>
                                 <td colspan="2" class="af-num af-total"><?php esc_html_e('Total', 'latepoint-agent-fees'); ?></td>
                                 <?php foreach (array_keys($shifts) as $i) { ?>
-                                    <td class="af-num af-total"><?php printf(esc_html__('%d schedules', 'latepoint-agent-fees'), (int) $s['shift_counts'][$i]); ?></td>
+                                    <td class="af-num af-total"><?php printf(esc_html__('%s schedules', 'latepoint-agent-fees'), esc_html($units($s['shift_units'][$i]))); ?></td>
                                 <?php } ?>
-                                <td class="af-num af-total"><?php echo (int) $s['schedules']; ?></td>
+                                <td class="af-num af-total"><?php echo esc_html($units($s['schedules'])); ?></td>
                                 <td class="af-total"><?php printf(esc_html__('%d trainings', 'latepoint-agent-fees'), (int) $s['trainings']); ?></td>
                             </tr>
                         </tfoot>

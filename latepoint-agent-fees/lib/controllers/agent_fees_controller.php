@@ -71,8 +71,8 @@ if (!class_exists('OsAgentFeesController')) :
          * @param array<string, array> $agent_sessions trainings grouped by date
          * @return array{
          *     days: array<int, array>,
-         *     schedules: int,
-         *     shift_counts: array<int, int>,
+         *     schedules: float,
+         *     shift_units: array<int, float>,
          *     trainings: int,
          *     bookings: int
          * }
@@ -84,10 +84,10 @@ if (!class_exists('OsAgentFeesController')) :
 
             $days   = [];
             $totals = [
-                'schedules'    => 0,
-                'shift_counts' => array_fill(0, count(LATEPOINT_AGENT_FEES_SHIFTS), 0),
-                'trainings'    => 0,
-                'bookings'     => 0,
+                'schedules'   => 0.0,
+                'shift_units' => array_fill(0, count(LATEPOINT_AGENT_FEES_SHIFTS), 0.0),
+                'trainings'   => 0,
+                'bookings'    => 0,
             ];
 
             for ($day = clone $first; $day <= $last; $day->modify('+1 day')) {
@@ -117,8 +117,8 @@ if (!class_exists('OsAgentFeesController')) :
                 $totals['schedules'] += $calc['schedules'];
                 $totals['trainings'] += count($sessions);
                 $totals['bookings']  += $bookings;
-                foreach ($calc['shift_counts'] as $i => $count) {
-                    $totals['shift_counts'][$i] += $count;
+                foreach ($calc['shift_units'] as $i => $units) {
+                    $totals['shift_units'][$i] += $units;
                 }
             }
 
