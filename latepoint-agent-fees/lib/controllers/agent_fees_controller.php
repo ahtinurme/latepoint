@@ -55,6 +55,7 @@ if (!class_exists('OsAgentFeesController')) :
             update_option('latepoint_agent_fees', [
                 'schedule' => max(0, (float) ($f['schedule'] ?? 0)),
                 'training' => max(0, (float) ($f['training'] ?? 0)),
+                'group'    => max(0, (float) ($f['group'] ?? 0)),
             ]);
 
             wp_safe_redirect(OsRouterHelper::build_link(['agent_fees', 'index'], [
@@ -74,8 +75,9 @@ if (!class_exists('OsAgentFeesController')) :
          *     schedules: float,
          *     shift_units: array<int, float>,
          *     trainings: int,
-         *     bookings: int
-         * }
+         *     bookings: int,
+         *     group_participants: int
+         * } trainings/bookings exclude the group service, which is counted per participant
          */
         private function month_stats(int $agent_id, DateTime $first, DateTime $last, array $agent_sessions): array {
             $default_weekly = $this->weekly_by_day(0);
@@ -84,10 +86,11 @@ if (!class_exists('OsAgentFeesController')) :
 
             $days   = [];
             $totals = [
-                'schedules'   => 0.0,
-                'shift_units' => array_fill(0, count(LATEPOINT_AGENT_FEES_SHIFTS), 0.0),
-                'trainings'   => 0,
-                'bookings'    => 0,
+                'schedules'          => 0.0,
+                'shift_units'        => array_fill(0, count(LATEPOINT_AGENT_FEES_SHIFTS), 0.0),
+                'trainings'          => 0,
+                'bookings'           => 0,
+                'group_participants' => 0,
             ];
 
             for ($day = clone $first; $day <= $last; $day->modify('+1 day')) {
@@ -104,8 +107,7 @@ if (!class_exists('OsAgentFeesController')) :
                     continue;
                 }
 
-                $calc     = latepoint_agent_fees_day_schedules($periods);
-                $bookings = array_sum(array_column($sessions, 'bookings'));
+                $calc = latepoint_agent_fees_day_schedules($periods);
 
                 $days[] = [
                     'date'      => $date,
@@ -115,8 +117,14 @@ if (!class_exists('OsAgentFeesController')) :
                 ];
 
                 $totals['schedules'] += $calc['schedules'];
-                $totals['trainings'] += count($sessions);
-                $totals['bookings']  += $bookings;
+                foreach ($sessions as $sess) {
+                    if ($sess['service_id'] === LATEPOINT_AGENT_FEES_GROUP_SERVICE) {
+                        $totals['group_participants'] += $sess['bookings'];
+                        continue;
+                    }
+                    $totals['trainings']++;
+                    $totals['bookings'] += $sess['bookings'];
+                }
                 foreach ($calc['shift_units'] as $i => $units) {
                     $totals['shift_units'][$i] += $units;
                 }

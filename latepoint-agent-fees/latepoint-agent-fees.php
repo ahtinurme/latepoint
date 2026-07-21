@@ -15,6 +15,10 @@ if (!defined('ABSPATH')) {
     exit;
 }
 
+// Jooga rühmatreening (same id as YUMEFIT_JOOGA_SERVICE in yumefit-rules):
+// billed per participant at the group fee, not per session at the training fee.
+define('LATEPOINT_AGENT_FEES_GROUP_SERVICE', 7);
+
 add_action('latepoint_includes', function () {
     include_once __DIR__ . '/lib/fees_math.php';
     include_once __DIR__ . '/lib/controllers/agent_fees_controller.php';

@@ -56,7 +56,7 @@ $units        = fn(float $v) => rtrim(rtrim(number_format($v, 2, '.', ''), '0'),
     <p class="af-hint">
         <?php printf(
             /* translators: 1: first shift, 2: second shift */
-            esc_html__('A shift (%1$s or %2$s) covered at least 80%% by working hours earns the full schedule fee; below 80%% it earns a proportional part of the fee (covered hours ÷ shift hours). A shorter day totalling at least 4 hours inside 09:00–20:00 still earns one full schedule (combined). Trainings count happened and no-show bookings; cancelled are excluded. Group bookings at the same time are one training.', 'latepoint-agent-fees'),
+            esc_html__('A shift (%1$s or %2$s) covered at least 80%% by working hours earns the full schedule fee; below 80%% it earns a proportional part of the fee (covered hours ÷ shift hours). A shorter day totalling at least 4 hours inside 09:00–20:00 still earns one full schedule (combined). Trainings count happened and no-show bookings; cancelled are excluded. Bookings at the same time are one training, except jooga rühmatreening, which pays the group fee per participant.', 'latepoint-agent-fees'),
             esc_html($shift_labels[0]),
             esc_html($shift_labels[1])
         ); ?>
@@ -76,7 +76,8 @@ $units        = fn(float $v) => rtrim(rtrim(number_format($v, 2, '.', ''), '0'),
 
         <?php
         $schedule_fee = (float) ($fees['schedule'] ?? 0);
-        $training_fee = (float) ($fees['training'] ?? 0); ?>
+        $training_fee = (float) ($fees['training'] ?? 0);
+        $group_fee    = (float) ($fees['group'] ?? 0); ?>
         <p>
             <label>
                 <?php esc_html_e('Schedule fee', 'latepoint-agent-fees'); ?>
@@ -86,6 +87,11 @@ $units        = fn(float $v) => rtrim(rtrim(number_format($v, 2, '.', ''), '0'),
             <label>
                 <?php esc_html_e('Training fee', 'latepoint-agent-fees'); ?>
                 <input type="number" step="0.01" min="0" name="params[fees][training]" value="<?php echo esc_attr($training_fee ?: ''); ?>" style="width: 80px;"> €
+            </label>
+            &nbsp;&nbsp;
+            <label>
+                <?php esc_html_e('Group fee (per participant)', 'latepoint-agent-fees'); ?>
+                <input type="number" step="0.01" min="0" name="params[fees][group]" value="<?php echo esc_attr($group_fee ?: ''); ?>" style="width: 80px;"> €
             </label>
             &nbsp;&nbsp;
             <button type="submit" class="latepoint-btn latepoint-btn-primary"><?php esc_html_e('Save Fees', 'latepoint-agent-fees'); ?></button>
@@ -100,8 +106,10 @@ $units        = fn(float $v) => rtrim(rtrim(number_format($v, 2, '.', ''), '0'),
                     <?php } ?>
                     <th class="af-num"><?php esc_html_e('Schedules', 'latepoint-agent-fees'); ?></th>
                     <th class="af-num"><?php esc_html_e('Trainings', 'latepoint-agent-fees'); ?></th>
+                    <th class="af-num"><?php esc_html_e('Group participants', 'latepoint-agent-fees'); ?></th>
                     <th class="af-num"><?php esc_html_e('Schedule total', 'latepoint-agent-fees'); ?></th>
                     <th class="af-num"><?php esc_html_e('Training total', 'latepoint-agent-fees'); ?></th>
+                    <th class="af-num"><?php esc_html_e('Group total', 'latepoint-agent-fees'); ?></th>
                     <th class="af-num"><?php esc_html_e('Total', 'latepoint-agent-fees'); ?></th>
                 </tr>
             </thead>
@@ -112,7 +120,8 @@ $units        = fn(float $v) => rtrim(rtrim(number_format($v, 2, '.', ''), '0'),
                     $s              = $stats[$agent->id];
                     $schedule_total = $s['schedules'] * $schedule_fee;
                     $training_total = $s['trainings'] * $training_fee;
-                    $grand_total   += $schedule_total + $training_total; ?>
+                    $group_total    = $s['group_participants'] * $group_fee;
+                    $grand_total   += $schedule_total + $training_total + $group_total; ?>
                     <tr>
                         <td><?php echo esc_html($agent->full_name); ?></td>
                         <?php foreach (array_keys($shifts) as $i) { ?>
@@ -125,15 +134,17 @@ $units        = fn(float $v) => rtrim(rtrim(number_format($v, 2, '.', ''), '0'),
                                 <span class="af-muted">(<?php printf(esc_html__('%d bookings', 'latepoint-agent-fees'), (int) $s['bookings']); ?>)</span>
                             <?php } ?>
                         </td>
+                        <td class="af-num"><?php echo (int) $s['group_participants']; ?></td>
                         <td class="af-num"><?php echo esc_html($money($schedule_total)); ?></td>
                         <td class="af-num"><?php echo esc_html($money($training_total)); ?></td>
-                        <td class="af-num af-total"><?php echo esc_html($money($schedule_total + $training_total)); ?></td>
+                        <td class="af-num"><?php echo esc_html($money($group_total)); ?></td>
+                        <td class="af-num af-total"><?php echo esc_html($money($schedule_total + $training_total + $group_total)); ?></td>
                     </tr>
                 <?php } ?>
             </tbody>
             <tfoot>
                 <tr>
-                    <td colspan="<?php echo 4 + count($shifts); ?>" class="af-num af-total"><?php esc_html_e('All agents', 'latepoint-agent-fees'); ?></td>
+                    <td colspan="<?php echo 7 + count($shifts); ?>" class="af-num af-total"><?php esc_html_e('All agents', 'latepoint-agent-fees'); ?></td>
                     <td class="af-num af-total"><?php echo esc_html($money($grand_total)); ?></td>
                 </tr>
             </tfoot>
@@ -146,6 +157,9 @@ $units        = fn(float $v) => rtrim(rtrim(number_format($v, 2, '.', ''), '0'),
             <summary>
                 <?php echo esc_html($agent->full_name); ?>
                 — <?php printf(esc_html__('%1$s schedules, %2$d trainings', 'latepoint-agent-fees'), $units($s['schedules']), (int) $s['trainings']); ?>
+                <?php if ($s['group_participants']) {
+                    printf(esc_html__(', %d group participants', 'latepoint-agent-fees'), (int) $s['group_participants']);
+                } ?>
             </summary>
             <div>
                 <?php if (empty($s['days'])) { ?>
@@ -189,6 +203,9 @@ $units        = fn(float $v) => rtrim(rtrim(number_format($v, 2, '.', ''), '0'),
                                             if ($sess['bookings'] > 1) {
                                                 $label .= '×' . (int) $sess['bookings'];
                                             }
+                                            if ($sess['service_id'] === LATEPOINT_AGENT_FEES_GROUP_SERVICE) {
+                                                $label .= ' ' . __('(group)', 'latepoint-agent-fees');
+                                            }
                                             if ($sess['no_show']) {
                                                 $label .= ' ' . __('(no-show)', 'latepoint-agent-fees');
                                             }
@@ -207,7 +224,12 @@ $units        = fn(float $v) => rtrim(rtrim(number_format($v, 2, '.', ''), '0'),
                                     <td class="af-num af-total"><?php printf(esc_html__('%s schedules', 'latepoint-agent-fees'), esc_html($units($s['shift_units'][$i]))); ?></td>
                                 <?php } ?>
                                 <td class="af-num af-total"><?php echo esc_html($units($s['schedules'])); ?></td>
-                                <td class="af-total"><?php printf(esc_html__('%d trainings', 'latepoint-agent-fees'), (int) $s['trainings']); ?></td>
+                                <td class="af-total">
+                                    <?php printf(esc_html__('%d trainings', 'latepoint-agent-fees'), (int) $s['trainings']); ?>
+                                    <?php if ($s['group_participants']) {
+                                        printf(esc_html__(', %d group participants', 'latepoint-agent-fees'), (int) $s['group_participants']);
+                                    } ?>
+                                </td>
                             </tr>
                         </tfoot>
                     </table>
