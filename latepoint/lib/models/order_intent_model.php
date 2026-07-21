@@ -131,6 +131,23 @@ class OsOrderIntentModel extends OsModel {
 		}
 	}
 
+	public function get_other_data_value( string $key ): string {
+		if ( ! isset( $this->other_data_arr ) ) {
+			$this->other_data_arr = json_decode( $this->other_data, true ) ?: [];
+		}
+
+		return $this->other_data_arr[ $key ] ?? '';
+	}
+
+	public function set_other_data_value( string $key, string $value, bool $save = true ) {
+		$this->other_data_arr         = json_decode( $this->other_data, true ) ?: [];
+		$this->other_data_arr[ $key ] = $value;
+		$this->other_data             = wp_json_encode( $this->other_data_arr );
+		if ( $save ) {
+			$this->update_attributes( [ 'other_data' => $this->other_data ] );
+		}
+	}
+
 	public function is_bookable( array $settings = [] ): bool {
 		$cart = $this->build_cart_object();
 		// loop items and check if bookings are still available

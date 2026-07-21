@@ -9,6 +9,7 @@
 // @codekit-prepend "_social-front.js";
 // @codekit-prepend "_timezone-front.js";
 // @codekit-prepend "_cloudflare-turnstile-front.js";
+// @codekit-prepend "_booking-reasons-front.js";
 
 // DOCUMENT READY
 jQuery(document).ready(function ($) {

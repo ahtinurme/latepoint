@@ -214,18 +214,31 @@ class OsRazorpayConnectHelper {
 		return ! empty( $actual ) && $actual === $expected;
 	}
 
-	// Reject a payment that isn't bound to THIS intent. When creating the Razorpay order/checkout we stamp the intent
-	// key into the notes ($order_intent->intent_key under 'order_intent_key' / 'transaction_intent_key'); Razorpay
-	// echoes those notes back on the retrieved payment, so matching notes[$note_key] against the local intent key
-	// binds the payment to this specific booking/invoice. A same-amount/same-currency payment from an unrelated
-	// order carries a different (or no) note and is rejected. Fails closed when the note is absent.
-	public static function validate_payment_order_binding( array $payment, string $note_key, string $expected_intent_key ): bool {
+	// First (lightweight) bind: the payment's Razorpay notes must reference THIS intent. We stamp the intent key into
+	// the notes ($order_intent->intent_key under 'order_intent_key' / 'transaction_intent_key') when creating the
+	// order/checkout and Razorpay echoes it back on the retrieved payment. Notes originate from client-facing Checkout
+	// options, so this alone is not sufficient — the authoritative bind is validate_payment_order_binding() below.
+	// Fails closed when the note is absent.
+	public static function validate_payment_intent_notes( array $payment, string $note_key, string $expected_intent_key ): bool {
 		if ( empty( $expected_intent_key ) ) {
 			return false;
 		}
 		$notes             = ( isset( $payment['notes'] ) && is_array( $payment['notes'] ) ) ? $payment['notes'] : [];
 		$actual_intent_key = isset( $notes[ $note_key ] ) ? (string) $notes[ $note_key ] : '';
 		return ! empty( $actual_intent_key ) && hash_equals( $expected_intent_key, $actual_intent_key );
+	}
+
+	// Authoritative bind: the payment must belong to the Razorpay order we created server-side for THIS intent. The
+	// payment's order_id (assigned by Razorpay when we created the order through our connected account) must equal the
+	// id we persisted at order-creation time. Unlike the notes, an attacker cannot make Razorpay attach our order_id
+	// to a payment they made against a different order, so this blocks a same-amount/same-currency payment whose
+	// order_id belongs to another order. Fails closed when the expected id is unknown or the order_id differs.
+	public static function validate_payment_order_binding( array $payment, string $expected_order_id ): bool {
+		if ( empty( $expected_order_id ) ) {
+			return false;
+		}
+		$actual_order_id = isset( $payment['order_id'] ) ? (string) $payment['order_id'] : '';
+		return ! empty( $actual_order_id ) && hash_equals( $expected_order_id, $actual_order_id );
 	}
 
 	// -------------------------------------------------------------------------
@@ -240,21 +253,27 @@ class OsRazorpayConnectHelper {
 			case 'razorpay_checkout':
 				if ( $order_intent->get_payment_data_value( 'token' ) ) {
 					$payment_data = self::retrieve_payment( $order_intent->get_payment_data_value( 'token' ) );
-					if ( ! empty( $payment_data['data'] ) && in_array( $payment_data['data']['status'], [ 'authorized', 'captured' ] ) ) {
-						// Verify amount, currency and that the payment's Razorpay notes reference this intent — not
-						// just status. Fail closed on any mismatch (blocks underpayment and cross-order reuse).
+					// Require a *settled* payment: accept only 'captured', not 'authorized'. An authorization is just a hold,
+					// and we never capture it server-side, so an authorized-but-uncaptured payment would be auto-voided by
+					// Razorpay while the booking stays fulfilled — paid-looking but never actually settled.
+					if ( ! empty( $payment_data['data'] ) && $payment_data['data']['status'] === 'captured' ) {
+						// Verify amount, currency, that the payment's notes reference this intent, and — authoritatively —
+						// that the payment is bound to the Razorpay order we created for this intent. Not just status.
+						// Fail closed on any mismatch (blocks underpayment and cross-order reuse/replay).
+						$expected_order_id = $order_intent->get_other_data_value( 'razorpay_order_id' );
 						if ( self::validate_payment_amount( $payment_data['data'], $order_intent->charge_amount )
 							&& self::validate_payment_currency( $payment_data['data'] )
-							&& self::validate_payment_order_binding( $payment_data['data'], 'order_intent_key', $order_intent->intent_key ) ) {
+							&& self::validate_payment_intent_notes( $payment_data['data'], 'order_intent_key', $order_intent->intent_key )
+							&& self::validate_payment_order_binding( $payment_data['data'], $expected_order_id ) ) {
 							$result['status']    = LATEPOINT_STATUS_SUCCESS;
 							$result['processor'] = self::$processor_code;
 							$result['charge_id'] = $payment_data['data']['id'];
 							$result['amount']    = $payment_data['data']['amount'];
-							$result['kind']      = $payment_data['data']['status'] === 'authorized' ? LATEPOINT_TRANSACTION_KIND_AUTHORIZATION : LATEPOINT_TRANSACTION_KIND_CAPTURE;
+							$result['kind']      = LATEPOINT_TRANSACTION_KIND_CAPTURE;
 						} else {
 							$result['status']  = LATEPOINT_STATUS_ERROR;
 							$result['message'] = __( 'Payment verification failed', 'latepoint' );
-							OsDebugHelper::log( 'Razorpay payment verification failed (amount/currency/notes binding) for order intent ' . $order_intent->id, 'razorpay_connect_error' );
+							OsDebugHelper::log( 'Razorpay payment verification failed (amount/currency/notes/order binding) for order intent ' . $order_intent->id, 'razorpay_connect_error' );
 							$order_intent->add_error( 'payment_error', $result['message'] );
 							$order_intent->add_error( 'send_to_step', $result['message'], 'payment' );
 						}
@@ -282,21 +301,27 @@ class OsRazorpayConnectHelper {
 			case 'razorpay_checkout':
 				if ( $transaction_intent->get_payment_data_value( 'token' ) ) {
 					$payment_data = self::retrieve_payment( $transaction_intent->get_payment_data_value( 'token' ) );
-					if ( ! empty( $payment_data['data'] ) && in_array( $payment_data['data']['status'], [ 'authorized', 'captured' ] ) ) {
-						// Verify amount, currency and that the payment's Razorpay notes reference this intent — not
-						// just status. Fail closed on any mismatch (blocks underpayment and cross-order reuse).
+					// Require a *settled* payment: accept only 'captured', not 'authorized'. An authorization is just a hold,
+					// and we never capture it server-side, so an authorized-but-uncaptured payment would be auto-voided by
+					// Razorpay while the invoice stays fulfilled — paid-looking but never actually settled.
+					if ( ! empty( $payment_data['data'] ) && $payment_data['data']['status'] === 'captured' ) {
+						// Verify amount, currency, that the payment's notes reference this intent, and — authoritatively —
+						// that the payment is bound to the Razorpay order we created for this intent. Not just status.
+						// Fail closed on any mismatch (blocks underpayment and cross-order reuse/replay).
+						$expected_order_id = $transaction_intent->get_payment_data_value( 'razorpay_order_id' );
 						if ( self::validate_payment_amount( $payment_data['data'], $transaction_intent->charge_amount )
 							&& self::validate_payment_currency( $payment_data['data'] )
-							&& self::validate_payment_order_binding( $payment_data['data'], 'transaction_intent_key', $transaction_intent->intent_key ) ) {
+							&& self::validate_payment_intent_notes( $payment_data['data'], 'transaction_intent_key', $transaction_intent->intent_key )
+							&& self::validate_payment_order_binding( $payment_data['data'], $expected_order_id ) ) {
 							$result['status']    = LATEPOINT_STATUS_SUCCESS;
 							$result['processor'] = self::$processor_code;
 							$result['charge_id'] = $payment_data['data']['id'];
 							$result['amount']    = $payment_data['data']['amount'];
-							$result['kind']      = $payment_data['data']['status'] === 'authorized' ? LATEPOINT_TRANSACTION_KIND_AUTHORIZATION : LATEPOINT_TRANSACTION_KIND_CAPTURE;
+							$result['kind']      = LATEPOINT_TRANSACTION_KIND_CAPTURE;
 						} else {
 							$result['status']  = LATEPOINT_STATUS_ERROR;
 							$result['message'] = __( 'Payment verification failed', 'latepoint' );
-							OsDebugHelper::log( 'Razorpay payment verification failed (amount/currency/notes binding) for transaction intent ' . $transaction_intent->id, 'razorpay_connect_error' );
+							OsDebugHelper::log( 'Razorpay payment verification failed (amount/currency/notes/order binding) for transaction intent ' . $transaction_intent->id, 'razorpay_connect_error' );
 							$transaction_intent->add_error( 'send_to_step', $result['message'], 'payment' );
 						}
 					} else {
@@ -378,6 +403,11 @@ class OsRazorpayConnectHelper {
 			OsDebugHelper::log( $error_message );
 			throw new Exception( $error_message );
 		}
+		// Persist the server-created order id (in the intent's other_data) so payment verification can bind the
+		// returned payment to the exact order we created for this intent.
+		if ( ! empty( $result['data']['order_id'] ) ) {
+			$order_intent->set_other_data_value( 'razorpay_order_id', $result['data']['order_id'] );
+		}
 		return $result['data'];
 	}
 
@@ -400,6 +430,11 @@ class OsRazorpayConnectHelper {
 			$error_message = ! empty( $result['error'] ) ? sprintf( __( 'Payment Error: %s', 'latepoint' ), esc_html( $result['error'] ) ) : __( 'Error generating Razorpay order for transaction', 'latepoint' );
 			OsDebugHelper::log( $error_message );
 			throw new Exception( $error_message );
+		}
+		// Persist the server-created order id (in the intent's payment_data) so payment verification can bind the
+		// returned payment to the exact order we created for this intent.
+		if ( ! empty( $result['data']['order_id'] ) ) {
+			$transaction_intent->set_payment_data_value( 'razorpay_order_id', $result['data']['order_id'] );
 		}
 		return $result['data'];
 	}

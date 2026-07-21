@@ -20,6 +20,7 @@
 // @codekit-prepend "bin/admin/_steps.js";
 // @codekit-prepend "bin/admin/_orders.js";
 // @codekit-prepend "bin/admin/_stripe_connect.js";
+// @codekit-prepend "bin/admin/_paypal_connect.js";
 // @codekit-prepend "bin/admin/_razorpay_connect.js";
 
 

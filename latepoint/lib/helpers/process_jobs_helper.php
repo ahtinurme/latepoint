@@ -156,9 +156,11 @@ class OsProcessJobsHelper {
 
 		$job->status = LATEPOINT_JOB_STATUS_SCHEDULED;
 		$job->save();
-		// execute immediately, if there is no delay(time offset) specified
-		// todo add ability toggling setting to allow delayed execution even on instant events (to speed up frontend experience for customers)
-		if ( ! $is_in_the_future ) {
+		// execute immediately only when there is no configured time offset AND the event is not in the future;
+		// if an offset is set, always defer to the cron runner so the delay is honoured even on edge cases
+		// where the computed time lands at or just before now (e.g. "1 minute after" on a slow server).
+		$has_time_offset = ! empty( $process->time_offset );
+		if ( ! $is_in_the_future && ! $has_time_offset ) {
 			$job->run();
 		}
 	}
@@ -412,15 +414,15 @@ class OsProcessJobsHelper {
 	 * @return string
 	 */
 	public static function should_modify_event_time( OsProcessModel $process, $opposite = false ): string {
-		if ( empty( $process->time_offset ) ) {
-			// no time offset
+		if ( empty( $process->time_offset ) || empty( $process->time_offset['value'] ) || empty( $process->time_offset['unit'] ) ) {
+			// no time offset, or incomplete offset data
 			return '';
-		} else {
-			$time_offset_settings = $process->time_offset;
-			// offset, calculate how much to modify by
-			$sign      = ( $opposite ) ? ( ( $time_offset_settings['before_after'] == 'after' ) ? '-' : '+' ) : ( ( $time_offset_settings['before_after'] == 'after' ) ? '+' : '-' );
-			$modify_by = $sign . $time_offset_settings['value'] . ' ' . $time_offset_settings['unit'];
-			return $modify_by;
 		}
+		$time_offset_settings = $process->time_offset;
+		$before_after         = $time_offset_settings['before_after'] ?? 'after';
+		// offset, calculate how much to modify by
+		$sign      = ( $opposite ) ? ( ( $before_after == 'after' ) ? '-' : '+' ) : ( ( $before_after == 'after' ) ? '+' : '-' );
+		$modify_by = $sign . absint( $time_offset_settings['value'] ) . ' ' . $time_offset_settings['unit'];
+		return $modify_by;
 	}
 }

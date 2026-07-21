@@ -7,7 +7,7 @@
  * Plugin Name: LatePoint Addon - Pro Features
  * Plugin URI:  https://latepoint.com/
  * Description: LatePoint Addon that adds a set of Pro features to a base plugin
- * Version:     1.6.1
+ * Version:     1.6.3
  * Author:      LatePoint
  * Author URI:  https://latepoint.com/
  * Text Domain: latepoint-pro-features
@@ -32,7 +32,7 @@ if ( ! class_exists( 'LatePointAddonProFeatures' ) ) :
 		 * Addon version.
 		 *
 		 */
-		public $version    = '1.6.1';
+		public $version    = '1.6.3';
 		public $db_version = '1.1.3';
 		public $addon_name = 'latepoint-pro-features';
 
@@ -124,7 +124,7 @@ if ( ! class_exists( 'LatePointAddonProFeatures' ) ) :
 				define( 'LATEPOINT_ADDON_PRO_VERSION', $this->version );
 			}
 			if ( ! defined( 'LATEPOINT_ADDON_PRO_MIN_REQUIRED_FREE_VERSION' ) ) {
-				define( 'LATEPOINT_ADDON_PRO_MIN_REQUIRED_FREE_VERSION', '5.6.3' );
+				define( 'LATEPOINT_ADDON_PRO_MIN_REQUIRED_FREE_VERSION', '5.6.5' );
 			}
 
 			/* Locations */
@@ -249,6 +249,7 @@ if ( ! class_exists( 'LatePointAddonProFeatures' ) ) :
 			include_once dirname( __FILE__ ) . '/lib/controllers/whatsapp_controller.php';
 			include_once dirname( __FILE__ ) . '/lib/controllers/assets_controller.php';
 			include_once dirname( __FILE__ ) . '/lib/controllers/white_label_controller.php';
+			include_once dirname( __FILE__ ) . '/lib/controllers/booking_reasons_controller.php';
 
 			// HELPERS
 			include_once dirname( __FILE__ ) . '/lib/helpers/addons_helper.php';
@@ -287,6 +288,8 @@ if ( ! class_exists( 'LatePointAddonProFeatures' ) ) :
 			include_once dirname( __FILE__ ) . '/lib/helpers/feature_service_display_mode_helper.php';
 			include_once dirname( __FILE__ ) . '/lib/helpers/feature_white_label_helper.php';
 			include_once dirname( __FILE__ ) . '/lib/helpers/feature_url_prefill_helper.php';
+			include_once dirname( __FILE__ ) . '/lib/helpers/feature_max_bookings_per_day_helper.php';
+			include_once dirname( __FILE__ ) . '/lib/helpers/feature_booking_reasons_helper.php';
 
 
 			// MODELS
@@ -325,6 +328,12 @@ if ( ! class_exists( 'LatePointAddonProFeatures' ) ) :
 
 			add_filter( 'latepoint_blocked_periods_for_range', [ $this, 'insert_blocked_periods_for_date_range' ], 10, 2 );
 			add_action( 'latepoint_calendar_daily_timeline', [ $this, 'output_blocked_periods_on_timeline' ], 10, 2 );
+
+			// Maximum bookings per day ( per-service / per-agent; global setting commented out - re-enable when needed ).
+			add_filter( 'latepoint_blocked_periods_for_range', 'OsFeatureMaxBookingsPerDayHelper::enforce_daily_limit', 10, 3 );
+			// add_action( 'latepoint_general_settings_section_restrictions_after', 'OsFeatureMaxBookingsPerDayHelper::render_global_field' );
+			add_action( 'latepoint_service_saved', 'OsFeatureMaxBookingsPerDayHelper::save_service_setting', 10, 3 );
+			add_action( 'latepoint_agent_saved', 'OsFeatureMaxBookingsPerDayHelper::save_agent_setting', 10, 3 );
 			add_action( 'latepoint_quick_calendar_actions_settings', [ $this, 'output_quick_actions_on_calendar' ], 10, 6 );
 
 			// Analytics.
@@ -426,12 +435,10 @@ if ( ! class_exists( 'LatePointAddonProFeatures' ) ) :
 
 			// Reschedule
 			add_filter( 'latepoint_customer_reschedule_settings', [ $this, 'add_reschedule_settings_for_customer' ], 10, 1 );
-			add_filter(
-				'latepoint_is_feature_reschedule_available',
-				function ( $is_available ) {
-					return true;
-				}
-			);
+
+			// Cancellation / reschedule reason feature.
+			OsFeatureBookingReasonsHelper::init_hooks();
+			add_filter( 'latepoint_is_feature_reschedule_available', '__return_true' );
 
 
 			/* ************************ */
@@ -861,6 +868,7 @@ if ( ! class_exists( 'LatePointAddonProFeatures' ) ) :
 						); ?>
 					</div>
 				</div>
+				<?php echo OsFormHelper::toggler_field( 'settings[enable_reschedule_reason]', __( 'Ask customer for a reschedule reason', 'latepoint-pro-features' ), OsSettingsHelper::is_on( 'enable_reschedule_reason' ), false, false, [ 'sub_label' => __( 'If enabled, customers are prompted for a reason before rescheduling', 'latepoint-pro-features' ) ] ); ?>
 			</div>
 			<?php
 			$html = ob_get_clean();

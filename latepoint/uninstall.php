@@ -105,6 +105,7 @@ $options_to_delete = [
 	'latepoint_db_version',
 	'latepoint_wizard_visited',
 	'latepoint_redirect_to_wizard',
+	'latepoint_first_booking_created',
 ];
 
 foreach ( $options_to_delete as $option ) {

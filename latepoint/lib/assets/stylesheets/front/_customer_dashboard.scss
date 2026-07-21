@@ -762,6 +762,77 @@
       }
     }
   }
+  .lp-paypal-connect-button-container {
+    paypal-button,
+    venmo-button,
+    paypal-pay-later-button {
+      display: block;
+      width: 100%;
+    }
+
+    venmo-button,
+    paypal-pay-later-button {
+      margin-top: 10px;
+    }
+  }
+  .lp-paypal-card-separator {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin: 16px 0;
+    color: $color-faded;
+    font-size: floor($font-size-base * 0.85);
+    &:before,
+    &:after {
+      content: "";
+      flex: 1;
+      height: 1px;
+      background-color: rgba(0, 0, 0, 0.1);
+    }
+    span {
+      white-space: nowrap;
+    }
+  }
+  .lp-paypal-card-fields-container {
+    .lp-card-number-field,
+    .lp-card-expiry-field,
+    .lp-card-cvv-field {
+      margin-bottom: 10px;
+      height: 45px;
+      overflow: hidden;
+      paypal-hosted-card-field {
+        display: block;
+        height: 100%;
+      }
+    }
+    .lp-card-fields-row {
+      display: flex;
+      gap: 10px;
+      .lp-card-expiry-field,
+      .lp-card-cvv-field {
+        flex: 1;
+      }
+    }
+    .lp-card-submit-btn {
+      width: 100%;
+      margin-top: 4px;
+    }
+  }
+  .lp-paypal-card-disclosure {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+    font-size: floor($font-size-base * 0.8);
+    color: $color-faded;
+    margin-top: 8px;
+    img {
+      display: block;
+      width: 16px;
+      height: 16px;
+    }
+  }
+
   &.os-loading {
     .latepoint-lightbox-footer {
       display: none;

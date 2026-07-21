@@ -293,6 +293,22 @@ class OsCalendarHelper {
 
 		$now_datetime = OsTimeHelper::now_datetime_object();
 
+		/**
+		 * Filters the datetime treated as "now" when a calendar month is generated.
+		 *
+		 * Governs which day is "today" and which days are "in the past" (os-today / os-day-passed),
+		 * the default earliest-possible-booking, and the start of the fetched booking range.
+		 *
+		 * @param {OsWpDateTime} $now_datetime current datetime, defaults to the server WordPress timezone
+		 * @param {array} $settings calendar settings; includes 'timezone_name' (the customer's selected timezone)
+		 * @returns {OsWpDateTime} datetime object used as "now" for day classification and range calculation
+		 *
+		 * @since 5.6.9
+		 * @hook latepoint_calendar_now_datetime
+		 *
+		 */
+		$now_datetime = apply_filters( 'latepoint_calendar_now_datetime', $now_datetime, $settings );
+
 		// figure out when the earliest and latest bookings can be placed
 		try {
 			$earliest_possible_booking = ( $settings['earliest_possible_booking'] ) ? new OsWpDateTime( $settings['earliest_possible_booking'] ) : clone $now_datetime;

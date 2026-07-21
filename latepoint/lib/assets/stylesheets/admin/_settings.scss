@@ -465,6 +465,7 @@
 	.payment-processor-connect-status-inner {
 		display: flex;
 		align-items: center;
+		flex-wrap: wrap;
 		gap: 20px;
 	}
 	.os-loading-spinner {
@@ -530,7 +531,8 @@
 		color: #2d251b;
 	}
 	.stripe-connect-account-info,
-	.razorpay-connect-account-info {
+	.razorpay-connect-account-info,
+	.paypal-connect-account-info {
 		margin-left: auto;
 		padding: 5px;
 		background-color: #eee;
@@ -568,6 +570,30 @@
 			&:before {
 				@include loading-circle($brand-primary, 20px);
 			}
+		}
+	}
+	.paypal-connect-status-checklist {
+		flex-basis: 100%;
+	}
+	.paypal-connect-status-info-wrapper {
+		display: flex;
+		width: 100%;
+	}
+	.paypal-connect-status-item {
+		display: flex;
+		align-items: center;
+		gap: 6px;
+		font-size: $body-font-size-xs;
+		padding: 6px 10px;
+		border-radius: $border-radius-sm;
+		margin-top: 8px;
+		&--warning {
+			background-color: #fff3cb;
+			color: #785a1b;
+		}
+		&--info {
+			background-color: #e8f0fe;
+			color: #1a4d8f;
 		}
 	}
 }

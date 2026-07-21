@@ -20,7 +20,8 @@ abstract class LatePointAbstractAbility {
 	protected bool $read_only     = true;
 	protected bool $destructive   = false;
 	protected bool $idempotent    = false;
-
+	protected string $role        = LATEPOINT_USER_TYPE_ADMIN;
+	
 	public function __construct() {
 		$this->configure();
 	}
@@ -63,6 +64,16 @@ abstract class LatePointAbstractAbility {
 		}
 		if ( ! $this->read_only && ! $this->destructive
 			&& ! OsSettingsHelper::is_on( 'latepoint_abilities_api_edit' ) ) {
+			return false;
+		}
+
+		// Role gate: when an ability declares a required $role, only that backend user type may
+		// invoke it (administrators are always allowed). Leave $role empty ('') to allow any
+		// capable backend user. Switch an ability's audience by setting $role in its configure():
+		//   $this->role = LATEPOINT_USER_TYPE_ADMIN;  // admin only
+		//   $this->role = LATEPOINT_USER_TYPE_AGENT;  // agents (and admins)
+		if ( ! empty( $this->role )
+			&& OsAuthHelper::get_current_user()->backend_user_type !== $this->role ) {
 			return false;
 		}
 

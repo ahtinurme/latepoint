@@ -41,7 +41,7 @@ if ( ! class_exists( 'OsProcessesController' ) ) :
 					array(
 						'status'  => LATEPOINT_STATUS_SUCCESS,
 						'message' => $trigger_conditions_form_section_html,
-					) 
+					)
 				);
 			}
 		}
@@ -59,7 +59,7 @@ if ( ! class_exists( 'OsProcessesController' ) ) :
 					array(
 						'status'  => LATEPOINT_STATUS_SUCCESS,
 						'message' => $html,
-					) 
+					)
 				);
 			}
 		}
@@ -78,7 +78,7 @@ if ( ! class_exists( 'OsProcessesController' ) ) :
 					array(
 						'status'  => LATEPOINT_STATUS_SUCCESS,
 						'message' => $html,
-					) 
+					)
 				);
 			}
 		}
@@ -121,7 +121,7 @@ if ( ! class_exists( 'OsProcessesController' ) ) :
 					array(
 						'status'  => $status,
 						'message' => $response_html,
-					) 
+					)
 				);
 			}
 		}
@@ -149,8 +149,14 @@ if ( ! class_exists( 'OsProcessesController' ) ) :
 			if ( isset( $process_data['actions'] ) ) {
 				$actions = OsProcessesHelper::iterate_trigger_conditions( $trigger_conditions, $process_data['actions'] );
 
-				if ( $process_data['event']['has_time_offset'] == LATEPOINT_VALUE_ON ) {
-					$actions[0]['time_offset'] = $process_data['event']['time_offset'];
+				$has_time_offset = ( ( $process_data['event']['has_time_offset'] ?? '' ) == LATEPOINT_VALUE_ON );
+				$time_offset     = $process_data['event']['time_offset'] ?? [];
+				if ( $has_time_offset && ! empty( $time_offset['value'] ) && ! empty( $time_offset['unit'] ) ) {
+					$actions[0]['time_offset'] = $time_offset;
+
+					$actions[0]['time_offset']['value']        = absint( $time_offset['value'] );
+					$actions[0]['time_offset']['unit']         = sanitize_text_field( $time_offset['unit'] );
+					$actions[0]['time_offset']['before_after'] = sanitize_text_field( $time_offset['before_after'] ?? 'after' );
 				} else {
 					$actions[0]['time_offset'] = [];
 				}
@@ -168,7 +174,7 @@ if ( ! class_exists( 'OsProcessesController' ) ) :
 						[
 							'process_id' => $process->id,
 							'status'     => LATEPOINT_JOB_STATUS_SCHEDULED,
-						] 
+						]
 					);
 					/**
 					 * Process was updated
@@ -207,7 +213,7 @@ if ( ! class_exists( 'OsProcessesController' ) ) :
 					array(
 						'status'  => $status,
 						'message' => $message,
-					) 
+					)
 				);
 			}
 		}
@@ -220,7 +226,7 @@ if ( ! class_exists( 'OsProcessesController' ) ) :
 					array(
 						'status'  => LATEPOINT_STATUS_SUCCESS,
 						'message' => $trigger_condition_html,
-					) 
+					)
 				);
 			}
 		}
@@ -235,7 +241,7 @@ if ( ! class_exists( 'OsProcessesController' ) ) :
 					array(
 						'status'  => LATEPOINT_STATUS_SUCCESS,
 						'message' => $response_html,
-					) 
+					)
 				);
 			}
 		}
@@ -245,7 +251,7 @@ if ( ! class_exists( 'OsProcessesController' ) ) :
 				[
 					'type' => $this->params['action_type'],
 					'id'   => $this->params['action_id'],
-				] 
+				]
 			);
 
 			$template_id = $this->params['template_id'] ?? false;
@@ -258,7 +264,7 @@ if ( ! class_exists( 'OsProcessesController' ) ) :
 					array(
 						'status'  => LATEPOINT_STATUS_SUCCESS,
 						'message' => \LatePoint\Misc\ProcessAction::generate_settings_fields( $action ),
-					) 
+					)
 				);
 			}
 		}
@@ -290,7 +296,7 @@ if ( ! class_exists( 'OsProcessesController' ) ) :
 					[
 						'status'  => $result['status'],
 						'message' => $result['message'],
-					] 
+					]
 				);
 			}
 		}
@@ -341,7 +347,7 @@ if ( ! class_exists( 'OsProcessesController' ) ) :
 					[
 						'status'  => $status,
 						'message' => $message,
-					] 
+					]
 				);
 			}
 		}
@@ -363,7 +369,7 @@ if ( ! class_exists( 'OsProcessesController' ) ) :
 					[
 						'class'      => 'process-test-data-source-selector',
 						'data-route' => OsRouterHelper::build_route_name( 'processes', 'reload_action_test_preview' ),
-					] 
+					]
 				);
 			}
 			$this->vars['action_settings_html'] = $action_settings_html;
@@ -388,7 +394,7 @@ if ( ! class_exists( 'OsProcessesController' ) ) :
 					[
 						'class'      => 'process-action-test-data-source-selector',
 						'data-route' => OsRouterHelper::build_route_name( 'processes', 'reload_action_test_preview' ),
-					] 
+					]
 				);
 				$action->selected_data_objects[] = [
 					'model' => $data_source['model'],
@@ -423,7 +429,7 @@ if ( ! class_exists( 'OsProcessesController' ) ) :
 					[
 						'status'  => LATEPOINT_STATUS_SUCCESS,
 						'message' => $action->generate_preview(),
-					] 
+					]
 				);
 			}
 		}

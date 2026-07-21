@@ -193,7 +193,8 @@
 		overflow: hidden;
 	}
 
-	&.lp-processor-logo-paypal {
+	&.lp-processor-logo-paypal,
+	&.lp-processor-logo-paypal_ppcp {
 		background-image: url(#{$images-path}/processor-paypal-short.png);
 		background-size: contain;
 		color: transparent;

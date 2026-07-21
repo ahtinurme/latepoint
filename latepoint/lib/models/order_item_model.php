@@ -194,9 +194,38 @@ class OsOrderItemModel extends OsModel {
 		if ( ! $id && isset( $this->id ) ) {
 			$id = $this->id;
 		}
+		// Delete bookings individually so hooks run and related data (e.g. Google Calendar events) is cleaned up.
+		$bookings           = new OsBookingModel();
+		$bookings_to_delete = $bookings->where( [ 'order_item_id' => $id ] )->get_results_as_models();
+		if ( $bookings_to_delete ) {
+			foreach ( $bookings_to_delete as $booking_to_delete ) {
+				$booking_id_to_delete = $booking_to_delete->id;
 
-		$bookings = new OsBookingModel();
-		$bookings->delete_where( [ 'order_item_id' => $id ] );
+				/**
+				 * Fires right before a booking is about to be deleted
+				 *
+				 * @param {integer} $booking_id ID of the booking that will be deleted
+				 *
+				 * @since 5.0.0
+				 * @hook latepoint_booking_will_be_deleted
+				 *
+				 */
+				do_action( 'latepoint_booking_will_be_deleted', $booking_id_to_delete );
+
+				$booking_to_delete->delete();
+
+				/**
+				 * Fires right after a booking has been deleted
+				 *
+				 * @param {integer} $booking_id ID of the booking that was deleted
+				 *
+				 * @since 5.0.0
+				 * @hook latepoint_booking_deleted
+				 *
+				 */
+				do_action( 'latepoint_booking_deleted', $booking_id_to_delete );
+			}
+		}
 
 		return parent::delete( $id );
 	}

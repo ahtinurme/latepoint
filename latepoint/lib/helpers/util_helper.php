@@ -857,9 +857,15 @@ class OsUtilHelper {
 		if ( OsPaymentsHelper::is_payment_processor_enabled( OsStripeConnectHelper::$processor_code ) ) {
 			$default_js_files[] = 'stripe';
 		}
+
+		if ( OsPaymentsHelper::is_payment_processor_enabled( OsPaypalConnectHelper::$processor_code ) ) {
+			$default_js_files[] = 'paypal-sdk-v6';
+		}
+
 		if ( OsPaymentsHelper::is_payment_processor_enabled( OsRazorpayConnectHelper::$processor_code ) ) {
 			$default_js_files[] = 'razorpay-checkout';
 		}
+
 		$js_files = apply_filters( 'latepoint_clean_layout_js_files', $default_js_files );
 		global $wp_scripts;
 

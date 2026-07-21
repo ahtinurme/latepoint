@@ -2,7 +2,7 @@
 /**
  * Plugin Name: LatePoint
  * Description: Appointment Scheduling Software for WordPress
- * Version: 5.6.8
+ * Version: 5.6.9
  * Author: LatePoint
  * Author URI: https://latepoint.com
  * Plugin URI: https://latepoint.com
@@ -29,7 +29,7 @@ if ( ! class_exists( 'LatePoint' ) ) :
 		 * LatePoint version.
 		 *
 		 */
-		public $version    = '5.6.8';
+		public $version    = '5.6.9';
 		public $db_version = '2.3.2';
 
 		/**
@@ -731,6 +731,11 @@ if ( ! class_exists( 'LatePoint' ) ) :
 				define( 'LATEPOINT_STRIPE_CONNECT_URL', LATEPOINT_APP_CONNECT_URL );
 			}
 
+			// PayPal Connect
+			if ( ! defined( 'LATEPOINT_PAYPAL_CONNECT_URL' ) ) {
+				define( 'LATEPOINT_PAYPAL_CONNECT_URL', LATEPOINT_APP_CONNECT_URL );
+			}
+
 			// Razorpay Connect
 			if ( ! defined( 'LATEPOINT_RAZORPAY_CONNECT_URL' ) ) {
 				define( 'LATEPOINT_RAZORPAY_CONNECT_URL', LATEPOINT_APP_CONNECT_URL );
@@ -772,6 +777,7 @@ if ( ! class_exists( 'LatePoint' ) ) :
 			include_once LATEPOINT_ABSPATH . 'lib/controllers/manage_order_by_key_controller.php';
 			include_once LATEPOINT_ABSPATH . 'lib/controllers/events_controller.php';
 			include_once LATEPOINT_ABSPATH . 'lib/controllers/stripe_connect_controller.php';
+			include_once LATEPOINT_ABSPATH . 'lib/controllers/paypal_connect_controller.php';
 			include_once LATEPOINT_ABSPATH . 'lib/controllers/razorpay_connect_controller.php';
 			include_once LATEPOINT_ABSPATH . 'lib/controllers/invoices_controller.php';
 			include_once LATEPOINT_ABSPATH . 'lib/controllers/support_topics_controller.php';
@@ -879,6 +885,7 @@ if ( ! class_exists( 'LatePoint' ) ) :
 			include_once LATEPOINT_ABSPATH . 'lib/helpers/roles_helper.php';
 			include_once LATEPOINT_ABSPATH . 'lib/helpers/price_breakdown_helper.php';
 			include_once LATEPOINT_ABSPATH . 'lib/helpers/stripe_connect_helper.php';
+			include_once LATEPOINT_ABSPATH . 'lib/helpers/paypal_connect_helper.php';
 			include_once LATEPOINT_ABSPATH . 'lib/helpers/razorpay_connect_helper.php';
 			include_once LATEPOINT_ABSPATH . 'lib/helpers/pages_helper.php';
 			include_once LATEPOINT_ABSPATH . 'lib/helpers/elementor_helper.php';
@@ -889,6 +896,7 @@ if ( ! class_exists( 'LatePoint' ) ) :
 			include_once LATEPOINT_ABSPATH . 'lib/helpers/support_topics_helper.php';
 			include_once LATEPOINT_ABSPATH . 'lib/helpers/otp_helper.php';
 			include_once LATEPOINT_ABSPATH . 'lib/helpers/nps_survey_helper.php';
+			include_once LATEPOINT_ABSPATH . 'lib/helpers/admin_nudges_helper.php';
 			include_once LATEPOINT_ABSPATH . 'lib/helpers/analytics_helper.php';
 
 			// MISC
@@ -1069,6 +1077,24 @@ if ( ! class_exists( 'LatePoint' ) ) :
 
 			add_action( 'latepoint_customer_edit_form_after', 'OsStripeConnectHelper::output_stripe_link_on_customer_quick_form' );
 
+			// PayPal Connect
+
+			add_filter( 'latepoint_payment_processors', 'OsPaypalConnectHelper::register_payment_processor' );
+			add_action( 'latepoint_payment_processor_settings', 'OsPaypalConnectHelper::add_settings_fields', 10 );
+			add_action( 'latepoint_step_payment__pay_content', 'OsPaypalConnectHelper::output_payment_step_contents', 10 );
+			add_action( 'latepoint_order_payment__pay_content_after', 'OsPaypalConnectHelper::output_order_payment_pay_contents', 10 );
+
+			add_filter( 'latepoint_convert_charge_amount_to_requirements', 'OsPaypalConnectHelper::convert_charge_amount_to_requirements', 10, 2 );
+			add_filter( 'latepoint_process_payment_for_order_intent', 'OsPaypalConnectHelper::process_payment', 10, 2 );
+			add_filter( 'latepoint_process_payment_for_transaction_intent', 'OsPaypalConnectHelper::process_payment_for_transaction_intent', 10, 2 );
+			add_filter( 'latepoint_transaction_intent_specs_charge_amount', 'OsPaypalConnectHelper::convert_transaction_intent_charge_amount_to_specs', 10, 2 );
+
+			add_filter( 'latepoint_get_all_payment_times', 'OsPaypalConnectHelper::add_all_payment_methods_to_payment_times' );
+			add_filter( 'latepoint_get_enabled_payment_times', 'OsPaypalConnectHelper::add_enabled_payment_methods_to_payment_times' );
+			add_filter( 'latepoint_transaction_is_refund_available', 'OsPaypalConnectHelper::transaction_is_refund_available', 10, 2 );
+			add_filter( 'latepoint_process_refund', 'OsPaypalConnectHelper::process_refund', 10, 3 );
+			add_action( 'latepoint_step_confirmation_head_info_after', 'OsPaypalConnectHelper::output_confirmation_payment_source', 10, 1 );
+
 			add_action( 'save_post', 'OsBlockHelper::save_blocks_styles' );
 			// misc
 			add_action( 'latepoint_after_step_content', 'OsStepsHelper::output_preset_fields' );
@@ -1078,6 +1104,9 @@ if ( ! class_exists( 'LatePoint' ) ) :
 
 			// Initialize NPS Survey.
 			OsNpsSurveyHelper::get_instance();
+
+			// Initialize admin nudges (first-booking payment nudge, future nudges).
+			OsAdminNudgesHelper::get_instance();
 
 			do_action( 'latepoint_init_hooks' );
 		}
@@ -1501,6 +1530,24 @@ if ( ! class_exists( 'LatePoint' ) ) :
 			$localized_vars['stripe_connect_route_create_payment_intent']                        = OsRouterHelper::build_route_name( 'stripe_connect', 'create_payment_intent' );
 			$localized_vars['stripe_connect_route_create_payment_intent_for_transaction_intent'] = OsRouterHelper::build_route_name( 'stripe_connect', 'create_payment_intent_for_transaction' );
 
+			$localized_vars['is_paypal_connect_enabled'] = OsPaymentsHelper::is_payment_processor_enabled( OsPaypalConnectHelper::$processor_code );
+			if ( OsPaymentsHelper::is_payment_processor_enabled( OsPaypalConnectHelper::$processor_code ) ) {
+				$localized_vars['paypal_connect_config'] = [
+					'clientId'             => OsPaypalConnectHelper::get_partner_client_id(),
+					'merchantId'           => OsPaypalConnectHelper::get_connect_merchant_id(),
+					'partnerAttributionId' => 'BrainstormForceLatePoint_Ecom',
+					'components'           => [ 'paypal-payments', 'venmo-payments', 'paypal-guest-payments', 'card-fields' ],
+					'currency'             => strtoupper( OsPaypalConnectHelper::get_currency_iso_code() ),
+					'acdcEligible'         => OsPaypalConnectHelper::get_acdc_eligible(),
+					'enableVenmo'          => true,
+					'enablePayLater'       => ! OsSettingsHelper::is_on( 'paypal_connect_disable_pay_later' ),
+					'locale'               => 'en-US',
+				];
+			}
+			$localized_vars['paypal_connect_route_create_order']                 = OsRouterHelper::build_route_name( 'paypal_connect', 'create_order' );
+			$localized_vars['paypal_connect_route_create_order_for_transaction'] = OsRouterHelper::build_route_name( 'paypal_connect', 'create_order_for_transaction' );
+			$localized_vars['paypal_connect_route_capture_order']                = OsRouterHelper::build_route_name( 'paypal_connect', 'capture_order' );
+
 			$localized_vars['is_razorpay_connect_enabled']                         = OsPaymentsHelper::is_payment_processor_enabled( OsRazorpayConnectHelper::$processor_code );
 			$localized_vars['razorpay_connect_route_create_order']                 = OsRouterHelper::build_route_name( 'razorpay_connect', 'create_razorpay_order' );
 			$localized_vars['razorpay_connect_route_create_order_for_transaction'] = OsRouterHelper::build_route_name( 'razorpay_connect', 'create_razorpay_order_for_transaction' );
@@ -1524,6 +1571,15 @@ if ( ! class_exists( 'LatePoint' ) ) :
 			}
 			if ( OsPaymentsHelper::is_payment_processor_enabled( OsRazorpayConnectHelper::$processor_code ) ) {
 				wp_enqueue_script( 'razorpay-checkout', 'https://checkout.razorpay.com/v1/checkout.js', false, null );
+			}
+
+			if ( OsPaymentsHelper::is_payment_processor_enabled( OsPaypalConnectHelper::$processor_code ) ) {
+				$paypal_sdk_url = OsSettingsHelper::is_env_payments_dev()
+					? 'https://www.sandbox.paypal.com/web-sdk/v6/core'
+					: 'https://www.paypal.com/web-sdk/v6/core';
+				$paypal_sdk_url = apply_filters( 'latepoint_paypal_connect_sdk_url', $paypal_sdk_url );
+
+				wp_enqueue_script( 'paypal-sdk-v6', $paypal_sdk_url, [], null, [ 'strategy' => 'async' ] );
 			}
 
 			wp_register_script( 'latepoint-vendor-front', $this->public_javascripts() . 'vendor-front.js', [ 'jquery' ], $this->version );

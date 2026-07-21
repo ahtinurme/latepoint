@@ -80,6 +80,12 @@ class OsAnalyticsHelper {
 		add_action( 'latepoint_onboarding_completed', [ __CLASS__, 'on_onboarding_completed' ] );
 		add_action( 'activated_plugin', [ __CLASS__, 'on_pro_addon_activated' ] );
 		add_action( 'latepoint_settings_updated', [ __CLASS__, 'on_payment_processors_connected' ] );
+		add_action( 'latepoint_booking_created',   [ __CLASS__, 'on_first_booking_created' ], 15 );
+		add_action( 'latepoint_service_saved',     [ __CLASS__, 'on_first_service_created' ], 15, 2 );
+		add_action( 'latepoint_agent_saved',       [ __CLASS__, 'on_first_agent_created' ], 15, 2 );
+		add_action( 'latepoint_process_created',   [ __CLASS__, 'on_first_process_created' ], 15 );
+		add_action( 'latepoint_customer_created',  [ __CLASS__, 'on_first_customer_created' ], 15 );
+		add_action( 'latepoint_customer_imported', [ __CLASS__, 'on_first_customer_imported' ], 15 );
 	}
 
 	/**
@@ -155,6 +161,122 @@ class OsAnalyticsHelper {
 	}
 
 	/**
+	 * Track first_booking_created event. Called via latepoint_booking_created hook.
+	 *
+	 * Sets a WP option on the 0 → 1 booking transition so the payment-gateway
+	 * nudge knows when to show. The BSF analytics dedup ensures the event is
+	 * transmitted only once even if the hook fires multiple times (e.g. recurring
+	 * bookings in a single checkout).
+	 *
+	 * @return void
+	 */
+	public static function on_first_booking_created() {
+		if ( get_option( 'latepoint_first_booking_created' ) ) {
+			return;
+		}
+		update_option( 'latepoint_first_booking_created', LATEPOINT_VERSION, false );
+		self::events()->track( 'first_booking_created', LATEPOINT_VERSION );
+	}
+
+	/**
+	 * Track first_service_created event. Called via latepoint_service_saved hook.
+	 *
+	 * @param OsServiceModel $service       The saved service model instance.
+	 * @param bool           $is_new_record Whether this is a new record or an update.
+	 * @return void
+	 */
+	public static function on_first_service_created( $service, $is_new_record ) {
+		if ( ! $is_new_record || get_option( 'latepoint_first_service_created' ) ) {
+			return;
+		}
+		update_option( 'latepoint_first_service_created', LATEPOINT_VERSION, false );
+		self::events()->track( 'first_service_created', LATEPOINT_VERSION );
+	}
+
+	/**
+	 * Track first_agent_created event. Called via latepoint_agent_saved hook.
+	 *
+	 * @param OsAgentModel $agent         The saved agent model instance.
+	 * @param bool         $is_new_record Whether this is a new record or an update.
+	 * @return void
+	 */
+	public static function on_first_agent_created( $agent, $is_new_record ) {
+		if ( ! $is_new_record || get_option( 'latepoint_first_agent_created' ) ) {
+			return;
+		}
+		update_option( 'latepoint_first_agent_created', LATEPOINT_VERSION, false );
+		self::events()->track( 'first_agent_created', LATEPOINT_VERSION );
+	}
+
+	/**
+	 * Track first_process_created event. Called via latepoint_process_created hook.
+	 *
+	 * @return void
+	 */
+	public static function on_first_process_created() {
+		if ( get_option( 'latepoint_first_process_created' ) ) {
+			return;
+		}
+		update_option( 'latepoint_first_process_created', LATEPOINT_VERSION, false );
+		self::events()->track( 'first_process_created', LATEPOINT_VERSION );
+	}
+
+	/**
+	 * Track first_customer_created event. Called via latepoint_customer_created hook.
+	 *
+	 * Fires from multiple call sites (admin, front-end booking flow, auth).
+	 * The option guard ensures the event is transmitted only once.
+	 *
+	 * @return void
+	 */
+	public static function on_first_customer_created() {
+		if ( get_option( 'latepoint_first_customer_created' ) ) {
+			return;
+		}
+		update_option( 'latepoint_first_customer_created', LATEPOINT_VERSION, false );
+		self::events()->track( 'first_customer_created', LATEPOINT_VERSION );
+	}
+
+	/**
+	 * Track first_customer_imported event. Called via latepoint_customer_imported hook.
+	 *
+	 * CSV import implies rows exist; no count check needed.
+	 *
+	 * @return void
+	 */
+	public static function on_first_customer_imported() {
+		if ( get_option( 'latepoint_first_customer_imported' ) ) {
+			return;
+		}
+		update_option( 'latepoint_first_customer_imported', LATEPOINT_VERSION, false );
+		self::events()->track( 'first_customer_imported', LATEPOINT_VERSION );
+	}
+
+	/**
+	 * Backfill a milestone event for existing installs during plugin update.
+	 *
+	 * If the guard option is not yet set and the entity table already has rows,
+	 * sets the guard to `migrated_{version}` and queues the event with
+	 * `source=migration` so analytics can distinguish the one-time baseline from
+	 * live adoption.
+	 *
+	 * @param string  $option_name WP option name used as the dedup guard.
+	 * @param OsModel $model       Fresh model instance used to check if any rows exist (LIMIT 1).
+	 * @param string  $event_name  BSF Analytics event name to track.
+	 * @return void
+	 */
+	private static function maybe_backfill_milestone( $option_name, $model, $event_name ) {
+		if ( get_option( $option_name ) ) {
+			return;
+		}
+		$row = $model->select( 'id' )->set_limit( 2 )->get_results();
+		if ( ! empty( $row ) ) {
+			update_option( $option_name, 'migrated_' . LATEPOINT_VERSION, false );
+			self::events()->track( $event_name, LATEPOINT_VERSION, [ 'source' => 'migration' ] );
+		}
+	}
+
+	/**
 	 * Track plugin_updated event. Called via latepoint_update_after hook.
 	 *
 	 * @param string $old_version The version before the update.
@@ -169,6 +291,13 @@ class OsAnalyticsHelper {
 			],
 			true
 		);
+
+		// Backfill milestones for sites that existed before this feature shipped.
+		self::maybe_backfill_milestone( 'latepoint_first_booking_created', new OsBookingModel(), 'first_booking_created' );
+		self::maybe_backfill_milestone( 'latepoint_first_service_created', new OsServiceModel(), 'first_service_created' );
+		self::maybe_backfill_milestone( 'latepoint_first_agent_created', new OsAgentModel(), 'first_agent_created' );
+		self::maybe_backfill_milestone( 'latepoint_first_process_created', new OsProcessModel(), 'first_process_created' );
+		self::maybe_backfill_milestone( 'latepoint_first_customer_created', new OsCustomerModel(), 'first_customer_created' );
 	}
 
 	/**
@@ -256,10 +385,12 @@ class OsAnalyticsHelper {
 
 		$stats_data['plugin_data']['latepoint']['numeric_values'] = [
 			'total_bookings'  => self::get_table_count( LATEPOINT_TABLE_BOOKINGS ),
+			'total_orders'    => self::get_table_count( LATEPOINT_TABLE_ORDERS ),
 			'total_services'  => self::get_table_count( LATEPOINT_TABLE_SERVICES ),
 			'total_agents'    => self::get_table_count( LATEPOINT_TABLE_AGENTS ),
 			'total_customers' => self::get_table_count( LATEPOINT_TABLE_CUSTOMERS ),
 			'total_locations' => self::get_table_count( LATEPOINT_TABLE_LOCATIONS ),
+			'total_processes' => self::get_table_count( LATEPOINT_TABLE_PROCESSES ),
 		];
 
 		// Add KPI tracking data.
@@ -288,14 +419,14 @@ class OsAnalyticsHelper {
 		$today    = current_time( 'Y-m-d' );
 
 		for ( $i = 1; $i <= 2; $i++ ) {
-			$date     = gmdate( 'Y-m-d', strtotime( $today . ' -' . $i . ' days' ) );
-			$bookings = self::get_daily_count( LATEPOINT_TABLE_BOOKINGS, $date );
-			$orders   = self::get_daily_count( LATEPOINT_TABLE_ORDERS, $date );
+			$date = gmdate( 'Y-m-d', strtotime( $today . ' -' . $i . ' days' ) );
 
 			$kpi_data[ $date ] = [
 				'numeric_values' => [
-					'bookings' => $bookings,
-					'orders'   => $orders,
+					'bookings'  => self::get_daily_count( LATEPOINT_TABLE_BOOKINGS, $date ),
+					'orders'    => self::get_daily_count( LATEPOINT_TABLE_ORDERS, $date ),
+					'services'  => self::get_daily_count( LATEPOINT_TABLE_SERVICES, $date ),
+					'customers' => self::get_daily_count( LATEPOINT_TABLE_CUSTOMERS, $date ),
 				],
 			];
 		}

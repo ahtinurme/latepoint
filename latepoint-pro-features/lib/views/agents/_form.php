@@ -87,6 +87,23 @@
                     </div>
                 </div>
             </div>
+            <div class="white-box section-anchor" id="stickySectionRestrictions">
+                <div class="white-box-header">
+                    <div class="os-form-sub-header">
+                        <h3><?php esc_html_e( 'Booking Restrictions', 'latepoint-pro-features' ); ?></h3>
+                    </div>
+                </div>
+                <div class="white-box-content">
+                    <div class="sub-section-content">
+                        <div class="latepoint-message latepoint-message-subtle"><?php esc_html_e( 'Limit the total number of bookings this agent can accept per day, across all services. Once reached, the day becomes unavailable for this agent. Leave blank or set to 0 to remove the limit.', 'latepoint-pro-features' ); ?></div>
+                        <div class="os-row">
+                            <div class="os-col-lg-6">
+								<?php OsFeatureMaxBookingsPerDayHelper::render_agent_field( $agent ); ?>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
 			<?php if ( OsRolesHelper::can_user( 'connection__edit' ) ) { ?>
                 <div class="white-box section-anchor" id="stickySectionServices">
                     <div class="white-box-header">
@@ -351,6 +368,7 @@
                 <div><a href="#stickySectionGeneral" class="is-active"><?php esc_html_e( 'General', 'latepoint-pro-features' ); ?></a></div>
                 <div><a href="#stickySectionContacts"><?php esc_html_e( 'Additional Contacts', 'latepoint-pro-features' ); ?></a></div>
                 <div><a href="#stickySectionExtra"><?php esc_html_e( 'Extra Info', 'latepoint-pro-features' ); ?></a></div>
+                <div><a href="#stickySectionRestrictions"><?php esc_html_e( 'Booking Restrictions', 'latepoint-pro-features' ); ?></a></div>
                 <div><a href="#stickySectionServices"><?php esc_html_e( 'Services', 'latepoint-pro-features' ); ?></a></div>
                 <div><a href="#stickySectionSchedule"><?php esc_html_e( 'Schedule', 'latepoint-pro-features' ); ?></a></div>
 

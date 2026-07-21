@@ -200,6 +200,18 @@ class OsRolesHelper {
 			$object                 = explode( '__', $action );
 			$groups[ $object[0] ][] = $object[1];
 		}
+
+		// Move single-action system groups to the end so CRUD groups (including add-ons)
+		// stay together near the top of the list.
+		$trailing_groups = [ 'chat', 'resource_schedule', 'settings', 'connection' ];
+		foreach ( $trailing_groups as $group_key ) {
+			if ( isset( $groups[ $group_key ] ) ) {
+				$group_actions = $groups[ $group_key ];
+				unset( $groups[ $group_key ] );
+				$groups[ $group_key ] = $group_actions;
+			}
+		}
+
 		return $groups;
 	}
 
@@ -370,6 +382,8 @@ class OsRolesHelper {
 			'service'           => __( 'Services', 'latepoint' ),
 			'bundle'            => __( 'Bundle', 'latepoint' ),
 			'location'          => __( 'Locations', 'latepoint' ),
+			'service_extra'     => __( 'Service Extras', 'latepoint' ),
+			'asset'             => __( 'Assets', 'latepoint' ),
 			'booking'           => __( 'Bookings & Orders', 'latepoint' ),
 			'customer'          => __( 'Customers', 'latepoint' ),
 			'transaction'       => __( 'Payments', 'latepoint' ),

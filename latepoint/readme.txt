@@ -1,9 +1,9 @@
 === Appointment Booking Plugin – LatePoint | Calendar & Scheduling for WordPress ===
 Contributors: latepoint
-Tags: appointment booking, appointment booking system, appointment scheduling, appointments, appointment booking calendar
+Tags: appointment booking, booking system, appointments, scheduling, booking
 Requires at least: 6.5
 Tested up to: 7.0
-Stable tag: 5.6.8
+Stable tag: 5.6.9
 Requires PHP: 7.4
 License: GPLv3
 License URI: https://www.gnu.org/licenses/gpl-3.0.html
@@ -253,11 +253,9 @@ LatePoint isn't just another booking plugin, it's designed to solve real-world s
 
 == Features You'll Love With the Plugin ==
 
-Free:
-
-✅ **Appointment booking form builder** - Build the form customers will fill while scheduling their appointments. 
+✅ **Appointment booking form builder** - Build the form customers will fill while scheduling their appointments.
 ✅ **Stripe and Razorpay payments at booking** - Accept a deposit the moment a client books.
-✅ **Admin dashboard** - Full calendar view with filters for appointments and services. 
+✅ **Admin dashboard** - Full calendar view with filters for appointments and services.
 ✅ **Multi-step booking wizard** - A clean, guided booking flow that works on any device without configuration.
 ✅ **Email notifications** - Automatic confirmations sent to both you and your client at booking.
 ✅ **Cancellation management** - Let clients cancel their own appointments without emailing you.
@@ -299,12 +297,15 @@ Here's what you unlock with LatePoint Pro:
 == Screenshots ==
 
 1. Modern multi-step booking form - A fast, beautiful interface your customers will actually enjoy using.
-2. Visual booking form builder - Customize booking steps with drag and drop.
+2. Service selection - Customers pick from your list of services right inside the booking form.
 3. Admin dashboard - See all your appointments at a glance, with filters and controls.
-4. Agent panel - Each agent gets their own login and schedule management tools.
-5. Customer dashboard - Let customers manage bookings without contacting you.
+4. Agent selection - Let customers choose the team member they want to book with.
+5. Date & time selection - Customers see real-time availability and pick a slot that works for them.
 6. Setup wizard - Get up and running in minutes with our guided onboarding.
 7. Calendar view - Easily view appointments by day, week, or month.
+8. Stripe payments - Connect Stripe to securely accept credit and debit card payments.
+9. Razorpay payments - Connect Razorpay to collect payments in local currencies.
+10. Issue refunds from the admin dashboard - Manage orders and process refunds without leaving WordPress.
 
 == Blocks ==
 
@@ -335,19 +336,19 @@ Yes, Stripe and Razorpay on the free plan. PayPal, Square, Mollie, MercadoPago, 
 Yes. Set a fixed deposit per service. Available on all plans including free. The balance can be collected later directly through customers. With the Pro version, you can collect the remaining amount via payment link and invoice.
 
 **Can I issue refunds from WordPress?**
-You can refund payments directly from the LatePoint dashboard. Processes through your payment gateway automatically.Here's [documentation](https://latepoint.com/docs/how-to-issue-refunds-in-latepoint/) to help you along the way. 
+You can refund payments directly from the LatePoint dashboard. Processes through your payment gateway automatically.Here's [documentation](https://latepoint.com/docs/how-to-issue-refunds-in-latepoint/) to help you along the way.
 
 **How do I reduce no-shows?**
-Enable deposits and make clients pay while they schedule their appointments. Combine with automated SMS/email reminders with the Pro version. 
+Enable deposits and make clients pay while they schedule their appointments. Combine with automated SMS/email reminders with the Pro version.
 
 **Does it sync with Google Calendar?**
 Yes, two-way sync with Google Calendar, Outlook, and Apple Calendar is available with the Pro plan.
 
 **Can clients reschedule or cancel themselves?**
-Yes, via their customer dashboard. You control the cancellation policy and whether deposits are refunded on cancellation. Rescheduling appointments is available with the Pro plan. 
+Yes, via their customer dashboard. You control the cancellation policy and whether deposits are refunded on cancellation. Rescheduling appointments is available with the Pro plan.
 
 **Does it work for group bookings?**
-Yes, you can enable group bookings for your clients with the Pro version. 
+Yes, you can enable group bookings for your clients with the Pro version.
 
 **Is LatePoint free or paid?**
 This is the free version, perfect for simple booking needs. Want advanced features like expanded payment options, Zoom integration, recurring appointments, or WhatsApp notifications? [Check out LatePoint Pro](https://latepoint.com/pricing/?utm_source=wordpressorg&utm_medium=plugin_listing&utm_campaign=free_plugin)
@@ -375,6 +376,19 @@ LatePoint® is a registered trademark. Please use the following format when ment
 
 == Changelog ==
 
+= 5.6.9 - July 16, 2026 =
+  - New
+    - Introduces the PayPal v6 payment gateway integration.
+
+  - Improvements
+    - Added filter 'latepoint_calendar_now_datetime' for calendar flexibility to better support customer timezone-based calendars.
+    - Reordered the Permitted Actions in Roles settings to improve organization and usability.
+    - Strengthened the Razorpay payment verification.
+
+  - Fixes
+    - Fixed delayed workflow actions running immediately in some case instead of waiting for the configured delay.
+    - Fixed an issue where Google Calendar events were not removed when bookings were deleted from an order in the admin area.
+
 = 5.6.8 - July 9, 2026 =
   - New
     - Added MCP server support with the /wp-json/latepoint/v1/mcp endpoint, AI client integration (such as Claude), and a settings panel for easy setup. Requires WordPress 6.9+ and the MCP Adapter plugin.
@@ -382,7 +396,7 @@ LatePoint® is a registered trademark. Please use the following format when ment
 
   - Improvements
     - Added the latepoint_should_load_front_scripts filter for conditional frontend asset loading.
-  
+
   - Fixes
     - Invoice numbers are now generated and locked at the time of creation to ensure consistency.
 
