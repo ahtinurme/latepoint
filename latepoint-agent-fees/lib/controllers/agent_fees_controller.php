@@ -51,17 +51,11 @@ if (!class_exists('OsAgentFeesController')) :
         public function save_fees() {
             $this->check_nonce('save_agent_fees');
 
-            $fees = [];
-            foreach ((array) ($this->params['fees'] ?? []) as $agent_id => $f) {
-                $fees[(int) $agent_id] = [
-                    'shifts'   => array_map(
-                        fn($i) => max(0, (float) ($f['shifts'][$i] ?? 0)),
-                        array_keys(LATEPOINT_AGENT_FEES_SHIFTS)
-                    ),
-                    'training' => max(0, (float) ($f['training'] ?? 0)),
-                ];
-            }
-            update_option('latepoint_agent_fees', $fees);
+            $f = (array) ($this->params['fees'] ?? []);
+            update_option('latepoint_agent_fees', [
+                'schedule' => max(0, (float) ($f['schedule'] ?? 0)),
+                'training' => max(0, (float) ($f['training'] ?? 0)),
+            ]);
 
             wp_safe_redirect(OsRouterHelper::build_link(['agent_fees', 'index'], [
                 'month' => $this->params['month'] ?? '',
