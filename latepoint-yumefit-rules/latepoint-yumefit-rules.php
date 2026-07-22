@@ -17,7 +17,9 @@
  *              (7) Admin-only service extras — extras flagged "Admin only" are
  *              hidden from the customer booking form but stay selectable on the
  *              admin appointment panel (products sold at the studio).
- * Version:     1.12.0
+ *              (8) EMS frequency limit — a customer can book an EMS training at
+ *              most once every 48h (option yumefit_ems_min_gap_hours).
+ * Version:     1.13.0
  * Author:      Yumefit
  * Text Domain: latepoint-yumefit-rules
  */
@@ -240,6 +242,66 @@ function yumefit_enforce_bundle_rules(array $errors, array $steps, array $steps_
                 $cap
             );
         }
+    }
+
+    return $errors;
+}
+
+
+/* -------------------------------------------------------------------------
+ * EMS booking frequency: a customer can book an EMS training at most once
+ * every N hours (option yumefit_ems_min_gap_hours, default 48) — the new
+ * booking must be at least N hours away from their other non-cancelled EMS
+ * bookings. Fail-open: only blocks once customer, service and time are known.
+ * Frontend booking flow only — admin-created bookings are not restricted.
+ */
+const YUMEFIT_EMS_SERVICES = [1, 2, 3, 4];
+
+add_filter('latepoint_check_steps_for_errors', 'yumefit_enforce_ems_gap', 25, 1);
+
+function yumefit_enforce_ems_gap(array $errors): array {
+    if (!class_exists('OsStepsHelper')) {
+        return $errors;
+    }
+
+    $booking = OsStepsHelper::$booking_object ?? null;
+    if (empty($booking) || empty($booking->start_date) || !is_numeric($booking->start_time ?? null)) {
+        return $errors;
+    }
+
+    if (!in_array((int) $booking->service_id, YUMEFIT_EMS_SERVICES, true)) {
+        return $errors;
+    }
+
+    $customer_id = (int) ($booking->customer_id ?: OsStepsHelper::get_customer_object_id());
+    if (!$customer_id) {
+        return $errors;
+    }
+
+    $gap_hours = (int) get_option('yumefit_ems_min_gap_hours', 48);
+    $start     = strtotime(substr((string) $booking->start_date, 0, 10)) + ((int) $booking->start_time) * 60;
+
+    // ponytail: local wall-clock compare (start_date + start_time), same as slots are stored
+    global $wpdb;
+    $ems_ids  = implode(',', YUMEFIT_EMS_SERVICES);
+    $conflict = (int) $wpdb->get_var($wpdb->prepare(
+        "SELECT COUNT(*) FROM {$wpdb->prefix}latepoint_bookings
+         WHERE customer_id = %d AND service_id IN ($ems_ids) AND status <> %s AND id <> %d
+           AND TIMESTAMP(start_date) + INTERVAL start_time MINUTE > %s
+           AND TIMESTAMP(start_date) + INTERVAL start_time MINUTE < %s",
+        $customer_id,
+        LATEPOINT_BOOKING_STATUS_CANCELLED,
+        (int) ($booking->id ?? 0),
+        date('Y-m-d H:i:s', $start - $gap_hours * HOUR_IN_SECONDS),
+        date('Y-m-d H:i:s', $start + $gap_hours * HOUR_IN_SECONDS)
+    ));
+
+    if ($conflict) {
+        $errors['yumefit_ems_gap'] = sprintf(
+            /* translators: %d is the minimum number of hours between EMS trainings */
+            __('EMS trainings can be booked at most once every %d hours — you already have an EMS booking too close to this time.', 'latepoint-yumefit-rules'),
+            $gap_hours
+        );
     }
 
     return $errors;
