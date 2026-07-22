@@ -85,6 +85,9 @@ if ( ! class_exists( 'OsStebbyController' ) ) :
       if ( ! OsStebbyHelper::is_valid_voucher_code( $code ) ) {
         throw new Exception( esc_html__( 'Please enter a valid Stebby voucher code.', 'latepoint-addon-stebby' ) );
       }
+      if ( OsStebbyHelper::is_voucher_code_used( $code ) ) {
+        throw new Exception( esc_html__( 'This Stebby voucher code has already been used.', 'latepoint-addon-stebby' ) );
+      }
 
       return $code;
     }

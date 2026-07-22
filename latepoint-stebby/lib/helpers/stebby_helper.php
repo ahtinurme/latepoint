@@ -38,6 +38,21 @@ if ( ! class_exists( 'OsStebbyHelper' ) ) :
       return (bool) preg_match( self::VOUCHER_CODE_PATTERN, $code );
     }
 
+    /**
+     * A voucher redeems once. The code is saved to the order's customer_comment on
+     * creation (for both pay-now and pay-later), so that's the reliable place to
+     * detect reuse. Cancelled orders release their code.
+     */
+    public static function is_voucher_code_used( string $code ): bool {
+      global $wpdb;
+
+      return (bool) $wpdb->get_var( $wpdb->prepare(
+        'SELECT id FROM ' . LATEPOINT_TABLE_ORDERS . ' WHERE customer_comment LIKE %s AND status != %s LIMIT 1',
+        '%' . $wpdb->esc_like( $code ) . '%',
+        LATEPOINT_ORDER_STATUS_CANCELLED
+      ) );
+    }
+
     public static function init_hooks(): void {
       add_filter( 'latepoint_payment_processors', [ __CLASS__, 'register_payment_processor' ] );
       add_filter( 'latepoint_get_all_payment_times', [ __CLASS__, 'add_all_payment_methods_to_payment_times' ] );
@@ -190,6 +205,9 @@ if ( ! class_exists( 'OsStebbyHelper' ) ) :
       if ( ! self::is_valid_voucher_code( $code ) ) {
         throw new Exception( esc_html__( 'Please enter a valid Stebby voucher code.', 'latepoint-addon-stebby' ) );
       }
+      if ( self::is_voucher_code_used( $code ) ) {
+        throw new Exception( esc_html__( 'This Stebby voucher code has already been used.', 'latepoint-addon-stebby' ) );
+      }
 
       return [
         'covered'   => round( $max_amount, 2 ),
@@ -245,9 +263,9 @@ if ( ! class_exists( 'OsStebbyHelper' ) ) :
 
     /**
      * Emails the accepted voucher code to the configured address so staff can
-     * redeem it manually in Stebby. Fires once per captured payment; a code
-     * reused across pay-later bookings is blocked by LatePoint's duplicate-token
-     * check, so it is emailed only on first use.
+     * redeem it manually in Stebby. Fires once per captured payment; reuse of a
+     * code is rejected up front by is_voucher_code_used(), so it is emailed only
+     * on first use.
      */
     public static function email_voucher_code( OsTransactionModel $transaction ): void {
       if ( $transaction->processor !== self::$processor_code ) {

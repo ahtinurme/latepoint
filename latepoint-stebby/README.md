@@ -6,7 +6,8 @@ voucher. The customer chooses **Stebby** as a payment method and enters their
 
 There is no API integration: the code is only format-checked (`SB`/`VV` prefix +
 10 alphanumerics) and saved to the booking comments. Staff redeem the voucher
-manually in Stebby.
+manually in Stebby. A code already present on a non-cancelled order is rejected —
+a voucher redeems only once.
 
 The voucher covers the booked session. Any remaining amount is left as an
 outstanding balance on the order to be collected separately.
