@@ -28,6 +28,19 @@ if (!defined('ABSPATH')) {
     exit;
 }
 
+// Loco Translate only lists normal plugins; register this file when it runs as an mu-plugin.
+add_filter('loco_plugins_data', function (array $plugins): array {
+    if (__DIR__ !== WPMU_PLUGIN_DIR) {
+        return $plugins;
+    }
+
+    $data = get_plugin_data(__FILE__, false, false);
+    $data['basedir'] = __DIR__;
+    $plugins[basename(__FILE__)] = $data;
+
+    return $plugins;
+});
+
 /**
  * Enforce package (bundle) rules when a bundle session is being booked/scheduled.
  *
