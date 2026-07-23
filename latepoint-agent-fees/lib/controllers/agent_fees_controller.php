@@ -31,9 +31,11 @@ if (!class_exists('OsAgentFeesController')) :
             $fees     = get_option('latepoint_agent_fees', []);
             $sessions = $this->sessions_by_agent_and_date($first->format('Y-m-d'), $last->format('Y-m-d'));
 
+            $coefficient = (bool) ($fees['coefficient'] ?? true);
+
             $stats = [];
             foreach ($agents as $agent) {
-                $stats[$agent->id] = $this->month_stats($agent->id, $first, $last, $sessions[$agent->id] ?? []);
+                $stats[$agent->id] = $this->month_stats($agent->id, $first, $last, $sessions[$agent->id] ?? [], $coefficient);
             }
 
             $this->vars['agents']      = $agents;
@@ -53,9 +55,10 @@ if (!class_exists('OsAgentFeesController')) :
 
             $f = (array) ($this->params['fees'] ?? []);
             update_option('latepoint_agent_fees', [
-                'schedule' => max(0, (float) ($f['schedule'] ?? 0)),
-                'training' => max(0, (float) ($f['training'] ?? 0)),
-                'group'    => max(0, (float) ($f['group'] ?? 0)),
+                'schedule'    => max(0, (float) ($f['schedule'] ?? 0)),
+                'training'    => max(0, (float) ($f['training'] ?? 0)),
+                'group'       => max(0, (float) ($f['group'] ?? 0)),
+                'coefficient' => !empty($f['coefficient']),
             ]);
 
             wp_safe_redirect(OsRouterHelper::build_link(['agent_fees', 'index'], [
@@ -79,7 +82,7 @@ if (!class_exists('OsAgentFeesController')) :
          *     group_participants: int
          * } trainings/bookings exclude the group service, which is counted per participant
          */
-        private function month_stats(int $agent_id, DateTime $first, DateTime $last, array $agent_sessions): array {
+        private function month_stats(int $agent_id, DateTime $first, DateTime $last, array $agent_sessions, bool $coefficient): array {
             $default_weekly = $this->weekly_by_day(0);
             $agent_weekly   = $this->weekly_by_day($agent_id);
             $custom         = $this->custom_by_date($agent_id, $first->format('Y-m-d'), $last->format('Y-m-d'));
@@ -107,7 +110,7 @@ if (!class_exists('OsAgentFeesController')) :
                     continue;
                 }
 
-                $calc = latepoint_agent_fees_day_schedules($periods);
+                $calc = latepoint_agent_fees_day_schedules($periods, $coefficient);
 
                 $days[] = [
                     'date'      => $date,

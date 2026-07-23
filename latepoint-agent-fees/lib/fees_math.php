@@ -58,9 +58,10 @@ if (!function_exists('latepoint_agent_fees_merge')) {
      *     hits: array<int, bool>,
      *     total: int
      * } covered/total are minutes; total is clipped to the 9:00-20:00 window. Units are
-     *   full-schedule-fee multiples: 1.0 per shift covered >=80%, covered/length below.
+     *   full-schedule-fee multiples: 1.0 per shift covered >=80%, covered/length below
+     *   (or 0 when $coefficient is false; the combined rule still applies).
      */
-    function latepoint_agent_fees_day_schedules(array $periods): array {
+    function latepoint_agent_fees_day_schedules(array $periods, bool $coefficient = true): array {
         $shifts      = LATEPOINT_AGENT_FEES_SHIFTS;
         $merged      = latepoint_agent_fees_merge($periods);
         $covered     = [];
@@ -70,7 +71,9 @@ if (!function_exists('latepoint_agent_fees_merge')) {
         foreach ($shifts as $i => [$from, $to]) {
             $covered[$i]     = latepoint_agent_fees_overlap($merged, $from, $to);
             $hits[$i]        = $covered[$i] * 5 >= ($to - $from) * 4;
-            $shift_units[$i] = $hits[$i] ? 1.0 : $covered[$i] / ($to - $from);
+            $shift_units[$i] = $hits[$i] ?
+                1.0 :
+                ($coefficient ? $covered[$i] / ($to - $from) : 0.0);
         }
 
         $window    = [min(array_column($shifts, 0)), max(array_column($shifts, 1))];
@@ -118,6 +121,14 @@ if (PHP_SAPI === 'cli' && realpath($argv[0] ?? '') === __FILE__) {
     assert($day([['09:00', '10:00'], ['09:30', '13:30']])['covered'][0] === 270); // overlap merged
     assert($eq($day([['00:00', '00:00']])['schedules'], 0));           // explicit day off
     assert($eq($day([['06:00', '08:00']])['schedules'], 0));           // outside window
+
+    $off = fn(array $ps) => latepoint_agent_fees_day_schedules(
+        array_map(fn($p) => [$hm($p[0]), $hm($p[1])], $ps),
+        false
+    );
+    assert($eq($off([['10:30', '14:00']])['schedules'], 0));           // coefficient off: partial shift earns nothing
+    assert($eq($off([['09:00', '16:00']])['schedules'], 1));           // full shift 1 only, no coefficient on shift 2
+    assert($eq($off([['12:00', '16:00']])['schedules'], 1));           // combined rule still applies
 
     echo "fees_math self-check OK\n";
 }

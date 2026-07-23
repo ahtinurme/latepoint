@@ -56,7 +56,9 @@ $units        = fn(float $v) => rtrim(rtrim(number_format($v, 2, '.', ''), '0'),
     <p class="af-hint">
         <?php printf(
             /* translators: 1: first shift, 2: second shift */
-            esc_html__('A shift (%1$s or %2$s) covered at least 80%% by working hours earns the full schedule fee; below 80%% it earns a proportional part of the fee (covered hours ÷ shift hours). A shorter day totalling at least 4 hours inside 09:00–20:00 still earns one full schedule (combined). Trainings count happened and no-show bookings; cancelled are excluded. Bookings at the same time are one training, except jooga rühmatreening, which pays the group fee per participant.', 'latepoint-agent-fees'),
+            esc_html(($fees['coefficient'] ?? true) ?
+                __('A shift (%1$s or %2$s) covered at least 80%% by working hours earns the full schedule fee; below 80%% it earns a proportional part of the fee (covered hours ÷ shift hours). A shorter day totalling at least 4 hours inside 09:00–20:00 still earns one full schedule (combined). Trainings count happened and no-show bookings; cancelled are excluded. Bookings at the same time are one training, except jooga rühmatreening, which pays the group fee per participant.', 'latepoint-agent-fees') :
+                __('A shift (%1$s or %2$s) covered at least 80%% by working hours earns the full schedule fee; below 80%% it earns nothing. A shorter day totalling at least 4 hours inside 09:00–20:00 still earns one full schedule (combined). Trainings count happened and no-show bookings; cancelled are excluded. Bookings at the same time are one training, except jooga rühmatreening, which pays the group fee per participant.', 'latepoint-agent-fees')),
             esc_html($shift_labels[0]),
             esc_html($shift_labels[1])
         ); ?>
@@ -77,7 +79,8 @@ $units        = fn(float $v) => rtrim(rtrim(number_format($v, 2, '.', ''), '0'),
         <?php
         $schedule_fee = (float) ($fees['schedule'] ?? 0);
         $training_fee = (float) ($fees['training'] ?? 0);
-        $group_fee    = (float) ($fees['group'] ?? 0); ?>
+        $group_fee    = (float) ($fees['group'] ?? 0);
+        $coefficient  = (bool) ($fees['coefficient'] ?? true); ?>
         <p>
             <label>
                 <?php esc_html_e('Schedule fee', 'latepoint-agent-fees'); ?>
@@ -92,6 +95,11 @@ $units        = fn(float $v) => rtrim(rtrim(number_format($v, 2, '.', ''), '0'),
             <label>
                 <?php esc_html_e('Group fee (per participant)', 'latepoint-agent-fees'); ?>
                 <input type="number" step="0.01" min="0" name="params[fees][group]" value="<?php echo esc_attr($group_fee ?: ''); ?>" style="width: 80px;"> €
+            </label>
+            &nbsp;&nbsp;
+            <label>
+                <input type="checkbox" name="params[fees][coefficient]" value="1" <?php checked($coefficient); ?>>
+                <?php esc_html_e('Pay partial shifts proportionally', 'latepoint-agent-fees'); ?>
             </label>
             &nbsp;&nbsp;
             <button type="submit" class="latepoint-btn latepoint-btn-primary"><?php esc_html_e('Save Fees', 'latepoint-agent-fees'); ?></button>
