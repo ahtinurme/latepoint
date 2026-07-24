@@ -395,6 +395,52 @@ function yumefit_pusiklient_auto_coupon($code, $cart) {
     return $ourCode;
 }
 
+/*
+ * Auto-marking: a customer becomes püsiklient once they have 5 completed
+ * bookings OR a paid, non-cancelled order containing a bundle of 5+ sessions.
+ * Recomputed from the DB on every order/booking change, so it is idempotent;
+ * it only ever turns the checkbox ON — unchecking in admin sticks until the
+ * customer qualifies again (next order/booking event).
+ */
+function yumefit_maybe_mark_pusiklient($customer_id): void {
+    global $wpdb;
+
+    $customer_id = (int) $customer_id;
+    $field_id = trim((string) get_option('yumefit_pusiklient_field_id', ''));
+    if (!$customer_id || $field_id === '' || yumefit_is_pusiklient($customer_id)) {
+        return;
+    }
+
+    $completed = (int) $wpdb->get_var($wpdb->prepare(
+        "SELECT COUNT(*) FROM {$wpdb->prefix}latepoint_bookings
+         WHERE customer_id = %d AND status = 'completed'",
+        $customer_id
+    ));
+
+    $bigBundles = (int) $wpdb->get_var($wpdb->prepare(
+        "SELECT COUNT(*) FROM {$wpdb->prefix}latepoint_order_items oi
+         JOIN {$wpdb->prefix}latepoint_orders o ON o.id = oi.order_id
+         WHERE o.customer_id = %d AND o.status <> 'cancelled' AND o.payment_status = 'fully_paid'
+           AND oi.variant = 'bundle'
+           AND EXISTS (
+               SELECT 1 FROM {$wpdb->prefix}latepoint_bundles_services bs
+               WHERE bs.bundle_id = CAST(JSON_UNQUOTE(JSON_EXTRACT(oi.item_data, '$.bundle_id')) AS UNSIGNED)
+                 AND bs.quantity >= 5
+           )",
+        $customer_id
+    ));
+
+    if ($completed < 5 && $bigBundles === 0) {
+        return;
+    }
+
+    OsMetaHelper::save_customer_meta_by_key($field_id, 'on', $customer_id);
+}
+
+add_action('latepoint_order_created', fn($order) => yumefit_maybe_mark_pusiklient($order->customer_id ?? 0), 15);
+add_action('latepoint_order_updated', fn($order, $old) => yumefit_maybe_mark_pusiklient($order->customer_id ?? 0), 15, 2);
+add_action('latepoint_booking_change_status', fn($booking, $old) => yumefit_maybe_mark_pusiklient($booking->customer_id ?? 0), 15, 2);
+
 
 /* =========================================================================
  * GIFT CARDS — buy a package as a gift inside the native LatePoint flow.
