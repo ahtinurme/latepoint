@@ -19,7 +19,7 @@
  *              admin appointment panel (products sold at the studio).
  *              (8) EMS frequency limit — a customer can book an EMS training at
  *              most once every 48h (option yumefit_ems_min_gap_hours).
- * Version:     1.13.0
+ * Version:     1.15.0
  * Author:      Yumefit
  * Text Domain: latepoint-yumefit-rules
  */
@@ -44,8 +44,9 @@ add_filter('loco_plugins_data', function (array $plugins): array {
 /**
  * Enforce package (bundle) rules when a bundle session is being booked/scheduled.
  *
- * Runs on `latepoint_check_steps_for_errors`, where OsStepsHelper::$booking_object
- * holds the booking being placed (with its bundle order_item_id). Adds errors to
+ * Runs on `yumefit_booking_rule_errors` (see yumefit_block_step_on_rule_errors),
+ * where OsStepsHelper::$booking_object holds the booking being placed (with its
+ * bundle order_item_id). Adds errors to
  * block the booking when a rule is violated. Fail-open: only ever blocks when it
  * positively identifies a bundle redemption that breaks a rule.
  *
@@ -193,7 +194,22 @@ function yumefit_show_customer_packages($customer): void {
 }
 /* ===== CUSTOM CODE END (yumefit: package expiry helpers + display) ===== */
 
-add_filter('latepoint_check_steps_for_errors', 'yumefit_enforce_bundle_rules', 20, 3);
+/* Core's `latepoint_check_steps_for_errors` never runs in the booking flow — it only
+ * validates the step ORDER config when an admin saves settings — so the rules below
+ * hang on our own `yumefit_booking_rule_errors` filter, enforced on every frontend
+ * step submit AND on confirmation load (the `specific` direction skips processing but
+ * still saves bundle bookings). Same blocking pattern as pro's no-show restriction. */
+add_action('latepoint_process_step', 'yumefit_block_step_on_rule_errors', 5);
+add_action('latepoint_load_step', fn($step_code) => $step_code === 'confirmation' ? yumefit_block_step_on_rule_errors() : null, 5);
+function yumefit_block_step_on_rule_errors(): void {
+    $errors = apply_filters('yumefit_booking_rule_errors', [], [], []);
+    if (!$errors) {
+        return;
+    }
+    wp_send_json(['status' => LATEPOINT_STATUS_ERROR, 'message' => implode(' ', $errors)]);
+}
+
+add_filter('yumefit_booking_rule_errors', 'yumefit_enforce_bundle_rules', 20, 3);
 
 function yumefit_enforce_bundle_rules(array $errors, array $steps, array $steps_rules): array {
     if (!class_exists('OsStepsHelper') || !class_exists('OsOrderItemModel')) {
@@ -270,7 +286,7 @@ function yumefit_enforce_bundle_rules(array $errors, array $steps, array $steps_
  */
 const YUMEFIT_EMS_SERVICES = [1, 2, 3, 4];
 
-add_filter('latepoint_check_steps_for_errors', 'yumefit_enforce_ems_gap', 25, 1);
+add_filter('yumefit_booking_rule_errors', 'yumefit_enforce_ems_gap', 25, 1);
 
 function yumefit_enforce_ems_gap(array $errors): array {
     if (!class_exists('OsStepsHelper')) {
@@ -566,7 +582,7 @@ function yumefit_gift_show_on_confirmation($order): void {
 
 // 4) Lock the BUYER's own copy: a gift-flagged bundle order can't be scheduled by
 //    the purchaser — only whoever receives the gift code can, via their own order.
-add_filter('latepoint_check_steps_for_errors', 'yumefit_gift_block_buyer_redemption', 30, 3);
+add_filter('yumefit_booking_rule_errors', 'yumefit_gift_block_buyer_redemption', 30, 3);
 function yumefit_gift_block_buyer_redemption(array $errors, array $steps, array $steps_rules): array {
     if (!class_exists('OsStepsHelper') || !class_exists('OsOrderItemModel') || !class_exists('OsMetaHelper')) {
         return $errors;
@@ -769,6 +785,41 @@ add_filter('latepoint_side_menu', function (array $menus): array {
 add_filter('latepoint_all_payment_methods_for_select', function (array $methods): array {
     return $methods + ['sularaha' => 'Sularaha'];
 });
+
+/* ===== Customer cabinet: no "Schedule now" on expired packages =====
+ * The booking-flow rule already rejects them; this hides the dead buttons. Core's
+ * bundle tile renderer (OsBundlesHelper) has no hooks, so hide via CSS keyed by
+ * order_item id — the buttons carry data-order-item-id. Hidden only once the
+ * expiry day is fully past, matching the enforcement rule. */
+add_action('wp_head', 'yumefit_hide_expired_package_buttons');
+function yumefit_hide_expired_package_buttons(): void {
+    if (!class_exists('OsAuthHelper') || !OsAuthHelper::get_logged_in_customer_id()) {
+        return;
+    }
+
+    global $wpdb; $P = $wpdb->prefix;
+    $rows = $wpdb->get_results($wpdb->prepare(
+        "SELECT oi.id oi_id, oi.order_id FROM {$P}latepoint_order_items oi
+         JOIN {$P}latepoint_orders o ON o.id = oi.order_id
+         WHERE o.customer_id = %d AND oi.variant = 'bundle'",
+        (int) OsAuthHelper::get_logged_in_customer_id()
+    ));
+
+    $today = new DateTime(current_time('Y-m-d'));
+    $selectors = [];
+    foreach ($rows as $r) {
+        $order = new OsOrderModel((int) $r->order_id);
+        $expiry = yumefit_bundle_expiry_date($order, yumefit_order_bundle($order));
+        if ($expiry && $expiry < $today) {
+            $selectors[] = '.order-item-variant-bundle-booking.os_trigger_booking[data-order-item-id="' . (int) $r->oi_id . '"]';
+        }
+    }
+    if (!$selectors) {
+        return;
+    }
+
+    echo '<style id="yumefit-expired-packages">' . implode(',', $selectors) . '{display:none}</style>' . "\n";
+}
 
 /* ===== Customer cabinet: one tile per row =====
  * LatePoint lays the cabinet booking/order/bundle tiles in a 3-column grid

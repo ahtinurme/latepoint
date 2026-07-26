@@ -37,10 +37,16 @@ if ( ! defined( 'ABSPATH' ) ) {
 			<?php } ?>
 		</div>
 		<div class="customer-bundle-bottom-actions">
+			<?php /* ===== CUSTOM CODE START (yumefit: no scheduling button on expired package) ===== */ ?>
+			<?php if (!empty($yf_expiry) && $yf_expiry < new DateTime(current_time('Y-m-d'))) { ?>
+				<div style="text-align:center;color:#6b6b6b;font-weight:600;padding:10px 0;"><?php esc_html_e('Package expired', 'latepoint-yumefit-rules'); ?></div>
+			<?php } else { ?>
 			<a href="#" class="latepoint-btn latepoint-btn-primary latepoint-btn-outline latepoint-btn-block" <?php echo OsCustomerHelper::generate_bundle_scheduling_btn($order_item->id); ?>>
 				<span><?php esc_html_e('Start Scheduling', 'latepoint'); ?></span>
 				<i class="latepoint-icon latepoint-icon-arrow-right1"></i>
 			</a>
+			<?php } ?>
+			<?php /* ===== CUSTOM CODE END (yumefit: no scheduling button on expired package) ===== */ ?>
 		</div>
 	</div>
 	<div class="customer-bundle-tile-shadow"></div>
