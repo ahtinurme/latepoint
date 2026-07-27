@@ -50,6 +50,20 @@ if ( ! defined( 'ABSPATH' ) ) {
                     <?php } ?>
 				</div>
 				<?php } ?>
+				<?php /* ===== CUSTOM CODE START (yumefit: packages newest first, expired last) ===== */
+				if ($not_scheduled_bundles && function_exists('yumefit_bundle_expiry_date')) {
+					$yf_today = new DateTime(current_time('Y-m-d'));
+					$yf_sort = [];
+					foreach ($not_scheduled_bundles as $yf_oi_id => $yf_bundle) {
+						$yf_order = new OsOrderModel((new OsOrderItemModel($yf_oi_id))->order_id);
+						$yf_expiry = yumefit_bundle_expiry_date($yf_order, $yf_bundle);
+						$yf_sort[$yf_oi_id] = [($yf_expiry && $yf_expiry < $yf_today) ? 1 : 0, (string) $yf_order->created_at];
+					}
+					uksort($not_scheduled_bundles, function ($a, $b) use ($yf_sort) {
+						return [$yf_sort[$a][0], $yf_sort[$b][1]] <=> [$yf_sort[$b][0], $yf_sort[$a][1]];
+					});
+				}
+				/* ===== CUSTOM CODE END (yumefit: packages newest first, expired last) ===== */ ?>
 				<?php
 				if($not_scheduled_bundles){ ?>
 				<div class="latepoint-section-heading-w">
