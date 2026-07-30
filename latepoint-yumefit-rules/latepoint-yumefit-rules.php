@@ -19,7 +19,13 @@
  *              admin appointment panel (products sold at the studio).
  *              (8) EMS frequency limit — a customer can book an EMS training at
  *              most once every 48h (option yumefit_ems_min_gap_hours).
- * Version:     1.15.0
+ *              (9) Costumes — agent-assigned size (XXS–XXL incl. combos) and
+ *              optional chest plates preference per customer (LatePoint customer
+ *              custom fields, see scripts/setup_costume_field.php), shown
+ *              read-only in the customer cabinet, plus a "Kostüümid" admin
+ *              page comparing the next days' EMS bookings per size against owned
+ *              stock (option yumefit_costume_stock) to flag wash days.
+ * Version:     1.16.0
  * Author:      Yumefit
  * Text Domain: latepoint-yumefit-rules
  */
@@ -761,6 +767,7 @@ function yumefit_jooga_restrict_slots(array $daily_resources): array {
 
 add_action('latepoint_includes', function (): void {
     include_once __DIR__ . '/lib/controllers/jooga_controller.php';
+    include_once __DIR__ . '/lib/controllers/costumes_controller.php';
 });
 
 add_filter('latepoint_side_menu', function (array $menus): array {
@@ -773,8 +780,71 @@ add_filter('latepoint_side_menu', function (array $menus): array {
         'icon'  => 'latepoint-icon latepoint-icon-calendar2',
         'link'  => OsRouterHelper::build_link(['jooga', 'index']),
     ];
+    $menus[] = [
+        'id'    => 'costumes',
+        'label' => 'Kostüümid',
+        'icon'  => 'latepoint-icon latepoint-icon-shopping-bag',
+        'link'  => OsRouterHelper::build_link(['costumes', 'index']),
+    ];
     return $menus;
 });
+
+/* ===== Costume sizes =====
+ * Every EMS customer has a costume (suit) size, assigned by the agent — never
+ * editable by the customer. Stored as a LatePoint customer custom field
+ * (select XS–XL, visibility admin/agent) whose id lives in option
+ * yumefit_costume_field_id, created + backfilled from customer notes by
+ * scripts/setup_costume_field.php. Admin/agent edit the size on the native
+ * customer form; here we add the read-only cabinet line and the "Kostüümid"
+ * page (costumes_controller.php) that compares upcoming EMS bookings per size
+ * against owned stock (option yumefit_costume_stock = [size => count]). */
+
+const YUMEFIT_COSTUME_SIZES = ['XXS', 'XS', 'S', 'M', 'L', 'XL', 'XXL'];
+
+/**
+ * Table columns a stored size counts toward on the Kostüümid page. Values may
+ * be a single size or a combo like "XS/S" (the studio assigns those to
+ * customers who fit either).
+ *
+ * @return array<int, string> canonical sizes, or ['?'] when unknown
+ */
+function yumefit_costume_columns(string $value): array {
+    // ponytail: a combo customer counts in BOTH columns — overstates demand, so it errs toward washing early
+    $parts = array_intersect(explode('/', strtoupper(trim($value))), YUMEFIT_COSTUME_SIZES);
+    return $parts ? array_values($parts) : ['?'];
+}
+
+/** Value of an agent-assigned customer field whose custom-field id is stored in $option. */
+function yumefit_customer_field_value(string $option, int $customer_id): string {
+    $field_id = trim((string) get_option($option, ''));
+    if (!$customer_id || $field_id === '' || !class_exists('OsMetaHelper')) {
+        return '';
+    }
+    return trim((string) OsMetaHelper::get_customer_meta_by_key($field_id, $customer_id, ''));
+}
+
+function yumefit_costume_size(int $customer_id): string {
+    return yumefit_customer_field_value('yumefit_costume_field_id', $customer_id);
+}
+
+// Customer cabinet, "My info" tab: show the assigned size + chest plates note.
+// The fields themselves are admin_agent-only, so the Pro custom-fields output
+// skips them for customers and a customer profile save can never touch them —
+// this line is the only exposure.
+add_action('latepoint_customer_dashboard_information_form_after', 'yumefit_show_costume_size_in_cabinet');
+function yumefit_show_costume_size_in_cabinet($customer): void {
+    $customer_id = (int) ($customer->id ?? 0);
+    $size = strtoupper(yumefit_costume_size($customer_id));
+    $plates = yumefit_customer_field_value('yumefit_costume_plates_field_id', $customer_id);
+    $parts = array_filter([$size, $plates]);
+    if (!$parts) {
+        return;
+    }
+    echo '<div class="yumefit-costume-size" style="margin:12px 0;color:#6b6b6b;">'
+        . esc_html__('Kostüüm', 'latepoint-yumefit-rules') . ': <strong style="color:#1c1f23;">' . esc_html(implode(' · ', $parts)) . '</strong>'
+        . ' <span style="font-size:12px;">(' . esc_html__('määrab treener', 'latepoint-yumefit-rules') . ')</span>'
+        . '</div>';
+}
 
 /* ===== Admin-only payment method: Sularaha =====
  * latepoint_all_payment_methods_for_select feeds only the admin selects (the
