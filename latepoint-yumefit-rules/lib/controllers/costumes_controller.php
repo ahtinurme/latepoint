@@ -23,7 +23,9 @@ if (!class_exists('OsCostumesController')) :
 
             $field_id  = trim((string) get_option('yumefit_costume_field_id', ''));
             $plates_id = trim((string) get_option('yumefit_costume_plates_field_id', ''));
-            $from      = current_time('Y-m-d');
+            $from      = preg_match('/^\d{4}-\d{2}-\d{2}$/', (string) ($this->params['from'] ?? '')) ?
+                $this->params['from'] :
+                current_time('Y-m-d');
             $to        = date('Y-m-d', strtotime($from . ' +' . (self::DAYS_SHOWN - 1) . ' days'));
             $ems_ids   = implode(',', YUMEFIT_EMS_SERVICES);
 
@@ -61,6 +63,11 @@ if (!class_exists('OsCostumesController')) :
                 ];
             }
 
+            $this->vars['from']          = $from;
+            $this->vars['prev_from']     = date('Y-m-d', strtotime($from . ' -' . self::DAYS_SHOWN . ' days'));
+            $this->vars['next_from']     = date('Y-m-d', strtotime($from . ' +' . self::DAYS_SHOWN . ' days'));
+            $this->vars['range_label']   = date_i18n('d.m', strtotime($from)) . ' – ' . date_i18n('d.m', strtotime($to));
+            $this->vars['is_today']      = $from === current_time('Y-m-d');
             $this->vars['days']          = $days;
             $this->vars['stock']         = $stock;
             $this->vars['saved']         = !empty($this->params['saved']);
@@ -81,7 +88,7 @@ if (!class_exists('OsCostumesController')) :
             }
             update_option('yumefit_costume_stock', $stock, false);
 
-            wp_safe_redirect(OsRouterHelper::build_link(['costumes', 'index'], ['saved' => 1]));
+            wp_safe_redirect(OsRouterHelper::build_link(['costumes', 'index'], ['saved' => 1, 'from' => (string) ($this->params['from'] ?? '')]));
             exit;
         }
     }

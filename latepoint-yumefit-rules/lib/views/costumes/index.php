@@ -5,6 +5,11 @@
  * @var array<string, array{ga: int, ta: int}> $stock costumes owned per size and plates variant
  * @var bool $saved
  * @var bool $field_missing
+ * @var string $from
+ * @var string $prev_from
+ * @var string $next_from
+ * @var string $range_label
+ * @var bool $is_today
  */
 if (!defined('ABSPATH')) {
     exit;
@@ -21,8 +26,17 @@ $sizes = YUMEFIT_COSTUME_SIZES;
         </div>
     <?php } ?>
 
+    <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 16px;">
+        <a href="<?php echo esc_url(OsRouterHelper::build_link(['costumes', 'index'], ['from' => $prev_from])); ?>" class="latepoint-btn latepoint-btn-outline latepoint-btn-grey"><i class="latepoint-icon latepoint-icon-chevron-left"></i></a>
+        <strong style="min-width: 120px; text-align: center;"><?php echo esc_html($range_label); ?></strong>
+        <a href="<?php echo esc_url(OsRouterHelper::build_link(['costumes', 'index'], ['from' => $next_from])); ?>" class="latepoint-btn latepoint-btn-outline latepoint-btn-grey"><i class="latepoint-icon latepoint-icon-chevron-right"></i></a>
+        <?php if (!$is_today) { ?>
+            <a href="<?php echo esc_url(OsRouterHelper::build_link(['costumes', 'index'])); ?>" class="latepoint-btn latepoint-btn-outline latepoint-btn-grey">Täna</a>
+        <?php } ?>
+    </div>
+
     <p>
-        EMS-treeningute broneeringud järgmise 7 päeva kohta, kliendi kostüümi suuruse järgi.
+        EMS-treeningute broneeringud 7 päeva kohta, kliendi kostüümi suuruse järgi.
         Sisesta ülemistele ridadele, mitu kostüümi meil on (plaatidega / plaatideta eraldi).
         <span style="background:#fdeaea;padding:0 6px;border-radius:4px;">Punane</span> = broneeringuid on
         rohkem kui kostüüme (kokku või plaadisoovi järgi) — pane kostüümid õigeks ajaks pesu.
@@ -34,6 +48,7 @@ $sizes = YUMEFIT_COSTUME_SIZES;
         <input type="hidden" name="action" value="latepoint_route_call">
         <input type="hidden" name="route_name" value="<?php echo esc_attr(OsRouterHelper::build_route_name('costumes', 'save')); ?>">
         <input type="hidden" name="params[_wpnonce]" value="<?php echo esc_attr(wp_create_nonce('save_costume_stock')); ?>">
+        <input type="hidden" name="params[from]" value="<?php echo esc_attr($from); ?>">
 
         <table style="width: 100%; border-collapse: collapse; margin: 16px 0;">
             <tr style="border-bottom: 2px solid #ddd; text-align: center;">

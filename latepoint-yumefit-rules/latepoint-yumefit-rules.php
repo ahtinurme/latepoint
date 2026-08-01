@@ -856,6 +856,15 @@ add_filter('latepoint_all_payment_methods_for_select', function (array $methods)
     return $methods + ['sularaha' => 'Sularaha'];
 });
 
+// Core caps the side-menu logo at 35px wide (sized for its square icon) — too small for the Yumefit wordmark.
+add_action('admin_head', function (): void {
+    if (strpos((string) ($_GET['page'] ?? ''), 'latepoint') !== 0) {
+        return;
+    }
+
+    echo '<style>.latepoint-side-menu-w .logo-w img{width:120px;height:auto}</style>';
+});
+
 /* ===== Customer cabinet: no "Schedule now" on expired packages =====
  * The booking-flow rule already rejects them; this hides the dead buttons. Core's
  * bundle tile renderer (OsBundlesHelper) has no hooks, so hide via CSS keyed by
