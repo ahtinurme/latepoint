@@ -16,7 +16,11 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 class LatePointAbilities {
 
-	/** @var string[] Config class map: module slug => class name */
+	/**
+	 * Module map: slug => config class, or array( 'class' => …, 'base_dir' => … ) for add-ons.
+	 *
+	 * @var array<string,string|array{class:string,base_dir?:string}>
+	 */
 	private static array $config_modules = [
 		'bookings'   => 'LatePointAbilitiesBookings',
 		'customers'  => 'LatePointAbilitiesCustomers',
@@ -33,8 +37,6 @@ class LatePointAbilities {
 	 * Boot: include module files and wire hooks.
 	 */
 	public static function init(): void {
-		self::include_modules();
-
 		// Reset LatePoint's current user on every request to ensure it reflects the latest WP user state.
 		// This is crucial for accurate permission checks in abilities, especially when user roles or capabilities have changed during the request lifecycle.
 		add_action( 'set_current_user', [ OsAuthHelper::class, 'reset_current_user' ], 1 );
@@ -46,6 +48,7 @@ class LatePointAbilities {
 		// late plugins_loaded priority (99, matching SureForms) so the MCP Adapter's
 		// classes are reliably available to mcp_adapter_enabled() regardless of plugin
 		// load order — important when another active plugin bundles its own adapter copy.
+		add_action( 'plugins_loaded', [ __CLASS__, 'include_modules' ], 1 );
 		add_action( 'plugins_loaded', [ __CLASS__, 'maybe_register_mcp_server' ], 99999 );
 	}
 
@@ -129,13 +132,50 @@ class LatePointAbilities {
 	}
 
 	/**
-	 * Include abstract base and all config module files.
+	 * Config modules, filtered so add-ons can register their own via `latepoint_ability_config_modules`.
+	 *
+	 * @return array<string,string|array{class:string,base_dir?:string}>
 	 */
-	private static function include_modules(): void {
-		$base = LATEPOINT_ABSPATH . 'lib/abilities/';
-		require_once $base . 'abstract-ability.php';
-		foreach ( array_keys( self::$config_modules ) as $slug ) {
-			require_once $base . 'configs/class-latepoint-abilities-' . $slug . '.php';
+	private static function get_config_modules(): array {
+		return apply_filters( 'latepoint_ability_config_modules', self::$config_modules );
+	}
+
+	/**
+	 * The config class name for a module entry (a string, or an array with a 'class' key).
+	 *
+	 * @param string|array{class?:string} $module
+	 * @return string
+	 */
+	private static function module_class( $module ): string {
+		if ( is_array( $module ) ) {
+			return isset( $module['class'] ) ? (string) $module['class'] : '';
+		}
+		return (string) $module;
+	}
+
+	/**
+	 * Path to a module's config file — from its 'base_dir' (array form) or core by default.
+	 *
+	 * @param string                         $slug
+	 * @param string|array{base_dir?:string} $module
+	 * @return string
+	 */
+	private static function module_config_file( string $slug, $module ): string {
+		$base = ( is_array( $module ) && ! empty( $module['base_dir'] ) ) ? $module['base_dir'] : LATEPOINT_ABSPATH . 'lib/abilities/';
+		return $base . 'configs/class-latepoint-abilities-' . $slug . '.php';
+	}
+
+	/**
+	 * Include the abstract base and each available module's config file (from its base_dir).
+	 * Add-on modules registered later via the filter are loaded on demand in register_all().
+	 */
+	public static function include_modules(): void {
+		require_once LATEPOINT_ABSPATH . 'lib/abilities/abstract-ability.php';
+		foreach ( self::get_config_modules() as $slug => $module ) {
+			$config_file = self::module_config_file( $slug, $module );
+			if ( file_exists( $config_file ) ) {
+				require_once $config_file;
+			}
 		}
 	}
 
@@ -163,7 +203,11 @@ class LatePointAbilities {
 		$allow_write  = OsSettingsHelper::is_on( 'latepoint_abilities_api_edit' );
 		$allow_delete = OsSettingsHelper::is_on( 'latepoint_abilities_api_delete' );
 
-		foreach ( self::$config_modules as $class ) {
+		foreach ( self::get_config_modules() as $slug => $module ) {
+			$class = self::module_class( $module );
+			if ( empty( $class ) || ! class_exists( $class ) ) {
+				continue;
+			}
 			foreach ( $class::get_abilities() as $ability ) {
 				if ( $ability->is_destructive() && ! $allow_delete ) {
 					continue;

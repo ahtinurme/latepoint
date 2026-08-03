@@ -3,7 +3,7 @@ Contributors: latepoint
 Tags: appointment booking, booking system, appointments, scheduling, booking
 Requires at least: 6.5
 Tested up to: 7.0
-Stable tag: 5.6.9
+Stable tag: 5.6.10
 Requires PHP: 7.4
 License: GPLv3
 License URI: https://www.gnu.org/licenses/gpl-3.0.html
@@ -375,6 +375,16 @@ LatePoint® is a registered trademark. Please use the following format when ment
 3. Make sure to disable caching on your customer cabinet page
 
 == Changelog ==
+
+= 5.6.10 - August 03, 2026 =
+  - New
+    - Added White Label admin brand colour support for the upcoming premium release, allowing you to replace the LatePoint admin brand colour throughout the admin area.
+
+  - Fixes
+    - Fixed an issue where going back in the booking form could keep the originally selected agent or time slot in the finalized booking.
+
+  - Security
+    - Addressed security bugs. Props to WordFence for reporting it.
 
 = 5.6.9 - July 16, 2026 =
   - New

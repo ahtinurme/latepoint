@@ -1181,6 +1181,7 @@ class OsStepsHelper {
 			// login is disabled, get data from submitted form, do not save in DB as it will be saved on the confirmation step
 			if ( ! empty( $customer_params ) ) {
 				unset( $customer_params['password'] ); // make sure we don't set password
+				unset( $customer_params['id'] );
 				self::$customer_object->set_data( $customer_params, LATEPOINT_PARAMS_SCOPE_PUBLIC );
 			}
 		} else {
@@ -2028,11 +2029,12 @@ class OsStepsHelper {
 			if ( $customer ) {
 				$is_new_customer   = false;
 				$old_customer_data = $customer->get_data_vars();
-				// In the auth-disabled (guest) flow anyone who knows a
-				// customer's merge contact value can submit the booking form and would
-				// otherwise overwrite that customer's PII. Strip identity fields so the
-				// booking still attaches to the existing record without mutating it.
-				if ( ! is_user_logged_in() ) {
+				// In the guest (auth-disabled) flow anyone who knows a customer's merge
+				// value (email/phone) could otherwise overwrite that customer's data.
+				// Only users authorized to edit this record may update it; strip all
+				// submitted params for everyone else so the booking attaches without
+				// mutating the existing record.
+				if ( ! is_user_logged_in() || ! OsRolesHelper::can_user_make_action_on_model_record( $customer, 'edit' ) ) {
 					unset( $sanitized_customer_params['first_name'] );
 					unset( $sanitized_customer_params['last_name'] );
 					unset( $sanitized_customer_params['email'] );

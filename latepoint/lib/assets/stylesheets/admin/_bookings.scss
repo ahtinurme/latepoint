@@ -409,7 +409,7 @@
   }
 
   tr.os-bulk-row-selected > td {
-    background-color: rgba($brand-primary, .05);
+    background-color: $brand-primary-alpha-05;
   }
 
 }

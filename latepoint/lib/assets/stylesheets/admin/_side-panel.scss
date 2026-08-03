@@ -368,7 +368,7 @@
     }
     .latepoint-btn.latepoint-btn-link {
       span {
-        border-bottom: 1px dotted lighten($brand-primary, 10%);
+        border-bottom: 1px dotted $brand-primary-lighten-10;
       }
     }
   }
@@ -436,7 +436,7 @@
         color: #08214c;
       }
       &:focus {
-        box-shadow: 0px 0px 0px 4px lighten($brand-primary, 40%);
+        box-shadow: 0px 0px 0px 4px $brand-primary-lighten-40;
       }
       i {
         font-size: 13px;

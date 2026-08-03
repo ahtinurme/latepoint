@@ -269,7 +269,7 @@
 			z-index: 2;
 		}
 		.ws-handle-trail {
-			background-color: lighten($brand-primary, 20%);
+			background-color: $brand-primary-lighten-20;
 			position: absolute;
 			top: 0px;
 			bottom: 0px;

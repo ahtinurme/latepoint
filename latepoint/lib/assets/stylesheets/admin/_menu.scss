@@ -153,7 +153,7 @@
           color: #1f242b;
 
           > i {
-            color: #0981d6;
+            color: $menu-active-icon-color;
           }
         }
 
@@ -419,6 +419,16 @@
       .os-logo {
         text-decoration: none;
         @include logo(8px, $logo-color);
+      }
+
+      // Default LatePoint logo rendered as a CSS mask so it follows the admin brand color.
+      .latepoint-brand-logo {
+        display: block;
+        width: 20px;
+        height: 20px;
+        background-color: $brand-primary;
+        -webkit-mask: var(--latepoint-brand-logo-src) center / contain no-repeat;
+        mask: var(--latepoint-brand-logo-src) center / contain no-repeat;
       }
 
 

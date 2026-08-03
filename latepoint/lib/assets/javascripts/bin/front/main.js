@@ -2175,7 +2175,7 @@ function latepoint_init_booking_form($booking_form_element) {
                 let data = {
                     action: latepoint_helper.route_action,
                     route_name: latepoint_helper.remove_cart_item_route,
-                    params: jQuery.param({cart_item_id: active_cart_item_id}),
+                    params: jQuery.param({cart_item_id: active_cart_item_id, _wpnonce: latepoint_helper.remove_cart_item_nonce}),
                     layout: 'none',
                     return_format: 'json'
                 }

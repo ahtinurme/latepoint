@@ -243,8 +243,8 @@
         vertical-align: middle;
         cursor: pointer;
         &:hover {
-          border-color: darken($brand-primary, 10%);
-          color: darken($brand-primary, 10%);
+          border-color: $brand-primary-darken-10;
+          color: $brand-primary-darken-10;
           background-color: #e5e9ff;
         }
       }
@@ -407,7 +407,7 @@
     vertical-align: middle;
   }
   span {
-    border-bottom: 1px solid rgba($brand-primary, 0.6);
+    border-bottom: 1px solid $brand-primary-alpha-60;
   }
   i {
     margin-right: 5px;

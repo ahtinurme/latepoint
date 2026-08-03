@@ -2,7 +2,7 @@
 /**
  * Plugin Name: LatePoint
  * Description: Appointment Scheduling Software for WordPress
- * Version: 5.6.9
+ * Version: 5.6.10
  * Author: LatePoint
  * Author URI: https://latepoint.com
  * Plugin URI: https://latepoint.com
@@ -29,7 +29,7 @@ if ( ! class_exists( 'LatePoint' ) ) :
 		 * LatePoint version.
 		 *
 		 */
-		public $version    = '5.6.9';
+		public $version    = '5.6.10';
 		public $db_version = '2.3.2';
 
 		/**
@@ -1480,6 +1480,7 @@ if ( ! class_exists( 'LatePoint' ) ) :
 				'msg_not_available'                     => __( 'Not Available', 'latepoint' ),
 				'booking_button_route'                  => OsRouterHelper::build_route_name( 'steps', 'start' ),
 				'remove_cart_item_route'                => OsRouterHelper::build_route_name( 'carts', 'remove_item_from_cart' ),
+				'remove_cart_item_nonce'                => wp_create_nonce( 'remove_item_from_cart' ),
 				'show_booking_end_time'                 => ( OsSettingsHelper::is_on( 'show_booking_end_time' ) ) ? 'yes' : 'no',
 				'customer_dashboard_url'                => OsSettingsHelper::get_customer_dashboard_url( true ),
 				'demo_mode'                             => OsSettingsHelper::is_env_demo(),
@@ -1730,6 +1731,12 @@ if ( ! class_exists( 'LatePoint' ) ) :
 
 			$latepoint_css_variables = OsStylesHelper::generate_css_variables();
 			wp_add_inline_style( 'latepoint-main-admin', $latepoint_css_variables );
+
+			// Admin-only brand color override (e.g. white label). Does not affect the front-end booking form.
+			$admin_brand_css_variables = apply_filters( 'latepoint_main_admin_css', '' );
+			if ( ! empty( $admin_brand_css_variables ) ) {
+				wp_add_inline_style( 'latepoint-main-admin', $admin_brand_css_variables );
+			}
 		}
 	}
 endif;

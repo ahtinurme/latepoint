@@ -73,12 +73,12 @@
 		  content: "";
 		  width: $size;
 		  height: $size;
-		  background-color: rgba($brand-primary, 1);
-		  box-shadow: ($size * 2) ($size * 2) 0px rgba($brand-primary, 0.6),
-		              0px ($size * 2) 0px rgba($brand-primary, 0.6),
-		              0px ($size * 4) 0px rgba($brand-primary, 0.3),
-		              ($size * 2) ($size * 6) 0px rgba($brand-primary, 0.7),
-		              ($size * 2) ($size * 4) 0px rgba($brand-primary, 0.4);
+		  background-color: $brand-primary;
+		  box-shadow: ($size * 2) ($size * 2) 0px $brand-primary-alpha-60,
+		              0px ($size * 2) 0px $brand-primary-alpha-60,
+		              0px ($size * 4) 0px $brand-primary-alpha-30,
+		              ($size * 2) ($size * 6) 0px $brand-primary-alpha-70,
+		              ($size * 2) ($size * 4) 0px $brand-primary-alpha-40;
 		  position: absolute;
 		  top: -2px;
 		  left: 0px;

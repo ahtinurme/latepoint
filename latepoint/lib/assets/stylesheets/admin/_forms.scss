@@ -76,7 +76,7 @@ input, select {
   .os-tp-box-header .os-form-sub-header {
     padding: 0px 0px 15px 0px;
     margin-bottom: 0px;
-    border-bottom: 1px solid rgba($brand-primary, 0.8);
+    border-bottom: 1px solid $brand-primary-alpha-80;
   }
   .os-tp-box-content {
     padding: 20px 0px 0px;
@@ -1819,11 +1819,11 @@ form > .os-form-sub-header:first-child {
         }
       }
       &:hover {
-        border-color: lighten($brand-primary, 15%);
+        border-color: $brand-primary-lighten-15;
         background-color: #fff;
         .connection-i {
           &:before {
-            background-color: lighten($brand-primary, 15%);
+            background-color: $brand-primary-lighten-15;
           }
         }
       }
@@ -1880,8 +1880,8 @@ form > .os-form-sub-header:first-child {
       align-items: center;
       text-decoration: none;
       &:hover {
-        box-shadow: 0px 0px 0px 1px darken($brand-primary, 15%), 0px 2px 4px rgba(0,0,0,0.1);
-        color: darken($brand-primary, 15%);
+        box-shadow: 0px 0px 0px 1px $brand-primary-darken-15, 0px 2px 4px rgba(0,0,0,0.1);
+        color: $brand-primary-darken-15;
         i {
           transform: rotate(-45deg);
         }

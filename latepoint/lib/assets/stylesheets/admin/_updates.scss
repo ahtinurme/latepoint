@@ -372,7 +372,7 @@ body.latepoint-admin {
 
       span {
         display: inline-block;
-        border-bottom: 1px dotted lighten($link-color, 30%);
+        border-bottom: 1px dotted $link-color-lighten-30;
       }
 
       &:hover {

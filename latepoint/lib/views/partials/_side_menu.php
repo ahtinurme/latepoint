@@ -6,7 +6,16 @@ if ( ! defined( 'ABSPATH' ) ) {
 <div class="latepoint-side-menu-w side-menu-<?php echo OsSettingsHelper::get_menu_layout_style(); ?>">
 	<div class="side-menu-top-part-w">
 		<a href="<?php echo esc_url(OsRouterHelper::build_link(['dashboard', 'index'])); ?>" class="logo-w">
-			<img src="<?php echo esc_url( apply_filters( 'latepoint_admin_side_menu_logo_url', LATEPOINT_IMAGES_URL . 'logo.svg' ) ); ?>" width="20" height="20" alt="<?php echo esc_attr( __( 'Dashboard', 'latepoint' ) ); ?>">
+			<?php
+			$latepoint_default_logo_url = LATEPOINT_IMAGES_URL . 'logo.svg';
+			$latepoint_logo_url         = apply_filters( 'latepoint_admin_side_menu_logo_url', $latepoint_default_logo_url );
+			if ( $latepoint_logo_url === $latepoint_default_logo_url ) :
+				// Default LatePoint logo — render via CSS mask so it follows the admin brand color.
+				?>
+				<span class="latepoint-brand-logo" style="--latepoint-brand-logo-src:url('<?php echo esc_url( $latepoint_default_logo_url ); ?>');" role="img" aria-label="<?php echo esc_attr( __( 'Dashboard', 'latepoint' ) ); ?>"></span>
+			<?php else : ?>
+				<img src="<?php echo esc_url( $latepoint_logo_url ); ?>" width="20" height="20" alt="<?php echo esc_attr( __( 'Dashboard', 'latepoint' ) ); ?>">
+			<?php endif; ?>
 		</a>
         <a href="#" data-route="<?php echo esc_attr(OsRouterHelper::build_route_name('settings', 'set_menu_layout_style')); ?>" data-params="<?php echo esc_attr(OsUtilHelper::build_os_params([], 'set_menu_layout_style')); ?>" class="side-menu-fold-trigger menu-toggler"><i class="latepoint-icon latepoint-icon-menu"></i></a>
         <a href="#" title="<?php esc_attr_e('Menu', 'latepoint'); ?>" class="latepoint-mobile-top-menu-trigger">

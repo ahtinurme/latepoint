@@ -117,7 +117,7 @@ body.latepoint-admin {
         border-style: dotted;
       }
       &:hover, &:focus {
-        border-color: darken($brand-primary, 10%);
+        border-color: $brand-primary-darken-10;
         color: $brand-primary;
         background-color: transparent;
       }

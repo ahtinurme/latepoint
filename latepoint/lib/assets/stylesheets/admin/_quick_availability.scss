@@ -124,8 +124,8 @@
     padding: 4px 20px;
 
     &:hover {
-      box-shadow: 0px -1px 0px 0px rgba($brand-primary, 0.5);
-      border-bottom-color: rgba($brand-primary, 0.5) !important;
+      box-shadow: 0px -1px 0px 0px $brand-primary-alpha-50;
+      border-bottom-color: $brand-primary-alpha-50 !important;
 
       .ma-day-number {
         color: $brand-primary;
@@ -296,8 +296,8 @@
     }
 
     &:hover {
-      box-shadow: 0px -1px 0px 0px rgba($brand-primary, 0.5);
-      border-bottom-color: rgba($brand-primary, 0.5) !important;
+      box-shadow: 0px -1px 0px 0px $brand-primary-alpha-50;
+      border-bottom-color: $brand-primary-alpha-50 !important;
 
       .ma-day-number {
         color: $brand-primary;

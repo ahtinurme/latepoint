@@ -1,6 +1,27 @@
-$logo-color: #1d7bff;
-$brand-primary: #1d7bff;
-$brand-softer: #219ff8;
+$logo-color: var(--latepoint-admin-brand-primary, #1d7bff);
+$brand-primary: var(--latepoint-admin-brand-primary, #1d7bff);
+$brand-softer: var(--latepoint-admin-brand-primary, #219ff8);
+
+// White Label brand-color tokens. The CSS custom properties are pre-computed in PHP and
+// emitted only when an admin sets a custom brand color; each fallback is the value for the
+// default #1d7bff, so default installs render identically without the override.
+$brand-primary-lighten-10: var(--latepoint-admin-brand-primary-lighten-10, #3488ff);
+$brand-primary-lighten-12: var(--latepoint-admin-brand-primary-lighten-12, #398bff);
+$brand-primary-lighten-15: var(--latepoint-admin-brand-primary-lighten-15, #3f8fff);
+$brand-primary-lighten-20: var(--latepoint-admin-brand-primary-lighten-20, #4a95ff);
+$brand-primary-lighten-30: var(--latepoint-admin-brand-primary-lighten-30, #61a3ff);
+$brand-primary-lighten-40: var(--latepoint-admin-brand-primary-lighten-40, #77b0ff);
+$brand-primary-darken-10: var(--latepoint-admin-brand-primary-darken-10, #1a6fe6);
+$brand-primary-darken-15: var(--latepoint-admin-brand-primary-darken-15, #1969d9);
+$brand-primary-alpha-05: var(--latepoint-admin-brand-primary-alpha-05, rgba(29,123,255,0.05));
+$brand-primary-alpha-10: var(--latepoint-admin-brand-primary-alpha-10, rgba(29,123,255,0.1));
+$brand-primary-alpha-15: var(--latepoint-admin-brand-primary-alpha-15, rgba(29,123,255,0.15));
+$brand-primary-alpha-30: var(--latepoint-admin-brand-primary-alpha-30, rgba(29,123,255,0.3));
+$brand-primary-alpha-40: var(--latepoint-admin-brand-primary-alpha-40, rgba(29,123,255,0.4));
+$brand-primary-alpha-50: var(--latepoint-admin-brand-primary-alpha-50, rgba(29,123,255,0.5));
+$brand-primary-alpha-60: var(--latepoint-admin-brand-primary-alpha-60, rgba(29,123,255,0.6));
+$brand-primary-alpha-70: var(--latepoint-admin-brand-primary-alpha-70, rgba(29,123,255,0.7));
+$brand-primary-alpha-80: var(--latepoint-admin-brand-primary-alpha-80, rgba(29,123,255,0.8));
 $brand-dark: #2D303A;
 $body-bg: #fff;
 $faded-bg: #f3f3f3;
@@ -38,6 +59,11 @@ $mono-font-weight-bold: 400;
 $headings-color: #1f222b;
 
 $link-color: $brand-primary;
+$link-color-lighten-30: $brand-primary-lighten-30;
+$link-color-darken-15: $brand-primary-darken-15;
+// Accents that track the brand colour but stay a shade darker than the primary buttons.
+$calendar-day-booking-bg: var(--latepoint-admin-brand-primary-darken-15, #1449ff);
+$menu-active-icon-color: var(--latepoint-admin-brand-primary-darken-10, #0981d6);
 $letter-spacing: normal;
 $content-padding: 30px;
 
@@ -66,7 +92,7 @@ $side-menu-active-item-bg: #edeff1;
 
 // -- Dark
 $side-menu-dark-link-color: #9398b7;
-$side-menu-dark-icon-color: #3a58dc;
+$side-menu-dark-icon-color: var(--latepoint-admin-brand-primary, #3a58dc);
 $side-menu-dark-bg: #040a27;
 $top-bar-mobile-height: 54px;
 $floating-sub-menu-dark-bg: $brand-primary;
@@ -130,13 +156,13 @@ $button-shadow-size: 0px 1px 2px 0px;
 $button-font-size: 15px;
 
 // primary
-$button-primary-bg-color: #1e7bff;
-$button-primary-border-color: #1e7bff;
+$button-primary-bg-color: var(--latepoint-admin-brand-primary, #1e7bff);
+$button-primary-border-color: var(--latepoint-admin-brand-primary, #1e7bff);
 $button-primary-shadow-color: transparent;
 $button-primary-text-color: #fff;
-$button-primary-outline-text-color: #1e7bff;
-$button-primary-hover-bg-color: #3c8dff;
-$button-primary-hover-border-color: #3c8dff;
+$button-primary-outline-text-color: var(--latepoint-admin-brand-primary, #1e7bff);
+$button-primary-hover-bg-color: $brand-primary-lighten-12;
+$button-primary-hover-border-color: $brand-primary-lighten-12;
 
 // danger
 $button-danger-bg-color: #ef6b6b;

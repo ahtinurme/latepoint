@@ -133,12 +133,12 @@
       // content: "";
       // width: $size;
       // height: $size;
-      // background-color: rgba($brand-primary, 1);
-      // box-shadow: ($size * 2) ($size * 2) 0px rgba($brand-primary, 0.6),
-      //             0px ($size * 2) 0px rgba($brand-primary, 0.6),
-      //             0px ($size * 4) 0px rgba($brand-primary, 0.3),
-      //             ($size * 2) ($size * 6) 0px rgba($brand-primary, 0.7),
-      //             ($size * 2) ($size * 4) 0px rgba($brand-primary, 0.4);
+      // background-color: $brand-primary;
+      // box-shadow: ($size * 2) ($size * 2) 0px $brand-primary-alpha-60,
+      //             0px ($size * 2) 0px $brand-primary-alpha-60,
+      //             0px ($size * 4) 0px $brand-primary-alpha-30,
+      //             ($size * 2) ($size * 6) 0px $brand-primary-alpha-70,
+      //             ($size * 2) ($size * 4) 0px $brand-primary-alpha-40;
       // position: absolute;
       // top: 11px;
       // left: 12px;
@@ -512,7 +512,7 @@
     }
   }
   .appointment-capacity-progress-w {
-    background-color: rgba($brand-primary, 0.1);
+    background-color: $brand-primary-alpha-10;
     border-radius: $border-radius;
     .appointment-capacity-progress {
       height: 3px;
@@ -1370,7 +1370,7 @@ $avatar-gap: 30px;
     color: $brand-primary;
     font-weight: $body-font-weight-bold;
     margin-right: auto;
-    border-bottom: 1px dotted rgba($brand-primary, 0.6);
+    border-bottom: 1px dotted $brand-primary-alpha-60;
     display: inline-block;
   }
   .appointment-date-w {
@@ -1394,7 +1394,7 @@ $avatar-gap: 30px;
     color: $brand-primary;
     border-radius: 6px;
     background-color: #fff;
-    box-shadow: 4px 4px 0px 0px rgba($brand-primary, 0.1);
+    box-shadow: 4px 4px 0px 0px $brand-primary-alpha-10;
     position: relative;
     div {
       white-space: nowrap;
@@ -1577,7 +1577,7 @@ $avatar-gap: 30px;
     }
   }
   .appointment-capacity-progress-w {
-    background-color: rgba($brand-primary, 0.1);
+    background-color: $brand-primary-alpha-10;
     border-radius: $border-radius-xs;
     .appointment-capacity-progress {
       height: 10px;
@@ -2142,7 +2142,7 @@ $avatar-gap: 30px;
     }
     .latepoint-btn {
       display: block;
-      background-color: #1e7bff;
+      background-color: var(--latepoint-admin-brand-primary, #1e7bff);
       text-align: center;
       margin-top: 20px;
       padding: 12px 15px;

@@ -171,7 +171,7 @@
         &:before {
         }
         &:after {
-          color: rgba($side-menu-icon-color, 1);
+          color: $side-menu-icon-color;
           transform: translateY(-50%) rotate(-90deg);
         }
       }

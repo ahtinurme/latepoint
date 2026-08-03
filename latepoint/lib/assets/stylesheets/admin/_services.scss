@@ -420,10 +420,10 @@
         }
       }
       .service-name {
-        color: darken($brand-primary, 10%);
+        color: $brand-primary-darken-10;
       }
       &:hover {
-        border-color: darken($brand-primary, 10%);
+        border-color: $brand-primary-darken-10;
         background-color: #fff;
       }
     }
