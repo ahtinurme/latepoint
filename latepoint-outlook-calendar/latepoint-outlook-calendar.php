@@ -3,7 +3,7 @@
  * Plugin Name: LatePoint Addon - Outlook Calendar
  * Plugin URI:  https://latepoint.com/
  * Description: LatePoint addon outlook calendar integration
- * Version:     1.1.0
+ * Version:     1.1.1
  * Author:      LatePoint
  * Author URI:  https://latepoint.com/
  * Text Domain: latepoint-outlook-calendar
@@ -29,7 +29,7 @@ if ( ! class_exists( 'LatePointOutlookCalendar' ) ) {
 		 *
 		 * @var string
 		 */
-		public $version = '1.1.0';
+		public $version = '1.1.1';
 
 		/**
 		 * Database version.
@@ -206,6 +206,9 @@ if ( ! class_exists( 'LatePointOutlookCalendar' ) ) {
 			// Scheduled task to refresh Outlook calendar watch channels.
 			add_action( 'latepoint_check_outlook_cal_watch_channels_refresh', array( $this, 'refresh_outlook_cal_watch_channels' ) );
 
+			// Register REST API routes for inbound Laravel → WordPress communication.
+			add_action( 'rest_api_init', array( $this, 'register_rest_routes' ) );
+
 			// Activation and deactivation hooks.
 			register_activation_hook( __FILE__, array( $this, 'on_activate' ) );
 			register_deactivation_hook( __FILE__, array( $this, 'on_deactivate' ) );
@@ -233,6 +236,51 @@ if ( ! class_exists( 'LatePointOutlookCalendar' ) ) {
 		public function init() {
 			// Set up localization.
 			$this->load_plugin_textdomain();
+		}
+
+		/**
+		 * Register REST API routes for inbound Laravel → WordPress communication.
+		 *
+		 * Routes live under /wp-json/latepoint/v1/outlook-calendar/ so they are outside
+		 * /wp-admin/ and bypass WAF rules that block admin-post.php traffic.
+		 *
+		 * All routes share rest_authorize() as their permission_callback, which resolves the
+		 * agent from the wp_latepoint_agent_token field in the JSON body.
+		 *
+		 * @return void
+		 */
+		public function register_rest_routes() {
+			$controller = new OsOutlookCalendarController();
+
+			register_rest_route(
+				'latepoint/v1',
+				'/outlook-calendar/access-token',
+				array(
+					'methods'             => WP_REST_Server::CREATABLE,
+					'callback'            => array( $controller, 'rest_save_access_token' ),
+					'permission_callback' => array( 'OsOutlookCalendarController', 'rest_authorize' ),
+				)
+			);
+
+			register_rest_route(
+				'latepoint/v1',
+				'/outlook-calendar/access-token',
+				array(
+					'methods'             => WP_REST_Server::DELETABLE,
+					'callback'            => array( $controller, 'rest_delete_access_token' ),
+					'permission_callback' => array( 'OsOutlookCalendarController', 'rest_authorize' ),
+				)
+			);
+
+			register_rest_route(
+				'latepoint/v1',
+				'/outlook-calendar/heartbeat',
+				array(
+					'methods'             => WP_REST_Server::CREATABLE,
+					'callback'            => array( $controller, 'rest_heartbeat' ),
+					'permission_callback' => array( 'OsOutlookCalendarController', 'rest_authorize' ),
+				)
+			);
 		}
 
 		/**

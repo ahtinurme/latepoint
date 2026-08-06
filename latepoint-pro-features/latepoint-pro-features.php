@@ -7,7 +7,7 @@
  * Plugin Name: LatePoint Addon - Pro Features
  * Plugin URI:  https://latepoint.com/
  * Description: LatePoint Addon that adds a set of Pro features to a base plugin
- * Version:     1.6.3
+ * Version:     1.6.4
  * Author:      LatePoint
  * Author URI:  https://latepoint.com/
  * Text Domain: latepoint-pro-features
@@ -32,7 +32,7 @@ if ( ! class_exists( 'LatePointAddonProFeatures' ) ) :
 		 * Addon version.
 		 *
 		 */
-		public $version    = '1.6.3';
+		public $version    = '1.6.4';
 		public $db_version = '1.1.3';
 		public $addon_name = 'latepoint-pro-features';
 
@@ -307,6 +307,8 @@ if ( ! class_exists( 'LatePointAddonProFeatures' ) ) :
 			// MISC
 			include_once dirname( __FILE__ ) . '/lib/misc/tax.php';
 			include_once dirname( __FILE__ ) . '/lib/misc/router_pro.php';
+
+			include_once dirname( __FILE__ ) . '/lib/abilities/class-latepoint-pro-abilities.php';
 		}
 
 		public function core_init_hooks() {

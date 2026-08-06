@@ -43,15 +43,19 @@ if (!class_exists('OsCostumesController')) :
             // Per day+size the demand splits into: needs plates (ga), needs no
             // plates (ta), no preference (any — can wear either variant).
             $days = [];
+            $day_totals = [];
             for ($i = 0; $i < self::DAYS_SHOWN; $i++) {
-                $days[date('Y-m-d', strtotime($from . " +{$i} days"))] =
-                    array_fill_keys(array_merge(YUMEFIT_COSTUME_SIZES, ['?']), ['ga' => 0, 'ta' => 0, 'any' => 0]);
+                $date = date('Y-m-d', strtotime($from . " +{$i} days"));
+                $days[$date] = array_fill_keys(array_merge(YUMEFIT_COSTUME_SIZES, ['?']), ['ga' => 0, 'ta' => 0, 'any' => 0]);
+                $day_totals[$date] = 0;
             }
             foreach ($rows as $r) {
                 $group = stripos($r->plates, 'dega') !== false ? 'ga' : (stripos($r->plates, 'deta') !== false ? 'ta' : 'any');
                 foreach (yumefit_costume_columns($r->size) as $col) {
                     $days[$r->d][$col][$group] += (int) $r->c;
                 }
+                // exact per-day total from the raw rows — combo sizes (XS/S) are not double-counted here
+                $day_totals[$r->d] += (int) $r->c;
             }
 
             $raw   = (array) get_option('yumefit_costume_stock', []);
@@ -69,6 +73,7 @@ if (!class_exists('OsCostumesController')) :
             $this->vars['range_label']   = date_i18n('d.m', strtotime($from)) . ' – ' . date_i18n('d.m', strtotime($to));
             $this->vars['is_today']      = $from === current_time('Y-m-d');
             $this->vars['days']          = $days;
+            $this->vars['day_totals']    = $day_totals;
             $this->vars['stock']         = $stock;
             $this->vars['saved']         = !empty($this->params['saved']);
             $this->vars['field_missing'] = $field_id === '';

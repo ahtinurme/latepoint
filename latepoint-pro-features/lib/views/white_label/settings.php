@@ -77,6 +77,20 @@ if ( ! defined( 'ABSPATH' ) ) {
 				</div>
 			</div>
 
+			<!-- Brand Color -->
+			<div class="sub-section-row">
+				<div class="sub-section-label">
+					<?php echo OsFeatureWhiteLabelHelper::render_section_heading( __( 'Brand Color', 'latepoint-pro-features' ), __( "Replaces LatePoint's default blue across the admin interface like buttons, links, active menu items, tabs, and selected states. Defaults to LatePoint's brand color; pick a new color to apply your own.", 'latepoint-pro-features' ) ); ?>
+				</div>
+				<div class="sub-section-content">
+					<div class="os-row">
+						<div class="os-col-lg-4">
+							<?php echo OsFormHelper::color_picker( 'settings[white_label_primary_color]', __( 'Brand Color', 'latepoint-pro-features' ), ( OsSettingsHelper::get_settings_value( 'white_label_primary_color' ) ?: '#1d7bff' ) ); ?>
+						</div>
+					</div>
+				</div>
+			</div>
+
 		</div>
 	</div>
 

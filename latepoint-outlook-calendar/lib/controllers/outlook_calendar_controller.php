@@ -61,9 +61,7 @@ if ( ! class_exists( 'OsOutlookCalendarController' ) ) {
 				exit;
 			}
 
-			$agent = new OsAgentModel( $agent_id );
-			$agent->save_meta_by_key( 'outlook_cal_access_token_relay', $data['outlook_calendar_access_token'] );
-			$agent->save_meta_by_key( 'outlook_cal_connection_id_relay', $data['outlook_calendar_connection_id'] );
+			$this->do_save_access_token( $agent_id, $data['outlook_calendar_access_token'], $data['outlook_calendar_connection_id'] );
 		}
 
 		/**
@@ -83,9 +81,7 @@ if ( ! class_exists( 'OsOutlookCalendarController' ) ) {
 				exit;
 			}
 
-			$agent = new OsAgentModel( $agent_id );
-			$agent->delete_meta_by_key( 'outlook_cal_access_token_relay' );
-			$agent->delete_meta_by_key( 'outlook_cal_connection_id_relay' );
+			$this->do_delete_access_token( $agent_id );
 		}
 
 		/**
@@ -118,6 +114,124 @@ if ( ! class_exists( 'OsOutlookCalendarController' ) ) {
 			}
 
 			$this->send_json(
+				array(
+					'status'  => LATEPOINT_STATUS_SUCCESS,
+					'message' => 'Heartbeat detected',
+				),
+				200
+			);
+		}
+
+		/**
+		 * Save Outlook access token and connection id to agent meta.
+		 *
+		 * @param int|string $agent_id      Agent ID.
+		 * @param string     $access_token  JSON-encoded token blob.
+		 * @param string     $connection_id Laravel-side connection id.
+		 * @return void
+		 */
+		private function do_save_access_token( $agent_id, string $access_token, string $connection_id ) {
+			$agent = new OsAgentModel( $agent_id );
+			$agent->save_meta_by_key( 'outlook_cal_access_token_relay', $access_token );
+			$agent->save_meta_by_key( 'outlook_cal_connection_id_relay', $connection_id );
+		}
+
+		/**
+		 * Remove Outlook access token and connection id from agent meta.
+		 *
+		 * @param int|string $agent_id Agent ID.
+		 * @return void
+		 */
+		private function do_delete_access_token( $agent_id ) {
+			$agent = new OsAgentModel( $agent_id );
+			$agent->delete_meta_by_key( 'outlook_cal_access_token_relay' );
+			$agent->delete_meta_by_key( 'outlook_cal_connection_id_relay' );
+		}
+
+		/**
+		 * Permission callback for all inbound Laravel REST routes.
+		 *
+		 * Authenticates by resolving the agent from the wp_latepoint_agent_token field in
+		 * the JSON body — the same field name and lookup the legacy admin-post handlers use.
+		 *
+		 * @param WP_REST_Request $request Request object.
+		 * @return true|WP_Error
+		 */
+		public static function rest_authorize( WP_REST_Request $request ) {
+			$agent_id = self::get_agent_id_from_request( $request );
+			if ( empty( $agent_id ) ) {
+				return new WP_Error(
+					'latepoint_rest_agent_not_found',
+					__( 'Agent not found for the provided token.', 'latepoint-outlook-calendar' ),
+					array( 'status' => 401 )
+				);
+			}
+			return true;
+		}
+
+		/**
+		 * Resolve the agent id from the wp_latepoint_agent_token field in an inbound
+		 * REST request's JSON body — the same field the legacy admin-post handlers read.
+		 *
+		 * @param WP_REST_Request $request Request object.
+		 * @return int|string Agent id, or 0 if the token is missing or unknown.
+		 */
+		private static function get_agent_id_from_request( WP_REST_Request $request ) {
+			$data  = $request->get_json_params();
+			$token = $data['wp_latepoint_agent_token'] ?? '';
+			if ( empty( $token ) ) {
+				return 0;
+			}
+			$meta = new OsAgentMetaModel();
+			return $meta->get_object_id_by_value( 'agent_token_for_outlook_auth', $token );
+		}
+
+		/**
+		 * REST callback: POST /wp-json/latepoint/v1/outlook-calendar/access-token
+		 *
+		 * @param WP_REST_Request $request Request object.
+		 * @return WP_REST_Response
+		 */
+		public function rest_save_access_token( WP_REST_Request $request ) {
+			$data = $request->get_json_params();
+
+			if ( empty( $data['outlook_calendar_access_token'] ) || empty( $data['outlook_calendar_connection_id'] ) ) {
+				return new WP_REST_Response(
+					array(
+						'status'  => LATEPOINT_STATUS_ERROR,
+						'message' => 'Missing required parameters.',
+					),
+					400
+				);
+			}
+
+			$agent_id = self::get_agent_id_from_request( $request );
+			$this->do_save_access_token( $agent_id, $data['outlook_calendar_access_token'], $data['outlook_calendar_connection_id'] );
+
+			return new WP_REST_Response( array( 'status' => LATEPOINT_STATUS_SUCCESS ), 200 );
+		}
+
+		/**
+		 * REST callback: DELETE /wp-json/latepoint/v1/outlook-calendar/access-token
+		 *
+		 * @param WP_REST_Request $request Request object.
+		 * @return WP_REST_Response
+		 */
+		public function rest_delete_access_token( WP_REST_Request $request ) {
+			$agent_id = self::get_agent_id_from_request( $request );
+			$this->do_delete_access_token( $agent_id );
+
+			return new WP_REST_Response( array( 'status' => LATEPOINT_STATUS_SUCCESS ), 200 );
+		}
+
+		/**
+		 * REST callback: POST /wp-json/latepoint/v1/outlook-calendar/heartbeat
+		 *
+		 * @param WP_REST_Request $request Request object.
+		 * @return WP_REST_Response
+		 */
+		public function rest_heartbeat( WP_REST_Request $request ) {
+			return new WP_REST_Response(
 				array(
 					'status'  => LATEPOINT_STATUS_SUCCESS,
 					'message' => 'Heartbeat detected',

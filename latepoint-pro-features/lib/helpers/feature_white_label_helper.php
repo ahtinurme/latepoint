@@ -27,6 +27,9 @@ class OsFeatureWhiteLabelHelper {
 		add_filter( 'latepoint_admin_side_menu_logo_url', [ __CLASS__, 'filter_admin_logo_url' ] );
 		// add_filter( 'latepoint_admin_menu_icon', [ __CLASS__, 'filter_admin_menu_icon' ] );
 
+		// Custom brand color — admin interface only (does not affect the front-end booking form).
+		add_filter( 'latepoint_main_admin_css', [ __CLASS__, 'filter_admin_brand_color' ] );
+
 		// Plugins list row.
 		add_filter( 'all_plugins', [ __CLASS__, 'filter_plugin_row' ] );
 		add_filter( 'plugin_row_meta', [ __CLASS__, 'filter_plugin_row_meta' ], 20, 2 );
@@ -283,6 +286,107 @@ class OsFeatureWhiteLabelHelper {
 		return $menus;
 	}
 
+	/**
+	 * Append an admin-only :root override for the brand primary color and every
+	 * shade/opacity derived from it. All derived values are pre-computed here
+	 * (when the color is saved) and exposed as CSS variables, so the admin
+	 * stylesheet never has to run color-mix() at render time.
+	 * Injected via the latepoint_admin_css_variables filter, so it never affects
+	 * the front-end booking form.
+	 *
+	 * @param string $css Existing admin CSS variables string.
+	 * @return string
+	 */
+	public static function filter_admin_brand_color( string $css ): string {
+		$color = sanitize_hex_color( OsSettingsHelper::get_settings_value( 'white_label_primary_color', '' ) );
+		if ( empty( $color ) ) {
+			return $css;
+		}
+		$rgb = self::hex_to_rgb( $color );
+		if ( empty( $rgb ) ) {
+			return $css;
+		}
+		return $css . self::build_admin_brand_css_variables( $color, $rgb );
+	}
+
+	/**
+	 * Build the :root{} block of brand-color tokens for a given color.
+	 * Derived shades use straight per-channel sRGB mixing — the same result as
+	 * color-mix( in srgb, base, target percent% ) — so they match the values the
+	 * admin stylesheet was designed against.
+	 *
+	 * @param string $hex Sanitized #rrggbb color.
+	 * @param array  $rgb [ r, g, b ] channel values (0-255).
+	 * @return string
+	 */
+	private static function build_admin_brand_css_variables( string $hex, array $rgb ): string {
+		$vars = [
+			'--latepoint-admin-brand-primary'     => $hex,
+			'--latepoint-admin-brand-primary-rgb' => implode( ' ', $rgb ),
+		];
+
+		// Tints (mix toward white) and shades (mix toward black).
+		foreach ( [ 10, 12, 15, 20, 30, 40 ] as $percent ) {
+			$vars[ '--latepoint-admin-brand-primary-lighten-' . $percent ] = self::mix_hex( $rgb, [ 255, 255, 255 ], $percent );
+		}
+		foreach ( [ 10, 15 ] as $percent ) {
+			$vars[ '--latepoint-admin-brand-primary-darken-' . $percent ] = self::mix_hex( $rgb, [ 0, 0, 0 ], $percent );
+		}
+
+		// Opacities.
+		foreach ( [ 5, 10, 15, 30, 40, 50, 60, 70, 80 ] as $percent ) {
+			$key          = '--latepoint-admin-brand-primary-alpha-' . str_pad( (string) $percent, 2, '0', STR_PAD_LEFT );
+			$alpha        = rtrim( rtrim( sprintf( '%.2F', $percent / 100 ), '0' ), '.' );
+			$vars[ $key ] = sprintf( 'rgba(%d,%d,%d,%s)', $rgb[0], $rgb[1], $rgb[2], $alpha );
+		}
+
+		$declarations = '';
+		foreach ( $vars as $name => $value ) {
+			$declarations .= $name . ':' . $value . ';';
+		}
+		return ':root{' . $declarations . '}';
+	}
+
+	/**
+	 * Convert a #rgb or #rrggbb hex color to [ r, g, b ] channel values.
+	 *
+	 * @param string $hex Hex color (with leading #).
+	 * @return array Empty array when the value cannot be parsed.
+	 */
+	private static function hex_to_rgb( string $hex ): array {
+		$hex = ltrim( $hex, '#' );
+		if ( strlen( $hex ) === 3 ) {
+			$hex = $hex[0] . $hex[0] . $hex[1] . $hex[1] . $hex[2] . $hex[2];
+		}
+		if ( strlen( $hex ) !== 6 || ! ctype_xdigit( $hex ) ) {
+			return [];
+		}
+		return [
+			hexdec( substr( $hex, 0, 2 ) ),
+			hexdec( substr( $hex, 2, 2 ) ),
+			hexdec( substr( $hex, 4, 2 ) ),
+		];
+	}
+
+	/**
+	 * Mix a base color toward a target color by $percent and return #rrggbb.
+	 * Straight per-channel sRGB interpolation — matches
+	 * color-mix( in srgb, base, target percent% ).
+	 *
+	 * @param array $base    [ r, g, b ] base channels.
+	 * @param array $target  [ r, g, b ] target channels (white for a tint, black for a shade).
+	 * @param int   $percent Weight of the target color (0-100).
+	 * @return string #rrggbb
+	 */
+	private static function mix_hex( array $base, array $target, int $percent ): string {
+		$weight   = $percent / 100;
+		$channels = [];
+		foreach ( [ 0, 1, 2 ] as $i ) {
+			$channels[] = (int) round( $base[ $i ] * ( 1 - $weight ) + $target[ $i ] * $weight );
+		}
+		return sprintf( '#%02x%02x%02x', $channels[0], $channels[1], $channels[2] );
+	}
+
 	// -------------------------------------------------------------------------
 	// View helpers
 	// -------------------------------------------------------------------------
@@ -322,6 +426,7 @@ class OsFeatureWhiteLabelHelper {
 		$defaults['white_label_plugin_row_description'] = '';
 		$defaults['white_label_plugin_row_author']      = '';
 		$defaults['white_label_plugin_row_author_uri']  = '';
+		$defaults['white_label_primary_color']          = '';
 		$defaults['white_label_hide_menu']              = LATEPOINT_VALUE_OFF;
 		return $defaults;
 	}
@@ -342,6 +447,7 @@ class OsFeatureWhiteLabelHelper {
 				'white_label_plugin_row_description',
 				'white_label_plugin_row_author',
 				'white_label_plugin_row_author_uri',
+				'white_label_primary_color',
 				'white_label_hide_menu',
 			]
 		);

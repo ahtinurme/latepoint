@@ -3,6 +3,7 @@
  * @var array<string, array<string, array{ga: int, ta: int, any: int}>> $days
  *     date => size => demand split (ga = needs plates, ta = needs no plates, any = no preference)
  * @var array<string, array{ga: int, ta: int}> $stock costumes owned per size and plates variant
+ * @var array<string, int> $day_totals date => total EMS bookings that day
  * @var bool $saved
  * @var bool $field_missing
  * @var string $from
@@ -57,6 +58,7 @@ $sizes = YUMEFIT_COSTUME_SIZES;
                     <th style="padding: 6px 8px;"><?php echo esc_html($size); ?></th>
                 <?php } ?>
                 <th style="padding: 6px 8px; color: #b07d1a;">?</th>
+                <th style="padding: 6px 8px;">Kokku</th>
             </tr>
             <?php foreach (['ga' => 'Plaatidega kostüüme', 'ta' => 'Plaatideta kostüüme'] as $variant => $label) { ?>
                 <tr style="border-bottom: <?php echo $variant === 'ta' ? '2px solid #ddd' : '1px solid #eee'; ?>; text-align: center; color: #6b6b6b;">
@@ -68,6 +70,7 @@ $sizes = YUMEFIT_COSTUME_SIZES;
                         </td>
                     <?php } ?>
                     <td></td>
+                    <td style="padding: 6px 8px; font-weight: 700;"><?php echo array_sum(array_column($stock, $variant)); ?></td>
                 </tr>
             <?php } ?>
             <?php foreach ($days as $date => $counts) { ?>
@@ -93,6 +96,9 @@ $sizes = YUMEFIT_COSTUME_SIZES;
                     <?php $unknown = array_sum($counts['?']); ?>
                     <td style="padding: 6px 8px; vertical-align: top; <?php echo $unknown ? 'background:#fdf3e0;color:#b07d1a;font-weight:700;' : 'color:#c5c5c5;'; ?>">
                         <?php echo $unknown; ?>
+                    </td>
+                    <td style="padding: 6px 8px; vertical-align: top; font-weight: 700; <?php echo $day_totals[$date] ? '' : 'color:#c5c5c5;'; ?>">
+                        <?php echo $day_totals[$date]; ?>
                     </td>
                 </tr>
             <?php } ?>

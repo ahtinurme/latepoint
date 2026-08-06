@@ -44,6 +44,7 @@ if ( ! class_exists( 'OsWhiteLabelController' ) ) :
 				'white_label_plugin_row_description',
 				'white_label_plugin_row_author',
 				'white_label_plugin_row_author_uri',
+				'white_label_primary_color',
 				'white_label_hide_menu',
 			];
 
